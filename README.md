@@ -1,6 +1,8 @@
 ## Requirement
 composer
+
 php 8
+
 npm
 
 ## Repository
