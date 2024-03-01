@@ -69,4 +69,4 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 ## To use tailwind
 run 'npm run dev' in your terminal
 
-always use '@vite('resources/css/app.css')', place it on the '<head>' 
+always use '@vite('resources/css/app.css')', place it on the "< head >" 
