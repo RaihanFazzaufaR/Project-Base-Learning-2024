@@ -66,7 +66,19 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
 
-## To use tailwind
-run 'npm run dev' in your terminal
+## Didn't Work?
+try install composer first
 
-always use '@vite('resources/css/app.css')', place it on the "< head >" 
+try copy .env.example rename to .env
+
+try run 'php artisan key:generate' in terminal then try open the correct URL
+
+try run 'php artisan config:cache' in terminal to refresh
+
+## To use tailwind (in case tailwind didn't work too)
+try run 'npm install' in your terminal
+
+try run 'npm run dev' in your terminal
+
+always use '@vite('resources/css/app.css')', place it on the "< head >"
+
