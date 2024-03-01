@@ -3,7 +3,7 @@ composer
 php 8
 npm
 
-## Repository Information
+## Repository
 clone using main branch (don't change anything in main branch without permission)
 
 commit, pull, etc. use the dev branch
