@@ -6,7 +6,7 @@ php 8
 npm
 
 ## Repository
-clone using main branch (don't change anything in main branch without permission)
+clone using main branch
 
 commit, pull, etc. use the dev branch
 
