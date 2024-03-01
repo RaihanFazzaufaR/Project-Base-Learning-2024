@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+{{-- <!DOCTYPE html>
 <html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
     <head>
         <meta charset="utf-8">
@@ -129,5 +129,16 @@
                 </div>
             </div>
         </div>
+    </body>
+</html> --}}
+
+<html>
+    <head>
+        @vite('resources/css/app.css')
+    </head>
+    <body>
+        <h1 class="text-3x1 font-bold underline">
+            Hello World
+        </h1>
     </body>
 </html>
