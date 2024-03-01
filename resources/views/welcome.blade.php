@@ -137,7 +137,7 @@
         @vite('resources/css/app.css')
     </head>
     <body>
-        <h1 class="text-3x1">
+        <h1 class="text-3x1 font-bold underline">
             Hello World
         </h1>
     </body>
