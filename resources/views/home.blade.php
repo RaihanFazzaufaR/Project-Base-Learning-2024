@@ -9,14 +9,20 @@
     <div class="bg-[#F4F4F4] min-h-[300vh] w-[100%]">
         <x-navbar />
 
-        <div class="h-[85vh] md:h-[79vh] lg:h-[130vh] lg:w-[27%] w-[30%] bg-[#6C6FB4]"></div>
+        <div class="h-[65vh] sm:h-[85vh] md:h-[79vh] lg:h-[130vh] w-[40%] lg:w-[27%] sm:w-[30%] bg-[#6C6FB4]"></div>
 
-        <div class="absolute z-50 left-[5vw] right-[5vw] top-[15vh] sm:top-[17vh] md:top-[13vh] lg:top-[20vh]">
+        <div class="absolute z-50 left-[7vw] right-[7vw] sm:left-[5vw] sm:right-[5vw] top-[15vh] sm:top-[17vh] md:top-[13vh] lg:top-[20vh]">
             <!-- First Page -->
-            <div class="z-50 rounded-xl flex shadow-lg overflow-hidden sm:mb-[7vh] lg:mb-[10vh] lg:h-[70vh]">
+            <div class="z-50 rounded-xl flex shadow-lg overflow-hidden mb-[6vh] sm:mb-[7vh] lg:mb-[10vh] lg:h-[70vh]">
                 <div class="w-[55%] bg-white p-8 md:p-16 lg:p-24 relative z-[60]">
-                    <div class="text-3xl lg:text-4xl mb-5 w-[50vw]">Selamat Datang Di</div>
-                    <div class="text-4xl md:text-5xl lg:text-[60px] font-bold sm:w-[70vw] md:w-[60vw] lg:w-[70vw] leading-tight">Portal Resmi RW 3 <br> Desa Bumiayu <br> Kecamatan Kedungkandang <br> Kota Malang</div>
+                    <div class="text-xl sm:text-3xl lg:text-4xl mb-5 w-[50vw]">Selamat Datang Di</div>
+                    <div class="text-[33px] sm:text-4xl md:text-5xl lg:text-[60px] font-bold w-[60vw] sm:w-[70vw] md:w-[60vw] lg:w-[70vw] leading-tight">
+                        <p class="sm:hidden">Portal RW 3</p> 
+                        <p class="hidden sm:block">Portal Resmi RW 3</p> 
+                        <p class="">Desa Bumiayu</p>
+                        <p class="hidden sm:block">Kecamatan Kedungkandang</p> 
+                        <p class="hidden sm:block">Kota Malang</p>
+                    </div>
                 </div>
                 <div class="w-[45%] relative">
                     <img src="{{ asset('assets/images/cover.jpg') }}" alt="" class="w-full h-full absolute z-[1]">
@@ -25,25 +31,29 @@
             </div>
 
             <!-- UMKM Page -->
-            <div class="relative z-50 h-[30vh] md:h-[25vh] lg:h-[33vh] bg-transparent flex gap-4">
-                <div class="lg:w-[24%] w-[27%] flex flex-col  items-center text-white gap-5 md:h-[20vh] lg:h-[30vh]">
-                    <div class="font-bold 2xl:text-6xl md:text-[38px] text-[34px] lg:text-[50px] text-center w-[80%]">UMKM Di RW 3</div>
-                    <a href="/" class="bg-[#FFDA16] hover:bg-[#d6bd41] font-semibold md:font-bold lg:py-3 lg:px-4 md:py-2 md:px-3 py-1 px-2 rounded-full lg:text-md 2xl:text-lg text-center">
-                        Lihat UMKM Lainnya
+            <div class="relative z-50 h-[25vh] sm:h-[30vh] md:h-[25vh] lg:h-[33vh] bg-transparent flex gap-4">
+                <div class="lg:w-[24%] w-[35%] flex flex-col items-center justify-center text-white gap-3 sm:gap-5 h-[18vh] md:h-[20vh] lg:h-[30vh]">
+                    <div class="font-bold 2xl:text-6xl md:text-[38px] sm:text-[34px] text-[30px] lg:text-[50px] text-center w-[80%]">
+                        <p class="">UMKM</p>
+                        <p class="hidden sm:block">Di RW 3</p>
+                    </div>
+                    <a href="/" class="bg-[#FFDA16] hover:bg-[#d6bd41] font-semibold md:font-bold lg:py-3 lg:px-4 md:py-2 md:px-3 py-1 px-2 rounded-full lg:text-md 2xl:text-lg  text-sm text-center w-full">
+                        <p class="block sm:hidden">Lihat Lainnya</p>
+                        <p class="hidden sm:block">Lihat UMKM Lainnya</p>
                     </a>
                 </div>
-                <div class="w-[74%] flex flex-row gap-6 ml-[24px] flex-nowrap overflow-hidden carrousel-umkm">
-                    <div class="w-[70%] lg:w-[42%] h-[80%] lg:h-[85%] 2xl:h-[92%] flex-none bg-white rounded-3xl shadow-lg flex umkm">
+                <div class="sm:w-[74%] w-[55%] flex flex-row gap-6 ml-[24px] flex-nowrap overflow-hidden carrousel-umkm">
+                    <div class="w-[90%] sm:w-[70%] lg:w-[42%] h-[80%] lg:h-[85%] 2xl:h-[92%] flex-none bg-white rounded-3xl shadow-lg flex umkm">
                         <div class="w-[40%] flex justify-center items-center">
                             <img src="{{ asset('assets/images/gacoan.jpg') }}" alt="" class="w-[70%] rounded-xl">
                         </div>
                         <div class="w-[60%] flex flex-col justify-center items-center gap-3 lg:gap-2 md:pr-4 2xl:pr-0">
-                            <p class="font-bold text-2xl 2xl:text-3xl">Mie Gacoan 1</p>
-                            <div class="flex items-center gap-3 px-2 lg:mb-3 mb-1">
-                                <i class="fa-regular fa-clock text-lg"></i>
-                                <p class="text-lg">09.00 - 21.00</p>
+                            <p class="font-bold text-sm sm:text-2xl 2xl:text-3xl">Mie Gacoan 1</p>
+                            <div class="flex items-center gap-2 sm:gap-3 px-1 sm:px-2 lg:mb-3 mb-1">
+                                <i class="fa-regular fa-clock text-sm sm:text-lg"></i>
+                                <p class="text-sm sm:text-lg">09.00 - 21.00</p>
                             </div>
-                            <a href="/" class="bg-[#B1B9E4] hover:bg-[#8A93C1] text-lg p-2 2xl:w-[80%] w-[90%] text-white rounded-full text-center">
+                            <a href="/" class="bg-[#B1B9E4] hover:bg-[#8A93C1] hidden sm:block text-lg p-2 2xl:w-[80%] w-[90%] text-white rounded-full text-center">
                                 Lihat Selengkapnya
                             </a>
                         </div>
@@ -95,6 +105,7 @@
                     </div>
                 </div>
 
+                <div class="bg-gradient-to-r from-white/40 to-white absolute z-[50] h-[90%] w-[7vw] right-0 rounded-l-2xl duration-200 transition-all" id="opacityUmkm"></div>
                 <!-- Next Button UMKM -->
                 <button class="absolute z-[90] -right-5 lg:top-[38%] md:top-[32%] top-[30%] border-[3px] border-[#458FFF] rounded-full group hover:border-[#4b7bc2]" id="nextButtonUmkm">
                     <i class="text-4xl fa-solid fa-circle-chevron-right text-[#458FFF] border-[3px] border-transparent rounded-full group-hover:text-[#4b7bc2]"></i>
@@ -177,6 +188,7 @@
         const nextButtonUmkm = document.getElementById('nextButtonUmkm');
         const carrouselUmkm = document.querySelector('.carrousel-umkm');
         const firstCardWidth = carrouselUmkm.querySelector('.umkm').offsetWidth;
+        const opacityUmkm = document.getElementById('opacityUmkm');
         let index = 0;
         let isDragStart = false,
             prevPageX, prevScrollLeft, positionDiff;
@@ -187,13 +199,17 @@
             index++;
             nextButtonUmkm.disabled = false;
         }
-
+        
         nextButtonUmkm.addEventListener('click', () => {
+            opacityUmkm.classList.add('hidden');
             carrouselUmkm.classList.add('scroll-smooth')
             nextButtonUmkm.disabled = true;
             carrouselUmkm.scrollLeft += (firstCardWidth + 24);
-
+            
             setTimeout(addCard, 500);
+            setTimeout(() => {
+                opacityUmkm.classList.remove('hidden');
+            }, 300);
             carrouselUmkm.classList.remove('scroll-smooth')
         });
 
