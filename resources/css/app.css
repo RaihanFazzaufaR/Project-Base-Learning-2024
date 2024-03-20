@@ -5,13 +5,15 @@
 .gradient-text {
     background: linear-gradient(
         to right,
-        #fff 0%,
-        #4d51b7 20%,
-        #fff 40%,
-        #4d51b7 60%,
-        #fff 80%,
-        #4d51b7 100%
+        #81B076,
+        #fff,
+        #81B076,
+        #fff,
+        #81B076,
+        #fff,
+        #81B076
     );
     background-clip: text;
-    background-size: 300% 300%;
+    background-size: 200% auto;
+    background-clip: text;
 }
