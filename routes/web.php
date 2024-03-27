@@ -18,5 +18,14 @@ Route::get('/', function () {
 });
 
 Route::get('/login', function () {
-    return view('login');
+    return view('Login.index');
 });
+Route::get('/login/forgot-password', function () {
+    return view('Login.forgot_password');
+})->name('forgot-password');
+Route::get('/login/recovery-code', function () {
+    return view('Login.recovery_code');
+})->name('recovery-code');
+Route::get('/login/change-password', function () {
+    return view('Login.change_password');
+})->name('change-password');
