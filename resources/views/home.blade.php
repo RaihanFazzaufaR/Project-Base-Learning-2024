@@ -8,12 +8,12 @@
 <body>
     <!-- <div class="bg-[#F4FCF2] min-h-[400vh] w-[100%]"> -->
     <x-navbar />
-    <div class="bg-white w-[100%]">
+    <div class="bg-white w-[100%] rounded-b-[100px] shadow-xl pb-[10vh]">
         <!-- top-[15vh] sm:top-[17vh] md:top-[13vh] lg:top-[20vh] -->
         <img src="{{ asset('assets/images/bg-home-slice-1.png') }}" alt="" class="absolute top-10 right-0 h-[127vh] w-[69vw]">
 
         <div class="absolute top-5 right-0" style="mask-image: url('{{ asset('assets/images/bg-home-slice.png') }}'); mask-repeat: no-repeat; mask-size: cover;">
-            <img src="{{ asset('assets/images/cover.jpg') }}" alt="" class="h-[127vh] w-[65vw]">
+            <img src="{{ asset('assets/images/home-2.jpg') }}" alt="" class="h-[127vh] w-[65vw]">
         </div>
 
         <div class="relative h-[65vh] sm:h-[85vh] md:h-[79vh] lg:h-[120vh] w-[70%] text-[#1C4F0F] pt-[20vh] pl-[8vh]">
@@ -39,6 +39,9 @@
             </div>
         </div>
 
+        <!-- shape -->
+        <svg class="absolute top-[100vh] -left-[10vw] animate-flying" xmlns="http://www.w3.org/2000/svg" id="SvgjsSvg8731" x="0" y="0" version="1.1" viewBox="0 0 487.272 487.272" width="350" height="350" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs"><path d="M468.018 196.707 289.885 18.573c-26.341-23.625-66.246-23.625-92.587 0L19.165 196.493c-25.554 25.573-25.554 67.014 0 92.587L197.298 467a63.997 63.997 0 0 0 46.293 19.413 64 64 0 0 0 46.293-18.987l178.133-178.133.267-.267c25.421-25.567 25.302-66.9-.266-92.319z" fill="url(&quot;#SvgjsLinearGradient8732&quot;)"></path><defs><linearGradient gradientTransform="rotate(0 0.5 0.5)" id="SvgjsLinearGradient8732"><stop stop-opacity=" 0" stop-color="rgba(255, 255, 255)" offset="0"></stop><stop stop-opacity=" 1" stop-color="rgba(31, 64, 55)" offset="0"></stop><stop stop-opacity=" 1" stop-color="rgba(77, 139, 122)" offset="1"></stop></linearGradient></defs></svg>
+
         <!-- Fitur Page -->
         <div class="w-[80vw] mx-auto mt-[10vh]  flex flex-col gap-14">
             <div class="text-center font-bold text-5xl text-[#236612]">Layanan Warga</div>
@@ -51,7 +54,7 @@
                         <div class="font-bold text-4xl">UMKM</div>
                         <div class="w-[85%] h-[35%] text-center font-normal text-lg">Temukan informasi mengenai daftar Usaha Mikro Kecil dan Menengah (UMKM) di RW 3</div>
                     </div>
-                    <div class="absolute bg-[#F9C0E2] h-[50%] w-full rounded-t-[60px] top-0 z-10 opacity-100 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500 translate-y-[45vh] group-hover:translate-y-[23vh]">
+                    <div class="absolute bg-[#F9C0E2]/80 h-[50%] w-full rounded-t-[60px] top-0 z-10 opacity-100 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500 translate-y-[45vh] group-hover:translate-y-[23vh]">
                         <a class="bg-white text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm shadow-md border border-[#1C4F0F] hover:bg-yellow-500 cursor-pointer">Lihat Selengkapnya</a>
                     </div>
                 </div>
@@ -63,7 +66,7 @@
                         <div class="font-bold text-4xl">Kependudukan</div>
                         <div class="w-[85%] h-[35%] text-center font-normal text-lg">Informasi mengenai daftar warga yang tinggal di RW 3</div>
                     </div>
-                    <div class="absolute bg-[#C2D0EC] h-[50%] w-full rounded-t-[60px] top-0 z-10 opacity-100 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500 translate-y-[45vh] group-hover:translate-y-[23vh]">
+                    <div class="absolute bg-[#C2D0EC]/80 h-[50%] w-full rounded-t-[60px] top-0 z-10 opacity-100 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500 translate-y-[45vh] group-hover:translate-y-[23vh]">
                         <a class="bg-white text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm shadow-md border border-[#1C4F0F] hover:bg-yellow-500 cursor-pointer">Lihat Selengkapnya</a>
                     </div>
                 </div>
@@ -75,7 +78,7 @@
                         <div class="font-bold text-4xl">Bansos</div>
                         <div class="w-[85%] h-[35%] text-center font-normal text-lg">Informasi mengenai daftar masyarakat yang mendapatkan Bantuan Sosial (Bansos) dari Pemerintah di RW 3</div>
                     </div>
-                    <div class="absolute bg-[#D2BDFF] h-[50%] w-full rounded-t-[60px] top-0 z-10 opacity-100 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500 translate-y-[45vh] group-hover:translate-y-[23vh]">
+                    <div class="absolute bg-[#D2BDFF]/80 h-[50%] w-full rounded-t-[60px] top-0 z-10 opacity-100 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500 translate-y-[45vh] group-hover:translate-y-[23vh]">
                         <a class="bg-white text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm shadow-md border border-[#1C4F0F] hover:bg-yellow-500 cursor-pointer">Lihat Selengkapnya</a>
                     </div>
                 </div>
@@ -87,7 +90,7 @@
                         <div class="font-bold text-4xl">Pengaduan</div>
                         <div class="w-[85%] h-[35%] text-center font-normal text-lg">Layanan informasi terkait sarana penyampaian aspirasi dan pengaduan warga RW 3</div>
                     </div>
-                    <div class="absolute bg-[#C3FBB8] h-[50%] w-full rounded-t-[60px] top-0 z-10 opacity-100 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500 translate-y-[45vh] group-hover:translate-y-[23vh]">
+                    <div class="absolute bg-[#C3FBB8]/80 h-[50%] w-full rounded-t-[60px] top-0 z-10 opacity-100 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500 translate-y-[45vh] group-hover:translate-y-[23vh]">
                         <a class="bg-white text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm shadow-md border border-[#1C4F0F] hover:bg-yellow-500 cursor-pointer">Lihat Selengkapnya</a>
                     </div>
                 </div>
@@ -99,7 +102,7 @@
                         <div class="font-bold text-4xl">Jadwal Kegiatan</div>
                         <div class="w-[85%] h-[35%] text-center font-normal text-lg">Informasi seputar kegiatan yang akan dilakukan warga RW 3</div>
                     </div>
-                    <div class="absolute bg-[#FCDFAD] h-[50%] w-full rounded-t-[60px] top-0 z-10 opacity-100 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500 translate-y-[45vh] group-hover:translate-y-[23vh]">
+                    <div class="absolute bg-[#FCDFAD]/80 h-[50%] w-full rounded-t-[60px] top-0 z-10 opacity-100 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500 translate-y-[45vh] group-hover:translate-y-[23vh]">
                         <a class="bg-white text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm shadow-md border border-[#1C4F0F] hover:bg-yellow-500 cursor-pointer">Lihat Selengkapnya</a>
                     </div>
                 </div>
@@ -111,26 +114,27 @@
                         <div class="font-bold text-4xl">Surat Pengantar</div>
                         <div class="w-[85%] h-[35%] text-center font-normal text-lg">Layanan informasi terkait surat pengantar RT/RW</div>
                     </div>
-                    <div class="absolute bg-[#F9C9BB] h-[50%] w-full rounded-t-[60px] top-0 z-10 opacity-100 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500 translate-y-[45vh] group-hover:translate-y-[23vh]">
+                    <div class="absolute bg-[#F9C9BB]/80 h-[50%] w-full rounded-t-[60px] top-0 z-10 opacity-100 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500 translate-y-[45vh] group-hover:translate-y-[23vh]">
                         <a class="bg-white text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm shadow-md border border-[#1C4F0F] hover:bg-yellow-500 cursor-pointer">Lihat Selengkapnya</a>
                     </div>
                 </div>
             </div>
         </div>
+        
 
         <!-- UMKM -->
 
-        <div class="h-[90vh] w-[80vw] mt-[5vh] py-[5vh] mx-auto">
+        <div class="h-[90vh] w-[84vw] mt-[5vh] py-[5vh] mx-auto">
             <div class="h-full w-full flex flex-col justify-between">
-                <div class="font-bold  text-[#1C4F0F] text-5xl text-center w-full py-4">UMKM Sekitar</div>
-                <div class="relative h-[40vh] w-full ">
+                <div class="font-bold  text-[#1C4F0F] text-5xl text-center w-full py-4 ">UMKM Sekitar</div>
+                <div class="relative h-[40vh] w-full">
                     <!-- Prev Button UMKM -->
-                    <button class="absolute z-[90] -left-5 lg:top-[38%] md:top-[32%] top-[30%] border-[3px] border-[#458FFF] rounded-full group hover:border-[#4b7bc2]" id="nextButtonUmkm">
+                    <button class="absolute z-[90] -left-5 lg:top-[38%] md:top-[32%] top-[30%] border-[3px] border-[#458FFF] rounded-full group hover:border-[#4b7bc2]" id="prevButtonUmkm">
                         <i class="text-4xl fa-solid fa-circle-chevron-right text-[#458FFF] border-[3px] border-transparent rounded-full group-hover:text-[#4b7bc2] rotate-180"></i>
                     </button>
 
-                    <div class="h-[40vh] w-full flex justify-between">
-                        <div class="relative w-[17vw] h-full bg-white rounded-2xl shadow-lg flex flex-col overflow-hidden hover:shadow-2xl hover:scale-105 transition ease-in-out duration-500 group">
+                    <div class="h-[44vh] w-full flex gap-[61px] px-[2vw] scroll-smooth carrousel-umkm flex-nowrap overflow-x-hidden py-6">
+                        <div class="relative w-[17vw] flex-none h-full bg-white rounded-2xl shadow-lg flex flex-col overflow-hidden hover:shadow-2xl hover:scale-105 transition ease-in-out duration-500 group umkm">
                             <div class="h-[70%] w-full overflow-hidden">
                                 <img src="{{ asset('assets/images/toko-kelontong.jpg') }}" alt="" class="h-full w-full group-hover:brightness-[0.4] transition ease-in-out duration-500 group-hover:scale-110">
                             </div>
@@ -146,7 +150,7 @@
                                 <a class="bg-yellow-500 text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm hover:bg-[#E2A229] cursor-pointer">Lihat Selengkapnya</a>
                             </div>
                         </div>
-                        <div class="relative w-[17vw] h-full bg-white rounded-2xl shadow-lg flex flex-col overflow-hidden hover:shadow-2xl hover:scale-105 transition ease-in-out duration-500 group">
+                        <div class="relative w-[17vw] flex-none h-full bg-white rounded-2xl shadow-lg flex flex-col overflow-hidden hover:shadow-2xl hover:scale-105 transition ease-in-out duration-500 group umkm">
                             <div class="h-[70%] w-full overflow-hidden">
                                 <img src="{{ asset('assets/images/toko-kelontong.jpg') }}" alt="" class="h-full w-full group-hover:brightness-[0.4] transition ease-in-out duration-500 group-hover:scale-110">
                             </div>
@@ -162,7 +166,7 @@
                                 <a class="bg-yellow-500 text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm hover:bg-[#E2A229] cursor-pointer">Lihat Selengkapnya</a>
                             </div>
                         </div>
-                        <div class="relative w-[17vw] h-full bg-white rounded-2xl shadow-lg flex flex-col overflow-hidden hover:shadow-2xl hover:scale-105 transition ease-in-out duration-500 group">
+                        <div class="relative w-[17vw] flex-none h-full bg-white rounded-2xl shadow-lg flex flex-col overflow-hidden hover:shadow-2xl hover:scale-105 transition ease-in-out duration-500 group umkm">
                             <div class="h-[70%] w-full overflow-hidden">
                                 <img src="{{ asset('assets/images/toko-kelontong.jpg') }}" alt="" class="h-full w-full group-hover:brightness-[0.4] transition ease-in-out duration-500 group-hover:scale-110">
                             </div>
@@ -178,7 +182,7 @@
                                 <a class="bg-yellow-500 text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm hover:bg-[#E2A229] cursor-pointer">Lihat Selengkapnya</a>
                             </div>
                         </div>
-                        <div class="relative w-[17vw] h-full bg-white rounded-2xl shadow-lg flex flex-col overflow-hidden hover:shadow-2xl hover:scale-105 transition ease-in-out duration-500 group">
+                        <div class="relative w-[17vw] flex-none h-full bg-white rounded-2xl shadow-lg flex flex-col overflow-hidden hover:shadow-2xl hover:scale-105 transition ease-in-out duration-500 group umkm">
                             <div class="h-[70%] w-full overflow-hidden">
                                 <img src="{{ asset('assets/images/toko-kelontong.jpg') }}" alt="" class="h-full w-full group-hover:brightness-[0.4] transition ease-in-out duration-500 group-hover:scale-110">
                             </div>
@@ -213,36 +217,36 @@
                     <div class="max-h-[60vh] w-[80%] flex flex-col overflow-auto gap-7">
                         <div class="relative w-full flex justify-end min-h-30 bg-transparent pt-6">
                             <div class="absolute bg-[#FFD600] h-[75px] w-[115px] top-0 left-0 text-black flex justify-center items-end font-extrabold py-5 font-sans rounded-md">
-                                <span class="text-xl">Agu</span>
+                                <span class="text-xl">Apr</span>
                                 <span class="text-4xl">10</span>
                             </div>
                             <div class="w-[95%] min-h-20 bg-[#4D7F41]/65 rounded-xl border-2 border-[#1B4810] pl-28 pr-5 py-3">
                                 <div class="text-white font-bold text-xl">
                                     <p>
                                         <span>1. </span>
-                                        <span>Lomba Agustusan di RT 2</span>
+                                        <span>Lomba Aprilan di RT 2</span>
                                     </p>
                                     <p>
                                         <span>2. </span>
-                                        <span>Lomba Agustusan di RT 3</span>
+                                        <span>Lomba Aprilan di RT 3</span>
                                     </p>
                                     <p>
                                         <span>3. </span>
-                                        <span>Lomba Agustusan di RT 4</span>
+                                        <span>Lomba Aprilan di RT 4</span>
                                     </p>
                                 </div>
                             </div>
                         </div>
                         <div class="relative w-full flex justify-end min-h-30 bg-transparent pt-6">
                             <div class="absolute bg-[#FFD600] h-[75px] w-[115px] top-0 left-0 text-black flex justify-center items-end font-extrabold py-5 font-sans rounded-md">
-                                <span class="text-xl">Agu</span>
+                                <span class="text-xl">Apr</span>
                                 <span class="text-4xl">15</span>
                             </div>
                             <div class="w-[95%] min-h-20 bg-[#4D7F41]/65 rounded-xl border-2 border-[#1B4810] pl-28 pr-5 py-3">
                                 <div class="text-white font-bold text-xl">
                                     <p>
                                         <span>1. </span>
-                                        <span>Lomba Agustusan di RT 9</span>
+                                        <span>Lomba Aprilan di RT 9</span>
                                     </p>
                                 </div>
                             </div>
@@ -257,16 +261,84 @@
                 </div>
 
                 <!-- calendar -->
-                <div class="absolute bg-white w-[45%] h-[70%] right-0 top-[75px] rounded-xl shadow-2xl">
-
+                <div class="absolute bg-white w-[45%] h-[70%] right-0 top-[75px] rounded-xl shadow-2xl overflow-hidden">
+                    <div class="basis-1/2 px-8 py-4 dark:bg-gray-800 bg-white flex flex-col justify-between gap-8 h-[380px]">
+                        <div class="flex items-center justify-around">
+                            <button id="prev" aria-label="calendar backward" onclick="prev()" class="focus:text-gray-400 hover:text-gray-400 text-gray-800 dark:text-gray-100 button-calendar">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <polyline points="15 6 9 12 15 18" />
+                                </svg>
+                            </button>
+                            <span tabindex="0" class="focus:outline-none  text-lg font-extrabold dark:text-gray-100 text-gray-800" id="calendarHead"></span>
+                            <button id="next" aria-label="calendar forward" onclick="next()" class="focus:text-gray-400 hover:text-gray-400 ml-3 text-gray-800 dark:text-gray-100 button-calendar">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler  icon-tabler-chevron-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+                                    <path stroke="none" d="M0 0h24v24H0z" fill="none" />
+                                    <polyline points="9 6 15 12 9 18" />
+                                </svg>
+                            </button>
+                        </div>
+                        <div class="flex items-center justify-between h-full">
+                            <table class="w-full lg:h-full">
+                                <thead>
+                                    <tr>
+                                        <th class="pb-5">
+                                            <div class="w-full flex justify-center">
+                                                <p class="text-base font-medium text-center text-gray-800 dark:text-gray-100">
+                                                    Min</p>
+                                            </div>
+                                        </th>
+                                        <th class="pb-5">
+                                            <div class="w-full flex justify-center">
+                                                <p class="text-base font-medium text-center text-gray-800 dark:text-gray-100">
+                                                    Sen</p>
+                                            </div>
+                                        </th>
+                                        <th class="pb-5">
+                                            <div class="w-full flex justify-center">
+                                                <p class="text-base font-medium text-center text-gray-800 dark:text-gray-100">
+                                                    Sel</p>
+                                            </div>
+                                        </th>
+                                        <th class="pb-5">
+                                            <div class="w-full flex justify-center">
+                                                <p class="text-base font-medium text-center text-gray-800 dark:text-gray-100">
+                                                    Rab</p>
+                                            </div>
+                                        </th>
+                                        <th class="pb-5">
+                                            <div class="w-full flex justify-center">
+                                                <p class="text-base font-medium text-center text-gray-800 dark:text-gray-100">
+                                                    Kam</p>
+                                            </div>
+                                        </th>
+                                        <th class="pb-5">
+                                            <div class="w-full flex justify-center">
+                                                <p class="text-base font-medium text-center text-gray-800 dark:text-gray-100">
+                                                    Jum</p>
+                                            </div>
+                                        </th>
+                                        <th class="pb-5">
+                                            <div class="w-full flex justify-center">
+                                                <p class="text-base font-medium text-center text-gray-800 dark:text-gray-100">
+                                                    Sab</p>
+                                            </div>
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="days">
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
 
-        <div class="relatif w-[80vw] mx-auto h-[90vh] flex flex-col mt-[20vh] gap-[45px] mb-[20vh]">
+        <div class="relatif w-[80vw] mx-auto h-[90vh] flex flex-col mt-[20vh] gap-[45px]">
             <div class="font-bold text-[#1C4F0F] text-5xl text-center w-full py-4">Aduan Warga</div>
-            <div class="relative h-fit w-full bg-white rounded-md shadow-md">
-                <table class="w-full text-left rtl:text-right text-black dark:text-gray-400 border border-slate-200">
+            <div class="relative h-fit w-full bg-white shadow-md rounded-xl overflow-hidden border border-slate-200">
+                <table class="w-full text-left rtl:text-right text-black dark:text-gray-400">
                     <thead class="text-xl text-center border-b-4 border-[#69CA57]/[0.32]">
                         <tr>
                             <th scope="col" class="w-[50%] py-5">
@@ -308,17 +380,255 @@
         </div>
     </div>
 
-    <div class="relative w-full h-[40vh] bottom-0 flex flex-col">
-        <div class="w-full h-[32vh] flex bg-[#C1EFBD] justify-between items-center text-[#1C4F0F] px-[8vw] py-12">
-            <img src="{{ asset('assets/images/footer.png') }}" alt="" class="h-full">
-            <div class="h-full w-[400px] font-bold text-2xl pt-2">
+    <!-- footer -->
+
+    <div class="relative -z-10 w-full h-[40vh] bottom-0 flex flex-col">
+        <div class="absolute z-0 w-full -top-[15vh] h-[50vh] flex bg-[#C1EFBD] justify-between items-center text-[#1C4F0F] px-[8vw] pt-[13vh]">
+            <img src="{{ asset('assets/images/footer.png') }}" alt="" class="h-[110px]">
+            <div class="h-full w-[400px] font-bold text-2xl pt-[70px]">
                 <i>“Mewujudkan RW 3 sebagai RW yang Modern, Kreatif, Inovatif dan Sejahtera”</i>
             </div>
         </div>
-        <div class="w-full h-[8vh] flex bg-[#1C4F0F] justify-center items-center text-[#C1EFBD]">
+        <div class="absolute bottom-0 w-full h-[8vh] flex bg-[#1C4F0F] justify-center items-center text-[#C1EFBD]">
             &copy; 2024 SIRAWA. All Rights Reserved.
         </div>
     </div>
+
+    <script>
+        const nextButtonUmkm = document.getElementById('nextButtonUmkm');
+        const prevButtonUmkm = document.getElementById('prevButtonUmkm');
+        const carrouselUmkm = document.querySelector('.carrousel-umkm');
+        const firstCardWidth = carrouselUmkm.querySelector('.umkm').offsetWidth;
+        let index = 0;
+        const childTotal = carrouselUmkm.childElementCount;
+
+        const addCard = () => {
+
+            for (let i = 0; i < childTotal; i++) {
+                const umkm = carrouselUmkm.children[i].cloneNode(true);
+                carrouselUmkm.appendChild(umkm);
+            }
+        }
+        // console.log(carrouselUmkm.scrollLeft);
+
+        addCard();
+
+        const addCardRight = () => {
+            // index = (index >= umkmNode.length) ? 0 : index;
+
+            const umkm = carrouselUmkm.querySelectorAll('.umkm')[index].cloneNode(true);
+            carrouselUmkm.appendChild(umkm);
+            index++;
+            nextButtonUmkm.disabled = false;
+
+        }
+
+        const addCardLeft = () => {
+            index--;
+            // index = (index < 0) ? umkmNode.length - 1 : index;
+            const umkm = umkmNode[index];
+            carrouselUmkm.insertBefore(umkm, carrouselUmkm.firstChild);
+            prevButtonUmkm.disabled = false;
+        }
+
+        nextButtonUmkm.addEventListener('click', () => {
+            nextButtonUmkm.disabled = true;
+            if(Math.floor(carrouselUmkm.scrollLeft) === carrouselUmkm.scrollWidth - carrouselUmkm.offsetWidth) {
+                carrouselUmkm.scrollLeft -= (firstCardWidth + 61) * (childTotal - 1);
+            } else {
+                carrouselUmkm.scrollLeft += (firstCardWidth + 61);
+            }
+            setTimeout(() => {
+                nextButtonUmkm.disabled = false;
+            }, 500);
+        });
+
+        prevButtonUmkm.addEventListener('click', () => {
+            prevButtonUmkm.disabled = true;
+            if(carrouselUmkm.scrollLeft === 0) {
+                carrouselUmkm.scrollLeft += (firstCardWidth + 61) * (childTotal - 1);
+            } else {
+                carrouselUmkm.scrollLeft -= (firstCardWidth + 61);
+            }
+            setTimeout(() => {
+                prevButtonUmkm.disabled = false;
+            }, 500);
+        });
+    </script>
+
+    <script>
+        //calendar
+        const calendarHead = document.querySelector("#calendarHead");
+        const days = document.querySelector("#days");
+        const buttonCalendar = document.querySelectorAll(".button-calendar");
+
+        let date = new Date();
+        let currYear = date.getFullYear();
+        let currMonth = date.getMonth();
+
+        const month = [
+            "Januari",
+            "Februari",
+            "Maret",
+            "April",
+            "Mei",
+            "Juni",
+            "Juli",
+            "Agustus",
+            "September",
+            "Oktober",
+            "November",
+            "Desember",
+        ];
+
+        const renderCalendar = () => {
+            let counter = 0;
+            let firstDayofMonth = new Date(currYear, currMonth, 1)
+                .getDay(); // getting last date of month
+            let lastDateofMonth = new Date(currYear, currMonth + 1, 0).getDate();
+            let lastDayofMonth = new Date(currYear, currMonth, lastDateofMonth).getDay();
+            let lastDateofLastMonth = new Date(currYear, currMonth, 0)
+                .getDate(); // getting last date of month
+            let daysDate = "";
+
+            for (let i = firstDayofMonth; i > 0; i--) {
+                counter++;
+
+                if (counter % 7 == 1) {
+                    daysDate += `   <tr>
+                                    <td class="py-1">
+                                        <div class="w-full h-full">
+                                            <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
+                                                <a role="link"  tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#0088ED] hover:bg-gray-200 dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-normal text-gray-400 dark:text-slate-400 rounded-full">${lastDateofLastMonth - i + 1}</a>
+                                            </div>
+                                        </div>
+                                    </td>`
+                } else if (counter % 7 == 0) {
+                    daysDate += `       <td class="py-1">
+                                        <div class="w-full h-full">
+                                            <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
+                                                <a role="link"  tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#0088ED] hover:bg-gray-200 dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-normal text-gray-400 dark:text-slate-400 rounded-full">${lastDateofLastMonth - i + 1}</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>`
+                } else {
+                    daysDate += `       <td class="py-1">
+                                        <div class="w-full h-full">
+                                            <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
+                                                <a role="link"  tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#0088ED] hover:bg-gray-200 dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-normal text-gray-400 dark:text-slate-400 rounded-full">${lastDateofLastMonth - i + 1}</a>
+                                            </div>
+                                        </div>
+                                    </td>`
+                }
+            }
+
+            for (let i = 1; i <= lastDateofMonth; i++) {
+                counter++;
+
+                if (i === date.getDate() && currMonth === date.getMonth() && currYear === date.getFullYear()) {
+                    daysDate += `       <td class="py-1">
+                                        <div class="w-full h-full">
+                                            <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
+                                                <button role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#0088ED] hover:bg-gray-200 dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-white dark:text-gray-100 rounded-full bg-[#0088ED]">${i}</button>
+                                            </div>
+                                        </div>
+                                    </td>`
+                } else if (i == 10 || i == 15) {
+                    daysDate += `       <td class="py-1">
+                                        <div class="w-full h-full">
+                                            <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
+                                                <button role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#0088ED] hover:bg-gray-200 dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-white dark:text-gray-100 rounded-full bg-yellow-500">${i}</button>
+                                            </div>
+                                        </div>
+                                    </td>`
+                } else if (counter % 7 == 1) {
+                    daysDate += `   <tr>
+                                    <td class="py-1">
+                                        <div class="w-full h-full">
+                                            <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
+                                                <button role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#0088ED] hover:bg-gray-200 dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-gray-500 dark:text-gray-100 rounded-full">${i}</button>
+                                            </div>
+                                        </div>
+                                    </td>`
+                } else if (counter % 7 == 0) {
+                    daysDate += `       <td class="py-1">
+                                        <div class="w-full h-full">
+                                            <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
+                                                <button role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#0088ED] hover:bg-gray-200 dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-gray-500 dark:text-gray-100 rounded-full">${i}</button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>`
+                } else {
+                    daysDate += `       <td class="py-1">
+                                        <div class="w-full h-full">
+                                            <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
+                                                <button role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#0088ED] hover:bg-gray-200 dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-gray-500 dark:text-gray-100 rounded-full">${i}</button>
+                                            </div>
+                                        </div>
+                                    </td>`
+                }
+            }
+
+            for (let i = lastDayofMonth; i < 6; i++) {
+                counter++;
+
+                if (counter % 7 == 1) {
+                    daysDate += `   <tr>
+                                    <td class="py-1">
+                                        <div class="w-full h-full">
+                                            <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
+                                                <a role="link"  tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#0088ED] hover:bg-gray-200 dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-normal text-gray-400 dark:text-slate-400 rounded-full">${i - lastDayofMonth + 1}</button>
+                                            </div>
+                                        </div>
+                                    </td>`
+                } else if (counter % 7 == 0) {
+                    daysDate += `       <td class="py-1">
+                                        <div class="w-full h-full">
+                                            <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
+                                                <a role="link"  tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#0088ED] hover:bg-gray-200 dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-normal text-gray-400 dark:text-slate-400 rounded-full">${i - lastDayofMonth + 1}</button>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>`
+                } else {
+                    daysDate += `       <td class="py-1">
+                                        <div class="w-full h-full">
+                                            <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
+                                                <a role="link"  tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#0088ED] hover:bg-gray-200 dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-normal text-gray-400 dark:text-slate-400 rounded-full">${i - lastDayofMonth + 1}</button>
+                                            </div>
+                                        </div>
+                                    </td>`
+                }
+            }
+
+            calendarHead.innerHTML = `${month[currMonth]} ${currYear}`;
+
+            days.innerHTML = daysDate;
+        }
+
+        const next = () => {
+            currMonth++;
+            if (currMonth > 11) {
+                currMonth = 0;
+                currYear++;
+            }
+            renderCalendar();
+        }
+
+        const prev = () => {
+            currMonth--;
+            if (currMonth < 0) {
+                currMonth = 11;
+                currYear--;
+            }
+            renderCalendar();
+        }
+
+        renderCalendar();
+    </script>
+
 </body>
 
 </html>

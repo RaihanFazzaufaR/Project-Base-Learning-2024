@@ -29,6 +29,13 @@ export default {
                     "0%": { transform: "translateY(-10vh)" },
                     "100%": { transform: "translateY(100vh)" },
                 },
+                flying: {
+                    "0%": { transform: "translateX(-5vw)" },
+                    "25%": { transform: "translateY(-5vh)" },
+                    "50%": { transform: "translateX(5vw)" },
+                    "75%": { transform: "translateY(5vh)" },
+                    "100%": { transform: "translateX(-5vw)" },
+                }
             },
             animation: {
                 "infinite-slide": "slide 5s linear infinite",
@@ -36,6 +43,7 @@ export default {
                 rain: "rain 3s ease-out infinite",
                 fadeIn: "fadeIn 0.5s ease-in-out",
                 fadeOut: "fadeOut 5s ease-in-out",
+                flying: "flying 7s linear infinite",
             },
         },
     },
