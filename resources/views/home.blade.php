@@ -6,277 +6,319 @@
 </head>
 
 <body>
-    <div class="bg-[#F4FCF2] min-h-[400vh] w-[100%]">
-        <x-navbar />
+    <!-- <div class="bg-[#F4FCF2] min-h-[400vh] w-[100%]"> -->
+    <x-navbar />
+    <div class="bg-white w-[100%]">
         <!-- top-[15vh] sm:top-[17vh] md:top-[13vh] lg:top-[20vh] -->
-        <div class="relative top-[10vh] h-[65vh] sm:h-[85vh] md:h-[79vh] lg:h-[130vh] w-[100%]">
-            <img src="{{ asset('assets/images/bg-home.png') }}" class="absolute z-0 h-full">
-            <div class="absolute z-50 mx-auto w-[84%] sm:left-[5vw] sm:right-[5vw]">
-                <!-- First Page -->
-                <div class="z-50 rounded-xl flex shadow-lg overflow-hidden mb-[6vh] sm:mb-[7vh] lg:mb-[13vh] lg:h-[70vh]">
-                    <div class="w-[55%] bg-white p-8 md:p-16 lg:p-24 relative z-[60] text-[#1C4F0F]">
-                        <div class="text-xl sm:text-3xl lg:text-4xl mb-5 w-[50vw]">Selamat Datang Di</div>
-                        <div class="text-[33px] sm:text-4xl md:text-5xl lg:text-[60px] font-bold w-[60vw] sm:w-[70vw] md:w-[60vw] lg:w-[70vw] leading-tight">
-                            <p class="sm:hidden">Portal RW 3</p>
-                            <p class="hidden sm:block">Portal Resmi RW 3</p>
-                            <p class="">Desa Bumiayu</p>
-                            <!-- <p class="hidden sm:block">Kecamatan Kedungkandang</p> -->
-                            <!-- <p class="hidden sm:block">Kota Malang</p> -->
-                        </div>
-                        <div class="text-lg font-normal mt-8">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Laudantium impedit, recusandae placeat officia aperiam odit maxime accusantium quidem nulla consectetur sunt quam deserunt atque perferendis, necessitatibus, nobis rerum praesentium delectus.</div>
-                    </div>
-                    <div class="w-[45%] relative">
-                        <img src="{{ asset('assets/images/cover.jpg') }}" alt="" class="w-full h-full absolute z-[1]">
-                        <div class="w-full h-full absolute bg-gradient-to-r from-white to-white/40 z-[50]"></div>
-                    </div>
-                </div>
+        <img src="{{ asset('assets/images/bg-home-slice-1.png') }}" alt="" class="absolute top-10 right-0 h-[127vh] w-[69vw]">
 
-                <!-- UMKM Page -->
-                <div class="relative z-50 h-[25vh] sm:h-[30vh] md:h-[25vh] lg:h-[33vh] bg-transparent flex gap-4">
-                    <div class="lg:w-[24%] w-[35%] flex flex-col items-center justify-center text-white gap-3 sm:gap-5 h-[18vh] md:h-[20vh] lg:h-[30vh]">
-                        <div class="font-bold 2xl:text-6xl md:text-[38px] sm:text-[34px] text-[30px] lg:text-[50px] text-center w-[80%]">
-                            <p class="">UMKM</p>
-                            <p class="hidden sm:block">Di RW 3</p>
-                        </div>
-                        <a href="/" class="bg-[#236612] hover:bg-[#81B076] font-semibold md:font-bold lg:py-3 lg:px-4 md:py-2 md:px-3 py-1 px-2 rounded-full lg:text-md 2xl:text-lg  text-sm text-center w-full lg:w-fit">
-                            <p class="block sm:hidden">Lihat Lainnya</p>
-                            <p class="hidden sm:block">Lihat UMKM Lainnya</p>
-                        </a>
-                    </div>
-                    <div class="sm:w-[74%] w-[55%] flex flex-row gap-6 ml-[24px] flex-nowrap overflow-hidden carrousel-umkm">
-                        <div class="w-[90%] sm:w-[70%] lg:w-[42%] h-[80%] lg:h-[85%] 2xl:h-[92%] flex-none bg-white rounded-3xl shadow-lg flex umkm">
-                            <div class="w-[40%] flex justify-center items-center">
-                                <img src="{{ asset('assets/images/gacoan.jpg') }}" alt="" class="w-[70%] rounded-xl">
-                            </div>
-                            <div class="w-[60%] flex flex-col justify-center items-center gap-3 lg:gap-2 md:pr-4 2xl:pr-0">
-                                <p class="font-bold text-sm sm:text-2xl 2xl:text-3xl">Mie Gacoan 1</p>
-                                <div class="flex items-center gap-2 sm:gap-3 px-1 sm:px-2 lg:mb-3 mb-1">
-                                    <i class="fa-regular fa-clock text-sm sm:text-lg"></i>
-                                    <p class="text-sm sm:text-lg">09.00 - 21.00</p>
-                                </div>
-                                <a href="/" class="bg-[#81B076] hover:bg-[#8A93C1] hidden sm:block text-lg p-2 2xl:w-[80%] w-[90%] text-white rounded-full text-center">
-                                    Lihat Selengkapnya
-                                </a>
-                            </div>
-                        </div>
-                        <div class="w-[70%] lg:w-[42%] h-[80%] lg:h-[85%] 2xl:h-[92%] flex-none bg-white rounded-3xl shadow-lg flex umkm">
-                            <div class="w-[40%] flex justify-center items-center">
-                                <img src="{{ asset('assets/images/gacoan.jpg') }}" alt="" class="w-[70%] rounded-xl">
-                            </div>
-                            <div class="w-[60%] flex flex-col justify-center items-center gap-3 lg:gap-2 md:pr-4 2xl:pr-0">
-                                <p class="font-bold text-2xl 2xl:text-3xl">Mie Gacoan 2</p>
-                                <div class="flex items-center gap-3 px-2 lg:mb-3 mb-1">
-                                    <i class="fa-regular fa-clock text-lg"></i>
-                                    <p class="text-lg">09.00 - 21.00</p>
-                                </div>
-                                <a href="/" class="bg-[#81B076] hover:bg-[#8A93C1] text-lg p-2 2xl:w-[80%] w-[90%] text-white rounded-full text-center">
-                                    Lihat Selengkapnya
-                                </a>
-                            </div>
-                        </div>
-                        <div class="w-[70%] lg:w-[42%] h-[80%] lg:h-[85%] 2xl:h-[92%] flex-none bg-white rounded-3xl shadow-lg flex umkm">
-                            <div class="w-[40%] flex justify-center items-center">
-                                <img src="{{ asset('assets/images/gacoan.jpg') }}" alt="" class="w-[70%] rounded-xl">
-                            </div>
-                            <div class="w-[60%] flex flex-col justify-center items-center gap-3 lg:gap-2 md:pr-4 2xl:pr-0">
-                                <p class="font-bold text-2xl 2xl:text-3xl">Mie Gacoan 3</p>
-                                <div class="flex items-center gap-3 px-2 lg:mb-3 mb-1">
-                                    <i class="fa-regular fa-clock text-lg"></i>
-                                    <p class="text-lg">09.00 - 21.00</p>
-                                </div>
-                                <a href="/" class="bg-[#81B076] hover:bg-[#8A93C1] text-lg p-2 2xl:w-[80%] w-[90%] text-white rounded-full text-center">
-                                    Lihat Selengkapnya
-                                </a>
-                            </div>
-                        </div>
-                        <div class="w-[70%] lg:w-[42%] h-[80%] lg:h-[85%] 2xl:h-[92%] flex-none bg-white rounded-3xl shadow-lg flex umkm">
-                            <div class="w-[40%] flex justify-center items-center">
-                                <img src="{{ asset('assets/images/gacoan.jpg') }}" alt="" class="w-[70%] rounded-xl">
-                            </div>
-                            <div class="w-[60%] flex flex-col justify-center items-center gap-3 lg:gap-2 md:pr-4 2xl:pr-0">
-                                <p class="font-bold text-2xl 2xl:text-3xl">Mie Gacoan 4</p>
-                                <div class="flex items-center gap-3 px-2 lg:mb-3 mb-1">
-                                    <i class="fa-regular fa-clock text-lg"></i>
-                                    <p class="text-lg">09.00 - 21.00</p>
-                                </div>
-                                <a href="/" class="bg-[#81B076] hover:bg-[#8A93C1] text-lg p-2 2xl:w-[80%] w-[90%] text-white rounded-full text-center">
-                                    Lihat Selengkapnya
-                                </a>
-                            </div>
-                        </div>
-                    </div>
+        <div class="absolute top-5 right-0" style="mask-image: url('{{ asset('assets/images/bg-home-slice.png') }}'); mask-repeat: no-repeat; mask-size: cover;">
+            <img src="{{ asset('assets/images/cover.jpg') }}" alt="" class="h-[127vh] w-[65vw]">
+        </div>
 
-                    <div class="bg-gradient-to-r from-white/40 to-white absolute z-[50] h-[90%] w-[7vw] right-0 rounded-l-2xl duration-200 transition-all" id="opacityUmkm"></div>
-                    <!-- Next Button UMKM -->
-                    <button class="absolute z-[90] -right-5 lg:top-[38%] md:top-[32%] top-[30%] border-[3px] border-[#458FFF] rounded-full group hover:border-[#4b7bc2]" id="nextButtonUmkm">
-                        <i class="text-4xl fa-solid fa-circle-chevron-right text-[#458FFF] border-[3px] border-transparent rounded-full group-hover:text-[#4b7bc2]"></i>
-                    </button>
-                </div>
+        <div class="relative h-[65vh] sm:h-[85vh] md:h-[79vh] lg:h-[120vh] w-[70%] text-[#1C4F0F] pt-[20vh] pl-[8vh]">
+            <!-- <div class="relative h-[65vh] sm:h-[85vh] md:h-[79vh] lg:h-[90vh] w-[70%] text-[#1C4F0F] pt-[20vh] pl-[8vh]"> -->
+            <div class="font-semibold text-2xl mb-3">
+                Selamat Datang di
+            </div>
+            <div class="font-extrabold text-6xl mb-4">
+                PORTAL RW 03
+            </div>
+            <div class="font-bold text-6xl mb-4">
+                Desa Bumiayu
+            </div>
+            <div class="font-bold text-6xl mb-10">
+                Kec. Kedungkandang
+            </div>
+            <p class="font-medium text-xl w-[47vw]">Temukan informasi terkini, kegiatan komunitas, dan layanan kami untuk memajukan lingkungan kami. Bergabunglah dalam membangun kehidupan yang lebih baik untuk warga RW 3!"</p>
+            <div class="mt-[100px]">
+                <!-- <button class="transition ease-in-out duration-500 hover:scale-105 hover:shadow-2xl bg-yellow-500 text-[#1C4F0F] py-5 px-8 rounded-[30px] shadow-xl font-bold text-xl hover:bg-[#E2A229] group"> -->
+                <!-- Masuk Sebagai Warga -->
+                <!-- <span class="hidden group-hover:inline-flex transition-opacity duration-500 ease-in-out">Sebagai Warga</span> -->
+                <!-- </button> -->
             </div>
         </div>
 
         <!-- Fitur Page -->
         <div class="w-[80vw] mx-auto mt-[10vh]  flex flex-col gap-14">
             <div class="text-center font-bold text-5xl text-[#236612]">Layanan Warga</div>
-            <div class="grid lg:grid-cols-3 grid-cols-2 2xl:gap-12 gap-10">
-                <div class="bg-white rounded-xl shadow-lg flex flex-col 2xl:h-[44vh] lg:h-[40vh] sm:h-[45vh] md:h-[30vh] items-center gap-3 py-5 hover:-translate-y-3 hover:shadow-2xl transition-all duration-300">
-                    <div class="w-[87] h-[87] bg-[#EB423F] bg-opacity-[0.33] flex justify-center items-center rounded-lg p-1">
-                        <img src="{{ asset('assets/images/umkm.png') }}" alt="" class="h-[70] w-[70]">
+            <div class="grid lg:grid-cols-3 grid-cols-2 gap-10">
+                <div class="relative lg:h-[40vh] rounded-xl shadow-lg sm:h-[45vh] md:h-[30vh] group hover:-translate-y-3 hover:shadow-2xl transition ease-in-out duration-500 overflow-hidden">
+                    <div class="bg-white text-[#1C4F0F] h-full flex flex-col items-center gap-3 py-5">
+                        <div class="bg-[#F9C0E2] flex justify-center items-center rounded-lg p-1">
+                            <img src="{{ asset('assets/images/umkm.png') }}" alt="" class="h-[70] w-[70]">
+                        </div>
+                        <div class="font-bold text-4xl">UMKM</div>
+                        <div class="w-[85%] h-[35%] text-center font-normal text-lg">Temukan informasi mengenai daftar Usaha Mikro Kecil dan Menengah (UMKM) di RW 3</div>
                     </div>
-                    <div class="font-bold text-4xl">UMKM</div>
-                    <div class="lg:w-[79%] w-[85%] h-[35%] text-center font-normal text-lg">Temukan informasi mengenai daftar Usaha Mikro Kecil dan Menengah (UMKM) di RW 3</div>
-                    <a href="" class="flex justify-center items-center text-[#4457FF] gap-3">
-                        <div class="text-lg">Selengkapnya</div>
-                        <i class="pt-1 text-md fa-solid fa-arrow-right-long"></i>
-                    </a>
-                </div>
-                <div class="bg-white rounded-xl shadow-lg flex flex-col 2xl:h-[44vh] lg:h-[40vh] sm:h-[45vh] md:h-[30vh] items-center gap-3 py-5 hover:-translate-y-3 hover:shadow-2xl transition-all duration-300">
-                    <div class="w-[85] h-[85] bg-[#9EB4E1] bg-opacity-[0.63] flex justify-center items-center rounded-lg p-1">
-                        <img src="{{ asset('assets/images/penduduk.png') }}" alt="" class="h-[65] w-[65]">
+                    <div class="absolute bg-[#F9C0E2] h-[50%] w-full rounded-t-[60px] top-0 z-10 opacity-100 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500 translate-y-[45vh] group-hover:translate-y-[23vh]">
+                        <a class="bg-white text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm shadow-md border border-[#1C4F0F] hover:bg-yellow-500 cursor-pointer">Lihat Selengkapnya</a>
                     </div>
-                    <div class="font-bold text-4xl">Kependudukan</div>
-                    <div class="lg:w-[79%] w-[85%] h-[40%] text-center font-normal text-lg">Informasi mengenai daftar warga yang tinggal di RW 3</div>
-                    <a href="/" class="flex justify-center items-center text-[#4457FF] gap-3">
-                        <div class="text-lg">Selengkapnya</div>
-                        <i class="pt-1 text-md fa-solid fa-arrow-right-long"></i>
-                    </a>
                 </div>
-                <div class="bg-white rounded-xl shadow-lg flex flex-col 2xl:h-[44vh] lg:h-[40vh] sm:h-[45vh] md:h-[30vh] items-center gap-3 py-5 hover:-translate-y-3 hover:shadow-2xl transition-all duration-300">
-                    <div class="w-[85] h-[85] bg-[#A77DFF] bg-opacity-[0.5] flex justify-center items-center rounded-lg p-1">
-                        <img src="{{ asset('assets/images/bansos.png') }}" alt="" class="h-[65] w-[65]">
+                <div class="relative lg:h-[40vh] rounded-xl shadow-lg sm:h-[45vh] md:h-[30vh] group hover:-translate-y-3 hover:shadow-2xl transition ease-in-out duration-500 overflow-hidden">
+                    <div class="bg-white text-[#1C4F0F] h-full flex flex-col items-center gap-3 py-5">
+                        <div class="bg-[#C2D0EC] flex justify-center items-center rounded-lg p-1">
+                            <img src="{{ asset('assets/images/penduduk.png') }}" alt="" class="h-[70] w-[70]">
+                        </div>
+                        <div class="font-bold text-4xl">Kependudukan</div>
+                        <div class="w-[85%] h-[35%] text-center font-normal text-lg">Informasi mengenai daftar warga yang tinggal di RW 3</div>
                     </div>
-                    <div class="font-bold text-4xl">Bansos</div>
-                    <div class="lg:w-[79%] w-[85%] h-[40%] text-center font-normal text-lg">Informasi mengenai daftar masyarakat yang mendapatkan Bantuan Sosial (Bansos) dari Pemerintah di RW 3</div>
-                    <a href="" class="flex justify-center items-center text-[#4457FF] gap-3">
-                        <div class="text-lg">Selengkapnya</div>
-                        <i class="pt-1 text-md fa-solid fa-arrow-right-long"></i>
-                    </a>
-                </div>
-                <div class="bg-white rounded-xl shadow-lg flex flex-col 2xl:h-[44vh] lg:h-[40vh] sm:h-[45vh] md:h-[30vh] items-center gap-3 py-5 hover:-translate-y-3 hover:shadow-2xl transition-all duration-300">
-                    <div class="w-[85] h-[85] bg-[#7AF662] bg-opacity-[0.45] flex justify-center items-center rounded-lg p-1">
-                        <img src="{{ asset('assets/images/aduan.png') }}" alt="" class="h-[65] w-[65]">
+                    <div class="absolute bg-[#C2D0EC] h-[50%] w-full rounded-t-[60px] top-0 z-10 opacity-100 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500 translate-y-[45vh] group-hover:translate-y-[23vh]">
+                        <a class="bg-white text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm shadow-md border border-[#1C4F0F] hover:bg-yellow-500 cursor-pointer">Lihat Selengkapnya</a>
                     </div>
-                    <div class="font-bold text-4xl">Pengaduan</div>
-                    <div class="lg:w-[79%] w-[85%] h-[40%] text-center font-normal text-lg">Layanan informasi terkait sarana penyampaian aspirasi dan pengaduan warga RW 3</div>
-                    <a href="" class="flex justify-center items-center text-[#4457FF] gap-3">
-                        <div class="text-lg">Selengkapnya</div>
-                        <i class="pt-1 text-md fa-solid fa-arrow-right-long"></i>
-                    </a>
                 </div>
-                <div class="bg-white rounded-xl shadow-lg flex flex-col 2xl:h-[44vh] lg:h-[40vh] sm:h-[45vh] md:h-[30vh] items-center gap-3 py-5 hover:-translate-y-3 hover:shadow-2xl transition-all duration-300">
-                    <div class="w-[85] h-[85] bg-[#FCDFAD] bg-opacity-[0.33] flex justify-center items-center rounded-lg p-1">
-                        <img src="{{ asset('assets/images/jadwal.png') }}" alt="" class="h-[65] w-[65]">
+                <div class="relative lg:h-[40vh] rounded-xl shadow-lg sm:h-[45vh] md:h-[30vh] group hover:-translate-y-3 hover:shadow-2xl transition ease-in-out duration-500 overflow-hidden">
+                    <div class="bg-white text-[#1C4F0F] h-full flex flex-col items-center gap-3 py-5">
+                        <div class="bg-[#D2BDFF] flex justify-center items-center rounded-lg p-1">
+                            <img src="{{ asset('assets/images/bansos.png') }}" alt="" class="h-[70] w-[70]">
+                        </div>
+                        <div class="font-bold text-4xl">Bansos</div>
+                        <div class="w-[85%] h-[35%] text-center font-normal text-lg">Informasi mengenai daftar masyarakat yang mendapatkan Bantuan Sosial (Bansos) dari Pemerintah di RW 3</div>
                     </div>
-                    <div class="font-bold text-4xl">Jadwal</div>
-                    <div class="lg:w-[79%] w-[85%] h-[40%] text-center font-normal text-lg">Informasi seputar kegiatan yang akan dilakukan warga RW 3</div>
-                    <a href="" class="flex justify-center items-center text-[#4457FF] gap-3">
-                        <div class="text-lg">Selengkapnya</div>
-                        <i class="pt-1 text-md fa-solid fa-arrow-right-long"></i>
-                    </a>
-                </div>
-                <div class="bg-white rounded-xl shadow-lg flex flex-col 2xl:h-[44vh] lg:h-[40vh] sm:h-[45vh] md:h-[30vh] items-center gap-3 py-5 hover:-translate-y-3 hover:shadow-2xl transition-all duration-300">
-                    <div class="w-[85] h-[85] bg-[#F59C81] bg-opacity-[0.54] flex justify-center items-center rounded-lg p-1">
-                        <img src="{{ asset('assets/images/surat.png') }}" alt="" class="h-[65] w-[65]">
+                    <div class="absolute bg-[#D2BDFF] h-[50%] w-full rounded-t-[60px] top-0 z-10 opacity-100 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500 translate-y-[45vh] group-hover:translate-y-[23vh]">
+                        <a class="bg-white text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm shadow-md border border-[#1C4F0F] hover:bg-yellow-500 cursor-pointer">Lihat Selengkapnya</a>
                     </div>
-                    <div class="font-bold text-4xl">Surat Pengantar</div>
-                    <div class="lg:w-[79%] w-[85%] h-[40%] text-center font-normal text-lg">Layanan informasi terkait surat pengantar RT/RW</div>
-                    <a href="" class="flex justify-center items-center text-[#4457FF] gap-3">
-                        <div class="text-lg">Selengkapnya</div>
-                        <i class="pt-1 text-md fa-solid fa-arrow-right-long"></i>
-                    </a>
                 </div>
+                <div class="relative lg:h-[40vh] rounded-xl shadow-lg sm:h-[45vh] md:h-[30vh] group hover:-translate-y-3 hover:shadow-2xl transition ease-in-out duration-500 overflow-hidden">
+                    <div class="bg-white text-[#1C4F0F] h-full flex flex-col items-center gap-3 py-5">
+                        <div class="bg-[#C3FBB8] flex justify-center items-center rounded-lg p-1">
+                            <img src="{{ asset('assets/images/aduan.png') }}" alt="" class="h-[70] w-[70]">
+                        </div>
+                        <div class="font-bold text-4xl">Pengaduan</div>
+                        <div class="w-[85%] h-[35%] text-center font-normal text-lg">Layanan informasi terkait sarana penyampaian aspirasi dan pengaduan warga RW 3</div>
+                    </div>
+                    <div class="absolute bg-[#C3FBB8] h-[50%] w-full rounded-t-[60px] top-0 z-10 opacity-100 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500 translate-y-[45vh] group-hover:translate-y-[23vh]">
+                        <a class="bg-white text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm shadow-md border border-[#1C4F0F] hover:bg-yellow-500 cursor-pointer">Lihat Selengkapnya</a>
+                    </div>
+                </div>
+                <div class="relative lg:h-[40vh] rounded-xl shadow-lg sm:h-[45vh] md:h-[30vh] group hover:-translate-y-3 hover:shadow-2xl transition ease-in-out duration-500 overflow-hidden">
+                    <div class="bg-white text-[#1C4F0F] h-full flex flex-col items-center gap-3 py-5">
+                        <div class="bg-[#FCDFAD] flex justify-center items-center rounded-lg p-1">
+                            <img src="{{ asset('assets/images/jadwal.png') }}" alt="" class="h-[70] w-[70]">
+                        </div>
+                        <div class="font-bold text-4xl">Jadwal Kegiatan</div>
+                        <div class="w-[85%] h-[35%] text-center font-normal text-lg">Informasi seputar kegiatan yang akan dilakukan warga RW 3</div>
+                    </div>
+                    <div class="absolute bg-[#FCDFAD] h-[50%] w-full rounded-t-[60px] top-0 z-10 opacity-100 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500 translate-y-[45vh] group-hover:translate-y-[23vh]">
+                        <a class="bg-white text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm shadow-md border border-[#1C4F0F] hover:bg-yellow-500 cursor-pointer">Lihat Selengkapnya</a>
+                    </div>
+                </div>
+                <div class="relative lg:h-[40vh] rounded-xl shadow-lg sm:h-[45vh] md:h-[30vh] group hover:-translate-y-3 hover:shadow-2xl transition ease-in-out duration-500 overflow-hidden">
+                    <div class="bg-white text-[#1C4F0F] h-full flex flex-col items-center gap-3 py-5">
+                        <div class="bg-[#F9C9BB] flex justify-center items-center rounded-lg p-1">
+                            <img src="{{ asset('assets/images/surat.png') }}" alt="" class="h-[70] w-[70]">
+                        </div>
+                        <div class="font-bold text-4xl">Surat Pengantar</div>
+                        <div class="w-[85%] h-[35%] text-center font-normal text-lg">Layanan informasi terkait surat pengantar RT/RW</div>
+                    </div>
+                    <div class="absolute bg-[#F9C9BB] h-[50%] w-full rounded-t-[60px] top-0 z-10 opacity-100 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500 translate-y-[45vh] group-hover:translate-y-[23vh]">
+                        <a class="bg-white text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm shadow-md border border-[#1C4F0F] hover:bg-yellow-500 cursor-pointer">Lihat Selengkapnya</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- UMKM -->
+
+        <div class="h-[90vh] w-[80vw] mt-[5vh] py-[5vh] mx-auto">
+            <div class="h-full w-full flex flex-col justify-between">
+                <div class="font-bold  text-[#1C4F0F] text-5xl text-center w-full py-4">UMKM Sekitar</div>
+                <div class="relative h-[40vh] w-full ">
+                    <!-- Prev Button UMKM -->
+                    <button class="absolute z-[90] -left-5 lg:top-[38%] md:top-[32%] top-[30%] border-[3px] border-[#458FFF] rounded-full group hover:border-[#4b7bc2]" id="nextButtonUmkm">
+                        <i class="text-4xl fa-solid fa-circle-chevron-right text-[#458FFF] border-[3px] border-transparent rounded-full group-hover:text-[#4b7bc2] rotate-180"></i>
+                    </button>
+
+                    <div class="h-[40vh] w-full flex justify-between">
+                        <div class="relative w-[17vw] h-full bg-white rounded-2xl shadow-lg flex flex-col overflow-hidden hover:shadow-2xl hover:scale-105 transition ease-in-out duration-500 group">
+                            <div class="h-[70%] w-full overflow-hidden">
+                                <img src="{{ asset('assets/images/toko-kelontong.jpg') }}" alt="" class="h-full w-full group-hover:brightness-[0.4] transition ease-in-out duration-500 group-hover:scale-110">
+                            </div>
+                            <div class="h-[30%] w-full flex flex-col justify-center items-center gap-2 text-[#1C4F0F]">
+                                <p class="font-bold text-lg">Toko Kelontong 1</p>
+                                <hr class="text-black">
+                                <div class="text-sm flex justify-center items-center gap-3">
+                                    <i class="fa-regular fa-clock"></i>
+                                    <p class="">09.00 - 21.00</p>
+                                </div>
+                            </div>
+                            <div class="absolute h-[70%] w-full z-10 opacity-0 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500">
+                                <a class="bg-yellow-500 text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm hover:bg-[#E2A229] cursor-pointer">Lihat Selengkapnya</a>
+                            </div>
+                        </div>
+                        <div class="relative w-[17vw] h-full bg-white rounded-2xl shadow-lg flex flex-col overflow-hidden hover:shadow-2xl hover:scale-105 transition ease-in-out duration-500 group">
+                            <div class="h-[70%] w-full overflow-hidden">
+                                <img src="{{ asset('assets/images/toko-kelontong.jpg') }}" alt="" class="h-full w-full group-hover:brightness-[0.4] transition ease-in-out duration-500 group-hover:scale-110">
+                            </div>
+                            <div class="h-[30%] w-full flex flex-col justify-center items-center gap-2 text-[#1C4F0F]">
+                                <p class="font-bold text-lg">Toko Kelontong 2</p>
+                                <hr class="text-black">
+                                <div class="text-sm flex justify-center items-center gap-3">
+                                    <i class="fa-regular fa-clock"></i>
+                                    <p class="">09.00 - 21.00</p>
+                                </div>
+                            </div>
+                            <div class="absolute h-[70%] w-full z-10 opacity-0 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500">
+                                <a class="bg-yellow-500 text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm hover:bg-[#E2A229] cursor-pointer">Lihat Selengkapnya</a>
+                            </div>
+                        </div>
+                        <div class="relative w-[17vw] h-full bg-white rounded-2xl shadow-lg flex flex-col overflow-hidden hover:shadow-2xl hover:scale-105 transition ease-in-out duration-500 group">
+                            <div class="h-[70%] w-full overflow-hidden">
+                                <img src="{{ asset('assets/images/toko-kelontong.jpg') }}" alt="" class="h-full w-full group-hover:brightness-[0.4] transition ease-in-out duration-500 group-hover:scale-110">
+                            </div>
+                            <div class="h-[30%] w-full flex flex-col justify-center items-center gap-2 text-[#1C4F0F]">
+                                <p class="font-bold text-lg">Toko Kelontong 3</p>
+                                <hr class="text-black">
+                                <div class="text-sm flex justify-center items-center gap-3">
+                                    <i class="fa-regular fa-clock"></i>
+                                    <p class="">09.00 - 21.00</p>
+                                </div>
+                            </div>
+                            <div class="absolute h-[70%] w-full z-10 opacity-0 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500">
+                                <a class="bg-yellow-500 text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm hover:bg-[#E2A229] cursor-pointer">Lihat Selengkapnya</a>
+                            </div>
+                        </div>
+                        <div class="relative w-[17vw] h-full bg-white rounded-2xl shadow-lg flex flex-col overflow-hidden hover:shadow-2xl hover:scale-105 transition ease-in-out duration-500 group">
+                            <div class="h-[70%] w-full overflow-hidden">
+                                <img src="{{ asset('assets/images/toko-kelontong.jpg') }}" alt="" class="h-full w-full group-hover:brightness-[0.4] transition ease-in-out duration-500 group-hover:scale-110">
+                            </div>
+                            <div class="h-[30%] w-full flex flex-col justify-center items-center gap-2 text-[#1C4F0F]">
+                                <p class="font-bold text-lg">Toko Kelontong 4</p>
+                                <hr class="text-black">
+                                <div class="text-sm flex justify-center items-center gap-3">
+                                    <i class="fa-regular fa-clock"></i>
+                                    <p class="">09.00 - 21.00</p>
+                                </div>
+                            </div>
+                            <div class="absolute h-[70%] w-full z-10 opacity-0 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500">
+                                <a class="bg-yellow-500 text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm hover:bg-[#E2A229] cursor-pointer">Lihat Selengkapnya</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Next Button UMKM -->
+                    <button class="absolute z-[90] -right-5 lg:top-[38%] md:top-[32%] top-[30%] border-[3px] border-[#458FFF] rounded-full group hover:border-[#4b7bc2]" id="nextButtonUmkm">
+                        <i class="text-4xl fa-solid fa-circle-chevron-right text-[#458FFF] border-[3px] border-transparent rounded-full group-hover:text-[#4b7bc2]"></i>
+                    </button>
+                </div>
+                <a href="#" class="mx-auto bg-yellow-500 text-[#1C4F0F] py-4 px-8 rounded-[30px] shadow-xl font-bold text-lg hover:bg-[#E2A229] transition ease-in-out duration-500 hover:scale-105 hover:shadow-2xl">Lihat Selengkapnya</a>
             </div>
         </div>
 
         <!-- Agenda Kegiatan -->
-        <div class="relative mx-auto flex h-[85vh] w-[80vw] mt-[20vh]">
-            <div class="relative basis-[65%] bg-cover bg-center shadow-lg rounded-lg bg-no-repeat pl-5" style="background-image: url('{{ asset('assets/images/bg-home-agenda.png') }}')">
-                <div class=""></div>
-            </div>
-            <div class="absolute flex w-[12%] h-[8%] bg-[#74CC52] right-14 top-2 shadow-lg shadow-gray-400">
-                <div class="basis-[3%] bg-[#FFD600]"></div>
-                <div class="basis-[97%] bg-[#74CC52] flex items-center justify-center">
-                    <p class="font-bold text-xl text-white">Agenda</p>
+        <div class="relative w-[80vw] mx-auto h-[90vh] flex flex-col mt-[13vh] gap-[45px]">
+            <div class="font-bold text-[#1C4F0F] text-5xl text-center w-full py-4">Agenda Warga</div>
+            <div class="relative flex h-full w-full pb-[5vh]">
+                <div class="basis-[65%] h-[70vh] bg-cover bg-center shadow-lg rounded-lg bg-no-repeat pl-6 py-10" style="background-image: url('{{ asset('assets/images/bg-home-agenda.png') }}')">
+                    <div class="max-h-[60vh] w-[80%] flex flex-col overflow-auto gap-7">
+                        <div class="relative w-full flex justify-end min-h-30 bg-transparent pt-6">
+                            <div class="absolute bg-[#FFD600] h-[75px] w-[115px] top-0 left-0 text-black flex justify-center items-end font-extrabold py-5 font-sans rounded-md">
+                                <span class="text-xl">Agu</span>
+                                <span class="text-4xl">10</span>
+                            </div>
+                            <div class="w-[95%] min-h-20 bg-[#4D7F41]/65 rounded-xl border-2 border-[#1B4810] pl-28 pr-5 py-3">
+                                <div class="text-white font-bold text-xl">
+                                    <p>
+                                        <span>1. </span>
+                                        <span>Lomba Agustusan di RT 2</span>
+                                    </p>
+                                    <p>
+                                        <span>2. </span>
+                                        <span>Lomba Agustusan di RT 3</span>
+                                    </p>
+                                    <p>
+                                        <span>3. </span>
+                                        <span>Lomba Agustusan di RT 4</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="relative w-full flex justify-end min-h-30 bg-transparent pt-6">
+                            <div class="absolute bg-[#FFD600] h-[75px] w-[115px] top-0 left-0 text-black flex justify-center items-end font-extrabold py-5 font-sans rounded-md">
+                                <span class="text-xl">Agu</span>
+                                <span class="text-4xl">15</span>
+                            </div>
+                            <div class="w-[95%] min-h-20 bg-[#4D7F41]/65 rounded-xl border-2 border-[#1B4810] pl-28 pr-5 py-3">
+                                <div class="text-white font-bold text-xl">
+                                    <p>
+                                        <span>1. </span>
+                                        <span>Lomba Agustusan di RT 9</span>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="absolute flex w-[12%] h-[8%] bg-[#74CC52] right-14 top-2 shadow-lg shadow-gray-400">
+                    <div class="basis-[3%] bg-[#FFD600]"></div>
+                    <div class="basis-[97%] bg-[#74CC52] flex items-center justify-center">
+                        <p class="font-bold text-xl text-white">Agenda</p>
+                    </div>
+                </div>
+
+                <!-- calendar -->
+                <div class="absolute bg-white w-[45%] h-[70%] right-0 top-[75px] rounded-xl shadow-2xl">
 
                 </div>
             </div>
-            <!-- calendar -->
-            <div class="absolute bg-white w-[45%] h-[70%] right-0 top-24 rounded-xl shadow-lg"></div>
+        </div>
+
+        <div class="relatif w-[80vw] mx-auto h-[90vh] flex flex-col mt-[20vh] gap-[45px] mb-[20vh]">
+            <div class="font-bold text-[#1C4F0F] text-5xl text-center w-full py-4">Aduan Warga</div>
+            <div class="relative h-fit w-full bg-white rounded-md shadow-md">
+                <table class="w-full text-left rtl:text-right text-black dark:text-gray-400 border border-slate-200">
+                    <thead class="text-xl text-center border-b-4 border-[#69CA57]/[0.32]">
+                        <tr>
+                            <th scope="col" class="w-[50%] py-5">
+                                Aduan
+                            </th>
+                            <th scope="col" class="w-[50%] py-5">
+                                Respon
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-center text-lg font-normal ">
+                        <tr class="min-h-28 border-b-4 border-[#69CA57]/[0.32]">
+                            <td scope="row" class="w-[50%] px-14 py-5">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla aliquet risus id eros tincidunt, dapibus aliquam velit elementum.
+                            </td>
+                            <td scope="row" class="w-[50%] px-14 py-5">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla aliquet risus id eros tincidunt, dapibus aliquam velit elementum.
+                            </td>
+                        </tr>
+                        <tr class="min-h-28 border-b-4 border-[#69CA57]/[0.32]">
+                            <td scope="row" class="w-[50%] px-14 py-5">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla aliquet risus id eros tincidunt, dapibus aliquam velit elementum.
+                            </td>
+                            <td scope="row" class="w-[50%] px-14 py-5">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla aliquet risus id eros tincidunt, dapibus aliquam velit elementum.
+                            </td>
+                        </tr>
+                        <tr class="min-h-28 border-b-4 border-[#69CA57]/[0.32]">
+                            <td scope="row" class="w-[50%] px-14 py-5">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla aliquet risus id eros tincidunt, dapibus aliquam velit elementum.
+                            </td>
+                            <td scope="row" class="w-[50%] px-14 py-5">
+                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla aliquet risus id eros tincidunt, dapibus aliquam velit elementum.
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
-    <script>
-        const nextButtonUmkm = document.getElementById('nextButtonUmkm');
-        const carrouselUmkm = document.querySelector('.carrousel-umkm');
-        const firstCardWidth = carrouselUmkm.querySelector('.umkm').offsetWidth;
-        const opacityUmkm = document.getElementById('opacityUmkm');
-        let index = 0;
-        let isDragStart = false,
-            prevPageX, prevScrollLeft, positionDiff;
-
-        const addCard = () => {
-            const umkm = carrouselUmkm.querySelectorAll('.umkm')[index].cloneNode(true);
-            carrouselUmkm.appendChild(umkm);
-            index++;
-            nextButtonUmkm.disabled = false;
-        }
-
-        nextButtonUmkm.addEventListener('click', () => {
-            opacityUmkm.classList.add('hidden');
-            nextButtonUmkm.disabled = true;
-            carrouselUmkm.classList.add('scroll-smooth')
-            carrouselUmkm.scrollLeft += (firstCardWidth + 24);
-
-            setTimeout(addCard, 500);
-            setTimeout(() => {
-                opacityUmkm.classList.remove('hidden');
-            }, 300);
-            carrouselUmkm.classList.remove('scroll-smooth')
-        });
-
-        let sliderCardAuto = setInterval(() => {
-            nextButtonUmkm.click();
-        }, 2500);
-
-        const dragStart = (e) => {
-            isDragStart = true;
-            prevPageX = e.pageX;
-            prevScrollLeft = carrouselUmkm.scrollLeft;
-        }
-
-        const dragging = (e) => {
-            if (!isDragStart) return;
-            e.preventDefault();
-            positionDiff = e.pageX - prevPageX;
-            carrouselUmkm.scrollLeft = prevScrollLeft - positionDiff;
-            addCard();
-        }
-
-        const autoSlide = () => {
-            positionDiff = Math.abs(positionDiff);
-            let cardWidth = firstCardWidth + 24;
-            let valDifference = cardWidth - positionDiff;
-
-            if (carrouselUmkm.scrollLeft > prevScrollLeft) {
-                return carrouselUmkm.scrollLeft += positionDiff > cardWidth / 3 ? valDifference : -positionDiff;
-            }
-            return carrouselUmkm.scrollLeft -= positionDiff > cardWidth / 3 ? valDifference : -positionDiff;
-        }
-
-        const dragEnd = () => {
-            isDragStart = false;
-            carrouselUmkm.classList.add('scroll-smooth')
-            autoSlide();
-            carrouselUmkm.classList.remove('scroll-smooth')
-        }
-
-        carrouselUmkm.addEventListener('mousedown', dragStart)
-        carrouselUmkm.addEventListener('mousemove', dragging)
-        carrouselUmkm.addEventListener('mouseup', dragEnd)
-        carrouselUmkm.addEventListener('mouseleave', () => {
-            isDragStart = false;
-        })
-    </script>
+    <div class="relative w-full h-[40vh] bottom-0 flex flex-col">
+        <div class="w-full h-[32vh] flex bg-[#C1EFBD] justify-between items-center text-[#1C4F0F] px-[8vw] py-12">
+            <img src="{{ asset('assets/images/footer.png') }}" alt="" class="h-full">
+            <div class="h-full w-[400px] font-bold text-2xl pt-2">
+                <i>“Mewujudkan RW 3 sebagai RW yang Modern, Kreatif, Inovatif dan Sejahtera”</i>
+            </div>
+        </div>
+        <div class="w-full h-[8vh] flex bg-[#1C4F0F] justify-center items-center text-[#C1EFBD]">
+            &copy; 2024 SIRAWA. All Rights Reserved.
+        </div>
+    </div>
 </body>
 
 </html>

@@ -1,4 +1,5 @@
-<nav class="sticky top-0 z-[99] bg-white border-gray-200 dark:bg-gray-900 border-b-4 lg:h-[10vh]" id="navbar">
+<nav class="sticky top-0 z-[99] bg-white border-gray-200 dark:bg-gray-900 border-b-2 lg:h-[10vh]" id="navbar">
+<!-- <nav class="sticky top-0 z-[99] bg-white/50 border-gray-200 dark:bg-gray-900 lg:h-[10vh]" id="navbar"> -->
   <div class="max-w-full flex flex-wrap items-center justify-between lg:mx-12 mx-8 py-4">
     <a href="{{ url('/') }}" class="flex items-center space-x-3 rtl:space-x-reverse">
       <img src="{{ asset('assets/images/logo.png') }}" class="h-8" alt="Logo" />
@@ -118,37 +119,37 @@
 
   themeCheck();
 
-  const navbar = document.getElementById('navbar');
-  let navbarOpacity;
-  document.addEventListener('scroll', () => {
-    clearTimeout(navbarOpacity);
-    if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-      navbar.classList.add('transition-all');
-      navbar.classList.add('duration-1000');
-      navbar.classList.add('ease-in-out');
+  // const navbar = document.getElementById('navbar');
+  // let navbarOpacity;
+  // document.addEventListener('scroll', () => {
+  //   clearTimeout(navbarOpacity);
+  //   if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+  //     navbar.classList.add('transition-all');
+  //     navbar.classList.add('duration-1000');
+  //     navbar.classList.add('ease-in-out');
 
-      navbar.style.opacity = 1;
+  //     navbar.style.opacity = 1;
 
-      setTimeout(() => {
-        navbar.classList.remove('transition-all');
-        navbar.classList.remove('duration-1000');
-        navbar.classList.remove('ease-in-out');
-      }, 1000);
+  //     setTimeout(() => {
+  //       navbar.classList.remove('transition-all');
+  //       navbar.classList.remove('duration-1000');
+  //       navbar.classList.remove('ease-in-out');
+  //     }, 1000);
 
-      navbarOpacity = setTimeout(() => {
-        navbar.classList.add('transition-all');
-        navbar.classList.add('duration-1000');
-        navbar.classList.add('ease-in-out');
-        navbar.style.opacity = 0;
+  //     navbarOpacity = setTimeout(() => {
+  //       navbar.classList.add('transition-all');
+  //       navbar.classList.add('duration-1000');
+  //       navbar.classList.add('ease-in-out');
+  //       navbar.style.opacity = 0;
 
-        setTimeout(() => {
-          navbar.classList.remove('transition-all');
-          navbar.classList.remove('duration-1000');
-          navbar.classList.remove('ease-in-out');
-        }, 1000);
+  //       setTimeout(() => {
+  //         navbar.classList.remove('transition-all');
+  //         navbar.classList.remove('duration-1000');
+  //         navbar.classList.remove('ease-in-out');
+  //       }, 1000);
 
-      }, 3500);
-    }
-  })
+  //     }, 3500);
+  //   }
+  // })
 </script>
 <script src="../../../node_modules/flowbite/dist/flowbite.min.js"></script>
