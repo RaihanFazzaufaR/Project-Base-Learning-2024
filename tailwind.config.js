@@ -35,7 +35,12 @@ export default {
                     "50%": { transform: "translateX(5vw)" },
                     "75%": { transform: "translateY(5vh)" },
                     "100%": { transform: "translateX(-5vw)" },
-                }
+                },
+                leftToRight: {
+                    "0%": { transform: "translateX(0%)" },
+                    "50%": { transform: "translateX(99%)" },
+                    "100%": { transform: "translateX(0%)" }
+                },
             },
             animation: {
                 "infinite-slide": "slide 5s linear infinite",
@@ -44,6 +49,7 @@ export default {
                 fadeIn: "fadeIn 0.5s ease-in-out",
                 fadeOut: "fadeOut 5s ease-in-out",
                 flying: "flying 7s linear infinite",
+                leftToRight: "leftToRight 7s linear infinite",
             },
         },
     },
