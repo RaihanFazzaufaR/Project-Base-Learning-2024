@@ -33,3 +33,9 @@ Route::get('/login/recovery-code', function () {
 Route::get('/login/change-password', function () {
     return view('Login.change_password');
 })->name('change-password');
+
+
+//route UMKM
+Route::get('/umkm', function () {
+    return view('umkm.index');
+});
