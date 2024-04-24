@@ -39,3 +39,24 @@ Route::get('/login/change-password', function () {
 Route::get('/umkm', function () {
     return view('umkm.index');
 })->name('umkm');
+
+// Route Menu
+Route::get('/penduduk', function () {
+    return view('penduduk.index');
+})->name('penduduk');
+
+Route::get('/bansos', function () {
+    return view('bansos.index');
+})->name('bansos');
+
+Route::get('/aduan', function () {
+    return view('aduan.index');
+})->name('aduan');
+
+Route::get('/jadwal', function () {
+    return view('jadwal.index');
+})->name('jadwal');
+
+Route::get('/surat', function () {
+    return view('surat.index');
+})->name('surat');
