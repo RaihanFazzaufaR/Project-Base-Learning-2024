@@ -207,7 +207,7 @@
                                 </div>
                             </div>
                             <div class="absolute h-[70%] w-full top-0 opacity-0 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500">
-                                <a class="bg-yellow-500 text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm hover:bg-[#E2A229] cursor-pointer">Lihat Selengkapnya</a>
+                                <a href="{{ route('umkm') }}" class="bg-yellow-500 text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm hover:bg-[#E2A229] cursor-pointer">Lihat Selengkapnya</a>
                             </div>
                         </div>
                     </div>
@@ -217,7 +217,7 @@
                 </div>
 
 
-                <a href="#" class="mx-auto bg-yellow-500 text-[#1C4F0F] py-4 px-8 rounded-[30px] shadow-xl font-bold text-lg hover:bg-[#E2A229] transition ease-in-out duration-500 hover:scale-105 hover:shadow-2xl">Lihat Selengkapnya</a>
+                <a href="{{ route('umkm') }}" class="mx-auto bg-yellow-500 text-[#1C4F0F] py-4 px-8 rounded-[30px] shadow-xl font-bold text-lg hover:bg-[#E2A229] transition ease-in-out duration-500 hover:scale-105 hover:shadow-2xl">Lihat Selengkapnya</a>
             </div>
         </div>
 

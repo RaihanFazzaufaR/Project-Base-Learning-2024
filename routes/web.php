@@ -38,4 +38,4 @@ Route::get('/login/change-password', function () {
 //route UMKM
 Route::get('/umkm', function () {
     return view('umkm.index');
-});
+})->name('umkm');
