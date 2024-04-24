@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('tb_useraccount', function (Blueprint $table) {
             $table->bigInteger('user_id', true);
             $table->string('username', 100);
-            $table->string('password', 25);
+            $table->string('password', 100);
             $table->string('nik', 17)->nullable()->index('nik');
         });
     }
