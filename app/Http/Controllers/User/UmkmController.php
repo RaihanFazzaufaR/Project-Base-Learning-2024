@@ -11,4 +11,9 @@ class UmkmController extends Controller
     {
         return view('umkm.index');
     }
+
+    public function umkmku()
+    {
+        return view('umkm.umkmku');
+    }
 }

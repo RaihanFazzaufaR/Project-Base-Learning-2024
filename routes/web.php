@@ -48,6 +48,7 @@ Route::group(['middleware'=>['auth']], function(){
 //route UMKM
 Route::group(['prefix'=>'umkm'], function(){
     Route::get('/', [UmkmController::class, 'index'])->name('umkm');
+    Route::get('/umkmku', [UmkmController::class, 'umkmku'])->name('umkmku');
 });
 
 // Route Penduduk
