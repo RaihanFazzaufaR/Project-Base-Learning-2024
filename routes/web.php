@@ -1,6 +1,13 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\LoginController;
+use App\Http\Controllers\User\UmkmController;
+use App\Http\Controllers\User\PendudukController;
+use App\Http\Controllers\User\BansosController;
+use App\Http\Controllers\User\AduanController;
+use App\Http\Controllers\User\JadwalController;
+use App\Http\Controllers\User\SuratController;
 
 /*
 |--------------------------------------------------------------------------
@@ -21,42 +28,39 @@ Route::get('/home', function () {
     return view('home1');
 });
 
-Route::get('/login', function () {
-    return view('Login.index');
+Route::group(['prefix'=>'login'], function(){
+    Route::get('/', [LoginController::class, 'index'])->name('login');
+    Route::get('/forgot-password', [LoginController::class, 'forgotPassword'])->name('forgot-password');
+    Route::get('/recovery-code', [LoginController::class, 'recoveryCode'])->name('recovery-code');
+    Route::get('/change-password', [LoginController::class, 'changePassword'])->name('change-password');
 });
-Route::get('/login/forgot-password', function () {
-    return view('Login.forgot_password');
-})->name('forgot-password');
-Route::get('/login/recovery-code', function () {
-    return view('Login.recovery_code');
-})->name('recovery-code');
-Route::get('/login/change-password', function () {
-    return view('Login.change_password');
-})->name('change-password');
-
 
 //route UMKM
-Route::get('/umkm', function () {
-    return view('umkm.index');
-})->name('umkm');
+Route::group(['prefix'=>'umkm'], function(){
+    Route::get('/', [UmkmController::class, 'index'])->name('umkm');
+});
 
-// Route Menu
-Route::get('/penduduk', function () {
-    return view('penduduk.index');
-})->name('penduduk');
+// Route Penduduk
+Route::group(['prefix'=>'penduduk'], function(){
+    Route::get('/', [PendudukController::class, 'index'])->name('penduduk');
+});
 
-Route::get('/bansos', function () {
-    return view('bansos.index');
-})->name('bansos');
+// Route Bansos
+Route::group(['prefix'=>'bansos'], function(){
+    Route::get('/', [PendudukController::class, 'index'])->name('bansos');
+});
 
-Route::get('/aduan', function () {
-    return view('aduan.index');
-})->name('aduan');
+//Route Aduan
+Route::group(['prefix'=>'aduan'], function(){
+    Route::get('/', [PendudukController::class, 'index'])->name('aduan');
+});
 
-Route::get('/jadwal', function () {
-    return view('jadwal.index');
-})->name('jadwal');
+//Route Jadwal
+Route::group(['prefix'=>'jadwal'], function(){
+    Route::get('/', [PendudukController::class, 'index'])->name('jadwal');
+});
 
-Route::get('/surat', function () {
-    return view('surat.index');
-})->name('surat');
+//Route Surat
+Route::group(['prefix'=>'surat'], function(){
+    Route::get('/', [PendudukController::class, 'index'])->name('surat');
+});
