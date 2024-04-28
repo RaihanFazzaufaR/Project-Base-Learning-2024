@@ -6,6 +6,7 @@ use App\Http\Controllers\User\UmkmController;
 use App\Http\Controllers\User\PendudukController;
 use App\Http\Controllers\User\BansosController;
 use App\Http\Controllers\User\AduanController;
+use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\JadwalController;
 use App\Http\Controllers\User\SuratController;
 
@@ -22,17 +23,26 @@ use App\Http\Controllers\User\SuratController;
 
 Route::get('/', function () {
     return view('home');
-});
-
-Route::get('/home', function () {
-    return view('home1');
-});
+})->name('home');
 
 Route::group(['prefix'=>'login'], function(){
     Route::get('/', [LoginController::class, 'index'])->name('login');
+    Route::post('/', [LoginController::class, 'authenticate'])->name('authenticate'); 
     Route::get('/forgot-password', [LoginController::class, 'forgotPassword'])->name('forgot-password');
     Route::get('/recovery-code', [LoginController::class, 'recoveryCode'])->name('recovery-code');
     Route::get('/change-password', [LoginController::class, 'changePassword'])->name('change-password');
+    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+});
+
+Route::group(['middleware'=>['auth']], function(){
+    Route::group(['middleware'=>['loginCheck:1']], function(){
+        Route::get('/admin', function(){
+            return view('admin.dashboard');
+        });
+    });
+    Route::group(['middleware'=>['loginCheck:2']], function(){
+        Route::get('/home', [HomeController::class, 'index']);
+    });
 });
 
 //route UMKM

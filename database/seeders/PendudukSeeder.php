@@ -16,7 +16,8 @@ class PendudukSeeder extends Seeder
         $data = [
             ['nik'=>"3570000000000001", 'nama'=>"Raihan Fazzaufa Rasendriya", 'tempatLahir'=>"Jombang", 'tanggalLahir'=>'2004-03-03', 'jenisKelamin'=>'L', 'alamat'=>"JL. LESTI UTARA NO. 88C", 'noRt'=>'008', 'agama'=>'islam', 'pekerjaan'=>'mahasiswa', 'statusNikah'=>'belum', 'warganegara'=>'WNI', 'NIKeluarga'=>'3304111001000001', 'statusDiRw'=>'penduduk', 'gaji'=>2000000],
             ['nik'=>"3570000000000002", 'nama'=>"Maulidin Zakaria", 'tempatLahir'=>"Jombang", 'tanggalLahir'=>'2004-04-05', 'jenisKelamin'=>'L', 'alamat'=>"JL. IMAM BONJOL NO. 156", 'noRt'=>'008', 'agama'=>'islam', 'pekerjaan'=>'mahasiswa', 'statusNikah'=>'belum', 'warganegara'=>'WNI', 'NIKeluarga'=>'3304111001000002', 'statusDiRw'=>'penduduk', 'gaji'=>2300000],
-            ['nik'=>"3570000000000003", 'nama'=>"Lucky Kurniawan", 'tempatLahir'=>"Malang", 'tanggalLahir'=>'2003-12-03', 'jenisKelamin'=>'L', 'alamat'=>"JL. SUDIRMAN NO. 7", 'noRt'=>'008', 'agama'=>'islam', 'pekerjaan'=>'mahasiswa', 'statusNikah'=>'belum', 'warganegara'=>'WNI', 'NIKeluarga'=>'3304111001000003', 'statusDiRw'=>'penduduk', 'gaji'=>2500000]
+            ['nik'=>"3570000000000003", 'nama'=>"Lucky Kurniawan", 'tempatLahir'=>"Malang", 'tanggalLahir'=>'2003-12-03', 'jenisKelamin'=>'L', 'alamat'=>"JL. SUDIRMAN NO. 7", 'noRt'=>'008', 'agama'=>'islam', 'pekerjaan'=>'mahasiswa', 'statusNikah'=>'belum', 'warganegara'=>'WNI', 'NIKeluarga'=>'3304111001000003', 'statusDiRw'=>'penduduk', 'gaji'=>2500000],
+            ['nik'=>"3570000000000004", 'nama'=>"Sony Febrianto", 'tempatLahir'=>"Malang", 'tanggalLahir'=>'2003-11-03', 'jenisKelamin'=>'L', 'alamat'=>"JL. SUDARMONO NO. 7", 'noRt'=>'008', 'agama'=>'islam', 'pekerjaan'=>'mahasiswa', 'statusNikah'=>'belum', 'warganegara'=>'WNI', 'NIKeluarga'=>'3304111001000002', 'statusDiRw'=>'penduduk', 'gaji'=>2200000]
         ];
         DB::table('tb_penduduk')->insert($data);
     }
