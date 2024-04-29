@@ -2,11 +2,7 @@
             <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
         </x-header>
 
-        <img src="{{ asset('assets/images/bg-home-slice-1.png') }}" alt="" class="absolute top-10 right-0 h-[127vh] w-[69vw]">
-
-        <div class="absolute top-5 right-0" style="mask-image: url('{{ asset('assets/images/bg-home-slice.png') }}'); mask-repeat: no-repeat; mask-size: cover;">
-            <img src="{{ asset('assets/images/home-2.jpg') }}" alt="" class="h-[127vh] w-[65vw]">
-        </div>
+        <img src="{{ asset('assets/images/cover-home.png') }}" alt="" class="absolute top-10 right-0 h-[127vh]">
 
         <div class="relative h-[65vh] sm:h-[85vh] md:h-[79vh] lg:h-[120vh] w-[70%] text-[#1C4F0F] pt-[30vh] pl-[8vh]">
             <div class="font-semibold text-2xl mb-3">
@@ -16,10 +12,10 @@
                 PORTAL RW 03
             </div>
             <div class="relative overflow-hidden w-fit">
-                <div class="font-bold text-6xl mb-10 w-fit text-animation">
+                <div class="font-extrabold text-6xl mb-10 w-fit text-animation">
                     Desa Bumiayu
                 </div>
-                <div class="absolute top-0 left-0 h-[70%] w-full border-l-8 border-[#1C4F0F] bg-white animate-leftToRight"></div>
+                <div class="absolute top-0 left-0 h-[70%] w-full border-l-[12px] border-[#1C4F0F] bg-white animate-leftToRight"></div>
             </div>
 
             <p class="font-medium text-xl w-[47vw]">Temukan informasi terkini, kegiatan komunitas, dan layanan kami untuk memajukan lingkungan kami. Bergabunglah dalam membangun kehidupan yang lebih baik untuk warga RW 3!"</p>
