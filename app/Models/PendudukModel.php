@@ -20,14 +20,14 @@ class PendudukModel extends Model
         'tanggalLahir',
         'jenisKelamin',
         'alamat',
-        'alamat',
         'agama',
         'pekerjaan',
         'statusNikah',
-        'wargaNegara',
-        'NIKeluarga',
+        'warganegara',
+        'niKeluarga',
         'statusDiRw',
-        'gaji'
+        'gaji',
+        'noRt',
     ];
 
     public function kartuKeluarga() : BelongsTo

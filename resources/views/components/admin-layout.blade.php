@@ -43,6 +43,7 @@
     </div>
     <!-- ===== Page Wrapper End ===== -->
     <script defer src="{{ asset('assets/js/bundle.js') }}"></script>
+    @include('sweetalert::alert')
 </body>
 
 </html>

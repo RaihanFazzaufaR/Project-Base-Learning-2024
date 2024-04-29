@@ -21,13 +21,16 @@ return new class extends Migration
             $table->enum('jenisKelamin', ['L', 'P']);
             $table->string('alamat', 100);
             $table->string('noRt', 100);
-            $table->enum('agama', ['islam', 'kristen', 'katolik', 'hindu', 'buddha', 'Konghucu']);
+            $table->enum('agama', ['islam', 'kristen', 'katolik', 'hindu', 'buddha', 'khonghucu']);
             $table->string('pekerjaan', 20);
             $table->enum('statusNikah', ['belum', 'sudah']);
             $table->enum('warganegara', ['WNI', 'WNA']);
-            $table->string('NIKeluarga', 17)->index('nikeluarga');
+            $table->string('niKeluarga', 20);
             $table->enum('statusDiRw', ['penduduk', 'RW', 'RT', 'penduduk tidak tetap', 'orang luar']);
             $table->decimal('gaji', 15)->nullable();
+            $table->timestamps();
+
+            $table->foreign('niKeluarga')->references('niKeluarga')->on('tb_kartukeluarga');
         });
     }
 

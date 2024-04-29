@@ -4,7 +4,7 @@
             <form class="w-[22vw]">
                 <div class="flex h-full items-center">
                     <div class="relative w-full">
-                        <input type="search" id="location-search" class="block py-2 px-4 h-11 w-full z-20 text-sm text-[#34662C] shadow-xl bg-gray-50 rounded-xl border border-[#34662C] " placeholder="Cari ..." required />
+                        <input type="search" id="location-search" name="search" class="block py-2 px-4 h-11 w-full z-20 text-sm text-[#34662C] shadow-xl bg-gray-50 rounded-xl border border-[#34662C] focus:outline-none focus:border-[3px]" placeholder="Cari ..." required />
                         <button type="submit" class="absolute top-0 end-0 h-11 py-2 px-4 text-sm font-medium text-white bg-[#57BA47] rounded-xl border border-[#34662C] hover:bg-[#336E2A] transition duration-300 ease-in-out">
                             <i class="fa-solid fa-magnifying-glass text-2xl"></i>
                             <span class="sr-only">Search</span>
@@ -35,7 +35,7 @@
                                 </button>
                             </div>
                             <!-- Modal body -->
-                            <form class="w-full h-full text-[#34662C]">
+                            <form class="w-full h-full text-[#34662C]" method="POST" action="{{ route('updatePenduduk', 1) }}">
                                 <div class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto rounded-b-xl">
                                     <div class="col-span-2 sm:col-span-1">
                                         <label for="agama" class="block mb-2 text-sm font-bold">Agama</label>
@@ -115,8 +115,11 @@
                 </div>
             </div>
         </div>
+
+
+
         <div class="h-full w-fit py-2" x-data="{ 'tambahModal': false }" @keydown.escape="tambahModal = false">
-            <button @click="tambahModal = true" class="flex w-34 bg-[#57BA47] h-full text-white justify-between items-center px-4 rounded-lg shadow-xl hover:bg-[#336E2A] hover:scale-105 transition duration-300 ease-in-out" data-modal-target="crud-modal" data-modal-toggle="crud-modal">
+            <button @click="tambahModal = true" class="flex w-34 bg-[#57BA47] h-full text-white justify-between items-center px-4 rounded-lg shadow-xl hover:bg-[#336E2A] hover:scale-105 transition duration-300 ease-in-out">
                 <i class="fa-solid fa-plus text-2xl"></i>
                 <div class="text-xl font-semibold">Tambah</div>
             </button>
@@ -138,7 +141,8 @@
                             </button>
                         </div>
                         <!-- Modal body -->
-                        <form class="w-full h-full text-[#34662C]">
+                        <form class="w-full h-full text-[#34662C]" method="POST" action="{{ route('storePenduduk') }}">
+                            @csrf
                             <div class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto rounded-b-xl">
                                 <div class="col-span-2 sm:col-span-1">
                                     <label for="nik" class="block mb-2 text-sm font-bold">NIK</label>
@@ -175,9 +179,11 @@
                                     <label for="statusPenduduk" class="block mb-2 text-sm font-bold ">Status Penduduk</label>
                                     <select id="statusPenduduk" name="statusPenduduk" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
                                         <option selected="">Pilih Status Penduduk</option>
-                                        <option value="warga">Warga</option>
-                                        <option value="rt">RT</option>
-                                        <option value="rw">RW</option>
+                                        <option value="penduduk">Penduduk</option>
+                                        <option value="RT">RT</option>
+                                        <option value="RW">RW</option>
+                                        <option value="penduduk tidak tetap">Penduduk Tidak Tetap</option>
+                                        <option value="orang luar">Orang Luar</option>
                                     </select>
                                 </div>
                                 <div class="col-span-2 sm:col-span-1">
@@ -200,8 +206,8 @@
                                     <label for="kewarganegaraan" class="block mb-2 text-sm font-bold">Kewarganegaraan</label>
                                     <select id="kewarganegaraan" name="kewarganegaraan" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
                                         <option selected="">Pilih Kewarganegaraan</option>
-                                        <option value="Indonesia">Indonesia</option>
-                                        <option value="Luar">Luar</option>
+                                        <option value="WNI">Indonesia</option>
+                                        <option value="WNA">Luar</option>
                                     </select>
                                 </div>
                                 <div class="col-span-2 sm:col-span-1 grid grid-cols-2 gap-4">
@@ -231,10 +237,10 @@
                                 </div>
                             </div>
                             <div class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8]">
-                                <button type="submit" @click="tambahModal = false" class="hover:text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center hover:bg-[#34662C] bg-white text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
+                                <button @click="tambahModal = false" class="hover:text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center hover:bg-[#34662C] bg-white text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
                                     Batal
                                 </button>
-                                <button type="submit" @click="tambahModal = false" class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
+                                <button type="submit" class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
                                     Tambah
                                 </button>
                             </div>
@@ -242,12 +248,8 @@
                     </div>
                 </div>
             </div>
-
         </div>
     </div>
-
-
-
 
     <div class="mt-10">
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -325,14 +327,7 @@
                                                     </div>
                                                     <div class="col-span-2 sm:col-span-1">
                                                         <label for="agama" class="block mb-2 text-sm font-bold">Agama</label>
-                                                        <select id="agama" name="agama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                                                            <option selected="">Pilih Agama</option>
-                                                            <option value="islam">Islam</option>
-                                                            <option value="katolik">Katolik</option>
-                                                            <option value="kristen">Kristen</option>
-                                                            <option value="buddha">Buddha</option>
-                                                            <option value="khonghucu">Khonghucu</option>
-                                                        </select>
+                                                        <input type="text" name="agama" id="agama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $usr->agama }}" readonly>
                                                     </div>
                                                     <div class="col-span-2 sm:col-span-1">
                                                         <label for="tempatLahir" class="block mb-2 text-sm font-bold ">Tempat Lahir</label>
@@ -344,20 +339,11 @@
                                                     </div>
                                                     <div class="col-span-2 sm:col-span-1">
                                                         <label for="statusPenduduk" class="block mb-2 text-sm font-bold ">Status Penduduk</label>
-                                                        <select id="statusPenduduk" name="statusPenduduk" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                                                            <option selected="">Pilih Status Penduduk</option>
-                                                            <option value="warga">Warga</option>
-                                                            <option value="rt">RT</option>
-                                                            <option value="rw">RW</option>
-                                                        </select>
+                                                        <input type="text" name="statusPenduduk" id="statusPenduduk" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $usr->statusDiRw }}" readonly>
                                                     </div>
                                                     <div class="col-span-2 sm:col-span-1">
                                                         <label for="statusPernikahan" class="block mb-2 text-sm font-bold ">Status Pernikahan</label>
-                                                        <select id="statusPernikahan" name="statusPernikahan" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                                                            <option selected="">Pilih Status Pernikahan</option>
-                                                            <option value="belum">Belum Menikah</option>
-                                                            <option value="sudah">Sudah Menikah</option>
-                                                        </select>
+                                                        <input type="text" name="statusPernikahan" id="statusPernikahan" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $usr->statusNikah }}" readonly>
                                                     </div>
                                                     <div class="col-span-2 sm:col-span-1">
                                                         <label for="pekerjaan" class="block mb-2 text-sm font-bold ">Pekerjaan</label>
@@ -369,31 +355,20 @@
                                                     </div>
                                                     <div class="col-span-2 sm:col-span-1">
                                                         <label for="kewarganegaraan" class="block mb-2 text-sm font-bold">Kewarganegaraan</label>
-                                                        <select id="kewarganegaraan" name="kewarganegaraan" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                                                            <option selected="">Pilih Kewarganegaraan</option>
-                                                            <option value="Indonesia">Indonesia</option>
-                                                            <option value="Luar">Luar</option>
-                                                        </select>
+                                                        <input type="text" name="kewarganegaraan" id="kewarganegaraan" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $usr->warganegara }}" readonly>
                                                     </div>
                                                     <div class="col-span-2 sm:col-span-1 grid grid-cols-2 gap-4">
                                                         <div class="col-span-2 sm:col-span-1">
                                                             <label for="jenisKelamin" class="block mb-2 text-sm font-bold ">Jenis Kelamin</label>
-                                                            <select id="jenisKelamin" name="jenisKelamin" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                                            <select id="jenisKelamin" name="jenisKelamin" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" disabled>
                                                                 <option selected="">Pilih Jenis Kelamin</option>
-                                                                <option value="L">Laki-Laki</option>
-                                                                <option value="P">Perempuan</option>
+                                                                <option value="L" @if ($usr->jenisKelamin == 'L') selected @endif>Laki-Laki</option>
+                                                                <option value="P" @if ($usr->jenisKelamin == 'P') selected @endif>Perempuan</option>
                                                             </select>
                                                         </div>
                                                         <div class="col-span-2 sm:col-span-1">
                                                             <label for="rt" class="block mb-2 text-sm font-bold ">RT</label>
-                                                            <select id="rt" name="rt" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                                                                <option selected="">Pilih RT</option>
-                                                                <option value="01">01</option>
-                                                                <option value="02">02</option>
-                                                                <option value="03">03</option>
-                                                                <option value="04">04</option>
-                                                                <option value="05">05</option>
-                                                            </select>
+                                                            <input type="text" name="rt" id="rt" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $usr->noRt }}" readonly>
                                                         </div>
                                                     </div>
                                                     <div class="col-span-2">
@@ -433,7 +408,9 @@
                                                 </button>
                                             </div>
                                             <!-- Modal body -->
-                                            <form class="w-full h-full text-[#34662C] text-left">
+                                            <form class="w-full h-full text-[#34662C] text-left" method="POST" action="{{ route('updatePenduduk', $usr->nik ) }}">
+                                                @csrf
+
                                                 <div class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto rounded-b-xl">
                                                     <div class="col-span-2 sm:col-span-1">
                                                         <label for="nik" class="block mb-2 text-sm font-bold">NIK</label>
@@ -529,7 +506,7 @@
                                                     <button type="submit" @click="editModal = false" class="hover:text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center hover:bg-[#34662C] bg-white text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
                                                         Batal
                                                     </button>
-                                                    <button type="submit" @click="editModal = false" class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
+                                                    <button type="submit" class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
                                                         Edit
                                                     </button>
                                                 </div>
@@ -548,6 +525,9 @@
                     @endforeach
                 </tbody>
             </table>
+            <div class="px-8 py-5">
+                {{ $user->links() }}
+            </div>
         </div>
     </div>
 </x-admin-layout>

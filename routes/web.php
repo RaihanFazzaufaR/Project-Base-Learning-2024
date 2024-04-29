@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\User\UmkmController;
 use App\Http\Controllers\User\PendudukController;
-use App\Http\Controllers\Admin\PendudukController AS AdminPendudukController;
+use App\Http\Controllers\Admin\PendudukController as AdminPendudukController;
 use App\Http\Controllers\User\BansosController;
 use App\Http\Controllers\User\AduanController;
 use App\Http\Controllers\User\HomeController;
@@ -42,6 +42,8 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('/', [AdminController::class, 'index'])->name('admin');
             Route::prefix('kependudukan')->group(function () {
                 Route::get('/', [AdminPendudukController::class, 'daftarPendudukViewAdmin'])->name('daftar-penduduk');
+                Route::post('/', [AdminPendudukController::class, 'storePenduduk'])->name('storePenduduk');
+                Route::put('/{nik}', [AdminPendudukController::class, 'updatePenduduk'])->name('updatePenduduk');
                 Route::get('/daftar-akun', [AdminPendudukController::class, 'daftarAkunViewAdmin'])->name('daftar-akun');
                 Route::get('/daftar-nkk', [AdminPendudukController::class, 'daftarNkkViewAdmin'])->name('daftar-nkk');
             });
