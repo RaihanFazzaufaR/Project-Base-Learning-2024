@@ -312,17 +312,16 @@
                 </div>
             </div>
             <div class="grid gap-9 mt-10 mb-[15vh]">
+            @foreach($umkms as $umkm)
                 <a href="##" class="">
-                    <div
-                        class="w-full h-64 bg-white border-2 shadow-2xl border-[#2d5523] rounded-xl overflow-hidden flex hover:border-4 hover:border-yellow-500 justify-center items-center  group-hover:opacity-100 transition ease-in-out duration-500 hover:scale-105 group">
+                    <div class="w-full h-64 bg-white border-2 shadow-2xl border-[#2d5523] rounded-xl overflow-hidden flex hover:border-4 hover:border-yellow-500 justify-center items-center  group-hover:opacity-100 transition ease-in-out duration-500 hover:scale-105 group">
                         <div class="basis-1/3 h-full">
-                            <img src="{{ asset('assets/images/toko-kelontong.jpg') }} " alt=""
-                                class="w-full h-full group-hover:scale-110  transition ease-in-out duration-500">
-                        </div>
+                            <img src="{{ asset($umkm->foto) }}" alt="" class="w-full h-full group-hover:scale-110  transition ease-in-out duration-500">
+                        </div>                        
                         <div class="basis-2/3 h-full w-full pt-4 pl-8 ">
                             <div class="basis-2/3">
                                 <div class="text-3xl font-bold text-[#2d5523]">
-                                    Warung Madura
+                                    {{ $umkm->nama }}
                                 </div>
                                 <div class="pt-4">
                                     <table class="text-[#2d5523]">
@@ -332,7 +331,7 @@
                                             </td>
                                             <td class="pl-3 py-1">
                                                 <span class="font-normal">
-                                                    24 Jam
+                                                    {{ $umkm->buka_waktu }} - {{ $umkm->tutup_waktu }}
                                                 </span>
                                             </td>
                                         </tr>
@@ -342,7 +341,7 @@
                                             </td>
                                             <td class="pl-3 py-1">
                                                 <span class="font-normal">
-                                                    Jl. Bunga Mawar No. 146
+                                                    {{ $umkm->lokasi }}
                                                 </span>
                                             </td>
                                         </tr>
@@ -352,9 +351,7 @@
                                             </td>
                                             <td class="pl-3 py-1">
                                                 <span class="font-normal">
-                                                    Warung Madura yang menyediakan berbagai kebutuhan pokok yang
-                                                    tidak
-                                                    pernah tutup kecuali hari kiamat
+                                                    {{ $umkm->deskripsi }}
                                                 </span>
                                             </td>
                                         </tr>
@@ -363,14 +360,14 @@
                             </div>
                         </div>
                         <div class="basis-1/3 flex justify-center items-center ">
-                            <div
-                                class="w-fit h-fit p-2  rounded-lg border-2 border-[#2d5523] text-[#2d5523] group-hover:text-white group-hover:bg-[#E2A229] group-hover:scale-110">
+                            <div class="w-fit h-fit p-2  rounded-lg border-2 border-[#2d5523] text-[#2d5523] group-hover:text-white group-hover:bg-[#E2A229] group-hover:scale-110">
                                 Lihat Detail
                             </div>
-
                         </div>
                     </div>
                 </a>
+            @endforeach
+            {{ $umkms->links() }}
                 <a href="##" class="">
                     <div
                         class="w-full h-64 bg-white border-2 shadow-2xl border-[#2d5523] rounded-xl overflow-hidden flex hover:border-4 hover:border-yellow-500 justify-center items-center  group-hover:opacity-100 transition ease-in-out duration-500 hover:scale-105 group">
