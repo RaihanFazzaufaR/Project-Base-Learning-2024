@@ -5,15 +5,27 @@
 .gradient-text {
     background: linear-gradient(
         to right,
-        #81B076,
+        #81b076,
         #fff,
-        #81B076,
+        #81b076,
         #fff,
-        #81B076,
+        #81b076,
         #fff,
-        #81B076
+        #81b076
     );
     background-clip: text;
     background-size: 200% auto;
     background-clip: text;
+}
+
+@layer utilities {
+    /* Hide scrollbar for Chrome, Safari and Opera */
+    .no-scrollbar::-webkit-scrollbar {
+        display: none;
+    }
+    /* Hide scrollbar for IE, Edge and Firefox */
+    .no-scrollbar {
+        -ms-overflow-style: none; /* IE and Edge */
+        scrollbar-width: none; /* Firefox */
+    }
 }
