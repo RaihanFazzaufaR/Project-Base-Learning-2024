@@ -32,6 +32,18 @@
                     </li>
                 </ul>
                 <ul class="grid w-full">
+                    @foreach($categories as $category)
+                    <li>
+                    <a href="{{ route('umkm.category', $category) }}" class="inline-flex pl-3 items-center justify-between w-full p-1.5 text-[#2d5523] bg-white border border-gray-200 cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-[#2d5523] peer-checked:text-white peer-checked:bg-yellow-500 hover:text-white hover:bg-yellow-500 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                        
+                            <div class="block">
+                                <div class="w-full text-lg font-semibold">{{ $category }}</div>
+                            </div> 
+                    </a>
+                    </li>
+                    @endforeach
+                </ul>
+                <ul class="grid w-full">
                     <li>
                         <input type="radio" id="2" name="hosting" value="2" class="hidden peer"
                             required />
@@ -42,7 +54,6 @@
                             </div>
                         </label>
                     </li>
-
                 </ul>
                 <ul class="grid w-full">
                     <li>
@@ -99,23 +110,23 @@
         <div class="basis-3/4 ">
             <div class="flex items-center gap-11 justify-center">
                 <div class="basis-2/3">
-                    <form class="w-full mb-0 shadow-2xl">
-                        <label for="default-search"
-                            class="text-sm font-medium text-[#2d5523] sr-only dark:text-white">Search</label>
+                    <form action="{{ route('umkm.search') }}" method="GET" class="w-full mb-0 shadow-2xl">
+                        <label for="default-search" class="text-sm font-medium text-[#2d5523] sr-only dark:text-white">Search</label>
                         <div class="relative h-full">
                             <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                                 <svg class="w-4 h-4 text-[#2d5523] dark:text-gray-400" aria-hidden="true"
                                     xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                 </svg>
                             </div>
-                            <input type="search" id="default-search"
+                            <input type="search" id="default-search" name="search"
                                 class="block w-full p-4 ps-10 border-[3px] border-[#2d5523] text-[#2d5523] text-base rounded-lg bg-gray-50 focus:ring-yellow-500 focus:border-yellow-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
                                 placeholder="Cari UMKM" required />
                         </div>
                     </form>
                 </div>
+                
                 <div class="basis-1/3">
                     <a href="#"
                         class="w-auto shadow-2xl h-[57px] text-[20px] px-[24px] bg-yellow-500 items-center flex rounded-[15px]  font-bold text-[#2d5523] hover:bg-[#E2A229] hover:text-white active:bg-yellow-500 justify-center  transition ease-in-out duration-500 hover:scale-105"
