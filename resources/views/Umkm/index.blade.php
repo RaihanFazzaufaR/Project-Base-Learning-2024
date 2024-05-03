@@ -174,11 +174,6 @@
                                             </div>
                                             
                                         </div>
-                                        <!-- Penyesuaian untuk field Nama UMKM, No. WhatsApp, dan Foto UMKM -->
-                                        <!-- Sertakan penyesuaian khusus untuk setiap input -->
-                                        <!-- Jangan lupa menambahkan name dan id yang sesuai -->
-                                        <!-- Pastikan juga untuk menyesuaikan placeholder dan atribut lainnya jika diperlukan -->
-                                        <!-- Contoh penyesuaian untuk input No. WhatsApp -->
                                         <div class="gap-2 flex w-full">
                                             <div class="basis-1/4 h-full flex items-center">
                                                 <label for="no_wa" class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">No. WhatsApp</label>
@@ -195,8 +190,6 @@
                                                 <input id="foto" name="foto" type="file" class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                             </div>
                                         </div>
-                                        <!-- Penyesuaian untuk input Jam Operasional -->
-                                        <!-- Gunakan input type="time" -->
                                         <div class="gap-2 flex w-full">
                                             <div class="basis-1/4 h-full flex items-center">
                                                 <label for="buka_waktu" class="text-lg font-bold pt-[23px] items-center flex w-full text-[#2d5523] dark:text-white">Jam Operasional</label>
@@ -215,11 +208,6 @@
                                     </div>
                                     <!-- kolom kanan -->
                                     <div class="flex flex-col gap-5 mb-4 w-full basis-1/2 ">
-                                        <!-- Penyesuaian untuk field Kategori, Koordinat UMKM, dan Alamat UMKM -->
-                                        <!-- Sertakan penyesuaian khusus untuk setiap input -->
-                                        <!-- Jangan lupa menambahkan name dan id yang sesuai -->
-                                        <!-- Pastikan juga untuk menyesuaikan placeholder dan atribut lainnya jika diperlukan -->
-                                        <!-- Contoh penyesuaian untuk input Kategori -->
                                         <div class="gap-2 flex w-full">
                                             <div class="basis-1/4 h-full flex items-center">
                                                 <label for="tipe" class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Kategori</label>
@@ -234,7 +222,7 @@
                                                 </select>
                                             </div>
                                         </div>
-                                        <!-- Penyesuaian untuk input Koordinat UMKM -->
+                                        
                                         <div class="gap-2 flex w-full">
                                             <div class="basis-1/4 h-full flex items-center">
                                                 <label for="lokasi_map" class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Koordinat UMKM</label>
@@ -243,7 +231,7 @@
                                                 <input id="lokasi_map" name="lokasi_map" placeholder="Masukkan Koordinat Lokasi Sesuai Google Maps" class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                             </div>
                                         </div>
-                                        <!-- Penyesuaian untuk input Alamat UMKM -->
+                                        
                                         <div class="gap-2 flex w-full">
                                             <div class="basis-1/4 h-fit ">
                                                 <label for="lokasi" class="text-lg font-bold  w-full text-[#2d5523] dark:text-white">Alamat UMKM</label>
@@ -252,7 +240,7 @@
                                                 <textarea id="lokasi" name="lokasi" cols="19" rows="3" placeholder="Masukkan Alamat UMKM" class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
                                             </div>
                                         </div>
-                                        <!-- Penyesuaian untuk input Deskripsi Singkat -->
+                                        
                                         <div class="gap-2 flex w-full">
                                             <div class="basis-1/4 h-fit ">
                                                 <label for="deskripsi" class="text-lg font-bold  w-full text-[#2d5523] dark:text-white">Deskripsi Singkat</label>
