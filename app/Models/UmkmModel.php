@@ -15,6 +15,7 @@ class UmkmModel extends Model
     protected $fillable = [
         'nama',
         'pemilik_id',
+        'no_wa',
         'lokasi',
         'tipe',
         'buka_waktu',
@@ -23,7 +24,8 @@ class UmkmModel extends Model
         'lokasi_map',
         'status',
         'foto',
-        'no_wa',
+        'tanggal_disetujui',
+
     ];
 
     public function pemilik(): BelongsTo

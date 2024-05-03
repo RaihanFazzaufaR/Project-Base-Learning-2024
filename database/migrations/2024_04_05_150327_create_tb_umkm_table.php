@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -16,14 +15,20 @@ return new class extends Migration
         Schema::create('tb_umkm', function (Blueprint $table) {
             $table->bigInteger('umkm_id', true);
             $table->string('nama', 50);
+            $table->string('no_wa', 50);
             $table->string('pemilik_id', 17)->index('pemilik_id');
             $table->string('lokasi', 100);
-            $table->enum('tipe', ['barang', 'jasa']);
+            $table->enum('tipe', ['Makanan', 'Minuman', 'Peralatan Rumah Tangga', 'Kebutuhan Pokok', 'Jasa']);
             $table->time('buka_waktu');
             $table->time('tutup_waktu');
             $table->text('deskripsi')->nullable();
             $table->text('lokasi_map')->nullable();
+            $table->text('foto')->nullable();
             $table->enum('status', ['diproses', 'selesai', 'ditolak']);
+            $table->timestamp('tanggal_disetujui')->nullable();
+            $table->timestamps();
+
+
         });
     }
 

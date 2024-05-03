@@ -152,179 +152,134 @@
                                     <i class="fa-solid fa-xmark text-[#2d5523] font-extrabold text-xl"></i>
                                 </button>
                             </div>
-                            <!-- Modal body -->
-                            <form class="p-4 md:p-5 w-full flex flex-col bg-white" method="POST" action="">
+                            <form class="p-4 md:p-5 w-full flex flex-col bg-white" method="POST" action="{{ route('umkm.store') }}" enctype="multipart/form-data">
+                                @csrf
                                 <div class="flex w-full h-fit gap-6">
                                     {{-- kolom kiri --}}
                                     <div class="grid gap-5 mb-4 w-full basis-1/2 ">
                                         <div class="gap-2 flex w-full">
-                                            <div class="basis-1/4 h-full flex items-center">
-                                                <label for="kelas"
-                                                    class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Nama
-                                                    Pemilik</label>
-                                            </div>
-                                            <div class="basis-3/4 h-full flex items-center">
-                                                <input id="kelas" list="listKelas" name="kelas"
-                                                    placeholder="Masukkan Nama Pemilik UMKM"
-                                                    class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                            </div>
-                                            <datalist id="listKelas">
-
-                                            </datalist>
+                                        <div class="basis-1/4 h-full flex items-center">
+                                            <label for="nama" class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Nama Toko</label>
                                         </div>
-
+                                        <div class="basis-3/4 h-full flex items-center">
+                                            <input id="nama" name="nama" placeholder="Masukkan Nama Toko" class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                        </div>
+                                    </div>
                                         <div class="gap-2 flex w-full">
                                             <div class="basis-1/4 h-full flex items-center">
-                                                <label for="kelas"
-                                                    class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Nama UMKM</label>
+                                                <label for="nama_pemilik" class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Nama Pemilik</label>
                                             </div>
                                             <div class="basis-3/4 h-full flex items-center">
-                                                <input id="kelas" list="listKelas" name="kelas"
-                                                    placeholder="Masukkan Nama  UMKM"
-                                                    class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                <input id="nama_pemilik" name="nama_pemilik" placeholder="Masukkan Nama Pemilik UMKM" class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ session('nama') }}" >
                                             </div>
-                                            <datalist id="listKelas">
-
-                                            </datalist>
+                                            
                                         </div>
+                                        <!-- Penyesuaian untuk field Nama UMKM, No. WhatsApp, dan Foto UMKM -->
+                                        <!-- Sertakan penyesuaian khusus untuk setiap input -->
+                                        <!-- Jangan lupa menambahkan name dan id yang sesuai -->
+                                        <!-- Pastikan juga untuk menyesuaikan placeholder dan atribut lainnya jika diperlukan -->
+                                        <!-- Contoh penyesuaian untuk input No. WhatsApp -->
                                         <div class="gap-2 flex w-full">
                                             <div class="basis-1/4 h-full flex items-center">
-                                                <label for="kelas"
-                                                    class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">No.
-                                                    WhatsApp</label>
+                                                <label for="no_wa" class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">No. WhatsApp</label>
                                             </div>
                                             <div class="basis-3/4 h-full flex items-center">
-                                                <input id="kelas" list="listKelas" name="kelas"
-                                                    placeholder="Masukkan No. WhatsApp"
-                                                    class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                <input id="no_wa" name="no_wa" placeholder="Masukkan No. WhatsApp" class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                             </div>
-                                            <datalist id="listKelas">
-
-                                            </datalist>
                                         </div>
                                         <div class="gap-2 flex w-full">
                                             <div class="basis-1/4 h-full flex items-center">
-                                                <label for="kelas"
-                                                    class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Foto
-                                                    UMKM</label>
+                                                <label for="foto" class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Foto UMKM</label>
                                             </div>
                                             <div class="basis-3/4 h-full flex items-center">
-                                                <input
-                                                    class="bg-gray-50 shadow-md border-[2px] border-[#2d5523] text-[#2d5523] placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                                    aria-describedby="file_input_help" id="file_input"
-                                                    type="file">
+                                                <input id="foto" name="foto" type="file" class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                             </div>
-                                            <datalist id="listKelas">
-
-                                            </datalist>
                                         </div>
+                                        <!-- Penyesuaian untuk input Jam Operasional -->
+                                        <!-- Gunakan input type="time" -->
                                         <div class="gap-2 flex w-full">
                                             <div class="basis-1/4 h-full flex items-center">
-                                                <label for="kelas"
-                                                    class="text-lg font-bold pt-[23px] items-center flex w-full text-[#2d5523] dark:text-white">Jam Operasional</label>
+                                                <label for="buka_waktu" class="text-lg font-bold pt-[23px] items-center flex w-full text-[#2d5523] dark:text-white">Jam Operasional</label>
                                             </div>
                                             <div class="basis-3/4 h-full flex items-center w-full justify-center">
                                                 <div class="basis-1/2 h-full flex w-full justify-center flex-col ">
-                                                    <label for="start-time" class=" mb-2 text-sm w-fit mx-auto font-medium text-[#2d5523] dark:text-white">Jam Buka:</label>
-                                                    <div class="w-fit mx-auto">
-                                                        <input type="time" id="start-time" class="bg-gray-50 border-2 border-[#2d5523] leading-none text-lg text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit  py-2.5 px-[17px] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" min="09:00" max="18:00" value="00:00" required />
-                                                    </div>
+                                                    <label for="buka_waktu" class=" mb-2 text-sm w-fit mx-auto font-medium text-[#2d5523] dark:text-white">Jam Buka:</label>
+                                                    <input type="time" id="buka_waktu" name="buka_waktu" class="bg-gray-50 border-2 border-[#2d5523] leading-none text-lg text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit  py-2.5 px-[17px] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" min="09:00" max="18:00" value="00:00" required />
                                                 </div>
                                                 <div class="basis-1/2 h-full flex w-full justify-center flex-col">
-                                                    <label for="end-time" class="block mb-2 text-sm font-medium mx-auto text-[#2d5523] dark:text-white">Jam Tutup:</label>
-                                                    <div class="w-fit mx-auto">
-                                                        <input type="time" id="start-time" class="bg-gray-50 border-2 border-[#2d5523] leading-none text-lg text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit  py-2.5 px-[17px] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" min="09:00" max="18:00" value="00:00" required />
-                                                    </div>
+                                                    <label for="tutup_waktu" class="block mb-2 text-sm font-medium mx-auto text-[#2d5523] dark:text-white">Jam Tutup:</label>
+                                                    <input type="time" id="tutup_waktu" name="tutup_waktu" class="bg-gray-50 border-2 border-[#2d5523] leading-none text-lg text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit  py-2.5 px-[17px] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" min="09:00" max="18:00" value="00:00" required />
                                                 </div>
                                             </div>
-                                            <datalist id="listKelas">
-
-                                            </datalist>
                                         </div>
-
                                     </div>
-                                    {{-- kolom kanan --}}
+                                    <!-- kolom kanan -->
                                     <div class="flex flex-col gap-5 mb-4 w-full basis-1/2 ">
+                                        <!-- Penyesuaian untuk field Kategori, Koordinat UMKM, dan Alamat UMKM -->
+                                        <!-- Sertakan penyesuaian khusus untuk setiap input -->
+                                        <!-- Jangan lupa menambahkan name dan id yang sesuai -->
+                                        <!-- Pastikan juga untuk menyesuaikan placeholder dan atribut lainnya jika diperlukan -->
+                                        <!-- Contoh penyesuaian untuk input Kategori -->
                                         <div class="gap-2 flex w-full">
                                             <div class="basis-1/4 h-full flex items-center">
-                                                <label for="kelas"
-                                                    class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Kategori</label>
+                                                <label for="tipe" class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Kategori</label>
                                             </div>
                                             <div class="basis-3/4 h-full flex items-center">
-                                                <input id="kelas" list="listKelas" name="kelas"
-                                                    placeholder="Pilih Kategori UMKM"
-                                                    class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                <select id="tipe" name="tipe" class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                    <option value="Makanan">Makanan</option>
+                                                    <option value="Minuman">Minuman</option>
+                                                    <option value="Peralatan Rumah Tangga">Peralatan Rumah Tangga</option>
+                                                    <option value="Kebutuhan Pokok">Kebutuhan Pokok</option>
+                                                    <option value="Jasa">Jasa</option>
+                                                </select>
                                             </div>
-                                            <datalist id="listKelas">
-
-                                            </datalist>
                                         </div>
-
+                                        <!-- Penyesuaian untuk input Koordinat UMKM -->
                                         <div class="gap-2 flex w-full">
                                             <div class="basis-1/4 h-full flex items-center">
-                                                <label for="kelas"
-                                                    class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Koordinat UMKM</label>
+                                                <label for="lokasi_map" class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Koordinat UMKM</label>
                                             </div>
                                             <div class="basis-3/4 h-full flex items-center">
-                                                <input id="kelas" list="listKelas" name="kelas"
-                                                    placeholder="Masukkan Koordinat Lokasi Sesuai Google Maps"
-                                                    class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                <input id="lokasi_map" name="lokasi_map" placeholder="Masukkan Koordinat Lokasi Sesuai Google Maps" class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                             </div>
-                                            <datalist id="listKelas">
-
-                                            </datalist>
                                         </div>
+                                        <!-- Penyesuaian untuk input Alamat UMKM -->
                                         <div class="gap-2 flex w-full">
                                             <div class="basis-1/4 h-fit ">
-                                                <label for="kelas"
-                                                    class="text-lg font-bold  w-full text-[#2d5523] dark:text-white">Alamat UMKM</label>
+                                                <label for="lokasi" class="text-lg font-bold  w-full text-[#2d5523] dark:text-white">Alamat UMKM</label>
                                             </div>
                                             <div class="basis-3/4 h-full flex items-center">
-                                                <textarea id="kelas" cols="19" rows="3" name="kelas" 
-                                                    placeholder="Masukkan Deskripsi Singkat UMKM"
-                                                    class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                </textarea>
+                                                <textarea id="lokasi" name="lokasi" cols="19" rows="3" placeholder="Masukkan Alamat UMKM" class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
                                             </div>
-                                            <datalist id="listKelas">
-
-                                            </datalist>
                                         </div>
+                                        <!-- Penyesuaian untuk input Deskripsi Singkat -->
                                         <div class="gap-2 flex w-full">
                                             <div class="basis-1/4 h-fit ">
-                                                <label for="kelas"
-                                                    class="text-lg font-bold  w-full text-[#2d5523] dark:text-white">Deskripsi Singkat</label>
+                                                <label for="deskripsi" class="text-lg font-bold  w-full text-[#2d5523] dark:text-white">Deskripsi Singkat</label>
                                             </div>
                                             <div class="basis-3/4 h-full flex items-center">
-                                                {{-- <textarea name="" id="" cols="30" rows="10"></textarea> --}}
-                                                <textarea id="kelas" cols="19" rows="3" name="kelas" 
-                                                    placeholder="Masukkan Deskripsi Singkat UMKM"
-                                                    class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                </textarea>
+                                                <textarea id="deskripsi" name="deskripsi" cols="19" rows="3" placeholder="Masukkan Deskripsi Singkat UMKM" class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
                                             </div>
-                                            <datalist id="listKelas">
-
-                                            </datalist>
                                         </div>
-                                    </div>    
-                                    
+                                    </div>
                                 </div>
                                 <div class="w-full text-[#2d5523] font-sm pb-4">
                                     *Sebelum mengajukan UMKM Anda, pastikan UMKM Anda sudah ada pada Google Maps
                                 </div>
                                 <div class="flex w-full justify-end items-center px-7">
-                                    <button type="submit"
-                                        class="text-white items-center bg-[#2d5523] hover:bg-[#e2a229] hover:text-[#2d5523] focus:ring-4 text-center w-full focus:outline-none focus:ring-blue-300  rounded-lg text-lg font-bold  py-3  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    <button type="submit" class="text-white items-center bg-[#2d5523] hover:bg-[#e2a229] hover:text-[#2d5523] focus:ring-4 text-center w-full focus:outline-none focus:ring-blue-300  rounded-lg text-lg font-bold  py-3  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
                                         Ajukan UMKM
                                     </button>
                                 </div>
                             </form>
+                            
                         </div>
                     </div>
                 </div>
             </div>
             <div class="grid gap-9 mt-10 mb-[15vh]">
             @foreach($umkms as $umkm)
-                <a href="##" class="">
+                <a href="{{ route('umkm.detail', ['umkm_id' => $umkm->umkm_id]) }}" class="" >
                     <div class="w-full h-64 bg-white border-2 shadow-2xl border-[#2d5523] rounded-xl overflow-hidden flex hover:border-4 hover:border-yellow-500 justify-center items-center  group-hover:opacity-100 transition ease-in-out duration-500 hover:scale-105 group">
                         <div class="basis-1/3 h-full">
                             <img src="{{ asset($umkm->foto) }}" alt="" class="w-full h-full group-hover:scale-110  transition ease-in-out duration-500">
