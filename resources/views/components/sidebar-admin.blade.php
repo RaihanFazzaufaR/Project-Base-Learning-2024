@@ -56,9 +56,6 @@
                                     <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-[#57BA47]" href="{{ route('daftar-penduduk') }}" :class="page === 'daftarPenduduk' && '!text-[#57BA47]'">Daftar Penduduk</a>
                                 </li>
                                 <li>
-                                    <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-[#57BA47]" href="{{ route('daftar-akun') }}" :class="page === 'daftarAkun' && '!text-[#57BA47]'">Daftar Akun</a>
-                                </li>
-                                <li>
                                     <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-[#57BA47]" href="{{ route('daftar-nkk') }}" :class="page === 'daftarNkk' && '!text-[#57BA47]'">Daftar NKK</a>
                                 </li>
                             </ul>
@@ -69,7 +66,7 @@
 
                     <!-- Menu Item Bansos -->
                     <li>
-                        <a class="group relative flex justify-start items-center gap-2.5 rounded-sm px-4 py-3 font-bold  duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] dark:hover:bg-meta-4 rounded-l-2xl" href="profile.html" @click="selected = (selected === 'Bansos' ? '':'Bansos')" :class="{
+                        <a class="group relative flex justify-start items-center gap-2.5 rounded-sm px-4 py-3 font-bold  duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] dark:hover:bg-meta-4 rounded-l-2xl" href="{{ route('bansos-admin') }}" @click="selected = (selected === 'Bansos' ? '':'Bansos')" :class="{
                     'bg-[#E4F7DF] text-[#57BA47] border-r-4 border-[#57BA47]': (selected === 'Bansos') && (page === 'bansos')
                   }">
                             <div class="w-7">
@@ -81,8 +78,8 @@
                     <!-- Menu Item Bansos -->
                     <!-- Menu Item UMKM -->
                     <li>
-                        <a class="group relative flex justify-start items-center gap-2.5 rounded-sm px-4 py-3 font-bold  duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] dark:hover:bg-meta-4 rounded-l-2xl" href="profile.html" @click="selected = (selected === 'UMKM' ? '':'UMKM')" :class="{
-                    'bg-[#E4F7DF] text-[#57BA47] border-r-4 border-[#57BA47]': (selected === 'UMKM') && (page === 'umkm')
+                        <a class="group relative flex justify-start items-center gap-2.5 rounded-sm px-4 py-3 font-bold  duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] dark:hover:bg-meta-4 rounded-l-2xl" href="{{ route('umkm-admin') }}" @click="selected = (selected === 'UMKM' ? '':'UMKM')" :class="{
+                    'bg-[#E4F7DF] text-[#57BA47] border-r-4 border-[#57BA47]': (selected === 'Umkm') && (page === 'umkm')
                   }">
                             <div class="w-7">
                                 <i class="fa-solid fa-store text-xl"></i>
@@ -93,7 +90,7 @@
                     <!-- Menu Item UMKM -->
                     <!-- Menu Item Pengaduan -->
                     <li>
-                        <a class="group relative flex justify-start items-center gap-2.5 rounded-sm px-4 py-3 font-bold  duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] dark:hover:bg-meta-4 rounded-l-2xl" href="profile.html" @click="selected = (selected === 'Pengaduan' ? '':'Pengaduan')" :class="{
+                        <a class="group relative flex justify-start items-center gap-2.5 rounded-sm px-4 py-3 font-bold  duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] dark:hover:bg-meta-4 rounded-l-2xl" href="{{ route('pengaduan-admin') }}" @click="selected = (selected === 'Pengaduan' ? '':'Pengaduan')" :class="{
                     'bg-[#E4F7DF] text-[#57BA47] border-r-4 border-[#57BA47]': (selected === 'Pengaduan') && (page === 'pengaduan')
                   }">
                             <div class="w-7">
@@ -105,7 +102,7 @@
                     <!-- Menu Item Pengaduan -->
                     <!-- Menu Item Jadwal Kegiatan -->
                     <li>
-                        <a class="group relative flex justify-start items-center gap-2.5 rounded-sm px-4 py-3 font-bold  duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] dark:hover:bg-meta-4 rounded-l-2xl" href="profile.html" @click="selected = (selected === 'Jadwal Kegiatan' ? '':'Jadwal Kegiatan')" :class="{
+                        <a class="group relative flex justify-start items-center gap-2.5 rounded-sm px-4 py-3 font-bold  duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] dark:hover:bg-meta-4 rounded-l-2xl" href="{{ route('jadwal-kegiatan-admin') }}" @click="selected = (selected === 'Jadwal Kegiatan' ? '':'Jadwal Kegiatan')" :class="{
                     'bg-[#E4F7DF] text-[#57BA47] border-r-4 border-[#57BA47]': (selected === 'Jadwal Kegiatan') && (page === 'jadwal kegiatan')
                   }">
                             <div class="w-7">
@@ -117,7 +114,7 @@
                     <!-- Menu Item Jadwal Kegiatan -->
                     <!-- Menu Item Pengumuman -->
                     <li>
-                        <a class="group relative flex justify-start items-center gap-2.5 rounded-sm px-4 py-3 font-bold  duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] dark:hover:bg-meta-4 rounded-l-2xl" href="profile.html" @click="selected = (selected === 'Pengumuman' ? '':'Pengumuman')" :class="{
+                        <a class="group relative flex justify-start items-center gap-2.5 rounded-sm px-4 py-3 font-bold  duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] dark:hover:bg-meta-4 rounded-l-2xl" href="{{ route('pengumuman-admin') }}" @click="selected = (selected === 'Pengumuman' ? '':'Pengumuman')" :class="{
                     'bg-[#E4F7DF] text-[#57BA47] border-r-4 border-[#57BA47]': (selected === 'Pengumuman') && (page === 'pengumuman')
                   }">
                             <div class="w-7">
@@ -129,7 +126,7 @@
                     <!-- Menu Item Pengumuman -->
                     <!-- Menu Item Persuratan -->
                     <li>
-                        <a class="group relative flex justify-start items-center gap-2.5 rounded-sm px-4 py-3 font-bold  duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] dark:hover:bg-meta-4 rounded-l-2xl" href="profile.html" @click="selected = (selected === 'Persuratan' ? '':'Persuratan')" :class="{
+                        <a class="group relative flex justify-start items-center gap-2.5 rounded-sm px-4 py-3 font-bold  duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] dark:hover:bg-meta-4 rounded-l-2xl" href="{{ route('persuratan-admin') }}" @click="selected = (selected === 'Persuratan' ? '':'Persuratan')" :class="{
                     'bg-[#E4F7DF] text-[#57BA47] border-r-4 border-[#57BA47]': (selected === 'Persuratan') && (page === 'persuratan')
                   }">
                             <div class="w-7">
@@ -141,7 +138,7 @@
                     <!-- Menu Item Persuratan -->
                     <!-- Menu Item Akun Admin -->
                     <li>
-                        <a class="group relative flex justify-start items-center gap-2.5 rounded-sm px-4 py-3 font-bold  duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] dark:hover:bg-meta-4 rounded-l-2xl" href="profile.html" @click="selected = (selected === 'Akun Admin' ? '':'Akun Admin')" :class="{
+                        <a class="group relative flex justify-start items-center gap-2.5 rounded-sm px-4 py-3 font-bold  duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] dark:hover:bg-meta-4 rounded-l-2xl" href="{{ route('akun-admin') }}" @click="selected = (selected === 'Akun Admin' ? '':'Akun Admin')" :class="{
                     'bg-[#E4F7DF] text-[#57BA47] border-r-4 border-[#57BA47]': (selected === 'Akun Admin') && (page === 'akun admin')
                   }">
                             <div class="w-7">
@@ -153,7 +150,7 @@
                     <!-- Menu Item Akun Admin -->
                     <!-- Menu Item Log Out -->
                     <li>
-                        <a class="group relative flex justify-start items-center gap-2.5 rounded-sm px-4 py-3 font-bold  duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] dark:hover:bg-meta-4 rounded-l-2xl" href="profile.html" @click="selected = (selected === 'Log Out' ? '':'Log Out')" :class="{
+                        <a class="group relative flex justify-start items-center gap-2.5 rounded-sm px-4 py-3 font-bold  duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] dark:hover:bg-meta-4 rounded-l-2xl" href="{{ route('umkm-admin') }}" @click="selected = (selected === 'Log Out' ? '':'Log Out')" :class="{
                     'bg-[#E4F7DF] text-[#57BA47] border-r-4 border-[#57BA47]': (selected === 'Log Out') && (page === 'logout')
                   }">
                             <div class="w-7">

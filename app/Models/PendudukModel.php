@@ -32,6 +32,6 @@ class PendudukModel extends Model
 
     public function kartuKeluarga() : BelongsTo
     {
-        return $this->belongsTo(KartuKeluargaModel::class, 'NIKeluarga', 'niKeluarga');
+        return $this->belongsTo(KartuKeluargaModel::class, 'niKeluarga', 'niKeluarga');
     }
 }

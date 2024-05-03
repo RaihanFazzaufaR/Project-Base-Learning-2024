@@ -14,11 +14,11 @@ class KartuKeluargaModel extends Model
     protected $primaryKey = 'niKeluarga';
     protected $fillable = [
         'niKeluarga',
-        'jmlAnggotaKeluarga',
+        'jmlAnggota',
     ];
 
     public function penduduk() : HasMany
     {
-        return $this->hasMany(PendudukModel::class, 'NIKeluarga', 'niKeluarga');
+        return $this->hasMany(PendudukModel::class, 'niKeluarga', 'niKeluarga');
     }
 }
