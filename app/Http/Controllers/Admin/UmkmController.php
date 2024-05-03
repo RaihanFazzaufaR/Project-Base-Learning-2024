@@ -8,9 +8,9 @@ use Illuminate\Http\Request;
 
 class UmkmController extends Controller
 {
-    public function daftarPendudukViewAdmin()
+    public function index()
     {
-        $page = 'umkm';
+        $page = 'listUmkm';
         $selected = 'Umkm';
 
         $user = PendudukModel::paginate(10);

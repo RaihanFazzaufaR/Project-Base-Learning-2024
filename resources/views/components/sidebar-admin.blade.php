@@ -62,32 +62,58 @@
                         </div>
                         <!-- Dropdown Menu End -->
                     </li>
-                    <!-- Menu Item Kependudukan -->
-
-                    <!-- Menu Item Bansos -->
                     <li>
-                        <a class="group relative flex justify-start items-center gap-2.5 rounded-sm px-4 py-3 font-bold  duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] dark:hover:bg-meta-4 rounded-l-2xl" href="{{ route('bansos-admin') }}" @click="selected = (selected === 'Bansos' ? '':'Bansos')" :class="{
-                    'bg-[#E4F7DF] text-[#57BA47] border-r-4 border-[#57BA47]': (selected === 'Bansos') && (page === 'bansos')
-                  }">
-                            <div class="w-7">
-                                <i class="fa-solid fa-hand-holding-medical text-xl"></i>
+                        <a class="group relative flex items-center justify-start gap-2.5 rounded-sm px-4 py-3 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4" href="#" @click.prevent="selected = (selected === 'Bansos' ? '':'Bansos')" :class="{
+                    'bg-[#E4F7DF] text-[#57BA47] border-r-4 border-[#57BA47]': (selected === 'Bansos') || (page === 'listBansos') || (page === 'rekomendasiBansos')}">
+                            <div class=" w-7">
+                                <i class="fa-solid fa-users text-xl"></i>
                             </div>
                             Bansos
+
+                            <svg class="absolute right-4 top-1/2 -translate-y-1/2 fill-current" :class="{ 'rotate-180': (selected === 'Bansos') }" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M4.41107 6.9107C4.73651 6.58527 5.26414 6.58527 5.58958 6.9107L10.0003 11.3214L14.4111 6.91071C14.7365 6.58527 15.2641 6.58527 15.5896 6.91071C15.915 7.23614 15.915 7.76378 15.5896 8.08922L10.5896 13.0892C10.2641 13.4147 9.73651 13.4147 9.41107 13.0892L4.41107 8.08922C4.08563 7.76378 4.08563 7.23614 4.41107 6.9107Z" fill="" />
+                            </svg>
                         </a>
+
+                        <!-- Dropdown Menu Start -->
+                        <div class="translate transform overflow-hidden" :class="(selected === 'Bansos') ? 'block' :'hidden'">
+                            <ul class="mb-5.5 mt-4 flex flex-col gap-2.5 pl-6">
+                                <li>
+                                    <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-[#57BA47]" href="{{ route('bansos-admin') }}" :class="page === 'listBansos' && '!text-[#57BA47]'">Daftar Bansos</a>
+                                </li>
+                                <li>
+                                    <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-[#57BA47]" href="{{ route('rekomendasi-bansos') }}" :class="page === 'rekomendasiBansos' && '!text-[#57BA47]'">Rekomendasi Bansos</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Dropdown Menu End -->
                     </li>
-                    <!-- Menu Item Bansos -->
-                    <!-- Menu Item UMKM -->
                     <li>
-                        <a class="group relative flex justify-start items-center gap-2.5 rounded-sm px-4 py-3 font-bold  duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] dark:hover:bg-meta-4 rounded-l-2xl" href="{{ route('umkm-admin') }}" @click="selected = (selected === 'UMKM' ? '':'UMKM')" :class="{
-                    'bg-[#E4F7DF] text-[#57BA47] border-r-4 border-[#57BA47]': (selected === 'Umkm') && (page === 'umkm')
-                  }">
-                            <div class="w-7">
-                                <i class="fa-solid fa-store text-xl"></i>
+                        <a class="group relative flex items-center justify-start gap-2.5 rounded-sm px-4 py-3 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4" href="#" @click.prevent="selected = (selected === 'Umkm' ? '':'Umkm')" :class="{
+                    'bg-[#E4F7DF] text-[#57BA47] border-r-4 border-[#57BA47]': (selected === 'Umkm') || (page === 'listUmkm') || (page === 'ajuanUmkm')}">
+                            <div class=" w-7">
+                                <i class="fa-solid fa-users text-xl"></i>
                             </div>
                             UMKM
+
+                            <svg class="absolute right-4 top-1/2 -translate-y-1/2 fill-current" :class="{ 'rotate-180': (selected === 'Umkm') }" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd" clip-rule="evenodd" d="M4.41107 6.9107C4.73651 6.58527 5.26414 6.58527 5.58958 6.9107L10.0003 11.3214L14.4111 6.91071C14.7365 6.58527 15.2641 6.58527 15.5896 6.91071C15.915 7.23614 15.915 7.76378 15.5896 8.08922L10.5896 13.0892C10.2641 13.4147 9.73651 13.4147 9.41107 13.0892L4.41107 8.08922C4.08563 7.76378 4.08563 7.23614 4.41107 6.9107Z" fill="" />
+                            </svg>
                         </a>
+
+                        <!-- Dropdown Menu Start -->
+                        <div class="translate transform overflow-hidden" :class="(selected === 'Umkm') ? 'block' :'hidden'">
+                            <ul class="mb-5.5 mt-4 flex flex-col gap-2.5 pl-6">
+                                <li>
+                                    <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-[#57BA47]" href="{{ route('umkm-admin') }}" :class="page === 'listUmkm' && '!text-[#57BA47]'">Daftar UMKM</a>
+                                </li>
+                                <li>
+                                    <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-[#57BA47]" href="{{ route('ajuan-umkm-admin') }}" :class="page === 'ajuanUmkm' && '!text-[#57BA47]'">Ajuan UMKM</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- Dropdown Menu End -->
                     </li>
-                    <!-- Menu Item UMKM -->
                     <!-- Menu Item Pengaduan -->
                     <li>
                         <a class="group relative flex justify-start items-center gap-2.5 rounded-sm px-4 py-3 font-bold  duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] dark:hover:bg-meta-4 rounded-l-2xl" href="{{ route('pengaduan-admin') }}" @click="selected = (selected === 'Pengaduan' ? '':'Pengaduan')" :class="{

@@ -56,9 +56,11 @@ Route::group(['middleware' => ['auth']], function () {
             });
             Route::prefix('bansos')->group(function () {
                 Route::get('/', [AdminBansosController::class, 'index'])->name('bansos-admin');
+                Route::get('/rekomendasi-bansos', [AdminBansosController::class, 'rekomendasiBansos'])->name('rekomendasi-bansos');
             });
             Route::prefix('umkm')->group(function () {
                 Route::get('/', [AdminUmkmController::class, 'index'])->name('umkm-admin');
+                Route::get('/ajuan-umkm', [AdminUmkmController::class, 'ajuanUmkm'])->name('ajuan-umkm-admin');
             });
             Route::prefix('persuratan')->group(function () {
                 Route::get('/', [AdminPersuratanController::class, 'index'])->name('persuratan-admin');
