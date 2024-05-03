@@ -9,6 +9,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        return view('home');
+        $menu = 'Home';
+        return view('home', compact('menu'));
     }
 }

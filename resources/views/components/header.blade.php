@@ -7,5 +7,5 @@
 </head>
 
 <body>
-    <x-navbar />
+    <x-navbar menu="{{ $menu }}" />
     <div class="bg-white min-h-[100vh] w-[100%] rounded-b-[100px] shadow-xl pb-[13vh]">
