@@ -18,7 +18,7 @@ return new class extends Migration {
             $table->string('no_wa', 50);
             $table->string('pemilik_id', 17)->index('pemilik_id');
             $table->string('lokasi', 100);
-            $table->unsignedBigInteger('kategori_id');
+            $table->unsignedBigInteger('umkm_kategori_id');
             $table->time('buka_waktu');
             $table->time('tutup_waktu');
             $table->text('deskripsi')->nullable();
