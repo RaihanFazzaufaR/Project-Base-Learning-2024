@@ -18,7 +18,7 @@
                 <div class="absolute top-0 left-0 h-[70%] w-full border-l-[12px] border-[#1C4F0F] bg-white animate-leftToRight"></div>
             </div>
 
-            <p class="font-medium text-xl w-[47vw]">Temukan informasi terkini, kegiatan komunitas, dan layanan kami untuk memajukan lingkungan kami. Bergabunglah dalam membangun kehidupan yang lebih baik untuk warga RW 3!"</p>
+            <p class="font-medium text-xl w-[47vw]">"Temukan informasi terkini, kegiatan komunitas, dan layanan kami untuk memajukan lingkungan kami. Bergabunglah dalam membangun kehidupan yang lebih baik untuk warga RW 3!"</p>
             <div class="mt-[100px]">
                 <!-- <button class="transition ease-in-out duration-500 hover:scale-105 hover:shadow-2xl bg-yellow-500 text-[#1C4F0F] py-5 px-8 rounded-[30px] shadow-xl font-bold text-xl hover:bg-[#E2A229] group"> -->
                 <!-- Masuk Sebagai Warga -->

@@ -14,16 +14,21 @@ class UmkmController extends Controller
     {
         $categories = UmkmModel::distinct()->pluck('tipe');
         $umkms = UmkmModel::where('status', 'selesai')->paginate(3);
+        $menu = 'UMKM';
+        
 
         return view('Umkm.index', [
             'umkms' => $umkms,
             'categories' => $categories,
+            'menu' => $menu,
         ]);
     }
 
     public function umkmku()
     {
-        return view('umkm.umkmku');
+        $menu = 'UMKMKU';
+        return view('umkm.umkmku', compact('menu'));
+
     }
 
     public function getDataByCategory($category)
