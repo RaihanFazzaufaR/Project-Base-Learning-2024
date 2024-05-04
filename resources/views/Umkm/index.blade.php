@@ -197,15 +197,55 @@
                                             <div class="basis-3/4 h-full flex items-center w-full justify-center">
                                                 <div class="basis-1/2 h-full flex w-full justify-center flex-col ">
                                                     <label for="buka_waktu" class=" mb-2 text-sm w-fit mx-auto font-medium text-[#2d5523] dark:text-white">Jam Buka:</label>
-                                                    <input type="time" id="buka_waktu" name="buka_waktu" class="bg-gray-50 border-2 border-[#2d5523] leading-none text-lg text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit  py-2.5 px-[17px] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" min="09:00" max="18:00" value="00:00" required />
+                                                    <div class="w-fit mx-auto">
+                                                        <input type="time" id="buka_waktu" name="buka_waktu" class="bg-gray-50 border-2 border-[#2d5523] leading-none text-lg text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit  py-2.5 px-[17px] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" min="09:00" max="18:00" value="00:00" required />
+                                                    </div>
                                                 </div>
                                                 <div class="basis-1/2 h-full flex w-full justify-center flex-col">
                                                     <label for="tutup_waktu" class="block mb-2 text-sm font-medium mx-auto text-[#2d5523] dark:text-white">Jam Tutup:</label>
-                                                    <input type="time" id="tutup_waktu" name="tutup_waktu" class="bg-gray-50 border-2 border-[#2d5523] leading-none text-lg text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit  py-2.5 px-[17px] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" min="09:00" max="18:00" value="00:00" required />
+                                                    <div class="w-fit mx-auto">
+                                                        <input type="time" id="tutup_waktu" name="tutup_waktu" class="bg-gray-50 border-2 border-[#2d5523] leading-none text-lg text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit  py-2.5 px-[17px] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" min="09:00" max="18:00" value="00:00" required />
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
+
+
+
+                                    {{-- <div class="gap-2 flex w-full">
+                                        <div class="basis-1/4 h-full flex items-center">
+                                            <label for="kelas"
+                                                class="text-lg font-bold pt-[23px] items-center flex w-full text-[#2d5523] dark:text-white">Jam
+                                                Operasional</label>
+                                        </div>
+                                        <div class="basis-3/4 h-full flex items-center w-full justify-center">
+                                            <div class="basis-1/2 h-full flex w-full justify-center flex-col ">
+                                                <label for="start-time"
+                                                    class=" mb-2 text-sm w-fit mx-auto font-medium text-[#2d5523] dark:text-white">Jam
+                                                    Buka:</label>
+                                                <div class="w-fit mx-auto">
+                                                    <input type="time" id="start-time"
+                                                        class="bg-gray-50 border-2 border-[#2d5523] leading-none text-lg text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit  py-2.5 px-[17px] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        min="09:00" max="18:00" value="00:00" required />
+                                                </div>
+                                            </div>
+                                            <div class="basis-1/2 h-full flex w-full justify-center flex-col">
+                                                <label for="end-time"
+                                                    class="block mb-2 text-sm font-medium mx-auto text-[#2d5523] dark:text-white">Jam
+                                                    Tutup:</label>
+                                                <div class="w-fit mx-auto">
+                                                    <input type="time" id="start-time"
+                                                        class="bg-gray-50 border-2 border-[#2d5523] leading-none text-lg text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit  py-2.5 px-[17px] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                        min="09:00" max="18:00" value="00:00" required />
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <datalist id="listKelas">
+
+                                        </datalist>
+                                    </div> --}}
+
                                     <!-- kolom kanan -->
                                     <div class="flex flex-col gap-5 mb-4 w-full basis-1/2 ">
                                         <div class="gap-2 flex w-full">
