@@ -8,10 +8,10 @@ use Illuminate\Http\Request;
 
 class AkunAdminController extends Controller
 {
-    public function daftarPendudukViewAdmin()
+    public function index()
     {
-        $page = 'daftarPenduduk';
-        $selected = 'Kependudukan';
+        $page = 'akunAdmin';
+        $selected = 'Akun Admin';
 
         $user = PendudukModel::paginate(10);
 

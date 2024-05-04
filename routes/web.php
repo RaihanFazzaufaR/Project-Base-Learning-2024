@@ -30,6 +30,7 @@ use App\Http\Controllers\Admin\JadwalKegiatanController as AdminKegiatanControll
 |
 */
 
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
 Route::group(['prefix' => 'login'], function () {
     Route::get('/', [LoginController::class, 'index'])->name('login');
@@ -80,7 +81,6 @@ Route::group(['middleware' => ['auth']], function () {
         });
     });
     Route::group(['middleware' => ['loginCheck:2']], function () {
-        Route::get('/', [HomeController::class, 'index'])->name('home');
         // Route Penduduk
         Route::group(['prefix' => 'penduduk'], function () {
             Route::get('/', [PendudukController::class, 'index'])->name('penduduk');

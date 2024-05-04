@@ -165,7 +165,7 @@
                     <!-- Menu Item Akun Admin -->
                     <li>
                         <a class="group relative flex justify-start items-center gap-2.5 rounded-sm px-4 py-3 font-bold  duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] dark:hover:bg-meta-4 rounded-l-2xl" href="{{ route('akun-admin') }}" @click="selected = (selected === 'Akun Admin' ? '':'Akun Admin')" :class="{
-                    'bg-[#E4F7DF] text-[#57BA47] border-r-4 border-[#57BA47]': (selected === 'Akun Admin') && (page === 'akun admin')
+                    'bg-[#E4F7DF] text-[#57BA47] border-r-4 border-[#57BA47]': (selected === 'Akun Admin') && (page === 'akunAdmin')
                   }">
                             <div class="w-7">
                                 <i class="fa-solid fa-address-book text-xl"></i>
