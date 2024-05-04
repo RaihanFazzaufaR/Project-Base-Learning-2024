@@ -18,17 +18,17 @@ return new class extends Migration {
             $table->string('no_wa', 50);
             $table->string('pemilik_id', 17)->index('pemilik_id');
             $table->string('lokasi', 100);
-            $table->enum('tipe', ['Makanan', 'Minuman', 'Peralatan Rumah Tangga', 'Kebutuhan Pokok', 'Jasa']);
+            $table->unsignedBigInteger('kategori_id');
             $table->time('buka_waktu');
             $table->time('tutup_waktu');
             $table->text('deskripsi')->nullable();
             $table->text('lokasi_map')->nullable();
             $table->text('foto')->nullable();
-            $table->enum('status', ['diproses', 'selesai', 'ditolak']);
+            $table->enum('status', ['diproses', 'diterima', 'ditolak', 'dibatalkan']);
+            $table->text('alasan_warga')->nullable();
+            $table->text('alasan_rw')->nullable();
             $table->timestamp('tanggal_disetujui')->nullable();
             $table->timestamps();
-
-
         });
     }
 

@@ -19,18 +19,16 @@ return new class extends Migration
             $table->string('tempatLahir', 25);
             $table->date('tanggalLahir');
             $table->enum('jenisKelamin', ['L', 'P']);
-            $table->string('alamat', 100);
             $table->string('noRt', 100);
-            $table->enum('agama', ['islam', 'kristen', 'katolik', 'hindu', 'buddha', 'khonghucu']);
+            $table->enum('agama', ['islam', 'kristen', 'katolik', 'hindu', 'buddha', 'khonghucu', 'lainnya']);
             $table->string('pekerjaan', 20);
             $table->enum('statusNikah', ['belum', 'sudah']);
             $table->enum('warganegara', ['WNI', 'WNA']);
             $table->string('niKeluarga', 20);
-            $table->enum('statusDiRw', ['penduduk', 'RW', 'RT', 'penduduk tidak tetap', 'orang luar']);
+            $table->enum('statusPenduduk', ['penduduk tetap', 'penduduk tidak tetap']);
+            $table->enum('jabatan', ['Ketua RW', 'Ketua RT', 'Bendahara', 'Sekretaris', 'Tidak ada']);
             $table->decimal('gaji', 15)->nullable();
             $table->timestamps();
-
-            $table->foreign('niKeluarga')->references('niKeluarga')->on('tb_kartukeluarga');
         });
     }
 

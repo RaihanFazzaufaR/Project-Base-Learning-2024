@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::table('tb_umkm', function (Blueprint $table) {
             $table->foreign(['pemilik_id'], 'tb_umkm_ibfk_1')->references(['nik'])->on('tb_penduduk')->onUpdate('restrict')->onDelete('restrict');
+            $table->foreign(['kategori_id'], 'tb_umkm_ibfk_2')->references(['kategori_id'])->on('tb_kategoriumkm')->onUpdate('restrict')->onDelete('restrict');
         });
     }
 
@@ -27,6 +28,7 @@ return new class extends Migration
     {
         Schema::table('tb_umkm', function (Blueprint $table) {
             $table->dropForeign('tb_umkm_ibfk_1');
+            $table->dropForeign('tb_umkm_ibfk_2');
         });
     }
 };

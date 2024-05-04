@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('tb_kartukeluarga', function (Blueprint $table) {
             $table->string('niKeluarga', 20)->primary();
             $table->integer('jmlAnggota');
+            $table->string('alamat', 100);
+            $table->string('kepalaKeluarga', 17);
         });
     }
 
