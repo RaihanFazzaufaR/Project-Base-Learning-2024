@@ -14,7 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_kartukeluarga', function (Blueprint $table) {
-            $table->string('niKeluarga', 20)->primary();
+            $table->id('id_kartuKeluarga');
+            $table->string('niKeluarga', 20)->unique();
             $table->integer('jmlAnggota');
             $table->string('alamat', 100);
             $table->string('kepalaKeluarga', 17);

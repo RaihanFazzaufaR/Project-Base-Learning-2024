@@ -14,7 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_penduduk', function (Blueprint $table) {
-            $table->string('nik', 17)->primary();
+            $table->id('id_penduduk');
+            $table->string('nik', 17)->unique();
             $table->string('nama', 100);
             $table->string('tempatLahir', 25);
             $table->date('tanggalLahir');
@@ -24,7 +25,7 @@ return new class extends Migration
             $table->string('pekerjaan', 20);
             $table->enum('statusNikah', ['belum', 'sudah']);
             $table->enum('warganegara', ['WNI', 'WNA']);
-            $table->string('niKeluarga', 20);
+            $table->unsignedBigInteger('id_kartuKeluarga');
             $table->enum('statusPenduduk', ['penduduk tetap', 'penduduk tidak tetap']);
             $table->enum('jabatan', ['Ketua RW', 'Ketua RT', 'Bendahara', 'Sekretaris', 'Tidak ada']);
             $table->decimal('gaji', 15)->nullable();
