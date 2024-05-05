@@ -14,7 +14,6 @@ return new class extends Migration {
             $table->id('umkm_kategori_id');
             $table->unsignedBigInteger('umkm_id');
             $table->unsignedBigInteger('kategori_id');
-
             $table->timestamps();
         });
     }
