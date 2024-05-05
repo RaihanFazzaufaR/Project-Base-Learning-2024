@@ -12,6 +12,7 @@
     <link href="{{ asset('assets/css/style.css') }}" rel="stylesheet">
     @vite(['resources/css/app.css','resources/js/app.js'])
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 </head>
 
 <body x-data="{'page': '{{ $page }}', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }" x-init="
@@ -42,6 +43,8 @@
         <!-- ===== Content Area End ===== -->
     </div>
     <!-- ===== Page Wrapper End ===== -->
+    <!-- Swiper JS -->
+   
     <script defer src="{{ asset('assets/js/bundle.js') }}"></script>
     @include('sweetalert::alert')
 </body>
