@@ -4,9 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\LevelDetailModel;
 use App\Models\UserAccountModel;
+use Illuminate\Auth\Events\PasswordReset;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class LoginController extends Controller
 {
@@ -19,7 +22,7 @@ class LoginController extends Controller
                 return redirect('/admin');
             }
             if($user->level_id == 2){
-                return redirect('/home');
+                return redirect('/');
             }
         }
         return view('Login.index');
@@ -29,7 +32,7 @@ class LoginController extends Controller
     {
         $credentials = $request->validate([
             'username' => 'required',
-            'password' => 'required'
+            'password' => 'required|min:5'
         ]);
 
         $request->session()->regenerate();
@@ -45,7 +48,7 @@ class LoginController extends Controller
                 return redirect()->intended('admin');
             }
             if($level_id == 2){
-                return redirect()->intended('home');
+                return redirect()->intended('/');
             }
         }
 
@@ -64,31 +67,49 @@ class LoginController extends Controller
             'email' => 'required|email'
         ]);
 
-        $user = UserAccountModel::where('email', $request->email)->where('username', $request->username);
+        $user = UserAccountModel::get(['username','email'])->where('username', $request->username)->where('email', $request->email);
 
-        dd($user);
-
-        if(!$user){
-            return back()->with('errors', 'Username atau email tidak ditemukan!');
+        if($user->count() == 0){
+            return back()->withErrors(['errors' => 'Username or email not found!']);
         }
 
-        if($user){
-            $status = Password::sendResetLink($request->only('email'));
+        $status = Password::sendResetLink($request->only('email'));
 
         return $status === Password::RESET_LINK_SENT
-                    ? back()->with('status', __($status))
-                    : back()->withErrors(['errors' => __($status)]);
-        }
-    }
-
-    public function recoveryCode()
-    {
-        return view('Login.recovery_code');
+            ? back()->with('status', 'Link reset telah terkirim ke email!')
+            : back()->withErrors(['errors' => 'Invalid Email!']);
     }
 
     public function changePassword()
     {
         return view('Login.change_password');
+    }
+
+    public function updatePassword(Request $request)
+    {
+        $request->validate([
+            'token' => 'required',
+            'email' => 'required|email',
+            'password' => 'required|min:5|confirmed',
+        ]);
+
+        $status = Password::reset(
+            $request->only('email', 'password', 'password_confirmation', 'token'),
+            
+            function($user, $password){
+                $user->forceFill([
+                    'password' => Hash::make($password)
+                ])->setRememberToken(Str::random(60));
+
+                $user->save();
+
+                event(new PasswordReset($user));
+            }
+        );
+
+        return $status == Password::PASSWORD_RESET
+            ? redirect()->route('login')->with('status', 'Password berhasil diubah!')
+            : back()->withErrors(['errors' => [__($status)]]);
     }
 
     public function logout(Request $request)
@@ -97,6 +118,6 @@ class LoginController extends Controller
 
         Auth::logout();
 
-        return redirect('login');
+        return redirect('/');
     }
 }

@@ -5,16 +5,28 @@
     </div>
 
     @if (session()->has('success'))
-        <div class="bg-[#81B076] py-3 rounded-lg w-full text-white font-bold" role="alert">
+        <div class="bg-[#81B076] p-3 rounded-lg w-full text-white font-bold" role="alert">
             {{ session('success') }}
             <button type="button" class="" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
 
     @if (session()->has('loginError'))
-        <div class="bg-red-500 py-3 rounded-lg w-full text-white font-bold" role="alert">
+        <div class="bg-red-500 p-3 rounded-lg w-full text-white text-center font-bold" role="alert">
             {{ session('loginError') }}
             <button type="button" class="" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+    @endif
+    @if ($errors->any())
+        <div class="bg-red-500 p-3 w-full text-white text-center rounded-lg font-bold">
+            @foreach ($errors->all() as $error)
+                {{ $error }}
+            @endforeach
+        </div>
+    @endif
+    @if (session()->has('status'))
+        <div class="bg-[#81B076] p-3 w-full text-white text-center rounded-lg font-bold">
+            {{ session('status') }}
         </div>
     @endif
 
@@ -51,7 +63,7 @@
                 <span class="text-red-500">{{ $message }}</span>
             @enderror
         </div>
-        <a href="{{ route('forgot-password') }}" class="-mt-3 text-right text-[#1C4F0F] font-medium">forgot password?</a>
+        <a href="{{ route('password.forgot') }}" class="-mt-3 text-right text-[#1C4F0F] font-medium">forgot password?</a>
         <button class="bg-[#81B076] py-3 rounded-lg w-full text-white font-bold hover:bg-[#607f59] hover:shadow-xl">LOGIN</button>
     </form>
 </x-login>

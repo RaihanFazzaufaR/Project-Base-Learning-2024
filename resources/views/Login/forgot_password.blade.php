@@ -3,18 +3,20 @@
         <img src="{{ asset('assets/images/logo.png') }}" alt="" class="w-14 h-14">
         <p class="font-bold text-2xl text-[#1C4F0F]">FORGOT PASSWORD</p>
     </div>
-    @if(session()->has('errors'))
+    @if($errors->any())
         <div class="bg-red-500 p-3 text-white text-center rounded-lg">
-            {{ session('errors') }}
+            @foreach($errors->all() as $error)
+                {{ $error }}
+            @endforeach
         </div>
     @endif
     @if(session()->has('status'))
-        <div class="bg-green-500 p-3 text-white text-center rounded-lg">
+        <div class="bg-[#81B076] p-3 text-white text-center rounded-lg">
             {{ session('status') }}
         </div>
     @endif
 
-    <form method="get" action="{{ route('sendResetLinkEmail') }}" class="flex flex-col w-full gap-6">
+    <form method="post" action="{{ route('sendResetLinkEmail') }}" class="flex flex-col w-full gap-6">
         @csrf
         <div class="flex flex-col gap-2">
             <label for="username" class="font-bold text-normal text-[#1C4F0F]">Username</label>

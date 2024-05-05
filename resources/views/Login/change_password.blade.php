@@ -3,14 +3,29 @@
         <img src="{{ asset('assets/images/logo.png') }}" alt="" class="w-14 h-14">
         <p class="font-bold text-2xl text-[#1C4F0F]">FORGOT PASSWORD</p>
     </div>
-    <form method="get" action="{{ URL('/login') }}" class="flex flex-col w-full gap-6">
+    @if($errors->any())
+        <div class="bg-red-500 p-3 text-white text-center rounded-lg">
+            @foreach($errors->all() as $error)
+                {{ $error }}
+            @endforeach
+        </div>
+    @endif
+    @if(session()->has('status'))
+        <div class="bg-[#81B076] p-3 text-white text-center rounded-lg">
+            {{ session('status') }}
+        </div>
+    @endif
+    <form method="post" action="{{ route('password.update') }}" class="flex flex-col w-full gap-6">
+        @csrf
+        <input type="hidden" name="token" value="{{ request()->token }}">
+        <input type="hidden" name="email" value="{{ request()->email }}">
         <div class="flex flex-col gap-2">
-            <label for="new_password" class="font-bold text-normal text-[#1C4F0F]">New Password</label>
-            <input type="password" name="new_password" id="new_password" class="w-full p-2 ring-2 bg-[#EDEDED] ring-slate-400 focus:outline-none focus:ring-green-500 focus:ring-offset-1 rounded-lg" placeholder="New Password">
+            <label for="password" class="font-bold text-normal text-[#1C4F0F]">New Password</label>
+            <input type="password" name="password" id="password" class="w-full p-2 ring-2 bg-[#EDEDED] ring-slate-400 focus:outline-none focus:ring-green-500 focus:ring-offset-1 rounded-lg" placeholder="New Password">
         </div>
         <div class="flex flex-col gap-2">
-            <label for="confirm_password" class="font-bold text-normal text-[#1C4F0F]">Confirm Password</label>
-            <input type="password" name="confirm_password" id="confirm_password" class="w-full p-2 ring-2 bg-[#EDEDED] ring-slate-400 focus:outline-none focus:ring-green-500 focus:ring-offset-1 rounded-lg" placeholder="Confirm Password">
+            <label for="password_confirmation" class="font-bold text-normal text-[#1C4F0F]">Confirm Password</label>
+            <input type="password" name="password_confirmation" id="password_confirmation" class="w-full p-2 ring-2 bg-[#EDEDED] ring-slate-400 focus:outline-none focus:ring-green-500 focus:ring-offset-1 rounded-lg" placeholder="Confirm Password">
         </div>
         <button class="bg-[#81B076] py-3 rounded-lg w-full text-white font-bold hover:bg-[#607f59] hover:shadow-xl">PROCEED</button>
     </form>
