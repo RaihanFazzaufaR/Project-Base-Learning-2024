@@ -17,7 +17,7 @@
 
 <body x-data="{'page': '{{ $page }}', 'loaded': true, 'darkMode': true, 'stickyMenu': false, 'sidebarToggle': false, 'scrollTop': false }" x-init="
          darkMode = JSON.parse(localStorage.getItem('darkMode'));
-         $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))" :class="{'dark bg-white': darkMode === true}" class="bg-[#f4f4f4] ">
+         $watch('darkMode', value => localStorage.setItem('darkMode', JSON.stringify(value)))" :class="{'dark bg-white': darkMode === true}" class="bg-[#f4f4f4]">
     <!-- ===== Preloader Start ===== -->
     <div x-show="loaded" x-init="window.addEventListener('DOMContentLoaded', () => {setTimeout(() => loaded = false, 500)})" class="fixed left-0 top-0 z-999999 flex h-screen w-screen items-center justify-center bg-white dark:bg-black">
         <div class="h-16 w-16 animate-spin rounded-full border-4 border-solid border-primary border-t-transparent"></div>
@@ -30,7 +30,7 @@
         <x-sidebar-admin selected="{{ $selected }}" />
 
         <!-- ===== Content Area Start ===== -->
-        <div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
+        <div class="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin">
             <x-navbar-admin selected="{{ $selected }}" />
             <!-- ===== Main Content End ===== -->
             <main>

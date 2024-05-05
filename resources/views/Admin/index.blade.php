@@ -117,7 +117,7 @@
 
     <div class="col-span-4 row-span-5 bg-white rounded-xl shadow-xl flex flex-col py-4 px-8 gap-1 ">
       <div class="h-fit w-full text-left font-bold text-lg text-black">Daftar UMKM Terbaru</div>
-      <div class="flex flex-col h-[91%] overflow-y-auto pt-2">
+      <div class="flex flex-col h-[91%] overflow-y-auto pt-2 scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin">
         <div class="flex py-4 border-b-2 border-gray-500 gap-5">
           <img src="{{ asset('assets/images/toko-kelontong.jpg') }}" alt="" class="h-20 w-24 rounded-lg">
           <div class="w-full flex flex-col justify-between items-start">
@@ -262,8 +262,8 @@
           </div>
         </div>
         <div class="flex flex-col justify-center items-center gap-1">
-          <div class="h-4 w-14 bg-[#E4F7DF] rounded-2xl shadow-lg"></div>
-          <div class="text-[#E4F7DF] font-bold text-sm flex flex-col justify-center items-center">
+          <div class="h-4 w-14 bg-[#2D5523] rounded-2xl shadow-lg"></div>
+          <div class="text-[#2D5523] font-bold text-sm flex flex-col justify-center items-center">
             <p>Penduduk</p>
             <p>Tidak Tetap</p>
           </div>
@@ -347,7 +347,7 @@
       </div>
       <div class="w-[35%] h-full p-6 flex flex-col gap-4">
         <div class="font-bold text-lg text-black">Kegiatan Mendatang</div>
-        <div class="flex flex-col h-[85%] overflow-y-auto py-2 pt-1">
+        <div class="flex flex-col h-[85%] overflow-y-auto py-2 pt-1 scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin">
           <div class="flex w-full h-24 py-2 gap-2">
             <div class="flex flex-col w-[30%] h-full bg-[#cefbc4] rounded-xl items-center justify-center pb-3 relative">
               <p class="font-bold text-4xl text-[#57BA47]">10</p>
@@ -512,7 +512,7 @@
           data: [65, 35],
           backgroundColor: [
             '#57BA47',
-            '#E4F7DF'
+            '#2D5523'
           ],
           hoverOffset: 4
         }]
@@ -569,7 +569,7 @@
                                     <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <a role="link"  tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#0088ED] hover:bg-gray-200 dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-normal text-gray-400 dark:text-slate-400 rounded-full">${lastDateofLastMonth - i + 1}</a>
+                                                <a role="link"  tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-normal text-gray-400 dark:text-slate-400 rounded-full">${lastDateofLastMonth - i + 1}</a>
                                             </div>
                                         </div>
                                     </td>`
@@ -577,7 +577,7 @@
           daysDate += `       <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <a role="link"  tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#0088ED] hover:bg-gray-200 dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-normal text-gray-400 dark:text-slate-400 rounded-full">${lastDateofLastMonth - i + 1}</a>
+                                                <a role="link"  tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-normal text-gray-400 dark:text-slate-400 rounded-full">${lastDateofLastMonth - i + 1}</a>
                                             </div>
                                         </div>
                                     </td>
@@ -586,7 +586,7 @@
           daysDate += `       <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <a role="link"  tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#0088ED] hover:bg-gray-200 dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-normal text-gray-400 dark:text-slate-400 rounded-full">${lastDateofLastMonth - i + 1}</a>
+                                                <a role="link"  tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-normal text-gray-400 dark:text-slate-400 rounded-full">${lastDateofLastMonth - i + 1}</a>
                                             </div>
                                         </div>
                                     </td>`
@@ -600,7 +600,7 @@
           daysDate += `       <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <button role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#0088ED] hover:bg-gray-200 dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-white dark:text-gray-100 rounded-full bg-[#0088ED]">${i}</button>
+                                                <button role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-white dark:text-gray-100 rounded-full bg-[#57BA47]">${i}</button>
                                             </div>
                                         </div>
                                     </td>`
@@ -608,7 +608,7 @@
           daysDate += `       <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <button role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#0088ED] hover:bg-gray-200 dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-white dark:text-gray-100 rounded-full bg-yellow-500">${i}</button>
+                                                <button role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-white dark:text-gray-100 rounded-full bg-yellow-500">${i}</button>
                                             </div>
                                         </div>
                                     </td>`
@@ -617,7 +617,7 @@
                                     <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <button role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#0088ED] hover:bg-gray-200 dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-gray-500 dark:text-gray-100 rounded-full">${i}</button>
+                                                <button role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-gray-500 dark:text-gray-100 rounded-full">${i}</button>
                                             </div>
                                         </div>
                                     </td>`
@@ -625,7 +625,7 @@
           daysDate += `       <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <button role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#0088ED] hover:bg-gray-200 dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-gray-500 dark:text-gray-100 rounded-full">${i}</button>
+                                                <button role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-gray-500 dark:text-gray-100 rounded-full">${i}</button>
                                             </div>
                                         </div>
                                     </td>
@@ -634,7 +634,7 @@
           daysDate += `       <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <button role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#0088ED] hover:bg-gray-200 dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-gray-500 dark:text-gray-100 rounded-full">${i}</button>
+                                                <button role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-gray-500 dark:text-gray-100 rounded-full">${i}</button>
                                             </div>
                                         </div>
                                     </td>`
@@ -649,7 +649,7 @@
                                     <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <a role="link"  tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#0088ED] hover:bg-gray-200 dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-normal text-gray-400 dark:text-slate-400 rounded-full">${i - lastDayofMonth + 1}</button>
+                                                <a role="link"  tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-normal text-gray-400 dark:text-slate-400 rounded-full">${i - lastDayofMonth + 1}</button>
                                             </div>
                                         </div>
                                     </td>`
@@ -657,7 +657,7 @@
           daysDate += `       <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <a role="link"  tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#0088ED] hover:bg-gray-200 dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-normal text-gray-400 dark:text-slate-400 rounded-full">${i - lastDayofMonth + 1}</button>
+                                                <a role="link"  tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-normal text-gray-400 dark:text-slate-400 rounded-full">${i - lastDayofMonth + 1}</button>
                                             </div>
                                         </div>
                                     </td>
@@ -666,7 +666,7 @@
           daysDate += `       <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <a role="link"  tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#0088ED] hover:bg-gray-200 dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-normal text-gray-400 dark:text-slate-400 rounded-full">${i - lastDayofMonth + 1}</button>
+                                                <a role="link"  tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-normal text-gray-400 dark:text-slate-400 rounded-full">${i - lastDayofMonth + 1}</button>
                                             </div>
                                         </div>
                                     </td>`

@@ -37,7 +37,7 @@
 
                     <!-- Menu Item Kependudukan -->
                     <li>
-                        <a class="group relative flex items-center justify-start gap-2.5 rounded-sm px-4 py-3 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4" href="#" @click.prevent="selected = (selected === 'Kependudukan' ? '':'Kependudukan')" :class="{
+                        <a class="group relative flex items-center justify-start gap-2.5 rounded-sm px-4 py-3 font-bold duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47]" href="#" @click.prevent="selected = (selected === 'Kependudukan' ? '':'Kependudukan')" :class="{
                     'bg-[#E4F7DF] text-[#57BA47] border-r-4 border-[#57BA47]': (selected === 'Kependudukan') || (page === 'daftarPenduduk') || (page === 'daftarAkun') || (page === 'daftarNkk')}">
                             <div class=" w-7">
                                 <i class="fa-solid fa-users text-xl"></i>
@@ -63,10 +63,10 @@
                         <!-- Dropdown Menu End -->
                     </li>
                     <li>
-                        <a class="group relative flex items-center justify-start gap-2.5 rounded-sm px-4 py-3 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4" href="#" @click.prevent="selected = (selected === 'Bansos' ? '':'Bansos')" :class="{
+                        <a class="group relative flex items-center justify-start gap-2.5 rounded-sm px-4 py-3 font-bold duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47]" href="#" @click.prevent="selected = (selected === 'Bansos' ? '':'Bansos')" :class="{
                     'bg-[#E4F7DF] text-[#57BA47] border-r-4 border-[#57BA47]': (selected === 'Bansos') || (page === 'listBansos') || (page === 'rekomendasiBansos')}">
                             <div class=" w-7">
-                                <i class="fa-solid fa-users text-xl"></i>
+                            <i class="fa-solid fa-hand-holding-hand text-xl"></i>
                             </div>
                             Bansos
 
@@ -89,10 +89,10 @@
                         <!-- Dropdown Menu End -->
                     </li>
                     <li>
-                        <a class="group relative flex items-center justify-start gap-2.5 rounded-sm px-4 py-3 font-medium text-bodydark1 duration-300 ease-in-out hover:bg-graydark dark:hover:bg-meta-4" href="#" @click.prevent="selected = (selected === 'Umkm' ? '':'Umkm')" :class="{
+                        <a class="group relative flex items-center justify-start gap-2.5 rounded-sm px-4 py-3 font-bold duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47]" href="#" @click.prevent="selected = (selected === 'Umkm' ? '':'Umkm')" :class="{
                     'bg-[#E4F7DF] text-[#57BA47] border-r-4 border-[#57BA47]': (selected === 'Umkm') || (page === 'listUmkm') || (page === 'ajuanUmkm')}">
                             <div class=" w-7">
-                                <i class="fa-solid fa-users text-xl"></i>
+                            <i class="fa-solid fa-store text-xl"></i>
                             </div>
                             UMKM
 
@@ -175,7 +175,7 @@
                     </li>
                     <!-- Menu Item Akun Admin -->
                     <!-- Menu Item Log Out -->
-                    <li>
+                    <!-- <li>
                         <a class="group relative flex justify-start items-center gap-2.5 rounded-sm px-4 py-3 font-bold  duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] dark:hover:bg-meta-4 rounded-l-2xl" href="{{ route('umkm-admin') }}" @click="selected = (selected === 'Log Out' ? '':'Log Out')" :class="{
                     'bg-[#E4F7DF] text-[#57BA47] border-r-4 border-[#57BA47]': (selected === 'Log Out') && (page === 'logout')
                   }">
@@ -185,7 +185,7 @@
 
                             Log Out
                         </a>
-                    </li>
+                    </li> -->
                     <!-- Menu Item Log Out -->
                 </ul>
             </div>
