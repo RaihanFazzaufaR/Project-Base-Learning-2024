@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\User\UmkmController;
 use App\Http\Controllers\User\PendudukController;
-use App\Http\Controllers\User\BansosController;
+use App\Http\Controllers\User\BansosController as UserBansosController;
 use App\Http\Controllers\User\AduanController;
 use App\Http\Controllers\User\HomeController;
 use App\Http\Controllers\User\JadwalController;
@@ -47,7 +47,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::prefix('admin')->group(function () {
             Route::get('/', [AdminController::class, 'index'])->name('admin');
             Route::prefix('kependudukan')->group(function () {
-                Route::get('/', [AdminPendudukController::class, 'daftarPendudukViewAdmin'])->name('daftar-penduduk');
+                Route::get('/', [AdminPendudukController::class, 'index'])->name('daftar-penduduk');
                 Route::post('/', [AdminPendudukController::class, 'storePenduduk'])->name('storePenduduk');
                 Route::put('/{nik}', [AdminPendudukController::class, 'updatePenduduk'])->name('updatePenduduk');
                 Route::delete('/{nik}', [AdminPendudukController::class, 'destroyPenduduk'])->name('destroyPenduduk');
@@ -89,7 +89,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         // Route Bansos
         Route::group(['prefix' => 'bansos'], function () {
-            Route::get('/', [PendudukController::class, 'index'])->name('bansos');
+            Route::get('/', [UserBansosController::class, 'index'])->name('bansos');
         });
 
         //Route Aduan
