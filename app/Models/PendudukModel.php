@@ -27,7 +27,6 @@ class PendudukModel extends Model
         'statusPenduduk',
         'jabatan',
         'gaji',
-        'noRt',
     ];
 
     public function kartuKeluarga() : BelongsTo

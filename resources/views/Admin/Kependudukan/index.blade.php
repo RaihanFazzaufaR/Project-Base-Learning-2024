@@ -54,11 +54,8 @@
                                         <label for="statusPenduduk" class="block mb-2 text-sm font-bold ">Status Penduduk</label>
                                         <select id="statusPenduduk" name="statusPenduduk" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
                                             <option selected="">Pilih Status Penduduk</option>
-                                            <option value="penduduk">Penduduk</option>
-                                            <option value="RT">RT</option>
-                                            <option value="RW">RW</option>
+                                            <option value="penduduk tetap">Penduduk Tetap</option>
                                             <option value="penduduk tidak tetap">Penduduk Tidak Tetap</option>
-                                            <option value="orang luar">Orang Luar</option>
                                         </select>
                                     </div>
                                     <div class="col-span-2 sm:col-span-1">
@@ -78,23 +75,36 @@
                                         </select>
                                     </div>
                                     <div class="col-span-2 sm:col-span-1">
-                                        <label for="jenisKelamin" class="block mb-2 text-sm font-bold ">Jenis Kelamin</label>
-                                        <select id="jenisKelamin" name="jenisKelamin" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                                            <option selected="">Pilih Jenis Kelamin</option>
-                                            <option value="L">Laki-Laki</option>
-                                            <option value="P">Perempuan</option>
+                                        <label for="jabatan" class="block mb-2 text-sm font-bold ">Jabatan</label>
+                                        <select id="jabatan" name="jabatan" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                            <option selected="">Pilih Jabatan</option>
+                                            <option value="Ketua RW">Ketua RW</option>
+                                            <option value="Ketua RT">Ketua RT</option>
+                                            <option value="Bendahara">Bendahara</option>
+                                            <option value="Sekretaris">Sekretaris</option>
+                                            <option value="Tidak Ada">Tidak Ada</option>
                                         </select>
                                     </div>
-                                    <div class="col-span-2 sm:col-span-1">
-                                        <label for="rt" class="block mb-2 text-sm font-bold ">RT</label>
-                                        <select id="rt" name="rt" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                                            <option selected="">Pilih RT</option>
-                                            <option value="01">01</option>
-                                            <option value="02">02</option>
-                                            <option value="03">03</option>
-                                            <option value="04">04</option>
-                                            <option value="05">05</option>
-                                        </select>
+                                    <div class="col-span-1 grid grid-cols-2 gap-2">
+                                        <div class="col-span-2 sm:col-span-1">
+                                            <label for="jenisKelamin" class="block mb-2 text-sm font-bold ">Jenis Kelamin</label>
+                                            <select id="jenisKelamin" name="jenisKelamin" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                                <option selected="">Pilih Jenis Kelamin</option>
+                                                <option value="L">Laki-Laki</option>
+                                                <option value="P">Perempuan</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-span-2 sm:col-span-1">
+                                            <label for="rt" class="block mb-2 text-sm font-bold ">RT</label>
+                                            <select id="rt" name="rt" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                                <option selected="">Pilih RT</option>
+                                                <option value="01">01</option>
+                                                <option value="02">02</option>
+                                                <option value="03">03</option>
+                                                <option value="04">04</option>
+                                                <option value="05">05</option>
+                                            </select>
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8]">
@@ -112,9 +122,7 @@
             </div>
         </div>
 
-
-
-        <div class="h-full w-fit py-2" x-data="{ 'tambahModal': false }" @keydown.escape="tambahModal = false">
+        <div class="h-full w-fit py-2" x-data="{ 'tambahModal': $persist({{ $modalTambah }}) }" @keydown.escape="tambahModal = false">
             <button @click="tambahModal = true" class="flex w-34 bg-[#57BA47] h-full text-white justify-between items-center px-4 rounded-lg shadow-xl hover:bg-[#336E2A] hover:scale-105 transition duration-300 ease-in-out">
                 <i class="fa-solid fa-plus text-2xl"></i>
                 <div class="text-xl font-semibold">Tambah</div>
@@ -144,9 +152,14 @@
                                     <label for="nik" class="block mb-2 text-sm font-bold">NIK</label>
                                     <input type="text" name="nik" id="nik" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan NIK" required="">
                                 </div>
-                                <div class="col-span-2 sm:col-span-1">
+                                <div class="col-span-2 sm:col-span-1 relative">
                                     <label for="nkk" class="block mb-2 text-sm font-bold">NKK</label>
-                                    <input type="text" name="nkk" id="nkk" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan NKK" required="">
+                                    <input list="listNkk" name="nkk" id="nkk" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan NKK" required="">
+                                    <datalist id="listNkk">
+                                        @foreach ($kartuKeluarga as $nkk)
+                                        <option value="{{ $nkk->id_kartuKeluarga }}">{{ $nkk->niKeluarga }}</option>
+                                        @endforeach
+                                    </datalist>
                                 </div>
                                 <div class="col-span-2 sm:col-span-1">
                                     <label for="nama" class="block mb-2 text-sm font-bold">Nama</label>
@@ -175,11 +188,8 @@
                                     <label for="statusPenduduk" class="block mb-2 text-sm font-bold ">Status Penduduk</label>
                                     <select id="statusPenduduk" name="statusPenduduk" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
                                         <option selected="">Pilih Status Penduduk</option>
-                                        <option value="penduduk">Penduduk</option>
-                                        <option value="RT">RT</option>
-                                        <option value="RW">RW</option>
+                                        <option value="penduduk tetap">Penduduk Tetap</option>
                                         <option value="penduduk tidak tetap">Penduduk Tidak Tetap</option>
-                                        <option value="orang luar">Orang Luar</option>
                                     </select>
                                 </div>
                                 <div class="col-span-2 sm:col-span-1">
@@ -198,15 +208,18 @@
                                     <label for="gaji" class="block mb-2 text-sm font-bold ">Gaji</label>
                                     <input type="number" name="gaji" id="gaji" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan Gaji" required="">
                                 </div>
-                                <div class="col-span-2 sm:col-span-1">
-                                    <label for="kewarganegaraan" class="block mb-2 text-sm font-bold">Kewarganegaraan</label>
-                                    <select id="kewarganegaraan" name="kewarganegaraan" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                                        <option selected="">Pilih Kewarganegaraan</option>
-                                        <option value="WNI">Indonesia</option>
-                                        <option value="WNA">Luar</option>
+                                <div class="col-span-1">
+                                    <label for="jabatan" class="block mb-2 text-sm font-bold ">Jabatan</label>
+                                    <select id="jabatan" name="jabatan" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                        <option selected="">Pilih Jabatan</option>
+                                        <option value="Ketua RW">Ketua RW</option>
+                                        <option value="Ketua RT">Ketua RT</option>
+                                        <option value="Bendahara">Bendahara</option>
+                                        <option value="Sekretaris">Sekretaris</option>
+                                        <option value="Tidak Ada">Tidak Ada</option>
                                     </select>
                                 </div>
-                                <div class="col-span-2 sm:col-span-1 grid grid-cols-2 gap-4">
+                                <div class="col-span-2 sm:col-span-1 grid grid-cols-2 gap-2">
                                     <div class="col-span-2 sm:col-span-1">
                                         <label for="jenisKelamin" class="block mb-2 text-sm font-bold ">Jenis Kelamin</label>
                                         <select id="jenisKelamin" name="jenisKelamin" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
@@ -216,20 +229,13 @@
                                         </select>
                                     </div>
                                     <div class="col-span-2 sm:col-span-1">
-                                        <label for="rt" class="block mb-2 text-sm font-bold ">RT</label>
-                                        <select id="rt" name="rt" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                                            <option selected="">Pilih RT</option>
-                                            <option value="01">01</option>
-                                            <option value="02">02</option>
-                                            <option value="03">03</option>
-                                            <option value="04">04</option>
-                                            <option value="05">05</option>
+                                        <label for="kewarganegaraan" class="block mb-2 text-sm font-bold">Kewarganegaraan</label>
+                                        <select id="kewarganegaraan" name="kewarganegaraan" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                            <option selected="">Pilih Kewarganegaraan</option>
+                                            <option value="WNI">Indonesia</option>
+                                            <option value="WNA">Luar</option>
                                         </select>
                                     </div>
-                                </div>
-                                <div class="col-span-2">
-                                    <label for="alamat" class="block mb-2 text-sm font-bold">Alamat</label>
-                                    <textarea id="alamat" name="alamat" rows="4" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan Alamat"></textarea>
                                 </div>
                             </div>
                             <div class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8]">
@@ -282,10 +288,10 @@
                             {{ $usr->tempatLahir }}, {{ $usr->tanggalLahir }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $usr->noRt }}
+                            {{ $usr->kartuKeluarga->rt }}
                         </td>
                         <td class="px-6 py-4 flex gap-4">
-                            <div x-data="{ 'detailModal': false }" @keydown.escape="detailModal = false">
+                            <div x-data="{ 'detailModal': {{ $id_penduduk === $usr->id_penduduk ? 'true' : 'false' }} }" @keydown.escape="detailModal = false">
                                 <button @click="detailModal = true" class="flex justify-center items-center gap-2 w-fit text-white bg-[#446DFF] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#273E91] hover:scale-105 transition-all">
                                     <i class="fa-solid fa-circle-info"></i>
                                     <div>Detail</div>
@@ -315,7 +321,7 @@
                                                     </div>
                                                     <div class="col-span-2 sm:col-span-1">
                                                         <label for="nkk" class="block mb-2 text-sm font-bold">NKK</label>
-                                                        <input type="text" name="nkk" id="nkk" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $usr->niKeluarga }}" readonly>
+                                                        <input type="text" name="nkk" id="nkk" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $usr->kartuKeluarga->niKeluarga }}" readonly>
                                                     </div>
                                                     <div class="col-span-2 sm:col-span-1">
                                                         <label for="nama" class="block mb-2 text-sm font-bold">Nama</label>
@@ -335,7 +341,7 @@
                                                     </div>
                                                     <div class="col-span-2 sm:col-span-1">
                                                         <label for="statusPenduduk" class="block mb-2 text-sm font-bold ">Status Penduduk</label>
-                                                        <input type="text" name="statusPenduduk" id="statusPenduduk" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $usr->statusDiRw }}" readonly>
+                                                        <input type="text" name="statusPenduduk" id="statusPenduduk" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $usr->statusPenduduk }}" readonly>
                                                     </div>
                                                     <div class="col-span-2 sm:col-span-1">
                                                         <label for="statusPernikahan" class="block mb-2 text-sm font-bold ">Status Pernikahan</label>
@@ -353,23 +359,21 @@
                                                         <label for="kewarganegaraan" class="block mb-2 text-sm font-bold">Kewarganegaraan</label>
                                                         <input type="text" name="kewarganegaraan" id="kewarganegaraan" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $usr->warganegara }}" readonly>
                                                     </div>
-                                                    <div class="col-span-2 sm:col-span-1 grid grid-cols-2 gap-4">
-                                                        <div class="col-span-2 sm:col-span-1">
-                                                            <label for="jenisKelamin" class="block mb-2 text-sm font-bold ">Jenis Kelamin</label>
-                                                            <select id="jenisKelamin" name="jenisKelamin" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" disabled>
-                                                                <option selected="">Pilih Jenis Kelamin</option>
-                                                                <option value="L" @if ($usr->jenisKelamin == 'L') selected @endif>Laki-Laki</option>
-                                                                <option value="P" @if ($usr->jenisKelamin == 'P') selected @endif>Perempuan</option>
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-span-2 sm:col-span-1">
-                                                            <label for="rt" class="block mb-2 text-sm font-bold ">RT</label>
-                                                            <input type="text" name="rt" id="rt" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $usr->noRt }}" readonly>
-                                                        </div>
+                                                    <div class="col-span-2 sm:col-span-1">
+                                                        <label for="jenisKelamin" class="block mb-2 text-sm font-bold ">Jenis Kelamin</label>
+                                                        <select id="jenisKelamin" name="jenisKelamin" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" disabled>
+                                                            <option selected="">Pilih Jenis Kelamin</option>
+                                                            <option value="L" @if ($usr->jenisKelamin == 'L') selected @endif>Laki-Laki</option>
+                                                            <option value="P" @if ($usr->jenisKelamin == 'P') selected @endif>Perempuan</option>
+                                                        </select>
                                                     </div>
-                                                    <div class="col-span-2">
-                                                        <label for="alamat" class="block mb-2 text-sm font-bold">Alamat</label>
-                                                        <textarea id="alamat" name="alamat" rows="4" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" readonly>{{ $usr->alamat }}</textarea>
+                                                    <div class="col-span-2 sm:col-span-1">
+                                                        <label for="jabatan" class="block mb-2 text-sm font-bold">Jabatan</label>
+                                                        <input type="text" name="jabatan" id="jabatan" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $usr->jabatan }}" readonly>
+                                                    </div>
+                                                    <div class="col-span-2 sm:col-span-1">
+                                                        <label for="rt" class="block mb-2 text-sm font-bold ">RT</label>
+                                                        <input type="text" name="rt" id="rt" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $usr->kartuKeluarga->rt }}" readonly>
                                                     </div>
                                                 </div>
                                                 <div class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8]">
@@ -404,7 +408,7 @@
                                                 </button>
                                             </div>
                                             <!-- Modal body -->
-                                            <form class="w-full h-full text-[#34662C] text-left" method="POST" action="{{ route('updatePenduduk', $usr->nik ) }}">
+                                            <form class="w-full h-full text-[#34662C] text-left" method="POST" action="{{ route('updatePenduduk', $usr->id_penduduk ) }}">
                                                 @csrf
                                                 {!! method_field('PUT') !!}
 
@@ -413,9 +417,14 @@
                                                         <label for="nik" class="block mb-2 text-sm font-bold">NIK</label>
                                                         <input type="text" name="nik" id="nik" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $usr->nik }}">
                                                     </div>
-                                                    <div class="col-span-2 sm:col-span-1">
+                                                    <div class="col-span-2 sm:col-span-1 relative">
                                                         <label for="nkk" class="block mb-2 text-sm font-bold">NKK</label>
-                                                        <input type="text" name="nkk" id="nkk" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $usr->niKeluarga }}">
+                                                        <input list="listNkk" name="nkk" id="nkk" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $usr->id_kartuKeluarga }}">
+                                                        <datalist id="listNkk">
+                                                            @foreach ($kartuKeluarga as $nkk)
+                                                            <option value="{{ $nkk->id_kartuKeluarga }}">{{ $nkk->niKeluarga }}</option>
+                                                            @endforeach
+                                                        </datalist>
                                                     </div>
                                                     <div class="col-span-2 sm:col-span-1">
                                                         <label for="nama" class="block mb-2 text-sm font-bold">Nama</label>
@@ -444,11 +453,8 @@
                                                         <label for="statusPenduduk" class="block mb-2 text-sm font-bold ">Status Penduduk</label>
                                                         <select id="statusPenduduk" name="statusPenduduk" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
                                                             <option selected="">Pilih Status Penduduk</option>
-                                                            <option value="penduduk" @if ($usr->statusDiRw == 'penduduk') selected @endif>Penduduk</option>
-                                                            <option value="RT" @if ($usr->statusDiRw == 'RT') selected @endif>RT</option>
-                                                            <option value="RW" @if ($usr->statusDiRw == 'RW') selected @endif>RW</option>
-                                                            <option value="penduduk tidak tetap" @if ($usr->statusDiRw == 'penduduk tidak tetap') selected @endif>Penduduk Tidak Tetap</option>
-                                                            <option value="orang luar" @if ($usr->statusDiRw == 'orang luar') selected @endif>Orang Luar</option>
+                                                            <option value="penduduk tetap" @if ($usr->statusPenduduk == 'penduduk tetap') selected @endif>Penduduk Tetap</option>
+                                                            <option value="penduduk tidak tetap" @if ($usr->statusPenduduk == 'penduduk tidak tetap') selected @endif>Penduduk Tidak Tetap</option>
                                                         </select>
                                                     </div>
                                                     <div class="col-span-2 sm:col-span-1">
@@ -468,14 +474,25 @@
                                                         <input type="number" name="gaji" id="gaji" min="0" step="0.01" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $usr->gaji }}">
                                                     </div>
                                                     <div class="col-span-2 sm:col-span-1">
-                                                        <label for="kewarganegaraan" class="block mb-2 text-sm font-bold">Kewarganegaraan</label>
-                                                        <select id="kewarganegaraan" name="kewarganegaraan" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                                                            <option selected="">Pilih Kewarganegaraan</option>
-                                                            <option value="WNI" @if ($usr->warganegara == 'WNI') selected @endif>Indonesia</option>
-                                                            <option value="WNA" @if ($usr->warganegara == 'WNA') selected @endif>Luar</option>
+                                                        <label for="jabatan" class="block mb-2 text-sm font-bold">Jabatan</label>
+                                                        <select id="jabatan" name="jabatan" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                                            <option selected="">Pilih Jabatan</option>
+                                                            <option value="Ketua RW" @if ($usr->jabatan == 'Ketua RW') selected @endif>Ketua RW</option>
+                                                            <option value="Ketua RT" @if ($usr->jabatan == 'Ketua RT') selected @endif>Ketua RT</option>
+                                                            <option value="Bendahara" @if ($usr->jabatan == 'Bendahara') selected @endif>Bendahara</option>
+                                                            <option value="Sekretaris" @if ($usr->jabatan == 'Sekretaris') selected @endif>Sekretaris</option>
+                                                            <option value="Tidak Ada" @if ($usr->jabatan == 'Tidak ada') selected @endif>Tidak Ada</option>
                                                         </select>
                                                     </div>
-                                                    <div class="col-span-2 sm:col-span-1 grid grid-cols-2 gap-4">
+                                                    <div class="col-span-2 sm:col-span-1 grid grid-cols-2 gap-2">
+                                                        <div class="col-span-2 sm:col-span-1">
+                                                            <label for="kewarganegaraan" class="block mb-2 text-sm font-bold">Kewarganegaraan</label>
+                                                            <select id="kewarganegaraan" name="kewarganegaraan" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                                                <option selected="">Pilih Kewarganegaraan</option>
+                                                                <option value="WNI" @if ($usr->warganegara == 'WNI') selected @endif>Indonesia</option>
+                                                                <option value="WNA" @if ($usr->warganegara == 'WNA') selected @endif>Luar</option>
+                                                            </select>
+                                                        </div>
                                                         <div class="col-span-2 sm:col-span-1">
                                                             <label for="jenisKelamin" class="block mb-2 text-sm font-bold ">Jenis Kelamin</label>
                                                             <select id="jenisKelamin" name="jenisKelamin" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
@@ -484,21 +501,6 @@
                                                                 <option value="P" @if ($usr->jenisKelamin == 'P') selected @endif>Perempuan</option>
                                                             </select>
                                                         </div>
-                                                        <div class="col-span-2 sm:col-span-1">
-                                                            <label for="rt" class="block mb-2 text-sm font-bold ">RT</label>
-                                                            <select id="rt" name="rt" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                                                                <option selected="">Pilih RT</option>
-                                                                <option value="01" @if ($usr->noRt == '01') selected @endif>01</option>
-                                                                <option value="02" @if ($usr->noRt == '02') selected @endif>02</option>
-                                                                <option value="03" @if ($usr->noRt == '03') selected @endif>03</option>
-                                                                <option value="04" @if ($usr->noRt == '04') selected @endif>04</option>
-                                                                <option value="05" @if ($usr->noRt == '05') selected @endif>05</option>
-                                                            </select>
-                                                        </div>
-                                                    </div>
-                                                    <div class="col-span-2">
-                                                        <label for="alamat" class="block mb-2 text-sm font-bold">Alamat</label>
-                                                        <textarea id="alamat" name="alamat" rows="4" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">{{ $usr->alamat }}</textarea>
                                                     </div>
                                                 </div>
                                                 <div class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8]">
@@ -515,7 +517,7 @@
                                 </div>
                             </div>
 
-                            <form action="{{ route('destroyPenduduk', $usr->nik) }}" method="POST">
+                            <form action="{{ route('destroyPenduduk', $usr->id_penduduk) }}" method="POST">
                                 @csrf
                                 {!! method_field('DELETE') !!}
 

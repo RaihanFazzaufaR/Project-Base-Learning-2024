@@ -55,6 +55,12 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::post('/search-penduduk', [AdminPendudukController::class, 'searchPenduduk'])->name('searchPenduduk');
                 Route::get('/daftar-akun', [AdminPendudukController::class, 'daftarAkunViewAdmin'])->name('daftar-akun');
                 Route::get('/daftar-nkk', [AdminPendudukController::class, 'daftarNkkViewAdmin'])->name('daftar-nkk');
+                Route::post('/daftar-nkk', [AdminPendudukController::class, 'storeKartuKeluarga'])->name('storeKartuKeluarga');
+                Route::put('/daftar-nkk/{id}', [AdminPendudukController::class, 'updateKartuKeluarga'])->name('updateKartuKeluarga');
+                Route::delete('/daftar-nkk/{id}', [AdminPendudukController::class, 'destroyKartuKeluarga'])->name('destroyKartuKeluarga');
+                Route::post('/filter-nkk', [AdminPendudukController::class, 'filterKartuKeluarga'])->name('filterKartuKeluarga');
+                Route::post('/search-nkk', [AdminPendudukController::class, 'searchKartuKeluarga'])->name('searchKartuKeluarga');
+                Route::post('/open-modal-penduduk', [AdminPendudukController::class, 'openModalPenduduk'])->name('openModalPenduduk');
             });
             Route::prefix('bansos')->group(function () {
                 Route::get('/', [AdminBansosController::class, 'index'])->name('bansos-admin');

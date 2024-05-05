@@ -10,20 +10,28 @@ use Illuminate\Support\Facades\Validator;
 
 class PendudukController extends Controller
 {
-    public function daftarPendudukViewAdmin()
+    public function index(Request $request)
     {
         $page = 'daftarPenduduk';
         $selected = 'Kependudukan';
+        $kartuKeluarga = KartuKeluargaModel::all();
+        $modalTambah = false;
+        $id_penduduk = 0;
+
+        if ($request->all()) {
+            $id_penduduk = $request->id_penduduk;
+        }
 
         $user = PendudukModel::paginate(10);
 
-        return view('admin.kependudukan.index', compact('user', 'page', 'selected'));
+        return view('admin.kependudukan.index', compact('user', 'page', 'selected', 'kartuKeluarga', 'modalTambah', 'id_penduduk'));
     }
 
     public function storePenduduk(Request $request)
     {
+
         $validator = Validator::make($request->all(), [
-            'nik' => 'required',
+            'nik' => 'required|string|max:17|unique:tb_penduduk,nik',
             'nkk' => 'required',
             'nama' => 'required',
             'tempatLahir' => 'required',
@@ -33,38 +41,38 @@ class PendudukController extends Controller
             'statusPernikahan' => 'required',
             'statusPenduduk' => 'required',
             'pekerjaan' => 'required',
+            'jabatan' => 'required',
             'kewarganegaraan' => 'required',
-            'alamat' => 'required',
-            'rt' => 'required',
-            'gaji' => 'required|integer',
+            'gaji' => 'required|numeric',
         ]);
+
+        if ($validator->fails()) {
+            return back()->with('errors', $validator->messages()->all()[0])->withInput();
+        }
 
         PendudukModel::create([
             'nik' => $request->nik,
-            'niKeluarga' => $request->nkk,
+            'id_kartuKeluarga' => $request->nkk,
             'nama' => $request->nama,
             'tempatLahir' => $request->tempatLahir,
             'tanggalLahir' => $request->tanggalLahir,
             'jenisKelamin' => $request->jenisKelamin,
             'agama' => $request->agama,
             'statusNikah' => $request->statusPernikahan,
-            'statusDiRw' => $request->statusPenduduk,
+            'statusPenduduk' => $request->statusPenduduk,
             'pekerjaan' => $request->pekerjaan,
             'warganegara' => $request->kewarganegaraan,
-            'alamat' => $request->alamat,
-            'noRt' => $request->rt,
+            'jabatan' => $request->jabatan,
             'gaji' => $request->gaji,
         ]);
-        if ($validator->fails()) {
-            return back()->with('errors', $validator->messages()->all()[0])->withInput();
-        }
+
         return redirect('/admin/kependudukan')->with('success', 'Data berhasil ditambahkan!');
     }
 
     public function updatePenduduk(Request $request, string $nik)
     {
         $validator = Validator::make($request->all(), [
-            'nik' => 'required',
+            'nik' => 'required|string|max:17|unique:tb_penduduk,nik,' . $nik . ',id_penduduk',
             'nkk' => 'required',
             'nama' => 'required',
             'tempatLahir' => 'required',
@@ -74,36 +82,33 @@ class PendudukController extends Controller
             'statusPernikahan' => 'required',
             'statusPenduduk' => 'required',
             'pekerjaan' => 'required',
+            'jabatan' => 'required',
             'kewarganegaraan' => 'required',
-            'alamat' => 'required',
-            'rt' => 'required',
-            'gaji' => 'required|numeric'
+            'gaji' => 'required|numeric',
         ]);
 
         // dd(request()->all());
+        if ($validator->fails()) {
+            return back()->with('errors', $validator->messages()->all()[0])->withInput();
+        }
 
         PendudukModel::find($nik)->update([
             'nik' => $request->nik,
-            'niKeluarga' => $request->nkk,
+            'id_kartuKeluarga' => $request->nkk,
             'nama' => $request->nama,
             'tempatLahir' => $request->tempatLahir,
             'tanggalLahir' => $request->tanggalLahir,
             'jenisKelamin' => $request->jenisKelamin,
             'agama' => $request->agama,
             'statusNikah' => $request->statusPernikahan,
-            'statusDiRw' => $request->statusPenduduk,
+            'statusPenduduk' => $request->statusPenduduk,
             'pekerjaan' => $request->pekerjaan,
             'warganegara' => $request->kewarganegaraan,
-            'alamat' => $request->alamat,
-            'noRt' => $request->rt,
+            'jabatan' => $request->jabatan,
             'gaji' => $request->gaji,
         ]);
 
         // dd($update);
-
-        if ($validator->fails()) {
-            return back()->with('errors', $validator->messages()->all()[0])->withInput();
-        }
 
         return redirect('/admin/kependudukan')->with('success', 'Data berhasil diupdate!');
     }
@@ -124,30 +129,31 @@ class PendudukController extends Controller
     {
         $page = 'daftarPenduduk';
         $selected = 'Kependudukan';
+        $kartuKeluarga = KartuKeluargaModel::all();
 
         $user = PendudukModel::where('jenisKelamin', 'like', '%' . $request->jenisKelamin . '%')
-            ->orWhere('noRt', 'like', '%' . $request->rt . '%')
             ->orWhere('agama', 'like', '%' . $request->agama . '%')
             ->orWhere('statusNikah', 'like', '%' . $request->statusPernikahan . '%')
             ->orWhere('wargaNegara', 'like', '%' . $request->kewarganegaraan . '%')
-            ->orWhere('statusDiRw', 'like', '%' . $request->statusPenduduk . '%')
+            ->orWhere('statusPenduduk', 'like', '%' . $request->statusPenduduk . '%')
+            ->orWhere('jabatan', 'like', '%' . $request->jabatan . '%')
             ->paginate(10);
 
-        return view('admin.kependudukan.index', compact('user', 'page', 'selected'));
+        return view('admin.kependudukan.index', compact('user', 'page', 'selected', 'kartuKeluarga'));
     }
 
     public function searchPenduduk(Request $request)
     {
         $page = 'daftarPenduduk';
         $selected = 'Kependudukan';
+        $kartuKeluarga = KartuKeluargaModel::all();
 
         $user = PendudukModel::where('nik', 'like', '%' . $request->search . '%')
             ->orWhere('nama', 'like', '%' . $request->search . '%')
             ->orWhere('tempatLahir', 'like', '%' . $request->search . '%')
-            ->orWhere('noRt', 'like', '%' . $request->search . '%')
             ->paginate(10);
 
-        return view('admin.kependudukan.index', compact('user', 'page', 'selected'));
+        return view('admin.kependudukan.index', compact('user', 'page', 'selected', 'kartuKeluarga'));
     }
 
     public function daftarNkkViewAdmin()
@@ -158,5 +164,106 @@ class PendudukController extends Controller
         $user = KartuKeluargaModel::paginate(10);
 
         return view('admin.kependudukan.daftar-nkk', compact('user', 'page', 'selected'));
+    }
+
+    public function storeKartuKeluarga(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'nkk' => 'required|string|max:20|unique:tb_kartukeluarga,niKeluarga',
+            'jumlahAnggota' => 'required|integer',
+            'kepalaKeluarga' => 'required|string',
+            'alamat' => 'required|string',
+            'rt' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->with('errors', $validator->messages()->all()[0])->withInput();
+        }
+
+        KartuKeluargaModel::create([
+            'niKeluarga' => $request->nkk,
+            'jmlAnggota' => $request->jumlahAnggota,
+            'kepalaKeluarga' => $request->kepalaKeluarga,
+            'alamat' => $request->alamat,
+            'rt' => $request->rt
+        ]);
+
+        return redirect('/admin/kependudukan/daftar-nkk')->with('success', 'Data berhasil ditambahkan!');
+    }
+
+    public function updateKartuKeluarga(Request $request, string $id)
+    {
+        $validator = Validator::make($request->all(), [
+            'nkk' => 'required|string|max:20|unique:tb_kartukeluarga,niKeluarga,' . $id . ',id_kartuKeluarga',
+            'jumlahAnggota' => 'required|integer',
+            'kepalaKeluarga' => 'required|string',
+            'alamat' => 'required|string',
+            'rt' => 'required',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->with('errors', $validator->messages()->all()[0])->withInput();
+        }
+
+        KartuKeluargaModel::find($id)->update([
+            'niKeluarga' => $request->nkk,
+            'jmlAnggota' => $request->jumlahAnggota,
+            'kepalaKeluarga' => $request->kepalaKeluarga,
+            'alamat' => $request->alamat,
+            'rt' => $request->rt
+        ]);
+
+        return redirect('/admin/kependudukan/daftar-nkk')->with('success', 'Data berhasil diupdate!');
+    }
+
+    public function destroyKartuKeluarga(string $id)
+    {
+        $check = KartuKeluargaModel::find($id);
+
+        try {
+            KartuKeluargaModel::destroy($id);
+            return redirect('/admin/kependudukan/daftar-nkk')->with('success', 'Data berhasil dihapus!');
+        } catch (\Illuminate\Database\QueryException $e) {
+            return redirect('/admin/kependudukan/daftar-nkk')->with('error', 'Data kartu keluarga gagal dihapus karena masih terdapat tabel lain yang terikat dengan data ini');
+        }
+    }
+
+    public function filterKartuKeluarga(Request $request)
+    {
+        $page = 'daftarNkk';
+        $selected = 'Kependudukan';
+
+
+        $user = KartuKeluargaModel::where('rt', 'like', '%' . $request->rt . '%')
+            ->orWhere('jmlAnggota', 'like', '%' . $request->jumlahAnggota . '%')
+            ->paginate(10);
+
+        // dd($request->rt);
+
+        return view('admin.kependudukan.daftar-nkk', compact('user', 'page', 'selected'));
+    }
+    public function searchKartuKeluarga(Request $request)
+    {
+        $page = 'daftarNkk';
+        $selected = 'Kependudukan';
+
+        $user = KartuKeluargaModel::where('niKeluarga', 'like', '%' . $request->search . '%')
+            ->orWhere('alamat', 'like', '%' . $request->search . '%')
+            ->paginate(10);
+
+        return view('admin.kependudukan.daftar-nkk', compact('user', 'page', 'selected'));
+    }
+
+    public function openModalPenduduk(Request $request)
+    {
+        $page = 'daftarPenduduk';
+        $selected = 'Kependudukan';
+        $kartuKeluarga = KartuKeluargaModel::all();
+        $modalTambah = true;
+        $id_penduduk = $request->id_penduduk;
+
+        $user = PendudukModel::paginate(10);
+
+        return view('admin.kependudukan.index', compact('user', 'page', 'selected', 'kartuKeluarga', 'modalTambah', 'id_penduduk'));
     }
 }

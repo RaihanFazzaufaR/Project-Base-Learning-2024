@@ -17,6 +17,7 @@ class KartuKeluargaModel extends Model
         'jmlAnggota',
         'alamat',
         'kepalaKeluarga',
+        'rt',
     ];
 
     public function penduduk() : HasMany

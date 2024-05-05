@@ -48,7 +48,7 @@
       <div class="relative flex w-full h-full justify-center items-center gap-10 z-[3] top-0 left-0">
         <div class="flex flex-col justify-center items-center gap-2">
           <div class="font-bold text-5xl group-hover:text-white">100</div>
-          <div class="font-semibold text-[15px] text-gray-500 group-hover:text-gray-200">Jumlah KK</div>
+          <div class="font-semibold text-[15px] text-gray-500 group-hover:text-gray-200">Jumlah Aduan</div>
         </div>
         <div class="text-5xl text-[#19EF88] group-hover:text-white">
           <i class="fa-solid fa-user"></i>

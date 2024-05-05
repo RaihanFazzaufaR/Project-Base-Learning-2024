@@ -56,7 +56,7 @@
                                     <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-[#57BA47]" href="{{ route('daftar-penduduk') }}" :class="page === 'daftarPenduduk' && '!text-[#57BA47]'">Daftar Penduduk</a>
                                 </li>
                                 <li>
-                                    <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-[#57BA47]" href="{{ route('daftar-nkk') }}" :class="page === 'daftarNkk' && '!text-[#57BA47]'">Daftar NKK</a>
+                                    <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-[#57BA47]" href="{{ route('daftar-nkk') }}" :class="page === 'daftarNkk' && '!text-[#57BA47]'">Daftar Kartu Keluarga</a>
                                 </li>
                             </ul>
                         </div>
