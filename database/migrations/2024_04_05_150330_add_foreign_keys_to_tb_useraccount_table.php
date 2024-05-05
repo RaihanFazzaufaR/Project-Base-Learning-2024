@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('tb_useraccount', function (Blueprint $table) {
-            $table->foreign(['nik'], 'tb_useraccount_ibfk_1')->references(['nik'])->on('tb_penduduk')->onUpdate('restrict')->onDelete('restrict');
+            $table->foreign(['id_penduduk'], 'tb_useraccount_ibfk_1')->references(['id_penduduk'])->on('tb_penduduk')->onUpdate('restrict')->onDelete('restrict');
         });
     }
 

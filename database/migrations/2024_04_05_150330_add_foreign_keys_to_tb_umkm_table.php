@@ -13,8 +13,8 @@ return new class extends Migration {
     public function up()
     {
         Schema::table('tb_umkm', function (Blueprint $table) {
-            $table->foreign(['pemilik_id'], 'tb_umkm_ibfk_1')->references(['nik'])->on('tb_penduduk')->onUpdate('restrict')->onDelete('restrict');
-            $table->foreign(['umkm_kategori_id'], 'tb_umkm_ibfk_2')->references(['umkm_kategori_id'])->on('tb_umkm_kategori')->onUpdate('restrict')->onDelete('restrict');
+            $table->foreign(['id_pemilik'], 'tb_umkm_ibfk_1')->references(['id_penduduk'])->on('tb_penduduk')->onUpdate('restrict')->onDelete('restrict');
+            // $table->foreign(['umkm_kategori_id'], 'tb_umkm_ibfk_2')->references(['umkm_kategori_id'])->on('tb_umkm_kategori')->onUpdate('restrict')->onDelete('restrict');
         });
     }
 

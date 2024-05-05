@@ -15,10 +15,10 @@ class UserAccountSeeder extends Seeder
     public function run(): void
     {
         $data = [
-            ['user_id'=>1, 'username'=>'RaihanFR', 'password'=>Hash::make('123456'), 'nik'=>'3570000000000001'],
-            ['user_id'=>2, 'username'=>'ZakariaM', 'password'=>Hash::make('123456'), 'nik'=>'3570000000000002'],
-            ['user_id'=>3, 'username'=>'LuckyK', 'password'=>Hash::make('123456'), 'nik'=>'3570000000000003'],
-            ['user_id'=>4, 'username'=>'SonyF', 'password'=>Hash::make('123456'), 'nik'=>'3570000000000004']
+            ['user_id'=>1, 'email'=>'fazzaufa94raihan@gmail.com','username'=>'RaihanFR', 'password'=>Hash::make('123456'), 'id_penduduk'=>1],
+            ['user_id'=>2, 'email'=>'user1test@gmail.com','username'=>'ZakariaM', 'password'=>Hash::make('123456'), 'id_penduduk'=>3],
+            ['user_id'=>3, 'email'=>'user2test@gmail.com','username'=>'LuckyK', 'password'=>Hash::make('123456'), 'id_penduduk'=>6],
+            ['user_id'=>4, 'email'=>'user3test@gmail.com','username'=>'SonyF', 'password'=>Hash::make('123456'), 'id_penduduk'=>8]
         ];
         DB::table('tb_useraccount')->insert($data);
     }

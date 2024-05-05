@@ -16,7 +16,7 @@ return new class extends Migration {
             $table->bigInteger('umkm_id', true);
             $table->string('nama', 50);
             $table->string('no_wa', 50);
-            $table->string('pemilik_id', 17)->index('pemilik_id');
+            $table->unsignedBigInteger('id_pemilik');
             $table->string('lokasi', 100);
             $table->unsignedBigInteger('umkm_kategori_id');
             $table->time('buka_waktu');

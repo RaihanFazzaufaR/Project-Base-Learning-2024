@@ -15,9 +15,13 @@ return new class extends Migration
     {
         Schema::create('tb_useraccount', function (Blueprint $table) {
             $table->bigInteger('user_id', true);
-            $table->string('username', 100);
+            $table->string('email', 100);
+            $table->string('username', 100)->unique();
             $table->string('password', 100);
-            $table->string('nik', 17)->nullable()->index('nik');
+            $table->unsignedBigInteger('id_penduduk')->nullable();
+            $table->timestamp('email_verified_at')->nullable();
+            $table->rememberToken();
+            $table->timestamps();
         });
     }
 

@@ -3,7 +3,19 @@
         <img src="{{ asset('assets/images/logo.png') }}" alt="" class="w-14 h-14">
         <p class="font-bold text-2xl text-[#1C4F0F]">FORGOT PASSWORD</p>
     </div>
-    <form method="get" action="{{ route('recovery-code') }}" class="flex flex-col w-full gap-6">
+    @if(session()->has('errors'))
+        <div class="bg-red-500 p-3 text-white text-center rounded-lg">
+            {{ session('errors') }}
+        </div>
+    @endif
+    @if(session()->has('status'))
+        <div class="bg-green-500 p-3 text-white text-center rounded-lg">
+            {{ session('status') }}
+        </div>
+    @endif
+
+    <form method="get" action="{{ route('sendResetLinkEmail') }}" class="flex flex-col w-full gap-6">
+        @csrf
         <div class="flex flex-col gap-2">
             <label for="username" class="font-bold text-normal text-[#1C4F0F]">Username</label>
             <input type="text" name="username" id="username" class="w-full p-2 ring-2 bg-[#EDEDED] ring-slate-400 focus:outline-none focus:ring-green-500 focus:ring-offset-1 rounded-lg" placeholder="Username">

@@ -6,6 +6,7 @@ use App\Models\LevelDetailModel;
 use App\Models\UserAccountModel;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Password;
 
 class LoginController extends Controller
 {
@@ -54,6 +55,30 @@ class LoginController extends Controller
     public function forgotPassword()
     {
         return view('Login.forgot_password');
+    }
+
+    public function sendResetLinkEmail(Request $request)
+    {
+        $request->validate([
+            'username' => 'required',
+            'email' => 'required|email'
+        ]);
+
+        $user = UserAccountModel::where('email', $request->email)->where('username', $request->username);
+
+        dd($user);
+
+        if(!$user){
+            return back()->with('errors', 'Username atau email tidak ditemukan!');
+        }
+
+        if($user){
+            $status = Password::sendResetLink($request->only('email'));
+
+        return $status === Password::RESET_LINK_SENT
+                    ? back()->with('status', __($status))
+                    : back()->withErrors(['errors' => __($status)]);
+        }
     }
 
     public function recoveryCode()

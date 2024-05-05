@@ -35,8 +35,8 @@ Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::group(['prefix' => 'login'], function () {
     Route::get('/', [LoginController::class, 'index'])->name('login');
     Route::post('/', [LoginController::class, 'authenticate'])->name('authenticate');
-    Route::get('/forgot-password', [LoginController::class, 'forgotPassword'])->name('forgot-password');
-    Route::get('/recovery-code', [LoginController::class, 'recoveryCode'])->name('recovery-code');
+    Route::get('/forgot-password', [LoginController::class, 'forgotPassword'])->middleware('guest')->name('forgot-password');
+    Route::post('/forgot-password', [LoginController::class, 'sendResetLinkEmail'])->middleware('guest')->name('sendResetLinkEmail');
     Route::get('/change-password', [LoginController::class, 'changePassword'])->name('change-password');
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
