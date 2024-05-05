@@ -47,7 +47,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::prefix('admin')->group(function () {
             Route::get('/', [AdminController::class, 'index'])->name('admin');
             Route::prefix('kependudukan')->group(function () {
-                Route::get('/', [AdminPendudukController::class, 'daftarPendudukViewAdmin'])->name('daftar-penduduk');
+                Route::get('/', [AdminPendudukController::class, 'index'])->name('daftar-penduduk');
                 Route::post('/', [AdminPendudukController::class, 'storePenduduk'])->name('storePenduduk');
                 Route::put('/{nik}', [AdminPendudukController::class, 'updatePenduduk'])->name('updatePenduduk');
                 Route::delete('/{nik}', [AdminPendudukController::class, 'destroyPenduduk'])->name('destroyPenduduk');
