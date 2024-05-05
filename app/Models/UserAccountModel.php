@@ -21,7 +21,7 @@ class UserAccountModel extends User
         'email',
         'username',
         'password',
-        'nik',
+        'id_penduduk',
     ];
 
     protected $hidden = [
@@ -40,6 +40,6 @@ class UserAccountModel extends User
 
     public function penduduk() : BelongsTo
     {
-        return $this->belongsTo(PendudukModel::class, 'nik', 'nik');
+        return $this->belongsTo(PendudukModel::class, 'id_penduduk', 'id_penduduk');
     }
 }
