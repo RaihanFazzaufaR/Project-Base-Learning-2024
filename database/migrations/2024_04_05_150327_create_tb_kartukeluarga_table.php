@@ -19,6 +19,7 @@ return new class extends Migration
             $table->integer('jmlAnggota');
             $table->string('alamat', 100);
             $table->string('kepalaKeluarga', 17);
+            $table->timestamps();
         });
     }
 
