@@ -12,26 +12,26 @@ class PendudukModel extends Model
     use HasFactory;
 
     protected $table = 'tb_penduduk';
-    protected $primaryKey = 'nik';
+    protected $primaryKey = 'id_penduduk';
     protected $fillable = [
         'nik',
         'nama',
         'tempatLahir',
         'tanggalLahir',
         'jenisKelamin',
-        'alamat',
         'agama',
         'pekerjaan',
         'statusNikah',
         'warganegara',
-        'niKeluarga',
-        'statusDiRw',
+        'id_kartuKeluarga',
+        'statusPenduduk',
+        'jabatan',
         'gaji',
         'noRt',
     ];
 
     public function kartuKeluarga() : BelongsTo
     {
-        return $this->belongsTo(KartuKeluargaModel::class, 'niKeluarga', 'niKeluarga');
+        return $this->belongsTo(KartuKeluargaModel::class, 'id_kartuKeluarga', 'id_kartuKeluarga');
     }
 }

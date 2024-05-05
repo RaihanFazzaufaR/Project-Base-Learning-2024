@@ -11,14 +11,16 @@ class KartuKeluargaModel extends Model
     use HasFactory;
 
     protected $table = 'tb_kartukeluarga';
-    protected $primaryKey = 'niKeluarga';
+    protected $primaryKey = 'id_kartuKeluarga';
     protected $fillable = [
         'niKeluarga',
         'jmlAnggota',
+        'alamat',
+        'kepalaKeluarga',
     ];
 
     public function penduduk() : HasMany
     {
-        return $this->hasMany(PendudukModel::class, 'niKeluarga', 'niKeluarga');
+        return $this->hasMany(PendudukModel::class, 'id_kartuKeluarga', 'id_kartuKeluarga');
     }
 }
