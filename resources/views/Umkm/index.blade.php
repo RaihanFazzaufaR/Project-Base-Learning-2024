@@ -31,15 +31,22 @@
                         </label>
                     </li>
                 </ul>
+                {{-- database --}}
                 <ul class="grid w-full">
+                    <li>
+                        <a href="{{ route('umkm') }}" class="inline-flex pl-3 items-center justify-between w-full p-1.5 text-[#2d5523] bg-white border border-gray-200 cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-[#2d5523] peer-checked:text-white peer-checked:bg-yellow-500 hover:text-white hover:bg-yellow-500 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                            <div class="block">
+                                <div class="w-full text-lg font-semibold">Semua Kategori</div>
+                            </div> 
+                        </a>
+                    </li>
                     @foreach($categories as $category)
                     <li>
-                    <a href="{{ route('umkm.category', $category) }}" class="inline-flex pl-3 items-center justify-between w-full p-1.5 text-[#2d5523] bg-white border border-gray-200 cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-[#2d5523] peer-checked:text-white peer-checked:bg-yellow-500 hover:text-white hover:bg-yellow-500 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
-                        
+                        <a href="{{ route('umkm.category', $category->kategori_id) }}" class="inline-flex pl-3 items-center justify-between w-full p-1.5 text-[#2d5523] bg-white border border-gray-200 cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-[#2d5523] peer-checked:text-white peer-checked:bg-yellow-500 hover:text-white hover:bg-yellow-500 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                             <div class="block">
-                                <div class="w-full text-lg font-semibold">{{ $category }}</div>
+                                <div class="w-full text-lg font-semibold">{{ $category->nama_kategori }}</div>
                             </div> 
-                    </a>
+                        </a>
                     </li>
                     @endforeach
                 </ul>
@@ -253,12 +260,10 @@
                                                 <label for="tipe" class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Kategori</label>
                                             </div>
                                             <div class="basis-3/4 h-full flex items-center">
-                                                <select id="tipe" name="tipe" class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                    <option value="Makanan">Makanan</option>
-                                                    <option value="Minuman">Minuman</option>
-                                                    <option value="Peralatan Rumah Tangga">Peralatan Rumah Tangga</option>
-                                                    <option value="Kebutuhan Pokok">Kebutuhan Pokok</option>
-                                                    <option value="Jasa">Jasa</option>
+                                                <select id="kategori" name="kategori" class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                    @forEach ($categories as $category)
+                                                    <option value="{{$category->kategori_id}}">{{$category->nama_kategori}}</option>
+                                                    @endforeach
                                                 </select>
                                             </div>
                                         </div>
@@ -306,7 +311,8 @@
                 </div>
             </div>
             <div class="grid gap-9 mt-10 mb-[15vh]">
-            @foreach($umkms as $umkm)
+                
+                @foreach($umkms as $umkm)
                 <a href="{{ route('umkm.detail', ['umkm_id' => $umkm->umkm_id]) }}" class="" >
                     <div class="w-full h-64 bg-white border-2 shadow-2xl border-[#2d5523] rounded-xl overflow-hidden flex hover:border-4 hover:border-yellow-500 justify-center items-center  group-hover:opacity-100 transition ease-in-out duration-500 hover:scale-105 group">
                         <div class="basis-1/3 h-full">
@@ -315,7 +321,7 @@
                         <div class="basis-2/3 h-full w-full pt-4 pl-8 ">
                             <div class="basis-2/3">
                                 <div class="text-3xl font-bold text-[#2d5523]">
-                                    {{ $umkm->nama }}
+                                    {{ $umkm -> nama }}
                                 </div>
                                 <div class="pt-4">
                                     <table class="text-[#2d5523]">
