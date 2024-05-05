@@ -70,14 +70,14 @@ class LoginController extends Controller
         $user = UserAccountModel::get(['username','email'])->where('username', $request->username)->where('email', $request->email);
 
         if($user->count() == 0){
-            return back()->withErrors(['errors' => 'Username or email not found!']);
+            return back()->withErrors(['errors' => 'Username atau email tidak ditemukan!']);
         }
 
         $status = Password::sendResetLink($request->only('email'));
 
         return $status === Password::RESET_LINK_SENT
             ? back()->with('status', 'Link reset telah terkirim ke email!')
-            : back()->withErrors(['errors' => 'Invalid Email!']);
+            : back()->withErrors(['errors' => [__($status)]]);
     }
 
     public function changePassword()

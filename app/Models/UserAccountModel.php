@@ -10,11 +10,15 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Notifications\CustomResetPasswordNotification;
 
 class UserAccountModel extends User
 {
     use HasFactory, Notifiable, HasApiTokens, CanResetPassword;
-
+    public function sendPasswordResetNotification($token)
+    {
+        $this->notify(new CustomResetPasswordNotification($token));
+    }
     protected $table = 'tb_useraccount';
     protected $primaryKey = 'user_id';
     protected $fillable = [
