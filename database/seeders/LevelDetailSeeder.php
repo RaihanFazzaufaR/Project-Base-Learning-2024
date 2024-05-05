@@ -20,7 +20,10 @@ class LevelDetailSeeder extends Seeder
             ['detail_id'=>4, 'user_id'=>'2', 'level_id'=>'2'],
             ['detail_id'=>5, 'user_id'=>'3', 'level_id'=>'1'],
             ['detail_id'=>6, 'user_id'=>'3', 'level_id'=>'2'],
-            ['detail_id'=>7, 'user_id'=>'4', 'level_id'=>'2']
+            ['detail_id'=>7, 'user_id'=>'4', 'level_id'=>'1'],
+            ['detail_id'=>8, 'user_id'=>'4', 'level_id'=>'2'],
+            ['detail_id'=>9, 'user_id'=>'5', 'level_id'=>'1'],
+            ['detail_id'=>10, 'user_id'=>'5', 'level_id'=>'2']
         ];
         DB::table('tb_leveldetail')->insert($data);
     }
