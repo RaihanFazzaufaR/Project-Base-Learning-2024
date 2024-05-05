@@ -12,8 +12,8 @@ return new class extends Migration {
     {
         Schema::create('tb_umkm_kategori', function (Blueprint $table) {
             $table->id('umkm_kategori_id');
-            $table->bigInteger('umkm_id');
-            $table->bigInteger('kategori_id');
+            $table->unsignedBigInteger('umkm_id');
+            $table->unsignedBigInteger('kategori_id');
 
             $table->timestamps();
         });

@@ -13,12 +13,11 @@ return new class extends Migration {
     public function up()
     {
         Schema::create('tb_umkm', function (Blueprint $table) {
-            $table->bigInteger('umkm_id', true);
+            $table->id('umkm_id');
             $table->string('nama', 50);
             $table->string('no_wa', 50);
             $table->unsignedBigInteger('id_pemilik');
             $table->string('lokasi', 100);
-            $table->unsignedBigInteger('umkm_kategori_id');
             $table->time('buka_waktu');
             $table->time('tutup_waktu');
             $table->text('deskripsi')->nullable();

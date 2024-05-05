@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('tb_umkm_kategori', function (Blueprint $table) {
             $table->foreign(['umkm_id'], 'tb_umkm_kategori_ibfk_1')->references('umkm_id')->on('tb_umkm');
-            // $table->foreign(['kategori_id'], 'tb_umkm_kategori_ibfk_2')->references('kategori_id')->on('tb_kategori');
+            $table->foreign(['kategori_id'], 'tb_umkm_kategori_ibfk_2')->references('kategori_id')->on('tb_kategori');
         });
     }
 
