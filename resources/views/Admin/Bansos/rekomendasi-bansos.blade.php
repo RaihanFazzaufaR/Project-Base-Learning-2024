@@ -283,50 +283,52 @@
                         <td class="px-6 py-4">
                             05
                         </td>
-                        <td class="px-6 py-4 flex gap-4 justify-center">
-                            <div x-data="{ 'detailModal': false }" @keydown.escape="detailModal = false">
-                                <button @click="detailModal = true" class="flex justify-center items-center gap-2 w-fit text-white bg-[#446DFF] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#273E91] hover:scale-105 transition-all">
-                                    <i class="fa-solid fa-circle-info"></i>
-                                    <div>Detail</div>
-                                </button>
-                                <!-- Detail modal -->
-                                <div x-show="detailModal" tabindex="-1" aria-hidden="true" class="flex overflow-hidden fixed top-0 right-0 left-0 z-999 justify-center items-center w-full md:inset-0 h-full">
-                                    <div class="absolute z-999 bg-black/25 h-[100vh] w-full"></div>
-                                    <div class="relative z-[1000] p-4 w-fit max-w-3xl max-h-[700px]" @click.away="detailModal = false" x-transition:enter="motion-safe:ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
-                                        <!-- Modal content -->
-                                        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                                            <!-- Modal header -->
-                                            <div class="flex h-[75px] items-center justify-between px-4 md:px-5 border-b-2 rounded-t border-[#B8B8B8]">
-                                                <h3 class="text-xl font-bold text-[#34662C] dark:text-white">
-                                                    Detail Data Penduduk
-                                                </h3>
-                                                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" @click="detailModal = false">
-                                                    <i class="fa-solid fa-xmark text-xl"></i>
-                                                    <span class="sr-only">Close modal</span>
-                                                </button>
-                                            </div>
-                                            <!-- Modal body -->
-                                            <div class="w-full h-full text-[#34662C] text-left">
-                                                <div class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto rounded-b-xl">
-
-                                                </div>
-                                                <div class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8]">
-                                                    <button @click="detailModal = false" class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
-                                                        Keluar
+                        <td>
+                            <div class="px-6 py-4 flex items-center h-full gap-4 justify-center">
+                                <div x-data="{ 'detailModal': false }" @keydown.escape="detailModal = false">
+                                    <button @click="detailModal = true" class="flex justify-center items-center gap-2 w-fit text-white bg-[#446DFF] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#273E91] hover:scale-105 transition-all">
+                                        <i class="fa-solid fa-circle-info"></i>
+                                        <div>Detail</div>
+                                    </button>
+                                    <!-- Detail modal -->
+                                    <div x-show="detailModal" tabindex="-1" aria-hidden="true" class="flex overflow-hidden fixed top-0 right-0 left-0 z-999 justify-center items-center w-full md:inset-0 h-full">
+                                        <div class="absolute z-999 bg-black/25 h-[100vh] w-full"></div>
+                                        <div class="relative z-[1000] p-4 w-fit max-w-3xl max-h-[700px]" @click.away="detailModal = false" x-transition:enter="motion-safe:ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
+                                            <!-- Modal content -->
+                                            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                                <!-- Modal header -->
+                                                <div class="flex h-[75px] items-center justify-between px-4 md:px-5 border-b-2 rounded-t border-[#B8B8B8]">
+                                                    <h3 class="text-xl font-bold text-[#34662C] dark:text-white">
+                                                        Detail Data Penduduk
+                                                    </h3>
+                                                    <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" @click="detailModal = false">
+                                                        <i class="fa-solid fa-xmark text-xl"></i>
+                                                        <span class="sr-only">Close modal</span>
                                                     </button>
+                                                </div>
+                                                <!-- Modal body -->
+                                                <div class="w-full h-full text-[#34662C] text-left">
+                                                    <div class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto rounded-b-xl">
+
+                                                    </div>
+                                                    <div class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8]">
+                                                        <button @click="detailModal = false" class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
+                                                            Keluar
+                                                        </button>
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <button class="bg-[#34662C] p-2 shadow-lg rounded-xl text-white text-2xl w-10 h-10 flex items-center justify-center hover:bg-[#52A245] hover:scale-105 transition ease-in-out duration-500">
-                                <i class="fa-solid fa-plus"></i>
-                            </button>
-                            <button class="bg-[#FF5E5E] p-2 shadow-lg rounded-xl text-white text-2xl w-10 h-10 flex items-center justify-center hover:bg-[#913535] hover:scale-105 transition ease-in-out duration-500">
-                                <i class="fa-solid fa-xmark"></i>
-                            </button>
+                                <button class="bg-[#34662C] p-2 shadow-lg rounded-xl text-white text-2xl w-10 h-10 flex items-center justify-center hover:bg-[#52A245] hover:scale-105 transition ease-in-out duration-500">
+                                    <i class="fa-solid fa-plus"></i>
+                                </button>
+                                <button class="bg-[#FF5E5E] p-2 shadow-lg rounded-xl text-white text-2xl w-10 h-10 flex items-center justify-center hover:bg-[#913535] hover:scale-105 transition ease-in-out duration-500">
+                                    <i class="fa-solid fa-xmark"></i>
+                                </button>
+                            </div>
                         </td>
                         </tr>
                         @endfor
