@@ -17,8 +17,6 @@ class UmkmController extends Controller
         $categories = KategoriModel::all();
         $umkms = UmkmModel::where('status', 'diterima')->paginate(4);
         $menu = 'UMKM';
-
-
         return view('Umkm.index', [
             'umkms' => $umkms,
             'categories' => $categories,
@@ -29,7 +27,8 @@ class UmkmController extends Controller
     public function umkmku($id_penduduk)
     {
         $menu = 'UMKM';
-        $umkms = UmkmModel::where('id_pemilik', $id_penduduk)->get();
+        $umkms = UmkmModel::where('id_pemilik', $id_penduduk)->paginate(7);
+        ;
         // return $umkms;
         return view('umkm.umkmku', compact('menu', 'umkms'));
     }
@@ -77,11 +76,11 @@ class UmkmController extends Controller
 
     public function storeUmkm(Request $request)
     {
-        $categories = UmkmModel::distinct()->pluck('tipe');
-        $umkms = UmkmModel::where('status', 'selesai')->paginate(3);
+
+        $umkms = UmkmModel::where('status', 'diterima')->paginate(4);
         $validator = Validator::make($request->all(), [
             'nama' => 'required|string|max:50',
-            'nama_pemilik' => 'required|string|max:50',
+            'id_penduduk' => 'required|integer',
             'no_wa' => 'required|string|max:50',
             'lokasi' => 'required|string|max:100',
             'buka_waktu' => 'required|date_format:H:i',
@@ -92,21 +91,18 @@ class UmkmController extends Controller
             'kategori' => 'required|array',
         ]);
         if ($validator->fails()) {
+            return [$request->all()];
+        }
+        if ($validator->fails()) {
             return back()->with('errors', $validator->messages()->all()[0])->withInput();
         }
 
-        $id_penduduk = PendudukModel::where('nama', $request->nama_pemilik)->value('id_penduduk');
+        $hashedPhoto = $request->file('foto')->store('assets/images/UMKM');
 
-        if (!$id_penduduk) {
-            return back()->with('errors', 'Nama pemilik tidak ditemukan')->withInput();
-        }
-
-        $request->file('foto')->store('assets/images/UMKM');
-        $hashedPhoto = $request->file('foto')->hashName();
         $umkm = new UmkmModel([
             'nama' => $request->nama,
             'no_wa' => $request->no_wa,
-            'id_pemilik' => $id_penduduk,
+            'id_pemilik' => $request->id_penduduk,
             'lokasi' => $request->lokasi,
             'buka_waktu' => $request->buka_waktu,
             'tutup_waktu' => $request->tutup_waktu,
@@ -126,8 +122,6 @@ class UmkmController extends Controller
             $umkmKategori->save();
         }
         return redirect()->route('umkm')->with([
-            'umkms' => $umkms,
-            'categories' => $categories,
             'success' => 'Data UMKM berhasil ditambahkan!'
         ]);
     }

@@ -49,7 +49,8 @@
                                         <div class="basis-1/4 h-full flex items-center">
                                             <label for="kelas"
                                                 class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Nama
-                                                Pemilik</label>
+                                                Pemilik
+                                            </label>
                                         </div>
                                         <div class="basis-3/4 h-full flex items-center">
                                             <input id="kelas" list="listKelas" name="kelas"
@@ -155,8 +156,8 @@
                                                         <option value="2">Minuman</option>
                                                         <option value="3">Peralatan Rumah Tangga</option>
                                                         <option value="4">Kebutuhan Pokok</option>
-                                                        <option value="4">Jasa</option>
-                                                        <option value="4">Jasa2</option>
+                                                        <option value="5">Jasa</option>
+                                                        <option value="6">Lainnya</option>
                                                     </select>
                                                     <div x-data="dropdown()" x-init="loadOptions()" class="flex flex-col items-center">
                                                         <input name="values" type="hidden" :value="selectedValues()" />
@@ -307,19 +308,20 @@
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach ($umkms as $umkm)
                         <tr
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td scope="row"
                                 class="px-6 py-4 font-medium text-base text-center text-[#2d5523]  dark:text-white">
-                                Warung Madura
+                                {{$umkm->nama}}
                             </td>
                             <td scope="row"
                                 class="px-6 py-4 font-medium text-base text-center text-[#2d5523]  dark:text-white">
-                                00.00
+                                {{$umkm->buka_waktu}}
                             </td>
                             <td scope="row"
                                 class="px-6 py-4 font-medium text-base text-center text-[#2d5523]  dark:text-white">
-                                23.59
+                                {{$umkm->tutup_waktu}}
                             </td>
                             <td>
                                 <div class="flex justify-center ">
@@ -351,7 +353,7 @@
                                             <div class="relative p-10 w-full  max-h-full">
                                                 <!-- Modal content -->
                                                 <div class="relative bg-white w-115  dark:bg-gray-700">
-                                                    <img src="{{ asset('assets/images/toko-kelontong.jpg') }}"
+                                                    <img src="{{ asset('assets/'.$umkm->foto) }}"
                                                         alt="" class="w-full">
                                                 </div>
                                             </div>
@@ -398,12 +400,11 @@
                                                             <div class="gap-2 flex w-full">
                                                                 <div class="basis-1/4 h-full flex items-center">
                                                                     <label for="kelas"
-                                                                        class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Nama
-                                                                        Pemilik</label>
+                                                                        class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Nama Pemilik</label>
                                                                 </div>
                                                                 <div class="basis-3/4 h-full flex items-center">
                                                                     <input id="kelas" list="listKelas"
-                                                                        name="kelas" disabled value="Sumiyati"
+                                                                        name="kelas" disabled value="{{ Auth::user()->penduduk->nama }}"
                                                                         class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                                                 </div>
                                                                 <datalist id="listKelas">
@@ -414,12 +415,11 @@
                                                             <div class="gap-2 flex w-full">
                                                                 <div class="basis-1/4 h-full flex items-center">
                                                                     <label for="kelas"
-                                                                        class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Nama
-                                                                        UMKM</label>
+                                                                        class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Nama UMKM</label>
                                                                 </div>
                                                                 <div class="basis-3/4 h-full flex items-center">
                                                                     <input id="kelas" list="listKelas"
-                                                                        name="kelas" disabled value="Warung Madura"
+                                                                        name="kelas" disabled value="{{ $umkm->nama}}"
                                                                         class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                                                 </div>
                                                                 <datalist id="listKelas">
@@ -434,7 +434,7 @@
                                                                 </div>
                                                                 <div class="basis-3/4 h-full flex items-center">
                                                                     <input id="kelas" list="listKelas"
-                                                                        name="kelas" disabled value="0837283794782"
+                                                                        name="kelas" disabled value="{{ $umkm->no_wa}}"
                                                                         class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                                                 </div>
                                                                 <datalist id="listKelas">
@@ -458,7 +458,7 @@
                                                                         <div class="w-fit mx-auto">
                                                                             <div
                                                                                 class="bg-gray-50 border-2 border-[#2d5523] leading-none text-lg font-medium text-[#2d5523]  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit  py-[14px] px-9 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                                                                00.00
+                                                                                {{ $umkm->buka_waktu}}
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -470,7 +470,7 @@
                                                                         <div class="w-fit mx-auto">
                                                                             <div
                                                                                 class="bg-gray-50 border-2 border-[#2d5523] leading-none text-lg font-medium text-[#2d5523]  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit  py-[14px] px-9 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500">
-                                                                                23.59
+                                                                                {{ $umkm->tutup_waktu}}
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -508,7 +508,7 @@
                                                                 <div class="basis-3/4 h-full flex items-center">
                                                                     <input id="kelas" list="listKelas"
                                                                         name="kelas" disabled
-                                                                        value="-7.947523154303634, 112.62031037480725"
+                                                                        value="{{$umkm->lokasi_map}}"
                                                                         class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                                                 </div>
                                                                 <datalist id="listKelas">
@@ -523,7 +523,7 @@
                                                                 </div>
                                                                 <div class="basis-3/4 h-full flex items-center">
                                                                     <textarea id="kelas" cols="19" rows="3" name="kelas" disabled
-                                                                        class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">Jl. Semanggi Timur No.7, Jatimulyo, Kec. Lowokwaru, Kota Malang, Jawa Timur 65141
+                                                                        class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">{{$umkm->lokasi}}
                                                                 </textarea>
                                                                 </div>
                                                                 <datalist id="listKelas">
@@ -539,7 +539,7 @@
                                                                 <div class="basis-3/4 h-full flex items-center">
                                                                     {{-- <textarea name="" id="" cols="30" rows="10"></textarea> --}}
                                                                     <textarea id="kelas" cols="19" rows="3" name="kelas" disabled
-                                                                        class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">Warung Madura yang menyediakan berbagai kebutubhan pokok yang tidak pernah tutup kecuali hari kiamat
+                                                                        class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">{{$umkm->deskripsi}}
                                                                 </textarea>
                                                                 </div>
                                                                 <datalist id="listKelas">
@@ -601,7 +601,7 @@
                                                                 </div>
                                                                 <div class="basis-3/4 h-full flex items-center">
                                                                     <input id="kelas" list="listKelas"
-                                                                        name="kelas" value="Sumiyati" readonly
+                                                                        name="kelas" value="{{ Auth::user()->penduduk->nama }}" readonly
                                                                         class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                                                 </div>
                                                                 <datalist id="listKelas">
@@ -617,7 +617,7 @@
                                                                 </div>
                                                                 <div class="basis-3/4 h-full flex items-center">
                                                                     <input id="kelas" list="listKelas"
-                                                                        name="kelas" value="Warung Madura"
+                                                                        name="kelas" value="{{$umkm->nama}}"
                                                                         class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                                                 </div>
                                                                 <datalist id="listKelas">
@@ -632,7 +632,7 @@
                                                                 </div>
                                                                 <div class="basis-3/4 h-full flex items-center">
                                                                     <input id="kelas" list="listKelas"
-                                                                        name="kelas" value="0837283794782"
+                                                                        name="kelas" value="{{$umkm->no_wa}}"
                                                                         class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                                                 </div>
                                                                 <datalist id="listKelas">
@@ -693,7 +693,7 @@
                                                                                         <!-- Modal content -->
                                                                                         <div
                                                                                             class="relative bg-white w-115  dark:bg-gray-700">
-                                                                                            <img src="{{ asset('assets/images/toko-kelontong.jpg') }}"
+                                                                                            <img src={{ asset('assets/images/'.$umkm->foto) }}
                                                                                                 alt=""
                                                                                                 class="w-full">
                                                                                         </div>
@@ -731,7 +731,7 @@
                                                                         <div class="w-fit mx-auto">
                                                                             <input type="time" id="start-time"
                                                                                 class="bg-gray-50 border-2 border-[#2d5523] leading-none text-lg text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit  py-2.5 px-[17px] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                                                value="00:00" required />
+                                                                                value="{{$umkm->buka_waktu}}" required />
                                                                         </div>
                                                                     </div>
                                                                     <div
@@ -742,7 +742,7 @@
                                                                         <div class="w-fit mx-auto">
                                                                             <input type="time" id="start-time"
                                                                                 class="bg-gray-50 border-2 border-[#2d5523] leading-none text-lg text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit  py-2.5 px-[17px] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                                                value="23:50" required />
+                                                                                value="{{$umkm->tutup_waktu}}" required />
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -779,7 +779,7 @@
                                                                 <div class="basis-3/4 h-full flex items-center">
                                                                     <input id="kelas" list="listKelas"
                                                                         name="kelas"
-                                                                        value="-7.947523154303634, 112.62031037480725"
+                                                                        value="{{$umkm->lokasi_map}}"
                                                                         class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                                                 </div>
                                                                 <datalist id="listKelas">
@@ -794,7 +794,7 @@
                                                                 </div>
                                                                 <div class="basis-3/4 h-full flex items-center">
                                                                     <textarea id="kelas" cols="19" rows="3" name="kelas"
-                                                                        class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">Jl. Semanggi Timur No.7, Jatimulyo, Kec. Lowokwaru, Kota Malang, Jawa Timur 65141
+                                                                        class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">{{$umkm->lokasi}}
                                                                 </textarea>
                                                                 </div>
                                                                 <datalist id="listKelas">
@@ -810,8 +810,8 @@
                                                                 <div class="basis-3/4 h-full flex items-center">
                                                                     {{-- <textarea name="" id="" cols="30" rows="10"></textarea> --}}
                                                                     <textarea id="kelas" cols="19" rows="3" name="kelas"
-                                                                        class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">Warung Madura yang menyediakan berbagai kebutubhan pokok yang tidak pernah tutup kecuali hari kiamat
-                                                                </textarea>
+                                                                        class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">{{$umkm->deskripsi}}
+                                                                    </textarea>
                                                                 </div>
                                                                 <datalist id="listKelas">
 
@@ -915,13 +915,24 @@
                                     </a>
                                 </div>
                             </td>
-                            <td class="px-6 py-4 w-full ">
+                            <td class="px-6 py-4 w-full">
                                 <div class="flex justify-start gap-3 w-full h-full items-center">
-                                    <div class="h-2.5 w-2.5 rounded-full bg-green-500"></div>
-                                    <div class="text-base text-[#2d5523] font-semibold">Diterima</div>
+                                    @if($umkm->status == 'diterima')
+                                        <div class="h-2.5 w-2.5 rounded-full bg-green-500"></div>
+                                    @elseif($umkm->status == 'diproses')
+                                        <div class="h-2.5 w-2.5 rounded-full bg-blue-500"></div>
+                                    @elseif($umkm->status == 'ditolak')
+                                        <div class="h-2.5 w-2.5 rounded-full bg-red-500"></div>
+                                    @elseif($umkm->status == 'dibatalkan')
+                                        <div class="h-2.5 w-2.5 rounded-full bg-yellow-500"></div>
+                                    @endif
+                                    <div class="text-base text-[#2d5523] font-semibold">{{$umkm->status}}</div>
                                 </div>
                             </td>
+                                                       
                         </tr>
+                        @endforeach 
+                        
                         <tr
                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td scope="row"
@@ -2005,13 +2016,12 @@
                                 </div>
                             </td>
                         </tr>
-
                     </tbody>
-                </table>
-            </div>
-
+                </table>          
+            </div>           
         </div>
     </div>
+    <br>{{ $umkms->links() }}
 </div>
 
 <x-footer>

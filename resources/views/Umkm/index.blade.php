@@ -145,7 +145,8 @@
                                                 <label for="nama_pemilik" class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Nama Pemilik</label>
                                             </div>
                                             <div class="basis-3/4 h-full flex items-center">
-                                                <input id="nama_pemilik" name="nama_pemilik" disabled placeholder="Masukkan Nama Pemilik UMKM" class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{ session('nama') }}">
+                                                <input id="nama" name="nama" value="{{ Auth::user()->penduduk->nama }}" readonly class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                <input type="hidden" id="id_penduduk" name="id_penduduk" value="{{ Auth::user()->penduduk->id_penduduk }}">
                                             </div>
                                             
                                         </div>
@@ -238,15 +239,16 @@
                                                 </label>
                                             </div>
                                             <div class="basis-3/4 h-full flex items-center">
-                                                    <div class="text-[#2d5523]  placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full  dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 ">
+                                                    <div class="text-[#2d5523]  placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full  dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 ">    
                                                         <select class="hidden" x-cloak id="select">
                                                             <option value="1">Makanan</option>
                                                             <option value="2">Minuman</option>
                                                             <option value="3">Peralatan Rumah Tangga</option>
                                                             <option value="4">Kebutuhan Pokok</option>
-                                                            <option value="4">Jasa</option>
-                                                            <option value="4">Jasa2</option>
+                                                            <option value="5">Jasa</option>
+                                                            <option value="6">Lainnya</option>
                                                         </select>
+                                                        
                                                         <div x-data="dropdown()" x-init="loadOptions()" class="flex flex-col items-center">
                                                             <input name="values" type="hidden" :value="selectedValues()" />
                                                             <div class="relative z-20 inline-block  w-full">
