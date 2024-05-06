@@ -126,10 +126,10 @@
         <script>
             function initMap() {
                 var map = new google.maps.Map(document.getElementById('map'), {
-                    center: {lat: -7.797068, lng: 110.370529}, // Pusat peta
+                    center: {lat: -7.983908, lng: 112.621391}, // Pusat peta
                     zoom: 10 // Tingkat zoom awal
                 });
-    
+                
                 // Array untuk menyimpan koordinat lokasi
                 var lokasi = [
                     { nama: 'Lokasi A', lat: -7.946932651698461, lng: 112.62408932883562 }
