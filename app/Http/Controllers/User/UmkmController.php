@@ -101,10 +101,8 @@ class UmkmController extends Controller
             return back()->with('errors', 'Nama pemilik tidak ditemukan')->withInput();
         }
 
-        if ($request->foto) {
-            $fotoPath = $request->file('foto')->store('assets/images/UMKM');
-        }
-
+        $request->file('foto')->store('assets/images/UMKM');
+        $hashedPhoto = $request->file('foto')->hashName();
         $umkm = new UmkmModel([
             'nama' => $request->nama,
             'no_wa' => $request->no_wa,
@@ -114,7 +112,7 @@ class UmkmController extends Controller
             'tutup_waktu' => $request->tutup_waktu,
             'deskripsi' => $request->deskripsi,
             'lokasi_map' => $request->lokasi_map,
-            'foto' => isset($fotoPath) ? $fotoPath : null,
+            'foto' => isset($hashedPhoto) ? $hashedPhoto : null,
             'status' => 'diproses',
         ]);
         $umkm->save();
@@ -150,6 +148,12 @@ class UmkmController extends Controller
             $koordinat_array[0] => 'lantitude',
             $koordinat_array[1] => 'longtitude',
         ];
+
+    }
+
+    public function viewDetail()
+    {
+        return view('umkm.detail');
 
     }
 }
