@@ -17,4 +17,13 @@ class UmkmController extends Controller
 
         return view('admin.umkm.index', compact('user', 'page', 'selected'));
     }
+    public function ajuanUmkm()
+    {
+        $page = 'ajuanUmkm';
+        $selected = 'Umkm';
+
+        $user = PendudukModel::paginate(10);
+
+        return view('admin.umkm.ajuan-umkm', compact('user', 'page', 'selected'));
+    }
 }
