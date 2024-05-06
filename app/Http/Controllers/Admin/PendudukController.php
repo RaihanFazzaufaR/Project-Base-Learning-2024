@@ -17,12 +17,24 @@ class PendudukController extends Controller
         $kartuKeluarga = KartuKeluargaModel::all();
         $modalTambah = false;
         $id_penduduk = 0;
-
-        if ($request->all()) {
-            $id_penduduk = $request->id_penduduk;
-        }
-
         $user = PendudukModel::paginate(10);
+
+        if ($request->has('id_penduduk')) {
+            $id_penduduk = $request->id_penduduk;
+        } else if ($request->has('search')) {
+            $user = PendudukModel::where('nik', 'like', '%' . $request->search . '%')
+                ->orWhere('nama', 'like', '%' . $request->search . '%')
+                ->orWhere('tempatLahir', 'like', '%' . $request->search . '%')
+                ->paginate(10)->withQueryString();
+        } else if ($request->all()) {
+            $user = PendudukModel::where('jenisKelamin', 'like', '%' . $request->jenisKelamin . '%')
+                ->orWhere('agama', 'like', '%' . $request->agama . '%')
+                ->orWhere('statusNikah', 'like', '%' . $request->statusPernikahan . '%')
+                ->orWhere('wargaNegara', 'like', '%' . $request->kewarganegaraan . '%')
+                ->orWhere('statusPenduduk', 'like', '%' . $request->statusPenduduk . '%')
+                ->orWhere('jabatan', 'like', '%' . $request->jabatan . '%')
+                ->paginate(10)->withQueryString();
+        }
 
         return view('admin.kependudukan.index', compact('user', 'page', 'selected', 'kartuKeluarga', 'modalTambah', 'id_penduduk'));
     }
@@ -125,45 +137,25 @@ class PendudukController extends Controller
         }
     }
 
-    public function filterPenduduk(Request $request)
-    {
-        $page = 'daftarPenduduk';
-        $selected = 'Kependudukan';
-        $kartuKeluarga = KartuKeluargaModel::all();
-
-        $user = PendudukModel::where('jenisKelamin', 'like', '%' . $request->jenisKelamin . '%')
-            ->orWhere('agama', 'like', '%' . $request->agama . '%')
-            ->orWhere('statusNikah', 'like', '%' . $request->statusPernikahan . '%')
-            ->orWhere('wargaNegara', 'like', '%' . $request->kewarganegaraan . '%')
-            ->orWhere('statusPenduduk', 'like', '%' . $request->statusPenduduk . '%')
-            ->orWhere('jabatan', 'like', '%' . $request->jabatan . '%')
-            ->paginate(10);
-
-        return view('admin.kependudukan.index', compact('user', 'page', 'selected', 'kartuKeluarga'));
-    }
-
-    public function searchPenduduk(Request $request)
-    {
-        $page = 'daftarPenduduk';
-        $selected = 'Kependudukan';
-        $kartuKeluarga = KartuKeluargaModel::all();
-
-        $user = PendudukModel::where('nik', 'like', '%' . $request->search . '%')
-            ->orWhere('nama', 'like', '%' . $request->search . '%')
-            ->orWhere('tempatLahir', 'like', '%' . $request->search . '%')
-            ->paginate(10);
-
-        return view('admin.kependudukan.index', compact('user', 'page', 'selected', 'kartuKeluarga'));
-    }
-
-    public function daftarNkkViewAdmin()
+    public function daftarNkkViewAdmin(Request $request)
     {
         $page = 'daftarNkk';
         $selected = 'Kependudukan';
-
+        $id_kk = 0;
         $user = KartuKeluargaModel::paginate(10);
+        if ($request->has('id_kk')) {
+            $id_kk = $request->id_kk;
+        } else if ($request->has('search')) {
+            $user = KartuKeluargaModel::where('niKeluarga', 'like', '%' . $request->search . '%')
+                ->orWhere('alamat', 'like', '%' . $request->search . '%')
+                ->paginate(10)->withQueryString();
+        } else if ($request->all()) {
+            $user = KartuKeluargaModel::where('rt', 'like', '%' . $request->rt . '%')
+                ->orWhere('jmlAnggota', 'like', '%' . $request->jumlahAnggota . '%')
+                ->paginate(10)->withQueryString();
+        }
 
-        return view('admin.kependudukan.daftar-nkk', compact('user', 'page', 'selected'));
+        return view('admin.kependudukan.daftar-nkk', compact('user', 'page', 'selected', 'id_kk'));
     }
 
     public function storeKartuKeluarga(Request $request)
@@ -226,44 +218,5 @@ class PendudukController extends Controller
         } catch (\Illuminate\Database\QueryException $e) {
             return redirect('/admin/kependudukan/daftar-nkk')->with('error', 'Data kartu keluarga gagal dihapus karena masih terdapat tabel lain yang terikat dengan data ini');
         }
-    }
-
-    public function filterKartuKeluarga(Request $request)
-    {
-        $page = 'daftarNkk';
-        $selected = 'Kependudukan';
-
-
-        $user = KartuKeluargaModel::where('rt', 'like', '%' . $request->rt . '%')
-            ->orWhere('jmlAnggota', 'like', '%' . $request->jumlahAnggota . '%')
-            ->paginate(10);
-
-        // dd($request->rt);
-
-        return view('admin.kependudukan.daftar-nkk', compact('user', 'page', 'selected'));
-    }
-    public function searchKartuKeluarga(Request $request)
-    {
-        $page = 'daftarNkk';
-        $selected = 'Kependudukan';
-
-        $user = KartuKeluargaModel::where('niKeluarga', 'like', '%' . $request->search . '%')
-            ->orWhere('alamat', 'like', '%' . $request->search . '%')
-            ->paginate(10);
-
-        return view('admin.kependudukan.daftar-nkk', compact('user', 'page', 'selected'));
-    }
-
-    public function openModalPenduduk(Request $request)
-    {
-        $page = 'daftarPenduduk';
-        $selected = 'Kependudukan';
-        $kartuKeluarga = KartuKeluargaModel::all();
-        $modalTambah = true;
-        $id_penduduk = $request->id_penduduk;
-
-        $user = PendudukModel::paginate(10);
-
-        return view('admin.kependudukan.index', compact('user', 'page', 'selected', 'kartuKeluarga', 'modalTambah', 'id_penduduk'));
     }
 }
