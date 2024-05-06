@@ -115,7 +115,7 @@ Route::group(['middleware' => ['auth']], function () {
         Route::group(['middleware' => ['auth']], function () {
             Route::group(['prefix' => 'umkm'], function () {
                 Route::get('/', [UmkmController::class, 'index'])->name('umkm');
-                Route::get('/umkmku', [UmkmController::class, 'umkmku'])->name('umkmku');
+                Route::get('/umkmku/{id_penduduk}', [UmkmController::class, 'umkmku'])->name('umkmku');
                 Route::get('/category/{category}', [UmkmController::class, 'getDataByCategory'])->name('umkm.category');
                 Route::get('/search', [UmkmController::class, 'search'])->name('umkm.search');
                 Route::post('/store', [UmkmController::class, 'storeUmkm'])->name('umkm.store');

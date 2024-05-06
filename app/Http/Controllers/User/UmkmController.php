@@ -26,14 +26,14 @@ class UmkmController extends Controller
         ]);
     }
 
-    public function umkmku()
+    public function umkmku($id_penduduk)
     {
         $menu = 'UMKM';
-        $id_pemilik = session('id_penduduk');
-        $umkms = UmkmModel::where('id_pemilik', $id_pemilik);
-        return view('umkm.umkmku', compact('menu'), ['umkms'=>$umkms]);
-
+        $umkms = UmkmModel::where('id_pemilik', $id_penduduk)->get();
+        // return $umkms;
+        return view('umkm.umkmku', compact('menu', 'umkms'));
     }
+
 
     public function getDataByCategory($kategori_id)
     {
