@@ -153,7 +153,8 @@ class UmkmController extends Controller
 
     public function viewDetail()
     {
-        return view('umkm.detail');
+        $menu = 'UMKM';
+        return view('umkm.detail', compact('menu'));
 
     }
 }
