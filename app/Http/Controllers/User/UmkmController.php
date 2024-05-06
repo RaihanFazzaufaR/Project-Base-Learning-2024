@@ -89,10 +89,8 @@ class UmkmController extends Controller
             'deskripsi' => 'nullable|string',
             'lokasi_map' => 'nullable|string',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,|max:2048',
+            'kategori' => 'required|array',
         ]);
-        if ($validator->fails()) {
-            return $validator->messages()->all()[0];
-        }
         if ($validator->fails()) {
             return back()->with('errors', $validator->messages()->all()[0])->withInput();
         }
@@ -104,15 +102,14 @@ class UmkmController extends Controller
         }
 
         if ($request->foto) {
-            $fotoPath = $request->file('foto')->move('assets/images/UMKM');
+            $fotoPath = $request->file('foto')->store('assets/images/UMKM');
         }
 
         $umkm = new UmkmModel([
             'nama' => $request->nama,
             'no_wa' => $request->no_wa,
-            'pemilik_id' => $id_penduduk,
+            'id_pemilik' => $id_penduduk,
             'lokasi' => $request->lokasi,
-            'tipe' => $request->tipe,
             'buka_waktu' => $request->buka_waktu,
             'tutup_waktu' => $request->tutup_waktu,
             'deskripsi' => $request->deskripsi,
@@ -121,7 +118,15 @@ class UmkmController extends Controller
             'status' => 'diproses',
         ]);
         $umkm->save();
+        $umkm_id = $umkm->id;
+        foreach ($request->kategori as $kategori_id) {
 
+            $umkmKategori = new UmkmKategoriModel([
+                'umkm_id' => $umkm_id,
+                'kategori_id' => $kategori_id,
+            ]);
+            $umkmKategori->save();
+        }
         return redirect()->route('umkm')->with([
             'umkms' => $umkms,
             'categories' => $categories,
@@ -133,8 +138,18 @@ class UmkmController extends Controller
     {
         $umkm = UmkmModel::find($umkm_id);
         if (!$umkm) {
-
             abort(404, 'Data UMKM tidak ditemukan');
         }
+        $koordinat_array = explode(",", $umkm->lokasi_map);
+
+        $koordinat_array[0];
+        $koordinat_array[1];
+
+        $data = [
+            $umkm => 'umkm',
+            $koordinat_array[0] => 'lantitude',
+            $koordinat_array[1] => 'longtitude',
+        ];
+
     }
 }
