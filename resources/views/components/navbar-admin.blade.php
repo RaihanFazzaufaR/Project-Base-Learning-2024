@@ -249,7 +249,12 @@
                  <a class="flex items-center gap-4" href="#" @click.prevent="dropdownOpen = ! dropdownOpen">
                      <span class="hidden text-right lg:block">
                          <span class="block text-sm font-medium text-black dark:text-white">{{ auth()->user()->penduduk->nama }}</span>
-                         <span class="block text-xs font-medium">{{ auth()->user()->penduduk->jabatan }} @if ((auth()->user()->penduduk->jabatan) === 'Ketua RT') {{ auth()->user()->penduduk->noRt }} @endif</span>
+                         <span class="block text-xs font-medium">
+                             {{ auth()->user()->penduduk->jabatan }}
+                             @if (auth()->user()->penduduk->jabatan === 'Ketua RT')
+                             {{ auth()->user()->penduduk->kartuKeluarga->rt }}
+                             @endif
+                         </span>
                      </span>
 
                      <span class="h-12 w-12 rounded-full">

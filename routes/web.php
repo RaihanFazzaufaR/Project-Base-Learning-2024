@@ -72,6 +72,8 @@ Route::group(['middleware' => ['auth']], function () {
             });
             Route::prefix('persuratan')->group(function () {
                 Route::get('/', [AdminPersuratanController::class, 'index'])->name('persuratan-admin');
+                Route::get('/ajuan-persuratan', [AdminPersuratanController::class, 'ajuanPersuratan'])->name('ajuan-persuratan-admin');
+                Route::get('/template-surat', [AdminPersuratanController::class, 'templateSurat'])->name('template-surat-admin');
             });
             Route::prefix('akun-admin')->group(function () {
                 Route::get('/', [AdminAkunAdminController::class, 'index'])->name('akun-admin');
