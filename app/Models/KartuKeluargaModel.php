@@ -24,4 +24,9 @@ class KartuKeluargaModel extends Model
     {
         return $this->hasMany(PendudukModel::class, 'id_kartuKeluarga', 'id_kartuKeluarga');
     }
+
+    public function bansos() : HasMany
+    {
+        return $this->hasMany(BansosModel::class, 'pengambil_id', 'id_kartuKeluarga');
+    }
 }

@@ -30,6 +30,9 @@
                         <th scope="col" class="px-6 py-3">
                             Judul Aduan
                         </th>
+                        <th scope="col" class="px-6 py-3">
+                            Pembuat Aduan
+                        </th>
                         <th scope="col" class="px-6 py-3 w-[30%]">
                             Aksi
                         </th>
@@ -39,6 +42,9 @@
                     @for ($i=0; $i<4; $i++) <tr class="bg-white border-b text-sm font-medium text-[#7F7F7F] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <td class="px-6 py-4 font-semibold text-[15px]">
                             Fasilitas pada daerah RT 3 kurang memadai
+                        </td>
+                        <td class="px-6 py-4 font-semibold text-[15px]">
+                            Maulidin Zakaria
                         </td>
                         <td class="">
                             <div class="px-6 py-4 flex items-center h-full gap-4 justify-center">
@@ -89,6 +95,9 @@
                             <td class="px-6 py-4 font-semibold text-[15px]">
                                 Jalanan rusak di sekitar jl. kudus
                             </td>
+                            <td class="px-6 py-4 font-semibold text-[15px]">
+                                Raihan Fazzaufa Rasendriya
+                            </td>
                             <td class="">
                                 <div class="px-6 py-4 flex items-center h-full gap-4 justify-center">
                                     <div x-data="{ 'detailModal': false }" @keydown.escape="detailModal = false">
@@ -137,6 +146,9 @@
                             @for ($i=0; $i<3; $i++) <tr class="bg-white border-b text-sm font-medium text-[#7F7F7F] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                                 <td class="px-6 py-4 font-semibold text-[15px]">
                                     Permintaan Pembangunan TPS daerah RT 4
+                                </td>
+                                <td class="px-6 py-4 font-semibold text-[15px]">
+                                    Sony Febri Hari Widodo
                                 </td>
                                 <td class="">
                                     <div class="px-6 py-4 flex items-center h-full gap-4 justify-center">

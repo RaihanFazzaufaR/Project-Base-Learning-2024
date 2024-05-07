@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('tb_rekomendasipenerima', function (Blueprint $table) {
             $table->bigInteger('rekomendasi_id', true);
-            $table->string('niKeluarga', 20)->index('nikeluarga');
+            $table->unsignedBigInteger('id_kartuKeluarga');
             $table->bigInteger('ranking');
         });
     }
