@@ -322,7 +322,7 @@
                             </div>
                         </td>
                         <td class="">
-                            <div class="px-6 py-4 flex items-center h-full gap-4">
+                            <div class="px-6 py-4 flex items-center h-full justify-center gap-4">
                                 <div x-data="{ 'detailModal': false }" @keydown.escape="detailModal = false">
                                     <button @click="detailModal = true" class="flex justify-center items-center gap-2 w-fit text-white bg-[#446DFF] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#273E91] hover:scale-105 transition-all">
                                         <i class="fa-solid fa-circle-info"></i>
