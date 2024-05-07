@@ -13,6 +13,26 @@
 </div>
 {{ $slot }}
 <script defer src="{{ asset('assets/js/bundle.js') }}"></script>
+<!-- <script>
+    let prevScrollpos = window.pageYOffset;
+
+    window.onscroll = function() {
+        let currentScrollPos = window.pageYOffset;
+
+        // Mengecek apakah pengguna sedang scroll ke bawah
+        if (prevScrollpos > currentScrollPos) {
+            // Scroll ke atas, maka tampilkan navbar
+            document.getElementById("navbar").classList.remove("-top-[25vh]");
+            document.getElementById("navbar").classList.add("top-0");
+        } else {
+            // Scroll ke bawah, maka sembunyikan navbar
+            document.getElementById("navbar").classList.remove("top-0");
+            document.getElementById("navbar").classList.add("-top-[25vh]");
+        }
+
+        prevScrollpos = currentScrollPos;
+    }
+</script> -->
 
 </body>
 

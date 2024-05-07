@@ -1,10 +1,11 @@
 <x-header menu="{{ $menu }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </x-header>
 
-<img src="{{ asset('assets/images/cover-home.png') }}" alt="" class="absolute top-10 right-0 h-[127vh]">
+<img src="{{ asset('assets/images/cover-home.png') }}" alt="" class="absolute top-10 right-0 h-[127vh]" data-aos="fade-left" data-aos-duration="1000">
 
-<div class="relative h-[65vh] sm:h-[85vh] md:h-[79vh] lg:h-[120vh] w-[70%] text-[#1C4F0F] pt-[30vh] pl-[8vh]">
+<div class="relative h-[65vh] sm:h-[85vh] md:h-[79vh] lg:h-[120vh] w-[70%] text-[#1C4F0F] pt-[30vh] pl-[8vh]" data-aos="fade-right" data-aos-duration="1000">
     <div class="font-semibold text-2xl mb-3">
         Selamat Datang di
     </div>
@@ -28,7 +29,7 @@
 </div>
 
 <!-- shape -->
-<svg class="absolute top-[100vh] -left-[10vw] animate-flying" xmlns="http://www.w3.org/2000/svg" id="SvgjsSvg16702" x="0" y="0" version="1.1" viewBox="0 0 487.272 487.272" width="350" height="350" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs">
+<svg class="absolute top-[100vh] -left-[10vw] animate-flying" xmlns="http://www.w3.org/2000/svg" id="SvgjsSvg16702" x="0" y="0" version="1.1" viewBox="0 0 487.272 487.272" width="350" height="350" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.dev/svgjs" >
     <path d="M468.018 196.707 289.885 18.573c-26.341-23.625-66.246-23.625-92.587 0L19.165 196.493c-25.554 25.573-25.554 67.014 0 92.587L197.298 467a63.997 63.997 0 0 0 46.293 19.413 64 64 0 0 0 46.293-18.987l178.133-178.133.267-.267c25.421-25.567 25.302-66.9-.266-92.319z" fill="url(&quot;#SvgjsLinearGradient16703&quot;)"></path>
     <defs>
         <linearGradient gradientTransform="rotate(0 0.5 0.5)" id="SvgjsLinearGradient16703">
@@ -41,77 +42,77 @@
 
 <!-- Fitur Page -->
 <div class="w-[80vw] mx-auto mt-[10vh]  flex flex-col gap-14">
-    <div class="text-center font-bold text-5xl text-[#236612]">Layanan Warga</div>
+    <div class="text-center font-bold text-5xl text-[#236612] uppercase" data-aos="zoom-in" data-aos-duration="1500">Layanan Warga</div>
     <div class="grid lg:grid-cols-3 grid-cols-2 gap-10">
-        <div class="relative lg:h-[40vh] rounded-xl shadow-lg sm:h-[45vh] md:h-[30vh] group hover:-translate-y-3 hover:shadow-2xl transition ease-in-out duration-500 overflow-hidden">
+        <div class="relative lg:h-[38vh] rounded-xl shadow-lg sm:h-[45vh] md:h-[30vh] group hover:-translate-y-3 hover:shadow-2xl transition ease-in-out duration-500 overflow-hidden" data-aos="fade-right" data-aos-duration="1000">
             <div class="bg-white text-[#1C4F0F] h-full flex flex-col items-center gap-3 py-5">
                 <div class="bg-[#F9C0E2] flex justify-center items-center rounded-lg p-1">
                     <img src="{{ asset('assets/images/umkm.png') }}" alt="" class="h-[70] w-[70]">
                 </div>
-                <div class="font-bold text-4xl">UMKM</div>
+                <div class="font-bold text-3xl">UMKM</div>
                 <div class="w-[85%] h-[35%] text-center font-normal text-lg">Temukan informasi mengenai daftar Usaha Mikro Kecil dan Menengah (UMKM) di RW 3</div>
             </div>
-            <div class="absolute bg-[#F9C0E2]/80 h-[50%] w-full rounded-t-[60px] top-0 z-10 opacity-100 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500 translate-y-[45vh] group-hover:translate-y-[23vh]">
+            <div class="absolute bg-[#F9C0E2]/80 h-[50%] w-full rounded-t-[60px] top-0 z-10 opacity-100 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500 translate-y-[45vh] group-hover:translate-y-[22vh]">
                 <a href="{{ route('umkm') }}" class="bg-white text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm shadow-md border border-[#1C4F0F] hover:bg-yellow-500 cursor-pointer">Lihat Selengkapnya</a>
             </div>
         </div>
-        <div class="relative lg:h-[40vh] rounded-xl shadow-lg sm:h-[45vh] md:h-[30vh] group hover:-translate-y-3 hover:shadow-2xl transition ease-in-out duration-500 overflow-hidden">
+        <div class="relative lg:h-[38vh] rounded-xl shadow-lg sm:h-[45vh] md:h-[30vh] group hover:-translate-y-3 hover:shadow-2xl transition ease-in-out duration-500 overflow-hidden" data-aos="fade-right" data-aos-duration="1000">
             <div class="bg-white text-[#1C4F0F] h-full flex flex-col items-center gap-3 py-5">
                 <div class="bg-[#C2D0EC] flex justify-center items-center rounded-lg p-1">
                     <img src="{{ asset('assets/images/penduduk.png') }}" alt="" class="h-[70] w-[70]">
                 </div>
-                <div class="font-bold text-4xl">Kependudukan</div>
+                <div class="font-bold text-3xl">Kependudukan</div>
                 <div class="w-[85%] h-[35%] text-center font-normal text-lg">Informasi mengenai daftar warga yang tinggal di RW 3</div>
             </div>
-            <div class="absolute bg-[#C2D0EC]/80 h-[50%] w-full rounded-t-[60px] top-0 z-10 opacity-100 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500 translate-y-[45vh] group-hover:translate-y-[23vh]">
+            <div class="absolute bg-[#C2D0EC]/80 h-[50%] w-full rounded-t-[60px] top-0 z-10 opacity-100 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500 translate-y-[45vh] group-hover:translate-y-[22vh]">
                 <a href="{{ route('penduduk') }}" class="bg-white text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm shadow-md border border-[#1C4F0F] hover:bg-yellow-500 cursor-pointer">Lihat Selengkapnya</a>
             </div>
         </div>
-        <div class="relative lg:h-[40vh] rounded-xl shadow-lg sm:h-[45vh] md:h-[30vh] group hover:-translate-y-3 hover:shadow-2xl transition ease-in-out duration-500 overflow-hidden">
+        <div class="relative lg:h-[38vh] rounded-xl shadow-lg sm:h-[45vh] md:h-[30vh] group hover:-translate-y-3 hover:shadow-2xl transition ease-in-out duration-500 overflow-hidden" data-aos="fade-right" data-aos-duration="1000">
             <div class="bg-white text-[#1C4F0F] h-full flex flex-col items-center gap-3 py-5">
                 <div class="bg-[#D2BDFF] flex justify-center items-center rounded-lg p-1">
                     <img src="{{ asset('assets/images/bansos.png') }}" alt="" class="h-[70] w-[70]">
                 </div>
-                <div class="font-bold text-4xl">Bansos</div>
+                <div class="font-bold text-3xl">Bansos</div>
                 <div class="w-[85%] h-[35%] text-center font-normal text-lg">Informasi mengenai daftar masyarakat yang mendapatkan Bantuan Sosial (Bansos) dari Pemerintah di RW 3</div>
             </div>
-            <div class="absolute bg-[#D2BDFF]/80 h-[50%] w-full rounded-t-[60px] top-0 z-10 opacity-100 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500 translate-y-[45vh] group-hover:translate-y-[23vh]">
+            <div class="absolute bg-[#D2BDFF]/80 h-[50%] w-full rounded-t-[60px] top-0 z-10 opacity-100 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500 translate-y-[45vh] group-hover:translate-y-[22vh]">
                 <a href="{{ route('bansos') }}" class="bg-white text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm shadow-md border border-[#1C4F0F] hover:bg-yellow-500 cursor-pointer">Lihat Selengkapnya</a>
             </div>
         </div>
-        <div class="relative lg:h-[40vh] rounded-xl shadow-lg sm:h-[45vh] md:h-[30vh] group hover:-translate-y-3 hover:shadow-2xl transition ease-in-out duration-500 overflow-hidden">
+        <div class="relative lg:h-[38vh] rounded-xl shadow-lg sm:h-[45vh] md:h-[30vh] group hover:-translate-y-3 hover:shadow-2xl transition ease-in-out duration-500 overflow-hidden" data-aos="fade-left" data-aos-duration="1000">
             <div class="bg-white text-[#1C4F0F] h-full flex flex-col items-center gap-3 py-5">
                 <div class="bg-[#C3FBB8] flex justify-center items-center rounded-lg p-1">
                     <img src="{{ asset('assets/images/aduan.png') }}" alt="" class="h-[70] w-[70]">
                 </div>
-                <div class="font-bold text-4xl">Pengaduan</div>
+                <div class="font-bold text-3xl">Pengaduan</div>
                 <div class="w-[85%] h-[35%] text-center font-normal text-lg">Layanan informasi terkait sarana penyampaian aspirasi dan pengaduan warga RW 3</div>
             </div>
-            <div class="absolute bg-[#C3FBB8]/80 h-[50%] w-full rounded-t-[60px] top-0 z-10 opacity-100 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500 translate-y-[45vh] group-hover:translate-y-[23vh]">
+            <div class="absolute bg-[#C3FBB8]/80 h-[50%] w-full rounded-t-[60px] top-0 z-10 opacity-100 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500 translate-y-[45vh] group-hover:translate-y-[22vh]">
                 <a href="{{ route('aduan') }}" class="bg-white text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm shadow-md border border-[#1C4F0F] hover:bg-yellow-500 cursor-pointer">Lihat Selengkapnya</a>
             </div>
         </div>
-        <div class="relative lg:h-[40vh] rounded-xl shadow-lg sm:h-[45vh] md:h-[30vh] group hover:-translate-y-3 hover:shadow-2xl transition ease-in-out duration-500 overflow-hidden">
+        <div class="relative lg:h-[38vh] rounded-xl shadow-lg sm:h-[45vh] md:h-[30vh] group hover:-translate-y-3 hover:shadow-2xl transition ease-in-out duration-500 overflow-hidden" data-aos="fade-left" data-aos-duration="1000">
             <div class="bg-white text-[#1C4F0F] h-full flex flex-col items-center gap-3 py-5">
                 <div class="bg-[#FCDFAD] flex justify-center items-center rounded-lg p-1">
                     <img src="{{ asset('assets/images/jadwal.png') }}" alt="" class="h-[70] w-[70]">
                 </div>
-                <div class="font-bold text-4xl">Jadwal Kegiatan</div>
+                <div class="font-bold text-3xl">Jadwal Kegiatan</div>
                 <div class="w-[85%] h-[35%] text-center font-normal text-lg">Informasi seputar kegiatan yang akan dilakukan warga RW 3</div>
             </div>
-            <div class="absolute bg-[#FCDFAD]/80 h-[50%] w-full rounded-t-[60px] top-0 z-10 opacity-100 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500 translate-y-[45vh] group-hover:translate-y-[23vh]">
+            <div class="absolute bg-[#FCDFAD]/80 h-[50%] w-full rounded-t-[60px] top-0 z-10 opacity-100 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500 translate-y-[45vh] group-hover:translate-y-[22vh]">
                 <a href="{{ route('jadwal') }}" class="bg-white text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm shadow-md border border-[#1C4F0F] hover:bg-yellow-500 cursor-pointer">Lihat Selengkapnya</a>
             </div>
         </div>
-        <div class="relative lg:h-[40vh] rounded-xl shadow-lg sm:h-[45vh] md:h-[30vh] group hover:-translate-y-3 hover:shadow-2xl transition ease-in-out duration-500 overflow-hidden">
+        <div class="relative lg:h-[38vh] rounded-xl shadow-lg sm:h-[45vh] md:h-[30vh] group hover:-translate-y-3 hover:shadow-2xl transition ease-in-out duration-500 overflow-hidden" data-aos="fade-left" data-aos-duration="1000">
             <div class="bg-white text-[#1C4F0F] h-full flex flex-col items-center gap-3 py-5">
                 <div class="bg-[#F9C9BB] flex justify-center items-center rounded-lg p-1">
                     <img src="{{ asset('assets/images/surat.png') }}" alt="" class="h-[70] w-[70]">
                 </div>
-                <div class="font-bold text-4xl">Surat Pengantar</div>
+                <div class="font-bold text-3xl">Surat Pengantar</div>
                 <div class="w-[85%] h-[35%] text-center font-normal text-lg">Layanan informasi terkait surat pengantar RT/RW</div>
             </div>
-            <div class="absolute bg-[#F9C9BB]/80 h-[50%] w-full rounded-t-[60px] top-0 z-10 opacity-100 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500 translate-y-[45vh] group-hover:translate-y-[23vh]">
+            <div class="absolute bg-[#F9C9BB]/80 h-[50%] w-full rounded-t-[60px] top-0 z-10 opacity-100 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500 translate-y-[45vh] group-hover:translate-y-[22vh]">
                 <a href="{{ route('surat') }}" class="bg-white text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm shadow-md border border-[#1C4F0F] hover:bg-yellow-500 cursor-pointer">Lihat Selengkapnya</a>
             </div>
         </div>
@@ -121,10 +122,10 @@
 
 <!-- UMKM -->
 
-<div class="h-[90vh] w-[84vw] mt-[5vh] py-[5vh] mx-auto">
+<div class="h-[90vh] w-[84vw] mt-[13vh] py-[5vh] mx-auto">
     <div class="h-full w-full flex flex-col justify-between">
-        <div class="font-bold  text-[#1C4F0F] text-5xl text-center w-full py-4 ">UMKM Sekitar</div>
-        <div class="swiper mySwiper w-full flex justify-center !px-12">
+        <div class="font-bold  text-[#1C4F0F] text-5xl text-center w-full py-4 uppercase" data-aos="zoom-in" data-aos-duration="1500">UMKM Sekitar</div>
+        <div class="swiper mySwiper w-full flex justify-center !px-12" data-aos="fade-left" data-aos-duration="1500">
             <div class="swiper-wrapper w-full !py-16">
                 <div class="swiper-slide relative w-[17vw] !h-[40vh] bg-white rounded-2xl shadow-lg flex flex-col overflow-hidden hover:shadow-2xl hover:!scale-105 transition ease-in-out duration-500 group">
                     <div class="h-[70%] w-full overflow-hidden">
@@ -213,15 +214,15 @@
         </div>
 
 
-        <a href="{{ route('umkm') }}" class="mx-auto bg-yellow-500 text-[#1C4F0F] py-4 px-8 rounded-[30px] shadow-xl font-bold text-lg hover:bg-[#E2A229] transition ease-in-out duration-500 hover:scale-105 hover:shadow-2xl">Lihat Selengkapnya</a>
+        <a href="{{ route('umkm') }}" class="mx-auto bg-yellow-500 text-[#1C4F0F] py-4 px-8 rounded-[30px] shadow-xl font-bold text-lg hover:bg-[#E2A229] transition ease-in-out duration-500 hover:scale-105 hover:shadow-2xl" data-aos="zoom-in" data-aos-duration="1500" data-aos-offset="-50">Lihat Selengkapnya</a>
     </div>
 </div>
 
 <!-- Agenda Kegiatan -->
 <div class="relative w-[80vw] mx-auto h-[90vh] flex flex-col mt-[13vh] gap-[45px]">
-    <div class="font-bold text-[#1C4F0F] text-5xl text-center w-full py-4">Agenda Warga</div>
+    <div class="font-bold text-[#1C4F0F] text-5xl text-center w-full py-4 uppercase" data-aos="zoom-in" data-aos-duration="1500">Agenda Warga</div>
     <div class="relative flex h-full w-full pb-[5vh]">
-        <div class="basis-[65%] h-[70vh] bg-cover bg-center shadow-lg rounded-lg bg-no-repeat pl-6 py-10" style="background-image: url('{{ asset('assets/images/bg-home-agenda.png') }}')">
+        <div class="basis-[65%] h-[70vh] bg-cover bg-center shadow-lg rounded-lg bg-no-repeat pl-6 py-10" style="background-image: url('{{ asset('assets/images/bg-home-agenda.png') }}')" data-aos="fade-right" data-aos-duration="1500">
             <div class="max-h-[60vh] w-[80%] flex flex-col overflow-auto gap-7">
                 <div class="relative w-full flex justify-end min-h-30 bg-transparent pt-6">
                     <div class="absolute bg-[#FFD600] h-[75px] w-[115px] top-0 left-0 text-black flex justify-center items-end font-extrabold py-5 font-sans rounded-md">
@@ -261,7 +262,7 @@
                 </div>
             </div>
         </div>
-        <div class="absolute flex w-[12%] h-[8%] bg-[#74CC52] right-14 top-2 shadow-lg shadow-gray-400">
+        <div class="absolute flex w-[12%] h-[8%] bg-[#74CC52] right-14 top-2 shadow-lg shadow-gray-400" data-aos="fade-left" data-aos-duration="1500">
             <div class="basis-[3%] bg-[#FFD600]"></div>
             <div class="basis-[97%] bg-[#74CC52] flex items-center justify-center">
                 <p class="font-bold text-xl text-white">Agenda</p>
@@ -269,7 +270,7 @@
         </div>
 
         <!-- calendar -->
-        <div class="absolute bg-white w-[45%] h-[70%] right-0 top-[75px] rounded-xl shadow-2xl overflow-hidden">
+        <div class="absolute bg-white w-[45%] h-[70%] right-0 top-[75px] rounded-xl shadow-2xl overflow-hidden" data-aos="fade-left" data-aos-duration="1500">
             <div class="basis-1/2 px-8 py-4 dark:bg-gray-800 bg-white flex flex-col justify-between gap-8 h-[380px]">
                 <div class="flex items-center justify-around">
                     <button id="prev" aria-label="calendar backward" onclick="prev()" class="focus:text-gray-400 hover:text-gray-400 text-gray-800 dark:text-gray-100 button-calendar">
@@ -344,8 +345,8 @@
 </div>
 
 <div class="relatif w-[80vw] mx-auto h-[90vh] flex flex-col mt-[20vh] gap-[45px]">
-    <div class="font-bold text-[#1C4F0F] text-5xl text-center w-full py-4">Aduan Warga</div>
-    <div class="relative h-fit w-full bg-white shadow-md rounded-xl overflow-hidden border border-slate-200">
+    <div class="font-bold text-[#1C4F0F] text-5xl text-center w-full py-4 uppercase" data-aos="zoom-in" data-aos-duration="1500">Aduan Warga</div>
+    <div class="relative h-fit w-full bg-white shadow-md rounded-xl overflow-hidden border border-slate-200" data-aos="fade-right" data-aos-duration="1500">
         <table class="w-full text-left rtl:text-right text-black dark:text-gray-400">
             <thead class="text-xl text-center border-b-4 border-[#69CA57]/[0.32]">
                 <tr>
@@ -598,5 +599,9 @@
         }
 
         renderCalendar();
+    </script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init();
     </script>
 </x-footer>
