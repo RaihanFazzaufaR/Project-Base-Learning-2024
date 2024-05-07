@@ -9,6 +9,7 @@ use Illuminate\Http\Request;
 use App\Models\UmkmModel;
 use App\Models\PendudukModel;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 
 class UmkmController extends Controller
 {
@@ -163,15 +164,25 @@ class UmkmController extends Controller
                 $deleted_umkm = UmkmModel::destroy($id_umkm);
 
                 if ($deleted_umkm) {
-                    return redirect('umkmku')->with('success', 'Data berhasil dihapus!');
+                    return redirect(route('umkmku', ['id_penduduk' => Auth::user()->penduduk->id_penduduk]))->with('success', 'Data berhasil dihapus!');
                 } else {
-                    return redirect('umkmku')->with('Gagal menghapus data utama');
+                    return redirect(route('umkmku', ['id_penduduk' => Auth::user()->penduduk->id_penduduk]))->with('Gagal menghapus data utama');
                 }
             } else {
-                return redirect('umkmku')->with('Gagal menghapus data anak');
+                return redirect(route('umkmku', ['id_penduduk' => Auth::user()->penduduk->id_penduduk]))->with('Gagal menghapus data anak');
             }
         } catch (\Exception $e) {
             return response()->json(['message' => 'Terjadi kesalahan: ' . $e->getMessage()], 500);
         }
     }
+    public function cancelPengajuan($id_umkm)
+    {
+        try {
+            $cancel = UmkmModel::where('umkm_id', $id_umkm)->update(['status' => 'dibatalkan']);
+            return redirect(route('umkmku', ['id_penduduk' => Auth::user()->penduduk->id_penduduk]))->with('success', 'Status pengajuan berhasil dibatalkan.');
+        } catch (\Exception $e) {
+            return redirect(route('umkmku', ['id_penduduk' => Auth::user()->penduduk->id_penduduk]))->with('error', 'Gagal membatalkan status pengajuan. Error: ' . $e->getMessage());
+        }
+    }
+
 }

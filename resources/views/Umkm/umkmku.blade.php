@@ -572,6 +572,7 @@
                                         </div>
                                     </div>
                                     {{-- edit --}}
+                                    @if($umkm->status === 'diterima' || $umkm->status === 'dibatalkan' || $umkm->status === 'ditolak')
                                     <div class="flex justify-end ">
                                         <button
                                             class="flex justify-center items-center gap-2 w-fit text-white bg-[#FFDE68] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#B39C49] hover:scale-105 transition-all"
@@ -919,18 +920,34 @@
                                             </div>
                                         </div>
                                     </div>
+                                    @endif
                                     {{-- hapus --}}
+                                    
+                                    @if ($umkm->status==='diproses')
+                                    <form id="cancel-umkm-form-{{ $umkm->umkm_id }}" action="{{ route('umkm.cancel', $umkm->umkm_id) }}" method="POST" style="display: none;">
+                                        @csrf 
+                                    </form>
+                                    <button type="button" 
+                                        class="flex justify-center items-center gap-2 w-fit text-white bg-[#FF5E5E] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#B34242] hover:scale-105 transition-all"
+                                        onclick="event.preventDefault(); if(confirm('Apakah Anda yakin ingin membatalkan?')) document.getElementById('cancel-umkm-form-{{ $umkm->umkm_id }}').submit();">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                        <div>Batalkan</div>
+                                    </button>                          
+                                    @else
                                     <form id="delete-umkm-form-{{ $umkm->umkm_id }}" action="{{ route('umkm.destroy', $umkm->umkm_id) }}" method="POST" style="display: none;">
                                         @csrf
                                         @method('DELETE')
                                     </form>
                                     
-                                    <button type="submit" form="delete-umkm-form-{{ $umkm->umkm_id }}"
+                                    <button type="button" 
                                         class="flex justify-center items-center gap-2 w-fit text-white bg-[#FF5E5E] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#B34242] hover:scale-105 transition-all"
                                         onclick="event.preventDefault(); if(confirm('Apakah Anda yakin ingin menghapus data ini?')) document.getElementById('delete-umkm-form-{{ $umkm->umkm_id }}').submit();">
                                         <i class="fa-solid fa-trash-can"></i>
                                         <div>Hapus</div>
-                                    </button>
+                                    </button>                                    
+                                    @endif
+                                    
+                                    
                                 </div>
                             </td>
                             <td class="px-6 py-4 w-full">
