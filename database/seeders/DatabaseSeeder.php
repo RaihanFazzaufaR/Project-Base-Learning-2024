@@ -20,6 +20,9 @@ class DatabaseSeeder extends Seeder
             LevelDetailSeeder::class,
             BansosSeeder::class,
             JadwalSeeder::class,
+            KategoriSeeder::class,
+            UmkmSeeder::class,
+            UmkmKategoriSeeder::class,
         ]);
     }
 }
