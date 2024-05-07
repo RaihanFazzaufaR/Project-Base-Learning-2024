@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\PendudukModel;
 use Illuminate\Http\Request;
 
 class PengaduanController extends Controller
@@ -12,6 +13,7 @@ class PengaduanController extends Controller
         $page = 'daftarPengaduan';
         $selected = 'Pengaduan';
         $modalTambah = false;
-        return view('admin.pengaduan.index', compact('page', 'selected', 'modalTambah'));
+        $user = PendudukModel::paginate(10);
+        return view('admin.pengaduan.index', compact('page', 'selected', 'modalTambah', 'user'));
     }
 }
