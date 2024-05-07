@@ -1,7 +1,18 @@
-<div class ="navbar navbar-expand-lg navbar-light headeratas">
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown"
-        aria-controls="navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="true"
-        aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="navbar-collapse collapse in show" id="navbarNavDropdown" aria-expanded="true">
+<x-header menu='{{ $menu }}'>
+
+</x-header>
+
+<div class="w-[100%] relative flex justify-center items-center">
+    <img src="{{ asset('assets/images/bansos-cover.jpg') }}" alt="" class="w-full ">
+    <div class="bg-white/[0.73] w-[571px] h-[185px] z-10 absolute flex justify-center rounded-[105px] flex-col text-center shadow-2xl">
+        <p class="text-[#2d5523] font-bold text-[36px]">Bantuan Sosial di RW 3</p>
+        <p class="text-[#2d5523] font-sans text-[32px] text-center">“Salurkan Bantuan Sosial di Lingkungan RW 3”</p>
+    </div>
+</div>
+<!-- <div class="bg-[#Fff] min-h-[100vh] px-[65px] py-[34px] w-[100%]">
+    
+</div> -->
+
+<x-footer>
+    
+</x-footer>
