@@ -19,6 +19,7 @@ class DatabaseSeeder extends Seeder
             UserAccountSeeder::class,
             LevelDetailSeeder::class,
             BansosSeeder::class,
+            JadwalSeeder::class,
         ]);
     }
 }
