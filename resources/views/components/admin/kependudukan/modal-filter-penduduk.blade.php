@@ -21,10 +21,11 @@
                     <div class="col-span-2 sm:col-span-1">
                         <label for="agama" class="block mb-2 text-sm font-bold">Agama</label>
                         <select id="agama" name="agama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                            <option selected="">Pilih Agama</option>
+                            <option selected="" value="">Pilih Agama</option>
                             <option value="islam">Islam</option>
                             <option value="katolik">Katolik</option>
                             <option value="kristen">Kristen</option>
+                            <option value="hindu">Hindu</option>
                             <option value="buddha">Buddha</option>
                             <option value="khonghucu">Khonghucu</option>
                         </select>
@@ -32,7 +33,7 @@
                     <div class="col-span-2 sm:col-span-1">
                         <label for="statusPenduduk" class="block mb-2 text-sm font-bold ">Status Penduduk</label>
                         <select id="statusPenduduk" name="statusPenduduk" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                            <option selected="">Pilih Status Penduduk</option>
+                            <option selected="" value="">Pilih Status Penduduk</option>
                             <option value="penduduk tetap">Penduduk Tetap</option>
                             <option value="penduduk tidak tetap">Penduduk Tidak Tetap</option>
                         </select>
@@ -40,7 +41,7 @@
                     <div class="col-span-2 sm:col-span-1">
                         <label for="statusPernikahan" class="block mb-2 text-sm font-bold ">Status Pernikahan</label>
                         <select id="statusPernikahan" name="statusPernikahan" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                            <option selected="">Pilih Status Pernikahan</option>
+                            <option selected="" value="">Pilih Status Pernikahan</option>
                             <option value="belum">Belum Menikah</option>
                             <option value="sudah">Sudah Menikah</option>
                         </select>
@@ -48,7 +49,7 @@
                     <div class="col-span-2 sm:col-span-1">
                         <label for="kewarganegaraan" class="block mb-2 text-sm font-bold">Kewarganegaraan</label>
                         <select id="kewarganegaraan" name="kewarganegaraan" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                            <option selected="">Pilih Kewarganegaraan</option>
+                            <option selected="" value="">Pilih Kewarganegaraan</option>
                             <option value="WNI">Indonesia</option>
                             <option value="WNA">Luar</option>
                         </select>
@@ -56,7 +57,7 @@
                     <div class="col-span-2 sm:col-span-1">
                         <label for="jabatan" class="block mb-2 text-sm font-bold ">Jabatan</label>
                         <select id="jabatan" name="jabatan" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                            <option selected="">Pilih Jabatan</option>
+                            <option selected="" value="">Pilih Jabatan</option>
                             <option value="Ketua RW">Ketua RW</option>
                             <option value="Ketua RT">Ketua RT</option>
                             <option value="Bendahara">Bendahara</option>
@@ -64,26 +65,13 @@
                             <option value="Tidak Ada">Tidak Ada</option>
                         </select>
                     </div>
-                    <div class="col-span-1 grid grid-cols-2 gap-2">
-                        <div class="col-span-2 sm:col-span-1">
-                            <label for="jenisKelamin" class="block mb-2 text-sm font-bold ">Jenis Kelamin</label>
-                            <select id="jenisKelamin" name="jenisKelamin" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                                <option selected="">Pilih Jenis Kelamin</option>
-                                <option value="L">Laki-Laki</option>
-                                <option value="P">Perempuan</option>
-                            </select>
-                        </div>
-                        <div class="col-span-2 sm:col-span-1">
-                            <label for="rt" class="block mb-2 text-sm font-bold ">RT</label>
-                            <select id="rt" name="rt" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                                <option selected="">Pilih RT</option>
-                                <option value="01">01</option>
-                                <option value="02">02</option>
-                                <option value="03">03</option>
-                                <option value="04">04</option>
-                                <option value="05">05</option>
-                            </select>
-                        </div>
+                    <div class="col-span-2 sm:col-span-1">
+                        <label for="jenisKelamin" class="block mb-2 text-sm font-bold ">Jenis Kelamin</label>
+                        <select id="jenisKelamin" name="jenisKelamin" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                            <option selected="" value="">Pilih Jenis Kelamin</option>
+                            <option value="L">Laki-Laki</option>
+                            <option value="P">Perempuan</option>
+                        </select>
                     </div>
                 </div>
                 <div class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8]">

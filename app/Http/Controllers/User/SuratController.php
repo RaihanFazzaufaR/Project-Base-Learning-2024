@@ -9,6 +9,7 @@ class SuratController extends Controller
 {
     public function index()
     {
-        return view('surat.index');
+        $menu = 'Surat';
+        return view('Surat.index', compact('menu'));
     }
 }

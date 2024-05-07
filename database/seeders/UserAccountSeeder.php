@@ -16,8 +16,8 @@ class UserAccountSeeder extends Seeder
     {
         $data = [
             ['user_id'=>1, 'email'=>'fazzaufa94raihan@gmail.com','username'=>'RaihanFR', 'password'=>Hash::make('123456'), 'id_penduduk'=>1],
-            ['user_id'=>2, 'email'=>'user1test@gmail.com','username'=>'ZakariaM', 'password'=>Hash::make('123456'), 'id_penduduk'=>3],
-            ['user_id'=>3, 'email'=>'user2test@gmail.com','username'=>'LuckyK', 'password'=>Hash::make('123456'), 'id_penduduk'=>6],
+            ['user_id'=>2, 'email'=>'maulidinzakaria123@gmail.com','username'=>'ZakariaM', 'password'=>Hash::make('123456'), 'id_penduduk'=>3],
+            ['user_id'=>3, 'email'=>'2241720168@student.polinema.ac.id','username'=>'LuckyK', 'password'=>Hash::make('123456'), 'id_penduduk'=>6],
             ['user_id'=>4, 'email'=>'user3test@gmail.com','username'=>'SonyF', 'password'=>Hash::make('123456'), 'id_penduduk'=>8],
             ['user_id'=>5, 'email'=>'user4test@gmail.com', 'username' => 'TirtaNR', 'password'=>Hash::make('123456'), 'id_penduduk'=>22]
         ];

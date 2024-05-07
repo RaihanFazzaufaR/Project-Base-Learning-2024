@@ -7,8 +7,9 @@ use Illuminate\Http\Request;
 
 class BansosController extends Controller
 {
-    public function index(){
-        
-        return view('bansos.index');
+    public function index()
+    {
+        $menu = 'Bansos';
+        return view('bansos.index', compact('menu'));
     }
 }

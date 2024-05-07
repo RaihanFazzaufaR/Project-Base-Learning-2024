@@ -15,12 +15,12 @@ return new class extends Migration
     {
         Schema::create('tb_permintaansurat', function (Blueprint $table) {
             $table->bigInteger('permintaan_id', true);
-            $table->string('peminta_id', 17)->index('peminta_id');
+            $table->unsignedBigInteger('peminta_id');
             $table->date('minta_tanggal');
             $table->enum('status', ['diproses', 'selesai', 'ditolak', 'menunggu']);
             $table->bigInteger('tujuan_id');
             $table->text('keperluan');
-            $table->integer('template_id')->index('template_id');
+            $table->unsignedBigInteger('template_id');
         });
     }
 

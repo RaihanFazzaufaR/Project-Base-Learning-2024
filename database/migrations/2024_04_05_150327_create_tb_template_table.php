@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_template', function (Blueprint $table) {
-            $table->integer('template_id', true);
+            $table->id('template_id');
             $table->string('jenisSurat', 20);
             $table->text('template_path');
         });

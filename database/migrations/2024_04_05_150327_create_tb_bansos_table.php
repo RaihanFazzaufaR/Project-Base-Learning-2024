@@ -15,11 +15,11 @@ return new class extends Migration
     {
         Schema::create('tb_bansos', function (Blueprint $table) {
             $table->bigInteger('bansos_id', true);
-            $table->string('penerima_id', 20)->index('penerima_id');
+            $table->unsignedBigInteger('penerima_id');
             $table->date('penerimaan_tanggal');
             $table->date('diterima_tanggal')->nullable();
             $table->string('penyelenggara', 20)->nullable();
-            $table->string('pengambil_id', 17)->nullable()->index('pengambil_id');
+            $table->unsignedBigInteger('pengambil_id')->nullable();
         });
     }
 

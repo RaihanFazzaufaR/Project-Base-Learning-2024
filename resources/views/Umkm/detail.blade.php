@@ -140,7 +140,12 @@
                     center: {lat: -7.983908, lng: 112.621391}, // Pusat peta
                     zoom: 10 // Tingkat zoom awal
                 });
+<<<<<<< HEAD
     
+=======
+                
+                // Array untuk menyimpan koordinat lokasi
+>>>>>>> d226b32c65412a958012d8f79575dcbfdc0e021d
                 var lokasi = [
                     { nama: 'Lokasi', lat: {!! $latitude !!}, lng: {!! $longtitude !!} }
 

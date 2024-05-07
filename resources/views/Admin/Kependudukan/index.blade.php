@@ -61,33 +61,35 @@
                         <td class="px-6 py-4">
                             {{ $usr->kartuKeluarga->rt }}
                         </td>
-                        <td class="px-6 py-4 flex gap-4">
-                            <div x-data="{ 'idPenduduk': {{ $id_penduduk }} }">
-                                <div x-data="{ 'detailModal': idPenduduk === {{ $usr->id_penduduk }} }" @keydown.escape="detailModal = false">
-                                    <button @click="detailModal = true" class="flex justify-center items-center gap-2 w-fit text-white bg-[#446DFF] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#273E91] hover:scale-105 transition-all">
-                                        <i class="fa-solid fa-circle-info"></i>
-                                        <div>Detail</div>
-                                    </button>
-                                    <x-admin.kependudukan.modal-detail-penduduk idPenduduk="{{ $id_penduduk }}" idUsr="{{ $usr->id_penduduk }}" />
+                        <td>
+                            <div class="px-6 py-4 flex items-center h-full gap-4 justify-center">
+                                <div x-data="{ 'idPenduduk': {{ $id_penduduk }} }">
+                                    <div x-data="{ 'detailModal': idPenduduk === {{ $usr->id_penduduk }} }" @keydown.escape="detailModal = false">
+                                        <button @click="detailModal = true" class="flex justify-center items-center gap-2 w-fit text-white bg-[#446DFF] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#273E91] hover:scale-105 transition-all">
+                                            <i class="fa-solid fa-circle-info"></i>
+                                            <div>Detail</div>
+                                        </button>
+                                        <x-admin.kependudukan.modal-detail-penduduk idPenduduk="{{ $id_penduduk }}" idUsr="{{ $usr->id_penduduk }}" />
+                                    </div>
                                 </div>
-                            </div>
-                            <div x-data="{ 'editModal': false }" @keydown.escape="editModal = false">
-                                <button @click="editModal = true" class="flex justify-center items-center gap-2 w-fit text-white bg-[#FFDE68] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#B39C49] hover:scale-105 transition-all">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                    <div>Edit</div>
-                                </button>
-                                <!-- Edit modal -->
-                                <x-admin.kependudukan.modal-edit-penduduk idUsr="{{ $usr->id_penduduk }}" />
-                            </div>
+                                <div x-data="{ 'editModal': false }" @keydown.escape="editModal = false">
+                                    <button @click="editModal = true" class="flex justify-center items-center gap-2 w-fit text-white bg-[#FFDE68] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#B39C49] hover:scale-105 transition-all">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                        <div>Edit</div>
+                                    </button>
+                                    <!-- Edit modal -->
+                                    <x-admin.kependudukan.modal-edit-penduduk idUsr="{{ $usr->id_penduduk }}" />
+                                </div>
 
-                            <form action="{{ route('destroyPenduduk', $usr->id_penduduk) }}" method="POST">
-                                @csrf
-                                {!! method_field('DELETE') !!}
-                                <button type="submit" class="flex justify-center items-center gap-2 w-fit text-white bg-[#FF5E5E] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#B34242] hover:scale-105 transition-all">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                    <div>Hapus</div>
-                                </button>
-                            </form>
+                                <form action="{{ route('destroyPenduduk', $usr->id_penduduk) }}" method="POST">
+                                    @csrf
+                                    {!! method_field('DELETE') !!}
+                                    <button type="submit" class="flex justify-center items-center gap-2 w-fit text-white bg-[#FF5E5E] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#B34242] hover:scale-105 transition-all">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                        <div>Hapus</div>
+                                    </button>
+                                </form>
+                            </div>
                         </td>
                     </tr>
                     @endforeach

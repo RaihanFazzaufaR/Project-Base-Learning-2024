@@ -22,7 +22,7 @@ return new class extends Migration
             $table->time('mulai_waktu');
             $table->time('akhir_waktu');
             $table->text('konten');
-            $table->string('pembuat_id', 17)->index('pembuat_id');
+            $table->unsignedBigInteger('pembuat_id');
             $table->enum('status', ['diproses', 'selesai', 'ditolak']);
         });
     }

@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\PersuratanController as AdminPersuratanController
 use App\Http\Controllers\Admin\PengumumanController as AdminPengumumanController;
 use App\Http\Controllers\Admin\AkunAdminController as AdminAkunAdminController;
 use App\Http\Controllers\Admin\JadwalKegiatanController as AdminKegiatanController;
+use App\Http\Controllers\user\ProfilController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,6 +73,8 @@ Route::group(['middleware' => ['auth']], function () {
             });
             Route::prefix('persuratan')->group(function () {
                 Route::get('/', [AdminPersuratanController::class, 'index'])->name('persuratan-admin');
+                Route::get('/ajuan-persuratan', [AdminPersuratanController::class, 'ajuanPersuratan'])->name('ajuan-persuratan-admin');
+                Route::get('/template-surat', [AdminPersuratanController::class, 'templateSurat'])->name('template-surat-admin');
             });
             Route::prefix('akun-admin')->group(function () {
                 Route::get('/', [AdminAkunAdminController::class, 'index'])->name('akun-admin');
@@ -100,17 +103,17 @@ Route::group(['middleware' => ['auth']], function () {
 
         //Route Aduan
         Route::group(['prefix' => 'aduan'], function () {
-            Route::get('/', [PendudukController::class, 'index'])->name('aduan');
+            Route::get('/', [AduanController::class, 'index'])->name('aduan');
         });
 
         //Route Jadwal
         Route::group(['prefix' => 'jadwal'], function () {
-            Route::get('/', [PendudukController::class, 'index'])->name('jadwal');
+            Route::get('/', [JadwalController::class, 'index'])->name('jadwal');
         });
 
         //Route Surat
         Route::group(['prefix' => 'surat'], function () {
-            Route::get('/', [PendudukController::class, 'index'])->name('surat');
+            Route::get('/', [SuratController::class, 'index'])->name('surat');
         });
         Route::group(['middleware' => ['auth']], function () {
             Route::group(['prefix' => 'umkm'], function () {
@@ -124,4 +127,8 @@ Route::group(['middleware' => ['auth']], function () {
             });
         });
     });
+});
+
+Route::group(['prefix' => 'profil'], function () {
+    Route::get('/', [ProfilController::class, 'index'])->name('profil');
 });

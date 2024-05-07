@@ -9,6 +9,7 @@ class JadwalController extends Controller
 {
     public function index()
     {
-        return view('jadwal.index');
+        $menu = 'Kegiatan';
+        return view('jadwal.index', compact('menu'));
     }
 }

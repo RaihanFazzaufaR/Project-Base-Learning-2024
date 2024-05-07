@@ -74,22 +74,16 @@
         <div class="px-4 py-3">
           <span class="block text-sm font-semibold text-gray-900">{{ Auth::user()->penduduk->nama }}</span>
           <span class="block text-sm font-medium  text-gray-500 truncate dark:text-gray-400">
-            @if (Auth::user()->penduduk->jabatan === 'Tidak Ada')
-            Penduduk
-            @else
-            {{ Auth::user()->penduduk->jabatan }}
-            @endif
-            @if (Auth::user()->penduduk->jabatan === 'Tidak Ada')
-            RT {{ Auth::user()->penduduk->noRt }}
-            @else
-            {{ Auth::user()->penduduk->noRt }}
-            @endif
+            {{ Auth::user()->penduduk->jabatan !== 'Tidak Ada' ? Auth::user()->penduduk->jabatan : 'Penduduk' }}
+            {{ Auth::user()->penduduk->jabatan !== 'Tidak Ada' ? Auth::user()->penduduk->kartuKeluarga->rt : 'RT ' . Auth::user()->penduduk->kartuKeluarga->rt }}
           </span>
 
         </div>
         <ul class="font-semibold" aria-labelledby="user-menu-button">
           <li>
+            @if (Auth::user()->penduduk->id_penduduk)
             <a href="{{ route('umkmku', ['id_penduduk' => Auth::user()->penduduk->id_penduduk]) }}" class="block px-4 py-2 text-sm text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">UMKM-KU</a>
+            @endif
           </li>
           <li>
             <a href="{{ route('home') }}" class="block px-4 py-2 text-sm text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">ADUAN-KU</a>
@@ -134,7 +128,11 @@
                 <a href="{{ route('umkm') }}" class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">UMKM Di RW 3</a>
               </li>
               <li>
+                @if (Auth::check())
                 <a href="{{ route('umkmku', ['id_penduduk' => Auth::user()->penduduk->id_penduduk]) }}) }}" class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">UMKM-KU</a>
+                @else
+                <a href="{{ route('login') }}" class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">UMKM-KU</a>
+                @endif
               </li>
             </ul>
           </div>
@@ -170,7 +168,7 @@
           </a>
         </li>
         <li>
-          <a href="{{ route('umkm') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#1C4F0F] md:p-0 md:relative group {{ ($menu === 'Profil') ? 'md:text-[#1C4F0F]':'md:text-gray-500' }}">
+          <a href="{{ route('profil') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#1C4F0F] md:p-0 md:relative group {{ ($menu === 'Profil') ? 'md:text-[#1C4F0F]':'md:text-gray-500' }}">
             Profil
             <div class="md:absolute md:h-[2.5px] md:w-full md:bg-[#1C4F0F]  group-hover:scale-x-100 md:transition md:ease-in-out md:duration-500 {{ ($menu === 'Profil') ? '':'md:scale-x-0' }}"></div>
           </a>

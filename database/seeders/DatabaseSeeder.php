@@ -18,6 +18,8 @@ class DatabaseSeeder extends Seeder
             PendudukSeeder::class,
             UserAccountSeeder::class,
             LevelDetailSeeder::class,
+            BansosSeeder::class,
+            JadwalSeeder::class,
         ]);
     }
 }

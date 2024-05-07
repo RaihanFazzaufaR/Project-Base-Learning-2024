@@ -8,13 +8,31 @@ use Illuminate\Http\Request;
 
 class PersuratanController extends Controller
 {
-    public function daftarPendudukViewAdmin()
+    public function index()
     {
-        $page = 'daftarPenduduk';
-        $selected = 'Kependudukan';
+        $page = 'daftarPersuratan';
+        $selected = 'Persuratan';
 
         $user = PendudukModel::paginate(10);
 
         return view('admin.persuratan.index', compact('user', 'page', 'selected'));
+    }
+    public function ajuanPersuratan()
+    {
+        $page = 'ajuanPersuratan';
+        $selected = 'Persuratan';
+
+        $user = PendudukModel::paginate(10);
+
+        return view('admin.persuratan.ajuanSurat', compact('user', 'page', 'selected'));
+    }
+    public function templateSurat()
+    {
+        $page = 'templateSurat';
+        $selected = 'Persuratan';
+
+        $user = PendudukModel::paginate(10);
+
+        return view('admin.persuratan.templateSurat', compact('user', 'page', 'selected'));
     }
 }
