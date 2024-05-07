@@ -123,7 +123,7 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::get('/search', [UmkmController::class, 'search'])->name('umkm.search');
                 Route::post('/store', [UmkmController::class, 'storeUmkm'])->name('umkm.store');
                 Route::get('/detail/{umkm_id}', [UmkmController::class, 'getDetailUmkm'])->name('umkm.detail');
-                Route::get('/detail', [UmkmController::class, 'viewDetail'])->name('umkm.detail');
+                Route::delete('/delete/{umkm_id}', [UmkmController::class, 'destroyUmkm'])->name('umkm.destroy');
             });
         });
     });
