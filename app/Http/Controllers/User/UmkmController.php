@@ -28,9 +28,11 @@ class UmkmController extends Controller
     {
         $menu = 'UMKM';
         $umkms = UmkmModel::where('id_pemilik', $id_penduduk)->paginate(7);
-        ;
+        $umkmKategoris = UmkmKategoriModel::all();
+        $categories = KategoriModel::all();
+        $kategori = '';
         // return $umkms;
-        return view('umkm.umkmku', compact('menu', 'umkms'));
+        return view('umkm.umkmku', compact('menu', 'umkms', 'umkmKategoris', 'categories', 'kategori'));
     }
 
 
@@ -128,20 +130,20 @@ class UmkmController extends Controller
 
     public function getDetailUmkm($umkm_id)
     {
+        $menu = 'UMKM';
+        $umkmKategoris = UmkmKategoriModel::where('umkm_id', $umkm_id)->get();
+        // return $umkmKategoris;
+
+        $categories = KategoriModel::all();
         $umkm = UmkmModel::find($umkm_id);
         if (!$umkm) {
             abort(404, 'Data UMKM tidak ditemukan');
         }
         $koordinat_array = explode(",", $umkm->lokasi_map);
 
-        $koordinat_array[0];
-        $koordinat_array[1];
-
-        $data = [
-            $umkm => 'umkm',
-            $koordinat_array[0] => 'lantitude',
-            $koordinat_array[1] => 'longtitude',
-        ];
+        $latitude = trim($koordinat_array[0]);
+        $longtitude = trim($koordinat_array[1]);
+        return view('umkm.detail', compact('menu', 'umkm', 'latitude', 'longtitude', 'categories', 'umkmKategoris'));
 
     }
 
@@ -150,5 +152,26 @@ class UmkmController extends Controller
         $menu = 'UMKM';
         return view('umkm.detail', compact('menu'));
 
+    }
+
+    public function destroyUmkm($id_umkm)
+    {
+        try {
+            $deleted_fk = UmkmKategoriModel::where('umkm_id', $id_umkm)->delete();
+
+            if ($deleted_fk) {
+                $deleted_umkm = UmkmModel::destroy($id_umkm);
+
+                if ($deleted_umkm) {
+                    return redirect('umkmku')->with('success', 'Data berhasil dihapus!');
+                } else {
+                    return redirect('umkmku')->with('Gagal menghapus data utama');
+                }
+            } else {
+                return redirect('umkmku')->with('Gagal menghapus data anak');
+            }
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Terjadi kesalahan: ' . $e->getMessage()], 500);
+        }
     }
 }

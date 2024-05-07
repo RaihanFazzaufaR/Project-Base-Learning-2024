@@ -488,10 +488,22 @@
                                                                     <label for="kelas"
                                                                         class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Kategori</label>
                                                                 </div>
+                                                                @foreach ($umkmKategoris as $umkmKategori)
+                                                                    @foreach ($categories as $category)
+                                                                        @if ($umkm->umkm_id == $umkmKategori->umkm_id)
+                                                                            @if ($umkmKategori->kategori_id == $category->kategori_id)
+                                                                                @php
+                                                                                    $kategori .= ($kategori != '') ? ', ' : '';
+                                                                                    $kategori .= $category->nama_kategori;
+                                                                                @endphp
+                                                                            @endif
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endforeach
                                                                 <div class="basis-3/4 h-full flex items-center">
                                                                     <input id="kelas" list="listKelas"
                                                                         name="kelas" disabled
-                                                                        value="Makanan, Minuman, Kebutuham Pokok"
+                                                                        value="{{$kategori}}"
                                                                         class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                                                 </div>
                                                                 <datalist id="listKelas">
@@ -762,7 +774,7 @@
                                                                 <div class="basis-3/4 h-full flex items-center">
                                                                     <input id="kelas" list="listKelas"
                                                                         name="kelas"
-                                                                        value="Makanan, Minuman, Kebutuham Pokok"
+                                                                        value="{{$kategori}}"
                                                                         class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                                                                 </div>
                                                                 <datalist id="listKelas">
@@ -908,11 +920,17 @@
                                         </div>
                                     </div>
                                     {{-- hapus --}}
-                                    <a href="#"
-                                        class="flex justify-center items-center gap-2 w-fit text-white bg-[#FF5E5E] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#B34242] hover:scale-105 transition-all">
+                                    <form id="delete-umkm-form-{{ $umkm->umkm_id }}" action="{{ route('umkm.destroy', $umkm->umkm_id) }}" method="POST" style="display: none;">
+                                        @csrf
+                                        @method('DELETE')
+                                    </form>
+                                    
+                                    <button type="submit" form="delete-umkm-form-{{ $umkm->umkm_id }}"
+                                        class="flex justify-center items-center gap-2 w-fit text-white bg-[#FF5E5E] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#B34242] hover:scale-105 transition-all"
+                                        onclick="event.preventDefault(); if(confirm('Apakah Anda yakin ingin menghapus data ini?')) document.getElementById('delete-umkm-form-{{ $umkm->umkm_id }}').submit();">
                                         <i class="fa-solid fa-trash-can"></i>
                                         <div>Hapus</div>
-                                    </a>
+                                    </button>
                                 </div>
                             </td>
                             <td class="px-6 py-4 w-full">
@@ -1114,6 +1132,7 @@
                                                                     <label for="kelas"
                                                                         class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Kategori</label>
                                                                 </div>
+                                                                
                                                                 <div class="basis-3/4 h-full flex items-center">
                                                                     <input id="kelas" list="listKelas"
                                                                         name="kelas" disabled
