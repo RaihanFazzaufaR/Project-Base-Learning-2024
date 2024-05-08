@@ -16,7 +16,8 @@
     <div class="w-full flex h-fit gap-10 flex-row mt-7">
         <div class="basis-1/3 w-full border-[3px] h-fit rounded-lg border-[#2d5523]">
             <div class="text-[#2d5523] pb-6 ">
-                <img src="{{ asset('assets/images/'.$umkm->foto) }}" alt="" class="w-full mb-3">
+                {{-- <img src="{{ asset('assets/images/'.$umkm->foto) }}" alt="" class="w-full mb-3"> --}}
+                <img src="{{ asset('assets/images/toko-kelontong.jpg') }}" alt="" class="w-full mb-3">
                 <div class="text-3xl px-3 pb-3 font-semibold text-[#2d5523]">
                     {{ $umkm->nama }}
                 </div>
@@ -123,7 +124,7 @@
         </div>
         <div class="basis-2/3 w-full border-[3px] rounded-lg border-[#2d5523]">
             <div class="text-[#2d5523] w-full h-full" id="map">
-                
+            
             </div>
         </div>
         
@@ -140,12 +141,7 @@
                     center: {lat: -7.983908, lng: 112.621391}, // Pusat peta
                     zoom: 10 // Tingkat zoom awal
                 });
-<<<<<<< HEAD
-    
-=======
-                
-                // Array untuk menyimpan koordinat lokasi
->>>>>>> d226b32c65412a958012d8f79575dcbfdc0e021d
+
                 var lokasi = [
                     { nama: 'Lokasi', lat: {!! $latitude !!}, lng: {!! $longtitude !!} }
 
