@@ -23,6 +23,7 @@ class DatabaseSeeder extends Seeder
             KategoriSeeder::class,
             UmkmSeeder::class,
             UmkmKategoriSeeder::class,
+            templateSuratSeeder::class,
             PermintaanSuratSeeder::class,
             DataSuratSeed::class,
         ]);
