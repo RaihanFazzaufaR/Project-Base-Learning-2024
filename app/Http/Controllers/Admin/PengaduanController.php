@@ -10,7 +10,7 @@ class PengaduanController extends Controller
 {
     public function index()
     {
-        $page = 'daftarPengaduan';
+        $page = 'pengaduan';
         $selected = 'Pengaduan';
         $modalTambah = false;
         $user = PendudukModel::paginate(10);
