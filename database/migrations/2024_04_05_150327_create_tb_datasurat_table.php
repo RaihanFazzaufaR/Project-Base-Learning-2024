@@ -22,7 +22,7 @@ return new class extends Migration
             $table->string('nik', 17)->nullable();
             $table->string('nikeluarga', 20)->nullable();
             $table->enum('warganegara', ['WNI', 'WNA'])->nullable();
-            $table->enum('agama', ['islam', 'kristen', 'katolik', 'buddha', 'konghucu'])->nullable();
+            $table->enum('agama', ['islam', 'kristen', 'katolik','hindu', 'buddha', 'konghucu', 'lainnya']);
             $table->string('pekerjaan', 20)->nullable();
             $table->string('alamat', 100)->nullable();
         });

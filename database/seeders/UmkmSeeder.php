@@ -19,7 +19,7 @@ class UmkmSeeder extends Seeder
         $data = [
             [
                 'nama' => 'Warung Sate Abang',
-                'no_wa' => '081234567890',
+                'no_wa' => '6285947763664',
                 'id_pemilik' => 8,
                 'lokasi' => 'Jl. Gatot Subroto No. 121',
                 'buka_waktu' => '09:30',
