@@ -14,8 +14,8 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_datasurat', function (Blueprint $table) {
-            $table->bigInteger('data_id', true);
-            $table->bigInteger('permintaan_id')->index('permintaan_id');
+            $table->id('data_id');
+            $table->unsignedBigInteger('permintaan_id');
             $table->date('tanggalLahir')->nullable();
             $table->enum('jenisKelamin', ['L', 'P'])->nullable();
             $table->enum('statusNikah', ['belum', 'sudah'])->nullable();

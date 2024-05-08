@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_jadwal', function (Blueprint $table) {
-            $table->bigInteger('jadwal_id', true);
+            $table->id('jadwal_id');
             $table->string('judul', 50);
             $table->string('aktivitas_tipe', 20);
             $table->date('mulai_tanggal');

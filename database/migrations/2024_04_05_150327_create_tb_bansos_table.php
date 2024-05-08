@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_bansos', function (Blueprint $table) {
-            $table->bigInteger('bansos_id', true);
+            $table->id('bansos_id');
             $table->unsignedBigInteger('penerima_id');
             $table->date('penerimaan_tanggal');
             $table->date('diterima_tanggal')->nullable();

@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_level', function (Blueprint $table) {
-            $table->integer('level_id', true);
+            $table->id('level_id');
             $table->string('levelNama', 20);
         });
     }

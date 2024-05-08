@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('tb_respon', function (Blueprint $table) {
             $table->foreign(['aduan_id'], 'tb_respon_ibfk_1')->references(['aduan_id'])->on('tb_aduan')->onUpdate('restrict')->onDelete('restrict');
-            $table->foreign(['perespon_id'], 'tb_respon_ibfk_2')->references(['nik'])->on('tb_penduduk')->onUpdate('restrict')->onDelete('restrict');
+            $table->foreign(['perespon_id'], 'tb_respon_ibfk_2')->references(['id_penduduk'])->on('tb_penduduk')->onUpdate('restrict')->onDelete('restrict');
         });
     }
 

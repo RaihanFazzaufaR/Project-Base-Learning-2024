@@ -32,7 +32,6 @@ class DataSuratSeed extends Seeder
             ['permintaan_id'=>19,'tanggalLahir' => '2001-12-19', 'jenisKelamin' => 'L', 'statusNikah' => 'belum', 'nik' => "3570000000000131", 'nikeluarga' => "33041110010000014", 'warganegara' => 'WNA','agama' => 'katolik', 'pekerjaan' => 'mahasiswa', 'alamat'=>"Jl. Dr. Soetomo No. 234, Kel. Sumbersari, Kec. Lowokwaru, Malang, 65141"],
             ['permintaan_id'=>20,'tanggalLahir' => '2001-12-19', 'jenisKelamin' => 'L', 'statusNikah' => 'belum', 'nik' => "3570000000000141", 'nikeluarga' => "33041110010000011", 'warganegara' => 'WNA','agama' => 'katolik', 'pekerjaan' => 'mahasiswa', 'alamat'=>"Jl. Pahlawan No. 565, Kel. Arjosari, Kec. Blimbing, Malang, 65126"],
             ['permintaan_id'=>21,'tanggalLahir' => '2001-12-19', 'jenisKelamin' => 'P', 'statusNikah' => 'belum', 'nik' => "3570000000000151", 'nikeluarga' => "33041110010000012", 'warganegara' => 'WNA','agama' => 'buddha', 'pekerjaan' => 'mahasiswa','alamat'=>"Jl. Ciliwung No. 111, Kel. Merjosari, Kec. Sukun, Malang, 65147"],
-            ['permintaan_id'=>22,'tanggalLahir' => '2001-12-19', 'jenisKelamin' => 'L', 'statusNikah' => 'belum', 'nik' => "3570000000000191", 'nikeluarga' => "33041110010000012", 'warganegara' => 'WNI','agama' => 'islam', 'pekerjaan' => 'mahasiswa','alamat'=>"Jl. Ciliwung No. 111, Kel. Merjosari, Kec. Sukun, Malang, 65147"]
         ];
         DB::table('tb_datasurat')->insert($data);
     }

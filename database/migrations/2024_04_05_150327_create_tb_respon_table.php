@@ -14,9 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_respon', function (Blueprint $table) {
-            $table->bigInteger('respon_id', true);
-            $table->bigInteger('aduan_id')->index('aduan_id');
-            $table->string('perespon_id', 17)->index('perespon_id');
+            $table->id('respon_id');
+            $table->unsignedBigInteger('aduan_id');
+            $table->unsignedBigInteger('perespon_id');
             $table->text('konten_aduan');
             $table->text('konten_respon');
             $table->date('dibuat_tanggal')->nullable();
