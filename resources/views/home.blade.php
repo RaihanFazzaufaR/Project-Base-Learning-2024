@@ -226,36 +226,36 @@
             <div class="max-h-[60vh] w-[80%] flex flex-col overflow-auto gap-7">
                 <div class="relative w-full flex justify-end min-h-30 bg-transparent pt-6">
                     <div class="absolute bg-[#FFD600] h-[75px] w-[115px] top-0 left-0 text-black flex justify-center items-end font-extrabold py-5 font-sans rounded-md">
-                        <span class="text-xl">Apr</span>
+                        <span class="text-xl">Mei</span>
                         <span class="text-4xl">10</span>
                     </div>
                     <div class="w-[95%] min-h-20 bg-[#4D7F41]/65 rounded-xl border-2 border-[#1B4810] pl-28 pr-5 py-3">
                         <div class="text-white font-bold text-xl">
                             <p>
                                 <span>1. </span>
-                                <span>Lomba Aprilan di RT 2</span>
+                                <span>Posyandu di RT 4</span>
                             </p>
                             <p>
                                 <span>2. </span>
-                                <span>Lomba Aprilan di RT 3</span>
+                                <span>Senam bersama di RT 5</span>
                             </p>
                             <p>
                                 <span>3. </span>
-                                <span>Lomba Aprilan di RT 4</span>
+                                <span>Medical Check Up gratis di RT 7</span>
                             </p>
                         </div>
                     </div>
                 </div>
                 <div class="relative w-full flex justify-end min-h-30 bg-transparent pt-6">
                     <div class="absolute bg-[#FFD600] h-[75px] w-[115px] top-0 left-0 text-black flex justify-center items-end font-extrabold py-5 font-sans rounded-md">
-                        <span class="text-xl">Apr</span>
+                        <span class="text-xl">Mei</span>
                         <span class="text-4xl">15</span>
                     </div>
                     <div class="w-[95%] min-h-20 bg-[#4D7F41]/65 rounded-xl border-2 border-[#1B4810] pl-28 pr-5 py-3">
                         <div class="text-white font-bold text-xl">
                             <p>
                                 <span>1. </span>
-                                <span>Lomba Aprilan di RT 9</span>
+                                <span>Kerja bakti di RT 01</span>
                             </p>
                         </div>
                     </div>
