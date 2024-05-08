@@ -56,14 +56,34 @@
                 <span class="text-red-500">{{ $message }}</span>
             @enderror
         </div>
-        <div class="flex flex-col gap-2">
+        <div class="flex flex-col gap-2 relative">
             <label for="password" class="font-bold text-normal text-[#1C4F0F]">Password</label>
             <input type="password" name="password" id="password" class="w-full p-2 ring-2 bg-[#EDEDED] ring-slate-400 focus:outline-none focus:ring-green-500 focus:ring-offset-1 rounded-lg @error('password') is-invalid @enderror" placeholder="Password" value="{{ old('username') }}" required>
             @error('password')
                 <span class="text-red-500">{{ $message }}</span>
             @enderror
+                <button type="button" id="showPw" class="absolute right-3 bottom-2"">
+                    <i class="fa-solid fa-eye-slash text-lg"></i>
+                </button>          
         </div>
         <a href="{{ route('password.forgot') }}" class="-mt-3 text-right text-[#1C4F0F] font-medium">forgot password?</a>
         <button class="bg-[#81B076] py-3 rounded-lg w-full text-white font-bold hover:bg-[#607f59] hover:shadow-xl">LOGIN</button>
     </form>
+
+    <script>
+        const showPw = document.getElementById('showPw');
+        const password = document.getElementById('password');
+        let isShow = false;
+
+        showPw.addEventListener('click', () => {
+            if (isShow) {
+                password.type = 'password';
+                showPw.innerHTML = '<i class="fa-solid fa-eye-slash text-lg"></i>';
+            } else {
+                password.type = 'text';
+                showPw.innerHTML = '<i class="fa-solid fa-eye text-lg"></i>';
+            }
+            isShow = !isShow;
+        });
+    </script>
 </x-login>
