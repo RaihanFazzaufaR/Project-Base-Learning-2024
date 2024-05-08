@@ -14,7 +14,7 @@ class UmkmModel extends Model
     protected $primaryKey = 'umkm_id';
     protected $fillable = [
         'nama',
-        'pemilik_id',
+        'id_pemilik',
         'no_wa',
         'lokasi',
         'tipe',

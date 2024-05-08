@@ -79,11 +79,11 @@ class UmkmController extends Controller
 
     public function storeUmkm(Request $request)
     {
-
-        $umkms = UmkmModel::where('status', 'diterima')->paginate(4);
+        // $id_penduduk = Auth::user()->penduduk->id_penduduk;
+        // $umkms = UmkmModel::where('status', 'diterima')->paginate(4);
         $validator = Validator::make($request->all(), [
             'nama' => 'required|string|max:50',
-            'id_penduduk' => 'required|integer',
+            'id_penduduk' => 'required',
             'no_wa' => 'required|string|max:50',
             'lokasi' => 'required|string|max:100',
             'buka_waktu' => 'required|date_format:H:i',
@@ -91,14 +91,14 @@ class UmkmController extends Controller
             'deskripsi' => 'nullable|string',
             'lokasi_map' => 'nullable|string',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg,|max:2048',
-            'kategori' => 'required|array',
+            'values' => 'required',
         ]);
-        if ($validator->fails()) {
-            return [$request->all()];
-        }
         if ($validator->fails()) {
             return back()->with('errors', $validator->messages()->all()[0])->withInput();
         }
+
+        $kategori = $request->values;
+        $kategori_id = explode(',', $kategori);
 
         $hashedPhoto = $request->file('foto')->store('assets/images/UMKM');
 
@@ -115,12 +115,12 @@ class UmkmController extends Controller
             'status' => 'diproses',
         ]);
         $umkm->save();
-        $umkm_id = $umkm->id;
-        foreach ($request->kategori as $kategori_id) {
+        $umkm_id = $umkm->getKey();
+        foreach ($kategori_id as $id) {
 
             $umkmKategori = new UmkmKategoriModel([
                 'umkm_id' => $umkm_id,
-                'kategori_id' => $kategori_id,
+                'kategori_id' => $id,
             ]);
             $umkmKategori->save();
         }
