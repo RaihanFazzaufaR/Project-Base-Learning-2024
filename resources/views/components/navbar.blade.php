@@ -74,7 +74,7 @@
         <div class="px-4 py-3">
           <span class="block text-sm font-semibold text-gray-900">{{ Auth::user()->penduduk->nama }}</span>
           <span class="block text-sm font-medium  text-gray-500 truncate dark:text-gray-400">
-            {{ Auth::user()->penduduk->jabatan !== 'Tidak Ada' ? Auth::user()->penduduk->jabatan : 'Penduduk' }}
+            {{ Auth::user()->penduduk->jabatan !== 'Tidak ada' ? Auth::user()->penduduk->jabatan : 'Penduduk' }}
             {{ Auth::user()->penduduk->jabatan !== 'Tidak Ada' ? Auth::user()->penduduk->kartuKeluarga->rt : 'RT ' . Auth::user()->penduduk->kartuKeluarga->rt }}
           </span>
 

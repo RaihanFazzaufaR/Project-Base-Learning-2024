@@ -18,7 +18,7 @@
                     Kategori UMKM</p>
             </div>
             <div class="mt-11 p-2 border-2 rounded-sm">
-                <ul class="grid w-full">
+                <!-- <ul class="grid w-full">
                     <li>
                         <input type="radio" id="1" name="hosting" value="1" class="hidden peer" checked required />
                         <label for="1" class="inline-flex pl-3 items-center justify-between w-full p-1.5 text-[#2d5523] bg-white border border-gray-200 cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-[#2d5523] peer-checked:text-white peer-checked:bg-yellow-500 hover:text-white hover:bg-yellow-500 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
@@ -27,7 +27,7 @@
                             </div>
                         </label>
                     </li>
-                </ul>
+                </ul> -->
                 {{-- database --}}
                 <ul class="grid w-full">
                     <li>
@@ -47,7 +47,7 @@
                     </li>
                     @endforeach
                 </ul>
-                <ul class="grid w-full">
+                <!-- <ul class="grid w-full">
                     <li>
                         <input type="radio" id="2" name="hosting" value="2" class="hidden peer" required />
                         <label for="2" class="inline-flex pl-3 items-center justify-between w-full p-1.5 text-[#2d5523] bg-white border border-gray-200 cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-[#2d5523] peer-checked:text-white peer-checked:bg-yellow-500 hover:text-white hover:bg-yellow-500 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
@@ -98,7 +98,7 @@
                             </div>
                         </label>
                     </li>
-                </ul>
+                </ul> -->
             </div>
         </div>
         <div class="basis-3/4 ">

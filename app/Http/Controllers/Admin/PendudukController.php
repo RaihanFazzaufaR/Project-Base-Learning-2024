@@ -15,7 +15,7 @@ class PendudukController extends Controller
         $page = 'daftarPenduduk';
         $selected = 'Kependudukan';
         $kartuKeluarga = KartuKeluargaModel::all();
-        $modalTambah = false;
+        $modalTambah = '';
         $id_penduduk = 0;
         $user = PendudukModel::query();
 
