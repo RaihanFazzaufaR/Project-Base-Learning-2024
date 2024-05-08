@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_aduan', function (Blueprint $table) {
-            $table->bigInteger('aduan_id', true);
+            $table->id('aduan_id');
             $table->string('pengadu_id', 17)->index('pengadu_id');
             $table->string('kategori', 20);
             $table->text('konten');

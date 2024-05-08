@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_rekomendasipenerima', function (Blueprint $table) {
-            $table->bigInteger('rekomendasi_id', true);
+            $table->id('rekomendasi_id');
             $table->unsignedBigInteger('id_kartuKeluarga');
             $table->bigInteger('ranking');
         });

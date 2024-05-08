@@ -14,7 +14,7 @@ return new class extends Migration
     public function up()
     {
         Schema::create('tb_permintaansurat', function (Blueprint $table) {
-            $table->bigInteger('permintaan_id', true);
+            $table->id('permintaan_id');
             $table->unsignedBigInteger('peminta_id');
             $table->date('minta_tanggal');
             $table->enum('status', ['diproses', 'selesai', 'ditolak', 'menunggu']);

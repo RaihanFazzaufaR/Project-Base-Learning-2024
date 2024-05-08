@@ -15,8 +15,8 @@ return new class extends Migration
     {
         Schema::create('tb_leveldetail', function (Blueprint $table) {
             $table->integer('detail_id', true);
-            $table->bigInteger('user_id')->index('user_id');
-            $table->integer('level_id')->index('level_id');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('level_id');
         });
     }
 

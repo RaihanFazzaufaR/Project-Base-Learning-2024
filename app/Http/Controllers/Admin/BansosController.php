@@ -3,7 +3,8 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\PendudukModel;
+use App\Models\BansosModel;
+use App\Models\RekomendasiPenerimaModel;
 use Illuminate\Http\Request;
 
 class BansosController extends Controller
@@ -13,7 +14,7 @@ class BansosController extends Controller
         $page = 'listBansos';
         $selected = 'Bansos';
 
-        $user = PendudukModel::paginate(10);
+        $user = BansosModel::paginate(10)->withQueryString();
 
         return view('admin.bansos.index', compact('user', 'page', 'selected'));
     }
@@ -23,7 +24,7 @@ class BansosController extends Controller
         $page = 'rekomendasiBansos';
         $selected = 'Bansos';
 
-        $user = PendudukModel::paginate(10);
+        $user = RekomendasiPenerimaModel::paginate(10)->withQueryString();
 
         return view('admin.bansos.rekomendasi-bansos', compact('user', 'page', 'selected'));
     }
