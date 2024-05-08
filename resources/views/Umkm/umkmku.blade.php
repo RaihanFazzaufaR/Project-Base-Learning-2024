@@ -534,9 +534,7 @@
                                                                         UMKM</label>
                                                                 </div>
                                                                 <div class="basis-3/4 h-full flex items-center">
-                                                                    <textarea id="kelas" cols="19" rows="3" name="kelas" disabled
-                                                                        class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">{{$umkm->lokasi}}
-                                                                </textarea>
+                                                                    <textarea id="kelas" cols="19" rows="3" name="kelas" disabled class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">{{$umkm->lokasi}}</textarea>
                                                                 </div>
                                                                 <datalist id="listKelas">
 
@@ -550,9 +548,7 @@
                                                                 </div>
                                                                 <div class="basis-3/4 h-full flex items-center">
                                                                     {{-- <textarea name="" id="" cols="30" rows="10"></textarea> --}}
-                                                                    <textarea id="kelas" cols="19" rows="3" name="kelas" disabled
-                                                                        class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">{{$umkm->deskripsi}}
-                                                                </textarea>
+                                                                    <textarea id="kelas" cols="19" rows="3" name="kelas" disabled class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">{{$umkm->deskripsi}}</textarea>
                                                                 </div>
                                                                 <datalist id="listKelas">
 
@@ -822,9 +818,7 @@
                                                                 </div>
                                                                 <div class="basis-3/4 h-full flex items-center">
                                                                     {{-- <textarea name="" id="" cols="30" rows="10"></textarea> --}}
-                                                                    <textarea id="kelas" cols="19" rows="3" name="kelas"
-                                                                        class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">{{$umkm->deskripsi}}
-                                                                    </textarea>
+                                                                    <textarea id="kelas" cols="19" rows="3" name="kelas" class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">{{$umkm->deskripsi}}</textarea>
                                                                 </div>
                                                                 <datalist id="listKelas">
 
@@ -889,8 +883,7 @@
                                                                                     <div
                                                                                         class="w-full h-full flex items-center">
                                                                                         {{-- <textarea name="" id="" cols="30" rows="10"></textarea> --}}
-                                                                                        <textarea id="kelas" cols="19" rows="3" name="kelas" 
-                                                                                            class="bg-white  border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
+                                                                                        <textarea id="kelas" cols="19" rows="3" name="kelas" class="bg-white  border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
                                                                                     </div>
                                                                                 </div>
 
