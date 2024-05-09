@@ -78,6 +78,19 @@ Route::group(['middleware' => ['auth']], function () {
             });
             Route::prefix('akun-admin')->group(function () {
                 Route::get('/', [AdminAkunAdminController::class, 'index'])->name('akun-admin');
+                // Route::post('/', [AdminPendudukController::class, 'storePenduduk'])->name('storePenduduk');
+                // Route::put('/{nik}', [AdminPendudukController::class, 'updatePenduduk'])->name('updatePenduduk');
+                // Route::delete('/{nik}', [AdminPendudukController::class, 'destroyPenduduk'])->name('destroyPenduduk');
+                // Route::post('/filter-penduduk', [AdminPendudukController::class, 'filterPenduduk'])->name('filterPenduduk');
+                // Route::post('/search-penduduk', [AdminPendudukController::class, 'searchPenduduk'])->name('searchPenduduk');
+                // Route::get('/daftar-akun', [AdminPendudukController::class, 'daftarAkunViewAdmin'])->name('daftar-akun');
+                // Route::get('/daftar-nkk', [AdminPendudukController::class, 'daftarNkkViewAdmin'])->name('daftar-nkk');
+                // Route::post('/daftar-nkk', [AdminPendudukController::class, 'storeKartuKeluarga'])->name('storeKartuKeluarga');
+                // Route::put('/daftar-nkk/{id}', [AdminPendudukController::class, 'updateKartuKeluarga'])->name('updateKartuKeluarga');
+                // Route::delete('/daftar-nkk/{id}', [AdminPendudukController::class, 'destroyKartuKeluarga'])->name('destroyKartuKeluarga');
+                // Route::post('/filter-nkk', [AdminPendudukController::class, 'filterKartuKeluarga'])->name('filterKartuKeluarga');
+                // Route::post('/search-nkk', [AdminPendudukController::class, 'searchKartuKeluarga'])->name('searchKartuKeluarga');
+                // Route::post('/open-modal-penduduk', [AdminPendudukController::class, 'openModalPenduduk'])->name('openModalPenduduk');
             });
             Route::prefix('jadwal-kegiatan')->group(function () {
                 Route::get('/', [AdminKegiatanController::class, 'index'])->name('jadwal-kegiatan-admin');
