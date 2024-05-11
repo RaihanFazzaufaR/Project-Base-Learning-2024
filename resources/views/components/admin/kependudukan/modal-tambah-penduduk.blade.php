@@ -1,4 +1,4 @@
-<div class="h-full w-fit py-2" x-data="{ 'tambahModal': $persist({{ $modalTambah }}) ?? false }" @keydown.escape="tambahModal = false">
+<div class="h-full w-fit py-2" x-data="{ 'tambahModal': false }" @keydown.escape="tambahModal = false">
     <button @click="tambahModal = true" class="flex w-34 bg-[#57BA47] h-full text-white justify-between items-center px-4 rounded-lg shadow-xl hover:bg-[#336E2A] hover:scale-105 transition duration-300 ease-in-out">
         <i class="fa-solid fa-plus text-2xl"></i>
         <div class="text-xl font-semibold">Tambah</div>

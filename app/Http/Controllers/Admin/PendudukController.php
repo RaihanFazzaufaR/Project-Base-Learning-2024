@@ -15,7 +15,6 @@ class PendudukController extends Controller
         $page = 'daftarPenduduk';
         $selected = 'Kependudukan';
         $kartuKeluarga = KartuKeluargaModel::all();
-        $modalTambah = '';
         $id_penduduk = 0;
         $user = PendudukModel::query();
 
@@ -48,7 +47,7 @@ class PendudukController extends Controller
         
         $user = $user->paginate(10)->withQueryString();
 
-        return view('admin.kependudukan.index', compact('user', 'page', 'selected', 'kartuKeluarga', 'modalTambah', 'id_penduduk'));
+        return view('admin.kependudukan.index', compact('user', 'page', 'selected', 'kartuKeluarga', 'id_penduduk'));
     }
 
 

@@ -9,10 +9,9 @@ use Illuminate\View\Component;
 
 class ModalTambahPenduduk extends Component
 {
-    public $modalTambah;
-    public function __construct($modalTambah = false)
+    public function __construct()
     {
-        $this->modalTambah = $modalTambah;
+        
     }
 
     /**

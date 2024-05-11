@@ -21,7 +21,7 @@
                 <x-admin.kependudukan.modal-filter-penduduk />
             </div>
         </div>
-        <x-admin.kependudukan.modal-tambah-penduduk modalTambah="{{ $modalTambah }}" />
+        <x-admin.kependudukan.modal-tambah-penduduk  />
     </div>
 
     <div class="mt-10">
