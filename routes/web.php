@@ -107,6 +107,10 @@ Route::group(['middleware' => ['auth']], function () {
         // Route Penduduk
         Route::group(['prefix' => 'penduduk'], function () {
             Route::get('/', [PendudukController::class, 'index'])->name('penduduk');
+            Route::get('/RT/{rt}', [PendudukController::class, 'getDataByRT'])->name('penduduk-rt');
+            Route::get('/search', [PendudukController::class, 'search'])->name('penduduk-search');
+            // Route::get('/', [PendudukController::class, 'index'])->name('penduduk');
+            
         });
 
         // Route Bansos
