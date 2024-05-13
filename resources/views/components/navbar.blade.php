@@ -106,7 +106,7 @@
       </button>
     </div>
     <div class="items-center justify-between hidden w-full md:flex md:w-auto md:order-1" id="navbar-user">
-      <ul class="flex flex-col font-bold p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-white dark:bg-gray-800 md:dark:bg-gray-900 dark:border-gray-700">
+      <ul class="flex flex-col font-bold p-4 md:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 md:space-x-8 rtl:space-x-reverse md:flex-row md:mt-0 md:border-0 md:bg-transparent dark:bg-gray-800 md:dark:bg-transparent dark:border-gray-700">
         <li>
           <a href="{{ url('/') }}" class="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:hover:text-[#1C4F0F] md:p-0 md:relative group {{ ($menu === 'Home') ? 'md:text-[#1C4F0F]':'md:text-gray-500' }}">
             Home
@@ -240,10 +240,10 @@
   window.onscroll = function() {
     let currentScrollPos = window.pageYOffset;
 
-    if (prevScrollpos > currentScrollPos) {  
+    if (prevScrollpos > currentScrollPos) {
       document.getElementById("navbar").style.top = "0";
     } else {
-      document.getElementById("navbar").style.top = "-80px"; 
+      document.getElementById("navbar").style.top = "-80px";
     }
 
     prevScrollpos = currentScrollPos;
