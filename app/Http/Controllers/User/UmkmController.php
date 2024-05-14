@@ -32,7 +32,6 @@ class UmkmController extends Controller
         $umkmKategoris = UmkmKategoriModel::all();
         $categories = KategoriModel::all();
         $kategori = '';
-        // return $umkms;
         return view('umkm.umkmku', compact('menu', 'umkms', 'umkmKategoris', 'categories', 'kategori'));
     }
 
@@ -79,8 +78,7 @@ class UmkmController extends Controller
 
     public function storeUmkm(Request $request)
     {
-        // $id_penduduk = Auth::user()->penduduk->id_penduduk;
-        // $umkms = UmkmModel::where('status', 'diterima')->paginate(4);
+
         $validator = Validator::make($request->all(), [
             'nama' => 'required|string|max:50',
             'id_penduduk' => 'required',
@@ -100,7 +98,7 @@ class UmkmController extends Controller
         $kategori = $request->values;
         $kategori_id = explode(',', $kategori);
 
-        $hashedPhoto = $request->file('foto')->store('assets/images/UMKM');
+        $hashedPhoto = $request->file('foto')->store('UMKM', 'umkm_images');
 
         $umkm = new UmkmModel([
             'nama' => $request->nama,
@@ -185,4 +183,87 @@ class UmkmController extends Controller
         }
     }
 
+    public function editUmkm(Request $request, $umkm_id)
+    {
+        $validator = Validator::make($request->all(), [
+            // 'umkm_id' => 'required',
+            'nama' => 'required|string|max:50',
+            'id_penduduk' => 'required',
+            'no_wa' => 'nullable|string|max:50',
+            'lokasi' => 'nullable|string|max:100',
+            'buka_waktu' => 'nullable|date_format:H:i:s',
+            'tutup_waktu' => 'nullable|date_format:H:i:s',
+            'deskripsi' => 'nullable|string',
+            'lokasi_map' => 'nullable|string',
+            'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
+            'values' => 'nullable',
+            'alasan' => 'required|string|max:150',
+        ]);
+        if ($validator->fails()) {
+            return $request->all();
+            // return back()->with('errors', $validator->messages()->all()[0])->withInput();
+        }
+
+        $kategori = $request->values;
+        $kategori_id = explode(',', $kategori);
+        // $umkm_id = $request->umkm_id;
+
+        $umkmData = [
+            'nama' => $request->nama,
+            'id_penduduk' => $request->id_penduduk,
+            'no_wa' => $request->no_wa,
+            'lokasi' => $request->lokasi,
+            'buka_waktu' => $request->buka_waktu,
+            'tutup_waktu' => $request->tutup_waktu,
+            'deskripsi' => $request->deskripsi,
+            'lokasi_map' => $request->lokasi_map,
+            'status' => 'diproses',
+            'alasan_warga' => $request->alasan,
+        ];
+
+        if ($request->hasFile('foto')) {
+            $fotoPath = $request->file('foto')->store('UMKM', 'umkm_images');
+            $umkmData['foto'] = $fotoPath;
+        }
+
+        // Hapus field yang memiliki nilai null dari array $umkmData
+        $umkmData = array_filter($umkmData, function ($value) {
+            return !is_null($value);
+        });
+
+        UmkmModel::find($umkm_id)->update($umkmData);
+        if (!is_null($kategori)) {
+            UmkmKategoriModel::where('umkm_id', $umkm_id)->delete();
+            foreach ($kategori_id as $id) {
+                $umkmKategori = new UmkmKategoriModel([
+                    'umkm_id' => $umkm_id,
+                    'kategori_id' => $id,
+                ]);
+                $umkmKategori->save();
+            }
+        }
+
+        return redirect(route('umkmku', ['id_penduduk' => Auth::user()->penduduk->id_penduduk]))->with('success', 'UMKM berhasil diperbarui.');
+    }
+
+    public function umkmkuSearch(Request $request)
+    {
+        $request->validate([
+            'search' => 'required|string|max:50',
+            'id_penduduk' => 'required|integer',
+        ]);
+        $searchTerm = $request->input('search');
+        $id_penduduk = $request->input('id_penduduk');
+        $menu = 'UMKM';
+        $umkmKategoris = UmkmKategoriModel::all();
+        $categories = KategoriModel::all();
+        $kategori = '';
+
+        $umkms = UmkmModel::where('id_pemilik', $id_penduduk)
+            ->where('nama', 'like', '%' . $searchTerm . '%')
+            ->orWhere('deskripsi', 'like', '%' . $searchTerm . '%')
+            ->paginate(7);
+
+        return view('umkm.umkmku', compact('menu', 'umkms', 'umkmKategoris', 'categories', 'kategori'));
+    }
 }

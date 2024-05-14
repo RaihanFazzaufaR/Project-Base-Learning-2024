@@ -104,7 +104,7 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('/RT/{rt}', [PendudukController::class, 'getDataByRT'])->name('penduduk-rt');
             Route::get('/search', [PendudukController::class, 'search'])->name('penduduk-search');
             // Route::get('/', [PendudukController::class, 'index'])->name('penduduk');
-            
+
         });
 
         // Route Bansos
@@ -129,13 +129,16 @@ Route::group(['middleware' => ['auth']], function () {
         Route::group(['middleware' => ['auth']], function () {
             Route::group(['prefix' => 'umkm'], function () {
                 Route::get('/', [UmkmController::class, 'index'])->name('umkm');
-                Route::get('/umkmku/{id_penduduk}', [UmkmController::class, 'umkmku'])->name('umkmku');
                 Route::get('/category/{category}', [UmkmController::class, 'getDataByCategory'])->name('umkm.category');
                 Route::get('/search', [UmkmController::class, 'search'])->name('umkm.search');
-                Route::post('/store', [UmkmController::class, 'storeUmkm'])->name('umkm.store');
                 Route::get('/detail/{umkm_id}', [UmkmController::class, 'getDetailUmkm'])->name('umkm.detail');
+
+                Route::post('/edit/{umkm_id}', [UmkmController::class, 'editUmkm'])->name('umkm.edit');
+                Route::post('/store', [UmkmController::class, 'storeUmkm'])->name('umkm.store');
+                Route::get('/umkmku/{id_penduduk}', [UmkmController::class, 'umkmku'])->name('umkmku');
                 Route::delete('/delete/{umkm_id}', [UmkmController::class, 'destroyUmkm'])->name('umkm.destroy');
                 Route::post('/cancel/{umkm_id}', [UmkmController::class, 'cancelPengajuan'])->name('umkm.cancel');
+                Route::get('/search-umkm', [UmkmController::class, 'umkmkuSearch'])->name('umkm.search');
             });
         });
     });
