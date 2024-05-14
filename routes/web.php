@@ -82,7 +82,7 @@ Route::group(['middleware' => ['auth']], function () {
                 // Route::put('/{nik}', [AdminPendudukController::class, 'updateAkun'])->name('updatePenduduk');
                 Route::delete('/{username}', [AdminAkunAdminController::class, 'destroyAkun'])->name('destroyAkun');
                 // Route::post('/filter-penduduk', [AdminPendudukController::class, 'filterPenduduk'])->name('filterPenduduk');
-                // Route::post('/search-akun', [AdminAkunAdminController::class, 'searchAkun'])->name('searchAkun');
+                Route::post('/search-akun', [AdminAkunAdminController::class, 'searchAkun'])->name('searchAkun');
                 // Route::get('/daftar-akun', [AdminPendudukController::class, 'daftarAkunViewAdmin'])->name('daftar-akun');
                 // Route::get('/daftar-nkk', [AdminPendudukController::class, 'daftarNkkViewAdmin'])->name('daftar-nkk');
             });

@@ -28,19 +28,19 @@ class AkunAdminController extends Controller
             });
         }
 
-        // Search functionality
-        if ($request->filled('search')) {
-            $searchTerm = '%' . $request->search . '%';
-            $user->where(function ($query) use ($searchTerm) {
-                $query->where('email', 'like', $searchTerm)
-                    ->orWhere('username', 'like', $searchTerm)
-                    ->orWhereHas('penduduk', function ($query) use ($searchTerm) {
-                        $query->where('nik', 'like', $searchTerm)
-                            ->orWhere('nama', 'like', $searchTerm)
-                            ->orWhere('jabatan', 'like', $searchTerm);
-                    });
-            });
-        }
+        // // Search functionality
+        // if ($request->filled('search')) {
+        //     $searchTerm = '%' . $request->search . '%';
+        //     $user->where(function ($query) use ($searchTerm) {
+        //         $query->where('email', 'like', $searchTerm)
+        //             ->orWhere('username', 'like', $searchTerm)
+        //             ->orWhereHas('penduduk', function ($query) use ($searchTerm) {
+        //                 $query->where('nik', 'like', $searchTerm)
+        //                     ->orWhere('nama', 'like', $searchTerm)
+        //                     ->orWhere('jabatan', 'like', $searchTerm);
+        //             });
+        //     });
+        // }
 
         // Append search and jabatan parameters for pagination
         if ($request->filled('search') || $request->filled('jabatan')) {
