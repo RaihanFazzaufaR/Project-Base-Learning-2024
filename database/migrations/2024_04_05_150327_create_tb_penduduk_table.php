@@ -28,6 +28,7 @@ return new class extends Migration
             $table->enum('statusPenduduk', ['penduduk tetap', 'penduduk tidak tetap']);
             $table->enum('jabatan', ['Ketua RW', 'Ketua RT', 'Bendahara', 'Sekretaris', 'Tidak ada']);
             $table->decimal('gaji', 15)->nullable();
+            $table->string('noTelp', 15)->nullable();
             $table->timestamps();
         });
     }
