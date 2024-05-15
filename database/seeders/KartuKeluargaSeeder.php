@@ -14,7 +14,7 @@ class KartuKeluargaSeeder extends Seeder
     public function run(): void
     {
         $data = [
-            ['id_kartuKeluarga'=>1,'niKeluarga'=>"3304111001000001", 'jmlAnggota'=>2, 'alamat'=>"Jl. Soekarno-Hatta No. 123, Kel. Lowokwaru, Kec. Lowokwaru, Malang, 65141", 'kepalaKeluarga'=>"3570000000000011", 'rt'=>'02'],
+            ['id_kartuKeluarga'=>1,'niKeluarga'=>"3304111001000001", 'jmlAnggota'=>2, 'alamat'=>"Jl. Soekarno-Hatta No. 123, Kel. Bumiayu, Kec. Kedungkandang, Malang, 65141", 'kepalaKeluarga'=>"3570000000000011", 'rt'=>'02'],
             ['id_kartuKeluarga'=>2, 'niKeluarga'=>"3304111001000002", 'jmlAnggota'=>3, 'alamat'=>"Jl. Ijen No. 456, Kel. Klojen, Kec. Klojen, Malang, 65112", 'kepalaKeluarga'=>"3570000000000021", 'rt'=>'03'],
             ['id_kartuKeluarga'=>3, 'niKeluarga'=>"3304111001000003", 'jmlAnggota'=>2, 'alamat'=>"Jl. Semeru No. 789, Kel. Sukun, Kec. Sukun, Malang, 65147", 'kepalaKeluarga'=>"3570000000000031", 'rt'=>'01'],
             ['id_kartuKeluarga'=>4, 'niKeluarga'=>"3304111001000004", 'jmlAnggota'=>1, 'alamat'=>"Jl. Raya Batu No. 321, Kel. Sumberadi, Kec. Batu, Malang, 65312", 'kepalaKeluarga'=>"3570000000000041", 'rt'=>'04'],

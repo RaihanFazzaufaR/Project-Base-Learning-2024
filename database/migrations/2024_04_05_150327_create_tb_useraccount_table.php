@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('email', 100);
             $table->string('username', 100)->unique();
             $table->string('password', 100);
+            $table->string('image')->nullable();
             $table->unsignedBigInteger('id_penduduk')->nullable();
             $table->timestamp('email_verified_at')->nullable();
             $table->rememberToken();

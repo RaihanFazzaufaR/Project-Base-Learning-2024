@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 
 class PendudukModel extends Model
@@ -28,6 +29,7 @@ class PendudukModel extends Model
         'statusPenduduk',
         'jabatan',
         'gaji',
+        'noTelp',
     ];
 
     public function kartuKeluarga() : BelongsTo
@@ -35,8 +37,8 @@ class PendudukModel extends Model
         return $this->belongsTo(KartuKeluargaModel::class, 'id_kartuKeluarga', 'id_kartuKeluarga');
     }
 
-    public function userAccount() : HasMany {
-        return $this->HasMany(UserAccountModel::class, 'id_penduduk', 'id_penduduk');
+    public function userAccount() : HasOne {
+        return $this->HasOne(UserAccountModel::class, 'id_penduduk', 'id_penduduk');
     }
 
     public function umkm() : HasMany {
