@@ -335,7 +335,6 @@
                         </td>
                         <td class="">
                             <div class="px-6 py-4 flex items-center h-full gap-4 justify-center">
-<<<<<<< HEAD
                                 <div x-data="{ 'terimaModal': false }" @keydown.escape="terimaModal = false">
                                     <form action="{{ route('umkm.accept') }}" method="POST">
                                         @csrf
