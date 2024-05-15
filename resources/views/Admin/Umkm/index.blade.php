@@ -331,17 +331,11 @@
                         <td class="px-6 py-4">
                             {{ $umkm->nama }}
                         </td>
-<<<<<<< HEAD
                         <td class="px-6 py-4" x-data="{ expanded: false }">
                             <a href="#" @click.prevent="expanded = !expanded">
                                 <span x-show="!expanded">{{ Str::limit($umkm->lokasi, 50) }}</span>
                                 <span x-show="expanded">{{ $umkm->lokasi }}</span>
                                 <span class="font-semibold" x-show="!expanded"></span>
-                        {{-- <td class="px-6 py-4" x-data="{'selected': 'false'}">
-                            <a href="#" @click.prevent="selected = (selected === 'true' ? '':'true')">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing
-                                <span class="font-semibold" :class="(selected === 'true') ? 'hidden' :'inline-block'">...</span><span :class="(selected === 'true') ? 'inline-block' :'hidden'">elit. Expedita, eius? Mollitia quo adipisci,</span>
->>>>>>> f62484701ae4a5be24a602a26b10dfd8e5a83ddc --}}
                             </a>
                         </td>                        
                         <td class="px-6 py-4">
