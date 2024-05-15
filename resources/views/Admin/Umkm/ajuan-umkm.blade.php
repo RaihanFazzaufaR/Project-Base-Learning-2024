@@ -335,7 +335,6 @@
                         </td>
                         <td class="">
                             <div class="px-6 py-4 flex items-center h-full gap-4 justify-center">
-<<<<<<< HEAD
                                 <div x-data="{ 'terimaModal': false }" @keydown.escape="terimaModal = false">
                                     <form action="{{ route('umkm.accept') }}" method="POST">
                                         @csrf
@@ -432,16 +431,13 @@
                                                         </div>
                                                     </form>
                                                     <div class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8]">
-<<<<<<< HEAD
                                                         <button type= "button" @click="tolakModal = false" class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
                                                             Keluar
-=======
                                                         <button type="button" @click="filterModal = false" class="hover:text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center hover:bg-[#34662C] bg-white text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
                                                             Batal
                                                         </button>
                                                         <button type="submit" class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
                                                             Simpan
->>>>>>> f62484701ae4a5be24a602a26b10dfd8e5a83ddc
                                                         </button>
                                                         <button type="submit" class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
                                                             Submit
