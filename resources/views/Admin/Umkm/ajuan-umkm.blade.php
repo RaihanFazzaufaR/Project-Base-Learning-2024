@@ -270,19 +270,27 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @for ($i=0; $i<4; $i++) <tr class="bg-white border-b text-sm font-medium text-[#7F7F7F] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    {{-- @for ($i=0; $i<4; $i++)  --}}
+                    @foreach ($umkms as $umkm)
+                    <tr class="bg-white border-b text-sm font-medium text-[#7F7F7F] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <td class="px-6 py-4">
-                            Lucky Kurniawan Langoday
+                            @php
+                            $user = $users->firstWhere('id_penduduk', $umkm->id_pemilik);
+                            @endphp
+                            @if($user)
+                                {{ $user->nama }}
+                            @endif
                         </td>
                         <td class="px-6 py-4">
-                            Warung Madura
+                            {{ $umkm->nama }}
                         </td>
-                        <td class="px-6 py-4" x-data="{'selected': 'false'}">
-                            <a href="#" @click.prevent="selected = (selected === 'true' ? '':'true')">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing
-                                <span class="font-semibold" :class="(selected === 'true') ? 'hidden' :'inline-block'">...</span><span :class="(selected === 'true') ? 'inline-block' :'hidden'">elit. Expedita, eius? Mollitia quo adipisci,</span>
+                        <td class="px-6 py-4" x-data="{ expanded: false }">
+                            <a href="#" @click.prevent="expanded = !expanded">
+                                <span x-show="!expanded">{{ Str::limit($umkm->lokasi, 50) }}</span>
+                                <span x-show="expanded">{{ $umkm->lokasi }}</span>
+                                <span class="font-semibold" x-show="!expanded"></span>
                             </a>
-                        </td>
+                        </td>     
                         <td>
                             <div class="px-6 py-4 flex items-center justify-center h-full">
                                 <div x-data="{ 'detailModal': false }" @keydown.escape="detailModal = false">
@@ -326,16 +334,20 @@
                         <td class="">
                             <div class="px-6 py-4 flex items-center h-full gap-4 justify-center">
                                 <div x-data="{ 'terimaModal': false }" @keydown.escape="terimaModal = false">
-                                    <button @click="terimaModal = true" class="flex justify-center items-center gap-2 w-fit text-white bg-[#76D75D] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#38682D] hover:scale-105 transition-all">
-                                        <i class="fa-solid fa-check text-lg"></i>
-                                        <div>Terima</div>
-                                    </button>
+                                    <form action="{{ route('umkm.accept') }}" method="POST">
+                                        @csrf
+                                        <input type="hidden" id="umkm_id" name="umkm_id" value="{{ $umkm->umkm_id }}">
+                                        <button @click="terimaModal = true" class="flex justify-center items-center gap-2 w-fit text-white bg-[#76D75D] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#38682D] hover:scale-105 transition-all">
+                                            <i class="fa-solid fa-check text-lg"></i>
+                                            <div>Terima</div>
+                                        </button>
+                                    </form>
                                     <!-- Detail modal -->
                                     <div x-show="terimaModal" tabindex="-1" aria-hidden="true" class="flex overflow-hidden fixed top-0 right-0 left-0 z-999 justify-center items-center w-full md:inset-0 h-full">
                                         <div class="absolute z-999 bg-black/25 h-[100vh] w-full"></div>
                                         <div class="relative z-[1000] p-4 w-fit max-w-3xl max-h-[700px]" @click.away="terimaModal = false" x-transition:enter="motion-safe:ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
                                             <!-- Modal content -->
-                                            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                            {{-- <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                                                 <!-- Modal header -->
                                                 <div class="flex h-[75px] items-center justify-between px-4 md:px-5 border-b-2 rounded-t border-[#B8B8B8]">
                                                     <h3 class="text-xl font-bold text-[#34662C] dark:text-white">
@@ -346,6 +358,10 @@
                                                         <span class="sr-only">Close modal</span>
                                                     </button>
                                                 </div>
+                                                <div class="px-4 md:px-5 py-2 mt-5">
+                                                    <textarea name='alasan' id="alasan" cols="19" rows="3" name="kelas" class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
+                                                </div>
+                                                
                                                 <!-- Modal body -->
                                                 <div class="w-full h-full text-[#34662C] text-left">
                                                     <div class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto rounded-b-xl">
@@ -357,7 +373,7 @@
                                                         </button>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                 </div>
@@ -374,26 +390,45 @@
                                             <!-- Modal content -->
                                             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                                                 <!-- Modal header -->
-                                                <div class="flex h-[75px] items-center justify-between px-4 md:px-5 border-b-2 rounded-t border-[#B8B8B8]">
+                                                {{-- <div class="flex h-[75px] items-center justify-between px-4 md:px-5 border-b-2 rounded-t border-[#B8B8B8]">
                                                     <h3 class="text-xl font-bold text-[#34662C] dark:text-white">
-                                                        Alasan Penerimaan Ajuan UMKM
+                                                        Alasan Penolakan Ajuan UMKM
                                                     </h3>
                                                     <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" @click="tolakModal = false">
                                                         <i class="fa-solid fa-xmark text-xl"></i>
                                                         <span class="sr-only">Close modal</span>
                                                     </button>
+                                                </div> --}}
+                                                <div class="flex h-[75px] items-center justify-between px-4 md:px-5 border-b-2 rounded-t border-[#B8B8B8]">
+                                                    <h3 class="text-xl font-bold text-[#34662C] dark:text-white">
+                                                        Alasan Penolakan Ajuan UMKM
+                                                    </h3>
+                                                    <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" @click="terimaModal = false">
+                                                        <i class="fa-solid fa-xmark text-xl"></i>
+                                                        <span class="sr-only">Close modal</span>
+                                                    </button>
                                                 </div>
+                                                <form action="{{ route('umkm.reject') }}" method="POST" class="px-4 md:px-5 py-2 mt-5">
+                                                    @csrf
+                                                    <div class="mt-4">
+                                                        <textarea name='alasan' id="alasan" cols="19" rows="3" class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
+                                                        <input type="hidden" id="umkm_id" name="umkm_id" value="{{ $umkm->umkm_id }}">
+                                                    </div>
                                                 <!-- Modal body -->
                                                 <div class="w-full h-full text-[#34662C] text-left">
                                                     <div class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto rounded-b-xl">
 
                                                     </div>
                                                     <div class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8]">
-                                                        <button @click="tolakModal = false" class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
+                                                        <button type= "button" @click="tolakModal = false" class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
                                                             Keluar
+                                                        </button>
+                                                        <button type="submit" class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
+                                                            Submit
                                                         </button>
                                                     </div>
                                                 </div>
+                                            </form>
                                             </div>
                                         </div>
                                     </div>
@@ -401,8 +436,10 @@
                             </div>
                         </td>
                         </tr>
-                        @endfor
-                        @for ($i=0; $i<3; $i++) <tr class="bg-white border-b text-sm font-medium text-[#7F7F7F] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        @endforeach
+                        {{-- @endfor --}}
+                        {{-- @for ($i=0; $i<3; $i++) 
+                        <tr class="bg-white border-b text-sm font-medium text-[#7F7F7F] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td class="px-6 py-4">
                                 Lucky Kurniawan Langoday
                             </td>
@@ -525,11 +562,11 @@
                                     </div>
                                 </td>
                                 </tr>
-                                @endfor
+                            @endfor --}}
                 </tbody>
             </table>
             <div class="px-8 py-5">
-                {{ $user->links() }}
+                {{ $umkms->links() }}
             </div>
         </div>
     </div>

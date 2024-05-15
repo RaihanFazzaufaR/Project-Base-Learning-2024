@@ -270,19 +270,28 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @for ($i=0; $i<10; $i++) <tr class="bg-white border-b text-sm font-medium text-[#7F7F7F] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    {{-- @for ($i=0; $i<10; $i++)  --}}
+                    @foreach ($umkms as $umkm)
+                                        
+                    <tr class="bg-white border-b text-sm font-medium text-[#7F7F7F] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <td class="px-6 py-4">
-                            Lucky Kurniawan Langoday
+                            @php
+                            $user = $users->firstWhere('id_penduduk', $umkm->id_pemilik);
+                            @endphp
+                            @if($user)
+                                {{ $user->nama }}
+                            @endif
                         </td>
                         <td class="px-6 py-4">
-                            Warung Madura
+                            {{ $umkm->nama }}
                         </td>
-                        <td class="px-6 py-4" x-data="{'selected': 'false'}">
-                            <a href="#" @click.prevent="selected = (selected === 'true' ? '':'true')">
-                                Lorem ipsum, dolor sit amet consectetur adipisicing 
-                                <span class="font-semibold" :class="(selected === 'true') ? 'hidden' :'inline-block'">...</span><span :class="(selected === 'true') ? 'inline-block' :'hidden'">elit. Expedita, eius? Mollitia quo adipisci,</span>
+                        <td class="px-6 py-4" x-data="{ expanded: false }">
+                            <a href="#" @click.prevent="expanded = !expanded">
+                                <span x-show="!expanded">{{ Str::limit($umkm->lokasi, 50) }}</span>
+                                <span x-show="expanded">{{ $umkm->lokasi }}</span>
+                                <span class="font-semibold" x-show="!expanded"></span>
                             </a>
-                        </td>
+                        </td>                        
                         <td class="px-6 py-4">
                             <div x-data="{ 'detailModal': false }" @keydown.escape="detailModal = false">
                                 <button @click="detailModal = true" class="flex justify-center items-center gap-2 w-fit text-white bg-[#7D5DD7] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#3C2D68] hover:scale-105 transition-all">
@@ -409,12 +418,14 @@
                             </div>
                         </td>
                         </tr>
-                        @endfor
+                        {{-- @endfor --}}
+                        @endforeach
                 </tbody>
             </table>
             <div class="px-8 py-5">
-                {{ $user->links() }}
+                {{ $umkms->links() }}
             </div>
         </div>
+        
     </div>
 </x-admin-layout>

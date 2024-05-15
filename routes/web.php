@@ -69,7 +69,10 @@ Route::group(['middleware' => ['auth']], function () {
             });
             Route::prefix('umkm')->group(function () {
                 Route::get('/', [AdminUmkmController::class, 'index'])->name('umkm-admin');
+
                 Route::get('/ajuan-umkm', [AdminUmkmController::class, 'ajuanUmkm'])->name('ajuan-umkm-admin');
+                Route::post('ajuan-umkm/reject', [AdminUmkmController::class, 'umkmReject'])->name('umkm.reject');
+                Route::post('ajuan-umkm/Accept', [AdminUmkmController::class, 'umkmAccept'])->name('umkm.accept');
             });
             Route::prefix('persuratan')->group(function () {
                 Route::get('/', [AdminPersuratanController::class, 'index'])->name('persuratan-admin');
