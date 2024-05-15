@@ -13,9 +13,6 @@ class PersuratanController extends Controller
     {
         $page = 'daftarPersuratan';
         $selected = 'Persuratan';
-
-        $page = 'ajuanPersuratan';
-        $selected = 'Persuratan';
     
         $permintaanSurat = PermintaanSuratModel::select('tb_permintaansurat.*', 'tb_penduduk.nama', 'tb_template.jenisSurat')
         ->join('tb_penduduk', 'tb_permintaansurat.peminta_id', '=', 'tb_penduduk.id_penduduk')
