@@ -331,7 +331,6 @@
                         <td class="px-6 py-4">
                             {{ $umkm->nama }}
                         </td>
-<<<<<<< HEAD
                         <td class="px-6 py-4" x-data="{ expanded: false }">
                             <a href="#" @click.prevent="expanded = !expanded">
                                 <span x-show="!expanded">{{ Str::limit($umkm->lokasi, 50) }}</span>
