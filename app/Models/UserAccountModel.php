@@ -26,7 +26,6 @@ class UserAccountModel extends User
         'username',
         'password',
         'id_penduduk',
-        'image',
     ];
 
     protected $hidden = [

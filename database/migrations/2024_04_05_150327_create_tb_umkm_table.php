@@ -27,7 +27,6 @@ return new class extends Migration {
             $table->text('alasan_warga')->nullable();
             $table->text('alasan_rw')->nullable();
             $table->timestamp('tanggal_disetujui')->nullable();
-            $table->timestamp('tanggal_ditolak')->nullable();
             $table->timestamps();
         });
     }
