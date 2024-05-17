@@ -141,7 +141,7 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::get('/umkmku/{id_penduduk}', [UmkmController::class, 'umkmku'])->name('umkmku');
                 Route::delete('/delete/{umkm_id}', [UmkmController::class, 'destroyUmkm'])->name('umkm.destroy');
                 Route::post('/cancel/{umkm_id}', [UmkmController::class, 'cancelPengajuan'])->name('umkm.cancel');
-                Route::get('/search-umkm', [UmkmController::class, 'umkmkuSearch'])->name('umkm.search');
+                Route::get('/search-umkm', [UmkmController::class, 'umkmkuSearch'])->name('umkmku.search');
             });
         });
     });
