@@ -355,7 +355,7 @@
                 <a href="{{ route('umkm.detail', ['umkm_id' => $umkm->umkm_id]) }}" class="">
                     <div class="w-full h-64 bg-white border-2 shadow-2xl border-[#2d5523] rounded-xl overflow-hidden flex hover:border-4 hover:border-yellow-500 justify-center items-center  group-hover:opacity-100 transition ease-in-out duration-500 hover:scale-105 group">
                         <div class="basis-1/3 h-full">
-                            <img src="{{ asset($umkm->foto) }}" alt="" class="w-full h-full group-hover:scale-110  transition ease-in-out duration-500">
+                            <img src={{ asset('assets/images/'.$umkm->foto) }} alt="" class="w-full h-full group-hover:scale-110  transition ease-in-out duration-500">
                         </div>
                         <div class="basis-2/3 h-full w-full pt-4 pl-8 ">
                             <div class="basis-2/3">

@@ -16,7 +16,7 @@ class UmkmController extends Controller
     public function index()
     {
         $categories = KategoriModel::all();
-        $umkms = UmkmModel::where('status', 'diterima')->paginate(4);
+        $umkms = UmkmModel::where('status', 'diterima')->get();
         $menu = 'UMKM';
         return view('Umkm.index', [
             'umkms' => $umkms,
@@ -28,7 +28,7 @@ class UmkmController extends Controller
     public function umkmku($id_penduduk)
     {
         $menu = 'UMKM';
-        $umkms = UmkmModel::where('id_pemilik', $id_penduduk)->paginate(7);
+        $umkms = UmkmModel::where('id_pemilik', $id_penduduk)->paginate(8);
         $umkmKategoris = UmkmKategoriModel::all();
         $categories = KategoriModel::all();
         $kategori = '';
@@ -42,7 +42,7 @@ class UmkmController extends Controller
         $umkms_id = UmkmKategoriModel::where('kategori_id', $kategori_id)->pluck('umkm_id');
         $umkms = UmkmModel::whereIn('umkm_id', $umkms_id)
             ->where('status', 'diterima')
-            ->paginate(4);
+            ->get();
 
 
         $menu = 'UMKM';
@@ -60,7 +60,7 @@ class UmkmController extends Controller
         $menu = 'UMKM';
         $umkms = UmkmModel::where('nama', 'LIKE', "%{$searchTerm}%")
             ->where('status', 'diterima')
-            ->paginate(4);
+            ->get();
 
         if ($umkms->isEmpty()) {
             $notification = 'Tidak ada UMKM yang ditemukan dengan nama "' . $searchTerm . '"';
