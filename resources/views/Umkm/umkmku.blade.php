@@ -38,91 +38,83 @@
                 </div>
             </div>
         </div>        
-        <div id="ajukan-umkm" tabindex="-1" aria-hidden="true"
-            class="hidden overflow-y-auto overflow-x-hidden fixed  -top-14 right-0 left-0 -bottom-10 z-[999] justify-center items-center w-full inset-0 ">
-            <div class="relative p-32 w-full  max-h-full">
-                <!-- Modal content -->
-                <div class="relative bg-white rounded-lg shadow  dark:bg-gray-700 border-[3.5px] border-[#2d5523]">
-                    <!-- Modal header -->
-                    <div
-                        class="flex items-center justify-between p-3 pl-4 text-[#2d5523]  rounded-t dark:border-gray-600 border-[#2d5532] border-b-[3.5px]">
-                        <h3 class="text-xl font-extrabold  dark:text-white">
-                            Ajukan UMKM
-                        </h3>
-                        <button type="button"
-                            class=" bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                            data-modal-toggle="ajukan-umkm">
-                            <i class="fa-solid fa-xmark text-[#2d5523] font-extrabold text-xl"></i>
-                        </button>
-                    </div>
-                    <!-- Modal body -->
-                    <form class="p-4 md:p-5 w-full flex flex-col bg-white" method="POST" action="">
-                        <div class="flex w-full h-fit gap-6">
-                            {{-- kolom kiri --}}
-                            <div class="grid gap-5 mb-4 w-full basis-1/2 ">
-                                <div class="gap-2 flex w-full">
-                                    <div class="basis-1/4 h-full flex items-center">
-                                        <label for="kelas"
-                                            class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Nama
-                                            Pemilik
-                                        </label>
-                                    </div>
-                                    <div class="basis-3/4 h-full flex items-center">
-                                        <input id="kelas" list="listKelas" name="kelas"
-                                            placeholder="Masukkan Nama Pemilik UMKM"
-                                            class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                    </div>
-                                    <datalist id="listKelas">
+        <div class="flex items-center gap-11 justify-center">
+            <div id="ajukan-umkm" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed  -top-14 right-0 left-0 -bottom-10 z-[999] justify-center items-center w-full inset-0 ">
+                <div class="relative p-32 w-full  max-h-full">
+                    <!-- Modal content -->
+                    <div class="relative bg-white rounded-lg shadow  dark:bg-gray-700 border-[3.5px] border-[#2d5523]">
+                        <!-- Modal header -->
+                        <div class="flex items-center justify-between p-3 pl-4 text-[#2d5523]  rounded-t dark:border-gray-600 border-[#2d5532] border-b-[3.5px]">
+                            <h3 class="text-xl font-extrabold  dark:text-white">
+                                Ajukan UMKM
+                            </h3>
+                            <button type="button" class=" bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" data-modal-toggle="ajukan-umkm">
+                                <i class="fa-solid fa-xmark text-[#2d5523] font-extrabold text-xl"></i>
+                            </button>
+                        </div>
+                        <form class="p-4 md:p-5 w-full flex flex-col bg-white" method="POST" action="{{ route('umkm.store') }}" enctype="multipart/form-data">
+                            @csrf
+                            <div class="flex w-full h-fit gap-6">
+                                {{-- kolom kiri --}}
+                                <div class="grid gap-5 mb-4 w-full basis-1/2 ">
+                                    <div class="gap-2 flex w-full">
+                                        <div class="basis-1/4 h-full flex items-center">
+                                            <label for="nama_pemilik" class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Nama Pemilik</label>
+                                        </div>
+                                        <div class="basis-3/4 h-full flex items-center">
+                                            <input id="nama_pemilik" name="nama_pemilik" value="{{ Auth::user()->penduduk->nama }}" readonly class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                            <input type="hidden" id="id_penduduk" name="id_penduduk" value="{{ Auth::user()->penduduk->id_penduduk }}">
+                                        </div>
 
-                                    </datalist>
+                                    </div>
+                                    <div class="gap-2 flex w-full">
+                                        <div class="basis-1/4 h-full flex items-center">
+                                            <label for="nama" class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Nama UMKM</label>
+                                        </div>
+                                        <div class="basis-3/4 h-full flex items-center">
+                                            <input id="nama" name="nama" placeholder="Masukkan Nama Toko" class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                        </div>
+                                    </div>
+                                    <div class="gap-2 flex w-full">
+                                        <div class="basis-1/4 h-full flex items-center">
+                                            <label for="no_wa" class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">No. WhatsApp</label>
+                                        </div>
+                                        <div class="basis-3/4 h-full flex items-center">
+                                            <input id="no_wa" name="no_wa" placeholder="Masukkan No. WhatsApp" class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                        </div>
+                                    </div>
+                                    <div class="gap-2 flex w-full">
+                                        <div class="basis-1/4 h-full flex items-center">
+                                            <label for="foto" class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Foto UMKM</label>
+                                        </div>
+                                        <div class="basis-3/4 h-full flex items-center">
+                                            <input id="foto" name="foto" type="file" class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                        </div>
+                                    </div>
+                                    <div class="gap-2 flex w-full">
+                                        <div class="basis-1/4 h-full flex items-center">
+                                            <label for="buka_waktu" class="text-lg font-bold pt-[23px] items-center flex w-full text-[#2d5523] dark:text-white">Jam Operasional</label>
+                                        </div>
+                                        <div class="basis-3/4 h-full flex items-center w-full justify-center">
+                                            <div class="basis-1/2 h-full flex w-full justify-center flex-col ">
+                                                <label for="buka_waktu" class=" mb-2 text-sm w-fit mx-auto font-medium text-[#2d5523] dark:text-white">Jam Buka:</label>
+                                                <div class="w-fit mx-auto">
+                                                    <input type="time" id="buka_waktu" name="buka_waktu" class="bg-gray-50 border-2 border-[#2d5523] leading-none text-lg text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit  py-2.5 px-[17px] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" min="09:00" max="18:00" value="00:00" required />
+                                                </div>
+                                            </div>
+                                            <div class="basis-1/2 h-full flex w-full justify-center flex-col">
+                                                <label for="tutup_waktu" class="block mb-2 text-sm font-medium mx-auto text-[#2d5523] dark:text-white">Jam Tutup:</label>
+                                                <div class="w-fit mx-auto">
+                                                    <input type="time" id="tutup_waktu" name="tutup_waktu" class="bg-gray-50 border-2 border-[#2d5523] leading-none text-lg text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit  py-2.5 px-[17px] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" min="09:00" max="18:00" value="00:00" required />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
-                                <div class="gap-2 flex w-full">
-                                    <div class="basis-1/4 h-full flex items-center">
-                                        <label for="kelas"
-                                            class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Nama
-                                            UMKM</label>
-                                    </div>
-                                    <div class="basis-3/4 h-full flex items-center">
-                                        <input id="kelas" list="listKelas" name="kelas"
-                                            placeholder="Masukkan Nama  UMKM"
-                                            class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                    </div>
-                                    <datalist id="listKelas">
 
-                                    </datalist>
-                                </div>
-                                <div class="gap-2 flex w-full">
-                                    <div class="basis-1/4 h-full flex items-center">
-                                        <label for="kelas"
-                                            class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">No.
-                                            WhatsApp</label>
-                                    </div>
-                                    <div class="basis-3/4 h-full flex items-center">
-                                        <input id="kelas" list="listKelas" name="kelas"
-                                            placeholder="Masukkan No. WhatsApp"
-                                            class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                    </div>
-                                    <datalist id="listKelas">
 
-                                    </datalist>
-                                </div>
-                                <div class="gap-2 flex w-full">
-                                    <div class="basis-1/4 h-full flex items-center">
-                                        <label for="kelas"
-                                            class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Foto
-                                            UMKM</label>
-                                    </div>
-                                    <div class="basis-3/4 h-full flex items-center">
-                                        <input
-                                            class="bg-gray-50 shadow-md border-[2px] border-[#2d5523] text-[#2d5523] placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                            aria-describedby="file_input_help" id="file_input" type="file">
-                                    </div>
-                                    <datalist id="listKelas">
-
-                                    </datalist>
-                                </div>
-                                <div class="gap-2 flex w-full">
+                                {{-- <div class="gap-2 flex w-full">
                                     <div class="basis-1/4 h-full flex items-center">
                                         <label for="kelas"
                                             class="text-lg font-bold pt-[23px] items-center flex w-full text-[#2d5523] dark:text-white">Jam
@@ -153,18 +145,17 @@
                                     <datalist id="listKelas">
 
                                     </datalist>
-                                </div>
+                                </div> --}}
 
-                            </div>
-                            {{-- kolom kanan --}}
-                            <div class="flex flex-col gap-5 mb-4 w-full basis-1/2 ">
-                                <div class="gap-2 flex w-full">
-                                    <div class="basis-1/4 h-full flex items-center justify-center">
-                                        <label class="text-lg font-bold  items-center flex w-full text-[#2d5523] dark:text-white">
-                                            Kategori
-                                        </label>
-                                    </div>
-                                    <div class="basis-3/4 h-full flex items-center">
+                                <!-- kolom kanan -->
+                                <div class="flex flex-col gap-5  w-full basis-1/2 ">
+                                    <div class="gap-2 flex w-full">
+                                        <div class="basis-1/4 h-full flex items-center justify-center">
+                                            <label class="text-lg font-bold  items-center flex w-full text-[#2d5523] dark:text-white">
+                                                Kategori
+                                            </label>
+                                        </div>
+                                        <div class="basis-3/4 h-full flex items-center">
                                             <div class="text-[#2d5523]  placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full  dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 ">
                                                 <select class="hidden" x-cloak id="select">
                                                     <option value="1">Makanan</option>
@@ -174,6 +165,7 @@
                                                     <option value="5">Jasa</option>
                                                     <option value="6">Lainnya</option>
                                                 </select>
+
                                                 <div x-data="dropdown()" x-init="loadOptions()" class="flex flex-col items-center">
                                                     <input name="values" type="hidden" :value="selectedValues()" />
                                                     <div class="relative z-20 inline-block  w-full">
@@ -229,69 +221,48 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                        
+                                        </div>
                                     </div>
-                                </div>
 
-                                <div class="gap-2 flex w-full">
-                                    <div class="basis-1/4 h-full flex items-center">
-                                        <label for="kelas"
-                                            class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Koordinat
-                                            UMKM</label>
+                                    <div class="gap-2 flex w-full">
+                                        <div class="basis-1/4 h-full flex items-center">
+                                            <label for="lokasi_map" class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Koordinat UMKM</label>
+                                        </div>
+                                        <div class="basis-3/4 h-full flex items-center">
+                                            <input id="lokasi_map" name="lokasi_map" placeholder="Masukkan Koordinat Lokasi Sesuai Google Maps" class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                        </div>
                                     </div>
-                                    <div class="basis-3/4 h-full flex items-center">
-                                        <input id="kelas" list="listKelas" name="kelas"
-                                            placeholder="Masukkan Koordinat Lokasi Sesuai Google Maps"
-                                            class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                    </div>
-                                    <datalist id="listKelas">
 
-                                    </datalist>
-                                </div>
-                                <div class="gap-2 flex w-full">
-                                    <div class="basis-1/4 h-fit ">
-                                        <label for="kelas"
-                                            class="text-lg font-bold  w-full text-[#2d5523] dark:text-white">Alamat
-                                            UMKM</label>
+                                    <div class="gap-2 flex w-full">
+                                        <div class="basis-1/4 h-fit ">
+                                            <label for="lokasi" class="text-lg font-bold  w-full text-[#2d5523] dark:text-white">Alamat UMKM</label>
+                                        </div>
+                                        <div class="basis-3/4 h-full flex items-center">
+                                            <textarea id="lokasi" name="lokasi" cols="19" rows="3" placeholder="Masukkan Alamat UMKM" class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
+                                        </div>
                                     </div>
-                                    <div class="basis-3/4 h-full flex items-center">
-                                        <textarea id="kelas" cols="19" rows="3" name="kelas" placeholder="Masukkan Deskripsi Singkat UMKM"
-                                            class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                        </textarea>
-                                    </div>
-                                    <datalist id="listKelas">
 
-                                    </datalist>
-                                </div>
-                                <div class="gap-2 flex w-full">
-                                    <div class="basis-1/4 h-fit ">
-                                        <label for="kelas"
-                                            class="text-lg font-bold  w-full text-[#2d5523] dark:text-white">Deskripsi
-                                            Singkat</label>
+                                    <div class="gap-2 flex w-full">
+                                        <div class="basis-1/4 h-fit ">
+                                            <label for="deskripsi" class="text-lg font-bold  w-full text-[#2d5523] dark:text-white">Deskripsi Singkat</label>
+                                        </div>
+                                        <div class="basis-3/4 h-full flex items-center">
+                                            <textarea id="deskripsi" name="deskripsi" cols="19" rows="3" placeholder="Masukkan Deskripsi Singkat UMKM" class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
+                                        </div>
                                     </div>
-                                    <div class="basis-3/4 h-full flex items-center">
-                                        {{-- <textarea name="" id="" cols="30" rows="10"></textarea> --}}
-                                        <textarea id="kelas" cols="19" rows="3" name="kelas" placeholder="Masukkan Deskripsi Singkat UMKM"
-                                            class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                        </textarea>
-                                    </div>
-                                    <datalist id="listKelas">
-
-                                    </datalist>
                                 </div>
                             </div>
+                            <div class="w-full text-[#2d5523] font-sm pb-4">
+                                *Sebelum mengajukan UMKM Anda, pastikan UMKM Anda sudah ada pada Google Maps
+                            </div>
+                            <div class="flex w-full justify-end items-center px-7">
+                                <button type="submit" class="text-white items-center bg-[#2d5523] hover:bg-[#e2a229] hover:text-[#2d5523] focus:ring-4 text-center w-full focus:outline-none focus:ring-blue-300  rounded-lg text-lg font-bold  py-3  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                    Ajukan UMKM
+                                </button>
+                            </div>
+                        </form>
 
-                        </div>
-                        <div class="w-full text-[#2d5523] font-sm pb-4">
-                            *Sebelum mengajukan UMKM Anda, pastikan UMKM Anda sudah ada pada Google Maps
-                        </div>
-                        <div class="flex w-full justify-end items-center px-7">
-                            <button type="submit"
-                                class="text-white items-center bg-[#2d5523] hover:bg-[#e2a229] hover:text-[#2d5523] focus:ring-4 text-center w-full focus:outline-none focus:ring-blue-300  rounded-lg text-lg font-bold  py-3  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                Ajukan UMKM
-                            </button>
-                        </div>
-                    </form>
+                    </div>
                 </div>
             </div>
         </div>
