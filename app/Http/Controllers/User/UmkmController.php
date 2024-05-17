@@ -138,7 +138,8 @@ class UmkmController extends Controller
         if (!$umkm) {
             abort(404, 'Data UMKM tidak ditemukan');
         }
-        $koordinat_array = explode(",", $umkm->lokasi_map);
+        $koordinat_array = array_map('trim', explode(",", $umkm->lokasi_map));
+
 
         $latitude = trim($koordinat_array[0]);
         $longtitude = trim($koordinat_array[1]);
