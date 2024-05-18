@@ -10,7 +10,7 @@
         <p class="text-[#2d5523] font-sans text-[32px] text-center">“Mudahkan Akses Surat di Lingkungan RW”</p>
     </div>
 </div>
-<div class="bg-[#Fff] min-h-[100vh] mx-auto py-[34px] w-[90%]">
+<div class="bg-[#Fff] h-fit mx-auto pt-[34px] w-[90%]">
     <div class="flex border-b-[1.9px] h-[57px] w-[24%] border-[#2d5523]">
         <p class="text-[#2d5523] font-bold text-[19px] w-full flex  items-center">
             Jenis Surat
@@ -49,7 +49,7 @@
                 </ul>
             </div>
         </div>
-        <div class="basis-3/4 w-full h-[90vh]">
+        <div class="basis-3/4 w-full h-full">
             <div class=" gap-11  w-full h-full">
                 <div class="text-[#2d5523] text-2xl pb-10 font-bold">
                     Formulir Surat Keterangan
@@ -110,12 +110,11 @@
                         </div>
                     </div>
                     <div class="gap-2 flex w-full h-fit">
-                        <div class="basis-1/4 h-full ps-8  flex my-auto items-center">
-                            <label for="alamat" class="text-lg font-bold items-center flex w-full  text-[#2d5523] dark:text-white">Alamat</label>
+                        <div class="basis-1/4 h-full ps-8  flex ">
+                            <label for="alamat" class="text-lg font-bold  w-full text-[#2d5523] dark:text-white">Alamat</label>
                         </div>
                         <div class="basis-3/4 h-full flex items-center">
-                            <input id="alamat" name="alamat"  readonly class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                            {{-- <input type="hidden" id="id_penduduk" name="id_penduduk" value="{{ Auth::user()->penduduk->id_penduduk }}"> --}}
+                            <textarea id="alamat" name="alamat" cols="19" rows="3" readonly class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
                         </div>
                     </div>
                     <div class="gap-2 flex w-full h-fit">
@@ -123,10 +122,10 @@
                             <label for="keperluan" class="text-lg font-bold  w-full text-[#2d5523] dark:text-white">Keperluan</label>
                         </div>
                         <div class="basis-3/4 h-full flex items-center">
-                            <textarea id="lokasi" name="lokasi" cols="19" rows="3" placeholder="Masukkan Tujuan" class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
+                            <textarea id="keperluan" name="keperluan" cols="19" rows="3" placeholder="Masukkan Keperluan" class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
                         </div>
                     </div>
-                    <div class="flex w-full justify-end items-center py-7">
+                    <div class="flex w-full justify-end items-center ps-8 pt-7">
                         <button type="submit" class="text-white items-center bg-[#2d5523] hover:bg-[#e2a229] hover:text-[#2d5523] focus:ring-4 text-center w-full focus:outline-none focus:ring-blue-300  rounded-lg text-lg font-bold  py-3  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ">
                             Simpan
                         </button>
