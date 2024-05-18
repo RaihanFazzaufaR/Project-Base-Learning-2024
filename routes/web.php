@@ -81,6 +81,7 @@ Route::group(['middleware' => ['auth']], function () {
             });
             Route::prefix('akun-admin')->group(function () {
                 Route::get('/', [AdminAkunAdminController::class, 'index'])->name('akun-admin');
+                Route::get('/kelola-level', [AdminAkunAdminController::class, 'kelolaLevel'])->name('kelola-level');
                 // Route::post('/', [AdminPendudukController::class, 'storeAkun'])->name('storeAdmin');
                 // Route::put('/{nik}', [AdminPendudukController::class, 'updateAkun'])->name('updatePenduduk');
                 Route::delete('/{username}', [AdminAkunAdminController::class, 'destroyAkun'])->name('destroyAkun');

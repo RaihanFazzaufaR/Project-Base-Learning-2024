@@ -50,52 +50,6 @@
                                             <option value="khonghucu">Khonghucu</option>
                                         </select>
                                     </div>
-                                    <div class="col-span-2 sm:col-span-1">
-                                        <label for="statusPenduduk" class="block mb-2 text-sm font-bold ">Status Penduduk</label>
-                                        <select id="statusPenduduk" name="statusPenduduk" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                                            <option selected="">Pilih Status Penduduk</option>
-                                            <option value="penduduk">Penduduk</option>
-                                            <option value="RT">RT</option>
-                                            <option value="RW">RW</option>
-                                            <option value="penduduk tidak tetap">Penduduk Tidak Tetap</option>
-                                            <option value="orang luar">Orang Luar</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-span-2 sm:col-span-1">
-                                        <label for="statusPernikahan" class="block mb-2 text-sm font-bold ">Status Pernikahan</label>
-                                        <select id="statusPernikahan" name="statusPernikahan" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                                            <option selected="">Pilih Status Pernikahan</option>
-                                            <option value="belum">Belum Menikah</option>
-                                            <option value="sudah">Sudah Menikah</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-span-2 sm:col-span-1">
-                                        <label for="kewarganegaraan" class="block mb-2 text-sm font-bold">Kewarganegaraan</label>
-                                        <select id="kewarganegaraan" name="kewarganegaraan" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                                            <option selected="">Pilih Kewarganegaraan</option>
-                                            <option value="WNI">Indonesia</option>
-                                            <option value="WNA">Luar</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-span-2 sm:col-span-1">
-                                        <label for="jenisKelamin" class="block mb-2 text-sm font-bold ">Jenis Kelamin</label>
-                                        <select id="jenisKelamin" name="jenisKelamin" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                                            <option selected="">Pilih Jenis Kelamin</option>
-                                            <option value="L">Laki-Laki</option>
-                                            <option value="P">Perempuan</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-span-2 sm:col-span-1">
-                                        <label for="rt" class="block mb-2 text-sm font-bold ">RT</label>
-                                        <select id="rt" name="rt" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                                            <option selected="">Pilih RT</option>
-                                            <option value="01">01</option>
-                                            <option value="02">02</option>
-                                            <option value="03">03</option>
-                                            <option value="04">04</option>
-                                            <option value="05">05</option>
-                                        </select>
-                                    </div>
                                 </div>
                                 <div class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8]">
                                     <button type="button" @click="filterModal = false" class="hover:text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center hover:bg-[#34662C] bg-white text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
@@ -142,22 +96,28 @@
                             <div class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin rounded-b-xl">
                                 <div class="col-span-2 sm:col-span-1 relative">
                                     <label class="block mb-2 text-sm font-bold">NIK</label>
-                                    <input list="listNik" name="nik" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                    <input list="listNik" name="nik" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan NIK ...">
                                     <datalist id="listNik">
                                         <option value="123456"></option>
                                     </datalist>
                                 </div>
                                 <div class="col-span-2 sm:col-span-1">
                                     <label for="nama" class="block mb-2 text-sm font-bold">Nama UMKM</label>
-                                    <input type="text" name="nama" id="nama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                    <input type="text" name="nama" id="nama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan Nama UMKM ...">
                                 </div>
                                 <div class="col-span-2 sm:col-span-1">
-                                    <label for="jam-buka" class="block mb-2 text-sm font-bold">Jam Buka</label>
-                                    <input type="time" name="jam-buka" id="jam-buka" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                    <label for="noHp" class="block mb-2 text-sm font-bold">No. Whatsapp</label>
+                                    <input type="text" name="noHp" id="noHp" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan No Whatsapp ...">
                                 </div>
-                                <div class="col-span-2 sm:col-span-1">
-                                    <label for="jam-tutup" class="block mb-2 text-sm font-bold">Jam Tutup</label>
-                                    <input type="time" name="jam-tutup" id="jam-tutup" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                <div class="col-span-2 sm:col-span-1 grid grid-cols-2 gap-4">
+                                    <div class="col-span-2 sm:col-span-1">
+                                        <label for="jam-buka" class="block mb-2 text-sm font-bold">Jam Buka</label>
+                                        <input type="time" name="jam-buka" id="jam-buka" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                    </div>
+                                    <div class="col-span-2 sm:col-span-1">
+                                        <label for="jam-tutup" class="block mb-2 text-sm font-bold">Jam Tutup</label>
+                                        <input type="time" name="jam-tutup" id="jam-tutup" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                    </div>
                                 </div>
                                 <div class="col-span-2">
                                     <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
@@ -226,54 +186,19 @@
                                 </div>
                                 <div class="col-span-2">
                                     <label for="koordinat" class="block mb-2 text-sm font-bold">Koordinat</label>
-                                    <input type="text" name="koordinat" id="koordinat" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                    <input type="text" name="koordinat" id="koordinat" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan Koordinat ...">
                                 </div>
                                 <div class="col-span-2">
                                     <label class="block mb-2 text-sm font-bold">Alamat</label>
-                                    <textarea name="alamat" rows="4" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"></textarea>
+                                    <textarea name="alamat" rows="4" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan Alamat ..."></textarea>
                                 </div>
                                 <div class="col-span-2">
                                     <label class="block mb-2 text-sm font-bold">Deskripsi Singkat</label>
-                                    <textarea name="deskripsi" rows="4" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"></textarea>
+                                    <textarea name="deskripsi" rows="4" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan Deskripsi Singkat ..."></textarea>
                                 </div>
                                 <div class="col-span-2">
-                                    <div class="flex w-full justify-start items-center gap-4 py-2 h-fit">
+                                    <div class="flex w-full justify-start items-center gap-4 pb-2 h-fit">
                                         <label for="foto" class="text-sm font-bold">Foto UMKM</label>
-                                        <div x-data="{ 'fotoModal': false }" @keydown.escape="fotoModal = false">
-                                            <button type="button" @click="fotoModal = true" class="flex justify-center items-center gap-2 w-fit text-white bg-[#7D5DD7] rounded-lg shadow-xl font-semibold text-sm h-full px-3 py-1 hover:bg-[#3C2D68] hover:scale-105 transition-all">
-                                                <div>Lihat Foto</div>
-                                            </button>
-                                            <!-- Detail modal -->
-                                            <div x-show="fotoModal" tabindex="-1" aria-hidden="true" class="flex overflow-hidden fixed top-0 right-0 left-0 z-999 justify-center items-center w-full md:inset-0 h-full">
-                                                <div class="absolute z-999 bg-black/25 h-[100vh] w-full"></div>
-                                                <div class="relative z-[1000] p-4 w-fit max-w-3xl max-h-[700px]" @click.away="fotoModal = false" x-transition:enter="motion-safe:ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
-                                                    <!-- Modal content -->
-                                                    <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                                                        <!-- Modal header -->
-                                                        <div class="flex h-[75px] items-center justify-between px-4 md:px-5 border-b-2 rounded-t border-[#B8B8B8]">
-                                                            <h3 class="text-xl font-bold text-[#34662C] dark:text-white">
-                                                                Foto UMKM
-                                                            </h3>
-                                                            <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" @click="fotoModal = false">
-                                                                <i class="fa-solid fa-xmark text-xl"></i>
-                                                                <span class="sr-only">Close modal</span>
-                                                            </button>
-                                                        </div>
-                                                        <!-- Modal body -->
-                                                        <div class="w-full h-full text-[#34662C] text-left">
-                                                            <div class="p-4 md:p-5  w-150 gap-4 flex justify-center items-center max-h-[450px] rounded-b-xl">
-                                                                <img src="{{ asset('assets/images/toko-kelontong.jpg') }}" alt="" class="w-full h-full rounded-xl shadow-xl border-4 border-white">
-                                                            </div>
-                                                            <div class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8]">
-                                                                <button type="button" @click="fotoModal = false" class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
-                                                                    Keluar
-                                                                </button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
                                     </div>
                                     <input type="file" name="foto" id="foto" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
                                 </div>
@@ -318,14 +243,14 @@
                 <tbody>
                     {{-- @for ($i=0; $i<10; $i++)  --}}
                     @foreach ($umkms as $umkm)
-                                        
+
                     <tr class="bg-white border-b text-sm font-medium text-[#7F7F7F] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <td class="px-6 py-4">
                             @php
                             $user = $users->firstWhere('id_penduduk', $umkm->id_pemilik);
                             @endphp
                             @if($user)
-                                {{ $user->nama }}
+                            {{ $user->nama }}
                             @endif
                         </td>
                         <td class="px-6 py-4">
@@ -337,7 +262,7 @@
                                 <span x-show="expanded">{{ $umkm->lokasi }}</span>
                                 <span class="font-semibold" x-show="!expanded"></span>
                             </a>
-                        </td>                        
+                        </td>
                         <td class="px-6 py-4">
                             <div x-data="{ 'detailModal': false }" @keydown.escape="detailModal = false">
                                 <button @click="detailModal = true" class="flex justify-center items-center gap-2 w-fit text-white bg-[#7D5DD7] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#3C2D68] hover:scale-105 transition-all">
@@ -390,11 +315,12 @@
                                             <!-- Modal content -->
                                             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                                                 <!-- Modal header -->
-                                                <div class="flex h-[75px] items-center justify-between px-4 md:px-5 border-b-2 rounded-t border-[#B8B8B8]">
-                                                    <h3 class="text-xl font-bold text-[#34662C] dark:text-white">
+                                                <div class="flex h-[100px] items-start py-4 justify-between px-4 md:px-5 border-b-2 rounded-t border-[#B8B8B8] relative">
+                                                    <img src="{{ asset('assets/images/toko-kelontong.jpg') }}" alt="" class="absolute z-1 h-full w-full object-cover left-0 top-0 rounded-t brightness-50">
+                                                    <h3 class="text-xl font-bold text-white dark:text-white z-[2]">
                                                         Detail Data UMKM
                                                     </h3>
-                                                    <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" @click="detailModal = false">
+                                                    <button type="button" class="text-white bg-transparent hover:text-gray-500 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white z-[2]" @click="detailModal = false">
                                                         <i class="fa-solid fa-xmark text-xl"></i>
                                                         <span class="sr-only">Close modal</span>
                                                     </button>
@@ -414,12 +340,18 @@
                                                             <input type="text" name="nama" id="nama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
                                                         </div>
                                                         <div class="col-span-2 sm:col-span-1">
-                                                            <label for="jam-buka" class="block mb-2 text-sm font-bold">Jam Buka</label>
-                                                            <input type="time" name="jam-buka" id="jam-buka" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                                            <label for="noHp" class="block mb-2 text-sm font-bold">No. Whatsapp</label>
+                                                            <input type="text" name="noHp" id="noHp" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
                                                         </div>
-                                                        <div class="col-span-2 sm:col-span-1">
-                                                            <label for="jam-tutup" class="block mb-2 text-sm font-bold">Jam Tutup</label>
-                                                            <input type="time" name="jam-tutup" id="jam-tutup" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                                        <div class="col-span-2 sm:col-span-1 grid grid-cols-2 gap-4">
+                                                            <div class="col-span-2 sm:col-span-1">
+                                                                <label for="jam-buka" class="block mb-2 text-sm font-bold">Jam Buka</label>
+                                                                <input type="time" name="jam-buka" id="jam-buka" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                                            </div>
+                                                            <div class="col-span-2 sm:col-span-1">
+                                                                <label for="jam-tutup" class="block mb-2 text-sm font-bold">Jam Tutup</label>
+                                                                <input type="time" name="jam-tutup" id="jam-tutup" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                                            </div>
                                                         </div>
                                                         <div class="col-span-2">
                                                             <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
@@ -499,43 +431,8 @@
                                                             <textarea name="deskripsi" rows="4" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"></textarea>
                                                         </div>
                                                         <div class="col-span-2">
-                                                            <div class="flex w-full justify-start items-center gap-4 py-2 h-fit">
+                                                            <div class="flex w-full justify-start items-center gap-4 pb-2 h-fit">
                                                                 <label for="foto" class="text-sm font-bold">Foto UMKM</label>
-                                                                <div x-data="{ 'fotoModal': false }" @keydown.escape="fotoModal = false">
-                                                                    <button type="button" @click="fotoModal = true" class="flex justify-center items-center gap-2 w-fit text-white bg-[#7D5DD7] rounded-lg shadow-xl font-semibold text-sm h-full px-3 py-1 hover:bg-[#3C2D68] hover:scale-105 transition-all">
-                                                                        <div>Lihat Foto</div>
-                                                                    </button>
-                                                                    <!-- Detail modal -->
-                                                                    <div x-show="fotoModal" tabindex="-1" aria-hidden="true" class="flex overflow-hidden fixed top-0 right-0 left-0 z-999 justify-center items-center w-full md:inset-0 h-full">
-                                                                        <div class="absolute z-999 bg-black/25 h-[100vh] w-full"></div>
-                                                                        <div class="relative z-[1000] p-4 w-fit max-w-3xl max-h-[700px]" @click.away="fotoModal = false" x-transition:enter="motion-safe:ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
-                                                                            <!-- Modal content -->
-                                                                            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                                                                                <!-- Modal header -->
-                                                                                <div class="flex h-[75px] items-center justify-between px-4 md:px-5 border-b-2 rounded-t border-[#B8B8B8]">
-                                                                                    <h3 class="text-xl font-bold text-[#34662C] dark:text-white">
-                                                                                        Foto UMKM
-                                                                                    </h3>
-                                                                                    <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" @click="fotoModal = false">
-                                                                                        <i class="fa-solid fa-xmark text-xl"></i>
-                                                                                        <span class="sr-only">Close modal</span>
-                                                                                    </button>
-                                                                                </div>
-                                                                                <!-- Modal body -->
-                                                                                <div class="w-full h-full text-[#34662C] text-left">
-                                                                                    <div class="p-4 md:p-5  w-150 gap-4 flex justify-center items-center max-h-[450px] rounded-b-xl">
-                                                                                        <img src="{{ asset('assets/images/toko-kelontong.jpg') }}" alt="" class="w-full h-full rounded-xl shadow-xl border-4 border-white">
-                                                                                    </div>
-                                                                                    <div class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8]">
-                                                                                        <button type="button" @click="fotoModal = false" class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
-                                                                                            Keluar
-                                                                                        </button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
                                                             </div>
                                                             <input type="file" name="foto" id="foto" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
                                                         </div>
@@ -590,12 +487,18 @@
                                                             <input type="text" name="nama" id="nama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
                                                         </div>
                                                         <div class="col-span-2 sm:col-span-1">
-                                                            <label for="jam-buka" class="block mb-2 text-sm font-bold">Jam Buka</label>
-                                                            <input type="time" name="jam-buka" id="jam-buka" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                                            <label for="noHp" class="block mb-2 text-sm font-bold">No. Whatsapp</label>
+                                                            <input type="text" name="noHp" id="noHp" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
                                                         </div>
-                                                        <div class="col-span-2 sm:col-span-1">
-                                                            <label for="jam-tutup" class="block mb-2 text-sm font-bold">Jam Tutup</label>
-                                                            <input type="time" name="jam-tutup" id="jam-tutup" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                                        <div class="col-span-2 sm:col-span-1 grid grid-cols-2 gap-4">
+                                                            <div class="col-span-2 sm:col-span-1">
+                                                                <label for="jam-buka" class="block mb-2 text-sm font-bold">Jam Buka</label>
+                                                                <input type="time" name="jam-buka" id="jam-buka" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                                            </div>
+                                                            <div class="col-span-2 sm:col-span-1">
+                                                                <label for="jam-tutup" class="block mb-2 text-sm font-bold">Jam Tutup</label>
+                                                                <input type="time" name="jam-tutup" id="jam-tutup" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                                            </div>
                                                         </div>
                                                         <div class="col-span-2">
                                                             <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
@@ -741,16 +644,16 @@
                                 </form>
                             </div>
                         </td>
-                        </tr>
-                        {{-- @endfor --}}
-                        @endforeach
+                    </tr>
+                    {{-- @endfor --}}
+                    @endforeach
                 </tbody>
             </table>
             <div class="px-8 py-5">
                 {{ $umkms->links() }}
             </div>
         </div>
-        
+
     </div>
 
     <script>

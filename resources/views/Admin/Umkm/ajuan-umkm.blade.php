@@ -144,7 +144,7 @@
                             $user = $users->firstWhere('id_penduduk', $umkm->id_pemilik);
                             @endphp
                             @if($user)
-                                {{ $user->nama }}
+                            {{ $user->nama }}
                             @endif
                         </td>
                         <td class="px-6 py-4">
@@ -156,7 +156,7 @@
                                 <span x-show="expanded">{{ $umkm->lokasi }}</span>
                                 <span class="font-semibold" x-show="!expanded"></span>
                             </a>
-                        </td>     
+                        </td>
                         <td>
                             <div class="px-6 py-4 flex items-center justify-center h-full">
                                 <div x-data="{ 'detailModal': false }" @keydown.escape="detailModal = false">
@@ -171,11 +171,12 @@
                                             <!-- Modal content -->
                                             <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
                                                 <!-- Modal header -->
-                                                <div class="flex h-[75px] items-center justify-between px-4 md:px-5 border-b-2 rounded-t border-[#B8B8B8]">
-                                                    <h3 class="text-xl font-bold text-[#34662C] dark:text-white">
+                                                <div class="flex h-[100px] items-start py-4 justify-between px-4 md:px-5 border-b-2 rounded-t border-[#B8B8B8] relative">
+                                                    <img src="{{ asset('assets/images/toko-kelontong.jpg') }}" alt="" class="absolute z-1 h-full w-full object-cover left-0 top-0 rounded-t brightness-50">
+                                                    <h3 class="text-xl font-bold text-white dark:text-white z-[2]">
                                                         Detail Data UMKM
                                                     </h3>
-                                                    <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" @click="detailModal = false">
+                                                    <button type="button" class="text-white bg-transparent hover:text-gray-500 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white z-[2]" @click="detailModal = false">
                                                         <i class="fa-solid fa-xmark text-xl"></i>
                                                         <span class="sr-only">Close modal</span>
                                                     </button>
@@ -195,12 +196,18 @@
                                                             <input type="text" name="nama" id="nama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
                                                         </div>
                                                         <div class="col-span-2 sm:col-span-1">
-                                                            <label for="jam-buka" class="block mb-2 text-sm font-bold">Jam Buka</label>
-                                                            <input type="time" name="jam-buka" id="jam-buka" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                                            <label for="noHp" class="block mb-2 text-sm font-bold">No. Whatsapp</label>
+                                                            <input type="text" name="noHp" id="noHp" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
                                                         </div>
-                                                        <div class="col-span-2 sm:col-span-1">
-                                                            <label for="jam-tutup" class="block mb-2 text-sm font-bold">Jam Tutup</label>
-                                                            <input type="time" name="jam-tutup" id="jam-tutup" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                                        <div class="col-span-2 sm:col-span-1 grid grid-cols-2 gap-4">
+                                                            <div class="col-span-2 sm:col-span-1">
+                                                                <label for="jam-buka" class="block mb-2 text-sm font-bold">Jam Buka</label>
+                                                                <input type="time" name="jam-buka" id="jam-buka" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                                            </div>
+                                                            <div class="col-span-2 sm:col-span-1">
+                                                                <label for="jam-tutup" class="block mb-2 text-sm font-bold">Jam Tutup</label>
+                                                                <input type="time" name="jam-tutup" id="jam-tutup" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                                            </div>
                                                         </div>
                                                         <div class="col-span-2">
                                                             <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
@@ -280,43 +287,8 @@
                                                             <textarea name="deskripsi" rows="4" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"></textarea>
                                                         </div>
                                                         <div class="col-span-2">
-                                                            <div class="flex w-full justify-start items-center gap-4 py-2 h-fit">
+                                                            <div class="flex w-full justify-start items-center gap-4 pb-2 h-fit">
                                                                 <label for="foto" class="text-sm font-bold">Foto UMKM</label>
-                                                                <div x-data="{ 'fotoModal': false }" @keydown.escape="fotoModal = false">
-                                                                    <button type="button" @click="fotoModal = true" class="flex justify-center items-center gap-2 w-fit text-white bg-[#7D5DD7] rounded-lg shadow-xl font-semibold text-sm h-full px-3 py-1 hover:bg-[#3C2D68] hover:scale-105 transition-all">
-                                                                        <div>Lihat Foto</div>
-                                                                    </button>
-                                                                    <!-- Detail modal -->
-                                                                    <div x-show="fotoModal" tabindex="-1" aria-hidden="true" class="flex overflow-hidden fixed top-0 right-0 left-0 z-999 justify-center items-center w-full md:inset-0 h-full">
-                                                                        <div class="absolute z-999 bg-black/25 h-[100vh] w-full"></div>
-                                                                        <div class="relative z-[1000] p-4 w-fit max-w-3xl max-h-[700px]" @click.away="fotoModal = false" x-transition:enter="motion-safe:ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
-                                                                            <!-- Modal content -->
-                                                                            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                                                                                <!-- Modal header -->
-                                                                                <div class="flex h-[75px] items-center justify-between px-4 md:px-5 border-b-2 rounded-t border-[#B8B8B8]">
-                                                                                    <h3 class="text-xl font-bold text-[#34662C] dark:text-white">
-                                                                                        Foto UMKM
-                                                                                    </h3>
-                                                                                    <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" @click="fotoModal = false">
-                                                                                        <i class="fa-solid fa-xmark text-xl"></i>
-                                                                                        <span class="sr-only">Close modal</span>
-                                                                                    </button>
-                                                                                </div>
-                                                                                <!-- Modal body -->
-                                                                                <div class="w-full h-full text-[#34662C] text-left">
-                                                                                    <div class="p-4 md:p-5  w-150 gap-4 flex justify-center items-center max-h-[450px] rounded-b-xl">
-                                                                                        <img src="{{ asset('assets/images/toko-kelontong.jpg') }}" alt="" class="w-full h-full rounded-xl shadow-xl border-4 border-white">
-                                                                                    </div>
-                                                                                    <div class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8]">
-                                                                                        <button type="button" @click="fotoModal = false" class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
-                                                                                            Keluar
-                                                                                        </button>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
                                                             </div>
                                                             <input type="file" name="foto" id="foto" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
                                                         </div>
@@ -420,41 +392,41 @@
                                                         <textarea name='alasan' id="alasan" cols="19" rows="3" class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
                                                         <input type="hidden" id="umkm_id" name="umkm_id" value="{{ $umkm->umkm_id }}">
                                                     </div>
-                                                <!-- Modal body -->
-                                                <div class="w-full h-full text-[#34662C] text-left">
-                                                    <form action="">
-                                                        <div class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto rounded-b-xl">
-                                                            <div class="col-span-2">
-                                                                <label for="alasan-penolakan" class="block mb-2 text-sm font-bold">Alasan Penolakan</label>
-                                                                <textarea id="alasan-penolakan" name="alasan-penolakan" rows="4" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan Alasan Penolakan..."></textarea>
+                                                    <!-- Modal body -->
+                                                    <div class="w-full h-full text-[#34662C] text-left">
+                                                        <form action="">
+                                                            <div class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto rounded-b-xl">
+                                                                <div class="col-span-2">
+                                                                    <label for="alasan-penolakan" class="block mb-2 text-sm font-bold">Alasan Penolakan</label>
+                                                                    <textarea id="alasan-penolakan" name="alasan-penolakan" rows="4" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan Alasan Penolakan..."></textarea>
+                                                                </div>
                                                             </div>
+                                                        </form>
+                                                        <div class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8]">
+                                                            <button type="button" @click="tolakModal = false" class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
+                                                                Keluar
+                                                                <button type="button" @click="filterModal = false" class="hover:text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center hover:bg-[#34662C] bg-white text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
+                                                                    Batal
+                                                                </button>
+                                                                <button type="submit" class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
+                                                                    Simpan
+                                                                </button>
+                                                                <button type="submit" class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
+                                                                    Submit
+                                                                </button>
                                                         </div>
-                                                    </form>
-                                                    <div class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8]">
-                                                        <button type= "button" @click="tolakModal = false" class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
-                                                            Keluar
-                                                        <button type="button" @click="filterModal = false" class="hover:text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center hover:bg-[#34662C] bg-white text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
-                                                            Batal
-                                                        </button>
-                                                        <button type="submit" class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
-                                                            Simpan
-                                                        </button>
-                                                        <button type="submit" class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
-                                                            Submit
-                                                        </button>
                                                     </div>
-                                                </div>
-                                            </form>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
                         </td>
-                        </tr>
-                        @endforeach
-                        {{-- @endfor --}}
-                        {{-- @for ($i=0; $i<3; $i++) 
+                    </tr>
+                    @endforeach
+                    {{-- @endfor --}}
+                    {{-- @for ($i=0; $i<3; $i++) 
                         <tr class="bg-white border-b text-sm font-medium text-[#7F7F7F] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td class="px-6 py-4">
                                 Lucky Kurniawan Langoday
