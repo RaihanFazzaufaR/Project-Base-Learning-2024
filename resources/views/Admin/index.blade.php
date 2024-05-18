@@ -275,7 +275,7 @@
     </div>
     <div class="col-span-2 bg-white rounded-xl shadow-xl flex h-full">
       <div class="w-[65%] h-full border-r-2 border-gray-300 p-8">
-        <div class="basis-1/2 dark:bg-gray-800 bg-white flex flex-col justify-between gap-8 h-full">
+        <div class="dark:bg-gray-800 bg-white flex flex-col justify-between gap-8 h-full">
           <div class="flex items-center justify-around">
             <button id="prev" aria-label="calendar backward" onclick="prev()" class="focus:text-gray-400 hover:text-gray-400 text-gray-800 dark:text-gray-100 button-calendar">
               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">

@@ -157,7 +157,7 @@
             </div>
             <div class="w-[35%] h-full flex justify-center relative items-center">
                 <img src="{{ asset('assets/images/UserAccount/' . $imageRW) }}" alt=""
-                    class="h-[400px] w-[300px] absolute z-10 shadow-2xl rounded-full border-6 border-white">
+                    class="h-[400px] w-[300px] absolute z-10 shadow-2xl rounded-full border-6 border-white object-cover">
                 <div
                     class="absolute h-[400px] w-[300px] z-9 bg-green-500 top-10 left-4 rounded-full shadow-2xl border-6 border-white">
                 </div>

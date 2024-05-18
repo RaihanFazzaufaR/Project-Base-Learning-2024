@@ -271,7 +271,7 @@
 
         <!-- calendar -->
         <div class="absolute bg-white w-[45%] h-[70%] right-0 top-[75px] rounded-xl shadow-2xl overflow-hidden" data-aos="fade-left" data-aos-duration="1500">
-            <div class="basis-1/2 px-8 py-4 dark:bg-gray-800 bg-white flex flex-col justify-between gap-8 h-[380px]">
+            <div class="px-8 py-4 dark:bg-gray-800 bg-white flex flex-col justify-between gap-8 h-[380px]">
                 <div class="flex items-center justify-around">
                     <button id="prev" aria-label="calendar backward" onclick="prev()" class="focus:text-gray-400 hover:text-gray-400 text-gray-800 dark:text-gray-100 button-calendar">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
