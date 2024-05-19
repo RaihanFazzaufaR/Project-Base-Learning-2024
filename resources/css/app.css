@@ -1,3 +1,28 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+.gradient-text {
+    background: linear-gradient(
+        to right,
+        #81b076,
+        #fff,
+        #81b076,
+        #fff,
+        #81b076,
+        #fff,
+        #81b076
+    );
+    background-clip: text;
+    background-size: 200% auto;
+    background-clip: text;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
