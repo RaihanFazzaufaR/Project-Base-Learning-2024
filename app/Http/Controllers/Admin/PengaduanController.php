@@ -12,7 +12,24 @@ class PengaduanController extends Controller
     {
         $page = 'pengaduan';
         $selected = 'Pengaduan';
-        $complaints = AduanModel::paginate(10)->withQueryString();
-        return view('admin.pengaduan.index', compact('page', 'selected', 'complaints'));
+        $aduan_id = 0;
+        $complaints = AduanModel::query();
+
+        if($request->filled('aduan_id')) {
+            $aduan_id = $request->aduan_id;
+        } elseif($request->filled('search')) {
+            $searchTerm = '%' . $request->search . '%';
+            $complaints->where('judul', 'like', $searchTerm);
+        } elseif($request->all()) {
+            $complaints->where(function($query) use ($request) {
+                if($request->filled('status')) {
+                    $query->where('status', $request->status);
+                }
+            });
+        }
+
+        $complaints = $complaints->paginate(10)->withQueryString();
+        
+        return view('admin.pengaduan.index', compact('page', 'selected', 'complaints', 'aduan_id'));
     }
 }
