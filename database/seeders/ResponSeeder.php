@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class ResponSeeder extends Seeder
 {
@@ -19,5 +20,6 @@ class ResponSeeder extends Seeder
             ['aduan_id'=> 3, 'perespon_id'=> 1, 'konten_respon'=>'Lampu sudah diganti', 'image'=>null, 'dibuat_tanggal'=>'2024-04-05'],
             ['aduan_id'=> 4, 'perespon_id'=> 1, 'konten_respon'=>'Baik akan segera kami kerjakan', 'image'=>null, 'dibuat_tanggal'=>'2024-04-05']
         ];
+        DB::table('tb_respon')->insert($data);
     }
 }

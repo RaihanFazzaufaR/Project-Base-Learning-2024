@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\DB;
 
 class AduanSeeder extends Seeder
 {
@@ -18,5 +19,6 @@ class AduanSeeder extends Seeder
             ['pengadu_id'=> 5, 'judul'=>'Lampu Jalan Mati', 'image'=>null,  'prioritas'=>'biasa', 'status'=>'diproses', 'konten_aduan'=>'Lampu di jalan Soetomo mati, dimohon untuk segera dibenahi', 'dibuat_tanggal'=>'2024-04-05'],
             ['pengadu_id'=> 7, 'judul'=> 'Permintaan Pelebaran TPA','image'=>null,  'prioritas'=>'penting', 'status'=>'diproses', 'konten_aduan'=>'Tempat pembuangan sampah selalu penuh, dimohon untuk memperluas tempat pembuangan sampah', 'dibuat_tanggal'=>'2024-04-05']
         ];
+        DB::table('tb_aduan')->insert($data);
     }
 }
