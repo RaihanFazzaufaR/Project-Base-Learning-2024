@@ -20,6 +20,7 @@ return new class extends Migration
             $table->text('konten_respon')->nullable();
             $table->string('image')->nullable();
             $table->date('dibuat_tanggal')->nullable();
+            $table->timestamps();
         });
     }
 

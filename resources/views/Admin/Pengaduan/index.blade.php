@@ -89,7 +89,7 @@
                                                         <!-- Modal body -->
                                                         <div class="w-full h-full text-[#34662C] text-left">
                                                             <div
-                                                                class="flex p-4 md:p-5 w-150 gap-4 max-h-[450px] overflow-y-auto justify-end rounded-b-xl">
+                                                                class="flex p-4 w-full max-h-[450px] justify-end bg-[#F2F2F2]">
                                                                 @if ($complaint->status == 'diproses')
                                                                     <button
                                                                         class="flex justify-center items-center gap-2 w-7 h-7 @text-white bg-[#FFDE68] rounded-full shadow-xl font-bold px-3 py-2 hover:bg-[#B39C49] hover:scale-105 transition-all">
@@ -106,19 +106,77 @@
                                                                         <i class="fa-solid fa-xmark text-lg"></i>
                                                                     </button>
                                                                 @endif
-                                                                <img class="" src="{{ asset('assets/images/Aduan/testaduan.jpeg') }}"
-                                                                    alt="">
-                                                                <p class="">
-                                                                    {{ $complaint->konten_aduan }}
-                                                                </p>
                                                             </div>
                                                             <div
-                                                                class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8]">
-                                                                <button @click="detailModal = false"
-                                                                    class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
-                                                                    Keluar
-                                                                </button>
+                                                                class="max-h-[450px] overflow-y-auto scrollbar-thin pt-3">
+                                                                @if ($complaint->image != null)
+                                                                    <div class="flex w-full justify-center">
+                                                                        <img class="w-[60%] rounded-lg"
+                                                                            src="{{ asset('assets/images/Aduan/' . $complaint->image) }}">
+                                                                    </div>
+                                                                @endif
+                                                                <div class="flex w-full p-4">
+                                                                    <div class="bg-gray-300 p-4 w-fit rounded-lg">
+                                                                        <p class="text-sm font-normal">
+                                                                            {{ $complaint->penduduk->nama }}
+                                                                        </p>
+                                                                        <p class="font-semibold pt-3">
+                                                                            {{ $complaint->konten_aduan }}
+                                                                        </p>
+                                                                    </div>
+                                                                </div>
+                                                                @foreach ($complaint->respon as $response)
+                                                                    <div
+                                                                        class="flex w-full p-4 {{ Auth::user()->penduduk->id_penduduk == $response->perespon_id ? 'justify-end' : '' }}">
+                                                                        <div
+                                                                            class="p-4 w-fit rounded-lg {{ Auth::user()->penduduk->id_penduduk == $response->perespon_id ? 'bg-[#cdffc5]' : 'bg-gray-300' }}">
+                                                                            <p class="text-sm font-normal">
+                                                                                {{ $response->penduduk->nama }}
+                                                                            </p>
+                                                                            <br>
+                                                                            @if ($response->image != null)
+                                                                                <div class="pt-3">
+                                                                                    <img class="w-fit rounded-lg"
+                                                                                        src="{{ asset('assets/images/Respon/' . $response->image) }}">
+                                                                                </div>
+                                                                            @endif
+                                                                            @if ($response->konten_respon != null)
+                                                                                <p class="font-semibold pt-3">
+                                                                                    {{ $response->konten_respon }}
+                                                                                </p>
+                                                                            @endif
+                                                                        </div>
+                                                                    </div>
+                                                                @endforeach
                                                             </div>
+                                                            <form action="{{ route('add-response') }}" method="post"
+                                                                enctype="multipart/form-data">
+                                                                @csrf
+                                                                <div
+                                                                    class="flex px-4 py-3 justify-around w-full items-center bg-[#F2F2F2] rounded-b-lg">
+                                                                    <input type="hidden" name="perespon_id"
+                                                                        id="perespon_id"
+                                                                        value="{{ Auth::user()->penduduk->id_penduduk }}">
+                                                                    <input type="hidden" name="aduan_id" id="aduan_id"
+                                                                        value="{{ $complaint->aduan_id }}">
+
+                                                                    <div class="relative w-[90%]">
+                                                                        <input type="text" name="konten_respon"
+                                                                            class="konten_respon flex flex-col w-full min-h-10 max-h-20 p-2 border border-[#34662C] rounded-lg focus:outline-none dark:bg-gray-800 dark:text-gray-400"
+                                                                            {{-- oninput="formCheck(this)" --}}>
+                                                                        <br>
+                                                                        <input type="file" name="image"
+                                                                            class="image flex flex-col file:border-0 file:px-4 file:py-1 file:bg-[#57BA47] file:text-white file:hover:bg-[#34662C] file:transition file:duration-300 file:ease-in-out file:rounded-lg"
+                                                                            {{-- onchange="formCheck(this)" --}}>
+                                                                    </div>
+
+                                                                    <button type="submit"
+                                                                        class="submit text-white inline-flex px-4 py-4 h-10 w-10 text-sm font-bold rounded-full shadow-md items-center justify-center bg-[#57BA47] hover:bg-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
+                                                                        <i id="sendicon"
+                                                                            class="text-lg fa-regular fa-paper-plane"></i>
+                                                                    </button>
+                                                                </div>
+                                                            </form>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -145,207 +203,6 @@
                             </td>
                         </tr>
                     @endforeach
-                    {{-- @for ($i = 0; $i < 4; $i++)
-                        <tr
-                            class="bg-white border-b text-sm font-medium text-[#7F7F7F] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <td class="px-6 py-4 font-semibold text-[15px]">
-                                Fasilitas pada daerah RT 3 kurang memadai
-                            </td>
-                            <td class="px-6 py-4 font-semibold text-[15px]">
-                                Maulidin Zakaria
-                            </td>
-                            <td class="">
-                                <div class="px-6 py-4 flex items-center h-full gap-4 justify-center">
-                                    <div x-data="{ 'detailModal': false }" @keydown.escape="detailModal = false">
-                                        <button @click="detailModal = true"
-                                            class="flex justify-center items-center gap-2 w-fit text-white bg-[#446DFF] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#273E91] hover:scale-105 transition-all">
-                                            <i class="fa-solid fa-circle-info"></i>
-                                            <div>Detail</div>
-                                        </button>
-                                        <!-- Detail modal -->
-                                        <div x-show="detailModal" tabindex="-1" aria-hidden="true"
-                                            class="flex overflow-hidden fixed top-0 right-0 left-0 z-999 justify-center items-center w-full md:inset-0 h-full">
-                                            <div class="absolute z-999 bg-black/25 h-[100vh] w-full"></div>
-                                            <div class="relative z-[1000] p-4 w-fit max-w-3xl max-h-[700px]"
-                                                @click.away="detailModal = false"
-                                                x-transition:enter="motion-safe:ease-out duration-300"
-                                                x-transition:enter-start="opacity-0 scale-90"
-                                                x-transition:enter-end="opacity-100 scale-100">
-                                                <!-- Modal content -->
-                                                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                                                    <!-- Modal header -->
-                                                    <div
-                                                        class="flex h-[75px] items-center justify-between px-4 md:px-5 border-b-2 rounded-t border-[#B8B8B8]">
-                                                        <h3 class="text-xl font-bold text-[#34662C] dark:text-white">
-                                                            Detail Data UMKM
-                                                        </h3>
-                                                        <button type="button"
-                                                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                                            @click="detailModal = false">
-                                                            <i class="fa-solid fa-xmark text-xl"></i>
-                                                            <span class="sr-only">Close modal</span>
-                                                        </button>
-                                                    </div>
-                                                    <!-- Modal body -->
-                                                    <div class="w-full h-full text-[#34662C] text-left">
-                                                        <div
-                                                            class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto rounded-b-xl">
-
-                                                        </div>
-                                                        <div
-                                                            class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8]">
-                                                            <button @click="detailModal = false"
-                                                                class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
-                                                                Keluar
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button
-                                        class="flex justify-center items-center gap-2 w-10 h-10 text-white bg-[#76D75D] rounded-full shadow-xl font-bold px-3 py-2 hover:bg-[#38682D] hover:scale-105 transition-all">
-                                        <i class="fa-solid fa-check text-lg"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                    @endfor
-                    @for ($i = 0; $i < 3; $i++)
-                        <tr
-                            class="bg-white border-b text-sm font-medium text-[#7F7F7F] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <td class="px-6 py-4 font-semibold text-[15px]">
-                                Jalanan rusak di sekitar jl. kudus
-                            </td>
-                            <td class="px-6 py-4 font-semibold text-[15px]">
-                                Raihan Fazzaufa Rasendriya
-                            </td>
-                            <td class="">
-                                <div class="px-6 py-4 flex items-center h-full gap-4 justify-center">
-                                    <div x-data="{ 'detailModal': false }" @keydown.escape="detailModal = false">
-                                        <button @click="detailModal = true"
-                                            class="flex justify-center items-center gap-2 w-fit text-white bg-[#446DFF] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#273E91] hover:scale-105 transition-all">
-                                            <i class="fa-solid fa-circle-info"></i>
-                                            <div>Detail</div>
-                                        </button>
-                                        <!-- Detail modal -->
-                                        <div x-show="detailModal" tabindex="-1" aria-hidden="true"
-                                            class="flex overflow-hidden fixed top-0 right-0 left-0 z-999 justify-center items-center w-full md:inset-0 h-full">
-                                            <div class="absolute z-999 bg-black/25 h-[100vh] w-full"></div>
-                                            <div class="relative z-[1000] p-4 w-fit max-w-3xl max-h-[700px]"
-                                                @click.away="detailModal = false"
-                                                x-transition:enter="motion-safe:ease-out duration-300"
-                                                x-transition:enter-start="opacity-0 scale-90"
-                                                x-transition:enter-end="opacity-100 scale-100">
-                                                <!-- Modal content -->
-                                                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                                                    <!-- Modal header -->
-                                                    <div
-                                                        class="flex h-[75px] items-center justify-between px-4 md:px-5 border-b-2 rounded-t border-[#B8B8B8]">
-                                                        <h3 class="text-xl font-bold text-[#34662C] dark:text-white">
-                                                            Detail Data UMKM
-                                                        </h3>
-                                                        <button type="button"
-                                                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                                            @click="detailModal = false">
-                                                            <i class="fa-solid fa-xmark text-xl"></i>
-                                                            <span class="sr-only">Close modal</span>
-                                                        </button>
-                                                    </div>
-                                                    <!-- Modal body -->
-                                                    <div class="w-full h-full text-[#34662C] text-left">
-                                                        <div
-                                                            class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto rounded-b-xl">
-
-                                                        </div>
-                                                        <div
-                                                            class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8]">
-                                                            <button @click="detailModal = false"
-                                                                class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
-                                                                Keluar
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button
-                                        class="flex justify-center items-center gap-2 w-10 h-10 text-white bg-[#FFDE68] rounded-full shadow-xl font-bold px-3 py-2 hover:bg-[#B39C49] hover:scale-105 transition-all">
-                                        <i class="fa-solid fa-minus text-lg"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                    @endfor
-                    @for ($i = 0; $i < 3; $i++)
-                        <tr
-                            class="bg-white border-b text-sm font-medium text-[#7F7F7F] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <td class="px-6 py-4 font-semibold text-[15px]">
-                                Permintaan Pembangunan TPS daerah RT 4
-                            </td>
-                            <td class="px-6 py-4 font-semibold text-[15px]">
-                                Sony Febri Hari Widodo
-                            </td>
-                            <td class="">
-                                <div class="px-6 py-4 flex items-center h-full gap-4 justify-center">
-                                    <div x-data="{ 'detailModal': false }" @keydown.escape="detailModal = false">
-                                        <button @click="detailModal = true"
-                                            class="flex justify-center items-center gap-2 w-fit text-white bg-[#446DFF] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#273E91] hover:scale-105 transition-all">
-                                            <i class="fa-solid fa-circle-info"></i>
-                                            <div>Detail</div>
-                                        </button>
-                                        <!-- Detail modal -->
-                                        <div x-show="detailModal" tabindex="-1" aria-hidden="true"
-                                            class="flex overflow-hidden fixed top-0 right-0 left-0 z-999 justify-center items-center w-full md:inset-0 h-full">
-                                            <div class="absolute z-999 bg-black/25 h-[100vh] w-full"></div>
-                                            <div class="relative z-[1000] p-4 w-fit max-w-3xl max-h-[700px]"
-                                                @click.away="detailModal = false"
-                                                x-transition:enter="motion-safe:ease-out duration-300"
-                                                x-transition:enter-start="opacity-0 scale-90"
-                                                x-transition:enter-end="opacity-100 scale-100">
-                                                <!-- Modal content -->
-                                                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                                                    <!-- Modal header -->
-                                                    <div
-                                                        class="flex h-[75px] items-center justify-between px-4 md:px-5 border-b-2 rounded-t border-[#B8B8B8]">
-                                                        <h3 class="text-xl font-bold text-[#34662C] dark:text-white">
-                                                            Detail Data UMKM
-                                                        </h3>
-                                                        <button type="button"
-                                                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                                            @click="detailModal = false">
-                                                            <i class="fa-solid fa-xmark text-xl"></i>
-                                                            <span class="sr-only">Close modal</span>
-                                                        </button>
-                                                    </div>
-                                                    <!-- Modal body -->
-                                                    <div class="w-full h-full text-[#34662C] text-left">
-                                                        <div
-                                                            class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto rounded-b-xl">
-
-                                                        </div>
-                                                        <div
-                                                            class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8]">
-                                                            <button @click="detailModal = false"
-                                                                class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
-                                                                Keluar
-                                                            </button>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <button
-                                        class="flex justify-center items-center gap-2 w-10 h-10 text-white bg-[#FF5E5E] rounded-full shadow-xl font-bold px-3 py-2 hover:bg-[#B34242] hover:scale-105 transition-all">
-                                        <i class="fa-solid fa-xmark text-lg"></i>
-                                    </button>
-                                </div>
-                            </td>
-                        </tr>
-                    @endfor --}}
                 </tbody>
             </table>
             <div class="px-8 py-5">
@@ -353,4 +210,21 @@
             </div>
         </div>
     </div>
+    {{-- <script>
+        function formCheck(element) {
+            var konten_respon = document.querySelector('.konten_respon').value;
+            var image = document.querySelector('.image').value;
+            var submit = document.querySelector('#submit');
+
+            if (konten_respon != '' || image != '') {
+                submit.disabled = false;
+                submit.className =
+                    'submit text-white inline-flex px-4 py-4 h-10 w-10 text-sm font-bold rounded-full shadow-md items-center justify-center bg-[#57BA47] hover:bg-[#34662C] hover:scale-105 transition duration-300 ease-in-out'
+            } else {
+                submit.disabled = true;
+                submit.className =
+                    'submit text-white inline-flex px-4 py-4 h-10 w-10 text-sm font-bold rounded-full shadow-md items-center justify-center bg-white'
+            }
+        }
+    </script> --}}
 </x-admin-layout>
