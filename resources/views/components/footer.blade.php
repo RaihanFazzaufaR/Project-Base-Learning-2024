@@ -1,6 +1,6 @@
 </div>
 <!-- footer -->
-<div class="relative -z-10 w-full h-[40vh] bottom-0 flex flex-col">
+<div class="relative -z-10 print:hidden w-full h-[40vh] bottom-0 flex flex-col">
     <div class="absolute z-0 w-full -top-[15vh] h-[50vh] flex bg-[#C1EFBD] justify-between items-center text-[#1C4F0F] px-[8vw] pt-[13vh]">
         <img src="{{ asset('assets/images/footer.png') }}" alt="" class="h-[110px]">
         <div class="h-full w-[400px] font-bold text-2xl pt-[70px]">

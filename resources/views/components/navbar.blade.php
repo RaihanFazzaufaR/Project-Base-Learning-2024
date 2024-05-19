@@ -1,4 +1,4 @@
-<nav class="sticky top-0 z-[99] bg-white border-gray-200 dark:bg-gray-900 border-b-2 h-fit" id="navbar" data-aos="fade-down" data-aos-duration="1000" data-aos-once="true" style="transition: all 0.5s">
+<nav class="sticky top-0 z-[99] print:hidden bg-white border-gray-200 dark:bg-gray-900 border-b-2 h-fit" id="navbar" data-aos="fade-down" data-aos-duration="1000" data-aos-once="true" style="transition: all 0.5s">
   <!-- <nav class="sticky top-0 z-[99] bg-white/50 border-gray-200 dark:bg-gray-900 lg:h-[10vh]" id="navbar"> -->
   <div class="max-w-full flex flex-wrap items-center justify-between lg:mx-12 mx-8 py-4">
     <a href="{{ url('/') }}" class="flex items-center space-x-3 rtl:space-x-reverse">
