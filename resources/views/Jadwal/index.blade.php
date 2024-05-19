@@ -68,7 +68,10 @@
 <div class="relative min-h-[40vh] w-[90%] mx-auto flex flex-col mt-20 gap-18 mb-30">
     <div class="flex h-[10%] w-full justify-center items-center text-4xl font-bold">Kegiatan Mendatang</div>
     <div class="flex h-[90%] w-full justify-center items-center gap-15">
-        <div class="relative bg-white rounded-xl shadow-xl flex flex-col w-[380px] h-fit pt-12 pb-4 px-7 gap-3 border-2 border-green-900 hover:scale-105 hover:shadow-2xl transition ease-in-out duration-300">
+        <div class="relative bg-white rounded-xl shadow-xl flex flex-col w-[380px] h-fit pt-12 pb-4 px-7 gap-3 border-2 border-green-900 hover:scale-105 hover:shadow-2xl transition ease-in-out duration-300 group">
+            <!-- <div class="absolute w-full h-full bg-black/40 rounded-xl left-0 top-0 flex justify-center items-center opacity-0 transition ease-in-out duration-300 group-hover:opacity-100">
+                <button class="w-fit h-fit px-4 py-2 font-semibold text-sm border-2 border-white bg-green-500 text-white rounded-xl">Lihat Detail</button>
+            </div> -->
             <div class="absolute w-fit h-fit px-4 py-3 font-bold text-xl bg-yellow-200 rounded-xl shadow-md -top-6 left-28 text-green-900">10 Juni 2024</div>
             <div class="flex w-full h-fit justify-start items-center gap-5">
                 <div class="px-3 py-1 bg-green-500 rounded-xl text-sm font-medium text-white">Kebersihan</div>
@@ -214,9 +217,9 @@
     </div>
     <div class="w-[1050px] h-fit flex flex-col pl-25 py-7 gap-11 justify-center items-center">
         <div class="flex justify-center items-center text-4xl font-bold">Jadwal Kegiatan</div>
-        <div class="flex w-full max-h-[92vh] flex-wrap items-start justify-start px-10 py-10 overflow-y-auto scrollbar-thin">
+        <div class="flex w-full max-h-[91vh] flex-wrap items-start justify-start px-10 py-10 overflow-y-auto scrollbar-thin">
             <div class="flex w-full group">
-                <div class="flex flex-col w-[45%] bg-yellow-200 min-h-10 rounded-xl shadow-xl px-6 py-5 gap-3 justify-start">
+                <div class="flex flex-col w-[45%] bg-yellow-200 min-h-10 rounded-xl shadow-lg px-6 py-5 gap-3 justify-start">
                     <div class="flex w-full h-fit justify-end items-center gap-5">
                         <div class="px-3 p-1 flex border gap-2 border-green-900 rounded-xl text-sm font-medium text-green-900 items-center justify-center">
                             <p>Hari Ke-1</p>
@@ -259,7 +262,7 @@
                     <div class="w-1 h-full bg-gray-100 transition ease-in-out duration-300 group-hover:bg-green-700"></div>
                     <div class="absolute bg-yellow-100 size-4 rounded-full border-2 border-green-700"></div>
                 </div>
-                <div class="flex flex-col w-[45%] bg-yellow-200 min-h-10 rounded-xl shadow-xl px-6 py-5 gap-3 justify-start">
+                <div class="flex flex-col w-[45%] bg-yellow-200 min-h-10 rounded-xl shadow-lg px-6 py-5 gap-3 justify-start">
                     <div class="flex w-full h-fit justify-start items-center gap-5">
                         <div class="px-3 p-1 bg-green-500 rounded-xl text-sm font-medium text-white">Kebersihan</div>
                     </div>
@@ -278,69 +281,7 @@
                     </div>
                 </div>
             </div>
-            <div class="flex w-full group">
-                <div class="flex flex-col w-[45%] bg-yellow-200 min-h-10 rounded-xl shadow-xl px-6 py-5 gap-3 justify-start">
-                    <div class="flex w-full h-fit justify-end items-center gap-5">
-                        <div class="px-3 p-1 flex border gap-2 border-green-900 rounded-xl text-sm font-medium text-green-900 items-center justify-center">
-                            <p>Hari Ke-1</p>
-                        </div>
-                        <div class="px-3 p-1 bg-green-500 rounded-xl text-sm font-medium text-white">Kebersihan</div>
-                    </div>
-                    <div class="text-2xl font-semibold text-green-900 flex justify-end">Kerja Bakti di RT 03</div>
-                    <div class="flex gap-3 items-center justify-end text-sm font-medium text-green-900">
-                        <p class="text-right">Lorem ipsum dolor sit amet consectetur tes</p>
-                        <i class="fa-solid fa-map-location-dot"></i>
-                    </div>
-                    <div class="flex gap-4 items-center justify-end text-sm font-medium text-green-900">
-                        <p>Maulidin Zakaria (Ketua RT 01)</p>
-                        <i class="fa-solid fa-user"></i>
-                    </div>
-                    <div class="flex gap-5 items-center justify-end text-sm font-medium text-green-900">
-                        <p>Rp. 0 / KK</p>
-                        <i class="fa-solid fa-dollar-sign"></i>
-                    </div>
-                </div>
-                <div class="flex justify-center items-center w-[10%] relative">
-                    <div class="w-1 h-full bg-gray-100 transition ease-in-out duration-300 group-hover:bg-green-700"></div>
-                    <div class="absolute bg-yellow-100 size-4 rounded-full border-2 border-green-700"></div>
-                </div>
-                <div class="flex p-8 justify-start items-center w-[45%]">
-                    <div class="px-3 p-1 flex border gap-2 border-green-900 rounded-xl text-sm font-medium text-green-900 items-center justify-center">
-                        <i class="fa-regular fa-clock"></i>
-                        <p>08.00 - 10.00</p>
-                    </div>
-                </div>
-            </div>
-            <div class="flex w-full group">
-                <div class="flex p-8 justify-end items-center w-[45%]">
-                    <div class="px-3 p-1 flex border gap-2 border-green-900 rounded-xl text-sm font-medium text-green-900 items-center justify-center">
-                        <i class="fa-regular fa-clock"></i>
-                        <p>08.00 - 10.00</p>
-                    </div>
-                </div>
-                <div class="flex justify-center items-center w-[10%] relative">
-                    <div class="w-1 h-full bg-gray-100 transition ease-in-out duration-300 group-hover:bg-green-700"></div>
-                    <div class="absolute bg-yellow-100 size-4 rounded-full border-2 border-green-700"></div>
-                </div>
-                <div class="flex flex-col w-[45%] bg-yellow-200 min-h-10 rounded-xl shadow-xl px-6 py-5 gap-3 justify-start">
-                    <div class="flex w-full h-fit justify-start items-center gap-5">
-                        <div class="px-3 p-1 bg-green-500 rounded-xl text-sm font-medium text-white">Kebersihan</div>
-                    </div>
-                    <div class="text-2xl font-semibold text-green-900">Kerja Bakti di RT 03</div>
-                    <div class="flex gap-3 items-center justify-start text-sm font-medium text-green-900">
-                        <i class="fa-solid fa-map-location-dot"></i>
-                        <p>Lorem ipsum dolor sit amet consectetur tes</p>
-                    </div>
-                    <div class="flex gap-4 items-center justify-start text-sm font-medium text-green-900">
-                        <i class="fa-solid fa-user"></i>
-                        <p>Maulidin Zakaria (Ketua RT 01)</p>
-                    </div>
-                    <div class="flex gap-5 items-center justify-start text-sm font-medium text-green-900">
-                        <i class="fa-solid fa-dollar-sign"></i>
-                        <p>Rp. 0 / KK</p>
-                    </div>
-                </div>
-            </div>
+            
 
         </div>
     </div>
@@ -579,7 +520,7 @@
                                             </div>
                                         </div>
                                     </td>`
-                } else if (i == 99 || i == 99) {
+                } else if (i == 10 || i == 20) {
                     daysDate += `       <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">

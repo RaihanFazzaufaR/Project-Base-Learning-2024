@@ -60,58 +60,9 @@
 
   <div class="mt-6 md:mt-14 grid grid-cols-12 grid-rows-5 gap-4 md:gap-6 2xl:gap-7.5 max-h-[690px]">
     <div class="col-span-8 row-span-2 bg-white rounded-xl shadow-xl flex flex-col py-4 px-8 max-h-[245px]">
-      <div class="h-fit w-full text-left font-bold text-lg text-black">Daftar Perangkat RW</div>
-      <div class="swiper mySwiper h-fit w-full flex items-center !px-8">
-        <div class="swiper-wrapper w-full !py-4 !h-fit !items-center">
-          <div class="swiper-slide relative w-20 !h-full py-5 bg-white rounded-2xl shadow-md flex flex-col overflow-hidden hover:!scale-105  hover:shadow-2 hover:shadow-[#57BA47] transition ease-in-out duration-500 group ">
-            <div class="w-full flex justify-center items-center">
-              <img src="{{ asset('assets/images/userProfile.png') }}" alt="" class="h-16 w-16">
-            </div>
-            <div class="flex justify-center flex-col items-center mt-2">
-              <p class="font-bold text-sm">Nama Perangkat</p>
-              <p class="text-sm">Jabatan</p>
-            </div>
-          </div>
-          <div class="swiper-slide relative w-20 !h-full py-5 bg-white rounded-2xl shadow-md flex flex-col overflow-hidden hover:!scale-105  hover:shadow-2 hover:shadow-[#57BA47] transition ease-in-out duration-500 group ">
-            <div class="w-full flex justify-center items-center">
-              <img src="{{ asset('assets/images/userProfile.png') }}" alt="" class="h-16 w-16">
-            </div>
-            <div class="flex justify-center flex-col items-center mt-2">
-              <p class="font-bold text-sm">Nama Perangkat</p>
-              <p class="text-sm">Jabatan</p>
-            </div>
-          </div>
-          <div class="swiper-slide relative w-20 !h-full py-5 bg-white rounded-2xl shadow-md flex flex-col overflow-hidden hover:!scale-105  hover:shadow-2 hover:shadow-[#57BA47] transition ease-in-out duration-500 group ">
-            <div class="w-full flex justify-center items-center">
-              <img src="{{ asset('assets/images/userProfile.png') }}" alt="" class="h-16 w-16">
-            </div>
-            <div class="flex justify-center flex-col items-center mt-2">
-              <p class="font-bold text-sm">Nama Perangkat</p>
-              <p class="text-sm">Jabatan</p>
-            </div>
-          </div>
-          <div class="swiper-slide relative w-20 !h-full py-5 bg-white rounded-2xl shadow-md flex flex-col overflow-hidden hover:!scale-105  hover:shadow-2 hover:shadow-[#57BA47] transition ease-in-out duration-500 group ">
-            <div class="w-full flex justify-center items-center">
-              <img src="{{ asset('assets/images/userProfile.png') }}" alt="" class="h-16 w-16">
-            </div>
-            <div class="flex justify-center flex-col items-center mt-2">
-              <p class="font-bold text-sm">Nama Perangkat</p>
-              <p class="text-sm">Jabatan</p>
-            </div>
-          </div>
-          <div class="swiper-slide relative w-20 !h-full py-5 bg-white rounded-2xl shadow-md flex flex-col overflow-hidden hover:!scale-105  hover:shadow-2 hover:shadow-[#57BA47] transition ease-in-out duration-500 group ">
-            <div class="w-full flex justify-center items-center">
-              <img src="{{ asset('assets/images/userProfile.png') }}" alt="" class="h-16 w-16">
-            </div>
-            <div class="flex justify-center flex-col items-center mt-2">
-              <p class="font-bold text-sm">Nama Perangkat</p>
-              <p class="text-sm">Jabatan</p>
-            </div>
-          </div>
-        </div>
-        <div class="swiper-button-next !right-2 after:!text-lg !font-extrabold !text-white !h-10 !w-10 bg-[#57BA47] hover:bg-[#234C1D] rounded-full hover:scale-105 transition ease-in-out duration-300"></div>
-        <div class="swiper-button-prev !left-2 after:!text-lg !font-extrabold !text-white !h-10 !w-10 bg-[#57BA47] hover:bg-[#234C1D] rounded-full hover:scale-105 transition ease-in-out duration-300"></div>
-        <div class="swiper-pagination !absolute !top-[53vh]"></div>
+      <div class="h-fit w-full text-left font-bold text-lg text-black">Demografi Penduduk</div>
+      <div class="h-full w-full">
+        <canvas id="barPendudukChart" height="80%"></canvas>
       </div>
     </div>
 
@@ -443,25 +394,6 @@
     </div>
   </div>
 
-
-  <!-- Initialize Swiper -->
-  <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
-  <script>
-    var swiper = new Swiper(".mySwiper", {
-      slidesPerView: 4,
-      spaceBetween: 35,
-      loop: true,
-      pagination: {
-        el: ".swiper-pagination",
-        clickable: true,
-      },
-      navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev",
-      },
-    });
-  </script>
-
   <!-- Initialize Chart js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
   <script>
@@ -521,6 +453,51 @@
         plugins: {
           legend: {
             display: false
+          }
+        }
+      }
+    });
+
+    const pendudukChart = new Chart(document.getElementById("barPendudukChart"), {
+      type: 'bar',
+      data: {
+        labels: ['> 46 Tahun', '26 - 45 Tahun', '13 - 25 Tahun', '6 - 12 Tahun', '0 - 5 Tahun'],
+        datasets: [{
+          label: 'Laki-Laki',
+          data: [65, 35, 20, 40, 50],
+          backgroundColor: [
+            '#57BA47'
+          ],
+          hoverOffset: 4,
+          barThickness: 10,
+        }, {
+          label: 'Perempuan',
+          data: [65, 35, 20, 40, 50],
+          backgroundColor: [
+            '#EAE509'
+          ],
+          hoverOffset: 4,
+          borderRadius: 4,
+          barThickness: 10,
+        }]
+      },
+      options: {
+        animation: {
+          delay: 2000,
+        },
+        indexAxis: 'y',
+        responsive: true,
+        scales: {
+          xAxes: [{
+            ticks: {
+              beginAtZero: true
+            }
+          }],
+          x: {
+            stacked: true,
+          },
+          y: {
+            stacked: true
           }
         }
       }

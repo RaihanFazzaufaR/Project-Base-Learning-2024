@@ -82,11 +82,14 @@
         <ul class="font-semibold" aria-labelledby="user-menu-button">
           <li>
             @if (Auth::user()->penduduk->id_penduduk)
-            <a href="{{ route('umkmku', ['id_penduduk' => Auth::user()->penduduk->id_penduduk]) }}" class="block px-4 py-2 text-sm text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">UMKM-KU</a>
+            <a href="{{ route('umkmku', ['id_penduduk' => Auth::user()->penduduk->id_penduduk]) }}" class="block px-4 py-2 text-sm text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">UMKM-Ku</a>
             @endif
           </li>
           <li>
-            <a href="{{ route('home') }}" class="block px-4 py-2 text-sm text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">ADUAN-KU</a>
+            <a href="{{ route('home') }}" class="block px-4 py-2 text-sm text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Aduan-Ku</a>
+          </li>
+          <li>
+            <a href="{{ route('suratku') }}" class="block px-4 py-2 text-sm text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Surat-Ku</a>
           </li>
           <li>
             <a href="{{ route('logout') }}" class="block px-4 py-2 text-sm text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Keluar</a>
@@ -129,9 +132,9 @@
               </li>
               <li>
                 @if (Auth::check())
-                <a href="{{ route('umkmku', ['id_penduduk' => Auth::user()->penduduk->id_penduduk]) }}) }}" class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">UMKM-KU</a>
+                <a href="{{ route('umkmku', ['id_penduduk' => Auth::user()->penduduk->id_penduduk]) }}) }}" class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">UMKM-Ku</a>
                 @else
-                <a href="{{ route('login') }}" class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">UMKM-KU</a>
+                <a href="{{ route('login') }}" class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">UMKM-Ku</a>
                 @endif
               </li>
             </ul>
@@ -150,10 +153,28 @@
           </a>
         </li>
         <li>
-          <a href="{{ route('surat') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#1C4F0F] md:p-0 md:relative group {{ ($menu === 'Surat') ? 'md:text-[#1C4F0F]':'md:text-gray-500' }}">
+          <button id="dropdownSuratLink" data-dropdown-toggle="dropdownSurat" class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#1C4F0F] md:p-0 md:relative group {{ ($menu === 'Surat' || $menu === 'Suratku') ? 'md:text-[#1C4F0F]':'md:text-gray-500' }}">
             Surat
-            <div class="md:absolute md:h-[2.5px] md:w-full md:bg-[#1C4F0F]  group-hover:scale-x-100 md:transition md:ease-in-out md:duration-500 {{ ($menu === 'Surat') ? '':'md:scale-x-0' }}"></div>
-          </a>
+            <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+            </svg>
+            <div class="md:absolute md:h-[2.5px] md:w-full md:bg-[#1C4F0F] -bottom-1 group-hover:scale-x-100 md:transition md:ease-in-out md:duration-500 {{ ($menu === 'Surat' || $menu === 'Suratku') ? '':'md:scale-x-0' }}"></div>
+          </button>
+          <!-- Dropdown menu -->
+          <div id="dropdownSurat" class="z-10 hidden font-normal overflow-hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+            <ul class="text-sm font-semibold text-gray-700 dark:text-gray-400 " aria-labelledby="dropdownLargeButton">
+              <li>
+                <a href="{{ route('surat') }}" class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">Surat</a>
+              </li>
+              <li>
+                @if (Auth::check())
+                <a href="{{ route('suratku') }}) }}" class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">Surat-Ku</a>
+                @else
+                <a href="{{ route('login') }}" class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">Surat-Ku</a>
+                @endif
+              </li>
+            </ul>
+          </div>
         </li>
         <li>
           <a href="{{ route('bansos') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#1C4F0F] md:p-0 md:relative group {{ ($menu === 'Bansos') ? 'md:text-[#1C4F0F]':'md:text-gray-500' }}">

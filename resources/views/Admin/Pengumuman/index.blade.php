@@ -311,32 +311,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div x-data="{ 'editModal': false }" @keydown.escape="editModal = false">
-                                    <button @click="editModal = true" class="flex justify-center items-center gap-2 w-fit text-white bg-[#FFDE68] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#B39C49] hover:scale-105 transition-all">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                        <div>Edit</div>
-                                    </button>
-                                    <!-- Edit modal -->
-                                    <div x-show="editModal" tabindex="-1" aria-hidden="true" class="flex overflow-hidden fixed top-0 right-0 left-0 z-999 justify-center items-center w-full md:inset-0 h-full">
-                                        <div class="absolute z-999 bg-black/25 h-[100vh] w-full"></div>
-                                        <div class="relative z-[1000] p-4 w-fit max-w-3xl max-h-[700px]" @click.away="editModal = false" x-transition:enter="motion-safe:ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
-                                            <!-- Modal content -->
-                                            <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                                                <!-- Modal header -->
-                                                <div class="flex h-[75px] items-center justify-between px-4 md:px-5 border-b-2 rounded-t border-[#B8B8B8]">
-                                                    <h3 class="text-xl font-bold text-[#34662C] dark:text-white">
-                                                        Edit Pengumuman
-                                                    </h3>
-                                                    <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" @click="editModal = false">
-                                                        <i class="fa-solid fa-xmark text-xl"></i>
-                                                        <span class="sr-only">Close modal</span>
-                                                    </button>
-                                                </div>
-                                                <!-- Modal body -->
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
                             </div>
                         </td>
                         </tr>
