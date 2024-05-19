@@ -17,8 +17,8 @@ return new class extends Migration
             $table->id('respon_id');
             $table->unsignedBigInteger('aduan_id');
             $table->unsignedBigInteger('perespon_id');
-            $table->text('konten_aduan');
-            $table->text('konten_respon');
+            $table->text('konten_respon')->nullable();
+            $table->string('image')->nullable();
             $table->date('dibuat_tanggal')->nullable();
         });
     }
