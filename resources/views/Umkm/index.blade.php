@@ -31,7 +31,7 @@
                 {{-- database --}}
                 <ul class="grid w-full">
                     <li>
-                        <a href="{{ route('umkm') }}" class="inline-flex pl-3 items-center justify-between w-full p-1.5 text-[#2d5523] bg-white border border-gray-200 cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-[#2d5523] peer-checked:text-white peer-checked:bg-yellow-500 hover:text-white hover:bg-yellow-500 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                        <a href="{{ route('umkm') }}" class="inline-flex pl-3 items-center justify-between w-full p-1.5 text-[#2d5523]  border border-gray-200 cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-[#2d5523] peer-checked:text-white peer-checked:bg-yellow-500 hover:text-white hover:bg-yellow-500 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 {{ ($kategori === 0)?'bg-yellow-500 text-white':'bg-white' }}">
                             <div class="block">
                                 <div class="w-full text-lg font-semibold">Semua Kategori</div>
                             </div>
@@ -39,7 +39,7 @@
                     </li>
                     @foreach($categories as $category)
                     <li>
-                        <a href="{{ route('umkm.category', $category->kategori_id) }}" class="inline-flex pl-3 items-center justify-between w-full p-1.5 text-[#2d5523] bg-white border border-gray-200 cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-[#2d5523] peer-checked:text-white peer-checked:bg-yellow-500 hover:text-white hover:bg-yellow-500 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                        <a href="{{ route('umkm.category', $category->kategori_id) }}" class="inline-flex pl-3 items-center justify-between w-full p-1.5 text-[#2d5523] border border-gray-200 cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-[#2d5523] peer-checked:text-white peer-checked:bg-yellow-500 hover:text-white hover:bg-yellow-500 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 {{ ($kategori == $category->kategori_id)?'bg-yellow-500 text-white':'bg-white' }}">
                             <div class="block">
                                 <div class="w-full text-lg font-semibold">{{ $category->nama_kategori }}</div>
                             </div>

@@ -131,6 +131,7 @@ Route::group(['middleware' => ['auth']], function () {
         //Route Surat
         Route::group(['prefix' => 'surat'], function () {
             Route::get('/', [SuratController::class, 'index'])->name('surat');
+            Route::get('/suratku', [SuratController::class, 'suratku'])->name('suratku');
         });
         Route::group(['middleware' => ['auth']], function () {
             Route::group(['prefix' => 'umkm'], function () {

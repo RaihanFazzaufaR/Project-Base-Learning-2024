@@ -83,7 +83,7 @@
                         <!-- Modal header -->
                         <div class="flex h-[75px] items-center justify-between px-4 md:px-5 border-b-2 rounded-t border-[#B8B8B8]">
                             <h3 class="text-xl font-bold text-[#34662C] dark:text-white">
-                                Tambah Data Akun Penduduk
+                                Kelola Level Akun
                             </h3>
                             <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" @click="tambahModal = false">
                                 <i class="fa-solid fa-xmark text-xl"></i>
@@ -94,30 +94,21 @@
                         <form class="w-full h-full text-[#34662C]" method="POST" action="{{ route('storePenduduk') }}">
                             @csrf
                             <div class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto rounded-b-xl">
-                                <div class="col-span-2 sm:col-span-1 relative">
+                                <div class="col-span-2 relative">
                                     <label class="block mb-2 text-sm font-bold">NIK</label>
                                     <input list="listNik" name="nik" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan NIK ...">
                                     <datalist id="listNik">
                                         <option value="123456"></option>
                                     </datalist>
                                 </div>
-                                <div class="col-span-2 sm:col-span-1">
-                                    <label for="email" class="block mb-2 text-sm font-bold">Email Penduduk</label>
-                                    <input type="email" name="email" id="email" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan Email" required="">
-                                </div>
-                                <div class="col-span-2 sm:col-span-1">
-                                    <label for="username" class="block mb-2 text-sm font-bold">Username</label>
-                                    <input type="text" name="username" id="username" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan Username" required="">
-                                </div>
-                                <div class="col-span-2 sm:col-span-1">
-                                    <label for="password" class="block mb-2 text-sm font-bold">Password</label>
-                                    <input type="password" name="password" id="password" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan Password" required="">
-                                </div>
                                 <div class="col-span-2">
-                                    <div class="flex w-full justify-start items-center gap-4 pb-2 h-fit">
-                                        <label for="foto" class="text-sm font-bold">Foto Profil</label>
-                                    </div>
-                                    <input type="file" name="foto" id="foto" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                    <label for="level" class="block mb-2 text-sm font-bold">Level</label>
+                                    <select name="level" id="level" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
+                                        <option selected="">Pilih Level</option>
+                                        <option value="1">Super Admin</option>
+                                        <option value="2">Admin</option>
+                                        <option value="3">User</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8]">
@@ -125,7 +116,7 @@
                                     Batal
                                 </button>
                                 <button type="submit" class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
-                                    Tambah
+                                    Simpan
                                 </button>
                             </div>
                         </form>
@@ -218,7 +209,16 @@
                                                             <label for="password" class="block mb-2 text-sm font-bold">Password</label>
                                                             <input type="password" name="password" id="password" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan Password" required="">
                                                         </div>
-                                                        <div class="col-span-2">
+                                                        <div class="col-span-2 sm:col-span-1">
+                                                            <label for="level" class="block mb-2 text-sm font-bold">Level</label>
+                                                            <select name="level" id="level" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
+                                                                <option selected="">Pilih Level</option>
+                                                                <option value="1">Super Admin</option>
+                                                                <option value="2">Admin</option>
+                                                                <option value="3">User</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-span-2 sm:col-span-1">
                                                             <div class="flex w-full justify-start items-center gap-4 pb-2 h-fit">
                                                                 <label for="foto" class="text-sm font-bold">Foto Profil</label>
                                                             </div>
@@ -260,32 +260,23 @@
                                                 <form class="w-full h-full text-[#34662C] text-left" method="POST">
                                                     @csrf
                                                     {!! method_field('PUT') !!}
-                                                    
+
                                                     <div class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto rounded-b-xl">
-                                                        <div class="col-span-2 sm:col-span-1 relative">
+                                                        <div class="col-span-2 relative">
                                                             <label class="block mb-2 text-sm font-bold">NIK</label>
                                                             <input list="listNik" name="nik" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan NIK ...">
                                                             <datalist id="listNik">
                                                                 <option value="123456"></option>
                                                             </datalist>
                                                         </div>
-                                                        <div class="col-span-2 sm:col-span-1">
-                                                            <label for="email" class="block mb-2 text-sm font-bold">Email Penduduk</label>
-                                                            <input type="email" name="email" id="email" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan Email" required="">
-                                                        </div>
-                                                        <div class="col-span-2 sm:col-span-1">
-                                                            <label for="username" class="block mb-2 text-sm font-bold">Username</label>
-                                                            <input type="text" name="username" id="username" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan Username" required="">
-                                                        </div>
-                                                        <div class="col-span-2 sm:col-span-1">
-                                                            <label for="password" class="block mb-2 text-sm font-bold">Password</label>
-                                                            <input type="password" name="password" id="password" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan Password" required="">
-                                                        </div>
                                                         <div class="col-span-2">
-                                                            <div class="flex w-full justify-start items-center gap-4 pb-2 h-fit">
-                                                                <label for="foto" class="text-sm font-bold">Foto Profil</label>
-                                                            </div>
-                                                            <input type="file" name="foto" id="foto" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                                            <label for="level" class="block mb-2 text-sm font-bold">Level</label>
+                                                            <select name="level" id="level" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
+                                                                <option selected="">Pilih Level</option>
+                                                                <option value="1">Super Admin</option>
+                                                                <option value="2">Admin</option>
+                                                                <option value="3">User</option>
+                                                            </select>
                                                         </div>
                                                     </div>
                                                     <div class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8]">

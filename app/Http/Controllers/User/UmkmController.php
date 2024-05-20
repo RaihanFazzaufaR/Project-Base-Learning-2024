@@ -18,10 +18,12 @@ class UmkmController extends Controller
         $categories = KategoriModel::all();
         $umkms = UmkmModel::where('status', 'diterima')->get();
         $menu = 'UMKM';
+        $kategori = 0;
         return view('Umkm.index', [
             'umkms' => $umkms,
             'categories' => $categories,
             'menu' => $menu,
+            'kategori' => $kategori,
         ]);
     }
 
@@ -46,10 +48,12 @@ class UmkmController extends Controller
 
 
         $menu = 'UMKM';
+        $kategori = $kategori_id;
         return view('Umkm.index', [
             'umkms' => $umkms,
             'categories' => $categories,
             'menu' => $menu,
+            'kategori' => $kategori,
         ]);
     }
 
@@ -67,12 +71,14 @@ class UmkmController extends Controller
         } else {
             $notification = null;
         }
+        $kategori = 0;
 
         return view('Umkm.index', [
             'umkms' => $umkms,
             'categories' => $categories,
             'notification' => $notification,
             'menu' => $menu,
+            'kategori' => $kategori,
         ]);
     }
 
