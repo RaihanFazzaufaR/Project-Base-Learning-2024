@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
         integrity="sha512-z3gLpd7yknf1YoNbCzqRKc4qyor8gaKU1qmn+CShxbuBusANI9QpRohGBreCFkKxLhei6S9CQXFEbbKuqLg0DA=="
         crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/logo.png') }}">
 
 </head>
 
@@ -221,12 +222,12 @@
                         <th scope="col" class="py-2 text-center border-[2px] w-[46%] ">
                             Nama
                         </th>
-                        
+
                     </tr>
                 </thead>
                 <tbody>
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                       
+
                         <td class="py-2 text-center border-[2px] ">
                             1.
                         </td>
@@ -236,10 +237,10 @@
                         <td class="py-2 ps-3 border-[2px] ">
                             Lucky Kurniawan Langoday
                         </td>
-                        
+
                     </tr>
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        
+
                         <td class="py-2  text-center border-[2px] ">
                             2.
                         </td>
@@ -249,10 +250,10 @@
                         <td class="py-2 ps-3 border-[2px] ">
                             Lucky Kurniawan Langoday
                         </td>
-                       
+
                     </tr>
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        
+
                         <td class="py-2  text-center border-[2px] ">
                             3.
                         </td>
@@ -262,10 +263,10 @@
                         <td class="py-2 ps-3 border-[2px] ">
                             Lucky Kurniawan Langoday
                         </td>
-                       
+
                     </tr>
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        
+
                         <td class="py-2  text-center border-[2px] ">
                             4.
                         </td>
@@ -275,10 +276,10 @@
                         <td class="py-2 ps-3 border-[2px] ">
                             Lucky Kurniawan Langoday
                         </td>
-                       
+
                     </tr>
                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
-                        
+
                         <td class="py-2  text-center border-[2px] ">
                             5.
                         </td>
@@ -288,9 +289,9 @@
                         <td class="py-2 ps-3 border-[2px] ">
                             Lucky Kurniawan Langoday
                         </td>
-                       
+
                     </tr>
-                    
+
                 </tbody>
             </table>
         </div>
