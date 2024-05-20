@@ -26,6 +26,8 @@ class DatabaseSeeder extends Seeder
             templateSuratSeeder::class,
             PermintaanSuratSeeder::class,
             DataSuratSeed::class,
+            AduanSeeder::class,
+            ResponSeeder::class,
         ]);
     }
 }
