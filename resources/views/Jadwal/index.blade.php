@@ -337,8 +337,8 @@
         // console.log(parseInt(dateParam.split("-")[0]));
 
         let date = new Date();
-        let currYear = dateParam ? dateParam.split("-")[0] : date.getFullYear();
-        let currMonth = dateParam ? parseInt(dateParam.split("-")[1]) - 1 : date.getMonth();
+        let currYear = dateParam ? parseInt(dateParam.split("-")[0]) : date.getFullYear();
+        let currMonth = dateParam ? parseInt(dateParam.split("-")[1])-1 : date.getMonth();
 
         const month = [
             "Januari",
@@ -412,7 +412,7 @@
                                             </div>
                                         </div>
                                     </td>`
-                } else if (i === parseInt(dateParam.split("-")[2]) && currMonth === (parseInt(dateParam.split("-")[1])-1) && currYear === dateParam.split("-")[0]) {
+                } else if (i === parseInt(dateParam?.split("-")[2]) && currMonth === (parseInt(dateParam?.split("-")[1])-1) && currYear === (parseInt(dateParam?.split("-")[0]))) {
                     daysDate += `       <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
