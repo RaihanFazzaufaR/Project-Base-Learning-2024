@@ -67,7 +67,7 @@
                                 class="text-lg font-bold items-center flex w-full  text-[#2d5523] dark:text-white">NIK</label>
                         </div>
                         <div class="basis-3/4 h-full flex items-center">
-                            <input id="nik" name="nik"
+                            <input id="nik" name="nik" placeholder="Masukkan NIK"
                                 class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             {{-- <input type="hidden" id="id_penduduk" name="id_penduduk" value="{{ Auth::user()->penduduk->id_penduduk }}"> --}}
                         </div>
@@ -160,7 +160,7 @@
                                 class="text-lg font-bold items-center flex w-full  text-[#2d5523] dark:text-white">Penyebab Kematian</label>
                         </div>
                         <div class="basis-3/4 h-full flex items-center">
-                            <input id="penyebab-kematian" name="penyebab-kematian"
+                            <input id="penyebab-kematian" name="penyebab-kematian" placeholder="Masukkan Penyebab Kematian"
                                 class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             {{-- <input type="hidden" id="id_penduduk" name="id_penduduk" value="{{ Auth::user()->penduduk->id_penduduk }}"> --}}
                         </div>
@@ -171,7 +171,7 @@
                                 class="text-lg font-bold items-center flex w-full  text-[#2d5523] dark:text-white">Hubungan Pelapor</label>
                         </div>
                         <div class="basis-3/4 h-full flex items-center">
-                            <input id="hubungan-pelapor" name="hubungan-pelapor"
+                            <input id="hubungan-pelapor" name="hubungan-pelapor" placeholder="Masukkan Hubungan Pelapor dengan yang Meninggal"
                                 class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             {{-- <input type="hidden" id="id_penduduk" name="id_penduduk" value="{{ Auth::user()->penduduk->id_penduduk }}"> --}}
                         </div>
@@ -182,7 +182,7 @@
                                 class="text-lg font-bold items-center flex w-full  text-[#2d5523] dark:text-white">Tempat Meninggal</label>
                         </div>
                         <div class="basis-3/4 h-full flex items-center">
-                            <input id="tpt-meninggal" name="tpt-meninggal"
+                            <input id="tpt-meninggal" name="tpt-meninggal" placeholder="Masukkan Tempat Meninggal"
                                 class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             {{-- <input type="hidden" id="id_penduduk" name="id_penduduk" value="{{ Auth::user()->penduduk->id_penduduk }}"> --}}
                         </div>
