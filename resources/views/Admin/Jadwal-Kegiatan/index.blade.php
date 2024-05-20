@@ -33,10 +33,18 @@
                                 </datalist>
                             </div>
                             <div class="col-span-2 sm:col-span-1">
+                                <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
+                                <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
+                                    <option selected="">Pilih Kategori</option>
+                                    <option value="1">Super Admin</option>
+                                    <option value="2">Admin</option>
+                                    <option value="3">User</option>
+                                </select>
+                            </div>
+                            <div class="col-span-2">
                                 <label for="nama" class="block mb-2 text-sm font-bold">Nama Kegiatan</label>
                                 <input type="text" name="nama" id="nama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Nama Kegiatan ...">
                             </div>
-
                             <div class="col-span-2 sm:col-span-1">
                                 <label for="tanggal_mulai" class="block mb-2 text-sm font-bold">Tanggal Mulai</label>
                                 <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
@@ -58,13 +66,8 @@
                                 </div>
                             </div>
                             <div class="col-span-2 sm:col-span-1">
-                                <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
-                                <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
-                                    <option selected="">Pilih Kategori</option>
-                                    <option value="1">Super Admin</option>
-                                    <option value="2">Admin</option>
-                                    <option value="3">User</option>
-                                </select>
+                                <label for="iuran" class="block mb-2 text-sm font-bold">Iuran</label>
+                                <input type="number" name="iuran" id="iuran" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Iuran ...">
                             </div>
                             <div class="col-span-2">
                                 <label for="deskripsi" class="block mb-2 text-sm font-bold">Deskripsi</label>
@@ -193,10 +196,18 @@
                                                 </datalist>
                                             </div>
                                             <div class="col-span-2 sm:col-span-1">
+                                                <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
+                                                <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
+                                                    <option selected="">Pilih Kategori</option>
+                                                    <option value="1">Super Admin</option>
+                                                    <option value="2">Admin</option>
+                                                    <option value="3">User</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-span-2">
                                                 <label for="nama" class="block mb-2 text-sm font-bold">Nama Kegiatan</label>
                                                 <input type="text" name="nama" id="nama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Nama Kegiatan ...">
                                             </div>
-
                                             <div class="col-span-2 sm:col-span-1">
                                                 <label for="tanggal_mulai" class="block mb-2 text-sm font-bold">Tanggal Mulai</label>
                                                 <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
@@ -218,13 +229,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-span-2 sm:col-span-1">
-                                                <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
-                                                <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
-                                                    <option selected="">Pilih Kategori</option>
-                                                    <option value="1">Super Admin</option>
-                                                    <option value="2">Admin</option>
-                                                    <option value="3">User</option>
-                                                </select>
+                                                <label for="iuran" class="block mb-2 text-sm font-bold">Iuran</label>
+                                                <input type="number" name="iuran" id="iuran" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Iuran ...">
                                             </div>
                                             <div class="col-span-2">
                                                 <label for="deskripsi" class="block mb-2 text-sm font-bold">Deskripsi</label>
@@ -272,10 +278,18 @@
                                                 </datalist>
                                             </div>
                                             <div class="col-span-2 sm:col-span-1">
+                                                <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
+                                                <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
+                                                    <option selected="">Pilih Kategori</option>
+                                                    <option value="1">Super Admin</option>
+                                                    <option value="2">Admin</option>
+                                                    <option value="3">User</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-span-2">
                                                 <label for="nama" class="block mb-2 text-sm font-bold">Nama Kegiatan</label>
                                                 <input type="text" name="nama" id="nama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Nama Kegiatan ...">
                                             </div>
-
                                             <div class="col-span-2 sm:col-span-1">
                                                 <label for="tanggal_mulai" class="block mb-2 text-sm font-bold">Tanggal Mulai</label>
                                                 <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
@@ -297,13 +311,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-span-2 sm:col-span-1">
-                                                <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
-                                                <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
-                                                    <option selected="">Pilih Kategori</option>
-                                                    <option value="1">Super Admin</option>
-                                                    <option value="2">Admin</option>
-                                                    <option value="3">User</option>
-                                                </select>
+                                                <label for="iuran" class="block mb-2 text-sm font-bold">Iuran</label>
+                                                <input type="number" name="iuran" id="iuran" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Iuran ...">
                                             </div>
                                             <div class="col-span-2">
                                                 <label for="deskripsi" class="block mb-2 text-sm font-bold">Deskripsi</label>
@@ -379,10 +388,18 @@
                                                 </datalist>
                                             </div>
                                             <div class="col-span-2 sm:col-span-1">
+                                                <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
+                                                <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
+                                                    <option selected="">Pilih Kategori</option>
+                                                    <option value="1">Super Admin</option>
+                                                    <option value="2">Admin</option>
+                                                    <option value="3">User</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-span-2">
                                                 <label for="nama" class="block mb-2 text-sm font-bold">Nama Kegiatan</label>
                                                 <input type="text" name="nama" id="nama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Nama Kegiatan ...">
                                             </div>
-
                                             <div class="col-span-2 sm:col-span-1">
                                                 <label for="tanggal_mulai" class="block mb-2 text-sm font-bold">Tanggal Mulai</label>
                                                 <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
@@ -404,13 +421,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-span-2 sm:col-span-1">
-                                                <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
-                                                <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
-                                                    <option selected="">Pilih Kategori</option>
-                                                    <option value="1">Super Admin</option>
-                                                    <option value="2">Admin</option>
-                                                    <option value="3">User</option>
-                                                </select>
+                                                <label for="iuran" class="block mb-2 text-sm font-bold">Iuran</label>
+                                                <input type="number" name="iuran" id="iuran" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Iuran ...">
                                             </div>
                                             <div class="col-span-2">
                                                 <label for="deskripsi" class="block mb-2 text-sm font-bold">Deskripsi</label>
@@ -458,10 +470,18 @@
                                                 </datalist>
                                             </div>
                                             <div class="col-span-2 sm:col-span-1">
+                                                <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
+                                                <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
+                                                    <option selected="">Pilih Kategori</option>
+                                                    <option value="1">Super Admin</option>
+                                                    <option value="2">Admin</option>
+                                                    <option value="3">User</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-span-2">
                                                 <label for="nama" class="block mb-2 text-sm font-bold">Nama Kegiatan</label>
                                                 <input type="text" name="nama" id="nama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Nama Kegiatan ...">
                                             </div>
-
                                             <div class="col-span-2 sm:col-span-1">
                                                 <label for="tanggal_mulai" class="block mb-2 text-sm font-bold">Tanggal Mulai</label>
                                                 <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
@@ -483,13 +503,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-span-2 sm:col-span-1">
-                                                <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
-                                                <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
-                                                    <option selected="">Pilih Kategori</option>
-                                                    <option value="1">Super Admin</option>
-                                                    <option value="2">Admin</option>
-                                                    <option value="3">User</option>
-                                                </select>
+                                                <label for="iuran" class="block mb-2 text-sm font-bold">Iuran</label>
+                                                <input type="number" name="iuran" id="iuran" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Iuran ...">
                                             </div>
                                             <div class="col-span-2">
                                                 <label for="deskripsi" class="block mb-2 text-sm font-bold">Deskripsi</label>
@@ -565,10 +580,18 @@
                                                 </datalist>
                                             </div>
                                             <div class="col-span-2 sm:col-span-1">
+                                                <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
+                                                <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
+                                                    <option selected="">Pilih Kategori</option>
+                                                    <option value="1">Super Admin</option>
+                                                    <option value="2">Admin</option>
+                                                    <option value="3">User</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-span-2">
                                                 <label for="nama" class="block mb-2 text-sm font-bold">Nama Kegiatan</label>
                                                 <input type="text" name="nama" id="nama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Nama Kegiatan ...">
                                             </div>
-
                                             <div class="col-span-2 sm:col-span-1">
                                                 <label for="tanggal_mulai" class="block mb-2 text-sm font-bold">Tanggal Mulai</label>
                                                 <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
@@ -590,13 +613,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-span-2 sm:col-span-1">
-                                                <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
-                                                <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
-                                                    <option selected="">Pilih Kategori</option>
-                                                    <option value="1">Super Admin</option>
-                                                    <option value="2">Admin</option>
-                                                    <option value="3">User</option>
-                                                </select>
+                                                <label for="iuran" class="block mb-2 text-sm font-bold">Iuran</label>
+                                                <input type="number" name="iuran" id="iuran" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Iuran ...">
                                             </div>
                                             <div class="col-span-2">
                                                 <label for="deskripsi" class="block mb-2 text-sm font-bold">Deskripsi</label>
@@ -644,10 +662,18 @@
                                                 </datalist>
                                             </div>
                                             <div class="col-span-2 sm:col-span-1">
+                                                <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
+                                                <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
+                                                    <option selected="">Pilih Kategori</option>
+                                                    <option value="1">Super Admin</option>
+                                                    <option value="2">Admin</option>
+                                                    <option value="3">User</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-span-2">
                                                 <label for="nama" class="block mb-2 text-sm font-bold">Nama Kegiatan</label>
                                                 <input type="text" name="nama" id="nama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Nama Kegiatan ...">
                                             </div>
-
                                             <div class="col-span-2 sm:col-span-1">
                                                 <label for="tanggal_mulai" class="block mb-2 text-sm font-bold">Tanggal Mulai</label>
                                                 <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
@@ -669,13 +695,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-span-2 sm:col-span-1">
-                                                <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
-                                                <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
-                                                    <option selected="">Pilih Kategori</option>
-                                                    <option value="1">Super Admin</option>
-                                                    <option value="2">Admin</option>
-                                                    <option value="3">User</option>
-                                                </select>
+                                                <label for="iuran" class="block mb-2 text-sm font-bold">Iuran</label>
+                                                <input type="number" name="iuran" id="iuran" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Iuran ...">
                                             </div>
                                             <div class="col-span-2">
                                                 <label for="deskripsi" class="block mb-2 text-sm font-bold">Deskripsi</label>
@@ -751,10 +772,18 @@
                                                 </datalist>
                                             </div>
                                             <div class="col-span-2 sm:col-span-1">
+                                                <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
+                                                <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
+                                                    <option selected="">Pilih Kategori</option>
+                                                    <option value="1">Super Admin</option>
+                                                    <option value="2">Admin</option>
+                                                    <option value="3">User</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-span-2">
                                                 <label for="nama" class="block mb-2 text-sm font-bold">Nama Kegiatan</label>
                                                 <input type="text" name="nama" id="nama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Nama Kegiatan ...">
                                             </div>
-
                                             <div class="col-span-2 sm:col-span-1">
                                                 <label for="tanggal_mulai" class="block mb-2 text-sm font-bold">Tanggal Mulai</label>
                                                 <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
@@ -776,13 +805,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-span-2 sm:col-span-1">
-                                                <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
-                                                <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
-                                                    <option selected="">Pilih Kategori</option>
-                                                    <option value="1">Super Admin</option>
-                                                    <option value="2">Admin</option>
-                                                    <option value="3">User</option>
-                                                </select>
+                                                <label for="iuran" class="block mb-2 text-sm font-bold">Iuran</label>
+                                                <input type="number" name="iuran" id="iuran" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Iuran ...">
                                             </div>
                                             <div class="col-span-2">
                                                 <label for="deskripsi" class="block mb-2 text-sm font-bold">Deskripsi</label>
@@ -830,10 +854,18 @@
                                                 </datalist>
                                             </div>
                                             <div class="col-span-2 sm:col-span-1">
+                                                <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
+                                                <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
+                                                    <option selected="">Pilih Kategori</option>
+                                                    <option value="1">Super Admin</option>
+                                                    <option value="2">Admin</option>
+                                                    <option value="3">User</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-span-2">
                                                 <label for="nama" class="block mb-2 text-sm font-bold">Nama Kegiatan</label>
                                                 <input type="text" name="nama" id="nama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Nama Kegiatan ...">
                                             </div>
-
                                             <div class="col-span-2 sm:col-span-1">
                                                 <label for="tanggal_mulai" class="block mb-2 text-sm font-bold">Tanggal Mulai</label>
                                                 <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
@@ -855,13 +887,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-span-2 sm:col-span-1">
-                                                <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
-                                                <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
-                                                    <option selected="">Pilih Kategori</option>
-                                                    <option value="1">Super Admin</option>
-                                                    <option value="2">Admin</option>
-                                                    <option value="3">User</option>
-                                                </select>
+                                                <label for="iuran" class="block mb-2 text-sm font-bold">Iuran</label>
+                                                <input type="number" name="iuran" id="iuran" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Iuran ...">
                                             </div>
                                             <div class="col-span-2">
                                                 <label for="deskripsi" class="block mb-2 text-sm font-bold">Deskripsi</label>
@@ -943,10 +970,18 @@
                                                 </datalist>
                                             </div>
                                             <div class="col-span-2 sm:col-span-1">
+                                                <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
+                                                <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
+                                                    <option selected="">Pilih Kategori</option>
+                                                    <option value="1">Super Admin</option>
+                                                    <option value="2">Admin</option>
+                                                    <option value="3">User</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-span-2">
                                                 <label for="nama" class="block mb-2 text-sm font-bold">Nama Kegiatan</label>
                                                 <input type="text" name="nama" id="nama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Nama Kegiatan ...">
                                             </div>
-
                                             <div class="col-span-2 sm:col-span-1">
                                                 <label for="tanggal_mulai" class="block mb-2 text-sm font-bold">Tanggal Mulai</label>
                                                 <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
@@ -968,13 +1003,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-span-2 sm:col-span-1">
-                                                <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
-                                                <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
-                                                    <option selected="">Pilih Kategori</option>
-                                                    <option value="1">Super Admin</option>
-                                                    <option value="2">Admin</option>
-                                                    <option value="3">User</option>
-                                                </select>
+                                                <label for="iuran" class="block mb-2 text-sm font-bold">Iuran</label>
+                                                <input type="number" name="iuran" id="iuran" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Iuran ...">
                                             </div>
                                             <div class="col-span-2">
                                                 <label for="deskripsi" class="block mb-2 text-sm font-bold">Deskripsi</label>
@@ -1022,10 +1052,18 @@
                                                 </datalist>
                                             </div>
                                             <div class="col-span-2 sm:col-span-1">
+                                                <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
+                                                <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
+                                                    <option selected="">Pilih Kategori</option>
+                                                    <option value="1">Super Admin</option>
+                                                    <option value="2">Admin</option>
+                                                    <option value="3">User</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-span-2">
                                                 <label for="nama" class="block mb-2 text-sm font-bold">Nama Kegiatan</label>
                                                 <input type="text" name="nama" id="nama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Nama Kegiatan ...">
                                             </div>
-
                                             <div class="col-span-2 sm:col-span-1">
                                                 <label for="tanggal_mulai" class="block mb-2 text-sm font-bold">Tanggal Mulai</label>
                                                 <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
@@ -1047,13 +1085,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-span-2 sm:col-span-1">
-                                                <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
-                                                <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
-                                                    <option selected="">Pilih Kategori</option>
-                                                    <option value="1">Super Admin</option>
-                                                    <option value="2">Admin</option>
-                                                    <option value="3">User</option>
-                                                </select>
+                                                <label for="iuran" class="block mb-2 text-sm font-bold">Iuran</label>
+                                                <input type="number" name="iuran" id="iuran" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Iuran ...">
                                             </div>
                                             <div class="col-span-2">
                                                 <label for="deskripsi" class="block mb-2 text-sm font-bold">Deskripsi</label>
@@ -1129,10 +1162,18 @@
                                                 </datalist>
                                             </div>
                                             <div class="col-span-2 sm:col-span-1">
+                                                <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
+                                                <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
+                                                    <option selected="">Pilih Kategori</option>
+                                                    <option value="1">Super Admin</option>
+                                                    <option value="2">Admin</option>
+                                                    <option value="3">User</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-span-2">
                                                 <label for="nama" class="block mb-2 text-sm font-bold">Nama Kegiatan</label>
                                                 <input type="text" name="nama" id="nama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Nama Kegiatan ...">
                                             </div>
-
                                             <div class="col-span-2 sm:col-span-1">
                                                 <label for="tanggal_mulai" class="block mb-2 text-sm font-bold">Tanggal Mulai</label>
                                                 <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
@@ -1154,13 +1195,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-span-2 sm:col-span-1">
-                                                <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
-                                                <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
-                                                    <option selected="">Pilih Kategori</option>
-                                                    <option value="1">Super Admin</option>
-                                                    <option value="2">Admin</option>
-                                                    <option value="3">User</option>
-                                                </select>
+                                                <label for="iuran" class="block mb-2 text-sm font-bold">Iuran</label>
+                                                <input type="number" name="iuran" id="iuran" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Iuran ...">
                                             </div>
                                             <div class="col-span-2">
                                                 <label for="deskripsi" class="block mb-2 text-sm font-bold">Deskripsi</label>
@@ -1208,10 +1244,18 @@
                                                 </datalist>
                                             </div>
                                             <div class="col-span-2 sm:col-span-1">
+                                                <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
+                                                <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
+                                                    <option selected="">Pilih Kategori</option>
+                                                    <option value="1">Super Admin</option>
+                                                    <option value="2">Admin</option>
+                                                    <option value="3">User</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-span-2">
                                                 <label for="nama" class="block mb-2 text-sm font-bold">Nama Kegiatan</label>
                                                 <input type="text" name="nama" id="nama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Nama Kegiatan ...">
                                             </div>
-
                                             <div class="col-span-2 sm:col-span-1">
                                                 <label for="tanggal_mulai" class="block mb-2 text-sm font-bold">Tanggal Mulai</label>
                                                 <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
@@ -1233,13 +1277,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-span-2 sm:col-span-1">
-                                                <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
-                                                <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
-                                                    <option selected="">Pilih Kategori</option>
-                                                    <option value="1">Super Admin</option>
-                                                    <option value="2">Admin</option>
-                                                    <option value="3">User</option>
-                                                </select>
+                                                <label for="iuran" class="block mb-2 text-sm font-bold">Iuran</label>
+                                                <input type="number" name="iuran" id="iuran" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Iuran ...">
                                             </div>
                                             <div class="col-span-2">
                                                 <label for="deskripsi" class="block mb-2 text-sm font-bold">Deskripsi</label>
@@ -1315,10 +1354,18 @@
                                                 </datalist>
                                             </div>
                                             <div class="col-span-2 sm:col-span-1">
+                                                <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
+                                                <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
+                                                    <option selected="">Pilih Kategori</option>
+                                                    <option value="1">Super Admin</option>
+                                                    <option value="2">Admin</option>
+                                                    <option value="3">User</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-span-2">
                                                 <label for="nama" class="block mb-2 text-sm font-bold">Nama Kegiatan</label>
                                                 <input type="text" name="nama" id="nama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Nama Kegiatan ...">
                                             </div>
-
                                             <div class="col-span-2 sm:col-span-1">
                                                 <label for="tanggal_mulai" class="block mb-2 text-sm font-bold">Tanggal Mulai</label>
                                                 <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
@@ -1340,13 +1387,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-span-2 sm:col-span-1">
-                                                <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
-                                                <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
-                                                    <option selected="">Pilih Kategori</option>
-                                                    <option value="1">Super Admin</option>
-                                                    <option value="2">Admin</option>
-                                                    <option value="3">User</option>
-                                                </select>
+                                                <label for="iuran" class="block mb-2 text-sm font-bold">Iuran</label>
+                                                <input type="number" name="iuran" id="iuran" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Iuran ...">
                                             </div>
                                             <div class="col-span-2">
                                                 <label for="deskripsi" class="block mb-2 text-sm font-bold">Deskripsi</label>
@@ -1394,10 +1436,18 @@
                                                 </datalist>
                                             </div>
                                             <div class="col-span-2 sm:col-span-1">
+                                                <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
+                                                <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
+                                                    <option selected="">Pilih Kategori</option>
+                                                    <option value="1">Super Admin</option>
+                                                    <option value="2">Admin</option>
+                                                    <option value="3">User</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-span-2">
                                                 <label for="nama" class="block mb-2 text-sm font-bold">Nama Kegiatan</label>
                                                 <input type="text" name="nama" id="nama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Nama Kegiatan ...">
                                             </div>
-
                                             <div class="col-span-2 sm:col-span-1">
                                                 <label for="tanggal_mulai" class="block mb-2 text-sm font-bold">Tanggal Mulai</label>
                                                 <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
@@ -1419,13 +1469,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-span-2 sm:col-span-1">
-                                                <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
-                                                <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
-                                                    <option selected="">Pilih Kategori</option>
-                                                    <option value="1">Super Admin</option>
-                                                    <option value="2">Admin</option>
-                                                    <option value="3">User</option>
-                                                </select>
+                                                <label for="iuran" class="block mb-2 text-sm font-bold">Iuran</label>
+                                                <input type="number" name="iuran" id="iuran" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Iuran ...">
                                             </div>
                                             <div class="col-span-2">
                                                 <label for="deskripsi" class="block mb-2 text-sm font-bold">Deskripsi</label>
@@ -1501,10 +1546,18 @@
                                                 </datalist>
                                             </div>
                                             <div class="col-span-2 sm:col-span-1">
+                                                <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
+                                                <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
+                                                    <option selected="">Pilih Kategori</option>
+                                                    <option value="1">Super Admin</option>
+                                                    <option value="2">Admin</option>
+                                                    <option value="3">User</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-span-2">
                                                 <label for="nama" class="block mb-2 text-sm font-bold">Nama Kegiatan</label>
                                                 <input type="text" name="nama" id="nama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Nama Kegiatan ...">
                                             </div>
-
                                             <div class="col-span-2 sm:col-span-1">
                                                 <label for="tanggal_mulai" class="block mb-2 text-sm font-bold">Tanggal Mulai</label>
                                                 <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
@@ -1526,13 +1579,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-span-2 sm:col-span-1">
-                                                <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
-                                                <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
-                                                    <option selected="">Pilih Kategori</option>
-                                                    <option value="1">Super Admin</option>
-                                                    <option value="2">Admin</option>
-                                                    <option value="3">User</option>
-                                                </select>
+                                                <label for="iuran" class="block mb-2 text-sm font-bold">Iuran</label>
+                                                <input type="number" name="iuran" id="iuran" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Iuran ...">
                                             </div>
                                             <div class="col-span-2">
                                                 <label for="deskripsi" class="block mb-2 text-sm font-bold">Deskripsi</label>
@@ -1580,10 +1628,18 @@
                                                 </datalist>
                                             </div>
                                             <div class="col-span-2 sm:col-span-1">
+                                                <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
+                                                <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
+                                                    <option selected="">Pilih Kategori</option>
+                                                    <option value="1">Super Admin</option>
+                                                    <option value="2">Admin</option>
+                                                    <option value="3">User</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-span-2">
                                                 <label for="nama" class="block mb-2 text-sm font-bold">Nama Kegiatan</label>
                                                 <input type="text" name="nama" id="nama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Nama Kegiatan ...">
                                             </div>
-
                                             <div class="col-span-2 sm:col-span-1">
                                                 <label for="tanggal_mulai" class="block mb-2 text-sm font-bold">Tanggal Mulai</label>
                                                 <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
@@ -1605,13 +1661,8 @@
                                                 </div>
                                             </div>
                                             <div class="col-span-2 sm:col-span-1">
-                                                <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
-                                                <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
-                                                    <option selected="">Pilih Kategori</option>
-                                                    <option value="1">Super Admin</option>
-                                                    <option value="2">Admin</option>
-                                                    <option value="3">User</option>
-                                                </select>
+                                                <label for="iuran" class="block mb-2 text-sm font-bold">Iuran</label>
+                                                <input type="number" name="iuran" id="iuran" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Iuran ...">
                                             </div>
                                             <div class="col-span-2">
                                                 <label for="deskripsi" class="block mb-2 text-sm font-bold">Deskripsi</label>
