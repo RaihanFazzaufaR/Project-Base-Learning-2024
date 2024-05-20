@@ -22,6 +22,7 @@ return new class extends Migration
             $table->enum('prioritas', ['biasa', 'penting', 'darurat']);
             $table->enum('status', ['diproses', 'selesai', 'ditolak']);
             $table->date('dibuat_tanggal')->nullable();
+            $table->timestamps();
         });
     }
 

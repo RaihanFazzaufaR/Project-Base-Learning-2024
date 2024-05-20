@@ -99,6 +99,7 @@ Route::group(['middleware' => ['auth']], function () {
             Route::prefix('pengaduan')->group(function () {
                 Route::get('/', [AdminPengaduanController::class, 'index'])->name('pengaduan-admin');
                 Route::post('/', [AdminPengaduanController::class, 'addResponse'])->name('add-response');
+                Route::put('/{id}', [AdminPengaduanController::class, 'updateStatusOutside'])->name('update-status-outside');
             });
         });
     });
