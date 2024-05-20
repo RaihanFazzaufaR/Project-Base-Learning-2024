@@ -67,79 +67,42 @@
 
 <div class="relative min-h-[40vh] w-[90%] mx-auto flex flex-col mt-20 gap-18 mb-30">
     <div class="flex h-[10%] w-full justify-center items-center text-4xl font-bold">Kegiatan Mendatang</div>
-    <div class="flex h-[90%] w-full justify-center items-center gap-15">
-        <div class="relative bg-white rounded-xl shadow-xl flex flex-col w-[380px] h-fit pt-12 pb-4 px-7 gap-3 border-2 border-green-900 hover:scale-105 hover:shadow-2xl transition ease-in-out duration-300 group">
+    <div class="grid h-[90%] w-full grid-cols-3">
+        @foreach ($dataUpcoming as $dt)
+        <div class="bg-white rounded-xl shadow-xl flex flex-col w-[380px] h-full pt-8 pb-4 gap-3 border-2 border-green-900 hover:scale-105 hover:shadow-2xl transition ease-in-out duration-300 group">
             <!-- <div class="absolute w-full h-full bg-black/40 rounded-xl left-0 top-0 flex justify-center items-center opacity-0 transition ease-in-out duration-300 group-hover:opacity-100">
                 <button class="w-fit h-fit px-4 py-2 font-semibold text-sm border-2 border-white bg-green-500 text-white rounded-xl">Lihat Detail</button>
             </div> -->
-            <div class="absolute w-fit h-fit px-4 py-3 font-bold text-xl bg-yellow-200 rounded-xl shadow-md -top-6 left-28 text-green-900">10 Juni 2024</div>
-            <div class="flex w-full h-fit justify-start items-center gap-5">
-                <div class="px-3 py-1 bg-green-500 rounded-xl text-sm font-medium text-white">Kebersihan</div>
+            <div class="relative w-full h-fit flex justify-center items-center -top-10">
+                <div class="absolute w-fit h-fit px-4 py-3 font-bold text-xl bg-yellow-200 rounded-xl shadow-md text-green-900">{{ $dt->mulai_tanggal }}</div>
+            </div>
+            <div class="flex w-full h-fit justify-start items-center gap-5 px-7">
+                <div class="px-3 py-1 bg-green-500 rounded-xl text-sm font-medium text-white">{{ $dt->aktivitas_tipe }}</div>
                 <div class="py-1 px-4 flex border border-green-900 rounded-xl text-sm font-medium text-green-900 justify-center items-center gap-2">
                     <i class="fa-regular fa-clock"></i>
-                    <p>08.00 - 10.00</p>
+                    <p>{{ $dt->mulai_waktu }} - {{ $dt->akhir_waktu }}</p>
                 </div>
             </div>
-            <div class="text-2xl font-semibold text-green-900 flex justify-start">Kerja Bakti di RT 03</div>
-            <div class="flex gap-3 items-center justify-start text-sm font-medium text-green-900">
+            <div class="text-2xl font-semibold text-green-900 flex justify-start px-7">{{ $dt->judul }}</div>
+            <div class="flex gap-3 items-center justify-start text-sm font-medium text-green-900 px-7">
                 <i class="fa-solid fa-map-location-dot"></i>
-                <p class="text-left">Lorem ipsum dolor sit amet consectetur tes</p>
+                <p class="text-left">{{ $dt->lokasi }}</p>
             </div>
-            <div class="flex gap-4 items-center justify-start text-sm font-medium text-green-900">
+            <div class="flex gap-4 items-center justify-start text-sm font-medium text-green-900 px-7">
                 <i class="fa-solid fa-user"></i>
-                <p>Maulidin Zakaria (Ketua RT 01)</p>
+                <p>
+                    {{ $dt->penduduk->nama }}
+                    @if ($dt->penduduk->jabatan !== 'Tidak ada')
+                    ({{ ($dt->penduduk->jabatan !== 'Ketua RW')? $dt->penduduk->jabatan.' ' .$dt->penduduk->kartuKeluarga->rt : $dt->penduduk->jabatan}})
+                    @endif
+                </p>
             </div>
-            <div class="flex gap-5 items-center justify-start text-sm font-medium text-green-900">
+            <div class="flex gap-5 items-center justify-start text-sm font-medium text-green-900 px-7">
                 <i class="fa-solid fa-dollar-sign"></i>
-                <p>Rp. 0 / KK</p>
+                <p>Rp. {{ $dt->iuran }} / KK</p>
             </div>
         </div>
-        <div class="relative bg-white rounded-xl shadow-xl flex flex-col w-[380px] h-fit pt-12 pb-4 px-7 gap-3 border-2 border-green-900 hover:scale-105 hover:shadow-2xl transition ease-in-out duration-300">
-            <div class="absolute w-fit h-fit px-4 py-3 font-bold text-xl bg-yellow-200 rounded-xl shadow-md -top-6 left-28 text-green-900">10 Juni 2024</div>
-            <div class="flex w-full h-fit justify-start items-center gap-5">
-                <div class="px-3 py-1 bg-green-500 rounded-xl text-sm font-medium text-white">Kebersihan</div>
-                <div class="py-1 px-4 flex border border-green-900 rounded-xl text-sm font-medium text-green-900 justify-center items-center gap-2">
-                    <i class="fa-regular fa-clock"></i>
-                    <p>08.00 - 10.00</p>
-                </div>
-            </div>
-            <div class="text-2xl font-semibold text-green-900 flex justify-start">Kerja Bakti di RT 03</div>
-            <div class="flex gap-3 items-center justify-start text-sm font-medium text-green-900">
-                <i class="fa-solid fa-map-location-dot"></i>
-                <p class="text-left">Lorem ipsum dolor sit amet consectetur tes</p>
-            </div>
-            <div class="flex gap-4 items-center justify-start text-sm font-medium text-green-900">
-                <i class="fa-solid fa-user"></i>
-                <p>Maulidin Zakaria (Ketua RT 01)</p>
-            </div>
-            <div class="flex gap-5 items-center justify-start text-sm font-medium text-green-900">
-                <i class="fa-solid fa-dollar-sign"></i>
-                <p>Rp. 0 / KK</p>
-            </div>
-        </div>
-        <div class="relative bg-white rounded-xl shadow-xl flex flex-col w-[380px] h-fit pt-12 pb-4 px-7 gap-3 border-2 border-green-900 hover:scale-105 hover:shadow-2xl transition ease-in-out duration-300">
-            <div class="absolute w-fit h-fit px-4 py-3 font-bold text-xl bg-yellow-200 rounded-xl shadow-md -top-6 left-28 text-green-900">10 Juni 2024</div>
-            <div class="flex w-full h-fit justify-start items-center gap-5">
-                <div class="px-3 py-1 bg-green-500 rounded-xl text-sm font-medium text-white">Kebersihan</div>
-                <div class="py-1 px-4 flex border border-green-900 rounded-xl text-sm font-medium text-green-900 justify-center items-center gap-2">
-                    <i class="fa-regular fa-clock"></i>
-                    <p>08.00 - 10.00</p>
-                </div>
-            </div>
-            <div class="text-2xl font-semibold text-green-900 flex justify-start">Kerja Bakti di RT 03</div>
-            <div class="flex gap-3 items-center justify-start text-sm font-medium text-green-900">
-                <i class="fa-solid fa-map-location-dot"></i>
-                <p class="text-left">Lorem ipsum dolor sit amet consectetur tes</p>
-            </div>
-            <div class="flex gap-4 items-center justify-start text-sm font-medium text-green-900">
-                <i class="fa-solid fa-user"></i>
-                <p>Maulidin Zakaria (Ketua RT 01)</p>
-            </div>
-            <div class="flex gap-5 items-center justify-start text-sm font-medium text-green-900">
-                <i class="fa-solid fa-dollar-sign"></i>
-                <p>Rp. 0 / KK</p>
-            </div>
-        </div>
+        @endforeach
     </div>
 </div>
 
@@ -281,13 +244,13 @@
                     </div>
                 </div>
             </div>
-            
+
 
         </div>
     </div>
 </div>
 
-<div class="relative min-h-[40vh] w-[90%] mx-auto flex flex-col mt-20 gap-15 mb-30">
+<div class="relative min-h-[40vh] w-[90%] mx-auto flex flex-col mt-20 gap-15 mb-30" id="pastSchedule">
     <div class="flex h-[10%] w-full justify-center items-center text-4xl font-bold">Kegiatan Yang Telah Berlalu</div>
     <div class="flex w-full min-h-20 gap-x-6 gap-y-3 flex-wrap items-center justify-center">
         <button class="h-fit py-1 px-4 border-2 border-[#2d5523] rounded-2xl text-sm font-semibold text-[#2d5523] shadow-md hover:bg-[#2d5523] hover:text-white transition-all">Umum</button>
@@ -299,145 +262,42 @@
         <button class="h-fit py-1 px-4 border-2 border-[#2d5523] rounded-2xl text-sm font-semibold text-[#2d5523] shadow-md hover:bg-[#2d5523] hover:text-white transition-all">Kuliner</button>
         <button class="h-fit py-1 px-4 border-2 border-[#2d5523] rounded-2xl text-sm font-semibold text-[#2d5523] shadow-md hover:bg-[#2d5523] hover:text-white transition-all">Ekonomi</button>
     </div>
-    <div class="flex h-full w-full justify-center items-center gap-15 flex-wrap">
-        <div class="relative bg-white rounded-xl shadow-xl flex flex-col w-[380px] h-fit pt-12 pb-4 px-7 gap-3 border-2 border-green-900 hover:scale-105 hover:shadow-2xl transition ease-in-out duration-300">
-            <div class="absolute w-fit h-fit px-4 py-3 font-bold text-xl bg-yellow-200 rounded-xl shadow-md -top-6 left-28 text-green-900">10 Juni 2024</div>
-            <div class="flex w-full h-fit justify-start items-center gap-5">
-                <div class="px-3 py-1 bg-green-500 rounded-xl text-sm font-medium text-white">Kebersihan</div>
+    <div class="grid h-full w-full grid-cols-3 gap-12">
+        @foreach ($dataPast as $dt)
+        <div class="bg-white rounded-xl shadow-xl flex flex-col w-[380px] h-[260px] pt-8 pb-4 gap-3 border-2 border-green-900 hover:scale-105 hover:shadow-2xl transition ease-in-out duration-300 group">
+            <!-- <div class="absolute w-full h-full bg-black/40 rounded-xl left-0 top-0 flex justify-center items-center opacity-0 transition ease-in-out duration-300 group-hover:opacity-100">
+                <button class="w-fit h-fit px-4 py-2 font-semibold text-sm border-2 border-white bg-green-500 text-white rounded-xl">Lihat Detail</button>
+            </div> -->
+            <div class="relative w-full h-fit flex justify-center items-center -top-10">
+                <div class="absolute w-fit h-fit px-4 py-3 font-bold text-xl bg-yellow-200 rounded-xl shadow-md text-green-900">{{ $dt->mulai_tanggal }}</div>
+            </div>
+            <div class="flex w-full h-fit justify-start items-center gap-5 px-7">
+                <div class="px-3 py-1 bg-green-500 rounded-xl text-sm font-medium text-white">{{ $dt->aktivitas_tipe }}</div>
                 <div class="py-1 px-4 flex border border-green-900 rounded-xl text-sm font-medium text-green-900 justify-center items-center gap-2">
                     <i class="fa-regular fa-clock"></i>
-                    <p>08.00 - 10.00</p>
+                    <p>{{ $dt->mulai_waktu }} - {{ $dt->akhir_waktu }}</p>
                 </div>
             </div>
-            <div class="text-2xl font-semibold text-green-900 flex justify-start">Kerja Bakti di RT 03</div>
-            <div class="flex gap-3 items-center justify-start text-sm font-medium text-green-900">
+            <div class="text-2xl font-semibold text-green-900 flex justify-start px-7">{{ $dt->judul }}</div>
+            <div class="flex gap-3 items-center justify-start text-sm font-medium text-green-900 px-7">
                 <i class="fa-solid fa-map-location-dot"></i>
-                <p class="text-left">Lorem ipsum dolor sit amet consectetur tes</p>
+                <p class="text-left">{{ $dt->lokasi }}</p>
             </div>
-            <div class="flex gap-4 items-center justify-start text-sm font-medium text-green-900">
+            <div class="flex gap-4 items-center justify-start text-sm font-medium text-green-900 px-7">
                 <i class="fa-solid fa-user"></i>
-                <p>Maulidin Zakaria (Ketua RT 01)</p>
+                <p>
+                    {{ $dt->penduduk->nama }}
+                    @if ($dt->penduduk->jabatan !== 'Tidak ada')
+                    ({{ ($dt->penduduk->jabatan !== 'Ketua RW')? $dt->penduduk->jabatan.' ' .$dt->penduduk->kartuKeluarga->rt : $dt->penduduk->jabatan}})
+                    @endif
+                </p>
             </div>
-            <div class="flex gap-5 items-center justify-start text-sm font-medium text-green-900">
+            <div class="flex gap-5 items-center justify-start text-sm font-medium text-green-900 px-7">
                 <i class="fa-solid fa-dollar-sign"></i>
-                <p>Rp. 0 / KK</p>
+                <p>Rp. {{ $dt->iuran }} / KK</p>
             </div>
         </div>
-        <div class="relative bg-white rounded-xl shadow-xl flex flex-col w-[380px] h-fit pt-12 pb-4 px-7 gap-3 border-2 border-green-900 hover:scale-105 hover:shadow-2xl transition ease-in-out duration-300">
-            <div class="absolute w-fit h-fit px-4 py-3 font-bold text-xl bg-yellow-200 rounded-xl shadow-md -top-6 left-28 text-green-900">10 Juni 2024</div>
-            <div class="flex w-full h-fit justify-start items-center gap-5">
-                <div class="px-3 py-1 bg-green-500 rounded-xl text-sm font-medium text-white">Kebersihan</div>
-                <div class="py-1 px-4 flex border border-green-900 rounded-xl text-sm font-medium text-green-900 justify-center items-center gap-2">
-                    <i class="fa-regular fa-clock"></i>
-                    <p>08.00 - 10.00</p>
-                </div>
-            </div>
-            <div class="text-2xl font-semibold text-green-900 flex justify-start">Kerja Bakti di RT 03</div>
-            <div class="flex gap-3 items-center justify-start text-sm font-medium text-green-900">
-                <i class="fa-solid fa-map-location-dot"></i>
-                <p class="text-left">Lorem ipsum dolor sit amet consectetur tes</p>
-            </div>
-            <div class="flex gap-4 items-center justify-start text-sm font-medium text-green-900">
-                <i class="fa-solid fa-user"></i>
-                <p>Maulidin Zakaria (Ketua RT 01)</p>
-            </div>
-            <div class="flex gap-5 items-center justify-start text-sm font-medium text-green-900">
-                <i class="fa-solid fa-dollar-sign"></i>
-                <p>Rp. 0 / KK</p>
-            </div>
-        </div>
-        <div class="relative bg-white rounded-xl shadow-xl flex flex-col w-[380px] h-fit pt-12 pb-4 px-7 gap-3 border-2 border-green-900 hover:scale-105 hover:shadow-2xl transition ease-in-out duration-300">
-            <div class="absolute w-fit h-fit px-4 py-3 font-bold text-xl bg-yellow-200 rounded-xl shadow-md -top-6 left-28 text-green-900">10 Juni 2024</div>
-            <div class="flex w-full h-fit justify-start items-center gap-5">
-                <div class="px-3 py-1 bg-green-500 rounded-xl text-sm font-medium text-white">Kebersihan</div>
-                <div class="py-1 px-4 flex border border-green-900 rounded-xl text-sm font-medium text-green-900 justify-center items-center gap-2">
-                    <i class="fa-regular fa-clock"></i>
-                    <p>08.00 - 10.00</p>
-                </div>
-            </div>
-            <div class="text-2xl font-semibold text-green-900 flex justify-start">Kerja Bakti di RT 03</div>
-            <div class="flex gap-3 items-center justify-start text-sm font-medium text-green-900">
-                <i class="fa-solid fa-map-location-dot"></i>
-                <p class="text-left">Lorem ipsum dolor sit amet consectetur tes</p>
-            </div>
-            <div class="flex gap-4 items-center justify-start text-sm font-medium text-green-900">
-                <i class="fa-solid fa-user"></i>
-                <p>Maulidin Zakaria (Ketua RT 01)</p>
-            </div>
-            <div class="flex gap-5 items-center justify-start text-sm font-medium text-green-900">
-                <i class="fa-solid fa-dollar-sign"></i>
-                <p>Rp. 0 / KK</p>
-            </div>
-        </div>
-        <div class="relative bg-white rounded-xl shadow-xl flex flex-col w-[380px] h-fit pt-12 pb-4 px-7 gap-3 border-2 border-green-900 hover:scale-105 hover:shadow-2xl transition ease-in-out duration-300">
-            <div class="absolute w-fit h-fit px-4 py-3 font-bold text-xl bg-yellow-200 rounded-xl shadow-md -top-6 left-28 text-green-900">10 Juni 2024</div>
-            <div class="flex w-full h-fit justify-start items-center gap-5">
-                <div class="px-3 py-1 bg-green-500 rounded-xl text-sm font-medium text-white">Kebersihan</div>
-                <div class="py-1 px-4 flex border border-green-900 rounded-xl text-sm font-medium text-green-900 justify-center items-center gap-2">
-                    <i class="fa-regular fa-clock"></i>
-                    <p>08.00 - 10.00</p>
-                </div>
-            </div>
-            <div class="text-2xl font-semibold text-green-900 flex justify-start">Kerja Bakti di RT 03</div>
-            <div class="flex gap-3 items-center justify-start text-sm font-medium text-green-900">
-                <i class="fa-solid fa-map-location-dot"></i>
-                <p class="text-left">Lorem ipsum dolor sit amet consectetur tes</p>
-            </div>
-            <div class="flex gap-4 items-center justify-start text-sm font-medium text-green-900">
-                <i class="fa-solid fa-user"></i>
-                <p>Maulidin Zakaria (Ketua RT 01)</p>
-            </div>
-            <div class="flex gap-5 items-center justify-start text-sm font-medium text-green-900">
-                <i class="fa-solid fa-dollar-sign"></i>
-                <p>Rp. 0 / KK</p>
-            </div>
-        </div>
-        <div class="relative bg-white rounded-xl shadow-xl flex flex-col w-[380px] h-fit pt-12 pb-4 px-7 gap-3 border-2 border-green-900 hover:scale-105 hover:shadow-2xl transition ease-in-out duration-300">
-            <div class="absolute w-fit h-fit px-4 py-3 font-bold text-xl bg-yellow-200 rounded-xl shadow-md -top-6 left-28 text-green-900">10 Juni 2024</div>
-            <div class="flex w-full h-fit justify-start items-center gap-5">
-                <div class="px-3 py-1 bg-green-500 rounded-xl text-sm font-medium text-white">Kebersihan</div>
-                <div class="py-1 px-4 flex border border-green-900 rounded-xl text-sm font-medium text-green-900 justify-center items-center gap-2">
-                    <i class="fa-regular fa-clock"></i>
-                    <p>08.00 - 10.00</p>
-                </div>
-            </div>
-            <div class="text-2xl font-semibold text-green-900 flex justify-start">Kerja Bakti di RT 03</div>
-            <div class="flex gap-3 items-center justify-start text-sm font-medium text-green-900">
-                <i class="fa-solid fa-map-location-dot"></i>
-                <p class="text-left">Lorem ipsum dolor sit amet consectetur tes</p>
-            </div>
-            <div class="flex gap-4 items-center justify-start text-sm font-medium text-green-900">
-                <i class="fa-solid fa-user"></i>
-                <p>Maulidin Zakaria (Ketua RT 01)</p>
-            </div>
-            <div class="flex gap-5 items-center justify-start text-sm font-medium text-green-900">
-                <i class="fa-solid fa-dollar-sign"></i>
-                <p>Rp. 0 / KK</p>
-            </div>
-        </div>
-        <div class="relative bg-white rounded-xl shadow-xl flex flex-col w-[380px] h-fit pt-12 pb-4 px-7 gap-3 border-2 border-green-900 hover:scale-105 hover:shadow-2xl transition ease-in-out duration-300">
-            <div class="absolute w-fit h-fit px-4 py-3 font-bold text-xl bg-yellow-200 rounded-xl shadow-md -top-6 left-28 text-green-900">10 Juni 2024</div>
-            <div class="flex w-full h-fit justify-start items-center gap-5">
-                <div class="px-3 py-1 bg-green-500 rounded-xl text-sm font-medium text-white">Kebersihan</div>
-                <div class="py-1 px-4 flex border border-green-900 rounded-xl text-sm font-medium text-green-900 justify-center items-center gap-2">
-                    <i class="fa-regular fa-clock"></i>
-                    <p>08.00 - 10.00</p>
-                </div>
-            </div>
-            <div class="text-2xl font-semibold text-green-900 flex justify-start">Kerja Bakti di RT 03</div>
-            <div class="flex gap-3 items-center justify-start text-sm font-medium text-green-900">
-                <i class="fa-solid fa-map-location-dot"></i>
-                <p class="text-left">Lorem ipsum dolor sit amet consectetur tes</p>
-            </div>
-            <div class="flex gap-4 items-center justify-start text-sm font-medium text-green-900">
-                <i class="fa-solid fa-user"></i>
-                <p>Maulidin Zakaria (Ketua RT 01)</p>
-            </div>
-            <div class="flex gap-5 items-center justify-start text-sm font-medium text-green-900">
-                <i class="fa-solid fa-dollar-sign"></i>
-                <p>Rp. 0 / KK</p>
-            </div>
-        </div>
+        @endforeach
     </div>
 </div>
 
@@ -613,5 +473,16 @@
         }
 
         renderCalendar();
+    </script>
+    <script>
+        // auto scroll to element
+        const autoScrollToElement = () => {
+            const element = document.querySelector('#pastSchedule');
+            window.scrollTo({
+                top: element.offsetTop - 20,
+                behavior: 'smooth'
+            });
+        }
+        autoScrollToElement();
     </script>
 </x-footer>
