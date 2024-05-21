@@ -6,7 +6,7 @@
     <img src="{{ asset('assets/images/aduan-cover.jpg') }}" alt="" class="w-full">
     <div class=" w-[571px] h-[185px] z-10 absolute flex justify-center rounded-[105px] flex-col text-center ">
         <p class="text-[#2d5523] font-bold text-[36px]">Aduan Warga RW 3</p>
-        <p class="text-[#2d5523] font-sans text-[32px] text-center">“Laporkan Segala Permasalahan di Lingkungan RW”</p>
+        <p class="text-[#2d5523] font-sans text-[32px] text-center">Laporkan Segala Permasalahan di Lingkungan RW</p>
     </div>
 </div>
 
@@ -166,7 +166,7 @@
                                                                     src="{{ asset('assets/images/Aduan/' . $aduan->image) }}">
                                                             </div>
                                                         @endif
-                                                        <div class="flex w-full p-4">
+                                                        <div class="flex w-full p-4 {{ Auth::user()->penduduk->id_penduduk == $aduan->pengadu_id ? 'justify-end' : '' }}">
                                                             <div class="p-4 w-fit rounded-lg max-w-[75%] {{ Auth::user()->penduduk->id_penduduk == $aduan->pengadu_id ? 'bg-[#cdffc5]' : 'bg-gray-300' }}">
                                                                 <p class="text-sm font-semibold">
                                                                     Anonymous
@@ -221,11 +221,20 @@
                         </td>
                     </tr>
                 @endforeach
-
             </tbody>
         </table>
+        <div class="px-8 py-5">
+            {{ $aduans->links() }}
+        </div>
     </div>
 </div>
+<script>
+    $(document).ready(function() {
+        @if (session('aduan_id'))
+            $('#detailModal').modal('show');
+        @endif
+    });
+</script>
 
 <x-footer>
 

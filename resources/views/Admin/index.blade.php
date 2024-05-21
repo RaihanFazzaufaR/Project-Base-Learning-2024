@@ -5,7 +5,7 @@
       <div class="absolute z-[2] top-0 h-full w-full bg-[#19A8EF] left-0 group-hover: transition ease-in-out duration-500 -translate-y-[93%] group-hover:translate-y-0"></div>
       <div class="relative flex w-full h-full justify-center items-center gap-10 z-[3] top-0 left-0">
         <div class="flex flex-col justify-center items-center gap-2">
-          <div class="font-bold text-5xl group-hover:text-white">100</div>
+          <div class="font-bold text-5xl group-hover:text-white">{{ $dataJumlah['jumlahKK'] }}</div>
           <div class="font-semibold text-[15px] text-gray-500 group-hover:text-gray-200">Jumlah KK</div>
         </div>
         <div class="text-5xl text-[#19A8EF] group-hover:text-white">
@@ -19,7 +19,7 @@
       <div class="absolute z-[2] top-0 h-full w-full bg-[#FEAD34] left-0 group-hover: transition ease-in-out duration-500 -translate-y-[93%] group-hover:translate-y-0"></div>
       <div class="relative flex w-full h-full justify-center items-center gap-10 z-[3] top-0 left-0">
         <div class="flex flex-col justify-center items-center gap-2">
-          <div class="font-bold text-5xl group-hover:text-white">1000</div>
+          <div class="font-bold text-5xl group-hover:text-white">{{ $dataJumlah['jumlahPenduduk'] }}</div>
           <div class="font-semibold text-[15px] text-gray-500 group-hover:text-gray-200">Jumlah Penduduk</div>
         </div>
         <div class="text-5xl text-[#FEAD34] group-hover:text-white">
@@ -33,7 +33,7 @@
       <div class="absolute z-[2] top-0 h-full w-full bg-[#9119EF] left-0 group-hover: transition ease-in-out duration-500 -translate-y-[93%] group-hover:translate-y-0"></div>
       <div class="relative flex w-full h-full justify-center items-center gap-10 z-[3] top-0 left-0">
         <div class="flex flex-col justify-center items-center gap-2">
-          <div class="font-bold text-5xl group-hover:text-white">43</div>
+          <div class="font-bold text-5xl group-hover:text-white">{{ $dataJumlah['jumlahUmkm'] }}</div>
           <div class="font-semibold text-[15px] text-gray-500 group-hover:text-gray-200">Jumlah UMKM</div>
         </div>
         <div class="text-5xl text-[#9119EF] group-hover:text-white">
@@ -47,7 +47,7 @@
       <div class="absolute z-[2] top-0 h-full w-full bg-[#19EF88] left-0 group-hover: transition ease-in-out duration-500 -translate-y-[93%] group-hover:translate-y-0"></div>
       <div class="relative flex w-full h-full justify-center items-center gap-10 z-[3] top-0 left-0">
         <div class="flex flex-col justify-center items-center gap-2">
-          <div class="font-bold text-5xl group-hover:text-white">100</div>
+          <div class="font-bold text-5xl group-hover:text-white">{{ $dataJumlah['jumlahAduan'] }}</div>
           <div class="font-semibold text-[15px] text-gray-500 group-hover:text-gray-200">Jumlah Aduan</div>
         </div>
         <div class="text-5xl text-[#19EF88] group-hover:text-white">
@@ -225,7 +225,7 @@
       </div>
     </div>
     <div class="col-span-2 bg-white rounded-xl shadow-xl flex h-full">
-      <div class="w-[65%] h-full border-r-2 border-gray-300 p-8">
+      <div class="w-[45%] h-full border-r-2 border-gray-300 py-8 px-6">
         <div class="dark:bg-gray-800 bg-white flex flex-col justify-between gap-8 h-full">
           <div class="flex items-center justify-around">
             <button id="prev" aria-label="calendar backward" onclick="prev()" class="focus:text-gray-400 hover:text-gray-400 text-gray-800 dark:text-gray-100 button-calendar">
@@ -296,99 +296,130 @@
           </div>
         </div>
       </div>
-      <div class="w-[35%] h-full p-6 flex flex-col gap-4">
-        <div class="font-bold text-lg text-black">Kegiatan Mendatang</div>
-        <div class="flex flex-col h-[85%] overflow-y-auto py-2 pt-1 scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin">
-          <div class="flex w-full h-24 py-2 gap-2">
-            <div class="flex flex-col w-[30%] h-full bg-[#cefbc4] rounded-xl items-center justify-center pb-3 relative">
-              <p class="font-bold text-4xl text-[#57BA47]">10</p>
-              <p class="font-semibold text-sm text-black">Jum</p>
-              <div class="absolute w-5 h-5 rounded-full bg-[#D4B204] border-4 border-white -bottom-2"></div>
+      <div class="col-span-2 row-span-1 h-full w-[55%] flex flex-col gap-2 px-2 py-4">
+        <div class="font-bold text-lg text-center text-black">Kegiatan Mendatang</div>
+        <div class="flex flex-col h-full overflow-y-auto pb-2 pt-1 px-4 scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin gap-3">
+          <div class="flex w-full h-[100px] border-2 border-green-900 rounded-lg shadow-md">
+            <div class="w-fit h-full flex flex-col bg-green-900 px-4 text-white items-center justify-center">
+              <p class="font-bold text-3xl">10</p>
+              <p class="font-medium text-lg">Jun</p>
             </div>
-            <div class="flex flex-col h-full w-[70%] items-center px-2 gap-1">
-              <div class="text-lg font-medium text-black text-left w-full">Nama Acara</div>
-              <div class="flex items-center gap-2 mt-1 text-sm font-normal text-gray-500 text-left w-full">
-                <i class="fa-regular fa-clock"></i>
-                <p>07:00 - 10:00</p>
+            <div class="flex flex-col h-full w-full items-center px-3 gap-1 py-2 relative">
+              <div class="text-lg font-medium text-green-900 text-left w-full">Kerja Bakti di RT 02</div>
+              <div class="flex items-center gap-3 w-full justify-between">
+                <div class="flex gap-2 items-center text-sm font-normal text-gray-500 text-left w-fit">
+                  <i class="fa-regular fa-clock"></i>
+                  <p>07:00 - 10:00</p>
+                </div>
+                <div class="px-3 py-1 bg-green-500 rounded-xl text-xs font-medium text-white">Kebersihan</div>
               </div>
               <div class="flex items-center gap-2 text-sm font-normal text-gray-500 text-left w-full">
                 <i class="fa-solid fa-location-dot"></i>
-                <p>Rumah Pak RW</p>
+                <p>Lorem ipsum dolor sit amet</p>
               </div>
             </div>
           </div>
-          <div class="flex w-full h-24 py-2 gap-2">
-            <div class="flex flex-col w-[30%] h-full bg-[#cefbc4] rounded-xl items-center justify-center pb-3 relative">
-              <p class="font-bold text-4xl text-[#57BA47]">10</p>
-              <p class="font-semibold text-sm text-black">Jum</p>
-              <div class="absolute w-5 h-5 rounded-full bg-[#D4B204] border-4 border-white -bottom-2"></div>
+          <div class="flex w-full h-[100px] border-2 border-green-900 rounded-lg shadow-md">
+            <div class="w-fit h-full flex flex-col bg-green-900 px-4 text-white items-center justify-center">
+              <p class="font-bold text-3xl">10</p>
+              <p class="font-medium text-lg">Jun</p>
             </div>
-            <div class="flex flex-col h-full w-[70%] items-center px-2 gap-1">
-              <div class="text-lg font-medium text-black text-left w-full">Nama Acara</div>
-              <div class="flex items-center gap-2 mt-1 text-sm font-normal text-gray-500 text-left w-full">
-                <i class="fa-regular fa-clock"></i>
-                <p>07:00 - 10:00</p>
+            <div class="flex flex-col h-full w-full items-center px-3 gap-1 py-2 relative">
+              <div class="text-lg font-medium text-green-900 text-left w-full">Kerja Bakti di RT 02</div>
+              <div class="flex items-center gap-3 w-full justify-between">
+                <div class="flex gap-2 items-center text-sm font-normal text-gray-500 text-left w-fit">
+                  <i class="fa-regular fa-clock"></i>
+                  <p>07:00 - 10:00</p>
+                </div>
+                <div class="px-3 py-1 bg-green-500 rounded-xl text-xs font-medium text-white">Kebersihan</div>
               </div>
               <div class="flex items-center gap-2 text-sm font-normal text-gray-500 text-left w-full">
                 <i class="fa-solid fa-location-dot"></i>
-                <p>Rumah Pak RW</p>
+                <p>Lorem ipsum dolor sit amet</p>
               </div>
             </div>
           </div>
-          <div class="flex w-full h-24 py-2 gap-2">
-            <div class="flex flex-col w-[30%] h-full bg-[#cefbc4] rounded-xl items-center justify-center pb-3 relative">
-              <p class="font-bold text-4xl text-[#57BA47]">10</p>
-              <p class="font-semibold text-sm text-black">Jum</p>
-              <div class="absolute w-5 h-5 rounded-full bg-[#D4B204] border-4 border-white -bottom-2"></div>
+          <div class="flex w-full h-[100px] border-2 border-green-900 rounded-lg shadow-md">
+            <div class="w-fit h-full flex flex-col bg-green-900 px-4 text-white items-center justify-center">
+              <p class="font-bold text-3xl">10</p>
+              <p class="font-medium text-lg">Jun</p>
             </div>
-            <div class="flex flex-col h-full w-[70%] items-center px-2 gap-1">
-              <div class="text-lg font-medium text-black text-left w-full">Nama Acara</div>
-              <div class="flex items-center gap-2 mt-1 text-sm font-normal text-gray-500 text-left w-full">
-                <i class="fa-regular fa-clock"></i>
-                <p>07:00 - 10:00</p>
+            <div class="flex flex-col h-full w-full items-center px-3 gap-1 py-2 relative">
+              <div class="text-lg font-medium text-green-900 text-left w-full">Kerja Bakti di RT 02</div>
+              <div class="flex items-center gap-3 w-full justify-between">
+                <div class="flex gap-2 items-center text-sm font-normal text-gray-500 text-left w-fit">
+                  <i class="fa-regular fa-clock"></i>
+                  <p>07:00 - 10:00</p>
+                </div>
+                <div class="px-3 py-1 bg-green-500 rounded-xl text-xs font-medium text-white">Kebersihan</div>
               </div>
               <div class="flex items-center gap-2 text-sm font-normal text-gray-500 text-left w-full">
                 <i class="fa-solid fa-location-dot"></i>
-                <p>Rumah Pak RW</p>
+                <p>Lorem ipsum dolor sit amet</p>
               </div>
             </div>
           </div>
-          <div class="flex w-full h-24 py-2 gap-2">
-            <div class="flex flex-col w-[30%] h-full bg-[#cefbc4] rounded-xl items-center justify-center pb-3 relative">
-              <p class="font-bold text-4xl text-[#57BA47]">10</p>
-              <p class="font-semibold text-sm text-black">Jum</p>
-              <div class="absolute w-5 h-5 rounded-full bg-[#D4B204] border-4 border-white -bottom-2"></div>
+          <div class="flex w-full h-[100px] border-2 border-green-900 rounded-lg shadow-md">
+            <div class="w-fit h-full flex flex-col bg-green-900 px-4 text-white items-center justify-center">
+              <p class="font-bold text-3xl">10</p>
+              <p class="font-medium text-lg">Jun</p>
             </div>
-            <div class="flex flex-col h-full w-[70%] items-center px-2 gap-1">
-              <div class="text-lg font-medium text-black text-left w-full">Nama Acara</div>
-              <div class="flex items-center gap-2 mt-1 text-sm font-normal text-gray-500 text-left w-full">
-                <i class="fa-regular fa-clock"></i>
-                <p>07:00 - 10:00</p>
+            <div class="flex flex-col h-full w-full items-center px-3 gap-1 py-2 relative">
+              <div class="text-lg font-medium text-green-900 text-left w-full">Kerja Bakti di RT 02</div>
+              <div class="flex items-center gap-3 w-full justify-between">
+                <div class="flex gap-2 items-center text-sm font-normal text-gray-500 text-left w-fit">
+                  <i class="fa-regular fa-clock"></i>
+                  <p>07:00 - 10:00</p>
+                </div>
+                <div class="px-3 py-1 bg-green-500 rounded-xl text-xs font-medium text-white">Kebersihan</div>
               </div>
               <div class="flex items-center gap-2 text-sm font-normal text-gray-500 text-left w-full">
                 <i class="fa-solid fa-location-dot"></i>
-                <p>Rumah Pak RW</p>
+                <p>Lorem ipsum dolor sit amet</p>
               </div>
             </div>
           </div>
-          <div class="flex w-full h-24 py-2 gap-2">
-            <div class="flex flex-col w-[30%] h-full bg-[#cefbc4] rounded-xl items-center justify-center pb-3 relative">
-              <p class="font-bold text-4xl text-[#57BA47]">10</p>
-              <p class="font-semibold text-sm text-black">Jum</p>
-              <div class="absolute w-5 h-5 rounded-full bg-[#D4B204] border-4 border-white -bottom-2"></div>
+          <div class="flex w-full h-[100px] border-2 border-green-900 rounded-lg shadow-md">
+            <div class="w-fit h-full flex flex-col bg-green-900 px-4 text-white items-center justify-center">
+              <p class="font-bold text-3xl">10</p>
+              <p class="font-medium text-lg">Jun</p>
             </div>
-            <div class="flex flex-col h-full w-[70%] items-center px-2 gap-1">
-              <div class="text-lg font-medium text-black text-left w-full">Nama Acara</div>
-              <div class="flex items-center gap-2 mt-1 text-sm font-normal text-gray-500 text-left w-full">
-                <i class="fa-regular fa-clock"></i>
-                <p>07:00 - 10:00</p>
+            <div class="flex flex-col h-full w-full items-center px-3 gap-1 py-2 relative">
+              <div class="text-lg font-medium text-green-900 text-left w-full">Kerja Bakti di RT 02</div>
+              <div class="flex items-center gap-3 w-full justify-between">
+                <div class="flex gap-2 items-center text-sm font-normal text-gray-500 text-left w-fit">
+                  <i class="fa-regular fa-clock"></i>
+                  <p>07:00 - 10:00</p>
+                </div>
+                <div class="px-3 py-1 bg-green-500 rounded-xl text-xs font-medium text-white">Kebersihan</div>
               </div>
               <div class="flex items-center gap-2 text-sm font-normal text-gray-500 text-left w-full">
                 <i class="fa-solid fa-location-dot"></i>
-                <p>Rumah Pak RW</p>
+                <p>Lorem ipsum dolor sit amet</p>
               </div>
             </div>
           </div>
+          <div class="flex w-full h-[100px] border-2 border-green-900 rounded-lg shadow-md">
+            <div class="w-fit h-full flex flex-col bg-green-900 px-4 text-white items-center justify-center">
+              <p class="font-bold text-3xl">10</p>
+              <p class="font-medium text-lg">Jun</p>
+            </div>
+            <div class="flex flex-col h-full w-full items-center px-3 gap-1 py-2 relative">
+              <div class="text-lg font-medium text-green-900 text-left w-full">Kerja Bakti di RT 02</div>
+              <div class="flex items-center gap-3 w-full justify-between">
+                <div class="flex gap-2 items-center text-sm font-normal text-gray-500 text-left w-fit">
+                  <i class="fa-regular fa-clock"></i>
+                  <p>07:00 - 10:00</p>
+                </div>
+                <div class="px-3 py-1 bg-green-500 rounded-xl text-xs font-medium text-white">Kebersihan</div>
+              </div>
+              <div class="flex items-center gap-2 text-sm font-normal text-gray-500 text-left w-full">
+                <i class="fa-solid fa-location-dot"></i>
+                <p>Lorem ipsum dolor sit amet</p>
+              </div>
+            </div>
+          </div>
+          
         </div>
       </div>
     </div>
@@ -435,13 +466,15 @@
       }
     })
 
+    let pendudukTetap = @json($dataStatusPenduduk['tetap']);
+    let pendudukTidakTetap = @json($dataStatusPenduduk['tidak tetap']);
+
     const dougnutChart = new Chart(document.getElementById("dougnutChart"), {
       type: 'doughnut',
       data: {
         labels: ['Penduduk Tetap', 'Penduduk Tidak Tetap'],
         datasets: [{
-          label: 'My First Dataset',
-          data: [65, 35],
+          data: [pendudukTetap, pendudukTidakTetap],
           backgroundColor: [
             '#57BA47',
             '#2D5523'
@@ -464,7 +497,7 @@
         labels: ['> 46 Tahun', '26 - 45 Tahun', '13 - 25 Tahun', '6 - 12 Tahun', '0 - 5 Tahun'],
         datasets: [{
           label: 'Laki-Laki',
-          data: [65, 35, 20, 40, 50],
+          data: [@json($dataDemografiPenduduk['kategori5L']), @json($dataDemografiPenduduk['kategori4L']), @json($dataDemografiPenduduk['kategori3L']), @json($dataDemografiPenduduk['kategori2L']), @json($dataDemografiPenduduk['kategori1L'])],
           backgroundColor: [
             '#57BA47'
           ],
@@ -472,7 +505,7 @@
           barThickness: 10,
         }, {
           label: 'Perempuan',
-          data: [65, 35, 20, 40, 50],
+          data: [@json($dataDemografiPenduduk['kategori5P']), @json($dataDemografiPenduduk['kategori4P']), @json($dataDemografiPenduduk['kategori3P']), @json($dataDemografiPenduduk['kategori2P']), @json($dataDemografiPenduduk['kategori1P'])],
           backgroundColor: [
             '#EAE509'
           ],

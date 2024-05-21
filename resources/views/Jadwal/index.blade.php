@@ -1,12 +1,16 @@
 <x-header menu='{{ $menu }}'>
-
+    <style>
+        [x-cloak] {
+            display: none;
+        }
+    </style>
 </x-header>
 
 <div class="w-[100%] relative flex justify-center items-center">
     <img src="{{ asset('assets/images/kegiatan-cover.png') }}" alt="" class="w-full">
     <div class=" w-[571px] h-[185px] z-10 absolute flex justify-center rounded-[105px] flex-col text-center ">
         <p class="text-[#2d5523] font-bold text-[36px]">Jadwal Kegiatan di RW 3</p>
-        <p class="text-[#2d5523] font-sans text-[32px] text-center">“Tumbuhkan Kolaborasi Masyarakat di Setiap Kegiatan RW”</p>
+        <p class="text-[#2d5523] font-sans text-[32px] text-center">Tumbuhkan Kolaborasi Masyarakat di Setiap Kegiatan RW</p>
     </div>
 </div>
 
@@ -71,7 +75,7 @@
         </button>
 
         <!-- Main modal -->
-        <div x-show="tambahModal" tabindex="-1" aria-hidden="true" class="flex overflow-hidden fixed top-0 right-0 left-0 z-999 justify-center items-center w-full md:inset-0 h-full">
+        <div x-show="tambahModal" x-cloak tabindex="-1" aria-hidden="true" class="flex overflow-hidden fixed top-0 right-0 left-0 z-999 justify-center items-center w-full md:inset-0 h-full">
             <div class="absolute z-999 bg-black/25 h-[100vh] w-full"></div>
             <div class="relative z-[1000] p-4 w-fit max-w-3xl max-h-[700px]" @click.away="tambahModal = false" x-transition:enter="motion-safe:ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
                 <!-- Modal content -->
@@ -153,9 +157,15 @@
     </div>
 </div>
 
-@if ($searchingKey != '')
+@if ($searchingKey != '' || $kategoriSearching != '')
 <div class="relative min-h-[40vh] w-[90%] mx-auto flex flex-col mt-20 gap-18 mb-30">
-    <div class="flex h-[10%] w-full justify-center items-center text-4xl font-bold text-green-900">Pencarian "{{ $searchingKey }}"</div>
+    <div class="flex h-[10%] w-full justify-center items-center text-4xl font-bold text-green-900">Pencarian "@if ($searchingKey != '')
+        {{$searchingKey}}
+        @else
+        {{$kategoriSearching}}
+        @endif
+        "
+    </div>
     @if (empty($dataSearching->toArray()))
     <div class="flex flex-col w-full justify-center items-center gap-4">
         <!-- <i class="fa-regular fa-circle-xmark text-2xl"></i> -->

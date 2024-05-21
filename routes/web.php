@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\PersuratanController as AdminPersuratanController
 use App\Http\Controllers\Admin\PengumumanController as AdminPengumumanController;
 use App\Http\Controllers\Admin\AkunAdminController as AdminAkunAdminController;
 use App\Http\Controllers\Admin\JadwalKegiatanController as AdminKegiatanController;
+use App\Http\Controllers\ProfilkuController;
 use App\Http\Controllers\user\ProfilController;
 
 /*
@@ -70,8 +71,14 @@ Route::group(['middleware' => ['auth']], function () {
             Route::prefix('umkm')->group(function () {
                 Route::get('/', [AdminUmkmController::class, 'index'])->name('umkm-admin');
                 Route::get('/ajuan-umkm', [AdminUmkmController::class, 'ajuanUmkm'])->name('ajuan-umkm-admin');
-                Route::post('ajuan-umkm/reject', [AdminUmkmController::class, 'umkmReject'])->name('umkm.reject');
-                Route::post('ajuan-umkm/Accept', [AdminUmkmController::class, 'umkmAccept'])->name('umkm.accept');
+                Route::post('/ajuan-umkm/reject', [AdminUmkmController::class, 'umkmReject'])->name('umkm.reject');
+                Route::post('/ajuan-umkm/Accept', [AdminUmkmController::class, 'umkmAccept'])->name('umkm.accept');
+                Route::post('/search-umkm', [AdminUmkmController::class, 'searchList'])->name('umkm-search');
+                Route::post('/search-umkmA', [AdminUmkmController::class, 'searchAjuan'])->name('umkm-search-A');
+                Route::post('/edit/{umkm_id}', [AdminUmkmController::class, 'editUmkm'])->name('umkm-edit');
+                Route::delete('/delete/{umkm_id}', [AdminUmkmController::class, 'destroyUmkm'])->name('umkm-destroy');
+                Route::get('/category', [AdminUmkmController::class, 'getDataByCategoryDaftar'])->name('filter-umkm-category');
+                Route::post('/store-umkm', [AdminUmkmController::class, 'storeUmkmAdmin'])->name('store-umkm');
             });
             Route::prefix('persuratan')->group(function () {
                 Route::get('/', [AdminPersuratanController::class, 'index'])->name('persuratan-admin');
@@ -94,14 +101,16 @@ Route::group(['middleware' => ['auth']], function () {
             });
             Route::prefix('jadwal-kegiatan')->group(function () {
                 Route::get('/', [AdminKegiatanController::class, 'index'])->name('jadwal-kegiatan-admin');
+                Route::get('/ajuan-kegiatan', [AdminKegiatanController::class, 'ajuanKegiatan'])->name('ajuan-kegiatan-admin');
             });
             Route::prefix('pengumuman')->group(function () {
                 Route::get('/', [AdminPengumumanController::class, 'index'])->name('pengumuman-admin');
             });
             Route::prefix('pengaduan')->group(function () {
                 Route::get('/', [AdminPengaduanController::class, 'index'])->name('pengaduan-admin');
-                Route::post('/', [AdminPengaduanController::class, 'addResponse'])->name('add-response');
+                Route::post('/', [AdminPengaduanController::class, 'addResponse'])->name('add-response-admin');
                 Route::put('/{id}', [AdminPengaduanController::class, 'updateStatusOutside'])->name('update-status-outside');
+                Route::delete('/delete/{id}', [AdminPengaduanController::class, 'destroyAduan'])->name('destroy-aduan-admin');
             });
         });
     });
@@ -124,6 +133,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::group(['prefix' => 'aduan'], function () {
             Route::get('/', [AduanController::class, 'index'])->name('aduan');
             Route::get('/aduanku', [AduanController::class, 'indexAduanku'])->name('aduanku');
+            Route::post('/aduanku', [AduanController::class, 'addResponse'])->name('add-response');
+            Route::delete('/aduanku/delete/{id}', [AduanController::class, 'destroyAduan'])->name('aduan.destroy');
+            Route::post('/aduanku/store', [AduanController::class, 'storeAduan'])->name('aduan.store');
         });
 
         //Route Jadwal
@@ -134,6 +146,7 @@ Route::group(['middleware' => ['auth']], function () {
         //Route Surat
         Route::group(['prefix' => 'surat'], function () {
             Route::get('/', [SuratController::class, 'index'])->name('surat');
+            Route::get('/sk-pindah', [SuratController::class, 'skPindah'])->name('sk-pindah');
             Route::get('/suratku', [SuratController::class, 'suratku'])->name('suratku');
         });
         Route::group(['middleware' => ['auth']], function () {
@@ -152,7 +165,14 @@ Route::group(['middleware' => ['auth']], function () {
         });
     });
 });
+Route::get('/token', function() {
+    return ['token' => csrf_token()];
+})->middleware('auth');
 
 Route::group(['prefix' => 'profil'], function () {
     Route::get('/', [ProfilController::class, 'index'])->name('profil');
+});
+
+Route::group(['prefix' => 'profilku'], function () {
+    Route::get('/', [ProfilkuController::class, 'index'])->name('profilku');
 });

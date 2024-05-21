@@ -6,7 +6,7 @@
     <div
         class="bg-white/[0.73] w-[571px] h-[185px] z-10 absolute flex justify-center rounded-[105px] flex-col text-center shadow-2xl">
         <p class="text-[#2d5523] font-bold text-[36px]">Ajuan Surat di RW 3</p>
-        <p class="text-[#2d5523] font-sans text-[32px] text-center">“Mudahkan Akses Surat di Lingkungan RW”</p>
+        <p class="text-[#2d5523] font-sans text-[32px] text-center">Mudahkan Akses Surat di Lingkungan RW</p>
     </div>
 </div>
 <div class="bg-[#Fff] min-h-[100vh] px-[65px] py-5 w-[100%] mt-10">
