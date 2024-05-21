@@ -81,7 +81,7 @@ class PengaduanController extends Controller
             'dibuat_tanggal' => date('Y-m-d')
         ]);
 
-        if ($request->_token != null || $request->pageNum != null || $request->search != null || $request->status != null || $request->prioritas != null) {
+        if ($request->_token != null || $request->page != null || $request->search != null || $request->status != null || $request->prioritas != null) {
             $redirectParams = [];
             if ($request->_token != null) {
                 $redirectParams['_token'] = $request->_token;
@@ -95,8 +95,8 @@ class PengaduanController extends Controller
             if ($request->prioritas != null) {
                 $redirectParams['prioritas'] = $request->prioritas;
             }
-            if ($request->pageNum != null) {
-                $redirectParams['page'] = $request->pageNum;
+            if ($request->page != null) {
+                $redirectParams['page'] = $request->page;
             }
 
             return redirect()->route('pengaduan-admin', $redirectParams)
@@ -123,7 +123,7 @@ class PengaduanController extends Controller
         $aduan->status = $request->statusAduan;
         $aduan->save();
 
-        if ($request->_token != null || $request->pageNum != null || $request->search != null || $request->status != null || $request->prioritas != null) {
+        if ($request->_token != null || $request->page != null || $request->search != null || $request->status != null || $request->prioritas != null) {
             $redirectParams = [];
             if ($request->_token != null) {
                 $redirectParams['_token'] = $request->_token;
@@ -137,8 +137,8 @@ class PengaduanController extends Controller
             if ($request->prioritas != null) {
                 $redirectParams['prioritas'] = $request->prioritas;
             }
-            if ($request->pageNum != null) {
-                $redirectParams['page'] = $request->pageNum;
+            if ($request->page != null) {
+                $redirectParams['page'] = $request->page;
             }
 
             return redirect()->route('pengaduan-admin', $redirectParams)

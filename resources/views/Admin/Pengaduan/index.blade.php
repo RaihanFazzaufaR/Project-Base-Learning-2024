@@ -97,12 +97,38 @@
                         <th scope="col" class="px-6 py-3">
                             Pembuat Aduan
                         </th>
+                        <th scope="col" class="px-6 py-3">
+                            Prioritas
+                        </th>
                         <th scope="col" class="px-6 py-3 w-[30%]">
                             Aksi
                         </th>
                     </tr>
                 </thead>
                 <tbody>
+                    @php
+                        $stat = [
+                            'diproses' => [
+                                'classContent' =>
+                                    'text-white bg-[#FFDE68] rounded-full shadow-xl font-bold px-3 py-2 hover:bg-[#B39C49] hover:scale-105 transition-all',
+                                'icon' => 'fa-minus',
+                                'value' => 'diproses',
+                            ],
+                            'selesai' => [
+                                'classContent' =>
+                                    'text-white bg-[#76D75D] rounded-full shadow-xl font-bold px-3 py-2 hover:bg-[#38682D] hover:scale-105 transition-all',
+                                'icon' => 'fa-check',
+                                'value' => 'selesai',
+                            ],
+                            'ditolak' => [
+                                'classContent' =>
+                                    'text-white bg-[#FF5E5E] rounded-full shadow-xl font-bold px-3 py-2 hover:bg-[#B34242] hover:scale-105 transition-all',
+                                'icon' => 'fa-xmark',
+                                'value' => 'ditolak',
+                            ],
+                        ];
+                    @endphp
+
                     @foreach ($complaints as $complaint)
                         <tr
                             class="bg-white border-b text-sm font-medium text-[#7F7F7F] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -111,6 +137,9 @@
                             </td>
                             <td class="px-6 py-4 font-semibold text-[15px]">
                                 {{ $complaint->penduduk->nama }}
+                            </td>
+                            <td class="px-6 py-4 font-semibold text-[15px]">
+                                {{ $complaint->prioritas }}
                             </td>
                             <td class="">
                                 <div class="px-6 py-4 flex items-center h-full gap-4 justify-center">
@@ -150,30 +179,11 @@
                                                         <div class="w-full h-full text-[#34662C] text-left">
                                                             <div
                                                                 class="flex p-4 w-full max-h-[450px] justify-end bg-[#F2F2F2]">
-                                                                @php
-                                                                    $insideStat = [
-                                                                        'diproses' => [
-                                                                            'classContent' =>
-                                                                                'text-white bg-[#FFDE68] rounded-full shadow-xl font-bold px-3 py-2 hover:bg-[#B39C49] hover:scale-105 transition-all',
-                                                                            'icon' => 'fa-minus',
-                                                                        ],
-                                                                        'selesai' => [
-                                                                            'classContent' =>
-                                                                                'text-white bg-[#76D75D] rounded-full shadow-xl font-bold px-3 py-2 hover:bg-[#38682D] hover:scale-105 transition-all',
-                                                                            'icon' => 'fa-check',
-                                                                        ],
-                                                                        'ditolak' => [
-                                                                            'classContent' =>
-                                                                                'text-white bg-[#FF5E5E] rounded-full shadow-xl font-bold px-3 py-2 hover:bg-[#B34242] hover:scale-105 transition-all',
-                                                                            'icon' => 'fa-xmark',
-                                                                        ],
-                                                                    ];
-                                                                @endphp
-                                                                @if (array_key_exists($complaint->status, $insideStat))
+                                                                @if (array_key_exists($complaint->status, $stat))
                                                                     <button
-                                                                        class="flex justify-center items-center gap-2 w-8 h-8 {{ $insideStat[$complaint->status]['classContent'] }}">
+                                                                        class="flex justify-center items-center gap-2 w-8 h-8 {{ $stat[$complaint->status]['classContent'] }}">
                                                                         <i
-                                                                            class="fa-solid text-lg {{ $insideStat[$complaint->status]['icon'] }}"></i>
+                                                                            class="fa-solid text-lg {{ $stat[$complaint->status]['icon'] }}"></i>
                                                                     </button>
                                                                 @endif
                                                             </div>
@@ -186,11 +196,11 @@
                                                                     </div>
                                                                 @endif
                                                                 <div class="flex w-full p-4">
-                                                                    <div class="bg-gray-300 p-4 w-fit rounded-lg">
-                                                                        <p class="text-sm font-normal">
+                                                                    <div class="p-4 w-fit rounded-lg max-w-[75%] {{ Auth::user()->penduduk->id_penduduk == $complaint->pengadu_id ? 'bg-[#cdffc5]' : 'bg-gray-300' }}">
+                                                                        <p class="text-sm font-semibold">
                                                                             {{ $complaint->penduduk->nama }}
                                                                         </p>
-                                                                        <p class="font-semibold pt-3">
+                                                                        <p class="font-normal pt-3">
                                                                             {{ $complaint->konten_aduan }}
                                                                         </p>
                                                                     </div>
@@ -199,19 +209,19 @@
                                                                     <div
                                                                         class="flex w-full p-4 {{ Auth::user()->penduduk->id_penduduk == $response->perespon_id ? 'justify-end' : '' }}">
                                                                         <div
-                                                                            class="p-4 w-fit rounded-lg {{ Auth::user()->penduduk->id_penduduk == $response->perespon_id ? 'bg-[#cdffc5]' : 'bg-gray-300' }}">
-                                                                            <p class="text-sm font-normal">
+                                                                            class="p-4 w-fit rounded-lg max-w-[75%] {{ Auth::user()->penduduk->id_penduduk == $response->perespon_id ? 'bg-[#cdffc5]' : 'bg-gray-300' }}">
+                                                                            <p class="text-sm font-semibold">
                                                                                 {{ $response->penduduk->nama }}
                                                                             </p>
                                                                             <br>
                                                                             @if ($response->image != null)
-                                                                                <div class="pt-3">
+                                                                                <div class="">
                                                                                     <img class="w-fit rounded-lg"
                                                                                         src="{{ asset('assets/images/Respon/' . $response->image) }}">
                                                                                 </div>
                                                                             @endif
                                                                             @if ($response->konten_respon != null)
-                                                                                <p class="font-semibold pt-3">
+                                                                                <p class="font-normal pt-3">
                                                                                     {{ $response->konten_respon }}
                                                                                 </p>
                                                                             @endif
@@ -232,8 +242,8 @@
                                                                             <input type="hidden" name="aduan_id"
                                                                                 id="aduan_id"
                                                                                 value="{{ $complaint->aduan_id }}">
-                                                                            <input type="hidden" name="pageNum"
-                                                                                id="pageNum"
+                                                                            <input type="hidden" name="page"
+                                                                                id="page"
                                                                                 value="{{ request()->page ? request()->page : null }}">
                                                                             <input type="hidden" name="search"
                                                                                 id="search"
@@ -275,35 +285,13 @@
                                     </div>
                                     <div class="relative h-fit" x-data="{ 'outsideStatusModal': false }"
                                         @keydown.escape="outsideStatusModal = false">
-                                        @php
-                                            $outsideStat = [
-                                                'diproses' => [
-                                                    'classContent' =>
-                                                        'text-white bg-[#FFDE68] rounded-full shadow-xl font-bold px-3 py-2 hover:bg-[#B39C49] hover:scale-105 transition-all',
-                                                    'icon' => 'fa-minus',
-                                                    'value' => 'diproses',
-                                                ],
-                                                'selesai' => [
-                                                    'classContent' =>
-                                                        'text-white bg-[#76D75D] rounded-full shadow-xl font-bold px-3 py-2 hover:bg-[#38682D] hover:scale-105 transition-all',
-                                                    'icon' => 'fa-check',
-                                                    'value' => 'selesai',
-                                                ],
-                                                'ditolak' => [
-                                                    'classContent' =>
-                                                        'text-white bg-[#FF5E5E] rounded-full shadow-xl font-bold px-3 py-2 hover:bg-[#B34242] hover:scale-105 transition-all',
-                                                    'icon' => 'fa-xmark',
-                                                    'value' => 'ditolak',
-                                                ],
-                                            ];
-                                        @endphp
 
-                                        @if (array_key_exists($complaint->status, $outsideStat))
+                                        @if (array_key_exists($complaint->status, $stat))
                                             <button @click="outsideStatusModal = true"
-                                                class="flex justify-center items-center gap-2 w-8 h-8 {{ $outsideStat[$complaint->status]['classContent'] }}"
-                                                value="{{ $outsideStat[$complaint->status]['value'] }}">
+                                                class="flex justify-center items-center gap-2 w-8 h-8 {{ $stat[$complaint->status]['classContent'] }}"
+                                                value="{{ $stat[$complaint->status]['value'] }}">
                                                 <i
-                                                    class="fa-solid text-lg {{ $outsideStat[$complaint->status]['icon'] }}"></i>
+                                                    class="fa-solid text-lg {{ $stat[$complaint->status]['icon'] }}"></i>
                                             </button>
                                         @endif
                                         <div x-show="outsideStatusModal" tabindex=-1 aria-hidden="true"
@@ -319,7 +307,7 @@
                                                         method="post">
                                                         @csrf
                                                         {{ method_field('PUT') }}
-                                                        <input type="hidden" name="pageNum" id="pageNum"
+                                                        <input type="hidden" name="page" id="page"
                                                             value="{{ request()->page ? request()->page : null }}">
                                                         <input type="hidden" name="search" id="search"
                                                             value="{{ request()->search ? request()->search : null }}">
@@ -357,23 +345,6 @@
                                                 </div>
                                             </div>
                                         </div>
-
-                                        {{-- @if ($complaint->status == 'diproses')
-                                            <button
-                                                class="flex justify-center items-center gap-2 w-10 h-1 text-white">
-                                                <i class="fa-solid fa-minus text-lg"></i>
-                                            </button>
-                                        @elseif($complaint->status == 'selesai')
-                                            <button
-                                                class="flex justify-center items-center gap-2 w-10 h-10 text-white bg-[#76D75D] rounded-full shadow-xl font-bold px-3 py-2 hover:bg-[#38682D] hover:scale-105 transition-all">
-                                                <i class="fa-solid fa-check text-lg"></i>
-                                            </button>
-                                        @elseif($complaint->status == 'ditolak')
-                                            <button
-                                                class="flex justify-center items-center gap-2 w-10 h-10 text-white bg-[#FF5E5E] rounded-full shadow-xl font-bold px-3 py-2 hover:bg-[#B34242] hover:scale-105 transition-all">
-                                                <i class="fa-solid fa-xmark text-lg"></i>
-                                            </button>
-                                        @endif --}}
                                     </div>
                                 </div>
                             </td>
