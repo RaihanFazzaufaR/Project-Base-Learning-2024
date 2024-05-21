@@ -106,8 +106,9 @@ Route::group(['middleware' => ['auth']], function () {
             });
             Route::prefix('pengaduan')->group(function () {
                 Route::get('/', [AdminPengaduanController::class, 'index'])->name('pengaduan-admin');
-                Route::post('/', [AdminPengaduanController::class, 'addResponse'])->name('add-response');
+                Route::post('/', [AdminPengaduanController::class, 'addResponse'])->name('add-response-admin');
                 Route::put('/{id}', [AdminPengaduanController::class, 'updateStatusOutside'])->name('update-status-outside');
+                Route::delete('/delete/{id}', [AdminPengaduanController::class, 'destroyAduan'])->name('destroy-aduan-admin');
             });
         });
     });
@@ -130,6 +131,9 @@ Route::group(['middleware' => ['auth']], function () {
         Route::group(['prefix' => 'aduan'], function () {
             Route::get('/', [AduanController::class, 'index'])->name('aduan');
             Route::get('/aduanku', [AduanController::class, 'indexAduanku'])->name('aduanku');
+            Route::post('/aduanku', [AduanController::class, 'addResponse'])->name('add-response');
+            Route::delete('/aduanku/delete/{id}', [AduanController::class, 'destroyAduan'])->name('aduan.destroy');
+            Route::post('/aduanku/store', [AduanController::class, 'storeAduan'])->name('aduan.store');
         });
 
         //Route Jadwal
@@ -160,6 +164,9 @@ Route::group(['middleware' => ['auth']], function () {
         });
     });
 });
+Route::get('/token', function() {
+    return ['token' => csrf_token()];
+})->middleware('auth');
 
 Route::group(['prefix' => 'profil'], function () {
     Route::get('/', [ProfilController::class, 'index'])->name('profil');
