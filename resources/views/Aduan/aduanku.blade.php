@@ -13,6 +13,7 @@
 {{-- content --}}
 <div class="w-[90%] mx-auto h-fit flex justify-between items-center mt-15">
     <form action="{{ route('aduanku') }}" class="w-fit h-full flex items-center justify-center mb-0">
+        @csrf
         <div
             class="flex shadow-md rounded-xl w-full bg-white border-2 border-[#2d5523] items-center justify-between py-2 h-fit">
             <div class="flex w-full">
@@ -66,6 +67,132 @@
             </div>
         </div>
     </form>
+
+    {{-- tambah aduan --}}
+    <div class="basis-1/3 hidden md:flex md:justify-end">
+        <button type="button"
+            class="w-auto shadow-2xl h-[57px] text-[20px] px-[24px] bg-yellow-500 items-center flex rounded-[15px]  font-bold text-[#2d5523] hover:bg-[#E2A229] hover:text-white active:bg-yellow-500 justify-center  transition ease-in-out duration-500 hover:scale-105"
+            data-modal-target="tambahModal" data-modal-toggle="tambahModal">
+            Tambah Aduan
+        </button>
+        <div id="tambahModal" tabindex="-1" aria-hidden="true"
+            class="hidden overflow-y-auto fixed -top-14 right-0 left-0 -bottom-10 z-[999] justify-center items-center w-full inset-0 ">
+            <div class="relative p-32 w-full  max-h-full">
+                <!-- Modal content -->
+                <div class="relative bg-white rounded-lg shadow  dark:bg-gray-700 border-[3.5px] border-[#2d5523]">
+                    <!-- Modal header -->
+                    <div
+                        class="flex items-center justify-between p-3 pl-4 text-[#2d5523]  rounded-t dark:border-gray-600 border-[#2d5532] border-b-[3.5px]">
+                        <h3 class="text-xl font-extrabold  dark:text-white">
+                            Tambah Aduan
+                        </h3>
+                        <button type="button"
+                            class=" bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                            data-modal-toggle="tambahModal">
+                            <i class="fa-solid fa-xmark text-[#2d5523] font-extrabold text-xl"></i>
+                        </button>
+                    </div>
+                    <form class="p-4 md:p-5 w-full flex flex-col bg-white" method="POST"
+                        action="{{ route('aduan.store') }}" enctype="multipart/form-data">
+                        @csrf
+                        <div class="flex w-full h-fit gap-6">
+                            <input type="hidden" name="page" id="page"
+                                value="{{ request()->page ? request()->page : null }}">
+                            <input type="hidden" name="search" id="search"
+                                value="{{ request()->search ? request()->search : null }}">
+                            <input type="hidden" name="prioritas" id="prioritas"
+                                value="{{ request()->prioritas ? request()->prioritas : null }}">
+                            <input type="hidden" name="_token" id = "_token" value="{{ csrf_token() }}">
+                            <input type="hidden" name="status" id="status"
+                                value="{{ request()->status ? request()->status : null }}">
+                            <input type="hidden" id="pengadu_id" name="pengadu_id"
+                                value="{{ Auth::user()->penduduk->id_penduduk }}">
+
+                            {{-- kolom kiri --}}
+                            <div class="grid gap-5 mb-4 w-full basis-1/2 ">
+                                <div class="gap-2 flex w-full">
+                                    <div class="basis-1/4 h-full flex items-center">
+                                        <label for="nama_pembuat"
+                                            class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Nama
+                                            Pembuat</label>
+                                    </div>
+                                    <div class="basis-3/4 h-full flex items-center">
+                                        <input type="text" id="nama" name="nama"
+                                            value="{{ Auth::user()->penduduk->nama }}" readonly
+                                            class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                    </div>
+                                </div>
+                                <div class="gap-2 flex w-full">
+                                    <div class="basis-1/4 h-full flex items-center">
+                                        <label for="judul"
+                                            class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Judul</label>
+                                    </div>
+                                    <div class="basis-3/4 h-full flex items-center">
+                                        <input type="text" id="judul" name="judul"
+                                            placeholder="Masukkan Judul Aduan"
+                                            class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                    </div>
+                                </div>
+                                <div class="gap-2 flex w-full">
+                                    <div class="basis-1/4 h-full flex items-center">
+                                        <label for="prioritas"
+                                            class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Prioritas</label>
+                                    </div>
+                                    <div class="basis-3/4 h-full flex items-center">
+                                        <select name="prioritasData" id="prioritasData"
+                                            class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                            <option value="">Pilih Prioritas Aduan</option>
+                                            <option value="biasa">Biasa</option>
+                                            <option value="penting">Penting</option>
+                                            <option value="darurat">Darurat</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="gap-2 flex w-full">
+                                    <div class="basis-1/4 h-full flex items-center">
+                                        <label for="image"
+                                            class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Foto
+                                            Aduan</label>
+                                    </div>
+                                    <div class="basis-3/4 h-full flex items-center">
+                                        <input id="image" name="image" type="file"
+                                            class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- kolom kanan -->
+                            <div class="flex flex-col gap-5  w-full basis-1/2 ">
+                                <div class="gap-2 flex w-full h-full">
+                                    <div class="basis-1/4 h-fit">
+                                        <label for="konten_aduan"
+                                            class="text-lg font-bold w-full text-[#2d5523] dark:text-white">Deskripsi
+                                            Singkat</label>
+                                    </div>
+                                    <div class="basis-3/4 h-full flex items-center">
+                                        <textarea id="konten_aduan" name="konten_aduan" cols="19" rows="9"
+                                            placeholder="Masukkan Deskripsi Singkat UMKM"
+                                            class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="w-full text-[#2d5523] font-sm pb-4">
+                            *Pastikan data yang anda masukkan benar dan sesuai dengan data yang sebenarnya
+                        </div>
+                        <div class="flex w-full justify-end items-center px-7">
+                            <button type="submit"
+                                class="text-white items-center bg-[#2d5523] hover:bg-[#e2a229] hover:text-[#2d5523] focus:ring-4 text-center w-full focus:outline-none focus:ring-blue-300  rounded-lg text-lg font-bold  py-3  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                Tambah Aduan
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
 </div>
 
 <div class="bg-[#Fff] min-h-[100vh] w-[90%] py-5 mx-auto mt-10">
@@ -129,7 +256,7 @@
                             class="px-6 py-4 font-medium text-base text-center text-[#2d5523]  dark:text-white">
                             {{ $aduan->prioritas }}
                         </td>
-                        <td class="">
+                        <td>
                             <div class="px-6 py-4 flex items-center h-full gap-4 justify-center">
                                 <div x-data="{ 'idAduan': {{ $aduan_id }} }">
                                     <div x-data="{ 'detailModal': idAduan === {{ $aduan->aduan_id }} }" @keydown.escape="detailModal = false">
@@ -265,7 +392,7 @@
                                     </div>
                                 </div>
                                 @if ($aduan->status == 'diproses' || $aduan->status == 'ditolak')
-                                    <div class="px-6 py-4 flex items-center h-full gap-4 justify-center">
+                                    <div class="flex items-center h-full gap-4 justify-center">
                                         <form id="delete-aduan-form-{{ $aduan->aduan_id }}"
                                             action="{{ route('aduan.destroy', $aduan->aduan_id) }}" method="POST"
                                             style="display: none;">
@@ -293,7 +420,6 @@
                                     </div>
                                 @endif
                             </div>
-
                         </td>
                         <td scope="row"
                             class="px-6 py-4 font-medium text-base text-center text-[#2d5523]  dark:text-white">
@@ -321,6 +447,19 @@
             $('#detailModal').modal('show');
         @endif
     });
+
+    $.ajax({
+            type: 'get',
+            url: '/token',
+            success: function(result) {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': result.token
+                    }
+                });
+            }
+        });
+
 </script>
 <x-footer>
 

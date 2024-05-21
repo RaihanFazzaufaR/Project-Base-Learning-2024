@@ -31,30 +31,21 @@ class AduanController extends Controller
     {
         $menu = 'Aduanku';
         $aduans = AduanModel::query()->where('pengadu_id', auth()->user()->penduduk->id_penduduk);
-        $aduan_id = 0;
-        if (session('aduan_id')) {
-            $aduan_id = session('aduan_id');
-        }
+        $aduan_id = session('aduan_id', 0);
 
-        $aduans->when(session('search'), function ($query) {
-            return $query->where('judul', 'like', '%' . session('search') . '%');
+        $search = $request->filled('search') ? $request->search : session('search');
+        $status = $request->status != "" ? $request->status : session('status');
+        $prioritas = $request->prioritas != "" ? $request->prioritas : session('prioritas');
+
+        $aduans->when($search, function ($query) use ($search) {
+            return $query->where('judul', 'like', '%' . $search . '%');
         })
-            ->when(session('status'), function ($query) {
-                return $query->where('status', session('status'));
+            ->when($status, function ($query) use ($status) {
+                return $query->where('status', $status);
             })
-            ->when(session('prioritas'), function ($query) {
-                return $query->where('prioritas', session('prioritas'));
+            ->when($prioritas, function ($query) use ($prioritas) {
+                return $query->where('prioritas', $prioritas);
             });
-
-        $aduans->when($request->filled('search'), function ($query) use ($request) {
-            return $query->where('judul', 'like', '%' . $request->search . '%');
-        })
-            ->when($request->prioritas != "", function ($query) use ($request) {
-                return $query->where('prioritas', $request->prioritas);
-            })
-            ->when($request->status != "", function ($query) use ($request) {
-                return $query->where('status', $request->status);
-            });;
 
         $aduans = $aduans->paginate(10)->withQueryString();
 
@@ -80,65 +71,75 @@ class AduanController extends Controller
             'dibuat_tanggal' => date('Y-m-d')
         ]);
 
-        if ($request->_token != null || $request->page != null || $request->search != null || $request->status != null || $request->prioritas != null) {
-            $redirectParams = [];
-            if ($request->_token != null) {
-                $redirectParams['_token'] = $request->_token;
-            }
-            if ($request->search != null) {
-                $redirectParams['search'] = $request->search;
-            }
-            if ($request->status != null) {
-                $redirectParams['status'] = $request->status;
-            }
-            if ($request->prioritas != null) {
-                $redirectParams['prioritas'] = $request->prioritas;
-            }
-            if ($request->page != null) {
-                $redirectParams['page'] = $request->page;
-            }
+        $redirectParams = $request->only('_token', 'search', 'status', 'prioritas', 'page');
 
-            return redirect()->route('aduanku', $redirectParams)
-                ->withInput()
-                ->with([
-                    'aduan_id' => $request->aduan_id,
-                    'search' => $request->search,
-                    'status' => $request->status,
-                    'prioritas' => $request->prioritas
-                ]);
-        } else {
-            return redirect()->route('aduanku')->withInput()->with('aduan_id', $request->aduan_id);
+        return redirect()->route('aduanku', $redirectParams)
+            ->withInput()
+            ->with('aduan_id', $request->aduan_id);
+    }
+    public function storeAduan(Request $request)
+    {
+        $request->validate([
+            'judul' => 'required',
+            'prioritasData' => 'required',
+        ]);
+
+        $imageName = null;
+
+        if ($request->konten_aduan == null && $request->image == null) {
+            return redirect()->back()->with('error', 'Konten aduan atau gambar harus diisi');
         }
+
+        if ($request->image != null) {
+            $imageName = time() . '.' . $request->image->extension();
+            $request->file('image')->move(public_path('assets/images/Aduan'), $imageName);
+        }
+
+        AduanModel::create([
+            'judul' => $request->judul,
+            'pengadu_id' => $request->pengadu_id,
+            'konten_aduan' => $request->konten_aduan ? $request->konten_aduan : null,
+            'image' => $imageName ? $imageName : null,
+            'prioritas' => $request->prioritasData,
+            'status' => 'diproses',
+            'dibuat_tanggal' => date('Y-m-d')
+        ]);
+
+        $redirectParams = $request->only('_token','search', 'status', 'prioritas', 'page');
+
+        return redirect()->route('aduanku', $redirectParams)
+            ->withInput()
+            ->with('success', 'Aduan berhasil ditambahkan');
     }
 
     public function destroyAduan(Request $request, $aduan_id)
-    {  
+    {
         try {
             $aduan = AduanModel::find($aduan_id);
-            $imagePath = public_path('assets/images/Respon/' . $aduan->image);
-    
-            $deleted_fk = ResponModel::where('aduan_id', $aduan_id)->delete();
-    
-            $redirectParams = $request->only('_token', 'search', 'status', 'prioritas', 'page');
-    
-            if ($deleted_fk) {
-                $deleted_aduan = AduanModel::destroy($aduan_id);
-    
-                if ($deleted_aduan) {
-                    if (file_exists($imagePath)) {
-                        unlink($imagePath);
-                    }
-                    $message = ['success' => 'Data berhasil dihapus!'];
-                } else {
-                    $message = ['error' => 'Gagal menghapus data utama'];
-                }
-            } else {
-                $message = ['error' => 'Gagal menghapus data anak'];
+            $imagePath = null;
+
+            if($aduan->image != null){
+                $imagePath = public_path('assets/images/Respon/' . $aduan->image);
             }
-    
+            
+            // Try to delete child data, but don't treat it as an error if no rows are deleted
+            ResponModel::where('aduan_id', $aduan_id)->delete();
+        
+            $redirectParams = $request->only('_token','search', 'status', 'prioritas', 'page');
+        
+            $deleted_aduan = AduanModel::destroy($aduan_id);
+        
+            if ($deleted_aduan) {
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
+                $message = ['success' => 'Data berhasil dihapus!'];
+            } else {
+                $message = ['error' => 'Gagal menghapus data utama'];
+            }
+        
             return redirect()->route('aduanku', $redirectParams)
                 ->withInput()
-                ->with($redirectParams)
                 ->with($message);
         } catch (\Exception $e) {
             return response()->json(['message' => 'Terjadi kesalahan: ' . $e->getMessage()], 500);

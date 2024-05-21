@@ -131,6 +131,7 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('/aduanku', [AduanController::class, 'indexAduanku'])->name('aduanku');
             Route::post('/aduanku', [AduanController::class, 'addResponse'])->name('add-response');
             Route::delete('/aduanku/delete/{id}', [AduanController::class, 'destroyAduan'])->name('aduan.destroy');
+            Route::post('/aduanku/store', [AduanController::class, 'storeAduan'])->name('aduan.store');
         });
 
         //Route Jadwal
@@ -160,6 +161,9 @@ Route::group(['middleware' => ['auth']], function () {
         });
     });
 });
+Route::get('/token', function() {
+    return ['token' => csrf_token()];
+})->middleware('auth');
 
 Route::group(['prefix' => 'profil'], function () {
     Route::get('/', [ProfilController::class, 'index'])->name('profil');
