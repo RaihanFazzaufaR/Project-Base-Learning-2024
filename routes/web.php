@@ -71,8 +71,14 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::get('/', [AdminUmkmController::class, 'index'])->name('umkm-admin');
 
                 Route::get('/ajuan-umkm', [AdminUmkmController::class, 'ajuanUmkm'])->name('ajuan-umkm-admin');
-                Route::post('ajuan-umkm/reject', [AdminUmkmController::class, 'umkmReject'])->name('umkm.reject');
-                Route::post('ajuan-umkm/Accept', [AdminUmkmController::class, 'umkmAccept'])->name('umkm.accept');
+                Route::post('/ajuan-umkm/reject', [AdminUmkmController::class, 'umkmReject'])->name('umkm.reject');
+                Route::post('/ajuan-umkm/Accept', [AdminUmkmController::class, 'umkmAccept'])->name('umkm.accept');
+                Route::post('/search-umkm', [AdminUmkmController::class, 'searchList'])->name('umkm-search');
+                Route::post('/search-umkmA', [AdminUmkmController::class, 'searchAjuan'])->name('umkm-search-A');
+                Route::post('/edit/{umkm_id}', [AdminUmkmController::class, 'editUmkm'])->name('umkm-edit');
+                Route::delete('/delete/{umkm_id}', [AdminUmkmController::class, 'destroyUmkm'])->name('umkm-destroy');
+                Route::get('/category', [AdminUmkmController::class, 'getDataByCategoryDaftar'])->name('filter-umkm-category');
+                Route::post('/store-umkm', [AdminUmkmController::class, 'storeUmkmAdmin'])->name('store-umkm');
             });
             Route::prefix('persuratan')->group(function () {
                 Route::get('/', [AdminPersuratanController::class, 'index'])->name('persuratan-admin');

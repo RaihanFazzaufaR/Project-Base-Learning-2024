@@ -1,7 +1,7 @@
 <x-admin-layout page="{{ $page }}" selected="{{ $selected }}">
     <div class="flex w-full h-15 justify-between items-center">
         <div class="flex h-full w-fit gap-8 items-center justify-between">
-            <form class="w-[22vw]" method="post" action="{{ route('searchPenduduk') }}">
+            <form class="w-[22vw]" method="post" action="{{ route('umkm-search') }}">
                 @csrf
                 <div class="flex h-full items-center">
                     <div class="relative w-full">
@@ -28,7 +28,7 @@
                             <!-- Modal header -->
                             <div class="flex h-[75px] items-center justify-between px-4 md:px-5 border-b-2 rounded-t border-[#B8B8B8]">
                                 <h3 class="text-xl font-bold text-[#34662C] dark:text-white">
-                                    Filter Data Penduduk
+                                    Filter Kategori
                                 </h3>
                                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" @click="filterModal = false">
                                     <i class="fa-solid fa-xmark text-xl"></i>
@@ -36,18 +36,16 @@
                                 </button>
                             </div>
                             <!-- Modal body -->
-                            <form class="w-full h-full text-[#34662C]" method="POST" action="{{ route('filterPenduduk') }}">
+                            <form class="w-full h-full text-[#34662C]" method="GET" action="{{ route('filter-umkm-category') }}">
                                 @csrf
                                 <div class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto rounded-b-xl">
                                     <div class="col-span-2 sm:col-span-1">
-                                        <label for="agama" class="block mb-2 text-sm font-bold">Agama</label>
-                                        <select id="agama" name="agama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                                            <option selected="">Pilih Agama</option>
-                                            <option value="islam">Islam</option>
-                                            <option value="katolik">Katolik</option>
-                                            <option value="kristen">Kristen</option>
-                                            <option value="buddha">Buddha</option>
-                                            <option value="khonghucu">Khonghucu</option>
+                                        <label for="agama" class="block mb-2 text-sm font-bold">Kategori</label>
+                                        <select id="kategori_id" name="kategori_id" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                            <option selected="">Pilih Kategori</option>
+                                            @foreach ($categories as $category)
+                                            <option value="{{$category->kategori_id}}">{{$category->nama_kategori}}</option>
+                                            @endforeach
                                         </select>
                                     </div>
                                 </div>
@@ -91,14 +89,13 @@
                             </button>
                         </div>
                         <!-- Modal body -->
-                        <form class="w-full h-full text-[#34662C]" method="POST" action="{{ route('storePenduduk') }}">
+                        <form class="w-full h-full text-[#34662C]" method="POST" action="{{ route('store-umkm') }}" enctype="multipart/form-data">
                             @csrf
                             <div class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin rounded-b-xl">
                                 <div class="col-span-2 sm:col-span-1 relative">
-                                    <label class="block mb-2 text-sm font-bold">NIK</label>
-                                    <input list="listNik" name="nik" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan NIK ...">
-                                    <datalist id="listNik">
-                                        <option value="123456"></option>
+                                    <label class="block mb-2 text-sm font-bold">Nama Pemilik</label>
+                                    <input list="pemilik" name="pemilik" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan Nama Lengkap Pemilik ...">
+                                    <datalist>
                                     </datalist>
                                 </div>
                                 <div class="col-span-2 sm:col-span-1">
@@ -107,16 +104,16 @@
                                 </div>
                                 <div class="col-span-2 sm:col-span-1">
                                     <label for="noHp" class="block mb-2 text-sm font-bold">No. Whatsapp</label>
-                                    <input type="text" name="noHp" id="noHp" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan No Whatsapp ...">
+                                    <input type="text" name="no_wa" id="noHp" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan No Whatsapp ...">
                                 </div>
                                 <div class="col-span-2 sm:col-span-1 grid grid-cols-2 gap-4">
                                     <div class="col-span-2 sm:col-span-1">
                                         <label for="jam-buka" class="block mb-2 text-sm font-bold">Jam Buka</label>
-                                        <input type="time" name="jam-buka" id="jam-buka" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                        <input type="time" name="buka_waktu" id="buka_waktu" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
                                     </div>
                                     <div class="col-span-2 sm:col-span-1">
                                         <label for="jam-tutup" class="block mb-2 text-sm font-bold">Jam Tutup</label>
-                                        <input type="time" name="jam-tutup" id="jam-tutup" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                        <input type="time" name="tutup_waktu" id="tutup_waktu" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
                                     </div>
                                 </div>
                                 <div class="col-span-2">
@@ -186,11 +183,11 @@
                                 </div>
                                 <div class="col-span-2">
                                     <label for="koordinat" class="block mb-2 text-sm font-bold">Koordinat</label>
-                                    <input type="text" name="koordinat" id="koordinat" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan Koordinat ...">
+                                    <input type="text" name="lokasi_map" id="lokasi_map" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan Koordinat ...">
                                 </div>
                                 <div class="col-span-2">
                                     <label class="block mb-2 text-sm font-bold">Alamat</label>
-                                    <textarea name="alamat" rows="4" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan Alamat ..."></textarea>
+                                    <textarea name="lokasi" rows="4" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan Alamat ..."></textarea>
                                 </div>
                                 <div class="col-span-2">
                                     <label class="block mb-2 text-sm font-bold">Deskripsi Singkat</label>
@@ -288,7 +285,32 @@
                                             <!-- Modal body -->
                                             <div class="w-full h-full text-[#34662C] text-left">
                                                 <div class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto rounded-b-xl">
+                                                    <div id="map" class="relative bg-white dark:bg-gray-700 p-4 border border-[#34662C] rounded-lg shadow-md" style="height: 250px; width: 205%;">
+                                                    @php
+                                                        $koordinat_array = array_map('trim', explode(",", $umkm->lokasi_map));
+                                                        $latitude = trim($koordinat_array[0]);
+                                                        $longitude = trim($koordinat_array[1]);
+                                                    @endphp
+                                                        <script>
+                                                            function initMap() {
+                                                                var map = new google.maps.Map(document.getElementById('map'), {
+                                                                    center: {lat: -7.983908, lng: 112.621391}, // Pusat peta
+                                                                    zoom: 10 // Tingkat zoom awal
+                                                                });
 
+                                                                var lokasi = [
+                                                                    { nama: 'Lokasi', lat: {!! $latitude !!}, lng: {!! $longitude !!} }
+                                                                ];
+
+                                                                // Membuat marker untuk lokasi
+                                                                var marker = new google.maps.Marker({
+                                                                    position: {lat: lokasi[0].lat, lng: lokasi[0].lng},
+                                                                    map: map,
+                                                                    title: lokasi[0].nama
+                                                                });
+                                                            }
+                                                        </script>
+                                                    </div>    
                                                 </div>
                                                 <div class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8]">
                                                     <button @click="detailModal = false" class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
@@ -328,34 +350,63 @@
                                                 <!-- Modal body -->
                                                 <div class="w-full h-full text-[#34662C] text-left">
                                                     <div class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto rounded-b-xl">
+                                                        @php
+                                                        $user = $users->firstWhere('id_penduduk', $umkm->id_pemilik);
+                                                        @endphp
                                                         <div class="col-span-2 sm:col-span-1 relative">
                                                             <label class="block mb-2 text-sm font-bold">NIK</label>
-                                                            <input list="listNik" name="nik" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                                                            <datalist id="listNik">
+                                                            <input list="pemilik" name="pemilik" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
+                                                            value="{{ $user ? $user->nama : '' }}"readonly >
+                                                            {{-- <datalist id="listNik">
                                                                 <option value="123456"></option>
-                                                            </datalist>
+                                                            </datalist> --}}
                                                         </div>
                                                         <div class="col-span-2 sm:col-span-1">
                                                             <label for="nama" class="block mb-2 text-sm font-bold">Nama UMKM</label>
-                                                            <input type="text" name="nama" id="nama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                                            <input type="text" name="nama" id="nama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
+                                                            value="{{$umkm->nama}}"readonly>
                                                         </div>
                                                         <div class="col-span-2 sm:col-span-1">
                                                             <label for="noHp" class="block mb-2 text-sm font-bold">No. Whatsapp</label>
-                                                            <input type="text" name="noHp" id="noHp" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                                            <input type="text" name="noHp" id="noHp" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
+                                                            value="{{$umkm->no_wa}}"readonly>
                                                         </div>
                                                         <div class="col-span-2 sm:col-span-1 grid grid-cols-2 gap-4">
                                                             <div class="col-span-2 sm:col-span-1">
                                                                 <label for="jam-buka" class="block mb-2 text-sm font-bold">Jam Buka</label>
-                                                                <input type="time" name="jam-buka" id="jam-buka" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                                                <input type="time" name="jam-buka" id="jam-buka" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
+                                                                value="{{$umkm->buka_waktu}}"readonly>
                                                             </div>
                                                             <div class="col-span-2 sm:col-span-1">
                                                                 <label for="jam-tutup" class="block mb-2 text-sm font-bold">Jam Tutup</label>
-                                                                <input type="time" name="jam-tutup" id="jam-tutup" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                                                <input type="time" name="jam-tutup" id="jam-tutup" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
+                                                                value="{{$umkm->buka_waktu}}"readonly>
                                                             </div>
                                                         </div>
                                                         <div class="col-span-2">
                                                             <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
-                                                            <select class="hidden" x-cloak id="select">
+                                                            @php
+                                                                $kategori='';
+                                                            @endphp
+                                                            @foreach ($umkmKategoris as $umkmKategori)
+                                                                    @foreach ($categories as $category)
+                                                                        @if ($umkm->umkm_id == $umkmKategori->umkm_id)
+                                                                            @if ($umkmKategori->kategori_id == $category->kategori_id)
+                                                                                @php
+                                                                                    $kategori .= ($kategori != '') ? ', ' : '';
+                                                                                    $kategori .= $category->nama_kategori;
+                                                                                @endphp
+                                                                            @endif
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endforeach
+                                                                <div class="basis-3/4 h-full flex items-center">
+                                                                    <input id="kelas" list="listKelas"
+                                                                        name="kelas" disabled
+                                                                        value="{{$kategori}}"readonly
+                                                                        class="bg-white shadow-md border border-[#34662C] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" style="font-size: 0.875rem;">
+                                                                </div>
+                                                            {{-- <select class="hidden" x-cloak id="select">
                                                                 <option value="1">Makanan</option>
                                                                 <option value="2">Minuman</option>
                                                                 <option value="3">Peralatan Rumah Tangga</option>
@@ -416,25 +467,34 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            </div>
+                                                            </div> --}}
                                                         </div>
                                                         <div class="col-span-2">
                                                             <label for="koordinat" class="block mb-2 text-sm font-bold">Koordinat</label>
-                                                            <input type="text" name="koordinat" id="koordinat" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                                            <input type="text" name="koordinat" id="koordinat" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
+                                                            value="{{$umkm->lokasi_map}}"readonly>
                                                         </div>
                                                         <div class="col-span-2">
                                                             <label class="block mb-2 text-sm font-bold">Alamat</label>
-                                                            <textarea name="alamat" rows="4" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"></textarea>
+                                                            <textarea name="alamat" rows="4" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">{{$umkm->lokasi}}</textarea>
                                                         </div>
                                                         <div class="col-span-2">
                                                             <label class="block mb-2 text-sm font-bold">Deskripsi Singkat</label>
-                                                            <textarea name="deskripsi" rows="4" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"></textarea>
+                                                            <textarea name="deskripsi" rows="4" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">{{$umkm->deskripsi}}</textarea>
                                                         </div>
                                                         <div class="col-span-2">
                                                             <div class="flex w-full justify-start items-center gap-4 pb-2 h-fit">
                                                                 <label for="foto" class="text-sm font-bold">Foto UMKM</label>
                                                             </div>
-                                                            <input type="file" name="foto" id="foto" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                                            <!-- Modal body -->
+                                                            <div class="relative p-5 w-full max-h-full">
+                                                                <!-- Modal content -->
+                                                                <div class="relative bg-white dark:bg-gray-700 p-6 border border-[#34662C] rounded-lg shadow-md">
+                                                                    <img src="{{ asset('assets/images/'.$umkm->foto) }}"
+                                                                         alt=""
+                                                                         class="w-full rounded-lg">
+                                                                </div>
+                                                            </div>                                                            
                                                         </div>
                                                     </div>
                                                     <div class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8]">
@@ -470,38 +530,57 @@
                                                     </button>
                                                 </div>
                                                 <!-- Modal body -->
-                                                <form class="w-full h-full text-[#34662C] text-left" method="POST">
+                                                <form action="{{ route('umkm-edit', ['umkm_id' => $umkm->umkm_id]) }}" class="w-full h-full text-[#34662C] text-left" method="POST">
                                                     @csrf
-                                                    {!! method_field('PUT') !!}
+                                                    {{-- {!! method_field('PUT') !!} --}}
 
                                                     <div class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin rounded-b-xl">
                                                         <div class="col-span-2 sm:col-span-1 relative">
-                                                            <label class="block mb-2 text-sm font-bold">NIK</label>
-                                                            <input list="listNik" name="nik" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                                                            <datalist id="listNik">
-                                                                <option value="123456"></option>
-                                                            </datalist>
+                                                            <label class="block mb-2 text-sm font-bold">Pemilik</label>
+                                                            <input list="pemilik" name="pemilik" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $user->nama }}">
+                                                            @php
+                                                            $user = $users->firstWhere('id_penduduk', $umkm->id_pemilik);
+                                                            @endphp
                                                         </div>
                                                         <div class="col-span-2 sm:col-span-1">
                                                             <label for="nama" class="block mb-2 text-sm font-bold">Nama UMKM</label>
-                                                            <input type="text" name="nama" id="nama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                                            <input type="text" name="nama" id="nama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
+                                                            value="{{$umkm->nama}}">
                                                         </div>
                                                         <div class="col-span-2 sm:col-span-1">
                                                             <label for="noHp" class="block mb-2 text-sm font-bold">No. Whatsapp</label>
-                                                            <input type="text" name="noHp" id="noHp" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                                            <input type="text" name="no_wp" id="noHp" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
+                                                            value="{{$umkm->no_wa}}">
                                                         </div>
                                                         <div class="col-span-2 sm:col-span-1 grid grid-cols-2 gap-4">
                                                             <div class="col-span-2 sm:col-span-1">
                                                                 <label for="jam-buka" class="block mb-2 text-sm font-bold">Jam Buka</label>
-                                                                <input type="time" name="jam-buka" id="jam-buka" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                                                <input type="time" name="jam-buka" id="jam-buka" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
+                                                                value="{{$umkm->buka_waktu}}">
                                                             </div>
                                                             <div class="col-span-2 sm:col-span-1">
                                                                 <label for="jam-tutup" class="block mb-2 text-sm font-bold">Jam Tutup</label>
-                                                                <input type="time" name="jam-tutup" id="jam-tutup" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                                                <input type="time" name="jam-tutup" id="jam-tutup" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
+                                                                value="{{$umkm->tutup_waktu}}">
                                                             </div>
                                                         </div>
                                                         <div class="col-span-2">
                                                             <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
+                                                            @php
+                                                                $kategori='';
+                                                            @endphp
+                                                            @foreach ($umkmKategoris as $umkmKategori)
+                                                                    @foreach ($categories as $category)
+                                                                        @if ($umkm->umkm_id == $umkmKategori->umkm_id)
+                                                                            @if ($umkmKategori->kategori_id == $category->kategori_id)
+                                                                                @php
+                                                                                    $kategori .= ($kategori != '') ? ', ' : '';
+                                                                                    $kategori .= $category->nama_kategori;
+                                                                                @endphp
+                                                                            @endif
+                                                                        @endif
+                                                                    @endforeach
+                                                                @endforeach
                                                             <select class="hidden" x-cloak id="select">
                                                                 <option value="1">Makanan</option>
                                                                 <option value="2">Minuman</option>
@@ -530,7 +609,7 @@
                                                                                         </div>
                                                                                     </template>
                                                                                     <div x-show="selected.length == 0" class="flex-1 ">
-                                                                                        <input placeholder="Pilih Kategori UMKM" class=" placeholder-[#2d5523]" :value="selectedValues()" />
+                                                                                        <input placeholder={{$kategori}} class=" placeholder-[#2d5523]" :value="selectedValues()" />
                                                                                     </div>
                                                                                 </div>
                                                                                 <div class="flex w-8 items-center py-1 pl-1 pr-1">
@@ -567,15 +646,16 @@
                                                         </div>
                                                         <div class="col-span-2">
                                                             <label for="koordinat" class="block mb-2 text-sm font-bold">Koordinat</label>
-                                                            <input type="text" name="koordinat" id="koordinat" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                                            <input type="text" name="lokasi_map" id="koordinat" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
+                                                            value="{{$umkm->lokasi_map}}">
                                                         </div>
                                                         <div class="col-span-2">
                                                             <label class="block mb-2 text-sm font-bold">Alamat</label>
-                                                            <textarea name="alamat" rows="4" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"></textarea>
+                                                            <textarea name="alamat" rows="4" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">{{$umkm->lokasi}}</textarea>
                                                         </div>
                                                         <div class="col-span-2">
                                                             <label class="block mb-2 text-sm font-bold">Deskripsi Singkat</label>
-                                                            <textarea name="deskripsi" rows="4" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"></textarea>
+                                                            <textarea name="deskripsi" rows="4" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">{{$umkm->lokasi}}</textarea>
                                                         </div>
                                                         <div class="col-span-2">
                                                             <div class="flex w-full justify-start items-center gap-4 py-2 h-fit">
@@ -603,7 +683,7 @@
                                                                                 <!-- Modal body -->
                                                                                 <div class="w-full h-full text-[#34662C] text-left">
                                                                                     <div class="p-4 md:p-5  w-150 gap-4 flex justify-center items-center max-h-[450px] rounded-b-xl">
-                                                                                        <img src="{{ asset('assets/images/toko-kelontong.jpg') }}" alt="" class="w-full h-full rounded-xl shadow-xl border-4 border-white">
+                                                                                        <img src="{{ asset('assets/images/'.$umkm->foto) }}" alt="" class="w-full h-full rounded-xl shadow-xl border-4 border-white">
                                                                                     </div>
                                                                                     <div class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8]">
                                                                                         <button type="button" @click="fotoModal = false" class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
@@ -633,7 +713,7 @@
                                     </div>
                                 </div>
 
-                                <form action="{{ route('destroyPenduduk', 123456789) }}" method="POST">
+                                <form action="{{ route('umkm-destroy', ['umkm_id' => $umkm->umkm_id]) }}" method="POST">
                                     @csrf
                                     {!! method_field('DELETE') !!}
 
@@ -655,7 +735,9 @@
         </div>
 
     </div>
-
+     
+    
+    
     <script>
         function dropdown() {
             return {
@@ -704,4 +786,5 @@
             };
         }
     </script>
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCyfAneKMs4sfR81HzM1Mf0aWAAylsyBKI&callback=initMap"></script>
 </x-admin-layout>
