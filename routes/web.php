@@ -69,7 +69,6 @@ Route::group(['middleware' => ['auth']], function () {
             });
             Route::prefix('umkm')->group(function () {
                 Route::get('/', [AdminUmkmController::class, 'index'])->name('umkm-admin');
-
                 Route::get('/ajuan-umkm', [AdminUmkmController::class, 'ajuanUmkm'])->name('ajuan-umkm-admin');
                 Route::post('ajuan-umkm/reject', [AdminUmkmController::class, 'umkmReject'])->name('umkm.reject');
                 Route::post('ajuan-umkm/Accept', [AdminUmkmController::class, 'umkmAccept'])->name('umkm.accept');
@@ -81,14 +80,17 @@ Route::group(['middleware' => ['auth']], function () {
             });
             Route::prefix('akun-admin')->group(function () {
                 Route::get('/', [AdminAkunAdminController::class, 'index'])->name('akun-admin');
-                Route::get('/kelola-level', [AdminAkunAdminController::class, 'kelolaLevel'])->name('kelola-level');
-                // Route::post('/', [AdminPendudukController::class, 'storeAkun'])->name('storeAdmin');
-                // Route::put('/{nik}', [AdminPendudukController::class, 'updateAkun'])->name('updatePenduduk');
-                Route::delete('/{username}', [AdminAkunAdminController::class, 'destroyAkun'])->name('destroyAkun');
-                // Route::post('/filter-penduduk', [AdminPendudukController::class, 'filterPenduduk'])->name('filterPenduduk');
-                Route::post('/search-akun', [AdminAkunAdminController::class, 'searchAkun'])->name('searchAkun');
-                // Route::get('/daftar-akun', [AdminPendudukController::class, 'daftarAkunViewAdmin'])->name('daftar-akun');
-                // Route::get('/daftar-nkk', [AdminPendudukController::class, 'daftarNkkViewAdmin'])->name('daftar-nkk');
+                Route::post('/', [AdminAkunAdminController::class, 'store'])->name('storeAkun-admin');
+                Route::put('/{username}', [AdminAkunAdminController::class, 'update'])->name('updateAkun-admin');
+                Route::delete('/{username}', [AdminAkunAdminController::class, 'destroy'])->name('destroyAkun-admin');
+                Route::post('/filter-akun-admin', [AdminAkunAdminController::class, 'filter'])->name('filterAkun-admin');
+                Route::post('/search-akun-admin', [AdminAkunAdminController::class, 'search'])->name('searchAkun-admin');
+                Route::get('/kelola-level', [AdminAkunAdminController::class, 'indexPenduduk'])->name('akun-penduduk');
+                Route::post('/store-penduduk', [AdminAkunAdminController::class, 'storePenduduk'])->name('storeAkun-penduduk');
+                Route::put('/update-penduduk/{username}', [PendudukController::class, 'updatePenduduk'])->name('updateAkun-penduduk');
+                Route::delete('/destroy-penduduk/{username}', [AdminAkunAdminController::class, 'destroyPenduduk'])->name('destroyAkun-penduduk');
+                Route::post('/search-akun', [AdminAkunAdminController::class, 'searchPenduduk'])->name('searchAkun-penduduk');
+                Route::post('/filter-akun', [AdminAkunAdminController::class, 'filterPenduduk'])->name('filterAkun-penduduk');
             });
             Route::prefix('jadwal-kegiatan')->group(function () {
                 Route::get('/', [AdminKegiatanController::class, 'index'])->name('jadwal-kegiatan-admin');
@@ -140,7 +142,6 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::get('/category/{category}', [UmkmController::class, 'getDataByCategory'])->name('umkm.category');
                 Route::get('/search', [UmkmController::class, 'search'])->name('umkm.search');
                 Route::get('/detail/{umkm_id}', [UmkmController::class, 'getDetailUmkm'])->name('umkm.detail');
-
                 Route::post('/edit/{umkm_id}', [UmkmController::class, 'editUmkm'])->name('umkm.edit');
                 Route::post('/store', [UmkmController::class, 'storeUmkm'])->name('umkm.store');
                 Route::get('/umkmku/{id_penduduk}', [UmkmController::class, 'umkmku'])->name('umkmku');

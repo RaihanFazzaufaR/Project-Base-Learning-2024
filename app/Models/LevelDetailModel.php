@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class LevelDetailModel extends Model
 {
     use HasFactory;
-
+    public $timestamps = false;
     protected $table = 'tb_leveldetail';
     protected $primaryKey = 'detail_id';
     protected $fillable = [
