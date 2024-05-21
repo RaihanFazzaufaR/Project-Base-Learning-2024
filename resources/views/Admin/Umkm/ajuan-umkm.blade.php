@@ -1,7 +1,7 @@
 <x-admin-layout page="{{ $page }}" selected="{{ $selected }}">
     <div class="flex w-full h-15 justify-between items-center">
         <div class="flex h-full w-fit gap-8 items-center justify-between">
-            <form class="w-[22vw]" method="post" action="{{ route('searchPenduduk') }}">
+            <form class="w-[22vw]" method="post" action="{{ route('umkm-search-A') }}">
                 @csrf
                 <div class="flex h-full items-center">
                     <div class="relative w-full">
