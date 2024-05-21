@@ -13,6 +13,8 @@
 </div>
 {{ $slot }}
 <script defer src="{{ asset('assets/js/bundle.js') }}"></script>
+@include('sweetalert::alert')
+
 <!-- <script>
     let prevScrollpos = window.pageYOffset;
 

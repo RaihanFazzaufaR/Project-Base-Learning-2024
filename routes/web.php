@@ -98,6 +98,7 @@ Route::group(['middleware' => ['auth']], function () {
             });
             Route::prefix('jadwal-kegiatan')->group(function () {
                 Route::get('/', [AdminKegiatanController::class, 'index'])->name('jadwal-kegiatan-admin');
+                Route::get('/ajuan-kegiatan', [AdminKegiatanController::class, 'ajuanKegiatan'])->name('ajuan-kegiatan-admin');
             });
             Route::prefix('pengumuman')->group(function () {
                 Route::get('/', [AdminPengumumanController::class, 'index'])->name('pengumuman-admin');
