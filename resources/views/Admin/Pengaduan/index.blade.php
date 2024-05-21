@@ -232,8 +232,8 @@
                                                                             <input type="hidden" name="aduan_id"
                                                                                 id="aduan_id"
                                                                                 value="{{ $complaint->aduan_id }}">
-                                                                            <input type="hidden" name="pageNum"
-                                                                                id="pageNum"
+                                                                            <input type="hidden" name="page"
+                                                                                id="page"
                                                                                 value="{{ request()->page ? request()->page : null }}">
                                                                             <input type="hidden" name="search"
                                                                                 id="search"
@@ -319,7 +319,7 @@
                                                         method="post">
                                                         @csrf
                                                         {{ method_field('PUT') }}
-                                                        <input type="hidden" name="pageNum" id="pageNum"
+                                                        <input type="hidden" name="page" id="page"
                                                             value="{{ request()->page ? request()->page : null }}">
                                                         <input type="hidden" name="search" id="search"
                                                             value="{{ request()->search ? request()->search : null }}">
