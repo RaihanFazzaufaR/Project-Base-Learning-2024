@@ -33,6 +33,18 @@
               <div class="text-xs text-blue-600 dark:text-blue-500">a few moments ago</div>
             </div>
           </a>
+          <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">
+            <div class="flex-shrink-0">
+              <img class="rounded-full w-11 h-11" src="{{ asset('assets/images/userProfile.png') }}" alt="">
+              <div class="absolute flex items-center justify-center w-5 h-5 ms-6 -mt-5 bg-[#FFDE68] border border-white rounded-full dark:border-gray-800">
+                <i class="fa-solid fa-minus text-xs text-white"></i>
+              </div>
+            </div>
+            <div class="w-full ps-3">
+              <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Mohon Menunggu, UMKM yang Anda ajukan masih diproses oleh <span class="font-semibold text-gray-900 dark:text-white">Ketua RW</span> </div>
+              <div class="text-xs text-blue-600 dark:text-blue-500">a few moments ago</div>
+            </div>
+          </a>
           <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700" @click.prevent="selected = (selected === 'tolak{{1}}' ? '':'tolak{{1}}')">
             <div class="flex-shrink-0">
               <img class="rounded-full w-11 h-11" src="{{ asset('assets/images/userProfile.png') }}" alt="">
