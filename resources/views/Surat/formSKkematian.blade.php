@@ -54,10 +54,24 @@
         </div>
         <div class="basis-3/4 w-full h-full">
             <div class=" gap-11  w-full h-full">
-                <div class="text-[#2d5523] text-2xl pb-10 font-bold">
+                <div class="text-[#2d5523] text-2xl pb-2 font-bold">
                     Formulir Surat Keterangan Kematian
                 </div>
+                <div class="text-[#2d5523] text-lg pb-10 font-medium">
+                    Masukkan identitas orang yang meninggal
+                </div>
                 <form action="" class="gap-4 flex flex-col h-fit">
+                    <div class="gap-2 flex w-full h-fit">
+                        <div class="basis-1/4 h-full ps-8  flex my-auto items-center">
+                            <label for="nik"
+                                class="text-lg font-bold items-center flex w-full  text-[#2d5523] dark:text-white">NIK</label>
+                        </div>
+                        <div class="basis-3/4 h-full flex items-center">
+                            <input id="nik" name="nik" placeholder="Masukkan NIK"
+                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            {{-- <input type="hidden" id="id_penduduk" name="id_penduduk" value="{{ Auth::user()->penduduk->id_penduduk }}"> --}}
+                        </div>
+                    </div>
                     <div class="gap-2 flex w-full h-fit">
                         <div class="basis-1/4 h-full ps-8  flex my-auto items-center">
                             <label for="nama"
@@ -66,22 +80,12 @@
                         </div>
                         <div class="basis-3/4 h-full flex items-center">
                             <input id="nama" name="nama" 
-                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                readonly class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             {{-- <input type="hidden" id="id_penduduk" name="id_penduduk"
                                 value="{{ Auth::user()->penduduk->id_penduduk }}"> --}}
                         </div>
                     </div>
-                    <div class="gap-2 flex w-full h-fit">
-                        <div class="basis-1/4 h-full ps-8  flex my-auto items-center">
-                            <label for="nik"
-                                class="text-lg font-bold items-center flex w-full  text-[#2d5523] dark:text-white">NIK</label>
-                        </div>
-                        <div class="basis-3/4 h-full flex items-center">
-                            <input id="nik" name="nik"
-                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                            {{-- <input type="hidden" id="id_penduduk" name="id_penduduk" value="{{ Auth::user()->penduduk->id_penduduk }}"> --}}
-                        </div>
-                    </div>
+                    
                     <div class="gap-2 flex w-full h-fit">
                         <div class="basis-1/4 h-full ps-8  flex my-auto items-center">
                             <label for="jk"
@@ -90,7 +94,7 @@
                         </div>
                         <div class="basis-3/4 h-full flex items-center">
                             <input id="jk" name="jk"
-                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                readonly class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             {{-- <input type="hidden" id="id_penduduk" name="id_penduduk" value="{{ Auth::user()->penduduk->id_penduduk }}"> --}}
                         </div>
                     </div>
@@ -102,21 +106,11 @@
                         </div>
                         <div class="basis-3/4 h-full flex items-center">
                             <input id="ttl" name="ttl"
-                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                readonly class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             {{-- <input type="hidden" id="id_penduduk" name="id_penduduk" value="{{ Auth::user()->penduduk->id_penduduk }}"> --}}
                         </div>
                     </div>
-                    <div class="gap-2 flex w-full h-fit">
-                        <div class="basis-1/4 h-full ps-8  flex my-auto items-center">
-                            <label for="NKK" class="text-lg font-bold  w-full text-[#2d5523] dark:text-white">No.
-                                Kartu Keluarga</label>
-                        </div>
-                        <div class="basis-3/4 h-full flex items-center">
-                            <input id="NKK" name="NKK"
-                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                            {{-- <input type="hidden" id="id_penduduk" name="id_penduduk" value="{{ Auth::user()->penduduk->id_penduduk }}"> --}}
-                        </div>
-                    </div>
+                    
                     <div class="gap-2 flex w-full h-fit">
                         <div class="basis-1/4 h-full ps-8  flex my-auto items-center">
                             <label for="warganegara"
@@ -124,7 +118,7 @@
                         </div>
                         <div class="basis-3/4 h-full flex items-center">
                             <input id="warganegara" name="warganegara"
-                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                readonly class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             {{-- <input type="hidden" id="id_penduduk" name="id_penduduk" value="{{ Auth::user()->penduduk->id_penduduk }}"> --}}
                         </div>
                     </div>
@@ -135,7 +129,7 @@
                         </div>
                         <div class="basis-3/4 h-full flex items-center">
                             <input id="agama" name="agama"
-                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                readonly class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             {{-- <input type="hidden" id="id_penduduk" name="id_penduduk" value="{{ Auth::user()->penduduk->id_penduduk }}"> --}}
                         </div>
                     </div>
@@ -146,7 +140,7 @@
                         </div>
                         <div class="basis-3/4 h-full flex items-center">
                             <input id="pekerjaan" name="pekerjaan"
-                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                readonly class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             {{-- <input type="hidden" id="id_penduduk" name="id_penduduk" value="{{ Auth::user()->penduduk->id_penduduk }}"> --}}
                         </div>
                     </div>
@@ -157,7 +151,40 @@
                         </div>
                         <div class="basis-3/4 h-full flex items-center">
                             <textarea id="alamat" name="alamat" cols="19" rows="3"
-                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
+                                readonly class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
+                        </div>
+                    </div>
+                    <div class="gap-2 flex w-full h-fit">
+                        <div class="basis-1/4 h-full ps-8  flex my-auto items-center">
+                            <label for="penyebab-kematian"
+                                class="text-lg font-bold items-center flex w-full  text-[#2d5523] dark:text-white">Penyebab Kematian</label>
+                        </div>
+                        <div class="basis-3/4 h-full flex items-center">
+                            <input id="penyebab-kematian" name="penyebab-kematian" placeholder="Masukkan Penyebab Kematian"
+                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            {{-- <input type="hidden" id="id_penduduk" name="id_penduduk" value="{{ Auth::user()->penduduk->id_penduduk }}"> --}}
+                        </div>
+                    </div>
+                    <div class="gap-2 flex w-full h-fit">
+                        <div class="basis-1/4 h-full ps-8  flex my-auto items-center">
+                            <label for="hubungan-pelapor"
+                                class="text-lg font-bold items-center flex w-full  text-[#2d5523] dark:text-white">Hubungan Pelapor</label>
+                        </div>
+                        <div class="basis-3/4 h-full flex items-center">
+                            <input id="hubungan-pelapor" name="hubungan-pelapor" placeholder="Masukkan Hubungan Pelapor dengan yang Meninggal"
+                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            {{-- <input type="hidden" id="id_penduduk" name="id_penduduk" value="{{ Auth::user()->penduduk->id_penduduk }}"> --}}
+                        </div>
+                    </div>
+                    <div class="gap-2 flex w-full h-fit">
+                        <div class="basis-1/4 h-full ps-8  flex my-auto items-center">
+                            <label for="tpt-meninggal"
+                                class="text-lg font-bold items-center flex w-full  text-[#2d5523] dark:text-white">Tempat Meninggal</label>
+                        </div>
+                        <div class="basis-3/4 h-full flex items-center">
+                            <input id="tpt-meninggal" name="tpt-meninggal" placeholder="Masukkan Tempat Meninggal"
+                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            {{-- <input type="hidden" id="id_penduduk" name="id_penduduk" value="{{ Auth::user()->penduduk->id_penduduk }}"> --}}
                         </div>
                     </div>
                     <div class="gap-2 flex w-full h-fit">
@@ -168,7 +195,7 @@
                         </div>
                         <div class="basis-3/4 h-full flex items-center">
                             <input id="tanggal-wafat" name="tanggal-wafat" type="datetime-local"
-                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-[41%] p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-[46%] p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             {{-- <input type="hidden" id="id_penduduk" name="id_penduduk" value="{{ Auth::user()->penduduk->id_penduduk }}"> --}}
                         </div>
                     </div>

@@ -104,6 +104,8 @@ Route::group(['middleware' => ['auth']], function () {
             });
             Route::prefix('pengaduan')->group(function () {
                 Route::get('/', [AdminPengaduanController::class, 'index'])->name('pengaduan-admin');
+                Route::post('/', [AdminPengaduanController::class, 'addResponse'])->name('add-response');
+                Route::put('/{id}', [AdminPengaduanController::class, 'updateStatusOutside'])->name('update-status-outside');
             });
         });
     });
@@ -125,6 +127,7 @@ Route::group(['middleware' => ['auth']], function () {
         //Route Aduan
         Route::group(['prefix' => 'aduan'], function () {
             Route::get('/', [AduanController::class, 'index'])->name('aduan');
+            Route::get('/aduanku', [AduanController::class, 'indexAduanku'])->name('aduanku');
         });
 
         //Route Jadwal

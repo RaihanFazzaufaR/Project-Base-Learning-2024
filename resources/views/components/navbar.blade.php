@@ -3,7 +3,7 @@
   <div class="max-w-full flex flex-wrap items-center justify-between lg:mx-12 mx-8 py-4">
     <a href="{{ url('/') }}" class="flex items-center space-x-3 rtl:space-x-reverse">
       <img src="{{ asset('assets/images/logo.png') }}" class="h-9" alt="Logo" />
-      <span class="self-center text-2xl font-semibold whitespace-nowrap dark:text-white">Barokah Project</span>
+      <span class="self-center hidden md:block text-2xl font-semibold whitespace-nowrap dark:text-white">Barokah Project</span>
     </a>
     <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse md:gap-5">
       <!-- notification -->
@@ -33,7 +33,7 @@
               <div class="text-xs text-blue-600 dark:text-blue-500">a few moments ago</div>
             </div>
           </a>
-          <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700" @click.prevent="selected = (selected === 'tolak' ? '':'tolak')">
+          <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700" @click.prevent="selected = (selected === 'tolak{{1}}' ? '':'tolak{{1}}')">
             <div class="flex-shrink-0">
               <img class="rounded-full w-11 h-11" src="{{ asset('assets/images/userProfile.png') }}" alt="">
               <div class="absolute flex items-center justify-center w-5 h-5 ms-6 -mt-5 bg-[#EF4444] border border-white rounded-full dark:border-gray-800">
@@ -42,11 +42,14 @@
             </div>
             <div class="w-full ps-3">
               <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Maaf, UMKM yang Anda ajukan telah ditolak oleh <span class="font-semibold text-gray-900 dark:text-white">Ketua RW</span> </div>
-              <div class="w-full border-y-2 border-gray-300 text-sm py-2" :class="(selected === 'tolak') ? 'block' :'hidden'">
+              <div class="w-full border-y-2 border-gray-300 text-sm py-2" :class="(selected === 'tolak{{1}}') ? 'block' :'hidden'">
                 <p class="text-black font-bold">Alasan Penolakan :</p>
                 <p class="text-gray-500 dark:text-gray-400">"Data yang Anda masukkan tidak sesuai dengan data yang ada"</p>
               </div>
-              <div class="text-xs text-blue-600 dark:text-blue-500">a few moments ago</div>
+              <div class="flex justify-between items-center">
+                <div class="text-xs text-blue-600 dark:text-blue-500">a few moments ago</div>
+                <i class="fa-solid" :class="(selected === 'tolak{{1}}') ? 'fa-angle-up' :'fa-angle-down'"></i>
+              </div>
             </div>
           </a>
         </div>
@@ -86,10 +89,13 @@
             @endif
           </li>
           <li>
-            <a href="{{ route('home') }}" class="block px-4 py-2 text-sm text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Aduan-Ku</a>
+            <a href="{{ route('aduanku') }}" class="block px-4 py-2 text-sm text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Aduan-Ku</a>
           </li>
           <li>
             <a href="{{ route('suratku') }}" class="block px-4 py-2 text-sm text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Surat-Ku</a>
+          </li>
+          <li>
+            <a href="{{ route('admin') }}" class="block px-4 py-2 text-sm text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Admin</a>
           </li>
           <li>
             <a href="{{ route('logout') }}" class="block px-4 py-2 text-sm text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Keluar</a>
@@ -168,7 +174,7 @@
               </li>
               <li>
                 @if (Auth::check())
-                <a href="{{ route('suratku') }}) }}" class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">Surat-Ku</a>
+                <a href="{{ route('suratku') }}" class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">Surat-Ku</a>
                 @else
                 <a href="{{ route('login') }}" class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">Surat-Ku</a>
                 @endif
@@ -261,10 +267,13 @@
   window.onscroll = function() {
     let currentScrollPos = window.pageYOffset;
 
-    if (prevScrollpos > currentScrollPos) {
-      document.getElementById("navbar").style.top = "0";
-    } else {
-      document.getElementById("navbar").style.top = "-80px";
+    if (window.innerWidth >= 500) {
+      if (prevScrollpos > currentScrollPos) {
+        console.log(window.innerWidth);
+        document.getElementById("navbar").style.top = "0";
+      } else {
+        document.getElementById("navbar").style.top = "-80px";
+      }
     }
 
     prevScrollpos = currentScrollPos;

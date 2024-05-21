@@ -3,10 +3,10 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </x-header>
 
-<img src="{{ asset('assets/images/cover-home.png') }}" alt="" class="absolute top-10 right-0 h-[127vh]" data-aos="fade-left" data-aos-duration="1000">
+<img src="{{ asset('assets/images/cover-home.png') }}" alt="" class="absolute top-26 right-30 h-[80vh]" data-aos="fade-left" data-aos-duration="1000">
 
-<div class="relative h-[65vh] sm:h-[85vh] md:h-[79vh] lg:h-[120vh] w-[70%] text-[#1C4F0F] pt-[30vh] pl-[8vh]" data-aos="fade-right" data-aos-duration="1000">
-    <div class="font-semibold text-2xl mb-3">
+<div class="relative h-[65vh] sm:h-[85vh] md:h-[79vh] lg:h-[120vh] w-[60%] text-[#1C4F0F] pt-[25vh] pl-[7vw]" data-aos="fade-right" data-aos-duration="1000">
+    <div class="font-bold text-4xl mb-3">
         Selamat Datang di
     </div>
     <div class="font-extrabold text-6xl mb-4">

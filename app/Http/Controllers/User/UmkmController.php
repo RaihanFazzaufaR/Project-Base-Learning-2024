@@ -8,6 +8,7 @@ use App\Models\UmkmKategoriModel;
 use Illuminate\Http\Request;
 use App\Models\UmkmModel;
 use App\Models\PendudukModel;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,12 +18,25 @@ class UmkmController extends Controller
     {
         $categories = KategoriModel::all();
         $umkms = UmkmModel::where('status', 'diterima')->get();
+        $umkms = $this->formatDateAndTime($umkms);
         $menu = 'UMKM';
+        $kategori = 0;
         return view('Umkm.index', [
             'umkms' => $umkms,
             'categories' => $categories,
             'menu' => $menu,
+            'kategori' => $kategori,
         ]);
+    }
+
+    public function formatDateAndTime($data)
+    {
+        foreach ($data as $key => $value) { 
+            $value->buka_waktu = Carbon::parse($value->buka_waktu)->format('H:i');
+            $value->tutup_waktu = Carbon::parse($value->tutup_waktu)->format('H:i');
+        }
+
+        return $data; // Mengembalikan data yang telah diformat
     }
 
     public function umkmku($id_penduduk)
@@ -46,10 +60,12 @@ class UmkmController extends Controller
 
 
         $menu = 'UMKM';
+        $kategori = $kategori_id;
         return view('Umkm.index', [
             'umkms' => $umkms,
             'categories' => $categories,
             'menu' => $menu,
+            'kategori' => $kategori,
         ]);
     }
 
@@ -67,12 +83,14 @@ class UmkmController extends Controller
         } else {
             $notification = null;
         }
+        $kategori = 0;
 
         return view('Umkm.index', [
             'umkms' => $umkms,
             'categories' => $categories,
             'notification' => $notification,
             'menu' => $menu,
+            'kategori' => $kategori,
         ]);
     }
 

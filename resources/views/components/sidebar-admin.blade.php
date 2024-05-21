@@ -150,8 +150,18 @@
                         </a>
                     </li>
                     <!-- Menu Item Pengumuman -->
-                    <!-- Menu Item Persuratan -->
                     <li>
+                        <a class="group relative flex justify-start items-center gap-2.5 rounded-sm px-4 py-3 font-bold  duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] dark:hover:bg-meta-4 rounded-l-2xl" href="{{ route('persuratan-admin') }}" @click="selected = (selected === 'Jadwal Kegiatan' ? '':'Jadwal Kegiatan')" :class="{
+                    'bg-[#E4F7DF] text-[#57BA47] border-r-4 border-[#57BA47]': (selected === 'Persuratan') && (page === 'daftarPersuratan')
+                  }">
+                            <div class="w-7">
+                                <i class="fa-solid fa-envelopes-bulk text-xl"></i>
+                            </div>
+                            Persuratan
+                        </a>
+                    </li>
+                    <!-- Menu Item Persuratan -->
+                    <!-- <li>
                         <a class="group relative flex items-center justify-start gap-2.5 rounded-sm px-4 py-3 font-bold duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47]" href="#" @click.prevent="selected = (selected === 'Persuratan' ? '':'Persuratan')" :class="{
                     'bg-[#E4F7DF] text-[#57BA47] border-r-4 border-[#57BA47]': (selected === 'Persuratan') || (page === 'daftarPersuratan') || (page === 'templateSurat') || (page === 'AjuanPersuratan')}">
                             <div class="w-7">
@@ -164,7 +174,7 @@
                             </svg>
                         </a>
 
-                        <!-- Dropdown Menu Start -->
+                        
                         <div class="translate transform overflow-hidden" :class="(selected === 'Persuratan') ? 'block' :'hidden'">
                             <ul class="mb-5.5 mt-4 flex flex-col gap-2.5 pl-6">
                                 <li>
@@ -178,8 +188,8 @@
                                 </li>
                             </ul>
                         </div>
-                        <!-- Dropdown Menu End -->
-                    </li>
+                        
+                    </li> -->
                     <!-- Menu Item Persuratan -->
                     <!-- Menu Item Akun Admin -->
                     <li>

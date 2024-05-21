@@ -2,7 +2,7 @@
 
 </x-header>
 
-<div class="w-[100%] relative flex justify-center items-center">
+<div class="w-[100%] relative md:flex justify-center items-center hidden ">
     <img src="{{ asset('assets/images/bg-index-UMKM.png') }}" alt="" class="w-full">
     <div class="bg-white/[0.73] w-[571px] h-[185px] z-10 absolute flex justify-center rounded-[105px] flex-col text-center shadow-2xl">
         <p class="text-[#2d5523] font-bold text-[36px]">UMKM DI RW 3</p>
@@ -10,9 +10,9 @@
             RW”</p>
     </div>
 </div>
-<div class="bg-[#Fff] min-h-[100vh] px-[65px] py-[34px] w-[100%]">
-    <div class="flex flex-row gap-14 mt-9">
-        <div class="basis-1/4 items-center flex-col ">
+<div class="bg-[#Fff] md:min-h-[100vh] md:px-[65px] md:py-[34px] w-[100%]">
+    <div class="flex flex-row gap-14 mt-9 w-full">
+        <div class="md:basis-1/4 items-center flex-col hidden md:block">
             <div class="flex border-b-[1.9px] h-[57px] border-[#2d5523]">
                 <p class="text-[#2d5523] font-bold text-[19px] w-full flex  items-center">
                     Kategori UMKM</p>
@@ -31,7 +31,7 @@
                 {{-- database --}}
                 <ul class="grid w-full">
                     <li>
-                        <a href="{{ route('umkm') }}" class="inline-flex pl-3 items-center justify-between w-full p-1.5 text-[#2d5523] bg-white border border-gray-200 cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-[#2d5523] peer-checked:text-white peer-checked:bg-yellow-500 hover:text-white hover:bg-yellow-500 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                        <a href="{{ route('umkm') }}" class="inline-flex pl-3 items-center justify-between w-full p-1.5 text-[#2d5523]  border border-gray-200 cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-[#2d5523] peer-checked:text-white peer-checked:bg-yellow-500 hover:text-white hover:bg-yellow-500 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 {{ ($kategori === 0)?'bg-yellow-500 text-white':'bg-white' }}">
                             <div class="block">
                                 <div class="w-full text-lg font-semibold">Semua Kategori</div>
                             </div>
@@ -39,7 +39,7 @@
                     </li>
                     @foreach($categories as $category)
                     <li>
-                        <a href="{{ route('umkm.category', $category->kategori_id) }}" class="inline-flex pl-3 items-center justify-between w-full p-1.5 text-[#2d5523] bg-white border border-gray-200 cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-[#2d5523] peer-checked:text-white peer-checked:bg-yellow-500 hover:text-white hover:bg-yellow-500 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
+                        <a href="{{ route('umkm.category', $category->kategori_id) }}" class="inline-flex pl-3 items-center justify-between w-full p-1.5 text-[#2d5523] border border-gray-200 cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-[#2d5523] peer-checked:text-white peer-checked:bg-yellow-500 hover:text-white hover:bg-yellow-500 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700 {{ ($kategori == $category->kategori_id)?'bg-yellow-500 text-white':'bg-white' }}">
                             <div class="block">
                                 <div class="w-full text-lg font-semibold">{{ $category->nama_kategori }}</div>
                             </div>
@@ -101,28 +101,28 @@
                 </ul> -->
             </div>
         </div>
-        <div class="basis-3/4 ">
-            <div class="flex items-center gap-11 justify-center">
-                <div class="basis-2/3">
-                    <form action="{{ route('umkm.search') }}" method="GET" class="w-full mb-0 shadow-2xl">
+        <div class="md:basis-3/4 w-full  ">
+            <div class="flex items-center bg-white gap-11 justify-center">
+                <div class=" md:basis-2/3 bg-white pt-3 pb-2 md:pt-0 md:pb-0  md:m-0 m-3 w-full -mt-5 md:-mt-0 fixed z-99 md:static top-22">
+                    <form action="{{ route('umkm.search') }}" method="GET" class="w-full mb-0 md:shadow-2xl">
                         <label for="default-search" class="text-sm font-medium text-[#2d5523] sr-only dark:text-white">Search</label>
-                        <div class="relative h-full">
-                            <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                                <svg class="w-4 h-4 text-[#2d5523] dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
+                        <div class="relative h-full md:px-0 px-4">
+                            <div class="absolute inset-y-0 md:start-0 start-8 flex items-center px-3 pointer-events-none ">
+                                <svg class="w-4 h-4 -ml-4 md:ml-0 text-[#2d5523] dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
                                     <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
                                 </svg>
                             </div>
-                            <input type="search" id="default-search" name="search" class="block w-full p-4 ps-10 border-[3px] border-[#2d5523] text-[#2d5523] text-base rounded-lg bg-gray-50 focus:ring-yellow-500 focus:border-yellow-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500" placeholder="Cari UMKM" required />
+                            <input type="search" id="default-search" name="search" class=" block w-full p-4 ps-10 border-[3px] border-[#2d5523] text-[#2d5523] text-base rounded-lg bg-[#fff] focus:ring-yellow-500 focus:border-yellow-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500" placeholder="Cari UMKM" required />
                         </div>
                     </form>
                 </div>
 
-                <div class="basis-1/3">
-                    <a href="#" class="w-auto shadow-2xl h-[57px] text-[20px] px-[24px] bg-yellow-500 items-center flex rounded-[15px]  font-bold text-[#2d5523] hover:bg-[#E2A229] hover:text-white active:bg-yellow-500 justify-center  transition ease-in-out duration-500 hover:scale-105" data-modal-target="ajukan-umkm" data-modal-toggle="ajukan-umkm">
+                <div class="basis-1/3 hidden md:flex md:justify-end">
+                    <button type="button" class="w-auto shadow-2xl h-[57px] text-[20px] px-[24px] bg-yellow-500 items-center flex rounded-[15px]  font-bold text-[#2d5523] hover:bg-[#E2A229] hover:text-white active:bg-yellow-500 justify-center  transition ease-in-out duration-500 hover:scale-105" data-modal-target="ajukan-umkm" data-modal-toggle="ajukan-umkm">
                         Ajukan UMKM Anda
-                    </a>
+                    </button>
                 </div>
-                <div id="ajukan-umkm" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed  -top-14 right-0 left-0 -bottom-10 z-[999] justify-center items-center w-full inset-0 ">
+                <div id="ajukan-umkm" tabindex="-1" aria-hidden="true" class="hidden overflow-y-auto overflow-x-hidden fixed -top-14 right-0 left-0 -bottom-10 z-[999] justify-center items-center w-full inset-0 ">
                     <div class="relative p-32 w-full  max-h-full">
                         <!-- Modal content -->
                         <div class="relative bg-white rounded-lg shadow  dark:bg-gray-700 border-[3.5px] border-[#2d5523]">
@@ -349,12 +349,13 @@
                     </div>
                 </div>
             </div>
-            <div class="grid gap-9 mt-10 mb-[15vh]">
 
+            {{-- list umkm laptop --}}
+            <div class="md:grid gap-9 md:mt-10 mb-[15vh] hidden ">
                 @foreach($umkms as $umkm)
                 <a href="{{ route('umkm.detail', ['umkm_id' => $umkm->umkm_id]) }}" class="">
-                    <div class="w-full h-64 bg-white border-2 shadow-2xl border-[#2d5523] rounded-xl overflow-hidden flex hover:border-4 hover:border-yellow-500 justify-center items-center  group-hover:opacity-100 transition ease-in-out duration-500 hover:scale-105 group">
-                        <div class="basis-1/3 h-full">
+                    <div class="w-full md:h-64 h-50  bg-white border-2 shadow-2xl border-[#2d5523] rounded-xl overflow-hidden flex hover:border-4 hover:border-yellow-500 justify-center items-center  group-hover:opacity-100 transition ease-in-out duration-500 hover:scale-105 group">
+                        <div class="md:basis-1/3 md:h-full">
                             <img src={{ asset('assets/images/'.$umkm->foto) }} alt="" class="w-full h-full group-hover:scale-110  transition ease-in-out duration-500">
                         </div>
                         <div class="basis-2/3 h-full w-full pt-4 pl-8 ">
@@ -407,6 +408,33 @@
                 </a>
                 @endforeach
             </div>
+            {{-- list umkm mobile --}}
+            <div class="w-full mt-14 px-4 flex justify-center flex-col h-fit ">
+                @foreach($umkms as $umkm)
+                <a href="{{ route('umkm.detail', ['umkm_id' => $umkm->umkm_id]) }}">
+                    <div class="h-fit w-fit shadow-xl rounded-2xl overflow-hidden mb-8 justify-start">
+                        <div class=" flex justify-start  relative items-end ">
+                            <img src={{ asset('assets/images/'.$umkm->foto) }} alt="" class="w-90 h-48 group-hover:scale-110 object-cover transition ease-in-out duration-500 ">
+                            <div class="px-4 py-[2px] absolute bg-[#2d5523] -bottom-3 left-5 rounded-full text-white font-semibold flex items-center gap-2">
+                                <i class="fa-regular fa-clock"></i>
+                                <p>{{ $umkm -> buka_waktu }} - {{ $umkm -> tutup_waktu }}
+                                </p>
+                            </div>
+                        </div>
+                        <div class="w-fit py-3  ">
+                            <div class="text-lg font-bold text-[#2d5523] ps-5 pt-2">
+                                {{ $umkm -> nama }}
+                            </div>
+                            <div class="text-base font-medium text-[#2d5523] ps-5 ">
+                                {{ $umkm -> lokasi }}
+                            </div>
+                        </div>
+                        
+                    </div>
+                </a>
+                @endforeach
+            </div>
+
         </div>
     </div>
 </div>
