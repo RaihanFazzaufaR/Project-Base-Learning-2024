@@ -61,7 +61,7 @@ class PengaduanController extends Controller
         $imageName = null;
 
         if ($request->konten_respon == null && $request->image == null) {
-            return redirect()->back()->with('error', 'Konten respon tidak boleh kosong');
+            return redirect()->back()->with('error','Konten respon tidak boleh kosong');
         }
 
         if ($request->image != null) {

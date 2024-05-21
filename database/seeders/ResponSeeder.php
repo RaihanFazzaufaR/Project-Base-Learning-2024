@@ -18,7 +18,13 @@ class ResponSeeder extends Seeder
             ['aduan_id'=> 2, 'perespon_id'=> 1, 'konten_respon'=>'Jalan sudah diperbaiki', 'image'=>null, 'dibuat_tanggal'=>'2024-04-05'],
             ['aduan_id'=> 3, 'perespon_id'=> 1, 'konten_respon'=>'Baik akan segera kami kerjakan', 'image'=>null, 'dibuat_tanggal'=>'2024-04-05'],
             ['aduan_id'=> 3, 'perespon_id'=> 3, 'konten_respon'=>'Lampu sudah diganti', 'image'=>null, 'dibuat_tanggal'=>'2024-04-05'],
-            ['aduan_id'=> 4, 'perespon_id'=> 1, 'konten_respon'=>'Baik akan segera kami kerjakan', 'image'=>null, 'dibuat_tanggal'=>'2024-04-05']
+            ['aduan_id'=> 4, 'perespon_id'=> 1, 'konten_respon'=>'Baik akan segera kami kerjakan', 'image'=>null, 'dibuat_tanggal'=>'2024-04-05'],
+            ['aduan_id'=> 31, 'perespon__id' => 3, 'konten_respon'=>'Baik akan segera kami laporan', 'image'=>null, 'dibuat_tanggal'=>'2024-04-05'],
+            ['aduan_id'=> 32, 'perespon_id'=> 3, 'konten_respon'=>'Sudah kami kerjakan', 'image'=>'testrespon.jpeg', 'dibuat_tanggal'=>'2024-04-05'],
+            ['aduan_id'=> 33, 'perespon_id'=> 3, 'konten_respon'=>'Jalan Cokrokusumo tidak ada pada daerah kami', 'image'=>null, 'dibuat_tanggal'=>'2024-04-05'],
+            ['aduan_id'=> 34, 'perespon_id'=> 1, 'konten_respon'=>'Baik akan segera kami laporan', 'image'=>null, 'dibuat_tanggal'=>'2024-04-05'],
+            ['aduan_id'=> 35, 'perespon_id'=> 1, 'konten_respon'=>'Sudah kami kerjakan', 'image'=>'testrespon.jpeg', 'dibuat_tanggal'=>'2024-04-05'],
+            ['aduan_id'=> 36, 'perespon_id'=> 1, 'konten_respon'=>'Jalan Cokrokusumo tidak ada pada daerah kami', 'image'=>null, 'dibuat_tanggal'=>'2024-04-05']
         ];
         DB::table('tb_respon')->insert($data);
     }

@@ -195,7 +195,7 @@
                                                                             src="{{ asset('assets/images/Aduan/' . $complaint->image) }}">
                                                                     </div>
                                                                 @endif
-                                                                <div class="flex w-full p-4">
+                                                                <div class="flex w-full p-4 {{ Auth::user()->penduduk->id_penduduk == $complaint->pengadu_id ? 'justify-end' : '' }}">
                                                                     <div class="p-4 w-fit rounded-lg max-w-[75%] {{ Auth::user()->penduduk->id_penduduk == $complaint->pengadu_id ? 'bg-[#cdffc5]' : 'bg-gray-300' }}">
                                                                         <p class="text-sm font-semibold">
                                                                             {{ $complaint->penduduk->nama }}
@@ -231,7 +231,7 @@
                                                             </div>
                                                             <div class="w-full bg bg-[#F2F2F2] min-h-10">
                                                                 @if ($complaint->status != 'selesai' && $complaint->status != 'ditolak')
-                                                                    <form action="{{ route('add-response') }}"
+                                                                    <form action="{{ route('add-response-admin') }}"
                                                                         method="post" enctype="multipart/form-data">
                                                                         @csrf
                                                                         <div

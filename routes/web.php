@@ -98,7 +98,7 @@ Route::group(['middleware' => ['auth']], function () {
             });
             Route::prefix('pengaduan')->group(function () {
                 Route::get('/', [AdminPengaduanController::class, 'index'])->name('pengaduan-admin');
-                Route::post('/', [AdminPengaduanController::class, 'addResponse'])->name('add-response');
+                Route::post('/', [AdminPengaduanController::class, 'addResponse'])->name('add-response-admin');
                 Route::put('/{id}', [AdminPengaduanController::class, 'updateStatusOutside'])->name('update-status-outside');
             });
         });
@@ -122,6 +122,8 @@ Route::group(['middleware' => ['auth']], function () {
         Route::group(['prefix' => 'aduan'], function () {
             Route::get('/', [AduanController::class, 'index'])->name('aduan');
             Route::get('/aduanku', [AduanController::class, 'indexAduanku'])->name('aduanku');
+            Route::post('/aduanku', [AduanController::class, 'addResponse'])->name('add-response');
+            Route::delete('/aduanku/delete/{id}', [AduanController::class, 'destroyAduan'])->name('aduan.destroy');
         });
 
         //Route Jadwal

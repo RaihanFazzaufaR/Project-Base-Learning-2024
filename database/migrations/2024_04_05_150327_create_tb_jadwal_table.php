@@ -20,7 +20,7 @@ return new class extends Migration
             $table->date('mulai_tanggal');
             $table->date('akhir_tanggal')->nullable();
             $table->time('mulai_waktu');
-            $table->time('akhir_waktu');
+            $table->time('akhir_waktu')->nullable();
             $table->text('konten');
             $table->unsignedBigInteger('pembuat_id');
             $table->enum('status', ['diproses', 'selesai', 'ditolak']);
