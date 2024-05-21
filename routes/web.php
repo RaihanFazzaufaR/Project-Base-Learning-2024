@@ -143,6 +143,7 @@ Route::group(['middleware' => ['auth']], function () {
         //Route Surat
         Route::group(['prefix' => 'surat'], function () {
             Route::get('/', [SuratController::class, 'index'])->name('surat');
+            Route::get('/sk-pindah', [SuratController::class, 'skPindah'])->name('sk-pindah');
             Route::get('/suratku', [SuratController::class, 'suratku'])->name('suratku');
         });
         Route::group(['middleware' => ['auth']], function () {

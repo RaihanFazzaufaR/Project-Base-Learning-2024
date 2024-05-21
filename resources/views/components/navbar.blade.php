@@ -96,6 +96,9 @@
         </div>
         <ul class="font-semibold" aria-labelledby="user-menu-button">
           <li>
+            <a href="{{ route('profilku') }}" class="block px-4 py-2 text-sm text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Profil-Ku</a>
+          </li>
+          <li>
             @if (Auth::user()->penduduk->id_penduduk)
             <a href="{{ route('umkmku', ['id_penduduk' => Auth::user()->penduduk->id_penduduk]) }}" class="block px-4 py-2 text-sm text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">UMKM-Ku</a>
             @endif

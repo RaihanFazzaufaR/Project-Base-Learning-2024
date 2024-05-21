@@ -12,7 +12,7 @@
                 <div class="basis-1/3">
 
                     <div class="size-80 rounded-full overflow-hidden">
-                        <button onclick="showInput()" class="absolute  size-15 bg-[#2d5523] hover:bg-[#1d3018] flex justify-center items-center rounded-full text-2xl left-[425px] top-[375px] text-white ">
+                        <button onclick="showInput()" class="absolute  size-15 bg-[#2d5523] hover:bg-[#1d3018] flex justify-center items-center rounded-full text-2xl left-[430px] top-[369px] text-white ">
                             <i class="fa-solid fa-pen"></i>
                         </button>
                         <input type="file" name="" id="" class="hidden">
@@ -56,14 +56,14 @@
                                                     </div>
                                                     <div class="col-span-2 relative">
                                                         <label for="level" class="block mb-2 text-sm font-bold">Password Lama</label>
-                                                        <input id="pw-lama" name="pw-lama" type="password" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan password lama" value="ppppp">
+                                                        <input id="pw-lama" name="pw-lama" type="password" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan password lama" value="">
                                                         <button type="button" id="pw-lama-show" onclick="showPassword('pw-lama')" class="absolute right-3 bottom-3">
                                                             <i class=" fa-solid fa-eye-slash text-lg"></i>
                                                         </button>
                                                     </div>
                                                     <div class="col-span-2 relative">
                                                         <label for="level" class="block mb-2 text-sm font-bold">Password Baru</label>
-                                                        <input id="pw-baru" name="pw-baru" type="password" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan password lama" value="ppppp">
+                                                        <input id="pw-baru" name="pw-baru" type="password" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan password baru" value="">
                                                         <button type="button" id="pw-baru-show" class="absolute right-3 bottom-3" onclick="showPassword('pw-baru')">
                                                             <i class=" fa-solid fa-eye-slash text-lg"></i>
                                                         </button>
@@ -100,12 +100,70 @@
                 <div id="accordion-flush-body-2" class="hidden" aria-labelledby="accordion-flush-heading-2">
                     <div class="py-5 border-b border-gray-200 dark:border-gray-700">
                         <section class="bg-white  dark:bg-gray-900">
-                            <form action="#" class="flex">
-                                <div class="basis-1/2">
-                                    <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+                            <form action="#" class="flex gap-8">
+                                <div class="basis-1/2 ">
+                                    <div class="grid gap-4 sm:grid-cols-2 pb-3 sm:gap-6">
                                         <div class="sm:col-span-2">
-                                            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Nama</label>
-                                            <input type="text" name="name" id="name" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="">
+                                            <label for="nama" class="block mb-2 text-sm font-medium text-[#2d5523] dark:text-white">Nama</label>
+                                            <input type="text" name="nama" id="nama" class="bg-gray-50 border text-base border-[#518742]  text-[#2f5724] rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="" readonly value="Lucky Kurniawan Langoday">
+                                        </div>
+                                    </div>
+                                    <div class="grid gap-4 sm:grid-cols-2 pb-3 sm:gap-6">
+                                        <div class="sm:col-span-2">
+                                            <label for="nik" class="block mb-2 text-sm font-medium text-[#2d5523] dark:text-white">NIK</label>
+                                            <input type="text" name="nik" id="nik" class="bg-gray-50 border text-base border-[#518742]  text-[#2f5724] rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="" readonly value="3729103826336784">
+                                        </div>
+                                    </div>
+                                    <div class="grid gap-4 sm:grid-cols-2 pb-3 sm:gap-6">
+                                        <div class="sm:col-span-2">
+                                            <label for="email" class="block mb-2 text-sm font-medium text-[#2d5523] dark:text-white">Email</label>
+                                            <input type="text" name="email" id="email" class="bg-gray-50 border text-base border-[#518742]  text-[#2f5724] rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="" readonly value="2241720168@student.polinema.ac.id">
+                                        </div>
+                                    </div>
+                                    <div class="grid gap-4 sm:grid-cols-2 pb-3 sm:gap-6">
+                                        <div class="sm:col-span-2">
+                                            <label for="ttl" class="block mb-2 text-sm font-medium text-[#2d5523] dark:text-white">Tempat, Tanggal Lahir</label>
+                                            <input type="text" name="ttl" id="ttl" class="bg-gray-50 border text-base border-[#518742]  text-[#2f5724] rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="" readonly value="Gresik, 30 Desember 2003">
+                                        </div>
+                                    </div>
+                                    <div class="grid gap-4 sm:grid-cols-2 pb-3 sm:gap-6">
+                                        <div class="sm:col-span-2">
+                                            <label for="jenis-kelamin" class="block mb-2 text-sm font-medium text-[#2d5523] dark:text-white">Jenis Kelamin</label>
+                                            <input type="text" name="jenis-kelamin" id="jenis-kelamin" class="bg-gray-50 border text-base border-[#518742]  text-[#2f5724] rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="" readonly value="Laki-laki">
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                                <div class="basis-1/2">
+                                    <div class="grid gap-4 sm:grid-cols-2 pb-3 sm:gap-6">
+                                        <div class="sm:col-span-2">
+                                            <label for="agama" class="block mb-2 text-sm font-medium text-[#2d5523] dark:text-white">Agama</label>
+                                            <input type="text" name="agama" id="agama" class="bg-gray-50 border text-base border-[#518742]  text-[#2f5724] rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="" readonly value="Islam">
+                                        </div>
+                                    </div>
+                                    <div class="grid gap-4 sm:grid-cols-2 pb-3 sm:gap-6">
+                                        <div class="sm:col-span-2">
+                                            <label for="pekerjaan" class="block mb-2 text-sm font-medium text-[#2d5523] dark:text-white">Pekerjaan</label>
+                                            <input type="text" name="pekerjaan" id="pekerjaan" class="bg-gray-50 border text-base border-[#518742]  text-[#2f5724] rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="" readonly value="Mahasiswa">
+                                        </div>
+                                    </div>
+                                    <div class="grid gap-4 sm:grid-cols-2 pb-3 sm:gap-6">
+                                        <div class="sm:col-span-2">
+                                            <label for="kewarganegaraan" class="block mb-2 text-sm font-medium text-[#2d5523] dark:text-white">Kewarganegaraan</label>
+                                            <input type="text" name="kewarganegaraan" id="kewarganegaraan" class="bg-gray-50 border text-base border-[#518742]  text-[#2f5724] rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="" readonly value="WNI">
+                                        </div>
+                                    </div>
+                                    <div class="grid gap-4 sm:grid-cols-2 pb-3 sm:gap-6">
+                                        <div class="sm:col-span-2">
+                                            <label for="status-pernikahan" class="block mb-2 text-sm font-medium text-[#2d5523] dark:text-white">Status pernikahan</label>
+                                            <input type="text" name="status-pernikahan" id="status-pernikahan" class="bg-gray-50 border text-base border-[#518742]  text-[#2f5724] rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="" readonly value="Belum Menikah">
+                                        </div>
+                                    </div>
+                                    <div class="grid gap-4 sm:grid-cols-2 pb-3 sm:gap-6">
+                                        <div class="sm:col-span-2">
+                                            <label for="alamat" class="block mb-2 text-sm font-medium text-[#2d5523] dark:text-white">Alamat</label>
+                                            <textarea name="alamat" id="alamat" class="bg-gray-50 border text-base border-[#518742]  text-[#2f5724] rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"  required="" readonly >Jl. Bunga Kumis Kucing Gang Macan NO. 42A</textarea>
+                                            
                                         </div>
                                     </div>
                                 </div>
