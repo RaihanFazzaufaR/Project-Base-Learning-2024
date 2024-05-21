@@ -108,6 +108,7 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::get('/', [AdminPengaduanController::class, 'index'])->name('pengaduan-admin');
                 Route::post('/', [AdminPengaduanController::class, 'addResponse'])->name('add-response-admin');
                 Route::put('/{id}', [AdminPengaduanController::class, 'updateStatusOutside'])->name('update-status-outside');
+                Route::delete('/delete/{id}', [AdminPengaduanController::class, 'destroyAduan'])->name('destroy-aduan-admin');
             });
         });
     });

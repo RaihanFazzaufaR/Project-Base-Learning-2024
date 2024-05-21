@@ -10,43 +10,31 @@ use App\Models\ResponModel;
 class PengaduanController extends Controller
 {
     public function index(Request $request)
-    {
+    {   
+
         $page = 'pengaduan';
         $selected = 'Pengaduan';
-        $aduan_id = 0;
+        $aduan_id = session('aduan_id', 0);
         $complaints = AduanModel::query();
 
-        if (session('aduan_id')) {
-            $aduan_id = session('aduan_id');
+        $searchTerm = $request->filled('search') ? $request->search : session('search');
+        if ($searchTerm) {
+            $searchTerm = '%' . $searchTerm . '%';
+            $complaints->where('judul', 'like', $searchTerm)
+                ->orWhereHas('penduduk', function ($query) use ($searchTerm) {
+                    $query->where('nama', 'like', $searchTerm);
+                });
         }
-        if ($request->filled('search')) {
-            $searchTerm = '%' . $request->search . '%';
-            $complaints->where('judul', 'like', $searchTerm)
-                ->orWhereHas('penduduk', function ($query) use ($searchTerm) {
-                    $query->where('nama', 'like', $searchTerm);
-                });
-        } elseif (session('search')) {
-            $searchTerm = '%' . session('search') . '%';
-            $complaints->where('judul', 'like', $searchTerm)
-                ->orWhereHas('penduduk', function ($query) use ($searchTerm) {
-                    $query->where('nama', 'like', $searchTerm);
-                });
-        } elseif (session('status') || session('prioritas')) {
-            $complaints->where(function ($query) {
-                if (session('status')) {
-                    $query->where('status', session('status'));
+
+        $status = $request->filled('status') ? $request->status : session('status');
+        $prioritas = $request->filled('prioritas') ? $request->prioritas : session('prioritas');
+        if ($status || $prioritas) {
+            $complaints->where(function ($query) use ($status, $prioritas) {
+                if ($status) {
+                    $query->where('status', $status);
                 }
-                if (session('prioritas')) {
-                    $query->where('prioritas', session('prioritas'));
-                }
-            });
-        } elseif ($request->all()) {
-            $complaints->where(function ($query) use ($request) {
-                if ($request->filled('status')) {
-                    $query->where('status', $request->status);
-                }
-                if ($request->filled('prioritas')) {
-                    $query->where('prioritas', $request->prioritas);
+                if ($prioritas) {
+                    $query->where('prioritas', $prioritas);
                 }
             });
         }
@@ -151,6 +139,40 @@ class PengaduanController extends Controller
         
         } else {
             return redirect()->route('pengaduan-admin')->withInput();
+        }
+    }
+
+    public function destroyAduan(Request $request, $aduan_id)
+    {
+        try {
+            $aduan = AduanModel::find($aduan_id);
+            $imagePath = null;
+
+            if($aduan->image != null){
+                $imagePath = public_path('assets/images/Respon/' . $aduan->image);
+            }
+            
+            // Try to delete child data, but don't treat it as an error if no rows are deleted
+            ResponModel::where('aduan_id', $aduan_id)->delete();
+        
+            $redirectParams = $request->only('_token','search', 'status', 'prioritas', 'page');
+        
+            $deleted_aduan = AduanModel::destroy($aduan_id);
+        
+            if ($deleted_aduan) {
+                if (file_exists($imagePath)) {
+                    unlink($imagePath);
+                }
+                $message = ['success' => 'Data berhasil dihapus!'];
+            } else {
+                $message = ['error' => 'Gagal menghapus data utama'];
+            }
+        
+            return redirect()->route('pengaduan-admin', $redirectParams)
+                ->withInput()
+                ->with($message);
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Terjadi kesalahan: ' . $e->getMessage()], 500);
         }
     }
 }
