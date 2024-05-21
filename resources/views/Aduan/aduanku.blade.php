@@ -12,16 +12,6 @@
 
 {{-- content --}}
 <div class="w-[90%] mx-auto h-fit flex justify-between items-center mt-15">
-    @if(session('success'))
-        <div class="w-full bg-[#57BA47] text-white text-center py-3 rounded-lg">
-            {{ session('success') }}
-        </div>
-    @endif
-    @if(session('error'))
-        <div class="w-full bg-[#FF5E5E] text-white text-center py-3 rounded-lg">
-            {{ session('error') }}
-        </div>
-    @endif
     <form action="{{ route('aduanku') }}" class="w-fit h-full flex items-center justify-center mb-0">
         <div
             class="flex shadow-md rounded-xl w-full bg-white border-2 border-[#2d5523] items-center justify-between py-2 h-fit">
