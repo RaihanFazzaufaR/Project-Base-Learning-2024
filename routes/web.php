@@ -18,6 +18,7 @@ use App\Http\Controllers\Admin\PersuratanController as AdminPersuratanController
 use App\Http\Controllers\Admin\PengumumanController as AdminPengumumanController;
 use App\Http\Controllers\Admin\AkunAdminController as AdminAkunAdminController;
 use App\Http\Controllers\Admin\JadwalKegiatanController as AdminKegiatanController;
+use App\Http\Controllers\ProfilkuController;
 use App\Http\Controllers\user\ProfilController;
 
 /*
@@ -161,4 +162,8 @@ Route::group(['middleware' => ['auth']], function () {
 
 Route::group(['prefix' => 'profil'], function () {
     Route::get('/', [ProfilController::class, 'index'])->name('profil');
+});
+
+Route::group(['prefix' => 'profilku'], function () {
+    Route::get('/', [ProfilkuController::class, 'index'])->name('profilku');
 });
