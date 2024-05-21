@@ -5,7 +5,7 @@
       <div class="absolute z-[2] top-0 h-full w-full bg-[#19A8EF] left-0 group-hover: transition ease-in-out duration-500 -translate-y-[93%] group-hover:translate-y-0"></div>
       <div class="relative flex w-full h-full justify-center items-center gap-10 z-[3] top-0 left-0">
         <div class="flex flex-col justify-center items-center gap-2">
-          <div class="font-bold text-5xl group-hover:text-white">100</div>
+          <div class="font-bold text-5xl group-hover:text-white">{{ $dataJumlah['jumlahKK'] }}</div>
           <div class="font-semibold text-[15px] text-gray-500 group-hover:text-gray-200">Jumlah KK</div>
         </div>
         <div class="text-5xl text-[#19A8EF] group-hover:text-white">
@@ -19,7 +19,7 @@
       <div class="absolute z-[2] top-0 h-full w-full bg-[#FEAD34] left-0 group-hover: transition ease-in-out duration-500 -translate-y-[93%] group-hover:translate-y-0"></div>
       <div class="relative flex w-full h-full justify-center items-center gap-10 z-[3] top-0 left-0">
         <div class="flex flex-col justify-center items-center gap-2">
-          <div class="font-bold text-5xl group-hover:text-white">1000</div>
+          <div class="font-bold text-5xl group-hover:text-white">{{ $dataJumlah['jumlahPenduduk'] }}</div>
           <div class="font-semibold text-[15px] text-gray-500 group-hover:text-gray-200">Jumlah Penduduk</div>
         </div>
         <div class="text-5xl text-[#FEAD34] group-hover:text-white">
@@ -33,7 +33,7 @@
       <div class="absolute z-[2] top-0 h-full w-full bg-[#9119EF] left-0 group-hover: transition ease-in-out duration-500 -translate-y-[93%] group-hover:translate-y-0"></div>
       <div class="relative flex w-full h-full justify-center items-center gap-10 z-[3] top-0 left-0">
         <div class="flex flex-col justify-center items-center gap-2">
-          <div class="font-bold text-5xl group-hover:text-white">43</div>
+          <div class="font-bold text-5xl group-hover:text-white">{{ $dataJumlah['jumlahUmkm'] }}</div>
           <div class="font-semibold text-[15px] text-gray-500 group-hover:text-gray-200">Jumlah UMKM</div>
         </div>
         <div class="text-5xl text-[#9119EF] group-hover:text-white">
@@ -47,7 +47,7 @@
       <div class="absolute z-[2] top-0 h-full w-full bg-[#19EF88] left-0 group-hover: transition ease-in-out duration-500 -translate-y-[93%] group-hover:translate-y-0"></div>
       <div class="relative flex w-full h-full justify-center items-center gap-10 z-[3] top-0 left-0">
         <div class="flex flex-col justify-center items-center gap-2">
-          <div class="font-bold text-5xl group-hover:text-white">100</div>
+          <div class="font-bold text-5xl group-hover:text-white">{{ $dataJumlah['jumlahAduan'] }}</div>
           <div class="font-semibold text-[15px] text-gray-500 group-hover:text-gray-200">Jumlah Aduan</div>
         </div>
         <div class="text-5xl text-[#19EF88] group-hover:text-white">
@@ -466,13 +466,15 @@
       }
     })
 
+    let pendudukTetap = @json($dataStatusPenduduk['tetap']);
+    let pendudukTidakTetap = @json($dataStatusPenduduk['tidak tetap']);
+
     const dougnutChart = new Chart(document.getElementById("dougnutChart"), {
       type: 'doughnut',
       data: {
         labels: ['Penduduk Tetap', 'Penduduk Tidak Tetap'],
         datasets: [{
-          label: 'My First Dataset',
-          data: [65, 35],
+          data: [pendudukTetap, pendudukTidakTetap],
           backgroundColor: [
             '#57BA47',
             '#2D5523'
@@ -495,7 +497,7 @@
         labels: ['> 46 Tahun', '26 - 45 Tahun', '13 - 25 Tahun', '6 - 12 Tahun', '0 - 5 Tahun'],
         datasets: [{
           label: 'Laki-Laki',
-          data: [65, 35, 20, 40, 50],
+          data: [@json($dataDemografiPenduduk['kategori5L']), @json($dataDemografiPenduduk['kategori4L']), @json($dataDemografiPenduduk['kategori3L']), @json($dataDemografiPenduduk['kategori2L']), @json($dataDemografiPenduduk['kategori1L'])],
           backgroundColor: [
             '#57BA47'
           ],
@@ -503,7 +505,7 @@
           barThickness: 10,
         }, {
           label: 'Perempuan',
-          data: [65, 35, 20, 40, 50],
+          data: [@json($dataDemografiPenduduk['kategori5P']), @json($dataDemografiPenduduk['kategori4P']), @json($dataDemografiPenduduk['kategori3P']), @json($dataDemografiPenduduk['kategori2P']), @json($dataDemografiPenduduk['kategori1P'])],
           backgroundColor: [
             '#EAE509'
           ],
