@@ -283,6 +283,32 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div class="flex items-center h-full gap-4 justify-center">
+                                        <form id="delete-aduan-admin-form-{{ $complaint->aduan_id }}"
+                                            action="{{ route('destroy-aduan-admin', $complaint->aduan_id) }}" method="POST"
+                                            style="display: none;">
+                                            @csrf
+                                            @method('DELETE')
+                                            <input type="hidden" name="perespon_id" id="perespon_id"
+                                                value="{{ Auth::user()->penduduk->id_penduduk }}">
+                                            <input type="hidden" name="aduan_id" id="aduan_id"
+                                                value="{{ $complaint->aduan_id }}">
+                                            <input type="hidden" name="page" id="page"
+                                                value="{{ request()->page ? request()->page : null }}">
+                                            <input type="hidden" name="search" id="search"
+                                                value="{{ request()->search ? request()->search : null }}">
+                                            <input type="hidden" name="prioritas" id="prioritas"
+                                                value="{{ request()->prioritas ? request()->prioritas : null }}">
+                                            <input type="hidden" name="_token" id = "_token"
+                                                value="{{ csrf_token() }}">
+                                        </form>
+                                        <button type="button"
+                                            class="flex justify-center items-center gap-2 w-fit text-white bg-[#FF5E5E] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#B34242] hover:scale-105 transition-all"
+                                            onclick="event.preventDefault(); if(confirm('Apakah Anda yakin ingin menghapus aduan ini?')) document.getElementById('delete-aduan-admin-form-{{ $complaint->aduan_id }}').submit();">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                            <div>Hapus</div>
+                                        </button>
+                                    </div>
                                     <div class="relative h-fit" x-data="{ 'outsideStatusModal': false }"
                                         @keydown.escape="outsideStatusModal = false">
 
@@ -364,21 +390,4 @@
             @endif
         });
     </script>
-    {{-- <script>
-        function formCheck(element) {
-            var konten_respon = document.querySelector('.konten_respon').value;
-            var image = document.querySelector('.image').value;
-            var submit = document.querySelector('#submit');
-
-            if (konten_respon != '' || image != '') {
-                submit.disabled = false;
-                submit.className =
-                    'submit text-white inline-flex px-4 py-4 h-10 w-10 text-sm font-bold rounded-full shadow-md items-center justify-center bg-[#57BA47] hover:bg-[#34662C] hover:scale-105 transition duration-300 ease-in-out'
-            } else {
-                submit.disabled = true;
-                submit.className =
-                    'submit text-white inline-flex px-4 py-4 h-10 w-10 text-sm font-bold rounded-full shadow-md items-center justify-center bg-white'
-            }
-        }
-    </script> --}}
 </x-admin-layout>
