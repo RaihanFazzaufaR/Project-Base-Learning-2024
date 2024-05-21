@@ -129,7 +129,7 @@
                     <!-- Menu Item Jadwal Kegiatan -->
                     <li>
                         <a class="group relative flex items-center justify-start gap-2.5 rounded-sm px-4 py-3 font-bold duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47]" href="#" @click.prevent="selected = (selected === 'Kegiatan' ? '':'Kegiatan')" :class="{
-                    'bg-[#E4F7DF] text-[#57BA47] border-r-4 border-[#57BA47]': (selected === 'Jadwal Kegiatan') || (page === 'jadwal kegiatan') || (page === 'ajuan kegiatan')}">
+                    'bg-[#E4F7DF] text-[#57BA47] border-r-4 border-[#57BA47]': (selected === 'Kegiatan') || (page === 'jadwal kegiatan') || (page === 'ajuan kegiatan')}">
                             <div class=" w-7">
                                 <i class="fa-solid fa-calendar-day text-xl"></i>
                             </div>

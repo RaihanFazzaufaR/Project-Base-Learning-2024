@@ -225,7 +225,7 @@
       </div>
     </div>
     <div class="col-span-2 bg-white rounded-xl shadow-xl flex h-full">
-      <div class="w-[65%] h-full border-r-2 border-gray-300 p-8">
+      <div class="w-[45%] h-full border-r-2 border-gray-300 py-8 px-6">
         <div class="dark:bg-gray-800 bg-white flex flex-col justify-between gap-8 h-full">
           <div class="flex items-center justify-around">
             <button id="prev" aria-label="calendar backward" onclick="prev()" class="focus:text-gray-400 hover:text-gray-400 text-gray-800 dark:text-gray-100 button-calendar">
@@ -296,99 +296,130 @@
           </div>
         </div>
       </div>
-      <div class="w-[35%] h-full p-6 flex flex-col gap-4">
-        <div class="font-bold text-lg text-black">Kegiatan Mendatang</div>
-        <div class="flex flex-col h-[85%] overflow-y-auto py-2 pt-1 scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin">
-          <div class="flex w-full h-24 py-2 gap-2">
-            <div class="flex flex-col w-[30%] h-full bg-[#cefbc4] rounded-xl items-center justify-center pb-3 relative">
-              <p class="font-bold text-4xl text-[#57BA47]">10</p>
-              <p class="font-semibold text-sm text-black">Jum</p>
-              <div class="absolute w-5 h-5 rounded-full bg-[#D4B204] border-4 border-white -bottom-2"></div>
+      <div class="col-span-2 row-span-1 h-full w-[55%] flex flex-col gap-2 px-2 py-4">
+        <div class="font-bold text-lg text-center text-black">Kegiatan Mendatang</div>
+        <div class="flex flex-col h-full overflow-y-auto pb-2 pt-1 px-4 scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin gap-3">
+          <div class="flex w-full h-[100px] border-2 border-green-900 rounded-lg shadow-md">
+            <div class="w-fit h-full flex flex-col bg-green-900 px-4 text-white items-center justify-center">
+              <p class="font-bold text-3xl">10</p>
+              <p class="font-medium text-lg">Jun</p>
             </div>
-            <div class="flex flex-col h-full w-[70%] items-center px-2 gap-1">
-              <div class="text-lg font-medium text-black text-left w-full">Nama Acara</div>
-              <div class="flex items-center gap-2 mt-1 text-sm font-normal text-gray-500 text-left w-full">
-                <i class="fa-regular fa-clock"></i>
-                <p>07:00 - 10:00</p>
+            <div class="flex flex-col h-full w-full items-center px-3 gap-1 py-2 relative">
+              <div class="text-lg font-medium text-green-900 text-left w-full">Kerja Bakti di RT 02</div>
+              <div class="flex items-center gap-3 w-full justify-between">
+                <div class="flex gap-2 items-center text-sm font-normal text-gray-500 text-left w-fit">
+                  <i class="fa-regular fa-clock"></i>
+                  <p>07:00 - 10:00</p>
+                </div>
+                <div class="px-3 py-1 bg-green-500 rounded-xl text-xs font-medium text-white">Kebersihan</div>
               </div>
               <div class="flex items-center gap-2 text-sm font-normal text-gray-500 text-left w-full">
                 <i class="fa-solid fa-location-dot"></i>
-                <p>Rumah Pak RW</p>
+                <p>Lorem ipsum dolor sit amet</p>
               </div>
             </div>
           </div>
-          <div class="flex w-full h-24 py-2 gap-2">
-            <div class="flex flex-col w-[30%] h-full bg-[#cefbc4] rounded-xl items-center justify-center pb-3 relative">
-              <p class="font-bold text-4xl text-[#57BA47]">10</p>
-              <p class="font-semibold text-sm text-black">Jum</p>
-              <div class="absolute w-5 h-5 rounded-full bg-[#D4B204] border-4 border-white -bottom-2"></div>
+          <div class="flex w-full h-[100px] border-2 border-green-900 rounded-lg shadow-md">
+            <div class="w-fit h-full flex flex-col bg-green-900 px-4 text-white items-center justify-center">
+              <p class="font-bold text-3xl">10</p>
+              <p class="font-medium text-lg">Jun</p>
             </div>
-            <div class="flex flex-col h-full w-[70%] items-center px-2 gap-1">
-              <div class="text-lg font-medium text-black text-left w-full">Nama Acara</div>
-              <div class="flex items-center gap-2 mt-1 text-sm font-normal text-gray-500 text-left w-full">
-                <i class="fa-regular fa-clock"></i>
-                <p>07:00 - 10:00</p>
+            <div class="flex flex-col h-full w-full items-center px-3 gap-1 py-2 relative">
+              <div class="text-lg font-medium text-green-900 text-left w-full">Kerja Bakti di RT 02</div>
+              <div class="flex items-center gap-3 w-full justify-between">
+                <div class="flex gap-2 items-center text-sm font-normal text-gray-500 text-left w-fit">
+                  <i class="fa-regular fa-clock"></i>
+                  <p>07:00 - 10:00</p>
+                </div>
+                <div class="px-3 py-1 bg-green-500 rounded-xl text-xs font-medium text-white">Kebersihan</div>
               </div>
               <div class="flex items-center gap-2 text-sm font-normal text-gray-500 text-left w-full">
                 <i class="fa-solid fa-location-dot"></i>
-                <p>Rumah Pak RW</p>
+                <p>Lorem ipsum dolor sit amet</p>
               </div>
             </div>
           </div>
-          <div class="flex w-full h-24 py-2 gap-2">
-            <div class="flex flex-col w-[30%] h-full bg-[#cefbc4] rounded-xl items-center justify-center pb-3 relative">
-              <p class="font-bold text-4xl text-[#57BA47]">10</p>
-              <p class="font-semibold text-sm text-black">Jum</p>
-              <div class="absolute w-5 h-5 rounded-full bg-[#D4B204] border-4 border-white -bottom-2"></div>
+          <div class="flex w-full h-[100px] border-2 border-green-900 rounded-lg shadow-md">
+            <div class="w-fit h-full flex flex-col bg-green-900 px-4 text-white items-center justify-center">
+              <p class="font-bold text-3xl">10</p>
+              <p class="font-medium text-lg">Jun</p>
             </div>
-            <div class="flex flex-col h-full w-[70%] items-center px-2 gap-1">
-              <div class="text-lg font-medium text-black text-left w-full">Nama Acara</div>
-              <div class="flex items-center gap-2 mt-1 text-sm font-normal text-gray-500 text-left w-full">
-                <i class="fa-regular fa-clock"></i>
-                <p>07:00 - 10:00</p>
+            <div class="flex flex-col h-full w-full items-center px-3 gap-1 py-2 relative">
+              <div class="text-lg font-medium text-green-900 text-left w-full">Kerja Bakti di RT 02</div>
+              <div class="flex items-center gap-3 w-full justify-between">
+                <div class="flex gap-2 items-center text-sm font-normal text-gray-500 text-left w-fit">
+                  <i class="fa-regular fa-clock"></i>
+                  <p>07:00 - 10:00</p>
+                </div>
+                <div class="px-3 py-1 bg-green-500 rounded-xl text-xs font-medium text-white">Kebersihan</div>
               </div>
               <div class="flex items-center gap-2 text-sm font-normal text-gray-500 text-left w-full">
                 <i class="fa-solid fa-location-dot"></i>
-                <p>Rumah Pak RW</p>
+                <p>Lorem ipsum dolor sit amet</p>
               </div>
             </div>
           </div>
-          <div class="flex w-full h-24 py-2 gap-2">
-            <div class="flex flex-col w-[30%] h-full bg-[#cefbc4] rounded-xl items-center justify-center pb-3 relative">
-              <p class="font-bold text-4xl text-[#57BA47]">10</p>
-              <p class="font-semibold text-sm text-black">Jum</p>
-              <div class="absolute w-5 h-5 rounded-full bg-[#D4B204] border-4 border-white -bottom-2"></div>
+          <div class="flex w-full h-[100px] border-2 border-green-900 rounded-lg shadow-md">
+            <div class="w-fit h-full flex flex-col bg-green-900 px-4 text-white items-center justify-center">
+              <p class="font-bold text-3xl">10</p>
+              <p class="font-medium text-lg">Jun</p>
             </div>
-            <div class="flex flex-col h-full w-[70%] items-center px-2 gap-1">
-              <div class="text-lg font-medium text-black text-left w-full">Nama Acara</div>
-              <div class="flex items-center gap-2 mt-1 text-sm font-normal text-gray-500 text-left w-full">
-                <i class="fa-regular fa-clock"></i>
-                <p>07:00 - 10:00</p>
+            <div class="flex flex-col h-full w-full items-center px-3 gap-1 py-2 relative">
+              <div class="text-lg font-medium text-green-900 text-left w-full">Kerja Bakti di RT 02</div>
+              <div class="flex items-center gap-3 w-full justify-between">
+                <div class="flex gap-2 items-center text-sm font-normal text-gray-500 text-left w-fit">
+                  <i class="fa-regular fa-clock"></i>
+                  <p>07:00 - 10:00</p>
+                </div>
+                <div class="px-3 py-1 bg-green-500 rounded-xl text-xs font-medium text-white">Kebersihan</div>
               </div>
               <div class="flex items-center gap-2 text-sm font-normal text-gray-500 text-left w-full">
                 <i class="fa-solid fa-location-dot"></i>
-                <p>Rumah Pak RW</p>
+                <p>Lorem ipsum dolor sit amet</p>
               </div>
             </div>
           </div>
-          <div class="flex w-full h-24 py-2 gap-2">
-            <div class="flex flex-col w-[30%] h-full bg-[#cefbc4] rounded-xl items-center justify-center pb-3 relative">
-              <p class="font-bold text-4xl text-[#57BA47]">10</p>
-              <p class="font-semibold text-sm text-black">Jum</p>
-              <div class="absolute w-5 h-5 rounded-full bg-[#D4B204] border-4 border-white -bottom-2"></div>
+          <div class="flex w-full h-[100px] border-2 border-green-900 rounded-lg shadow-md">
+            <div class="w-fit h-full flex flex-col bg-green-900 px-4 text-white items-center justify-center">
+              <p class="font-bold text-3xl">10</p>
+              <p class="font-medium text-lg">Jun</p>
             </div>
-            <div class="flex flex-col h-full w-[70%] items-center px-2 gap-1">
-              <div class="text-lg font-medium text-black text-left w-full">Nama Acara</div>
-              <div class="flex items-center gap-2 mt-1 text-sm font-normal text-gray-500 text-left w-full">
-                <i class="fa-regular fa-clock"></i>
-                <p>07:00 - 10:00</p>
+            <div class="flex flex-col h-full w-full items-center px-3 gap-1 py-2 relative">
+              <div class="text-lg font-medium text-green-900 text-left w-full">Kerja Bakti di RT 02</div>
+              <div class="flex items-center gap-3 w-full justify-between">
+                <div class="flex gap-2 items-center text-sm font-normal text-gray-500 text-left w-fit">
+                  <i class="fa-regular fa-clock"></i>
+                  <p>07:00 - 10:00</p>
+                </div>
+                <div class="px-3 py-1 bg-green-500 rounded-xl text-xs font-medium text-white">Kebersihan</div>
               </div>
               <div class="flex items-center gap-2 text-sm font-normal text-gray-500 text-left w-full">
                 <i class="fa-solid fa-location-dot"></i>
-                <p>Rumah Pak RW</p>
+                <p>Lorem ipsum dolor sit amet</p>
               </div>
             </div>
           </div>
+          <div class="flex w-full h-[100px] border-2 border-green-900 rounded-lg shadow-md">
+            <div class="w-fit h-full flex flex-col bg-green-900 px-4 text-white items-center justify-center">
+              <p class="font-bold text-3xl">10</p>
+              <p class="font-medium text-lg">Jun</p>
+            </div>
+            <div class="flex flex-col h-full w-full items-center px-3 gap-1 py-2 relative">
+              <div class="text-lg font-medium text-green-900 text-left w-full">Kerja Bakti di RT 02</div>
+              <div class="flex items-center gap-3 w-full justify-between">
+                <div class="flex gap-2 items-center text-sm font-normal text-gray-500 text-left w-fit">
+                  <i class="fa-regular fa-clock"></i>
+                  <p>07:00 - 10:00</p>
+                </div>
+                <div class="px-3 py-1 bg-green-500 rounded-xl text-xs font-medium text-white">Kebersihan</div>
+              </div>
+              <div class="flex items-center gap-2 text-sm font-normal text-gray-500 text-left w-full">
+                <i class="fa-solid fa-location-dot"></i>
+                <p>Lorem ipsum dolor sit amet</p>
+              </div>
+            </div>
+          </div>
+          
         </div>
       </div>
     </div>
