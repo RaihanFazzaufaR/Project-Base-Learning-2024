@@ -204,10 +204,32 @@
           </a>
         </li>
         <li>
-          <a href="{{ route('aduan') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#1C4F0F] md:p-0 md:relative group {{ ($menu === 'Aduan') ? 'md:text-[#1C4F0F]':'md:text-gray-500' }}">
+          <button id="dropdownAduanLink" data-dropdown-toggle="dropdownAduan" class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#1C4F0F] md:p-0 md:relative group {{ ($menu === 'Aduan' || $menu === 'Aduan-Ku') ? 'md:text-[#1C4F0F]':'md:text-gray-500' }}">
+            Aduan
+            <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+              <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
+            </svg>
+            <div class="md:absolute md:h-[2.5px] md:w-full md:bg-[#1C4F0F] -bottom-1 group-hover:scale-x-100 md:transition md:ease-in-out md:duration-500 {{ ($menu === 'Surat' || $menu === 'Suratku') ? '':'md:scale-x-0' }}"></div>
+          </button>
+          {{-- Dropdown menu --}}
+          <div id="dropdownAduan" class="z-10 hidden font-normal overflow-hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
+            <ul class="text-sm font-semibold text-gray-700 dark:text-gray-400 " aria-labelledby="dropdownLargeButton">
+              <li>
+                <a href="{{ route('aduan') }}" class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">Aduan</a>
+              </li>
+              <li>
+                @if (Auth::check())
+                <a href="{{ route('aduanku') }}" class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">Aduan-Ku</a>
+                @else
+                <a href="{{ route('login') }}" class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">Aduan-Ku</a>
+                @endif
+              </li>
+            </ul>
+          </div>
+          {{-- <a href="{{ route('aduan') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#1C4F0F] md:p-0 md:relative group {{ ($menu === 'Aduan') ? 'md:text-[#1C4F0F]':'md:text-gray-500' }}">
             Aduan
             <div class="md:absolute md:h-[2.5px] md:w-full md:bg-[#1C4F0F]  group-hover:scale-x-100 md:transition md:ease-in-out md:duration-500 {{ ($menu === 'Aduan') ? '':'md:scale-x-0' }}"></div>
-          </a>
+          </a> --}}
         </li>
         <li>
           <a href="{{ route('profil') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#1C4F0F] md:p-0 md:relative group {{ ($menu === 'Profil') ? 'md:text-[#1C4F0F]':'md:text-gray-500' }}">

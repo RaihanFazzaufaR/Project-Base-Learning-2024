@@ -29,7 +29,7 @@ class AduanController extends Controller
 
     public function indexAduanku(Request $request)
     {
-        $menu = 'Aduanku';
+        $menu = 'Aduan';
         $aduans = AduanModel::query()->where('pengadu_id', auth()->user()->penduduk->id_penduduk);
         $aduan_id = session('aduan_id', 0);
 

@@ -10,7 +10,7 @@
     <img src="{{ asset('assets/images/kegiatan-cover.png') }}" alt="" class="w-full">
     <div class=" w-[571px] h-[185px] z-10 absolute flex justify-center rounded-[105px] flex-col text-center ">
         <p class="text-[#2d5523] font-bold text-[36px]">Jadwal Kegiatan di RW 3</p>
-        <p class="text-[#2d5523] font-sans text-[32px] text-center">“Tumbuhkan Kolaborasi Masyarakat di Setiap Kegiatan RW”</p>
+        <p class="text-[#2d5523] font-sans text-[32px] text-center">Tumbuhkan Kolaborasi Masyarakat di Setiap Kegiatan RW</p>
     </div>
 </div>
 

@@ -7,7 +7,7 @@
         <img src="{{ asset('assets/images/profil-cover.jpg') }}" alt="" class="w-full h-[80vh] ">
         <div class="bg-white/[0.73] w-[571px] h-[185px] z-10 absolute flex justify-center rounded-[105px] flex-col text-center shadow-2xl items-center">
             <p class="text-[#2d5523] font-bold text-[36px] w-[500px]">Profil RW 03</p>
-            <p class="text-[#2d5523] font-sans text-[32px] text-center">“Mari Mengenal Lebih Dekat RW 03”</p>
+            <p class="text-[#2d5523] font-sans text-[32px] text-center">Mari Mengenal Lebih Dekat RW 03</p>
         </div>
     </div>
     <div class="relative bg-white -top-[10vh] w-[75vw] h-fit pb-13 mx-auto rounded-md shadow-2xl flex flex-col gap-7 text-[#236612] z-20 px-4">
