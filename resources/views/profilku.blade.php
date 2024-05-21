@@ -8,10 +8,10 @@
             data-active-classes="bg-white dark:bg-gray-900 text-gray-900 dark:text-white"
             data-inactive-classes="text-gray-500 dark:text-gray-400">
             <div class="size-80 rounded-full overflow-hidden">
-                <div class="absolute  size-15 bg-[#2d5523] flex justify-center items-center rounded-full text-2xl left-[390px] top-[350px] text-white ">
+                <button onclick="showInput()" class="absolute  size-15 bg-[#2d5523] flex justify-center items-center rounded-full text-2xl left-[390px] top-[350px] text-white ">
                     <i class="fa-solid fa-pen"></i>
-                    <input type="file" type="hidden">
-                </div>
+                </button>
+                <input type="file" name="" id="" class="hidden">
                 <img src="{{ asset('assets/images/contoh-foto-rw.jpg') }}" alt="profile" class="w-full h-full">
             </div>
             {{-- <div class="w-20 h-20 rounded-full overflow-hidden relative">
@@ -52,8 +52,9 @@
 
 <x-footer>
     <script>
-        document.getElementById('trigger-file-input').addEventListener('click', function() {
-            document.getElementById('file-input').click();
-        });
+        const showInput = () => {
+            const input = document.querySelector('input[type="file"]');
+            input.click();
+        }
     </script>
 </x-footer>
