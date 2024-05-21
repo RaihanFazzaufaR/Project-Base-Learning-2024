@@ -121,6 +121,7 @@ Route::group(['middleware' => ['auth']], function () {
         //Route Aduan
         Route::group(['prefix' => 'aduan'], function () {
             Route::get('/', [AduanController::class, 'index'])->name('aduan');
+            Route::get('/aduanku', [AduanController::class, 'indexAduanku'])->name('aduanku');
         });
 
         //Route Jadwal
