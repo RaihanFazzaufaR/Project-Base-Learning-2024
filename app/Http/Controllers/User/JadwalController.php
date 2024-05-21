@@ -18,16 +18,25 @@ class JadwalController extends Controller
         $scrollAuto = '';
 
         $searchingKey = $request->filled('search') ? $request->search : '';
+        $kategoriSearching = $request->filled('kategoriSearching') ? $request->kategoriSearching : '';
 
-        $dataSearching = JadwalModel::where('judul', 'LIKE', '%' . $searchingKey . '%')
-            ->orWhere('lokasi', 'LIKE', '%' . $searchingKey . '%')
-            ->orWhere('aktivitas_tipe', 'LIKE', '%' . $searchingKey . '%')
-            ->orderBy('mulai_tanggal', 'asc')
-            ->get();
-        
-        $dataSearching = $request->filled('kategoriSearching')?$dataSearching->where('aktivitas_tipe', '=', $request->kategoriSearching):$dataSearching;
+        $dataSearchingQuery = JadwalModel::orderBy('mulai_tanggal', 'asc');
+
+        if ($request->filled('search')) {
+            $dataSearchingQuery->where('aktivitas_tipe', 'LIKE', '%' . $searchingKey . '%')
+            ->orWhere('judul', 'LIKE', '%' . $searchingKey . '%');
+        }
+
+        if ($request->filled('kategoriSearching')) {
+            $dataSearchingQuery->where('aktivitas_tipe', '=', $kategoriSearching);
+        }
+
+        $dataSearching = $dataSearchingQuery->get();
 
         $dataSearching = $this->formatDateAndTime($dataSearching);
+
+        // dd($request->filled('search'));
+        // dd($dataSearching->toArray());
 
         $dataUpcoming = JadwalModel::where('mulai_tanggal', '>', date('Y-m-d'))
             ->where('status', 'selesai')
@@ -84,9 +93,9 @@ class JadwalController extends Controller
 
         if ($calendarDatePrev != $calendarDate && $request->filled('date')) {
             $scrollAuto = 'calendar';
-        } else if($kategoriPastPrev != $kategoriPast && $request->filled('kategoriPast')) {
+        } else if ($kategoriPastPrev != $kategoriPast && $request->filled('kategoriPast')) {
             $scrollAuto = 'kategori';
-        } else if($request->filled('search') || $request->filled('kategoriSearching')) {
+        } else if ($request->filled('search') || $request->filled('kategoriSearching')) {
             $scrollAuto = 'search';
         }
 
@@ -94,10 +103,10 @@ class JadwalController extends Controller
         $request->session()->put('kategori', $kategoriPast);
 
 
-        return view('jadwal.index', compact('menu', 'dataUpcoming', 'dataToday', 'dataPast', 'kategoriPast', 'dataDate', 'dateFormat', 'calendarDate', 'scrollAuto', 'searchingKey', 'dataSearching'));
+        return view('jadwal.index', compact('menu', 'dataUpcoming', 'dataToday', 'dataPast', 'kategoriPast', 'dataDate', 'dateFormat', 'calendarDate', 'scrollAuto', 'searchingKey', 'dataSearching', 'kategoriSearching'));
     }
 
-    
+
     private function formatDateAndTime($data)
     {
         foreach ($data as $key => $value) {
