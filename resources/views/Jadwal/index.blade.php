@@ -336,7 +336,7 @@
             <p class="text-2xl font-semibold text-green-900">Tidak ada kegiatan pada {{ $dateFormat }}</p>
         </div>
         @endif
-        <div class="flex w-full max-h-[91vh] flex-wrap items-start justify-start px-10 py-10 overflow-y-auto scrollbar-thin">
+        <div class="flex w-full max-h-[62vh] flex-wrap items-start justify-start px-10 py-10 overflow-y-auto scrollbar-thin">
             <?php $count = 0; ?>
 
             @foreach ($dataToday as $dt)
