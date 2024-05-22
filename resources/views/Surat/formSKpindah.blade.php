@@ -57,7 +57,7 @@
                 <div class="text-[#2d5523] text-2xl pb-10 font-bold">
                     Formulir Surat Keterangan Pindah
                 </div>
-                <form action="" class="gap-4 flex flex-col h-fit">
+                <form action="{{ route('sk-pindah') }}" method="GET" class="gap-4 flex flex-col h-fit">
                     <div class="gap-2 flex w-full h-fit">
                         <div class="basis-1/4 h-full ps-8  flex my-auto items-center">
                             <label for="nama"
@@ -193,12 +193,12 @@
                             <div
                                 class="text-[#2d5523]  placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full  dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 ">
                                 <select class="hidden" x-cloak id="select">
-                                    <option value="1">Makanan</option>
-                                    <option value="2">Minuman</option>
-                                    <option value="3">Peralatan Rumah Tangga</option>
-                                    <option value="4">Kebutuhan Pokok</option>
-                                    <option value="5">Jasa</option>
-                                    <option value="6">Lainnya</option>
+                                    <option value="1">Lucky Kurniawan Langoday</option>
+                                    <option value="2">Lucky Kurniawan Langoday</option>
+                                    <option value="3">Lucky Kurniawan Langoday</option>
+                                    <option value="4">Lucky Kurniawan Langoday</option>
+                                    <option value="5">Lucky Kurniawan Langoday</option>
+                                    <option value="6">Lucky Kurniawan Langoday</option>
                                 </select>
 
                                 <div x-data="dropdown()" x-init="loadOptions()"

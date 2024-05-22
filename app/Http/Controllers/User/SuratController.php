@@ -12,8 +12,18 @@ class SuratController extends Controller
     {
         $menu = 'Surat';
         // return view('Surat.formSK', compact('menu'));
-        // return view('Surat.formSKPindah', compact('menu'));
-        return view('Surat.formSKkematian', compact('menu'));
+        return view('Surat.formSKPindah', compact('menu'));
+        // return view('Surat.formSKkematian', compact('menu'));
+    }
+    public function formSK(Request $request){
+        redirect()->route('sk-pindah');
+    }
+    public function skPindah()
+    {
+        $menu = 'Surat';
+        // return view('Surat.formSK', compact('menu'));
+        return view('Surat.surat_keterangan_pindah', compact('menu'));
+        // return view('Surat.formSKkematian', compact('menu'));
     }
     
     public function suratku()
