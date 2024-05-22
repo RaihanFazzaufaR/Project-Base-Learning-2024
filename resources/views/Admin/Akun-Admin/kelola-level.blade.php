@@ -56,11 +56,8 @@
                                         <select id="jabatan" name="jabatan"
                                             class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
                                             <option value="">Semua</option>
-                                            <option value="Tidak ada">Tidak ada</option>
                                             <option value="Ketua RW">Ketua RW</option>
                                             <option value="Ketua RT">Ketua RT</option>
-                                            <option value="Sekretaris">Sekretaris</option>
-                                            <option value="Bendahara">Bendahara</option>
                                         </select>
                                     </div>
                                 </div>
@@ -275,7 +272,7 @@
                                                                     </div>
                                                                     <div class="flex items-center gap-4">
                                                                         <!-- Display the profile picture -->
-                                                                        <img src="{{ asset('storage/akun-penduduk/' . $userData->image) }}"
+                                                                        <img src="{{ asset('assets/images/UserAccount/' . $userData->image) }}"
                                                                             alt="Foto Profil"
                                                                             class="w-20 h-20 rounded-full object-cover">
                                                                     </div>

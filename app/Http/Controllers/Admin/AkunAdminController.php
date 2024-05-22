@@ -77,7 +77,7 @@ class AkunAdminController extends Controller
         $directory = in_array($penduduk->jabatan, ['Ketua RW', 'Ketua RT']) ? 'akun-admin' : 'akun-penduduk';
     
         // Simpan file dengan nama yang diinginkan
-        $request->file('image')->move(public_path('assets/images/Respon'), $imageName);
+        $request->file('image')->move(public_path('assets/images/UserAccount'), $imageName);
         // $path = $foto->storeAs($directory, $filename, 'public');
     
         // Simpan nama file ke kolom image
@@ -94,10 +94,10 @@ class AkunAdminController extends Controller
     
         // Redirect ke halaman yang sesuai berdasarkan jabatan
         if ($penduduk->jabatan !== 'Ketua RW' && $penduduk->jabatan !== 'Ketua RT') {
-            return redirect('/admin/akun-admin/kelola-level')->with('warning', 'Jabatan tidak sesuai dengan Admin.');
+            return redirect('/admin/akun-admin')->with('warning', 'Jabatan tidak sesuai dengan Admin.');
         }
     
-        return redirect('/admin/akun-admin')->with('success', 'Data berhasil ditambahkan!');
+        return redirect('/admin/akun-admin/kelola-level')->with('success', 'Data berhasil ditambahkan!');
     }
     
     
@@ -241,37 +241,31 @@ class AkunAdminController extends Controller
         return view('admin.akun-admin.index', compact('users', 'page', 'selected'));
     }
   
-    public function indexPenduduk(Request $request)
-    {
-        $page = 'kelolaLevel';
-        $selected = 'Akun';
-    
-        // Menggunakan UserAccountModel untuk mengambil data dan relasi dengan PendudukModel
-        // $users = UserAccountModel::whereHas('penduduk', function ($query) {
-        //     $query->where('jabatan', '==', 'Ketua RW')
-        //           ->where('jabatan', '==', 'Ketua RT');
-        // })->with('penduduk')->paginate(10)->withQueryString();
-        $users = UserAccountModel::whereHas('penduduk', function ($query) {
-            $query->where('jabatan', 'Ketua RW')
-                  ->orWhere('jabatan', 'Ketua RT');
-        })->with('penduduk')->paginate(10)->withQueryString();
-    
-        // Ambil data NIK, Nama, dan Jabatan dari PendudukModel menggunakan id_penduduk dari UserAccountModel
-        $users->getCollection()->transform(function ($item) {
-            if ($item->penduduk) {
-                $item->nik = $item->penduduk->nik;
-                $item->nama = $item->penduduk->nama;
-                $item->jabatan = $item->penduduk->jabatan;
-            } else {
-                $item->nik = null;
-                $item->nama = null;
-                $item->jabatan = null;
-            }
-            return $item;
-        });
-    
-        return view('admin.akun-admin.kelola-level', compact('users', 'page', 'selected'));
-    }
+public function indexPenduduk(Request $request)
+{
+    $page = 'kelolaLevel';
+    $selected = 'Akun';
+
+    // Menggunakan UserAccountModel untuk mengambil semua data tanpa filterisasi jabatan
+    $users = UserAccountModel::with('penduduk')->paginate(10)->withQueryString();
+
+    // Ambil data NIK, Nama, dan Jabatan dari PendudukModel menggunakan id_penduduk dari UserAccountModel
+    $users->getCollection()->transform(function ($item) {
+        if ($item->penduduk) {
+            $item->nik = $item->penduduk->nik;
+            $item->nama = $item->penduduk->nama;
+            $item->jabatan = $item->penduduk->jabatan;
+        } else {
+            $item->nik = null;
+            $item->nama = null;
+            $item->jabatan = null;
+        }
+        return $item;
+    });
+
+    return view('admin.akun-admin.kelola-level', compact('users', 'page', 'selected'));
+}
+
     
 
     public function storePenduduk(Request $request)
@@ -279,7 +273,7 @@ class AkunAdminController extends Controller
         // Validasi input
         $request->validate([
             'nik' => 'required',
-            'level_id' => 'required|in:1,2', // 2 for Admin, 3 for User
+            'level_id' => 'required|in:1,2', // 1 for Admin, 2 for User
         ]);
     
         // Dapatkan objek PendudukModel berdasarkan NIK
@@ -293,16 +287,23 @@ class AkunAdminController extends Controller
         // Check if user already exists
         $existingUser = UserAccountModel::where('id_penduduk', $penduduk->id_penduduk)->first();
         if ($existingUser) {
-            return back()->with('warning', 'Warga tersebut sudah memiliki akun.');
+            // Update jabatan sesuai dengan level_id
+            if ($request->level_id == 1) {
+                $penduduk->jabatan = 'Ketua RT';
+            } else {
+                $penduduk->jabatan = 'Tidak ada';
+            }
+            $penduduk->save();
+    
+            return back()->with('success', 'Jabatan warga berhasil diperbarui.');
         }
     
-        // Set the username to the first word of the name
-        $firstWord = explode(' ', trim($penduduk->nama))[0];
-        $username = $firstWord;
+        // Set the username and password to the NIK
+        $username = $request->nik;
         $password = $request->nik; // Set password to NIK
     
-        // Create the email based on the first word of the name
-        $email = strtolower($firstWord) . '@gmail.com';
+        // Create the email based on the NIK
+        $email = strtolower($request->nik) . '@gmail.com';
     
         // Determine the level ID based on selected level and jabatan
         $level_id = $request->level_id == 1 ? 1 : 2;
@@ -312,7 +313,7 @@ class AkunAdminController extends Controller
             // If level is Admin but jabatan is not Ketua RW or Ketua RT
             return back()->with('warning', 'Jabatan tidak sesuai dengan Level Admin. Apakah Anda ingin tetap menyimpan?');
         } elseif ($level_id == 2 && in_array($penduduk->jabatan, ['Ketua RW', 'Ketua RT'])) {
-            // If level is User but jabatan is Ketua RW or Ketua RT
+            // If level is User but jabatan is Ketua RW atau Ketua RT
             return back()->with('warning', 'Jabatan tidak sesuai dengan Level User. Apakah Anda ingin tetap menyimpan?');
         }
     
@@ -334,44 +335,46 @@ class AkunAdminController extends Controller
     
         // Redirect ke halaman yang sesuai berdasarkan level
         if ($level_id == 1) {
-            return redirect('/admin/akun-admin')->with('success', 'Data berhasil ditambahkan!');
-        } else {
             return redirect('/admin/akun-admin/kelola-level')->with('success', 'Data berhasil ditambahkan!');
+        } else {
+            return redirect('/admin/akun-admin')->with('success', 'Data berhasil ditambahkan!');
         }
-    }
+    }    
 
     public function updatePenduduk(Request $request, $username)
     {
         // Validasi input
         $validator = Validator::make($request->all(), [
-            'level' => 'required|in:1,2',
+            'level_id' => 'required|in:1,2',
         ]);
-
+    
         if ($validator->fails()) {
             return back()->with('errors', $validator->messages()->all())->withInput();
         }
-
+    
         // Dapatkan objek UserAccountModel berdasarkan username
         $user = UserAccountModel::where('username', $username)->firstOrFail();
-
+    
         // Dapatkan objek PendudukModel berdasarkan NIK
         $penduduk = PendudukModel::where('nik', $user->penduduk->nik)->first();
-
-        // Dapatkan jabatan yang sesuai dengan level yang dipilih
-        $jabatan = '';
-        if ($request->level == 1) {
-            $jabatan = in_array($penduduk->jabatan, ['Ketua RW', 'Ketua RT']) ? $penduduk->jabatan : 'Tidak ada';
-        } else {
-            $jabatan = in_array($penduduk->jabatan, ['Tidak ada', 'Sekretaris', 'Bendahara']) ? $penduduk->jabatan : 'Tidak ada';
+    
+        if ($penduduk) {
+            // Update jabatan sesuai dengan level_id
+            if ($request->level_id == 1) {
+                $penduduk->jabatan = 'Ketua RT';
+            } else {
+                $penduduk->jabatan = 'Tidak ada';
+            }
+            $penduduk->save();
+    
+            // Redirect dengan pesan sukses
+            return redirect('/admin/akun-admin')->with('success', 'Jabatan warga berhasil diperbarui.');
         }
-
-        // Update jabatan pada PendudukModel
-        $penduduk->jabatan = $jabatan;
-        $penduduk->save();
-
-        // Redirect dengan pesan sukses
-        return redirect('/admin/akun-admin')->with('success', 'Data berhasil diperbarui!');
+    
+        return back()->with('error', 'Penduduk tidak ditemukan.');
     }
+    
+    
 
     public function destroyPenduduk($username)
     {
