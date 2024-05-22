@@ -18,10 +18,7 @@ class AkunAdminController extends Controller
         $selected = 'Akun';
     
         // Menggunakan UserAccountModel untuk mengambil data dan relasi dengan PendudukModel
-        $users = UserAccountModel::whereHas('penduduk', function ($query) {
-            $query->where('jabatan', 'Ketua RW')
-                  ->orWhere('jabatan', 'Ketua RT');
-        })->with('penduduk')->paginate(10)->withQueryString();
+        $users = UserAccountModel::with('penduduk')->paginate(10)->withQueryString();
     
         // Ambil data NIK, Nama, dan Jabatan dari PendudukModel menggunakan id_penduduk dari UserAccountModel
         $users->getCollection()->transform(function ($item) {
@@ -39,6 +36,7 @@ class AkunAdminController extends Controller
     
         return view('admin.akun-admin.index', compact('users', 'page', 'selected'));
     }
+    
 
     public function store(Request $request)
     {
@@ -244,9 +242,13 @@ class AkunAdminController extends Controller
         $selected = 'Akun';
     
         // Menggunakan UserAccountModel untuk mengambil data dan relasi dengan PendudukModel
+        // $users = UserAccountModel::whereHas('penduduk', function ($query) {
+        //     $query->where('jabatan', '==', 'Ketua RW')
+        //           ->where('jabatan', '==', 'Ketua RT');
+        // })->with('penduduk')->paginate(10)->withQueryString();
         $users = UserAccountModel::whereHas('penduduk', function ($query) {
-            $query->where('jabatan', '!=', 'Ketua RW')
-                  ->where('jabatan', '!=', 'Ketua RT');
+            $query->where('jabatan', 'Ketua RW')
+                  ->orWhere('jabatan', 'Ketua RT');
         })->with('penduduk')->paginate(10)->withQueryString();
     
         // Ambil data NIK, Nama, dan Jabatan dari PendudukModel menggunakan id_penduduk dari UserAccountModel
@@ -265,6 +267,7 @@ class AkunAdminController extends Controller
     
         return view('admin.akun-admin.kelola-level', compact('users', 'page', 'selected'));
     }
+    
 
     public function storePenduduk(Request $request)
     {
