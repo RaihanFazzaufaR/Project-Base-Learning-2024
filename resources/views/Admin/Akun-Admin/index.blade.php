@@ -286,7 +286,7 @@
                                                                 </div>
                                                                 <div class="flex items-center gap-4">
                                                                     <!-- Display the profile picture -->
-                                                                    <img src="{{ asset('storage/akun-admin/' . $userData->image) }}"
+                                                                    <img src="{{ asset('assets/images/UserAccount/' . $userData->image) }}"
                                                                         alt="Foto Profil"
                                                                         class="w-20 h-20 rounded-full object-cover">
                                                                 </div>

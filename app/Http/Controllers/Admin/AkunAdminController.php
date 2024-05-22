@@ -68,18 +68,20 @@ class AkunAdminController extends Controller
         $user->password = bcrypt($request->password); // Enkripsi password
     
         // Proses upload foto profil
-        $foto = $request->file('image');
-        $extension = $foto->getClientOriginalExtension(); // Dapatkan ekstensi file
-        $filename = $request->username . '.' . $extension; // Buat nama file dengan format username.extension
+        $imageName = time() . '.' . $request->image->getClientOriginalName();
+        // $foto = $request->file('image');
+        // $extension = $foto->getClientOriginalExtension(); // Dapatkan ekstensi file
+        // $filename = $request->username . '.' . $extension; // Buat nama file dengan format username.extension
     
         // Tentukan direktori penyimpanan berdasarkan jabatan
         $directory = in_array($penduduk->jabatan, ['Ketua RW', 'Ketua RT']) ? 'akun-admin' : 'akun-penduduk';
     
         // Simpan file dengan nama yang diinginkan
-        $path = $foto->storeAs($directory, $filename, 'public');
+        $request->file('image')->move(public_path('assets/images/Respon'), $imageName);
+        // $path = $foto->storeAs($directory, $filename, 'public');
     
         // Simpan nama file ke kolom image
-        $user->image = $filename;
+        $user->image = $imageName;
     
         // Simpan data user
         $user->save();
@@ -103,6 +105,7 @@ class AkunAdminController extends Controller
 
     public function update(Request $request, $username)
     {
+        $imageName = null;
         // Validate input
         $validator = Validator::make($request->all(), [
             'email' => 'required|email',
@@ -127,11 +130,13 @@ class AkunAdminController extends Controller
         }
     
         if ($request->hasFile('image')) {
-            $foto = $request->file('image');
-            $extension = $foto->getClientOriginalExtension();
-            $filename = $request->username . '.' . $extension;
-            $path = $foto->storeAs('akun-admin', $filename, 'public');
-            $user->image = $filename;
+            $imageName = time() . '.' . $request->image->getClientOriginalName();
+            $request->file('image')->move(public_path('assets/images/UserAccount'), $imageName);
+            // $foto = $request->file('image');
+            // $extension = $foto->getClientOriginalExtension();
+            // $filename = $request->username . '.' . $extension;
+            // $path = $foto->storeAs('akun-admin', $filename, 'public');
+            $user->image = $imageName;
         }
     
         // Save the updated user account
