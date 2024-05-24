@@ -26,6 +26,7 @@ return new class extends Migration
             $table->enum('status', ['diproses', 'selesai', 'ditolak']);
             $table->decimal('iuran', 15, 2)->nullable();
             $table->text('lokasi');
+            $table->text('alasan_tolak')->nullable();
             $table->timestamps();
         });
     }

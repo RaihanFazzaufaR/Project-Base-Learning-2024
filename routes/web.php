@@ -101,7 +101,12 @@ Route::group(['middleware' => ['auth']], function () {
             });
             Route::prefix('jadwal-kegiatan')->group(function () {
                 Route::get('/', [AdminKegiatanController::class, 'index'])->name('jadwal-kegiatan-admin');
+                Route::post('/', [AdminKegiatanController::class, 'storeKegiatan'])->name('storeKegiatan');
+                Route::put('/{id}', [AdminKegiatanController::class, 'updateKegiatan'])->name('updateKegiatan');
+                Route::delete('/{id}', [AdminKegiatanController::class, 'destroyKegiatan'])->name('destroyKegiatan');
                 Route::get('/ajuan-kegiatan', [AdminKegiatanController::class, 'ajuanKegiatan'])->name('ajuan-kegiatan-admin');
+                Route::get('/ajuan-kegiatan/accept', [AdminKegiatanController::class, 'acceptKegiatan'])->name('acceptKegiatan');
+                Route::post('/ajuan-kegiatan/reject/{id}', [AdminKegiatanController::class, 'rejectKegiatan'])->name('rejectKegiatan');
             });
             Route::prefix('pengumuman')->group(function () {
                 Route::get('/', [AdminPengumumanController::class, 'index'])->name('pengumuman-admin');
@@ -141,6 +146,7 @@ Route::group(['middleware' => ['auth']], function () {
         //Route Jadwal
         Route::group(['prefix' => 'jadwal'], function () {
             Route::get('/', [JadwalController::class, 'index'])->name('jadwal');
+            Route::post('/', [JadwalController::class, 'ajuanKegiatan'])->name('ajuanKegiatan');
         });
 
         //Route Surat

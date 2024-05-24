@@ -4,9 +4,11 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\JadwalModel;
+use App\Models\PendudukModel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
 
 class JadwalController extends Controller
 {
@@ -20,7 +22,7 @@ class JadwalController extends Controller
         $searchingKey = $request->filled('search') ? $request->search : '';
         $kategoriSearching = $request->filled('kategoriSearching') ? $request->kategoriSearching : '';
 
-        $dataSearchingQuery = JadwalModel::orderBy('mulai_tanggal', 'asc');
+        $dataSearchingQuery = JadwalModel::where('status', 'selesai')->orderBy('mulai_tanggal', 'asc');
 
         if ($request->filled('search')) {
             $dataSearchingQuery->where('aktivitas_tipe', 'LIKE', '%' . $searchingKey . '%')
@@ -102,8 +104,29 @@ class JadwalController extends Controller
         $request->session()->put('date', $calendarDate);
         $request->session()->put('kategori', $kategoriPast);
 
+        $dataArray = [
+            'dataUpcoming' => $dataUpcoming,
+            'dataToday' => $dataToday,
+            'dataPast' => $dataPast,
+            'dataDate' => $dataDate,
+            'dataSearching' => $dataSearching,
+        ];
 
-        return view('jadwal.index', compact('menu', 'dataUpcoming', 'dataToday', 'dataPast', 'kategoriPast', 'dataDate', 'dateFormat', 'calendarDate', 'scrollAuto', 'searchingKey', 'dataSearching', 'kategoriSearching'));
+        
+        // dd($messages->toArray());
+
+        return view('jadwal.index', compact('menu', 'dataArray', 'kategoriPast', 'dateFormat', 'calendarDate', 'scrollAuto', 'searchingKey', 'kategoriSearching'));
+    }
+
+    private function messages()
+    {
+        $today = Carbon::today()->toDateString();
+        $data = JadwalModel::whereDate('updated_at', $today)->get();
+        foreach ($data as  $value) {
+            $value->updated_at = Carbon::parse($value->updated_at);
+            $value->diffTime = $value->updated_at->diffInHours(Carbon::now());
+        }
+        return $data;
     }
 
 
@@ -120,5 +143,48 @@ class JadwalController extends Controller
         }
 
         return $data; // Mengembalikan data yang telah diformat
+    }
+
+    public function ajuanKegiatan(Request $request)
+    {
+        // dd($request->all());
+
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'nama' => 'required',
+                'kategori' => 'required',
+                'tanggal_mulai' => 'required',
+                'tanggal_selesai' => 'required',
+                'jam_mulai' => 'required',
+                'jam_selesai' => 'required',
+                'deskripsi' => 'required',
+                'iuran' => 'required',
+                'lokasi' => 'required',
+            ]
+        );
+
+        // dd(PendudukModel::select('id_penduduk')->where('nik', $request->nik)->first()->id_penduduk);
+
+        if ($validator->fails()) {
+            return back()->with('errors', $validator->messages()->all()[0])->withInput();
+        }
+
+
+        JadwalModel::create([
+            'judul' => $request->nama,
+            'aktivitas_tipe' => $request->kategori,
+            'mulai_tanggal' => $request->tanggal_mulai,
+            'akhir_tanggal' => $request->tanggal_selesai,
+            'mulai_waktu' => $request->jam_mulai,
+            'akhir_waktu' => $request->jam_selesai,
+            'konten' => $request->deskripsi,
+            'pembuat_id' => $request->id,
+            'status' => 'diproses',
+            'iuran' => $request->iuran,
+            'lokasi' => $request->lokasi,
+        ]);
+
+        return redirect('/jadwal')->with('success', 'Kegiatan yang anda ajukan sedang diproses!');
     }
 }

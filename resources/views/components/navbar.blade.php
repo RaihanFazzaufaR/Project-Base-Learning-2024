@@ -21,6 +21,55 @@
           Notifications
         </div>
         <div class="divide-y divide-gray-100 dark:divide-gray-700" x-data="{selected: 'normal'}">
+          @foreach ($messages as $message)
+          @if ($message->status === 'selesai')
+          <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">
+            <div class="flex-shrink-0">
+              <img class="rounded-full w-11 h-11" src="{{ asset('assets/images/userProfile.png') }}" alt="">
+              <div class="absolute flex items-center justify-center w-5 h-5 ms-6 -mt-5 bg-[#22C55E] border border-white rounded-full dark:border-gray-800">
+                <i class="fa-solid fa-check text-xs text-white"></i>
+              </div>
+            </div>
+            <div class="w-full ps-3">
+              <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Selamat, Kegiatan yang Anda ajukan telah disetujui oleh <span class="font-semibold text-gray-900 dark:text-white">Ketua RW</span> </div>
+              <div class="text-xs text-blue-600 dark:text-blue-500">{{ ($message->diffTime < 1)?'beberapa menit yang lalu':$message->diffTime . 'jam yang lalu' }}</div>
+            </div>
+          </a>
+          @elseif ($message->status === 'diproses')
+          <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">
+            <div class="flex-shrink-0">
+              <img class="rounded-full w-11 h-11" src="{{ asset('assets/images/userProfile.png') }}" alt="">
+              <div class="absolute flex items-center justify-center w-5 h-5 ms-6 -mt-5 bg-[#FFDE68] border border-white rounded-full dark:border-gray-800">
+                <i class="fa-solid fa-minus text-xs text-white"></i>
+              </div>
+            </div>
+            <div class="w-full ps-3">
+              <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Mohon Menunggu, Kegiatan yang Anda ajukan sedang diproses oleh <span class="font-semibold text-gray-900 dark:text-white">Ketua RW</span> </div>
+              <div class="text-xs text-blue-600 dark:text-blue-500">{{ ($message->diffTime < 1)?'beberapa menit yang lalu':$message->diffTime . 'jam yang lalu' }}</div>
+            </div>
+          </a>
+          @elseif ($message->status === 'ditolak')
+          <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700" @click.prevent="selected = (selected === 'tolak{{1}}' ? '':'tolak{{1}}')">
+            <div class="flex-shrink-0">
+              <img class="rounded-full w-11 h-11" src="{{ asset('assets/images/userProfile.png') }}" alt="">
+              <div class="absolute flex items-center justify-center w-5 h-5 ms-6 -mt-5 bg-[#EF4444] border border-white rounded-full dark:border-gray-800">
+                <i class="fa-solid fa-xmark text-xs text-white"></i>
+              </div>
+            </div>
+            <div class="w-full ps-3">
+              <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Maaf, Kegiatan yang Anda ajukan telah ditolak oleh <span class="font-semibold text-gray-900 dark:text-white">Ketua RW</span> </div>
+              <div class="w-full border-y-2 border-gray-300 text-sm py-2" :class="(selected === 'tolak{{1}}') ? 'block' :'hidden'">
+                <p class="text-black font-bold">Alasan Penolakan :</p>
+                <p class="text-gray-500 dark:text-gray-400">"Data yang Anda masukkan tidak sesuai dengan data yang ada"</p>
+              </div>
+              <div class="flex justify-between items-center">
+                <div class="text-xs text-blue-600 dark:text-blue-500">{{ ($message->diffTime < 1)?'beberapa menit yang lalu':$message->diffTime . 'jam yang lalu' }}</div>
+                <i class="fa-solid" :class="(selected === 'tolak{{1}}') ? 'fa-angle-up' :'fa-angle-down'"></i>
+              </div>
+            </div>
+          </a>
+          @endif
+          @endforeach
           <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">
             <div class="flex-shrink-0">
               <img class="rounded-full w-11 h-11" src="{{ asset('assets/images/userProfile.png') }}" alt="">
@@ -30,7 +79,7 @@
             </div>
             <div class="w-full ps-3">
               <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Selamat, UMKM yang Anda ajukan telah disetujui oleh <span class="font-semibold text-gray-900 dark:text-white">Ketua RW</span> </div>
-              <div class="text-xs text-blue-600 dark:text-blue-500">a few moments ago</div>
+              <div class="text-xs text-blue-600 dark:text-blue-500">{{ ($message->diffTime < 1)?'beberapa menit yang lalu':$message->diffTime . 'jam yang lalu' }}</div>
             </div>
           </a>
           <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">
@@ -227,8 +276,8 @@
             </ul>
           </div>
           {{-- <a href="{{ route('aduan') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:hover:text-[#1C4F0F] md:p-0 md:relative group {{ ($menu === 'Aduan') ? 'md:text-[#1C4F0F]':'md:text-gray-500' }}">
-            Aduan
-            <div class="md:absolute md:h-[2.5px] md:w-full md:bg-[#1C4F0F]  group-hover:scale-x-100 md:transition md:ease-in-out md:duration-500 {{ ($menu === 'Aduan') ? '':'md:scale-x-0' }}"></div>
+          Aduan
+          <div class="md:absolute md:h-[2.5px] md:w-full md:bg-[#1C4F0F]  group-hover:scale-x-100 md:transition md:ease-in-out md:duration-500 {{ ($menu === 'Aduan') ? '':'md:scale-x-0' }}"></div>
           </a> --}}
         </li>
         <li>

@@ -18,7 +18,7 @@
     <form action="{{ route('jadwal') }}" class="basis-3/5 w-full h-full flex items-center justify-center mb-0">
         <div class="flex shadow-md rounded-xl w-full bg-white border-2 border-[#2d5523] items-center justify-between py-2 h-fit">
             <div class="flex w-full">
-                <div class="w-[50%] px-4">
+                <div class="w-[70%] px-4">
                     <label for="default-search" class="text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
                     <div class="relative">
                         <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
@@ -29,7 +29,7 @@
                         <input type="search" id="default-search" name="search" class="block w-full p-2 ps-10 text-sm text-gray-900 rounded-lg" placeholder="Cari Kegiatan..." />
                     </div>
                 </div>
-                <div class="border-x-2 border-gray-400 px-4 w-fit">
+                <!-- <div class="border-x-2 border-gray-400 px-4 w-fit">
                     <div class="relative">
                         <select class="block py-2.5 px-9 w-full text-sm text-gray-500 bg-transparent appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
                             <option selected>Pilih RT</option>
@@ -41,8 +41,8 @@
                         <i class="fa-solid fa-street-view absolute left-2 top-0 pt-4 text-gray-500 text-sm"></i>
                         <i class="fa-solid fa-angle-down absolute right-2 top-0 pt-4 text-gray-500 text-sm"></i>
                     </div>
-                </div>
-                <div class="w-fit px-4 border-r-2 border-gray-400">
+                </div> -->
+                <div class="w-fit px-4 border-x-2 border-gray-400">
                     <div class="relative">
                         <select name="kategoriSearching" class="block py-2.5 px-9 w-full text-sm text-gray-500 bg-transparent appearance-none dark:text-gray-400 dark:border-gray-700 focus:outline-none focus:ring-0 focus:border-gray-200 peer">
                             <option selected value="">Pilih Kategori</option>
@@ -83,7 +83,7 @@
                     <!-- Modal header -->
                     <div class="flex h-[75px] items-center justify-between px-4 md:px-5 border-b-2 rounded-t border-[#B8B8B8]">
                         <h3 class="text-xl font-bold text-[#34662C] dark:text-white">
-                            Tambah Data Penduduk
+                            Ajukan Kegiatan
                         </h3>
                         <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" @click="tambahModal = false">
                             <i class="fa-solid fa-xmark text-xl"></i>
@@ -91,18 +91,14 @@
                         </button>
                     </div>
                     <!-- Modal body -->
-                    <form class="w-full h-fit text-[#34662C]" method="POST" action="{{ route('storePenduduk') }}">
+                    <form class="w-full h-fit text-[#34662C]" method="POST" action="{{ route('ajuanKegiatan') }}">
                         @csrf
                         <div class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto rounded-b-xl">
-                            <input type="hidden" name="nik" value="{{ Auth::user()->penduduk->nik }}">
-                            <div class="col-span-2 sm:col-span-1">
-                                <label for="nama" class="block mb-2 text-sm font-bold">Nama Kegiatan</label>
-                                <input type="text" name="nama" id="nama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Nama Kegiatan ...">
-                            </div>
+                            <input type="hidden" name="id" value="{{ Auth::user()->penduduk->id_penduduk }}">
                             <div class="col-span-2 sm:col-span-1">
                                 <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
                                 <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
-                                    <option selected="">Pilih Kategori</option>
+                                    <option selected value="">Pilih Kategori</option>
                                     <option value="Kebersihan">Kebersihan</option>
                                     <option value="Lingkungan">Lingkungan</option>
                                     <option value="Kesehatan">Kesehatan</option>
@@ -112,6 +108,10 @@
                                     <option value="Kuliner">Kuliner</option>
                                     <option value="Ekonomi">Ekonomi</option>
                                 </select>
+                            </div>
+                            <div class="col-span-2 sm:col-span-1">
+                                <label for="nama" class="block mb-2 text-sm font-bold">Nama Kegiatan</label>
+                                <input type="text" name="nama" id="nama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Nama Kegiatan ...">
                             </div>
                             <div class="col-span-2 sm:col-span-1">
                                 <label for="tanggal_mulai" class="block mb-2 text-sm font-bold">Tanggal Mulai</label>
@@ -138,12 +138,16 @@
                                 <input type="number" name="iuran" id="iuran" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Iuran ...">
                             </div>
                             <div class="col-span-2">
+                                <label for="lokasi" class="block mb-2 text-sm font-bold">Lokasi</label>
+                                <textarea name="lokasi" rows="4" id="lokasi" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required></textarea>
+                            </div>
+                            <div class="col-span-2">
                                 <label for="deskripsi" class="block mb-2 text-sm font-bold">Deskripsi</label>
                                 <textarea name="deskripsi" rows="4" id="deskripsi" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required></textarea>
                             </div>
                         </div>
                         <div class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8]">
-                            <button @click="tambahModal = false" class="hover:text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center hover:bg-[#34662C] bg-white text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
+                            <button type="button" @click="tambahModal = false" class="hover:text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center hover:bg-[#34662C] bg-white text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
                                 Batal
                             </button>
                             <button type="submit" class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
@@ -166,7 +170,7 @@
         @endif
         "
     </div>
-    @if (empty($dataSearching->toArray()))
+    @if (empty($dataArray['dataSearching']->toArray()))
     <div class="flex flex-col w-full justify-center items-center gap-4">
         <!-- <i class="fa-regular fa-circle-xmark text-2xl"></i> -->
         <img src="{{ asset('assets/images/no-data.png') }}" alt="" class="w-[400px] h-[300px] object-cover">
@@ -174,7 +178,7 @@
     </div>
     @else
     <div class="grid h-[90%] w-full grid-cols-3 gap-14">
-        @foreach ($dataSearching as $dt)
+        @foreach ($dataArray['dataSearching'] as $dt)
         <div class="bg-white rounded-xl shadow-xl flex flex-col w-[380px] h-full pt-8 pb-4 gap-3 border-2 border-green-900 hover:scale-105 hover:shadow-2xl transition ease-in-out duration-300 group">
             <!-- <div class="absolute w-full h-full bg-black/40 rounded-xl left-0 top-0 flex justify-center items-center opacity-0 transition ease-in-out duration-300 group-hover:opacity-100">
                 <button class="w-fit h-fit px-4 py-2 font-semibold text-sm border-2 border-white bg-green-500 text-white rounded-xl">Lihat Detail</button>
@@ -217,7 +221,7 @@
 <div class="relative min-h-[40vh] w-[90%] mx-auto flex flex-col mt-20 gap-18 mb-30">
     <div class="flex h-[10%] w-full justify-center items-center text-4xl font-bold text-green-900">Kegiatan Mendatang</div>
     <div class="grid h-[90%] w-full grid-cols-3">
-        @foreach ($dataUpcoming as $dt)
+        @foreach ($dataArray['dataUpcoming'] as $dt)
         <div class="bg-white rounded-xl shadow-xl flex flex-col w-[380px] h-full pt-8 pb-4 gap-3 border-2 border-green-900 hover:scale-105 hover:shadow-2xl transition ease-in-out duration-300 group">
             <!-- <div class="absolute w-full h-full bg-black/40 rounded-xl left-0 top-0 flex justify-center items-center opacity-0 transition ease-in-out duration-300 group-hover:opacity-100">
                 <button class="w-fit h-fit px-4 py-2 font-semibold text-sm border-2 border-white bg-green-500 text-white rounded-xl">Lihat Detail</button>
@@ -329,7 +333,7 @@
     </div>
     <div class="w-[1050px] h-fit flex flex-col pl-25 py-7 gap-11 justify-center items-center">
         <div class="flex justify-center items-center text-4xl font-bold text-green-900">Jadwal Kegiatan</div>
-        @if (empty($dataToday->toArray()))
+        @if (empty($dataArray['dataToday']->toArray()))
         <div class="flex flex-col w-full justify-center items-center gap-4">
             <!-- <i class="fa-regular fa-circle-xmark text-2xl"></i> -->
             <img src="{{ asset('assets/images/no-data.png') }}" alt="" class="w-[400px] h-[300px] object-cover">
@@ -339,7 +343,7 @@
         <div class="flex w-full max-h-[62vh] flex-wrap items-start justify-start px-10 py-10 overflow-y-auto scrollbar-thin">
             <?php $count = 0; ?>
 
-            @foreach ($dataToday as $dt)
+            @foreach ($dataArray['dataToday'] as $dt)
 
             <?php $count++; ?>
 
@@ -437,7 +441,7 @@
         <a href="jadwal?kategoriPast=Ekonomi&date={{ $calendarDate }}" class="h-fit py-1 px-4 border-2 border-[#2d5523] rounded-2xl text-sm font-semibold text-[#2d5523] shadow-md hover:bg-[#2d5523] hover:text-white transition-all {{ ($kategoriPast == 'Ekonomi')?'bg-[#2d5523] text-white':'' }}">Ekonomi</a>
     </div>
     <div class="grid h-full w-full grid-cols-3 gap-12">
-        @foreach ($dataPast as $dt)
+        @foreach ($dataArray['dataPast'] as $dt)
         <div class="bg-white rounded-xl shadow-xl flex flex-col w-[380px] h-[260px] pt-8 pb-4 gap-3 border-2 border-green-900 hover:scale-105 hover:shadow-2xl transition ease-in-out duration-300 group">
             <!-- <div class="absolute w-full h-full bg-black/40 rounded-xl left-0 top-0 flex justify-center items-center opacity-0 transition ease-in-out duration-300 group-hover:opacity-100">
                 <button class="w-fit h-fit px-4 py-2 font-semibold text-sm border-2 border-white bg-green-500 text-white rounded-xl">Lihat Detail</button>
@@ -507,7 +511,7 @@
         ];
 
         const renderCalendar = () => {
-            let dateKegiatan = @json($dataDate);
+            let dateKegiatan = @json($dataArray['dataDate']);
             let counter = 0;
             let firstDayofMonth = new Date(currYear, currMonth, 1)
                 .getDay(); // getting last date of month

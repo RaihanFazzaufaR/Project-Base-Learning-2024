@@ -2,27 +2,27 @@
   <div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
     <!-- Card Item Start -->
     <div class="relative rounded-t-md rounded-b-3xl border border-stroke bg-white px-5 py-7 shadow-xl group overflow-hidden">
-      <div class="absolute z-[2] top-0 h-full w-full bg-[#19A8EF] left-0 group-hover: transition ease-in-out duration-500 -translate-y-[93%] group-hover:translate-y-0"></div>
+      <div class="absolute z-[2] top-0 h-full w-full bg-gradient-to-r from-[#19A8EF] to-[#1072A3] left-0 group-hover: transition ease-in-out duration-500 -translate-y-[93%] group-hover:translate-y-0"></div>
       <div class="relative flex w-full h-full justify-center items-center gap-10 z-[3] top-0 left-0">
         <div class="flex flex-col justify-center items-center gap-2">
           <div class="font-bold text-5xl group-hover:text-white">{{ $dataJumlah['jumlahKK'] }}</div>
           <div class="font-semibold text-[15px] text-gray-500 group-hover:text-gray-200">Jumlah KK</div>
         </div>
-        <div class="text-5xl text-[#19A8EF] group-hover:text-white">
-          <i class="fa-solid fa-user"></i>
+        <div class="text-5xl text-transparent bg-gradient-to-r from-[#19A8EF] to-[#1072A3] bg-clip-text group-hover:text-white">
+          <i class="fa-solid fa-address-card"></i>
         </div>
       </div>
     </div>
     <!-- Card Item End -->
     <!-- Card Item Start -->
     <div class="relative rounded-t-md rounded-b-3xl border border-stroke bg-white px-5 py-7 shadow-xl group overflow-hidden">
-      <div class="absolute z-[2] top-0 h-full w-full bg-[#FEAD34] left-0 group-hover: transition ease-in-out duration-500 -translate-y-[93%] group-hover:translate-y-0"></div>
+      <div class="absolute z-[2] top-0 h-full w-full bg-gradient-to-r from-[#F6A831] to-[#B37924] left-0 group-hover: transition ease-in-out duration-500 -translate-y-[93%] group-hover:translate-y-0"></div>
       <div class="relative flex w-full h-full justify-center items-center gap-10 z-[3] top-0 left-0">
         <div class="flex flex-col justify-center items-center gap-2">
           <div class="font-bold text-5xl group-hover:text-white">{{ $dataJumlah['jumlahPenduduk'] }}</div>
           <div class="font-semibold text-[15px] text-gray-500 group-hover:text-gray-200">Jumlah Penduduk</div>
         </div>
-        <div class="text-5xl text-[#FEAD34] group-hover:text-white">
+        <div class="text-5xl text-transparent bg-clip-text bg-gradient-to-r from-[#F6A831] to-[#B37924] group-hover:text-white">
           <i class="fa-solid fa-user"></i>
         </div>
       </div>
@@ -30,28 +30,28 @@
     <!-- Card Item End -->
     <!-- Card Item Start -->
     <div class="relative rounded-t-md rounded-b-3xl border border-stroke bg-white px-5 py-7 shadow-xl group overflow-hidden">
-      <div class="absolute z-[2] top-0 h-full w-full bg-[#9119EF] left-0 group-hover: transition ease-in-out duration-500 -translate-y-[93%] group-hover:translate-y-0"></div>
+      <div class="absolute z-[2] top-0 h-full w-full bg-gradient-to-r from-[#9119EF] to-[#6410A3] left-0 group-hover: transition ease-in-out duration-500 -translate-y-[93%] group-hover:translate-y-0"></div>
       <div class="relative flex w-full h-full justify-center items-center gap-10 z-[3] top-0 left-0">
         <div class="flex flex-col justify-center items-center gap-2">
           <div class="font-bold text-5xl group-hover:text-white">{{ $dataJumlah['jumlahUmkm'] }}</div>
           <div class="font-semibold text-[15px] text-gray-500 group-hover:text-gray-200">Jumlah UMKM</div>
         </div>
-        <div class="text-5xl text-[#9119EF] group-hover:text-white">
-          <i class="fa-solid fa-user"></i>
+        <div class="text-5xl text-transparent bg-clip-text bg-gradient-to-r from-[#9119EF] to-[#6410A3] group-hover:text-white">
+          <i class="fa-solid fa-shop"></i>
         </div>
       </div>
     </div>
     <!-- Card Item End -->
     <!-- Card Item Start -->
     <div class="relative rounded-t-md rounded-b-3xl border border-stroke bg-white px-5 py-7 shadow-xl group overflow-hidden">
-      <div class="absolute z-[2] top-0 h-full w-full bg-[#19EF88] left-0 group-hover: transition ease-in-out duration-500 -translate-y-[93%] group-hover:translate-y-0"></div>
+      <div class="absolute z-[2] top-0 h-full w-full bg-gradient-to-r from-[#19EF88] to-[#10A35C] left-0 group-hover: transition ease-in-out duration-500 -translate-y-[93%] group-hover:translate-y-0"></div>
       <div class="relative flex w-full h-full justify-center items-center gap-10 z-[3] top-0 left-0">
         <div class="flex flex-col justify-center items-center gap-2">
           <div class="font-bold text-5xl group-hover:text-white">{{ $dataJumlah['jumlahAduan'] }}</div>
           <div class="font-semibold text-[15px] text-gray-500 group-hover:text-gray-200">Jumlah Aduan</div>
         </div>
-        <div class="text-5xl text-[#19EF88] group-hover:text-white">
-          <i class="fa-solid fa-user"></i>
+        <div class="text-5xl text-transparent bg-clip-text bg-gradient-to-r from-[#19EF88] to-[#10A35C] group-hover:text-white">
+          <i class="fa-solid fa-comments"></i>
         </div>
       </div>
     </div>
@@ -419,7 +419,7 @@
               </div>
             </div>
           </div>
-          
+
         </div>
       </div>
     </div>

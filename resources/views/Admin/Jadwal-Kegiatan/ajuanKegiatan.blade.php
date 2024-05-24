@@ -175,51 +175,47 @@
                                                     <div class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto rounded-b-xl">
                                                         <div class="col-span-2 relative sm:col-span-1">
                                                             <label class="block mb-2 text-sm font-bold">NIK</label>
-                                                            <input list="listNik" name="nik" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan NIK ...">
-                                                            <datalist id="listNik">
-                                                                <option value="123456"></option>
-                                                            </datalist>
+                                                            <input name="nik" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $dt->penduduk->nik }}" readonly>
                                                         </div>
                                                         <div class="col-span-2 sm:col-span-1">
-                                                            <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
-                                                            <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
-                                                                <option selected="">Pilih Kategori</option>
-                                                                <option value="1">Super Admin</option>
-                                                                <option value="2">Admin</option>
-                                                                <option value="3">User</option>
-                                                            </select>
+                                                            <label class="block mb-2 text-sm font-bold">Kategori</label>
+                                                            <input name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required readonly value="{{ $dt->aktivitas_tipe }}">
                                                         </div>
                                                         <div class="col-span-2">
-                                                            <label for="nama" class="block mb-2 text-sm font-bold">Nama Kegiatan</label>
-                                                            <input type="text" name="nama" id="nama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Nama Kegiatan ...">
+                                                            <label class="block mb-2 text-sm font-bold">Nama Kegiatan</label>
+                                                            <input type="text" name="nama" id="nama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required readonly value="{{ $dt->judul }}">
                                                         </div>
                                                         <div class="col-span-2 sm:col-span-1">
-                                                            <label for="tanggal_mulai" class="block mb-2 text-sm font-bold">Tanggal Mulai</label>
-                                                            <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
+                                                            <label class="block mb-2 text-sm font-bold">Tanggal Mulai</label>
+                                                            <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required readonly value="{{ $dt->tgl_mulai }}">
                                                         </div>
                                                         <div class="col-span-2 sm:col-span-1">
-                                                            <label for="tanggal_selesai" class="block mb-2 text-sm font-bold">Tanggal Selesai</label>
-                                                            <input type="date" name="tanggal_selesai" id="tanggal_selesai" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
+                                                            <label class="block mb-2 text-sm font-bold">Tanggal Selesai</label>
+                                                            <input type="date" name="tanggal_selesai" id="tanggal_selesai" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required readonly value="{{ $dt->tgl_akhir }}">
                                                         </div>
                                                         <div class="col-span-2 sm:col-span-1">
                                                             <div class="grid grid-cols-2 gap-2">
                                                                 <div class="col-span-2 sm:col-span-1">
-                                                                    <label for="jam_mulai" class="block mb-2 text-sm font-bold">Jam Mulai</label>
-                                                                    <input type="time" name="jam_mulai" id="jam_mulai" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
+                                                                    <label class="block mb-2 text-sm font-bold">Jam Mulai</label>
+                                                                    <input type="time" name="jam_mulai" id="jam_mulai" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required readonly value="{{ $dt->mulai_waktu }}">
                                                                 </div>
                                                                 <div class="col-span-2 sm:col-span-1">
-                                                                    <label for="jam_selesai" class="block mb-2 text-sm font-bold">Jam Selesai</label>
-                                                                    <input type="time" name="jam_selesai" id="jam_selesai" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
+                                                                    <label class="block mb-2 text-sm font-bold">Jam Selesai</label>
+                                                                    <input type="time" name="jam_selesai" id="jam_selesai" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required readonly value="{{ $dt->akhir_waktu }}">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-span-2 sm:col-span-1">
-                                                            <label for="iuran" class="block mb-2 text-sm font-bold">Iuran</label>
-                                                            <input type="number" name="iuran" id="iuran" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Iuran ...">
+                                                            <label class="block mb-2 text-sm font-bold">Iuran</label>
+                                                            <input type="number" name="iuran" id="iuran" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required readonly value="{{ $dt->iuran }}">
                                                         </div>
                                                         <div class="col-span-2">
-                                                            <label for="deskripsi" class="block mb-2 text-sm font-bold">Deskripsi</label>
-                                                            <textarea name="deskripsi" rows="4" id="deskripsi" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required></textarea>
+                                                            <label class="block mb-2 text-sm font-bold">Lokasi</label>
+                                                            <textarea name="lokasi" rows="4" id="lokasi" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required readonly>{{ $dt->lokasi }}</textarea>
+                                                        </div>
+                                                        <div class="col-span-2">
+                                                            <label class="block mb-2 text-sm font-bold">Deskripsi</label>
+                                                            <textarea name="deskripsi" rows="4" id="deskripsi" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required readonly>{{ $dt->konten }}</textarea>
                                                         </div>
                                                     </div>
                                                     <div class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8]">
@@ -236,14 +232,10 @@
                         </td>
                         <td class="">
                             <div class="px-6 py-4 flex items-center h-full gap-4 justify-center">
-                                <form action="{{ route('umkm.accept') }}" method="POST">
-                                    @csrf
-                                    <input type="hidden" id="dt_id" name="dt_id" value="{{ $dt->dt_id }}">
-                                    <button @click="terimaModal = true" class="flex justify-center items-center gap-2 w-fit text-white bg-[#76D75D] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#38682D] hover:scale-105 transition-all">
-                                        <i class="fa-solid fa-check text-lg"></i>
-                                        <div>Terima</div>
-                                    </button>
-                                </form>
+                                <a href="{{ route('acceptKegiatan', ['id'=>$dt->jadwal_id]) }}" class="flex justify-center items-center gap-2 w-fit text-white bg-[#76D75D] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#38682D] hover:scale-105 transition-all">
+                                    <i class="fa-solid fa-check text-lg"></i>
+                                    <div>Terima</div>
+                                </a>
 
                                 <div x-data="{ 'tolakModal': false }" @keydown.escape="tolakModal = false">
                                     <button @click="tolakModal = true" class="flex justify-center items-center gap-2 w-fit text-white bg-[#FF5E5E] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#B34242] hover:scale-105 transition-all">
@@ -265,20 +257,20 @@
                                                         <span class="sr-only">Close modal</span>
                                                     </button>
                                                 </div>
-                                                <form action="{{ route('umkm.reject') }}" method="POST" class="">
+                                                <form action="{{ route('rejectKegiatan', $dt->jadwal_id) }}" method="POST">
                                                     @csrf
                                                     <!-- Modal body -->
                                                     <div class="w-full h-full text-[#34662C] text-left">
                                                         <form action="">
                                                             <div class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto rounded-b-xl">
                                                                 <div class="col-span-2">
-                                                                    <label for="alasan-penolakan" class="block mb-2 text-sm font-bold">Alasan Penolakan</label>
-                                                                    <textarea id="alasan-penolakan" name="alasan-penolakan" rows="4" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan Alasan Penolakan..."></textarea>
+                                                                    <!-- <label for="alasan-penolakan" class="block mb-2 text-sm font-bold">Alasan Penolakan</label> -->
+                                                                    <textarea id="alasan-penolakan" name="alasan" rows="4" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan Alasan Penolakan..."></textarea>
                                                                 </div>
                                                             </div>
                                                         </form>
                                                         <div class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8]">
-                                                            <button type="button" @click="filterModal = false" class="hover:text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center hover:bg-[#34662C] bg-white text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
+                                                            <button type="button" @click="tolakModal = false" class="hover:text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center hover:bg-[#34662C] bg-white text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
                                                                 Batal
                                                             </button>
                                                             <button type="submit" class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">

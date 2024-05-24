@@ -26,6 +26,7 @@ class JadwalModel extends Model
         'status',
         'iuran',
         'lokasi',
+        'alasan_tolak',
     ];
 
     public function penduduk() : BelongsTo
