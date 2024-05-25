@@ -31,13 +31,24 @@ class UmkmController extends Controller
 
     public function formatDateAndTime($data)
     {
-        foreach ($data as $key => $value) { 
+        foreach ($data as $value) { 
             $value->buka_waktu = Carbon::parse($value->buka_waktu)->format('H:i');
             $value->tutup_waktu = Carbon::parse($value->tutup_waktu)->format('H:i');
         }
 
         return $data; // Mengembalikan data yang telah diformat
     }
+
+    public function formatDateAndTimeforDetail($data)
+    {
+         
+            $data->buka_waktu = Carbon::parse($data->buka_waktu)->format('H:i');
+            $data->tutup_waktu = Carbon::parse($data->tutup_waktu)->format('H:i');
+
+
+        return $data; // Mengembalikan data yang telah diformat
+    }
+
 
     public function umkmku($id_penduduk)
     {
@@ -157,7 +168,7 @@ class UmkmController extends Controller
             abort(404, 'Data UMKM tidak ditemukan');
         }
         $koordinat_array = array_map('trim', explode(",", $umkm->lokasi_map));
-
+        $umkm = $this->formatDateAndTimeforDetail($umkm);
 
         $latitude = trim($koordinat_array[0]);
         $longtitude = trim($koordinat_array[1]);

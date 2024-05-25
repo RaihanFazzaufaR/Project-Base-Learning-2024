@@ -15,6 +15,10 @@ class UmkmKategoriSeeder extends Seeder
     {
         $data = [
             ['umkm_id' => 1, 'kategori_id' => 1],
+            ['umkm_id' => 1, 'kategori_id' => 2],
+            ['umkm_id' => 1, 'kategori_id' => 3],
+            ['umkm_id' => 1, 'kategori_id' => 4],
+            ['umkm_id' => 1, 'kategori_id' => 5],
             ['umkm_id' => 2, 'kategori_id' => 6],
             ['umkm_id' => 3, 'kategori_id' => 1],
             ['umkm_id' => 3, 'kategori_id' => 2],
