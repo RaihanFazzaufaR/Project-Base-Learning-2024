@@ -16,11 +16,19 @@
       </button>
 
       <!-- Dropdown menu -->
-      <div id="dropdownNotification" class="z-20 hidden w-full !absolute !-left-10 !top-5 max-w-sm bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-800 dark:divide-gray-700" aria-labelledby="dropdownNotificationButton">
+      <div id="dropdownNotification" class="z-20 hidden w-full max-h-70 overflow-y-auto !absolute !-left-10 !top-5 max-w-sm bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-800 dark:divide-gray-700" aria-labelledby="dropdownNotificationButton">
         <div class="block px-4 py-2 font-medium text-center text-gray-700 rounded-t-lg bg-gray-50 dark:bg-gray-800 dark:text-white">
           Notifications
         </div>
         <div class="divide-y divide-gray-100 dark:divide-gray-700" x-data="{selected: 'normal'}">
+          @if (empty($messages->toArray()))
+          <div class="flex flex-col w-full h-[80%] justify-center items-center gap-4 py-5">
+            <!-- <i class="fa-regular fa-circle-xmark text-2xl"></i> -->
+            <img src="{{ asset('assets/images/no-data.png') }}" alt="" class="w-[200px] h-[100px] object-cover">
+            <p class="text-base font-semibold text-green-900">Tidak ada pesan</p>
+          </div>
+          @endif
+          <?php $i = 0; ?>
           @foreach ($messages as $message)
           @if ($message->status === 'selesai')
           <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">
@@ -31,8 +39,8 @@
               </div>
             </div>
             <div class="w-full ps-3">
-              <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Selamat, Kegiatan yang Anda ajukan telah disetujui oleh <span class="font-semibold text-gray-900 dark:text-white">Ketua RW</span> </div>
-              <div class="text-xs text-blue-600 dark:text-blue-500">{{ ($message->diffTime < 1)?'beberapa menit yang lalu':$message->diffTime . 'jam yang lalu' }}</div>
+              <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Selamat, {{ ($message->source == 'tb_umkm')?'UMKM':'Kegiatan' }} yang Anda ajukan telah disetujui oleh <span class="font-semibold text-gray-900 dark:text-white">Ketua RW</span> </div>
+              <div class="text-xs text-blue-600 dark:text-blue-500">{{ ($message->diffTime < 1)?'beberapa saat yang lalu':$message->diffTime . 'jam yang lalu' }}</div>
             </div>
           </a>
           @elseif ($message->status === 'diproses')
@@ -44,12 +52,12 @@
               </div>
             </div>
             <div class="w-full ps-3">
-              <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Mohon Menunggu, Kegiatan yang Anda ajukan sedang diproses oleh <span class="font-semibold text-gray-900 dark:text-white">Ketua RW</span> </div>
-              <div class="text-xs text-blue-600 dark:text-blue-500">{{ ($message->diffTime < 1)?'beberapa menit yang lalu':$message->diffTime . 'jam yang lalu' }}</div>
+              <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Mohon Menunggu, {{ ($message->source == 'tb_umkm')?'UMKM':'Kegiatan' }} yang Anda ajukan sedang diproses oleh <span class="font-semibold text-gray-900 dark:text-white">Ketua RW</span> </div>
+              <div class="text-xs text-blue-600 dark:text-blue-500">{{ ($message->diffTime < 1)?'beberapa saat yang lalu':$message->diffTime . 'jam yang lalu' }}</div>
             </div>
           </a>
           @elseif ($message->status === 'ditolak')
-          <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700" @click.prevent="selected = (selected === 'tolak{{1}}' ? '':'tolak{{1}}')">
+          <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700" @click.prevent="selected = (selected === 'tolak{{$i}}' ? '':'tolak{{$i}}')">
             <div class="flex-shrink-0">
               <img class="rounded-full w-11 h-11" src="{{ asset('assets/images/userProfile.png') }}" alt="">
               <div class="absolute flex items-center justify-center w-5 h-5 ms-6 -mt-5 bg-[#EF4444] border border-white rounded-full dark:border-gray-800">
@@ -57,71 +65,21 @@
               </div>
             </div>
             <div class="w-full ps-3">
-              <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Maaf, Kegiatan yang Anda ajukan telah ditolak oleh <span class="font-semibold text-gray-900 dark:text-white">Ketua RW</span> </div>
-              <div class="w-full border-y-2 border-gray-300 text-sm py-2" :class="(selected === 'tolak{{1}}') ? 'block' :'hidden'">
+              <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Maaf, {{ ($message->source == 'tb_umkm')?'UMKM':'Kegiatan' }} yang Anda ajukan telah ditolak oleh <span class="font-semibold text-gray-900 dark:text-white">Ketua RW</span> </div>
+              <div class="w-full border-y-2 border-gray-300 text-sm py-2" :class="(selected === 'tolak{{$i}}') ? 'block' :'hidden'">
                 <p class="text-black font-bold">Alasan Penolakan :</p>
-                <p class="text-gray-500 dark:text-gray-400">"Data yang Anda masukkan tidak sesuai dengan data yang ada"</p>
+                <p class="text-gray-500 dark:text-gray-400">"{{ $message->alasan_tolak }}"</p>
               </div>
               <div class="flex justify-between items-center">
-                <div class="text-xs text-blue-600 dark:text-blue-500">{{ ($message->diffTime < 1)?'beberapa menit yang lalu':$message->diffTime . 'jam yang lalu' }}</div>
-                <i class="fa-solid" :class="(selected === 'tolak{{1}}') ? 'fa-angle-up' :'fa-angle-down'"></i>
+                <div class="text-xs text-blue-600 dark:text-blue-500">{{ ($message->diffTime < 1)?'beberapa saat yang lalu':$message->diffTime . 'jam yang lalu' }}</div>
+                <i class="fa-solid" :class="(selected === 'tolak{{$i}}') ? 'fa-angle-up' :'fa-angle-down'"></i>
               </div>
             </div>
           </a>
           @endif
+          <?php $i++; ?>
           @endforeach
-          <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">
-            <div class="flex-shrink-0">
-              <img class="rounded-full w-11 h-11" src="{{ asset('assets/images/userProfile.png') }}" alt="">
-              <div class="absolute flex items-center justify-center w-5 h-5 ms-6 -mt-5 bg-[#22C55E] border border-white rounded-full dark:border-gray-800">
-                <i class="fa-solid fa-check text-xs text-white"></i>
-              </div>
-            </div>
-            <div class="w-full ps-3">
-              <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Selamat, UMKM yang Anda ajukan telah disetujui oleh <span class="font-semibold text-gray-900 dark:text-white">Ketua RW</span> </div>
-              
-            </div>
-          </a>
-          <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">
-            <div class="flex-shrink-0">
-              <img class="rounded-full w-11 h-11" src="{{ asset('assets/images/userProfile.png') }}" alt="">
-              <div class="absolute flex items-center justify-center w-5 h-5 ms-6 -mt-5 bg-[#FFDE68] border border-white rounded-full dark:border-gray-800">
-                <i class="fa-solid fa-minus text-xs text-white"></i>
-              </div>
-            </div>
-            <div class="w-full ps-3">
-              <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Mohon Menunggu, UMKM yang Anda ajukan masih diproses oleh <span class="font-semibold text-gray-900 dark:text-white">Ketua RW</span> </div>
-              <div class="text-xs text-blue-600 dark:text-blue-500">a few moments ago</div>
-            </div>
-          </a>
-          <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700" @click.prevent="selected = (selected === 'tolak{{1}}' ? '':'tolak{{1}}')">
-            <div class="flex-shrink-0">
-              <img class="rounded-full w-11 h-11" src="{{ asset('assets/images/userProfile.png') }}" alt="">
-              <div class="absolute flex items-center justify-center w-5 h-5 ms-6 -mt-5 bg-[#EF4444] border border-white rounded-full dark:border-gray-800">
-                <i class="fa-solid fa-xmark text-xs text-white"></i>
-              </div>
-            </div>
-            <div class="w-full ps-3">
-              <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Maaf, UMKM yang Anda ajukan telah ditolak oleh <span class="font-semibold text-gray-900 dark:text-white">Ketua RW</span> </div>
-              <div class="w-full border-y-2 border-gray-300 text-sm py-2" :class="(selected === 'tolak{{1}}') ? 'block' :'hidden'">
-                <p class="text-black font-bold">Alasan Penolakan :</p>
-                <p class="text-gray-500 dark:text-gray-400">"Data yang Anda masukkan tidak sesuai dengan data yang ada"</p>
-              </div>
-              <div class="flex justify-between items-center">
-                <div class="text-xs text-blue-600 dark:text-blue-500">a few moments ago</div>
-                <i class="fa-solid" :class="(selected === 'tolak{{1}}') ? 'fa-angle-up' :'fa-angle-down'"></i>
-              </div>
-            </div>
-          </a>
         </div>
-        <a href="#" class="block py-2 text-sm font-medium text-center text-gray-900 rounded-b-lg bg-gray-50 hover:bg-gray-100 dark:bg-gray-800 dark:hover:bg-gray-700 dark:text-white">
-          <div class="inline-flex items-center ">
-            <svg class="w-4 h-4 me-2 text-gray-500 dark:text-gray-400" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 14">
-              <path d="M10 0C4.612 0 0 5.336 0 7c0 1.742 3.546 7 10 7 6.454 0 10-5.258 10-7 0-1.664-4.612-7-10-7Zm0 10a3 3 0 1 1 0-6 3 3 0 0 1 0 6Z" />
-            </svg>
-            View all
-          </div>
-        </a>
       </div>
 
 
