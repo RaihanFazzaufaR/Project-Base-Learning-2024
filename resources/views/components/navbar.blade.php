@@ -40,7 +40,7 @@
             </div>
             <div class="w-full ps-3">
               <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Selamat, {{ ($message->source == 'tb_umkm')?'UMKM':'Kegiatan' }} yang Anda ajukan telah disetujui oleh <span class="font-semibold text-gray-900 dark:text-white">Ketua RW</span> </div>
-              <div class="text-xs text-blue-600 dark:text-blue-500">{{ ($message->diffTime < 1)?'beberapa saat yang lalu':$message->diffTime . 'jam yang lalu' }}</div>
+              <div class="text-xs text-blue-600 dark:text-blue-500">{{ ($message->diffTime < 1)?'beberapa saat yang lalu':$message->diffTime . ' jam yang lalu' }}</div>
             </div>
           </a>
           @elseif ($message->status === 'diproses')
@@ -53,7 +53,7 @@
             </div>
             <div class="w-full ps-3">
               <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Mohon Menunggu, {{ ($message->source == 'tb_umkm')?'UMKM':'Kegiatan' }} yang Anda ajukan sedang diproses oleh <span class="font-semibold text-gray-900 dark:text-white">Ketua RW</span> </div>
-              <div class="text-xs text-blue-600 dark:text-blue-500">{{ ($message->diffTime < 1)?'beberapa saat yang lalu':$message->diffTime . 'jam yang lalu' }}</div>
+              <div class="text-xs text-blue-600 dark:text-blue-500">{{ ($message->diffTime < 1)?'beberapa saat yang lalu':$message->diffTime . ' jam yang lalu' }}</div>
             </div>
           </a>
           @elseif ($message->status === 'ditolak')
@@ -68,10 +68,10 @@
               <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Maaf, {{ ($message->source == 'tb_umkm')?'UMKM':'Kegiatan' }} yang Anda ajukan telah ditolak oleh <span class="font-semibold text-gray-900 dark:text-white">Ketua RW</span> </div>
               <div class="w-full border-y-2 border-gray-300 text-sm py-2" :class="(selected === 'tolak{{$i}}') ? 'block' :'hidden'">
                 <p class="text-black font-bold">Alasan Penolakan :</p>
-                <p class="text-gray-500 dark:text-gray-400">"{{ $message->alasan_tolak }}"</p>
+                <p class="text-gray-500 dark:text-gray-400">"{{ $message->reason }}"</p>
               </div>
               <div class="flex justify-between items-center">
-                <div class="text-xs text-blue-600 dark:text-blue-500">{{ ($message->diffTime < 1)?'beberapa saat yang lalu':$message->diffTime . 'jam yang lalu' }}</div>
+                <div class="text-xs text-blue-600 dark:text-blue-500">{{ ($message->diffTime < 1)?'beberapa saat yang lalu':$message->diffTime . ' jam yang lalu' }}</div>
                 <i class="fa-solid" :class="(selected === 'tolak{{$i}}') ? 'fa-angle-up' :'fa-angle-down'"></i>
               </div>
             </div>
