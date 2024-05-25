@@ -1,12 +1,12 @@
 <x-admin-layout page="{{ $page }}" selected="{{ $selected }}">
-  <div class="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5">
+  <div class="grid grid-cols-1 gap-5 md:grid-cols-2 md:gap-6 xl:grid-cols-4 2xl:gap-7.5 relative">
     <!-- Card Item Start -->
-    <div class="relative rounded-t-md rounded-b-3xl border border-stroke bg-white px-5 py-7 shadow-xl group overflow-hidden">
+    <div class="relative rounded-t-md rounded-b-3xl border border-stroke bg-white px-5 py-7 lg:py-5 2xl:py-7  shadow-xl group overflow-hidden">
       <div class="absolute z-[2] top-0 h-full w-full bg-gradient-to-r from-[#19A8EF] to-[#1072A3] left-0 group-hover: transition ease-in-out duration-500 -translate-y-[93%] group-hover:translate-y-0"></div>
       <div class="relative flex w-full h-full justify-center items-center gap-10 z-[3] top-0 left-0">
         <div class="flex flex-col justify-center items-center gap-2">
           <div class="font-bold text-5xl group-hover:text-white">{{ $dataJumlah['jumlahKK'] }}</div>
-          <div class="font-semibold text-[15px] text-gray-500 group-hover:text-gray-200">Jumlah KK</div>
+          <div class="font-semibold text-[15px] text-gray-500 group-hover:text-gray-200 text-center">KK</div>
         </div>
         <div class="text-5xl text-transparent bg-gradient-to-r from-[#19A8EF] to-[#1072A3] bg-clip-text group-hover:text-white">
           <i class="fa-solid fa-address-card"></i>
@@ -15,12 +15,12 @@
     </div>
     <!-- Card Item End -->
     <!-- Card Item Start -->
-    <div class="relative rounded-t-md rounded-b-3xl border border-stroke bg-white px-5 py-7 shadow-xl group overflow-hidden">
+    <div class="relative rounded-t-md rounded-b-3xl border border-stroke bg-white px-5 py-7 lg:py-5 2xl:py-7  shadow-xl group overflow-hidden">
       <div class="absolute z-[2] top-0 h-full w-full bg-gradient-to-r from-[#F6A831] to-[#B37924] left-0 group-hover: transition ease-in-out duration-500 -translate-y-[93%] group-hover:translate-y-0"></div>
       <div class="relative flex w-full h-full justify-center items-center gap-10 z-[3] top-0 left-0">
         <div class="flex flex-col justify-center items-center gap-2">
           <div class="font-bold text-5xl group-hover:text-white">{{ $dataJumlah['jumlahPenduduk'] }}</div>
-          <div class="font-semibold text-[15px] text-gray-500 group-hover:text-gray-200">Jumlah Penduduk</div>
+          <div class="font-semibold text-[15px] text-gray-500 group-hover:text-gray-200 text-center">Penduduk</div>
         </div>
         <div class="text-5xl text-transparent bg-clip-text bg-gradient-to-r from-[#F6A831] to-[#B37924] group-hover:text-white">
           <i class="fa-solid fa-user"></i>
@@ -29,12 +29,12 @@
     </div>
     <!-- Card Item End -->
     <!-- Card Item Start -->
-    <div class="relative rounded-t-md rounded-b-3xl border border-stroke bg-white px-5 py-7 shadow-xl group overflow-hidden">
+    <div class="relative rounded-t-md rounded-b-3xl border border-stroke bg-white px-5 py-7 lg:py-5 2xl:py-7  shadow-xl group overflow-hidden">
       <div class="absolute z-[2] top-0 h-full w-full bg-gradient-to-r from-[#9119EF] to-[#6410A3] left-0 group-hover: transition ease-in-out duration-500 -translate-y-[93%] group-hover:translate-y-0"></div>
       <div class="relative flex w-full h-full justify-center items-center gap-10 z-[3] top-0 left-0">
         <div class="flex flex-col justify-center items-center gap-2">
           <div class="font-bold text-5xl group-hover:text-white">{{ $dataJumlah['jumlahUmkm'] }}</div>
-          <div class="font-semibold text-[15px] text-gray-500 group-hover:text-gray-200">Jumlah UMKM</div>
+          <div class="font-semibold text-[15px] text-gray-500 group-hover:text-gray-200 text-center">UMKM</div>
         </div>
         <div class="text-5xl text-transparent bg-clip-text bg-gradient-to-r from-[#9119EF] to-[#6410A3] group-hover:text-white">
           <i class="fa-solid fa-shop"></i>
@@ -43,12 +43,12 @@
     </div>
     <!-- Card Item End -->
     <!-- Card Item Start -->
-    <div class="relative rounded-t-md rounded-b-3xl border border-stroke bg-white px-5 py-7 shadow-xl group overflow-hidden">
+    <div class="relative rounded-t-md rounded-b-3xl border border-stroke bg-white px-5 py-7 lg:py-5 2xl:py-7  shadow-xl group overflow-hidden">
       <div class="absolute z-[2] top-0 h-full w-full bg-gradient-to-r from-[#19EF88] to-[#10A35C] left-0 group-hover: transition ease-in-out duration-500 -translate-y-[93%] group-hover:translate-y-0"></div>
       <div class="relative flex w-full h-full justify-center items-center gap-10 z-[3] top-0 left-0">
         <div class="flex flex-col justify-center items-center gap-2">
           <div class="font-bold text-5xl group-hover:text-white">{{ $dataJumlah['jumlahAduan'] }}</div>
-          <div class="font-semibold text-[15px] text-gray-500 group-hover:text-gray-200">Jumlah Aduan</div>
+          <div class="font-semibold text-[15px] text-gray-500 group-hover:text-gray-200 text-center">Aduan</div>
         </div>
         <div class="text-5xl text-transparent bg-clip-text bg-gradient-to-r from-[#19EF88] to-[#10A35C] group-hover:text-white">
           <i class="fa-solid fa-comments"></i>
@@ -58,121 +58,39 @@
     <!-- Card Item End -->
   </div>
 
-  <div class="mt-6 md:mt-14 grid grid-cols-12 grid-rows-5 gap-4 md:gap-6 2xl:gap-7.5 max-h-[690px]">
-    <div class="col-span-8 row-span-2 bg-white rounded-xl shadow-xl flex flex-col py-4 px-8 max-h-[245px]">
+  <div class="mt-6 md:mt-12 grid grid-cols-12 lg:grid-rows-5 gap-4 md:gap-6 2xl:gap-7.5 h-full lg:max-h-[570px] 2xl:max-h-[690px] relative">
+    <div class="2xl:col-span-8 lg:col-span-7 col-span-12 lg:row-span-2 bg-white rounded-xl shadow-xl flex flex-col py-4 px-8 h-[245px]">
       <div class="h-fit w-full text-left font-bold text-lg text-black">Demografi Penduduk</div>
-      <div class="h-full w-full">
-        <canvas id="barPendudukChart" height="80%"></canvas>
+      <div class="h-full w-full flex items-center">
+        <canvas id="barPendudukChart" style="height:100%; width:100%"></canvas>
       </div>
     </div>
 
-    <div class="col-span-4 row-span-5 bg-white rounded-xl shadow-xl flex flex-col py-4 px-8 gap-1 ">
+    <div class="2xl:col-span-4 lg:col-span-5 col-span-12 lg:row-span-5 bg-white rounded-xl shadow-xl flex flex-col py-4 px-8 gap-1 ">
       <div class="h-fit w-full text-left font-bold text-lg text-black">Daftar UMKM Terbaru</div>
       <div class="flex flex-col h-[91%] overflow-y-auto pt-2 scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin">
+        @foreach ($newestUmkm as $dt)
         <div class="flex py-4 border-b-2 border-gray-500 gap-5">
-          <img src="{{ asset('assets/images/toko-kelontong.jpg') }}" alt="" class="h-20 w-24 rounded-lg">
+          <img src="{{ asset('assets/images/' . $dt->foto) }}" alt="" class="h-20 w-20 rounded-lg">
           <div class="w-full flex flex-col justify-between items-start">
-            <p class="font-bold text-lg">Toko Kelontong</p>
+            <p class="font-bold text-lg"> {{ Str::limit($dt->nama, 20) }}</p>
             <div class="flex justify-center items-center gap-2">
               <i class="fa-regular fa-clock text-sm text-gray-500 pt-1"></i>
-              <p class="text-sm">00:00 - 23:59</p>
+              <p class="text-sm">{{ $dt->buka_waktu }} - {{ $dt->tutup_waktu }}</p>
             </div>
             <div class="flex justify-center items-center gap-2">
               <i class="fa-solid fa-user text-sm text-gray-500 pt-1"></i>
-              <p class="text-sm">Raihan Fazzaufa R.</p>
+              <p class="text-sm">{{ Str::limit($dt->penduduk->nama, 24) }}</p>
             </div>
           </div>
         </div>
-        <div class="flex py-4 border-b-2 border-gray-500 gap-5">
-          <img src="{{ asset('assets/images/toko-kelontong.jpg') }}" alt="" class="h-20 w-24 rounded-lg">
-          <div class="w-full flex flex-col justify-between items-start">
-            <p class="font-bold text-lg">Toko Kelontong</p>
-            <div class="flex justify-center items-center gap-2">
-              <i class="fa-regular fa-clock text-sm text-gray-500 pt-1"></i>
-              <p class="text-sm">00:00 - 23:59</p>
-            </div>
-            <div class="flex justify-center items-center gap-2">
-              <i class="fa-solid fa-user text-sm text-gray-500 pt-1"></i>
-              <p class="text-sm">Raihan Fazzaufa R.</p>
-            </div>
-          </div>
-        </div>
-        <div class="flex py-4 border-b-2 border-gray-500 gap-5">
-          <img src="{{ asset('assets/images/toko-kelontong.jpg') }}" alt="" class="h-20 w-24 rounded-lg">
-          <div class="w-full flex flex-col justify-between items-start">
-            <p class="font-bold text-lg">Toko Kelontong</p>
-            <div class="flex justify-center items-center gap-2">
-              <i class="fa-regular fa-clock text-sm text-gray-500 pt-1"></i>
-              <p class="text-sm">00:00 - 23:59</p>
-            </div>
-            <div class="flex justify-center items-center gap-2">
-              <i class="fa-solid fa-user text-sm text-gray-500 pt-1"></i>
-              <p class="text-sm">Raihan Fazzaufa R.</p>
-            </div>
-          </div>
-        </div>
-        <div class="flex py-4 border-b-2 border-gray-500 gap-5">
-          <img src="{{ asset('assets/images/toko-kelontong.jpg') }}" alt="" class="h-20 w-24 rounded-lg">
-          <div class="w-full flex flex-col justify-between items-start">
-            <p class="font-bold text-lg">Toko Kelontong</p>
-            <div class="flex justify-center items-center gap-2">
-              <i class="fa-regular fa-clock text-sm text-gray-500 pt-1"></i>
-              <p class="text-sm">00:00 - 23:59</p>
-            </div>
-            <div class="flex justify-center items-center gap-2">
-              <i class="fa-solid fa-user text-sm text-gray-500 pt-1"></i>
-              <p class="text-sm">Raihan Fazzaufa R.</p>
-            </div>
-          </div>
-        </div>
-        <div class="flex py-4 border-b-2 border-gray-500 gap-5">
-          <img src="{{ asset('assets/images/toko-kelontong.jpg') }}" alt="" class="h-20 w-24 rounded-lg">
-          <div class="w-full flex flex-col justify-between items-start">
-            <p class="font-bold text-lg">Toko Kelontong</p>
-            <div class="flex justify-center items-center gap-2">
-              <i class="fa-regular fa-clock text-sm text-gray-500 pt-1"></i>
-              <p class="text-sm">00:00 - 23:59</p>
-            </div>
-            <div class="flex justify-center items-center gap-2">
-              <i class="fa-solid fa-user text-sm text-gray-500 pt-1"></i>
-              <p class="text-sm">Raihan Fazzaufa R.</p>
-            </div>
-          </div>
-        </div>
-        <div class="flex py-4 border-b-2 border-gray-500 gap-5">
-          <img src="{{ asset('assets/images/toko-kelontong.jpg') }}" alt="" class="h-20 w-24 rounded-lg">
-          <div class="w-full flex flex-col justify-between items-start">
-            <p class="font-bold text-lg">Toko Kelontong</p>
-            <div class="flex justify-center items-center gap-2">
-              <i class="fa-regular fa-clock text-sm text-gray-500 pt-1"></i>
-              <p class="text-sm">00:00 - 23:59</p>
-            </div>
-            <div class="flex justify-center items-center gap-2">
-              <i class="fa-solid fa-user text-sm text-gray-500 pt-1"></i>
-              <p class="text-sm">Raihan Fazzaufa R.</p>
-            </div>
-          </div>
-        </div>
-        <div class="flex py-4 border-b-2 border-gray-500 gap-5">
-          <img src="{{ asset('assets/images/toko-kelontong.jpg') }}" alt="" class="h-20 w-24 rounded-lg">
-          <div class="w-full flex flex-col justify-between items-start">
-            <p class="font-bold text-lg">Toko Kelontong</p>
-            <div class="flex justify-center items-center gap-2">
-              <i class="fa-regular fa-clock text-sm text-gray-500 pt-1"></i>
-              <p class="text-sm">00:00 - 23:59</p>
-            </div>
-            <div class="flex justify-center items-center gap-2">
-              <i class="fa-solid fa-user text-sm text-gray-500 pt-1"></i>
-              <p class="text-sm">Raihan Fazzaufa R.</p>
-            </div>
-          </div>
-        </div>
+        @endforeach
       </div>
       <div class="flex justify-end items-center pt-3">
         <button class="py-1 px-4 bg-[#57BA47] font-medium text-sm text-white rounded-lg shadow-md hover:bg-[#234C1D] transition ease-in-out duration-300 hover:scale-105">Lainnya</button>
       </div>
     </div>
-    <div class="col-span-8 row-span-3 bg-white rounded-xl shadow-xl flex flex-col py-4 px-8 h-full">
+    <div class="2xl:col-span-8 lg:col-span-7 col-span-12 lg:row-span-3 bg-white rounded-xl shadow-xl flex flex-col py-4 px-8 h-full">
       <div class="flex w-full py-2">
         <div class="flex w-[55%] flex-col gap-1 text-left">
           <p class="font-bold text-lg text-black">Jumlah Penerima Bansos</p>
@@ -192,14 +110,14 @@
           </div>
         </div>
       </div>
-      <div class="w-full h-full">
-        <canvas id="lineChart" height="120"></canvas>
+      <div class="w-full h-full flex justify-center items-center">
+        <canvas id="lineChart" style="height:100%; width:100%"></canvas>
       </div>
     </div>
   </div>
 
-  <div class="mt-6 md:mt-12 grid grid-cols-3 grid-rows-1 gap-4 md:gap-6 2xl:gap-7.5 h-[400px]">
-    <div class="col-span-1 bg-white rounded-xl shadow-xl flex flex-col py-4 px-8 h-full gap-4">
+  <div class="mt-6 md:mt-12 grid grid-cols-3 lg:grid-rows-1 gap-4 md:gap-6 2xl:gap-7.5 h-[400px] lg:h-full">
+    <div class="lg:col-span-1 col-span-3 bg-white rounded-xl shadow-xl flex flex-col py-4 px-8 h-full gap-4">
       <div class="flex flex-col gap-1 pt-2">
         <p class="font-bold text-lg text-black">Jumlah Penduduk</p>
         <p class="font-normal text-sm text-gray-500">Menunjukkan perbandingan antara jumlah penduduk tetap dan tidak tetap</p>
@@ -224,9 +142,9 @@
         <canvas id="dougnutChart"></canvas>
       </div>
     </div>
-    <div class="col-span-2 bg-white rounded-xl shadow-xl flex h-full">
-      <div class="w-[45%] h-full border-r-2 border-gray-300 py-8 px-6">
-        <div class="dark:bg-gray-800 bg-white flex flex-col justify-between gap-8 h-full">
+    <div class="lg:col-span-2 col-span-3 bg-white rounded-xl shadow-xl flex md:flex-row flex-col">
+      <div class="w-full md:w-[45%] h-full md:border-r-2 border-b-2 border-gray-300 py-8 px-6">
+        <div class="dark:bg-gray-800 bg-white flex flex-col justify-around gap-8 h-full">
           <div class="flex items-center justify-around">
             <button id="prev" aria-label="calendar backward" onclick="prev()" class="focus:text-gray-400 hover:text-gray-400 text-gray-800 dark:text-gray-100 button-calendar">
               <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -296,130 +214,31 @@
           </div>
         </div>
       </div>
-      <div class="col-span-2 row-span-1 h-full w-[55%] flex flex-col gap-2 px-2 py-4">
+      <div class="col-span-2 lg:row-span-1 h-full md:w-[55%] w-full flex flex-col gap-2 px-2 py-4">
         <div class="font-bold text-lg text-center text-black">Kegiatan Mendatang</div>
-        <div class="flex flex-col h-full overflow-y-auto pb-2 pt-1 px-4 scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin gap-3">
-          <div class="flex w-full h-[100px] border-2 border-green-900 rounded-lg shadow-md">
+        <div class="flex flex-col lg:h-[350px] h-[320px] overflow-y-auto pb-2 pt-1 px-4 scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin gap-3">
+          @foreach ($dataKegiatanMendatang as $dt)
+          <div class="flex w-full h-fit border-2 border-green-900 rounded-lg shadow-md">
             <div class="w-fit h-full flex flex-col bg-green-900 px-4 text-white items-center justify-center">
-              <p class="font-bold text-3xl">10</p>
-              <p class="font-medium text-lg">Jun</p>
+              <p class="font-bold text-3xl">{{ substr($dt->mulai_tanggal, 0, 2) }}</p>
+              <p class="font-medium text-lg">{{ substr($dt->mulai_tanggal, 3, 6) }}</p>
             </div>
             <div class="flex flex-col h-full w-full items-center px-3 gap-1 py-2 relative">
-              <div class="text-lg font-medium text-green-900 text-left w-full">Kerja Bakti di RT 02</div>
+              <div class="text-lg font-medium text-green-900 text-left w-full">{{ Str::limit($dt->judul, 27) }}</div>
               <div class="flex items-center gap-3 w-full justify-between">
                 <div class="flex gap-2 items-center text-sm font-normal text-gray-500 text-left w-fit">
                   <i class="fa-regular fa-clock"></i>
-                  <p>07:00 - 10:00</p>
+                  <p>{{ $dt->mulai_waktu }} - {{ $dt->akhir_waktu }}</p>
                 </div>
-                <div class="px-3 py-1 bg-green-500 rounded-xl text-xs font-medium text-white">Kebersihan</div>
+                <div class="px-3 py-1 bg-green-500 rounded-xl text-xs font-medium text-white 2xl:flex hidden">{{ $dt->aktivitas_tipe }}</div>
               </div>
               <div class="flex items-center gap-2 text-sm font-normal text-gray-500 text-left w-full">
                 <i class="fa-solid fa-location-dot"></i>
-                <p>Lorem ipsum dolor sit amet</p>
+                <p>{{ $dt->lokasi }}</p>
               </div>
             </div>
           </div>
-          <div class="flex w-full h-[100px] border-2 border-green-900 rounded-lg shadow-md">
-            <div class="w-fit h-full flex flex-col bg-green-900 px-4 text-white items-center justify-center">
-              <p class="font-bold text-3xl">10</p>
-              <p class="font-medium text-lg">Jun</p>
-            </div>
-            <div class="flex flex-col h-full w-full items-center px-3 gap-1 py-2 relative">
-              <div class="text-lg font-medium text-green-900 text-left w-full">Kerja Bakti di RT 02</div>
-              <div class="flex items-center gap-3 w-full justify-between">
-                <div class="flex gap-2 items-center text-sm font-normal text-gray-500 text-left w-fit">
-                  <i class="fa-regular fa-clock"></i>
-                  <p>07:00 - 10:00</p>
-                </div>
-                <div class="px-3 py-1 bg-green-500 rounded-xl text-xs font-medium text-white">Kebersihan</div>
-              </div>
-              <div class="flex items-center gap-2 text-sm font-normal text-gray-500 text-left w-full">
-                <i class="fa-solid fa-location-dot"></i>
-                <p>Lorem ipsum dolor sit amet</p>
-              </div>
-            </div>
-          </div>
-          <div class="flex w-full h-[100px] border-2 border-green-900 rounded-lg shadow-md">
-            <div class="w-fit h-full flex flex-col bg-green-900 px-4 text-white items-center justify-center">
-              <p class="font-bold text-3xl">10</p>
-              <p class="font-medium text-lg">Jun</p>
-            </div>
-            <div class="flex flex-col h-full w-full items-center px-3 gap-1 py-2 relative">
-              <div class="text-lg font-medium text-green-900 text-left w-full">Kerja Bakti di RT 02</div>
-              <div class="flex items-center gap-3 w-full justify-between">
-                <div class="flex gap-2 items-center text-sm font-normal text-gray-500 text-left w-fit">
-                  <i class="fa-regular fa-clock"></i>
-                  <p>07:00 - 10:00</p>
-                </div>
-                <div class="px-3 py-1 bg-green-500 rounded-xl text-xs font-medium text-white">Kebersihan</div>
-              </div>
-              <div class="flex items-center gap-2 text-sm font-normal text-gray-500 text-left w-full">
-                <i class="fa-solid fa-location-dot"></i>
-                <p>Lorem ipsum dolor sit amet</p>
-              </div>
-            </div>
-          </div>
-          <div class="flex w-full h-[100px] border-2 border-green-900 rounded-lg shadow-md">
-            <div class="w-fit h-full flex flex-col bg-green-900 px-4 text-white items-center justify-center">
-              <p class="font-bold text-3xl">10</p>
-              <p class="font-medium text-lg">Jun</p>
-            </div>
-            <div class="flex flex-col h-full w-full items-center px-3 gap-1 py-2 relative">
-              <div class="text-lg font-medium text-green-900 text-left w-full">Kerja Bakti di RT 02</div>
-              <div class="flex items-center gap-3 w-full justify-between">
-                <div class="flex gap-2 items-center text-sm font-normal text-gray-500 text-left w-fit">
-                  <i class="fa-regular fa-clock"></i>
-                  <p>07:00 - 10:00</p>
-                </div>
-                <div class="px-3 py-1 bg-green-500 rounded-xl text-xs font-medium text-white">Kebersihan</div>
-              </div>
-              <div class="flex items-center gap-2 text-sm font-normal text-gray-500 text-left w-full">
-                <i class="fa-solid fa-location-dot"></i>
-                <p>Lorem ipsum dolor sit amet</p>
-              </div>
-            </div>
-          </div>
-          <div class="flex w-full h-[100px] border-2 border-green-900 rounded-lg shadow-md">
-            <div class="w-fit h-full flex flex-col bg-green-900 px-4 text-white items-center justify-center">
-              <p class="font-bold text-3xl">10</p>
-              <p class="font-medium text-lg">Jun</p>
-            </div>
-            <div class="flex flex-col h-full w-full items-center px-3 gap-1 py-2 relative">
-              <div class="text-lg font-medium text-green-900 text-left w-full">Kerja Bakti di RT 02</div>
-              <div class="flex items-center gap-3 w-full justify-between">
-                <div class="flex gap-2 items-center text-sm font-normal text-gray-500 text-left w-fit">
-                  <i class="fa-regular fa-clock"></i>
-                  <p>07:00 - 10:00</p>
-                </div>
-                <div class="px-3 py-1 bg-green-500 rounded-xl text-xs font-medium text-white">Kebersihan</div>
-              </div>
-              <div class="flex items-center gap-2 text-sm font-normal text-gray-500 text-left w-full">
-                <i class="fa-solid fa-location-dot"></i>
-                <p>Lorem ipsum dolor sit amet</p>
-              </div>
-            </div>
-          </div>
-          <div class="flex w-full h-[100px] border-2 border-green-900 rounded-lg shadow-md">
-            <div class="w-fit h-full flex flex-col bg-green-900 px-4 text-white items-center justify-center">
-              <p class="font-bold text-3xl">10</p>
-              <p class="font-medium text-lg">Jun</p>
-            </div>
-            <div class="flex flex-col h-full w-full items-center px-3 gap-1 py-2 relative">
-              <div class="text-lg font-medium text-green-900 text-left w-full">Kerja Bakti di RT 02</div>
-              <div class="flex items-center gap-3 w-full justify-between">
-                <div class="flex gap-2 items-center text-sm font-normal text-gray-500 text-left w-fit">
-                  <i class="fa-regular fa-clock"></i>
-                  <p>07:00 - 10:00</p>
-                </div>
-                <div class="px-3 py-1 bg-green-500 rounded-xl text-xs font-medium text-white">Kebersihan</div>
-              </div>
-              <div class="flex items-center gap-2 text-sm font-normal text-gray-500 text-left w-full">
-                <i class="fa-solid fa-location-dot"></i>
-                <p>Lorem ipsum dolor sit amet</p>
-              </div>
-            </div>
-          </div>
-
+          @endforeach
         </div>
       </div>
     </div>
@@ -542,9 +361,14 @@
     const days = document.querySelector("#days");
     const buttonCalendar = document.querySelectorAll(".button-calendar");
 
+    const urlParams = new URLSearchParams(window.location.search);
+    const dateParam = urlParams.get('date');
+
+    // console.log(parseInt(dateParam.split("-")[0]));
+
     let date = new Date();
-    let currYear = date.getFullYear();
-    let currMonth = date.getMonth();
+    let currYear = dateParam ? parseInt(dateParam.split("-")[0]) : date.getFullYear();
+    let currMonth = dateParam ? parseInt(dateParam.split("-")[1]) - 1 : date.getMonth();
 
     const month = [
       "Januari",
@@ -562,6 +386,7 @@
     ];
 
     const renderCalendar = () => {
+      let dateKegiatan = @json($dataDate);
       let counter = 0;
       let firstDayofMonth = new Date(currYear, currMonth, 1)
         .getDay(); // getting last date of month
@@ -570,6 +395,7 @@
       let lastDateofLastMonth = new Date(currYear, currMonth, 0)
         .getDate(); // getting last date of month
       let daysDate = "";
+      let dateCalendar = '';
 
       for (let i = firstDayofMonth; i > 0; i--) {
         counter++;
@@ -606,19 +432,56 @@
       for (let i = 1; i <= lastDateofMonth; i++) {
         counter++;
 
+        dateCalendar = `${currYear}-${currMonth + 1}-${i}`;
+
         if (i === date.getDate() && currMonth === date.getMonth() && currYear === date.getFullYear()) {
           daysDate += `       <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <button role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-white dark:text-gray-100 rounded-full bg-[#57BA47]">${i}</button>
+                                                <a href="/admin/jadwal-kegiatan?date=${dateCalendar}" role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-white dark:text-gray-100 rounded-full bg-[#57BA47]">${i}</a>
                                             </div>
                                         </div>
                                     </td>`
-        } else if (i == 10 || i == 15) {
+        } else if (i === parseInt(dateParam?.split("-")[2]) && currMonth === (parseInt(dateParam?.split("-")[1]) - 1) && currYear === (parseInt(dateParam?.split("-")[0]))) {
           daysDate += `       <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <button role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-white dark:text-gray-100 rounded-full bg-yellow-500">${i}</button>
+                                                <a href="/admin/jadwal-kegiatan?date=${dateCalendar}" role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium dark:text-gray-100 rounded-full text-white bg-[#4D4DFF]">${i}</a>
+                                            </div>
+                                        </div>
+                                    </td>`
+        } else if (dateKegiatan.some(dt =>
+            (dt.yearStart < currYear || (dt.yearStart === currYear && (dt.monthStart < currMonth || (dt.monthStart === currMonth && dt.dayStart <= i)))) &&
+            (dt.yearEnd > currYear || (dt.yearEnd === currYear && (dt.monthEnd > currMonth || (dt.monthEnd === currMonth && dt.dayEnd >= i)))) && (counter % 7 == 1)
+          )) {
+          daysDate += `   <tr>
+                                    <td class="py-1">
+                                        <div class="w-full h-full">
+                                            <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
+                                                <a href="/admin/jadwal-kegiatan?date=${dateCalendar}" role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-white dark:text-gray-100 rounded-full bg-yellow-500">${i}</a>
+                                            </div>
+                                        </div>
+                                    </td>`
+        } else if (dateKegiatan.some(dt =>
+            (dt.yearStart < currYear || (dt.yearStart === currYear && (dt.monthStart < currMonth || (dt.monthStart === currMonth && dt.dayStart <= i)))) &&
+            (dt.yearEnd > currYear || (dt.yearEnd === currYear && (dt.monthEnd > currMonth || (dt.monthEnd === currMonth && dt.dayEnd >= i)))) && (counter % 7 == 0)
+          )) {
+          daysDate += `   <td class="py-1">
+                                        <div class="w-full h-full">
+                                            <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
+                                                <a href="/admin/jadwal-kegiatan?date=${dateCalendar}" role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-white dark:text-gray-100 rounded-full bg-yellow-500">${i}</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    </tr>`
+        } else if (dateKegiatan.some(dt =>
+            (dt.yearStart < currYear || (dt.yearStart === currYear && (dt.monthStart < currMonth || (dt.monthStart === currMonth && dt.dayStart <= i)))) &&
+            (dt.yearEnd > currYear || (dt.yearEnd === currYear && (dt.monthEnd > currMonth || (dt.monthEnd === currMonth && dt.dayEnd >= i))))
+          )) {
+          daysDate += `  <td class="py-1">
+                                        <div class="w-full h-full">
+                                            <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
+                                                <a href="/admin/jadwal-kegiatan?date=${dateCalendar}" role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-white dark:text-gray-100 rounded-full bg-yellow-500">${i}</a>
                                             </div>
                                         </div>
                                     </td>`
@@ -627,7 +490,7 @@
                                     <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <button role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-gray-500 dark:text-gray-100 rounded-full">${i}</button>
+                                                <a href="/admin/jadwal-kegiatan?date=${dateCalendar}" role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-gray-500 dark:text-gray-100 rounded-full">${i}</a>
                                             </div>
                                         </div>
                                     </td>`
@@ -635,7 +498,7 @@
           daysDate += `       <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <button role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-gray-500 dark:text-gray-100 rounded-full">${i}</button>
+                                                <a href="/admin/jadwal-kegiatan?date=${dateCalendar}" role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-gray-500 dark:text-gray-100 rounded-full">${i}</a>
                                             </div>
                                         </div>
                                     </td>
@@ -644,7 +507,7 @@
           daysDate += `       <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <button role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-gray-500 dark:text-gray-100 rounded-full">${i}</button>
+                                                <a href="/admin/jadwal-kegiatan?date=${dateCalendar}" role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-gray-500 dark:text-gray-100 rounded-full">${i}</a>
                                             </div>
                                         </div>
                                     </td>`
@@ -659,7 +522,7 @@
                                     <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <button role="link"  tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-normal text-gray-400 dark:text-slate-400 rounded-full">${i - lastDayofMonth + 1}</button>
+                                                <a href="/admin/jadwal-kegiatan?date=${dateCalendar}" role="link"  tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-normal text-gray-400 dark:text-slate-400 rounded-full">${i - lastDayofMonth + 1}</a>
                                             </div>
                                         </div>
                                     </td>`
@@ -667,7 +530,7 @@
           daysDate += `       <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <button role="link"  tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-normal text-gray-400 dark:text-slate-400 rounded-full">${i - lastDayofMonth + 1}</button>
+                                                <a href="/admin/jadwal-kegiatan?date=${dateCalendar}" role="link"  tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-normal text-gray-400 dark:text-slate-400 rounded-full">${i - lastDayofMonth + 1}</a>
                                             </div>
                                         </div>
                                     </td>
@@ -676,7 +539,7 @@
           daysDate += `       <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <button role="link"  tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-normal text-gray-400 dark:text-slate-400 rounded-full">${i - lastDayofMonth + 1}</button>
+                                                <a href="/admin/jadwal-kegiatan?date=${dateCalendar}" role="link"  tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-normal text-gray-400 dark:text-slate-400 rounded-full">${i - lastDayofMonth + 1}</a>
                                             </div>
                                         </div>
                                     </td>`

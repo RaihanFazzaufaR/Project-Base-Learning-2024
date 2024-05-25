@@ -635,7 +635,7 @@
                                 <button type="submit" class="h-fit w-fit px-3 py-1 bg-[#FF5E5E] font-semibold text-sm rounded-xl text-white hover:bg-[#B34242] transition-all">Hapus</button>
                             </form>
                         </div>
-                        <div class="text-lg font-medium text-green-900 text-left w-full"> {{ Str::limit($dt->judul, 27) }}</div>
+                        <div class="text-lg font-medium text-green-900 text-left w-full">{{ Str::limit($dt->judul, 27) }}</div>
                         <div class="flex items-center gap-3 w-full justify-between">
                             <div class="flex gap-2 items-center text-sm font-normal text-gray-500 text-left w-fit">
                                 <i class="fa-regular fa-clock"></i>
