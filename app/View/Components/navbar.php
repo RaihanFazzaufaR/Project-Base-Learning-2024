@@ -3,6 +3,7 @@
 namespace App\View\Components;
 
 use App\Models\JadwalModel;
+use App\Models\PendudukModel;
 use Carbon\Carbon;
 use Closure;
 use Illuminate\Contracts\View\View;
@@ -28,7 +29,9 @@ class navbar extends Component
     private function messages()
     {
         $today = Carbon::today()->toDateString();
-        $data = JadwalModel::whereDate('updated_at', $today)->get();
+        // $data = PendudukModel::with(['jadwal', 'umkm'])->whereDate('updated_at', $today)->get();
+        $data = PendudukModel::whereDate('updated_at', $today)->get();
+        // dd($data);
         foreach ($data as  $value) {
             $value->updated_at = Carbon::parse($value->updated_at);
             $value->diffTime = $value->updated_at->diffInHours(Carbon::now());
