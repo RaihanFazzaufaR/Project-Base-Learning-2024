@@ -689,13 +689,16 @@
 
                                         </div>
                                         <div class="sm:col-span-2 px-4">
-                                            <label for="deskripsi"
+                                            <label 
                                                 class="block mb-2   font-medium text-[#2d5523] dark:text-white">Lokasi
                                                 UMKM</label>
                                             <textarea id="deskripsi" name="deskripsi" cols="19" rows="3"
                                                 placeholder="Masukkan Deskripsi Singkat UMKM"
                                                 class="bg-gray-50 border text-base border-[#518742]  text-[#2f5724] rounded-lg placeholder-[#34662C]/50 focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
 
+                                        </div>
+                                        <div class="w-full text-[#2d5523] font-sm px-4 pb-4">
+                                            *Sebelum mengajukan UMKM Anda, pastikan UMKM Anda sudah ada pada Google Maps
                                         </div>
 
                                     </div>
