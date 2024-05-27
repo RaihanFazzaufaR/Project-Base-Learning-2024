@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
             KartuKeluargaSeeder::class,
             PendudukSeeder::class,
             UserAccountSeeder::class,
-            LevelDetailSeeder::class,
             BansosSeeder::class,
             JadwalSeeder::class,
             KategoriSeeder::class,
