@@ -92,12 +92,12 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::delete('/{username}', [AdminAkunAdminController::class, 'destroy'])->name('destroyAkun-admin');
                 Route::post('/filter-akun-admin', [AdminAkunAdminController::class, 'filter'])->name('filterAkun-admin');
                 Route::post('/search-akun-admin', [AdminAkunAdminController::class, 'search'])->name('searchAkun-admin');
-                Route::get('/kelola-level', [AdminAkunAdminController::class, 'indexPenduduk'])->name('akun-penduduk');
-                Route::post('/store-penduduk', [AdminAkunAdminController::class, 'storePenduduk'])->name('storeAkun-penduduk');
-                Route::put('/update-penduduk/{username}', [PendudukController::class, 'updatePenduduk'])->name('updateAkun-penduduk');
-                Route::delete('/destroy-penduduk/{username}', [AdminAkunAdminController::class, 'destroyPenduduk'])->name('destroyAkun-penduduk');
-                Route::post('/search-akun', [AdminAkunAdminController::class, 'searchPenduduk'])->name('searchAkun-penduduk');
-                Route::post('/filter-akun', [AdminAkunAdminController::class, 'filterPenduduk'])->name('filterAkun-penduduk');
+                Route::get('/kelola-level', [AdminAkunAdminController::class, 'indexAkun'])->name('akun-level');
+                Route::post('/store-level', [AdminAkunAdminController::class, 'storeAkun'])->name('storeAkun-level');
+                Route::put('/update-level/{username}', [AdminAkunAdminController::class, 'updateAkun'])->name('updateAkun-level');
+                Route::delete('/destroy-level/{username}', [AdminAkunAdminController::class, 'destroyAkun'])->name('destroyAkun-level');
+                Route::post('/search-level', [AdminAkunAdminController::class, 'searchAkun'])->name('searchAkun-level');
+                Route::post('/filter-level', [AdminAkunAdminController::class, 'filterAkun'])->name('filterAkun-level');
             });
             Route::prefix('jadwal-kegiatan')->group(function () {
                 Route::get('/', [AdminKegiatanController::class, 'index'])->name('jadwal-kegiatan-admin');

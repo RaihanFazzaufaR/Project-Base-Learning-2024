@@ -1,7 +1,7 @@
 <x-admin-layout page="{{ $page }}" selected="{{ $selected }}">
     <div class="flex w-full h-15 justify-between items-center">
         <div class="flex h-full w-fit gap-8 items-center justify-between">
-            <form class="w-[22vw]" method="post" action="{{ route('searchAkun-penduduk') }}">
+            <form class="w-[22vw]" method="post" action="{{ route('searchAkun-level') }}">
                 @csrf
                 <div class="flex h-full items-center">
                     <div class="relative w-full">
@@ -47,7 +47,7 @@
                             </div>
                             <!-- Modal body -->
                             <form class="w-full h-full text-[#34662C]" method="POST"
-                                action="{{ route('filterAkun-penduduk') }}">
+                                action="{{ route('filterAkun-level') }}">
                                 @csrf
                                 <div
                                     class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto rounded-b-xl">
@@ -112,7 +112,7 @@
                         </div>
                         <!-- Modal body -->
                         <form class="w-full h-full text-[#34662C]" method="POST"
-                            action="{{ route('storeAkun-penduduk') }}">
+                            action="{{ route('storeAkun-level') }}">
                             @csrf
                             <div
                                 class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto rounded-b-xl">
@@ -324,7 +324,7 @@
                                                         <!-- Modal body -->
                                                         <form class="w-full h-full text-[#34662C] text-left"
                                                             method="POST"
-                                                            action="{{ route('updateAkun-penduduk', ['username' => $userData->username]) }}">
+                                                            action="{{ route('updateAkun-level', ['username' => $userData->username]) }}">
                                                             @csrf
                                                             {!! method_field('PUT') !!}
 
@@ -366,7 +366,7 @@
                                                 </div>
                                             </div>
                                         </div>
-                                        <form action="{{ route('destroyAkun-penduduk', $userData->username) }}"
+                                        <form action="{{ route('destroyAkun-level', $userData->username) }}"
                                             method="POST">
                                             @csrf
                                             {!! method_field('DELETE') !!}
