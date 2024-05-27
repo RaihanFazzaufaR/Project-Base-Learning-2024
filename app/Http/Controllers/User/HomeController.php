@@ -4,24 +4,36 @@ namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
 use App\Models\JadwalModel;
+use App\Models\UmkmModel;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         $menu = 'Home';
+        
+        if (isset($request->date)) {
+            $calendarDate = $request->date;
+    
+            $dataKegiatan = JadwalModel::where('status', 'selesai')
+                ->where('mulai_tanggal', '<=', $calendarDate)
+                ->where('akhir_tanggal', '>=', $calendarDate)
+                ->orderBy('mulai_waktu', 'asc')
+                ->get();
+        } else {
+            $currentMonth = $request->month ?? Carbon::now()->month;
+            $currentYear = $request->year ?? Carbon::now()->year;
+    
+            $dataKegiatan = JadwalModel::where('status', 'selesai')
+                ->whereMonth('mulai_tanggal', $currentMonth)
+                ->whereYear('mulai_tanggal', $currentYear)
+                ->orderBy('mulai_tanggal', 'asc')
+                ->get();
+        }
 
-        $currentMonth = Carbon::now()->month;
-        $currentYear = Carbon::now()->year;
-
-        $dataKegiatan = JadwalModel::where('status', 'selesai')
-            ->whereMonth('mulai_tanggal', $currentMonth)
-            ->whereYear('mulai_tanggal', $currentYear)
-            ->orderBy('mulai_tanggal', 'asc')
-            ->get();
 
         $dataKegiatan = $this->formatDateAndTime($dataKegiatan);
 
@@ -38,7 +50,14 @@ class HomeController extends Controller
             ->where('status', 'selesai')
             ->get();
 
-        return view('home', compact('menu', 'dataKegiatan', 'dataDate'));
+        $dataUmkm = UmkmModel::where('status', 'diterima')
+            ->inRandomOrder()
+            ->limit(8)
+            ->get();
+
+        $dataUmkm = $this->formatDateAndTime($dataUmkm);
+
+        return view('home', compact('menu', 'dataKegiatan', 'dataDate', 'dataUmkm'));
     }
 
     private function formatDateAndTime($data)

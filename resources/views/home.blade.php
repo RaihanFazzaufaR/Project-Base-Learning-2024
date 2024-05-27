@@ -126,86 +126,24 @@
         <div class="font-bold  text-[#1C4F0F] text-5xl text-center w-full py-4 uppercase" data-aos="zoom-in" data-aos-duration="1500">UMKM Sekitar</div>
         <div class="swiper mySwiper w-full flex justify-center !px-12" data-aos="fade-left" data-aos-duration="1500">
             <div class="swiper-wrapper w-full !py-16">
+                @foreach ($dataUmkm as $dt)
                 <div class="swiper-slide relative w-[17vw] !h-[40vh] bg-white rounded-2xl shadow-lg flex flex-col overflow-hidden hover:shadow-2xl hover:!scale-105 transition ease-in-out duration-500 group">
                     <div class="h-[70%] w-full overflow-hidden">
-                        <img src="{{ asset('assets/images/toko-kelontong.jpg') }}" alt="" class="h-full w-full group-hover:brightness-[0.4] transition ease-in-out duration-500 group-hover:scale-110">
+                        <img src="{{ asset('assets/images/'.$dt->foto ) }}" alt="" class="h-full w-full object-cover group-hover:brightness-[0.4] transition ease-in-out duration-500 group-hover:scale-110">
                     </div>
                     <div class="h-[30%] w-full flex flex-col justify-center items-center gap-1 text-[#1C4F0F]">
-                        <p class="font-bold text-lg">Toko Kelontong 1</p>
+                        <p class="font-bold text-lg">{{ $dt->nama }}</p>
                         <hr class="text-black">
                         <div class="text-sm flex justify-center items-center gap-3">
                             <i class="fa-regular fa-clock"></i>
-                            <p class="">09.00 - 21.00</p>
+                            <p class="">{{ $dt->buka_waktu }} - {{ $dt->tutup_waktu }}</p>
                         </div>
                     </div>
                     <div class="absolute h-[70%] w-full top-0 opacity-0 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500">
-                        <a class="bg-yellow-500 text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm hover:bg-[#E2A229] cursor-pointer">Lihat Selengkapnya</a>
+                        <a href="{{ route('umkm.detail', ['umkm_id' => $dt->umkm_id]) }}" class="bg-yellow-500 text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm hover:bg-[#E2A229] cursor-pointer">Lihat Selengkapnya</a>
                     </div>
                 </div>
-                <div class="swiper-slide relative w-[17vw] !h-[40vh] bg-white rounded-2xl shadow-lg flex flex-col overflow-hidden hover:shadow-2xl hover:!scale-105 transition ease-in-out duration-500 group">
-                    <div class="h-[70%] w-full overflow-hidden">
-                        <img src="{{ asset('assets/images/toko-kelontong.jpg') }}" alt="" class="h-full w-full group-hover:brightness-[0.4] transition ease-in-out duration-500 group-hover:scale-110">
-                    </div>
-                    <div class="h-[30%] w-full flex flex-col justify-center items-center gap-1 text-[#1C4F0F]">
-                        <p class="font-bold text-lg">Toko Kelontong 2</p>
-                        <hr class="text-black">
-                        <div class="text-sm flex justify-center items-center gap-3">
-                            <i class="fa-regular fa-clock"></i>
-                            <p class="">09.00 - 21.00</p>
-                        </div>
-                    </div>
-                    <div class="absolute h-[70%] w-full top-0 opacity-0 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500">
-                        <a class="bg-yellow-500 text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm hover:bg-[#E2A229] cursor-pointer">Lihat Selengkapnya</a>
-                    </div>
-                </div>
-                <div class="swiper-slide relative w-[17vw] !h-[40vh] bg-white rounded-2xl shadow-lg flex flex-col overflow-hidden hover:shadow-2xl hover:!scale-105 transition ease-in-out duration-500 group">
-                    <div class="h-[70%] w-full overflow-hidden">
-                        <img src="{{ asset('assets/images/toko-kelontong.jpg') }}" alt="" class="h-full w-full group-hover:brightness-[0.4] transition ease-in-out duration-500 group-hover:scale-110">
-                    </div>
-                    <div class="h-[30%] w-full flex flex-col justify-center items-center gap-1 text-[#1C4F0F]">
-                        <p class="font-bold text-lg">Toko Kelontong 3</p>
-                        <hr class="text-black">
-                        <div class="text-sm flex justify-center items-center gap-3">
-                            <i class="fa-regular fa-clock"></i>
-                            <p class="">09.00 - 21.00</p>
-                        </div>
-                    </div>
-                    <div class="absolute h-[70%] w-full top-0 opacity-0 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500">
-                        <a class="bg-yellow-500 text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm hover:bg-[#E2A229] cursor-pointer">Lihat Selengkapnya</a>
-                    </div>
-                </div>
-                <div class="swiper-slide relative w-[17vw] !h-[40vh] bg-white rounded-2xl shadow-lg flex flex-col overflow-hidden hover:shadow-2xl hover:!scale-105 transition ease-in-out duration-500 group">
-                    <div class="h-[70%] w-full overflow-hidden">
-                        <img src="{{ asset('assets/images/toko-kelontong.jpg') }}" alt="" class="h-full w-full group-hover:brightness-[0.4] transition ease-in-out duration-500 group-hover:scale-110">
-                    </div>
-                    <div class="h-[30%] w-full flex flex-col justify-center items-center gap-1 text-[#1C4F0F]">
-                        <p class="font-bold text-lg">Toko Kelontong 4</p>
-                        <hr class="text-black">
-                        <div class="text-sm flex justify-center items-center gap-3">
-                            <i class="fa-regular fa-clock"></i>
-                            <p class="">09.00 - 21.00</p>
-                        </div>
-                    </div>
-                    <div class="absolute h-[70%] w-full top-0 opacity-0 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500">
-                        <a class="bg-yellow-500 text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm hover:bg-[#E2A229] cursor-pointer">Lihat Selengkapnya</a>
-                    </div>
-                </div>
-                <div class="swiper-slide relative w-[17vw] !h-[40vh] bg-white rounded-2xl shadow-lg flex flex-col overflow-hidden hover:shadow-2xl hover:!scale-105 transition ease-in-out duration-500 group">
-                    <div class="h-[70%] w-full overflow-hidden">
-                        <img src="{{ asset('assets/images/toko-kelontong.jpg') }}" alt="" class="h-full w-full group-hover:brightness-[0.4] transition ease-in-out duration-500 group-hover:scale-110">
-                    </div>
-                    <div class="h-[30%] w-full flex flex-col justify-center items-center gap-1 text-[#1C4F0F]">
-                        <p class="font-bold text-lg">Toko Kelontong 5</p>
-                        <hr class="text-black">
-                        <div class="text-sm flex justify-center items-center gap-3">
-                            <i class="fa-regular fa-clock"></i>
-                            <p class="">09.00 - 21.00</p>
-                        </div>
-                    </div>
-                    <div class="absolute h-[70%] w-full top-0 opacity-0 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500">
-                        <a href="{{ route('umkm') }}" class="bg-yellow-500 text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm hover:bg-[#E2A229] cursor-pointer">Lihat Selengkapnya</a>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <div class="swiper-button-next !right-7 after:!text-lg !font-extrabold !text-white !h-10 !w-10 bg-yellow-500 hover:bg-[#E2A229] rounded-full hover:scale-105 transition ease-in-out duration-300"></div>
             <div class="swiper-button-prev !left-7 after:!text-lg !font-extrabold !text-white !h-10 !w-10 bg-yellow-500 hover:bg-[#E2A229] rounded-full hover:scale-105 transition ease-in-out duration-300"></div>
@@ -304,6 +242,7 @@
                             <polyline points="9 6 15 12 9 18" />
                         </svg>
                     </button>
+                    <a id="agendaDate" class="hidden"></a>
                 </div>
                 <div class="flex items-center justify-between h-full">
                     <table class="w-full lg:h-full">
@@ -437,6 +376,7 @@
     <script>
         var swiper = new Swiper(".mySwiper", {
             slidesPerView: 4,
+            // slidesPerGroup: 4,
             spaceBetween: 61,
             loop: true,
             pagination: {
@@ -457,12 +397,24 @@
 
         const urlParams = new URLSearchParams(window.location.search);
         const dateParam = urlParams.get('date');
+        const monthParam = urlParams.get('month');
+        const yearParam = urlParams.get('year');
 
         // console.log(parseInt(dateParam.split("-")[0]));
 
         let date = new Date();
-        let currYear = dateParam ? parseInt(dateParam.split("-")[0]) : date.getFullYear();
-        let currMonth = dateParam ? parseInt(dateParam.split("-")[1]) - 1 : date.getMonth();
+        let currYear = date.getFullYear();
+        let currMonth = date.getMonth();
+
+        if (dateParam) {
+            currYear = parseInt(dateParam.split("-")[0]);
+            currMonth = parseInt(dateParam.split("-")[1]) - 1;
+        } else if (monthParam && yearParam) {
+            currYear = parseInt(yearParam);
+            currMonth = parseInt(monthParam) - 1;
+        }
+
+        let = document.querySelector('#agendaDate');
 
         const month = [
             "Januari",
@@ -532,7 +484,7 @@
                     daysDate += `       <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <a href="/admin/jadwal-kegiatan?date=${dateCalendar}" role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-white dark:text-gray-100 rounded-full bg-[#57BA47]">${i}</a>
+                                                <a href="/?date=${dateCalendar}" role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-white dark:text-gray-100 rounded-full bg-[#57BA47]">${i}</a>
                                             </div>
                                         </div>
                                     </td>`
@@ -540,7 +492,7 @@
                     daysDate += `       <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <a href="/admin/jadwal-kegiatan?date=${dateCalendar}" role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium dark:text-gray-100 rounded-full text-white bg-[#4D4DFF]">${i}</a>
+                                                <a href="/?date=${dateCalendar}" role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium dark:text-gray-100 rounded-full text-white bg-[#4D4DFF]">${i}</a>
                                             </div>
                                         </div>
                                     </td>`
@@ -552,7 +504,7 @@
                                     <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <a href="/admin/jadwal-kegiatan?date=${dateCalendar}" role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-white dark:text-gray-100 rounded-full bg-yellow-500">${i}</a>
+                                                <a href="/?date=${dateCalendar}" role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-white dark:text-gray-100 rounded-full bg-yellow-500">${i}</a>
                                             </div>
                                         </div>
                                     </td>`
@@ -563,7 +515,7 @@
                     daysDate += `   <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <a href="/admin/jadwal-kegiatan?date=${dateCalendar}" role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-white dark:text-gray-100 rounded-full bg-yellow-500">${i}</a>
+                                                <a href="/?date=${dateCalendar}" role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-white dark:text-gray-100 rounded-full bg-yellow-500">${i}</a>
                                             </div>
                                         </div>
                                     </td>
@@ -575,7 +527,7 @@
                     daysDate += `  <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <a href="/admin/jadwal-kegiatan?date=${dateCalendar}" role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-white dark:text-gray-100 rounded-full bg-yellow-500">${i}</a>
+                                                <a href="/?date=${dateCalendar}" role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-white dark:text-gray-100 rounded-full bg-yellow-500">${i}</a>
                                             </div>
                                         </div>
                                     </td>`
@@ -584,7 +536,7 @@
                                     <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <a href="/admin/jadwal-kegiatan?date=${dateCalendar}" role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-gray-500 dark:text-gray-100 rounded-full">${i}</a>
+                                                <a href="/?date=${dateCalendar}" role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-gray-500 dark:text-gray-100 rounded-full">${i}</a>
                                             </div>
                                         </div>
                                     </td>`
@@ -592,7 +544,7 @@
                     daysDate += `       <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <a href="/admin/jadwal-kegiatan?date=${dateCalendar}" role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-gray-500 dark:text-gray-100 rounded-full">${i}</a>
+                                                <a href="/?date=${dateCalendar}" role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-gray-500 dark:text-gray-100 rounded-full">${i}</a>
                                             </div>
                                         </div>
                                     </td>
@@ -601,7 +553,7 @@
                     daysDate += `       <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <a href="/admin/jadwal-kegiatan?date=${dateCalendar}" role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-gray-500 dark:text-gray-100 rounded-full">${i}</a>
+                                                <a href="/?date=${dateCalendar}" role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-gray-500 dark:text-gray-100 rounded-full">${i}</a>
                                             </div>
                                         </div>
                                     </td>`
@@ -616,7 +568,7 @@
                                     <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <a href="/admin/jadwal-kegiatan?date=${dateCalendar}" role="link"  tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-normal text-gray-400 dark:text-slate-400 rounded-full">${i - lastDayofMonth + 1}</a>
+                                                <a href="/?date=${dateCalendar}" role="link"  tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-normal text-gray-400 dark:text-slate-400 rounded-full">${i - lastDayofMonth + 1}</a>
                                             </div>
                                         </div>
                                     </td>`
@@ -624,7 +576,7 @@
                     daysDate += `       <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <a href="/admin/jadwal-kegiatan?date=${dateCalendar}" role="link"  tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-normal text-gray-400 dark:text-slate-400 rounded-full">${i - lastDayofMonth + 1}</a>
+                                                <a href="/?date=${dateCalendar}" role="link"  tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-normal text-gray-400 dark:text-slate-400 rounded-full">${i - lastDayofMonth + 1}</a>
                                             </div>
                                         </div>
                                     </td>
@@ -633,7 +585,7 @@
                     daysDate += `       <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <a href="/admin/jadwal-kegiatan?date=${dateCalendar}" role="link"  tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-normal text-gray-400 dark:text-slate-400 rounded-full">${i - lastDayofMonth + 1}</a>
+                                                <a href="/?date=${dateCalendar}" role="link"  tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-normal text-gray-400 dark:text-slate-400 rounded-full">${i - lastDayofMonth + 1}</a>
                                             </div>
                                         </div>
                                     </td>`
@@ -651,6 +603,10 @@
                 currMonth = 0;
                 currYear++;
             }
+
+            agendaDate.href = `/?month=${currMonth+1}&year=${currYear}`;
+            agendaDate.click();
+
             renderCalendar();
         }
 
@@ -660,10 +616,19 @@
                 currMonth = 11;
                 currYear--;
             }
+            agendaDate.href = `/?month=${currMonth+1}&year=${currYear}`;
+            agendaDate.click();
             renderCalendar();
         }
 
         renderCalendar();
+
+        if (dateParam || monthParam && yearParam) {
+            window.scrollTo({
+                top: 2530,
+                behavior: 'smooth'
+            });
+        }
     </script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>
