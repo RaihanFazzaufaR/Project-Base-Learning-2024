@@ -15,7 +15,7 @@ class UserAccountSeeder extends Seeder
     public function run(): void
     {
         $data = [
-            ['user_id'=>1, 'email'=>'raihan100rasendriya@gmail.com' ,'username'=>'admin', 'password'=>Hash::make('123456'), 'id_penduduk'=>null, 'id_level'=>1, 'image'=>null],
+            ['user_id'=>1, 'email'=>'raihan100rasendriya@gmail.com' ,'username'=>'admin', 'password'=>Hash::make('123456'), 'id_penduduk'=>1, 'id_level'=>1, 'image'=>null],
             ['user_id'=>2, 'email'=>'fazzaufa94raihan@gmail.com','username'=>'RaihanFR', 'password'=>Hash::make('123456'), 'id_penduduk'=>1, 'id_level'=>2,  'image'=>'user1.jpg'],
             ['user_id'=>3, 'email'=>'maulidinzakaria123@gmail.com','username'=>'ZakariaM', 'password'=>Hash::make('123456'), 'id_penduduk'=>3,'id_level'=>2,  'image'=>'user2.jpg'],
             ['user_id'=>4, 'email'=>'2241720168@student.polinema.ac.id','username'=>'LuckyK', 'password'=>Hash::make('123456'), 'id_penduduk'=>6, 'id_level'=>2, 'image'=>'user3.jpg'],
