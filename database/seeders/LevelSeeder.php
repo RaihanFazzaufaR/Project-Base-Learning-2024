@@ -15,7 +15,8 @@ class LevelSeeder extends Seeder
     {
         $data = [
             ['level_id'=>1, 'levelNama'=>"admin" ],
-            ['level_id'=>2, 'levelNama'=>"user" ],
+            ['level_id'=>2, 'levelNama'=>"rt/rw" ],
+            ['level_id'=>3, 'levelNama'=>"user" ],
         ];
         DB::table('tb_level')->insert($data);
     }

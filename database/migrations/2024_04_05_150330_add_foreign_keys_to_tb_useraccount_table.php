@@ -15,6 +15,7 @@ return new class extends Migration
     {
         Schema::table('tb_useraccount', function (Blueprint $table) {
             $table->foreign(['id_penduduk'], 'tb_useraccount_ibfk_1')->references(['id_penduduk'])->on('tb_penduduk')->onUpdate('restrict')->onDelete('restrict');
+            $table->foreign(['id_level'], 'tb_useraccount_ibfk_2')->references(['level_id'])->on('tb_level')->onUpdate('restrict')->onDelete('restrict');
         });
     }
 
@@ -27,6 +28,7 @@ return new class extends Migration
     {
         Schema::table('tb_useraccount', function (Blueprint $table) {
             $table->dropForeign('tb_useraccount_ibfk_1');
+            $table->dropForeign('tb_useraccount_ibfk_2');
         });
     }
 };

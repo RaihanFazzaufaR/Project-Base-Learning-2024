@@ -37,17 +37,20 @@ class LoginController extends Controller
 
         $request->session()->regenerate();
 
-        $level_id = $request->level_id;
+        // $level_id = $request->level_id;
 
         if(Auth::attempt($credentials)){
             $user = Auth::user();
             
             $request->session()->regenerate();
 
-            if($level_id == 1){
+            if($user->id_level == 1){
                 return redirect()->intended('admin');
             }
-            if($level_id == 2){
+            if($user->id_level == 2){
+                return redirect()->intended('admin');
+            }
+            if($user->id_level == 3){
                 return redirect()->intended('/');
             }
         }
