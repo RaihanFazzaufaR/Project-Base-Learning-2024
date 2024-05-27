@@ -51,7 +51,7 @@
                 </li>
             </ul>
         </div> -->
-        <p class="font-bold text-normal text-[#1C4F0F] text-left">Select Role</p>
+        {{-- <p class="font-bold text-normal text-[#1C4F0F] text-left">Select Role</p>
         <div class="flex items-center justify-around">
             <label class="cursor-pointer">
                 <input type="radio" class="peer sr-only" name="level_id" value=2 checked>
@@ -67,7 +67,7 @@
                     <p class="font-bold text-sm">ADMIN</p>
                 </div>
             </label>
-        </div>
+        </div> --}}
         <div class="flex flex-col gap-2">
             <label for="username" class="font-bold text-normal text-[#1C4F0F]">Username</label>
             <input type="text" name="username" id="username" class="w-full p-2 ring-2 bg-[#EDEDED] ring-slate-400 focus:outline-none focus:ring-green-500 focus:ring-offset-1 rounded-lg @error('username') is-invalid @enderror" placeholder="Username" value="{{ old('username') }}" required>
