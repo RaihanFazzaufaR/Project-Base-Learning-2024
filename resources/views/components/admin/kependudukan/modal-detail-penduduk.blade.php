@@ -18,51 +18,55 @@
             <div class="w-full h-full text-[#34662C] text-left">
                 <div class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin rounded-b-xl">
                     <div class="col-span-2 sm:col-span-1">
-                        <label for="nik" class="block mb-2 text-sm font-bold">NIK</label>
+                        <label class="block mb-2 text-sm font-bold">NIK</label>
                         <input type="text" name="nik" id="nik" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $usr->nik }}" readonly>
                     </div>
                     <div class="col-span-2 sm:col-span-1">
-                        <label for="nkk" class="block mb-2 text-sm font-bold">NKK</label>
+                        <label class="block mb-2 text-sm font-bold">NKK</label>
                         <input type="text" name="nkk" id="nkk" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $usr->kartuKeluarga->niKeluarga }}" readonly>
                     </div>
-                    <div class="col-span-2 sm:col-span-1">
-                        <label for="nama" class="block mb-2 text-sm font-bold">Nama</label>
+                    <div class="col-span-2">
+                        <label class="block mb-2 text-sm font-bold">Nama</label>
                         <input type="text" name="nama" id="nama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $usr->nama }}" readonly>
                     </div>
                     <div class="col-span-2 sm:col-span-1">
-                        <label for="agama" class="block mb-2 text-sm font-bold">Agama</label>
+                        <label class="block mb-2 text-sm font-bold ">No Telepon</label>
+                        <input type="number" name="noHp" id="noHp" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $usr->noTelp }}" readonly>
+                    </div>
+                    <div class="col-span-2 sm:col-span-1">
+                        <label class="block mb-2 text-sm font-bold">Agama</label>
                         <input type="text" name="agama" id="agama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $usr->agama }}" readonly>
                     </div>
                     <div class="col-span-2 sm:col-span-1">
-                        <label for="tempatLahir" class="block mb-2 text-sm font-bold ">Tempat Lahir</label>
+                        <label class="block mb-2 text-sm font-bold ">Tempat Lahir</label>
                         <input type="text" name="tempatLahir" id="tempatLahir" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $usr->tempatLahir }}" readonly>
                     </div>
                     <div class="col-span-2 sm:col-span-1">
-                        <label for="tanggalLahir" class="block mb-2 text-sm font-bold ">Tanggal Lahir</label>
+                        <label class="block mb-2 text-sm font-bold ">Tanggal Lahir</label>
                         <input type="date" name="tanggalLahir" id="tanggalLahir" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $usr->tanggalLahir }}" readonly>
                     </div>
                     <div class="col-span-2 sm:col-span-1">
-                        <label for="statusPenduduk" class="block mb-2 text-sm font-bold ">Status Penduduk</label>
+                        <label class="block mb-2 text-sm font-bold ">Status Penduduk</label>
                         <input type="text" name="statusPenduduk" id="statusPenduduk" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $usr->statusPenduduk }}" readonly>
                     </div>
                     <div class="col-span-2 sm:col-span-1">
-                        <label for="statusPernikahan" class="block mb-2 text-sm font-bold ">Status Pernikahan</label>
+                        <label class="block mb-2 text-sm font-bold ">Status Pernikahan</label>
                         <input type="text" name="statusPernikahan" id="statusPernikahan" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $usr->statusNikah }}" readonly>
                     </div>
                     <div class="col-span-2 sm:col-span-1">
-                        <label for="pekerjaan" class="block mb-2 text-sm font-bold ">Pekerjaan</label>
+                        <label class="block mb-2 text-sm font-bold ">Pekerjaan</label>
                         <input type="text" name="pekerjaan" id="pekerjaan" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $usr->pekerjaan }}" readonly>
                     </div>
                     <div class="col-span-2 sm:col-span-1">
-                        <label for="gaji" class="block mb-2 text-sm font-bold ">Gaji</label>
+                        <label class="block mb-2 text-sm font-bold ">Gaji</label>
                         <input type="number" name="gaji" id="gaji" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $usr->gaji }}" readonly>
                     </div>
                     <div class="col-span-2 sm:col-span-1">
-                        <label for="kewarganegaraan" class="block mb-2 text-sm font-bold">Kewarganegaraan</label>
+                        <label class="block mb-2 text-sm font-bold">Kewarganegaraan</label>
                         <input type="text" name="kewarganegaraan" id="kewarganegaraan" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $usr->warganegara }}" readonly>
                     </div>
                     <div class="col-span-2 sm:col-span-1">
-                        <label for="jenisKelamin" class="block mb-2 text-sm font-bold ">Jenis Kelamin</label>
+                        <label class="block mb-2 text-sm font-bold ">Jenis Kelamin</label>
                         <select id="jenisKelamin" name="jenisKelamin" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" disabled>
                             <option selected="">Pilih Jenis Kelamin</option>
                             <option value="L" @if ($usr->jenisKelamin == 'L') selected @endif>Laki-Laki</option>
@@ -70,11 +74,11 @@
                         </select>
                     </div>
                     <div class="col-span-2 sm:col-span-1">
-                        <label for="jabatan" class="block mb-2 text-sm font-bold">Jabatan</label>
+                        <label class="block mb-2 text-sm font-bold">Jabatan</label>
                         <input type="text" name="jabatan" id="jabatan" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $usr->jabatan }}" readonly>
                     </div>
                     <div class="col-span-2 sm:col-span-1">
-                        <label for="rt" class="block mb-2 text-sm font-bold ">RT</label>
+                        <label class="block mb-2 text-sm font-bold ">RT</label>
                         <input type="text" name="rt" id="rt" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $usr->kartuKeluarga->rt }}" readonly>
                     </div>
                 </div>
