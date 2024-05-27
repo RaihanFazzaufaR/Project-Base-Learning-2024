@@ -5,6 +5,9 @@
         }
     </style>
 </x-header>
+@php
+use Illuminate\Support\Str;
+@endphp
 <div class="bg-[#Fff] min-h-[100vh] px-50 py-12 w-[100%]">
     <div class="w-full   h-fit">
         <div id="accordion-flush" data-accordion="collapse" data-active-classes="bg-white dark:bg-gray-900 text-[#2d5523] dark:text-white" data-inactive-classes="text-[#4c8540] dark:text-gray-400">
@@ -23,9 +26,9 @@
 
                     <div class="flex flex-col  h-full my-auto items-center justify-center">
                         <div class="py-5 flex flex-col gap-2  h-full">
-                            <p class="text-3xl text-[#2d5523] font-bold">Lucky Kurniawan Langoday</p>
-                            <p class="text-[#4c8540] text-lg ">Username</p>
-                            <p class="text-[#2d5523] text-2xl ">Warga RT. 01 RW. 03 Desa Bumiayu Kecamatan Kedungkandang
+                            <p class="text-3xl text-[#2d5523] font-bold">{{ $penduduk->nama }}</p>
+                            <p class="text-[#4c8540] text-lg ">{{ $penduduk->userAccount->username }}</p>
+                            <p class="text-[#2d5523] text-2xl ">Warga RT. {{ $penduduk->kartuKeluarga->rt }} RW. 03 Desa Bumiayu Kecamatan Kedungkandang
                                 Kota Malang </p>
                             <div class="h-full flex items-start pt-5 " x-data="{ 'editModal': false }" @keydown.escape="editModal = false">
                                 <button @click="editModal = true" class="bg-[#2d5523] hover:bg-[#1d3018] text-white px-5 py-2 rounded-md">
@@ -52,7 +55,7 @@
                                                 <div class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto rounded-b-xl">
                                                     <div class="col-span-2 relative">
                                                         <label class="block mb-2 text-sm font-bold">Username</label>
-                                                        <input name="nik" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan Username" value="LYNC">
+                                                        <input name="nik" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan Username" value="{{ $penduduk->userAccount->username }}">
                                                     </div>
                                                     <div class="col-span-2 relative">
                                                         <label for="level" class="block mb-2 text-sm font-bold">Password Lama</label>
@@ -105,31 +108,31 @@
                                     <div class="grid gap-4 sm:grid-cols-2 pb-3 sm:gap-6">
                                         <div class="sm:col-span-2">
                                             <label for="nama" class="block mb-2 text-sm font-medium text-[#2d5523] dark:text-white">Nama</label>
-                                            <input type="text" name="nama" id="nama" class="bg-gray-50 border text-base border-[#518742]  text-[#2f5724] rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="" readonly value="Lucky Kurniawan Langoday">
+                                            <input type="text" name="nama" id="nama" class="bg-gray-50 border text-base border-[#518742]  text-[#2f5724] rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="" readonly value="{{$penduduk->nama}}">
                                         </div>
                                     </div>
                                     <div class="grid gap-4 sm:grid-cols-2 pb-3 sm:gap-6">
                                         <div class="sm:col-span-2">
                                             <label for="nik" class="block mb-2 text-sm font-medium text-[#2d5523] dark:text-white">NIK</label>
-                                            <input type="text" name="nik" id="nik" class="bg-gray-50 border text-base border-[#518742]  text-[#2f5724] rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="" readonly value="3729103826336784">
+                                            <input type="text" name="nik" id="nik" class="bg-gray-50 border text-base border-[#518742]  text-[#2f5724] rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="" readonly value="{{$penduduk->nik}}">
                                         </div>
                                     </div>
                                     <div class="grid gap-4 sm:grid-cols-2 pb-3 sm:gap-6">
                                         <div class="sm:col-span-2">
                                             <label for="email" class="block mb-2 text-sm font-medium text-[#2d5523] dark:text-white">Email</label>
-                                            <input type="text" name="email" id="email" class="bg-gray-50 border text-base border-[#518742]  text-[#2f5724] rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="" readonly value="2241720168@student.polinema.ac.id">
+                                            <input type="text" name="email" id="email" class="bg-gray-50 border text-base border-[#518742]  text-[#2f5724] rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="" readonly value="{{ $penduduk->userAccount->email }}">
                                         </div>
                                     </div>
                                     <div class="grid gap-4 sm:grid-cols-2 pb-3 sm:gap-6">
                                         <div class="sm:col-span-2">
                                             <label for="ttl" class="block mb-2 text-sm font-medium text-[#2d5523] dark:text-white">Tempat, Tanggal Lahir</label>
-                                            <input type="text" name="ttl" id="ttl" class="bg-gray-50 border text-base border-[#518742]  text-[#2f5724] rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="" readonly value="Gresik, 30 Desember 2003">
+                                            <input type="text" name="ttl" id="ttl" class="bg-gray-50 border text-base border-[#518742]  text-[#2f5724] rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="" readonly value="{{$penduduk->tempatLahir}}, {{$penduduk->tanggalLahir}}">
                                         </div>
                                     </div>
                                     <div class="grid gap-4 sm:grid-cols-2 pb-3 sm:gap-6">
                                         <div class="sm:col-span-2">
                                             <label for="jenis-kelamin" class="block mb-2 text-sm font-medium text-[#2d5523] dark:text-white">Jenis Kelamin</label>
-                                            <input type="text" name="jenis-kelamin" id="jenis-kelamin" class="bg-gray-50 border text-base border-[#518742]  text-[#2f5724] rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="" readonly value="Laki-laki">
+                                            <input type="text" name="jenis-kelamin" id="jenis-kelamin" class="bg-gray-50 border text-base border-[#518742]  text-[#2f5724] rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="" readonly value="{{ $penduduk->jenisKelamin == 'L' ? 'Laki-laki' : ($penduduk->jenisKelamin == 'P' ? 'Perempuan' : '') }}">
                                         </div>
                                     </div>
                                     
@@ -138,31 +141,31 @@
                                     <div class="grid gap-4 sm:grid-cols-2 pb-3 sm:gap-6">
                                         <div class="sm:col-span-2">
                                             <label for="agama" class="block mb-2 text-sm font-medium text-[#2d5523] dark:text-white">Agama</label>
-                                            <input type="text" name="agama" id="agama" class="bg-gray-50 border text-base border-[#518742]  text-[#2f5724] rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="" readonly value="Islam">
+                                            <input type="text" name="agama" id="agama" class="bg-gray-50 border text-base border-[#518742]  text-[#2f5724] rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="" readonly value="{{Str::ucfirst($penduduk->agama)}}">
                                         </div>
                                     </div>
                                     <div class="grid gap-4 sm:grid-cols-2 pb-3 sm:gap-6">
                                         <div class="sm:col-span-2">
                                             <label for="pekerjaan" class="block mb-2 text-sm font-medium text-[#2d5523] dark:text-white">Pekerjaan</label>
-                                            <input type="text" name="pekerjaan" id="pekerjaan" class="bg-gray-50 border text-base border-[#518742]  text-[#2f5724] rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="" readonly value="Mahasiswa">
+                                            <input type="text" name="pekerjaan" id="pekerjaan" class="bg-gray-50 border text-base border-[#518742]  text-[#2f5724] rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="" readonly value="{{Str::ucfirst($penduduk->pekerjaan)}}">
                                         </div>
                                     </div>
                                     <div class="grid gap-4 sm:grid-cols-2 pb-3 sm:gap-6">
                                         <div class="sm:col-span-2">
                                             <label for="kewarganegaraan" class="block mb-2 text-sm font-medium text-[#2d5523] dark:text-white">Kewarganegaraan</label>
-                                            <input type="text" name="kewarganegaraan" id="kewarganegaraan" class="bg-gray-50 border text-base border-[#518742]  text-[#2f5724] rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="" readonly value="WNI">
+                                            <input type="text" name="kewarganegaraan" id="kewarganegaraan" class="bg-gray-50 border text-base border-[#518742]  text-[#2f5724] rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="" readonly value="{{$penduduk->warganegara}}">
                                         </div>
                                     </div>
                                     <div class="grid gap-4 sm:grid-cols-2 pb-3 sm:gap-6">
                                         <div class="sm:col-span-2">
                                             <label for="status-pernikahan" class="block mb-2 text-sm font-medium text-[#2d5523] dark:text-white">Status pernikahan</label>
-                                            <input type="text" name="status-pernikahan" id="status-pernikahan" class="bg-gray-50 border text-base border-[#518742]  text-[#2f5724] rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="" readonly value="Belum Menikah">
+                                            <input type="text" name="status-pernikahan" id="status-pernikahan" class="bg-gray-50 border text-base border-[#518742]  text-[#2f5724] rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" placeholder="Type product name" required="" readonly value="{{Str::ucfirst($penduduk->statusNikah)}} Menikah">
                                         </div>
                                     </div>
                                     <div class="grid gap-4 sm:grid-cols-2 pb-3 sm:gap-6">
                                         <div class="sm:col-span-2">
                                             <label for="alamat" class="block mb-2 text-sm font-medium text-[#2d5523] dark:text-white">Alamat</label>
-                                            <textarea name="alamat" id="alamat" class="bg-gray-50 border text-base border-[#518742]  text-[#2f5724] rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"  required="" readonly >Jl. Bunga Kumis Kucing Gang Macan NO. 42A</textarea>
+                                            <textarea name="alamat" id="alamat" class="bg-gray-50 border text-base border-[#518742]  text-[#2f5724] rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"  required="" readonly >{{$penduduk->kartuKeluarga->alamat}}</textarea>
                                             
                                         </div>
                                     </div>
