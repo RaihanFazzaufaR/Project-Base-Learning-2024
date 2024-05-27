@@ -23,99 +23,171 @@
                 <!-- Modal body -->
                 <form class="w-full h-full text-[#34662C]" method="POST" action="{{ route('storePenduduk') }}">
                     @csrf
-                    <div class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin rounded-b-xl">
-                        <div class="col-span-2 sm:col-span-1">
-                            <label for="nik" class="block mb-2 text-sm font-bold">NIK</label>
-                            <input type="text" name="nik" id="nik" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan NIK" required="">
-                        </div>
-                        <div class="col-span-2 sm:col-span-1 relative">
-                            <label for="nkk" class="block mb-2 text-sm font-bold">NKK</label>
-                            <input list="listNkk" name="nkk" id="nkk" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan NKK" required="">
-                            <datalist id="listNkk">
-                                @foreach ($kartuKeluarga as $nkk)
-                                <option value="{{ $nkk->id_kartuKeluarga }}">{{ $nkk->niKeluarga }}</option>
-                                @endforeach
-                            </datalist>
+                    <div class="p-4 md:p-5 grid w-full gap-4 grid-cols-2 max-h-[450px] overflow-y-auto scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin rounded-b-xl">
+                        <div class="col-span-2">
+                            <label for="nkk" class="block mb-2 text-sm font-bold">Nomor Kartu Keluarga</label>
+                            <input type="text" name="nkk" id="nkk" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan No KK" required="">
                         </div>
                         <div class="col-span-2 sm:col-span-1">
-                            <label for="nama" class="block mb-2 text-sm font-bold">Nama</label>
-                            <input type="text" name="nama" id="nama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan Nama" required="">
+                            <label for="kepalaKeluarga" class="block mb-2 text-sm font-bold">NIK Kepala Keluarga</label>
+                            <input type="text" name="kepalaKeluarga" id="kepalaKeluarga" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan NIK Kepala Keluarga" required="">
                         </div>
-                        <div class="col-span-2 sm:col-span-1">
-                            <label for="agama" class="block mb-2 text-sm font-bold">Agama</label>
-                            <select id="agama" name="agama" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                                <option selected="">Pilih Agama</option>
-                                <option value="islam">Islam</option>
-                                <option value="katolik">Katolik</option>
-                                <option value="kristen">Kristen</option>
-                                <option value="buddha">Buddha</option>
-                                <option value="khonghucu">Khonghucu</option>
-                            </select>
-                        </div>
-                        <div class="col-span-2 sm:col-span-1">
-                            <label for="tempatLahir" class="block mb-2 text-sm font-bold ">Tempat Lahir</label>
-                            <input type="text" name="tempatLahir" id="tempatLahir" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan Tempat Lahir" required="">
-                        </div>
-                        <div class="col-span-2 sm:col-span-1">
-                            <label for="tanggalLahir" class="block mb-2 text-sm font-bold ">Tanggal Lahir</label>
-                            <input type="date" name="tanggalLahir" id="tanggalLahir" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required="">
-                        </div>
-                        <div class="col-span-2 sm:col-span-1">
-                            <label for="statusPenduduk" class="block mb-2 text-sm font-bold ">Status Penduduk</label>
-                            <select id="statusPenduduk" name="statusPenduduk" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                                <option selected="">Pilih Status Penduduk</option>
-                                <option value="penduduk tetap">Penduduk Tetap</option>
-                                <option value="penduduk tidak tetap">Penduduk Tidak Tetap</option>
-                            </select>
-                        </div>
-                        <div class="col-span-2 sm:col-span-1">
-                            <label for="statusPernikahan" class="block mb-2 text-sm font-bold ">Status Pernikahan</label>
-                            <select id="statusPernikahan" name="statusPernikahan" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                                <option selected="">Pilih Status Pernikahan</option>
-                                <option value="belum">Belum Menikah</option>
-                                <option value="sudah">Sudah Menikah</option>
-                            </select>
-                        </div>
-                        <div class="col-span-2 sm:col-span-1">
-                            <label for="pekerjaan" class="block mb-2 text-sm font-bold ">Pekerjaan</label>
-                            <input type="text" name="pekerjaan" id="pekerjaan" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan Pekerjaan" required="">
-                        </div>
-                        <div class="col-span-2 sm:col-span-1">
-                            <label for="gaji" class="block mb-2 text-sm font-bold ">Gaji</label>
-                            <input type="number" name="gaji" id="gaji" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan Gaji" required="">
-                        </div>
-                        <div class="col-span-1">
-                            <label for="jabatan" class="block mb-2 text-sm font-bold ">Jabatan</label>
-                            <select id="jabatan" name="jabatan" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                                <option selected="">Pilih Jabatan</option>
-                                <option value="Ketua RW">Ketua RW</option>
-                                <option value="Ketua RT">Ketua RT</option>
-                                <option value="Bendahara">Bendahara</option>
-                                <option value="Sekretaris">Sekretaris</option>
-                                <option value="Tidak Ada">Tidak Ada</option>
-                            </select>
-                        </div>
-                        <div class="col-span-2 sm:col-span-1 grid grid-cols-2 gap-2">
+                        <div class="col-span-2 sm:col-span-1 grid grid-cols-2 gap-4">
                             <div class="col-span-2 sm:col-span-1">
-                                <label for="jenisKelamin" class="block mb-2 text-sm font-bold ">Jenis Kelamin</label>
-                                <select id="jenisKelamin" name="jenisKelamin" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                                    <option selected="">Pilih Jenis Kelamin</option>
-                                    <option value="L">Laki-Laki</option>
-                                    <option value="P">Perempuan</option>
-                                </select>
+                                <label for="jumlahAnggota" class="block mb-2 text-sm font-bold">Jumlah Keluarga</label>
+                                <input type="number" min="1" name="jumlahAnggota" id="jumlahAnggota" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" readonly value="1">
                             </div>
                             <div class="col-span-2 sm:col-span-1">
-                                <label for="kewarganegaraan" class="block mb-2 text-sm font-bold">Kewarganegaraan</label>
-                                <select id="kewarganegaraan" name="kewarganegaraan" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                                    <option selected="">Pilih Kewarganegaraan</option>
-                                    <option value="WNI">Indonesia</option>
-                                    <option value="WNA">Luar</option>
+                                <label for="rt" class="block mb-2 text-sm font-bold">RT</label>
+                                <select name="rt" id="rt" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
+                                    <option selected="">Pilih RT</option>
+                                    <option value="01">01</option>
+                                    <option value="02">02</option>
+                                    <option value="03">03</option>
+                                    <option value="04">04</option>
+                                    <option value="05">05</option>
                                 </select>
                             </div>
+                        </div>
+                        <div class="col-span-2">
+                            <label for="alamat" class="block mb-2 text-sm font-bold">Alamat</label>
+                            <textarea id="alamat" name="alamat" rows="4" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan Alamat ..."></textarea>
+                        </div>
+                        <div class="col-span-2 flex items-center justify-between pt-5 pb-3 px-2">
+                            <div class="font-bold text-base">Data Anggota Keluarga</div>
+                            <button type="button" onclick="tambahBaris()" class="bg-[#57BA47] rounded-full size-10 shadow-lg flex justify-center items-center hover:bg-[#336E2A] transition ease-in-out duration-300 hover:scale-105">
+                                <i class="fa-solid fa-user-plus text-white"></i>
+                            </button>
+                        </div>
+                        <div class="relative overflow-x-auto shadow-md sm:rounded-lg col-span-2 mb-5">
+                            <table class="w-full text-center">
+                                <thead class="text-sm font-bold text-[#34662C] bg-[#91DF7D] dark:bg-gray-700 dark:text-gray-400">
+                                    <tr>
+                                        <th scope="col" class="px-6 py-3">
+                                            NIK
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Nama
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Tempat Lahir
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Tanggal Lahir
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Jenis Kelamin
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Agama
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Pekerjaan
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Status Pernikahan
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Kewarganegaraan
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Status Penduduk
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Jabatan
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Gaji
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            No Telepon
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
+                                            Aksi
+                                        </th>
+                                    </tr>
+                                </thead>
+                                <tbody id="table-penduduk">
+                                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-sm">
+                                        <td class="p-4">
+                                            <input type="text" name="nik[]" id="nik" class="bg-white shadow-md border border-[#34662C] rounded-lg focus:outline-none focus:border-2 block  p-2 placeholder-[#34662C]" placeholder="Masukkan NIK" required="">
+                                        </td>
+                                        <td class="p-4">
+                                            <input type="text" name="nama[]" id="nama" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]" placeholder="Masukkan Nama" required="">
+                                        </td>
+                                        <td class="p-4">
+                                            <input type="text" name="tempatLahir[]" id="tempatLahir" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]" placeholder="Masukkan Tempat Lahir" required="">
+                                        </td>
+                                        <td class="p-4">
+                                            <input type="date" name="tanggalLahir[]" id="tanggalLahir" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]" required="">
+                                        </td>
+                                        <td class="p-4">
+                                            <select id="jenisKelamin" name="jenisKelamin[]" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]">
+                                                <option selected="">Pilih Jenis Kelamin</option>
+                                                <option value="L">Laki-Laki</option>
+                                                <option value="P">Perempuan</option>
+                                            </select>
+                                        </td>
+                                        <td class="p-4">
+                                            <select id="agama" name="agama[]" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]">
+                                                <option selected="">Pilih Agama</option>
+                                                <option value="islam">Islam</option>
+                                                <option value="katolik">Katolik</option>
+                                                <option value="kristen">Kristen</option>
+                                                <option value="buddha">Buddha</option>
+                                                <option value="khonghucu">Khonghucu</option>
+                                            </select>
+                                        </td>
+                                        <td class="p-4">
+                                            <input type="text" name="pekerjaan[]" id="pekerjaan" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]" placeholder="Masukkan Pekerjaan" required="">
+                                        </td>
+                                        <td class="p-4">
+                                            <select id="statusPernikahan" name="statusPernikahan[]" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]">
+                                                <option selected="">Pilih Status Pernikahan</option>
+                                                <option value="belum">Belum Menikah</option>
+                                                <option value="sudah">Sudah Menikah</option>
+                                            </select>
+                                        </td>
+                                        <td class="p-4">
+                                            <select id="kewarganegaraan" name="kewarganegaraan[]" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]">
+                                                <option selected="">Pilih Kewarganegaraan</option>
+                                                <option value="WNI">Indonesia</option>
+                                                <option value="WNA">Luar</option>
+                                            </select>
+                                        </td>
+                                        <td class="p-4">
+                                            <select id="statusPenduduk" name="statusPenduduk[]" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]">
+                                                <option selected="">Pilih Status Penduduk</option>
+                                                <option value="penduduk tetap">Penduduk Tetap</option>
+                                                <option value="penduduk tidak tetap">Penduduk Tidak Tetap</option>
+                                            </select>
+                                        </td>
+                                        <td class="p-4">
+                                            <select id="jabatan" name="jabatan[]" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]">
+                                                <option selected="">Pilih Jabatan</option>
+                                                <option value="Ketua RW">Ketua RW</option>
+                                                <option value="Ketua RT">Ketua RT</option>
+                                                <option value="Bendahara">Bendahara</option>
+                                                <option value="Sekretaris">Sekretaris</option>
+                                                <option value="Tidak Ada">Tidak Ada</option>
+                                            </select>
+                                        </td>
+                                        <td class="p-4">
+                                            <input type="number" name="gaji[]" id="gaji" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]" placeholder="Masukkan Gaji" required="">
+                                        </td>
+                                        <td class="p-4">
+                                            <input type="number" name="noHp[]" id="noHp" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]" placeholder="Masukkan No Telepon" required="">
+                                        </td>
+                                        <td class="p-4 flex justify-center items-center">
+                                            
+                                        </td>
+                                    </tr>
+                                </tbody>
+                            </table>
                         </div>
                     </div>
                     <div class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8]">
-                        <button @click="tambahModal = false" class="hover:text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center hover:bg-[#34662C] bg-white text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
+                        <button type="button" @click="tambahModal = false" class="hover:text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center hover:bg-[#34662C] bg-white text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
                             Batal
                         </button>
                         <button type="submit" @click="tambahModal = false" class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">

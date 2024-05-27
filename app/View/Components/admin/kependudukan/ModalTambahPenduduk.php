@@ -19,7 +19,6 @@ class ModalTambahPenduduk extends Component
      */
     public function render(): View|Closure|string
     {
-        $kartuKeluarga = KartuKeluargaModel::all();
-        return view('components..admin.kependudukan.modal-tambah-penduduk', compact('kartuKeluarga'));
+        return view('components..admin.kependudukan.modal-tambah-penduduk');
     }
 }
