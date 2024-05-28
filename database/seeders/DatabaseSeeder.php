@@ -17,7 +17,6 @@ class DatabaseSeeder extends Seeder
             KartuKeluargaSeeder::class,
             PendudukSeeder::class,
             UserAccountSeeder::class,
-            LevelDetailSeeder::class,
             BansosSeeder::class,
             JadwalSeeder::class,
             KategoriSeeder::class,
@@ -26,6 +25,8 @@ class DatabaseSeeder extends Seeder
             templateSuratSeeder::class,
             PermintaanSuratSeeder::class,
             DataSuratSeed::class,
+            AduanSeeder::class,
+            ResponSeeder::class,
         ]);
     }
 }

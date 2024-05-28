@@ -25,12 +25,7 @@
                     </div>
                     <div class="col-span-2 sm:col-span-1 relative">
                         <label for="nkk" class="block mb-2 text-sm font-bold">NKK</label>
-                        <input list="listNkk" name="nkk" id="nkk" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $usr->id_kartuKeluarga }}">
-                        <datalist id="listNkk">
-                            @foreach ($kartuKeluarga as $nkk)
-                            <option value="{{ $nkk->id_kartuKeluarga }}">{{ $nkk->niKeluarga }}</option>
-                            @endforeach
-                        </datalist>
+                        <input type="text" name="nkk" id="nkk" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $usr->kartuKeluarga->niKeluarga }}">
                     </div>
                     <div class="col-span-2 sm:col-span-1">
                         <label for="nama" class="block mb-2 text-sm font-bold">Nama</label>

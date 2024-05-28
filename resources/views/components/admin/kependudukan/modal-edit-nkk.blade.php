@@ -6,7 +6,7 @@
             <!-- Modal header -->
             <div class="flex h-[75px] items-center justify-between px-4 md:px-5 border-b-2 rounded-t border-[#B8B8B8]">
                 <h3 class="text-xl font-bold text-[#34662C] dark:text-white">
-                    Edit Data Penduduk
+                    Edit Data Kartu Keluarga
                 </h3>
                 <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" @click="editModal = false">
                     <i class="fa-solid fa-xmark text-xl"></i>

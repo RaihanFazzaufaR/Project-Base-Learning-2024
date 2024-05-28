@@ -31,8 +31,8 @@ class UmkmModel extends Model
 
     ];
 
-    public function pemilik(): BelongsTo
+    public function penduduk(): BelongsTo
     {
-        return $this->belongsTo(PendudukModel::class, 'pemilik_id', 'id');
+        return $this->belongsTo(PendudukModel::class, 'id_pemilik', 'id_penduduk');
     }
 }

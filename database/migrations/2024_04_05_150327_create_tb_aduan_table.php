@@ -15,11 +15,14 @@ return new class extends Migration
     {
         Schema::create('tb_aduan', function (Blueprint $table) {
             $table->id('aduan_id');
-            $table->string('pengadu_id', 17)->index('pengadu_id');
-            $table->string('kategori', 20);
-            $table->text('konten');
-            $table->date('dibuat_tanggal')->nullable();
+            $table->string('judul');
+            $table->unsignedBigInteger('pengadu_id');
+            $table->text('konten_aduan');
+            $table->string('image')->nullable();
+            $table->enum('prioritas', ['biasa', 'penting', 'darurat']);
             $table->enum('status', ['diproses', 'selesai', 'ditolak']);
+            $table->date('dibuat_tanggal')->nullable();
+            $table->timestamps();
         });
     }
 

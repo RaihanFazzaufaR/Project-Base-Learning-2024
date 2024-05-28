@@ -22,7 +22,6 @@ class ModalEditPenduduk extends Component
     public function render(): View|Closure|string
     {
         $usr = PendudukModel::find($this->idUsr);
-        $kartuKeluarga = KartuKeluargaModel::all();
-        return view('components..admin.kependudukan.modal-edit-penduduk', compact('usr', 'kartuKeluarga'));
+        return view('components..admin.kependudukan.modal-edit-penduduk', compact('usr'));
     }
 }

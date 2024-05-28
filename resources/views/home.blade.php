@@ -3,20 +3,19 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </x-header>
 
-<img src="{{ asset('assets/images/cover-home.png') }}" alt="" class="absolute top-10 right-0 h-[127vh]" data-aos="fade-left" data-aos-duration="1000">
+<img src="{{ asset('assets/images/cover-home.png') }}" alt="" class="absolute top-26 right-30 h-[80vh]" data-aos="fade-left" data-aos-duration="1000">
 
-<div class="relative h-[65vh] sm:h-[85vh] md:h-[79vh] lg:h-[120vh] w-[70%] text-[#1C4F0F] pt-[30vh] pl-[8vh]" data-aos="fade-right" data-aos-duration="1000">
-    <div class="font-semibold text-2xl mb-3">
+<div class="relative h-[65vh] sm:h-[85vh] md:h-[79vh] lg:h-[120vh] w-[60%] text-[#1C4F0F] pt-[25vh] pl-[7vw]" data-aos="fade-right" data-aos-duration="1000">
+    <div class="font-bold text-4xl mb-3">
         Selamat Datang di
     </div>
     <div class="font-extrabold text-6xl mb-4">
         PORTAL RW 03
     </div>
     <div class="relative overflow-hidden w-fit">
-        <div class="font-extrabold text-6xl mb-10 w-fit text-animation">
-            Desa Bumiayu
+        <div class="font-extrabold text-6xl mb-10 w-fit">
+            <span class="multiple-text"></span>
         </div>
-        <div class="absolute top-0 left-0 h-[70%] w-full border-l-[12px] border-[#1C4F0F] bg-white animate-leftToRight"></div>
     </div>
 
     <p class="font-medium text-xl w-[47vw]">"Temukan informasi terkini, kegiatan komunitas, dan layanan kami untuk memajukan lingkungan kami. Bergabunglah dalam membangun kehidupan yang lebih baik untuk warga RW 3!"</p>
@@ -127,86 +126,24 @@
         <div class="font-bold  text-[#1C4F0F] text-5xl text-center w-full py-4 uppercase" data-aos="zoom-in" data-aos-duration="1500">UMKM Sekitar</div>
         <div class="swiper mySwiper w-full flex justify-center !px-12" data-aos="fade-left" data-aos-duration="1500">
             <div class="swiper-wrapper w-full !py-16">
+                @foreach ($dataUmkm as $dt)
                 <div class="swiper-slide relative w-[17vw] !h-[40vh] bg-white rounded-2xl shadow-lg flex flex-col overflow-hidden hover:shadow-2xl hover:!scale-105 transition ease-in-out duration-500 group">
                     <div class="h-[70%] w-full overflow-hidden">
-                        <img src="{{ asset('assets/images/toko-kelontong.jpg') }}" alt="" class="h-full w-full group-hover:brightness-[0.4] transition ease-in-out duration-500 group-hover:scale-110">
+                        <img src="{{ asset('assets/images/'.$dt->foto ) }}" alt="" class="h-full w-full object-cover group-hover:brightness-[0.4] transition ease-in-out duration-500 group-hover:scale-110">
                     </div>
                     <div class="h-[30%] w-full flex flex-col justify-center items-center gap-1 text-[#1C4F0F]">
-                        <p class="font-bold text-lg">Toko Kelontong 1</p>
+                        <p class="font-bold text-lg">{{ $dt->nama }}</p>
                         <hr class="text-black">
                         <div class="text-sm flex justify-center items-center gap-3">
                             <i class="fa-regular fa-clock"></i>
-                            <p class="">09.00 - 21.00</p>
+                            <p class="">{{ $dt->buka_waktu }} - {{ $dt->tutup_waktu }}</p>
                         </div>
                     </div>
                     <div class="absolute h-[70%] w-full top-0 opacity-0 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500">
-                        <a class="bg-yellow-500 text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm hover:bg-[#E2A229] cursor-pointer">Lihat Selengkapnya</a>
+                        <a href="{{ route('umkm.detail', ['umkm_id' => $dt->umkm_id]) }}" class="bg-yellow-500 text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm hover:bg-[#E2A229] cursor-pointer">Lihat Selengkapnya</a>
                     </div>
                 </div>
-                <div class="swiper-slide relative w-[17vw] !h-[40vh] bg-white rounded-2xl shadow-lg flex flex-col overflow-hidden hover:shadow-2xl hover:!scale-105 transition ease-in-out duration-500 group">
-                    <div class="h-[70%] w-full overflow-hidden">
-                        <img src="{{ asset('assets/images/toko-kelontong.jpg') }}" alt="" class="h-full w-full group-hover:brightness-[0.4] transition ease-in-out duration-500 group-hover:scale-110">
-                    </div>
-                    <div class="h-[30%] w-full flex flex-col justify-center items-center gap-1 text-[#1C4F0F]">
-                        <p class="font-bold text-lg">Toko Kelontong 2</p>
-                        <hr class="text-black">
-                        <div class="text-sm flex justify-center items-center gap-3">
-                            <i class="fa-regular fa-clock"></i>
-                            <p class="">09.00 - 21.00</p>
-                        </div>
-                    </div>
-                    <div class="absolute h-[70%] w-full top-0 opacity-0 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500">
-                        <a class="bg-yellow-500 text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm hover:bg-[#E2A229] cursor-pointer">Lihat Selengkapnya</a>
-                    </div>
-                </div>
-                <div class="swiper-slide relative w-[17vw] !h-[40vh] bg-white rounded-2xl shadow-lg flex flex-col overflow-hidden hover:shadow-2xl hover:!scale-105 transition ease-in-out duration-500 group">
-                    <div class="h-[70%] w-full overflow-hidden">
-                        <img src="{{ asset('assets/images/toko-kelontong.jpg') }}" alt="" class="h-full w-full group-hover:brightness-[0.4] transition ease-in-out duration-500 group-hover:scale-110">
-                    </div>
-                    <div class="h-[30%] w-full flex flex-col justify-center items-center gap-1 text-[#1C4F0F]">
-                        <p class="font-bold text-lg">Toko Kelontong 3</p>
-                        <hr class="text-black">
-                        <div class="text-sm flex justify-center items-center gap-3">
-                            <i class="fa-regular fa-clock"></i>
-                            <p class="">09.00 - 21.00</p>
-                        </div>
-                    </div>
-                    <div class="absolute h-[70%] w-full top-0 opacity-0 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500">
-                        <a class="bg-yellow-500 text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm hover:bg-[#E2A229] cursor-pointer">Lihat Selengkapnya</a>
-                    </div>
-                </div>
-                <div class="swiper-slide relative w-[17vw] !h-[40vh] bg-white rounded-2xl shadow-lg flex flex-col overflow-hidden hover:shadow-2xl hover:!scale-105 transition ease-in-out duration-500 group">
-                    <div class="h-[70%] w-full overflow-hidden">
-                        <img src="{{ asset('assets/images/toko-kelontong.jpg') }}" alt="" class="h-full w-full group-hover:brightness-[0.4] transition ease-in-out duration-500 group-hover:scale-110">
-                    </div>
-                    <div class="h-[30%] w-full flex flex-col justify-center items-center gap-1 text-[#1C4F0F]">
-                        <p class="font-bold text-lg">Toko Kelontong 4</p>
-                        <hr class="text-black">
-                        <div class="text-sm flex justify-center items-center gap-3">
-                            <i class="fa-regular fa-clock"></i>
-                            <p class="">09.00 - 21.00</p>
-                        </div>
-                    </div>
-                    <div class="absolute h-[70%] w-full top-0 opacity-0 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500">
-                        <a class="bg-yellow-500 text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm hover:bg-[#E2A229] cursor-pointer">Lihat Selengkapnya</a>
-                    </div>
-                </div>
-                <div class="swiper-slide relative w-[17vw] !h-[40vh] bg-white rounded-2xl shadow-lg flex flex-col overflow-hidden hover:shadow-2xl hover:!scale-105 transition ease-in-out duration-500 group">
-                    <div class="h-[70%] w-full overflow-hidden">
-                        <img src="{{ asset('assets/images/toko-kelontong.jpg') }}" alt="" class="h-full w-full group-hover:brightness-[0.4] transition ease-in-out duration-500 group-hover:scale-110">
-                    </div>
-                    <div class="h-[30%] w-full flex flex-col justify-center items-center gap-1 text-[#1C4F0F]">
-                        <p class="font-bold text-lg">Toko Kelontong 5</p>
-                        <hr class="text-black">
-                        <div class="text-sm flex justify-center items-center gap-3">
-                            <i class="fa-regular fa-clock"></i>
-                            <p class="">09.00 - 21.00</p>
-                        </div>
-                    </div>
-                    <div class="absolute h-[70%] w-full top-0 opacity-0 justify-center items-center flex group-hover:opacity-100 transition ease-in-out duration-500">
-                        <a href="{{ route('umkm') }}" class="bg-yellow-500 text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm hover:bg-[#E2A229] cursor-pointer">Lihat Selengkapnya</a>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <div class="swiper-button-next !right-7 after:!text-lg !font-extrabold !text-white !h-10 !w-10 bg-yellow-500 hover:bg-[#E2A229] rounded-full hover:scale-105 transition ease-in-out duration-300"></div>
             <div class="swiper-button-prev !left-7 after:!text-lg !font-extrabold !text-white !h-10 !w-10 bg-yellow-500 hover:bg-[#E2A229] rounded-full hover:scale-105 transition ease-in-out duration-300"></div>
@@ -223,44 +160,63 @@
     <div class="font-bold text-[#1C4F0F] text-5xl text-center w-full py-4 uppercase" data-aos="zoom-in" data-aos-duration="1500">Agenda Warga</div>
     <div class="relative flex h-full w-full pb-[5vh]">
         <div class="basis-[65%] h-[70vh] bg-cover bg-center shadow-lg rounded-lg bg-no-repeat pl-6 py-10" style="background-image: url('{{ asset('assets/images/bg-home-agenda.png') }}')" data-aos="fade-right" data-aos-duration="1500">
-            <div class="max-h-[60vh] w-[80%] flex flex-col overflow-auto gap-7">
-                <div class="relative w-full flex justify-end min-h-30 bg-transparent pt-6">
-                    <div class="absolute bg-[#FFD600] h-[75px] w-[115px] top-0 left-0 text-black flex justify-center items-end font-extrabold py-5 font-sans rounded-md">
-                        <span class="text-xl">Mei</span>
-                        <span class="text-4xl">10</span>
-                    </div>
-                    <div class="w-[95%] min-h-20 bg-[#4D7F41]/65 rounded-xl border-2 border-[#1B4810] pl-28 pr-5 py-3">
-                        <div class="text-white font-bold text-xl">
-                            <p>
-                                <span>1. </span>
-                                <span>Posyandu di RT 4</span>
-                            </p>
-                            <p>
-                                <span>2. </span>
-                                <span>Senam bersama di RT 5</span>
-                            </p>
-                            <p>
-                                <span>3. </span>
-                                <span>Medical Check Up gratis di RT 7</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="relative w-full flex justify-end min-h-30 bg-transparent pt-6">
-                    <div class="absolute bg-[#FFD600] h-[75px] w-[115px] top-0 left-0 text-black flex justify-center items-end font-extrabold py-5 font-sans rounded-md">
-                        <span class="text-xl">Mei</span>
-                        <span class="text-4xl">15</span>
-                    </div>
-                    <div class="w-[95%] min-h-20 bg-[#4D7F41]/65 rounded-xl border-2 border-[#1B4810] pl-28 pr-5 py-3">
-                        <div class="text-white font-bold text-xl">
-                            <p>
-                                <span>1. </span>
-                                <span>Kerja bakti di RT 01</span>
-                            </p>
-                        </div>
-                    </div>
-                </div>
+            @if (empty($dataKegiatan->toArray()))
+            <div class="flex flex-col w-[80%] h-full justify-center items-center gap-4">
+                <!-- <i class="fa-regular fa-circle-xmark text-2xl"></i> -->
+                <img src="{{ asset('assets/images/no-data.png') }}" alt="" class="w-[400px] h-[300px] object-cover">
+                <p class="text-xl font-semibold text-white">Tidak ada kegiatan pada bulan ini</p>
             </div>
+            @else
+            <div class="h-[440px] w-[80%] flex flex-col overflow-y-auto gap-7">
+                @php
+                $previousDate = null;
+                $activities = [];
+                @endphp
+
+                @foreach ($dataKegiatan as $index => $dt)
+                @php
+                $currentDate = substr($dt->mulai_tanggal, 0, 10); // Mengambil format tanggal (YYYY-MM-DD)
+                @endphp
+
+                @if ($previousDate !== $currentDate && $previousDate !== null)
+                <div class="relative w-full flex justify-end h-fit bg-transparent pt-6">
+                    <div class="absolute bg-[#FFD600] h-[75px] w-[115px] top-0 left-0 text-black flex justify-center items-end font-extrabold py-5 font-sans rounded-md">
+                        <span class="text-xl">{{ substr($previousDate, 3, 6) }}</span>
+                        <span class="text-4xl">{{ substr($previousDate, 0, 2) }}</span>
+                    </div>
+                    <div class="w-[95%] bg-[#4D7F41]/65 min-h-20 rounded-xl border-2 border-[#1B4810] pl-28 pr-5 py-3 text-white font-bold text-xl flex flex-col justify-center">
+                        @foreach ($activities as $key => $activity)
+                        <p><span>{{ $key + 1 }}. </span><span>{{ $activity }}</span></p>
+                        @endforeach
+                    </div>
+                </div>
+
+                @php
+                $activities = [];
+                @endphp
+                @endif
+
+                @php
+                $activities[] = $dt->judul;
+                $previousDate = $currentDate;
+                @endphp
+
+                @if ($index === count($dataKegiatan) - 1)
+                <div class="relative w-full flex justify-end h-fit bg-transparent pt-6">
+                    <div class="absolute bg-[#FFD600] h-[75px] w-[115px] top-0 left-0 text-black flex justify-center items-end font-extrabold py-5 font-sans rounded-md">
+                        <span class="text-xl">{{ substr($currentDate, 3, 6) }}</span>
+                        <span class="text-4xl">{{ substr($currentDate, 0, 2) }}</span>
+                    </div>
+                    <div class="w-[95%] bg-[#4D7F41]/65 min-h-20 rounded-xl border-2 border-[#1B4810] pl-28 pr-5 py-3 text-white font-bold text-xl flex flex-col justify-center">
+                        @foreach ($activities as $key => $activity)
+                        <p><span>{{ $key + 1 }}. </span><span>{{ $activity }}</span></p>
+                        @endforeach
+                    </div>
+                </div>
+                @endif
+                @endforeach
+            </div>
+            @endif
         </div>
         <div class="absolute flex w-[12%] h-[8%] bg-[#74CC52] right-14 top-2 shadow-lg shadow-gray-400" data-aos="fade-left" data-aos-duration="1500">
             <div class="basis-[3%] bg-[#FFD600]"></div>
@@ -286,6 +242,7 @@
                             <polyline points="9 6 15 12 9 18" />
                         </svg>
                     </button>
+                    <a id="agendaDate" class="hidden"></a>
                 </div>
                 <div class="flex items-center justify-between h-full">
                     <table class="w-full lg:h-full">
@@ -401,23 +358,15 @@
 
 <x-footer>
     <!-- text animation -->
+    <script src="https://unpkg.com/typed.js@2.1.0/dist/typed.umd.js"></script>
     <script>
-        const text = document.querySelector(".text-animation");
-
-        const textLoad = () => {
-            setTimeout(() => {
-                text.textContent = "Desa Bumiayu";
-            }, 0);
-            setTimeout(() => {
-                text.textContent = "Kec. Kedungkandang";
-            }, 7000);
-            setTimeout(() => {
-                text.textContent = "Kota Malang";
-            }, 14000);
-        }
-
-        textLoad();
-        setInterval(textLoad, 21000);
+        const typed = new Typed('.multiple-text', {
+            strings: ['Desa Bumiayu', 'Kec. Kedungkandang', 'Kota Malang'],
+            typeSpeed: 100,
+            backSpeed: 100,
+            backDelay: 1000,
+            loop: true,
+        });
     </script>
 
     <!-- Swiper JS -->
@@ -427,6 +376,7 @@
     <script>
         var swiper = new Swiper(".mySwiper", {
             slidesPerView: 4,
+            // slidesPerGroup: 4,
             spaceBetween: 61,
             loop: true,
             pagination: {
@@ -445,9 +395,26 @@
         const days = document.querySelector("#days");
         const buttonCalendar = document.querySelectorAll(".button-calendar");
 
+        const urlParams = new URLSearchParams(window.location.search);
+        const dateParam = urlParams.get('date');
+        const monthParam = urlParams.get('month');
+        const yearParam = urlParams.get('year');
+
+        // console.log(parseInt(dateParam.split("-")[0]));
+
         let date = new Date();
         let currYear = date.getFullYear();
         let currMonth = date.getMonth();
+
+        if (dateParam) {
+            currYear = parseInt(dateParam.split("-")[0]);
+            currMonth = parseInt(dateParam.split("-")[1]) - 1;
+        } else if (monthParam && yearParam) {
+            currYear = parseInt(yearParam);
+            currMonth = parseInt(monthParam) - 1;
+        }
+
+        let = document.querySelector('#agendaDate');
 
         const month = [
             "Januari",
@@ -465,6 +432,7 @@
         ];
 
         const renderCalendar = () => {
+            let dateKegiatan = @json($dataDate);
             let counter = 0;
             let firstDayofMonth = new Date(currYear, currMonth, 1)
                 .getDay(); // getting last date of month
@@ -473,6 +441,7 @@
             let lastDateofLastMonth = new Date(currYear, currMonth, 0)
                 .getDate(); // getting last date of month
             let daysDate = "";
+            let dateCalendar = '';
 
             for (let i = firstDayofMonth; i > 0; i--) {
                 counter++;
@@ -509,19 +478,57 @@
             for (let i = 1; i <= lastDateofMonth; i++) {
                 counter++;
 
+                dateCalendar = `${currYear}-${currMonth + 1}-${i}`;
+                let url = `{{ route('home', ['date' => '']) }}` + dateCalendar;
+
                 if (i === date.getDate() && currMonth === date.getMonth() && currYear === date.getFullYear()) {
                     daysDate += `       <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <button role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-white dark:text-gray-100 rounded-full bg-[#57BA47]">${i}</button>
+                                                <a href="${url}" role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-white dark:text-gray-100 rounded-full bg-[#57BA47]">${i}</a>
                                             </div>
                                         </div>
                                     </td>`
-                } else if (i == 10 || i == 15) {
+                } else if (i === parseInt(dateParam?.split("-")[2]) && currMonth === (parseInt(dateParam?.split("-")[1]) - 1) && currYear === (parseInt(dateParam?.split("-")[0]))) {
                     daysDate += `       <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <button role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-white dark:text-gray-100 rounded-full bg-yellow-500">${i}</button>
+                                                <a href="${url}" role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium dark:text-gray-100 rounded-full text-white bg-[#4D4DFF]">${i}</a>
+                                            </div>
+                                        </div>
+                                    </td>`
+                } else if (dateKegiatan.some(dt =>
+                        (dt.yearStart < currYear || (dt.yearStart === currYear && (dt.monthStart < currMonth || (dt.monthStart === currMonth && dt.dayStart <= i)))) &&
+                        (dt.yearEnd > currYear || (dt.yearEnd === currYear && (dt.monthEnd > currMonth || (dt.monthEnd === currMonth && dt.dayEnd >= i)))) && (counter % 7 == 1)
+                    )) {
+                    daysDate += `   <tr>
+                                    <td class="py-1">
+                                        <div class="w-full h-full">
+                                            <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
+                                                <a href="${url}" role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-white dark:text-gray-100 rounded-full bg-yellow-500">${i}</a>
+                                            </div>
+                                        </div>
+                                    </td>`
+                } else if (dateKegiatan.some(dt =>
+                        (dt.yearStart < currYear || (dt.yearStart === currYear && (dt.monthStart < currMonth || (dt.monthStart === currMonth && dt.dayStart <= i)))) &&
+                        (dt.yearEnd > currYear || (dt.yearEnd === currYear && (dt.monthEnd > currMonth || (dt.monthEnd === currMonth && dt.dayEnd >= i)))) && (counter % 7 == 0)
+                    )) {
+                    daysDate += `   <td class="py-1">
+                                        <div class="w-full h-full">
+                                            <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
+                                                <a href="${url}" role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-white dark:text-gray-100 rounded-full bg-yellow-500">${i}</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                    </tr>`
+                } else if (dateKegiatan.some(dt =>
+                        (dt.yearStart < currYear || (dt.yearStart === currYear && (dt.monthStart < currMonth || (dt.monthStart === currMonth && dt.dayStart <= i)))) &&
+                        (dt.yearEnd > currYear || (dt.yearEnd === currYear && (dt.monthEnd > currMonth || (dt.monthEnd === currMonth && dt.dayEnd >= i))))
+                    )) {
+                    daysDate += `  <td class="py-1">
+                                        <div class="w-full h-full">
+                                            <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
+                                                <a href="${url}" role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-white dark:text-gray-100 rounded-full bg-yellow-500">${i}</a>
                                             </div>
                                         </div>
                                     </td>`
@@ -530,7 +537,7 @@
                                     <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <button role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-gray-500 dark:text-gray-100 rounded-full">${i}</button>
+                                                <a href="${url}" role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-gray-500 dark:text-gray-100 rounded-full">${i}</a>
                                             </div>
                                         </div>
                                     </td>`
@@ -538,7 +545,7 @@
                     daysDate += `       <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <button role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-gray-500 dark:text-gray-100 rounded-full">${i}</button>
+                                                <a href="${url}" role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-gray-500 dark:text-gray-100 rounded-full">${i}</a>
                                             </div>
                                         </div>
                                     </td>
@@ -547,7 +554,7 @@
                     daysDate += `       <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <button role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-gray-500 dark:text-gray-100 rounded-full">${i}</button>
+                                                <a href="${url}" role="link tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] focus:text-white hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-medium text-gray-500 dark:text-gray-100 rounded-full">${i}</a>
                                             </div>
                                         </div>
                                     </td>`
@@ -562,7 +569,7 @@
                                     <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <button role="link"  tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-normal text-gray-400 dark:text-slate-400 rounded-full">${i - lastDayofMonth + 1}</button>
+                                                <a href="#" role="link"  tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-normal text-gray-400 dark:text-slate-400 rounded-full">${i - lastDayofMonth + 1}</a>
                                             </div>
                                         </div>
                                     </td>`
@@ -570,7 +577,7 @@
                     daysDate += `       <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <button role="link"  tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-normal text-gray-400 dark:text-slate-400 rounded-full">${i - lastDayofMonth + 1}</button>
+                                                <a href="#" role="link"  tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-normal text-gray-400 dark:text-slate-400 rounded-full">${i - lastDayofMonth + 1}</a>
                                             </div>
                                         </div>
                                     </td>
@@ -579,7 +586,7 @@
                     daysDate += `       <td class="py-1">
                                         <div class="w-full h-full">
                                             <div class="flex items-center justify-center w-full rounded-full cursor-pointer">
-                                                <button role="link"  tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-normal text-gray-400 dark:text-slate-400 rounded-full">${i - lastDayofMonth + 1}</button>
+                                                <a href="#" role="link"  tabindex="0" class="focus:outline-none  focus:ring-1 focus:ring-offset-2  focus:bg-[#57BA47] hover:bg-[#234C1D] hover:text-white dark:hover:bg-slate-400 text-base w-8 h-8 flex items-center justify-center font-normal text-gray-400 dark:text-slate-400 rounded-full">${i - lastDayofMonth + 1}</a>
                                             </div>
                                         </div>
                                     </td>`
@@ -597,6 +604,9 @@
                 currMonth = 0;
                 currYear++;
             }
+            agendaDate.href = `{{ route('home', ['month' => '']) }}${currMonth+1}&year=${currYear}`;
+            agendaDate.click();
+
             renderCalendar();
         }
 
@@ -606,10 +616,19 @@
                 currMonth = 11;
                 currYear--;
             }
+            agendaDate.href = `{{ route('home', ['month' => '']) }}${currMonth+1}&year=${currYear}`;
+            agendaDate.click();
             renderCalendar();
         }
 
         renderCalendar();
+
+        if (dateParam || monthParam && yearParam) {
+            window.scrollTo({
+                top: 2530,
+                behavior: 'smooth'
+            });
+        }
     </script>
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
     <script>

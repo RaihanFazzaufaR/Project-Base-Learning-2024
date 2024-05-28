@@ -21,14 +21,18 @@ class LoginCheck
         }
 
         $user = Auth::user();
-        
-        $level = $user->levelDetail;
 
-        foreach($level as $lev){
-            if($lev->level_id == $roles){
-                return $next($request);
-            }
+        if($user->id_level <= $roles){
+            return $next($request);
         }
+        
+        // $level = $user->levelDetail;
+
+        // foreach($level as $lev){
+        //     if($lev->level_id == $roles){
+        //         return $next($request);
+        //     }
+        // }
         
         return redirect('login')->with('loginError', 'Anda tidak memiliki akses untuk halaman ini.');
     }
