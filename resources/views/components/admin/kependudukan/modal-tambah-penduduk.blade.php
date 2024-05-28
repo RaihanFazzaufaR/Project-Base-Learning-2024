@@ -15,7 +15,7 @@
                     <h3 class="text-xl font-bold text-[#34662C] dark:text-white">
                         Tambah Data Penduduk
                     </h3>
-                    <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" @click="tambahModal = false">
+                    <button type="button" onclick="resetCounter()" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" @click="tambahModal = false">
                         <i class="fa-solid fa-xmark text-xl"></i>
                         <span class="sr-only">Close modal</span>
                     </button>
@@ -40,7 +40,7 @@
                             <div class="col-span-2 sm:col-span-1">
                                 <label for="rt" class="block mb-2 text-sm font-bold">RT</label>
                                 <select name="rt" id="rt" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>
-                                    <option selected="">Pilih RT</option>
+                                    <option value="" selected>Pilih RT</option>
                                     <option value="01">01</option>
                                     <option value="02">02</option>
                                     <option value="03">03</option>
@@ -110,27 +110,27 @@
                                 <tbody id="table-penduduk">
                                     <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 text-sm">
                                         <td class="p-4">
-                                            <input type="text" name="nik[]" id="nik" class="bg-white shadow-md border border-[#34662C] rounded-lg focus:outline-none focus:border-2 block  p-2 placeholder-[#34662C]" placeholder="Masukkan NIK" required="">
+                                            <input type="text" name="penduduk[0][nik]" id="nik" class="bg-white shadow-md border border-[#34662C] rounded-lg focus:outline-none focus:border-2 block  p-2 placeholder-[#34662C]" placeholder="Masukkan NIK" required="">
                                         </td>
                                         <td class="p-4">
-                                            <input type="text" name="nama[]" id="nama" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]" placeholder="Masukkan Nama" required="">
+                                            <input type="text" name="penduduk[0][nama]" id="nama" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]" placeholder="Masukkan Nama" required="">
                                         </td>
                                         <td class="p-4">
-                                            <input type="text" name="tempatLahir[]" id="tempatLahir" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]" placeholder="Masukkan Tempat Lahir" required="">
+                                            <input type="text" name="penduduk[0][tempatLahir]" id="tempatLahir" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]" placeholder="Masukkan Tempat Lahir" required="">
                                         </td>
                                         <td class="p-4">
-                                            <input type="date" name="tanggalLahir[]" id="tanggalLahir" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]" required="">
+                                            <input type="date" name="penduduk[0][tanggalLahir]" id="tanggalLahir" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]" required="">
                                         </td>
                                         <td class="p-4">
-                                            <select id="jenisKelamin" name="jenisKelamin[]" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]">
-                                                <option selected="">Pilih Jenis Kelamin</option>
+                                            <select id="jenisKelamin" name="penduduk[0][jenisKelamin]" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]">
+                                                <option value="" selected>Pilih Jenis Kelamin</option>
                                                 <option value="L">Laki-Laki</option>
                                                 <option value="P">Perempuan</option>
                                             </select>
                                         </td>
                                         <td class="p-4">
-                                            <select id="agama" name="agama[]" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]">
-                                                <option selected="">Pilih Agama</option>
+                                            <select id="agama" name="penduduk[0][agama]" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]">
+                                                <option value="" selected>Pilih Agama</option>
                                                 <option value="islam">Islam</option>
                                                 <option value="katolik">Katolik</option>
                                                 <option value="kristen">Kristen</option>
@@ -139,32 +139,32 @@
                                             </select>
                                         </td>
                                         <td class="p-4">
-                                            <input type="text" name="pekerjaan[]" id="pekerjaan" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]" placeholder="Masukkan Pekerjaan" required="">
+                                            <input type="text" name="penduduk[0][pekerjaan]" id="pekerjaan" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]" placeholder="Masukkan Pekerjaan" required="">
                                         </td>
                                         <td class="p-4">
-                                            <select id="statusPernikahan" name="statusPernikahan[]" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]">
-                                                <option selected="">Pilih Status Pernikahan</option>
+                                            <select id="statusPernikahan" name="penduduk[0][statusPernikahan]" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]">
+                                                <option value="" selected>Pilih Status Pernikahan</option>
                                                 <option value="belum">Belum Menikah</option>
                                                 <option value="sudah">Sudah Menikah</option>
                                             </select>
                                         </td>
                                         <td class="p-4">
-                                            <select id="kewarganegaraan" name="kewarganegaraan[]" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]">
-                                                <option selected="">Pilih Kewarganegaraan</option>
+                                            <select id="kewarganegaraan" name="penduduk[0][kewarganegaraan]" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]">
+                                                <option value="" selected>Pilih Kewarganegaraan</option>
                                                 <option value="WNI">Indonesia</option>
                                                 <option value="WNA">Luar</option>
                                             </select>
                                         </td>
                                         <td class="p-4">
-                                            <select id="statusPenduduk" name="statusPenduduk[]" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]">
-                                                <option selected="">Pilih Status Penduduk</option>
+                                            <select id="statusPenduduk" name="penduduk[0][statusPenduduk]" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]">
+                                                <option value="" selected>Pilih Status Penduduk</option>
                                                 <option value="penduduk tetap">Penduduk Tetap</option>
                                                 <option value="penduduk tidak tetap">Penduduk Tidak Tetap</option>
                                             </select>
                                         </td>
                                         <td class="p-4">
-                                            <select id="jabatan" name="jabatan[]" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]">
-                                                <option selected="">Pilih Jabatan</option>
+                                            <select id="jabatan" name="penduduk[0][jabatan]" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]">
+                                                <option value="" selected>Pilih Jabatan</option>
                                                 <option value="Ketua RW">Ketua RW</option>
                                                 <option value="Ketua RT">Ketua RT</option>
                                                 <option value="Bendahara">Bendahara</option>
@@ -173,10 +173,10 @@
                                             </select>
                                         </td>
                                         <td class="p-4">
-                                            <input type="number" name="gaji[]" id="gaji" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]" placeholder="Masukkan Gaji" required="">
+                                            <input type="number" name="penduduk[0][gaji]" id="gaji" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]" placeholder="Masukkan Gaji" required="">
                                         </td>
                                         <td class="p-4">
-                                            <input type="number" name="noHp[]" id="noHp" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]" placeholder="Masukkan No Telepon" required="">
+                                            <input type="number" name="penduduk[0][noHp]" id="noHp" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]" placeholder="Masukkan No Telepon" required="">
                                         </td>
                                         <td class="p-4 flex justify-center items-center">
                                             
@@ -187,10 +187,10 @@
                         </div>
                     </div>
                     <div class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8]">
-                        <button type="button" @click="tambahModal = false" class="hover:text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center hover:bg-[#34662C] bg-white text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
+                        <button type="button" onclick="resetCounter()" @click="tambahModal = false" class="hover:text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center hover:bg-[#34662C] bg-white text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
                             Batal
                         </button>
-                        <button type="submit" @click="tambahModal = false" class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
+                        <button type="submit" onclick="resetCounter()" @click="tambahModal = false" class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
                             Tambah
                         </button>
                     </div>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\KartuKeluargaModel;
 use App\Models\PendudukModel;
+use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -44,7 +45,7 @@ class PendudukController extends Controller
                 }
             });
         }
-        
+
         $user = $user->paginate(10)->withQueryString();
 
         return view('admin.kependudukan.index', compact('user', 'page', 'selected', 'kartuKeluarga', 'id_penduduk'));
@@ -55,40 +56,64 @@ class PendudukController extends Controller
     {
 
         $validator = Validator::make($request->all(), [
-            'nik' => 'required|string|max:17|unique:tb_penduduk,nik',
             'nkk' => 'required',
-            'nama' => 'required',
-            'tempatLahir' => 'required',
-            'tanggalLahir' => 'required',
-            'jenisKelamin' => 'required',
-            'agama' => 'required',
-            'statusPernikahan' => 'required',
-            'statusPenduduk' => 'required',
-            'pekerjaan' => 'required',
-            'jabatan' => 'required',
-            'kewarganegaraan' => 'required',
-            'gaji' => 'required|numeric',
+            'kepalaKeluarga' => 'required',
+            'rt' => 'required|not_in:',
+            'alamat' => 'required',
+            'penduduk.*.nik' => 'required|string|max:17|unique:tb_penduduk,nik',
+            'penduduk.*.nama' => 'required',
+            'penduduk.*.tempatLahir' => 'required',
+            'penduduk.*.tanggalLahir' => 'required',
+            'penduduk.*.jenisKelamin' => 'required|not_in:',
+            'penduduk.*.agama' => 'required|not_in:',
+            'penduduk.*.pekerjaan' => 'required',
+            'penduduk.*.statusPernikahan' => 'required|not_in:',
+            'penduduk.*.kewarganegaraan' => 'required|not_in:',
+            'penduduk.*.statusPenduduk' => 'required|not_in:',
+            'penduduk.*.jabatan' => 'required|not_in:',
+            'penduduk.*.gaji' => 'required|numeric',
         ]);
 
         if ($validator->fails()) {
             return back()->with('errors', $validator->messages()->all()[0])->withInput();
         }
 
-        PendudukModel::create([
-            'nik' => $request->nik,
-            'id_kartuKeluarga' => $request->nkk,
-            'nama' => $request->nama,
-            'tempatLahir' => $request->tempatLahir,
-            'tanggalLahir' => $request->tanggalLahir,
-            'jenisKelamin' => $request->jenisKelamin,
-            'agama' => $request->agama,
-            'statusNikah' => $request->statusPernikahan,
-            'statusPenduduk' => $request->statusPenduduk,
-            'pekerjaan' => $request->pekerjaan,
-            'warganegara' => $request->kewarganegaraan,
-            'jabatan' => $request->jabatan,
-            'gaji' => $request->gaji,
-        ]);
+        $kartuKeluarga = KartuKeluargaModel::where('niKeluarga', $request->nkk)->first();
+
+        if (!$kartuKeluarga) {
+            $kartuKeluarga = KartuKeluargaModel::create([
+                'niKeluarga' => $request->nkk,
+                'jmlAnggota' => $request->jumlahAnggota,
+                'kepalaKeluarga' => $request->kepalaKeluarga,
+                'alamat' => $request->alamat,
+                'rt' => $request->rt
+            ]);
+        } else {
+            $kartuKeluarga->update([
+                'jmlAnggota' => $kartuKeluarga->penduduk->count() + $request->jumlahAnggota,
+                'kepalaKeluarga' => $request->kepalaKeluarga,
+                'alamat' => $request->alamat,
+                'rt' => $request->rt
+            ]);
+        }
+
+        foreach ($request->penduduk as $penduduk) {
+            PendudukModel::create([
+                'nik' => $penduduk['nik'],
+                'id_kartuKeluarga' => $kartuKeluarga->id_kartuKeluarga,
+                'nama' => $penduduk['nama'],
+                'tempatLahir' => $penduduk['tempatLahir'],
+                'tanggalLahir' => $penduduk['tanggalLahir'],
+                'jenisKelamin' => $penduduk['jenisKelamin'],
+                'agama' => $penduduk['agama'],
+                'statusNikah' => $penduduk['statusPernikahan'],
+                'statusPenduduk' => $penduduk['statusPenduduk'],
+                'pekerjaan' => $penduduk['pekerjaan'],
+                'warganegara' => $penduduk['kewarganegaraan'],
+                'jabatan' => $penduduk['jabatan'],
+                'gaji' => $penduduk['gaji'],
+            ]);
+        }
 
         return redirect('/admin/kependudukan')->with('success', 'Data berhasil ditambahkan!');
     }

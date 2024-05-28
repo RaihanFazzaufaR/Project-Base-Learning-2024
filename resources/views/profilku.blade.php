@@ -50,12 +50,12 @@ use Illuminate\Support\Str;
                                                 </button>
                                             </div>
                                             <!-- Modal body -->
-                                            <form class="w-full h-fit text-[#34662C]" method="POST" action="">
+                                            <form class="w-full h-fit text-[#34662C]" method="POST" action="{{route('update')}}">
                                                 @csrf
                                                 <div class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto rounded-b-xl">
                                                     <div class="col-span-2 relative">
                                                         <label class="block mb-2 text-sm font-bold">Username</label>
-                                                        <input name="nik" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan Username" value="{{ $penduduk->userAccount->username }}">
+                                                        <input name="username" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan Username" value="{{ $penduduk->userAccount->username }}">
                                                     </div>
                                                     <div class="col-span-2 relative">
                                                         <label for="level" class="block mb-2 text-sm font-bold">Password Lama</label>
@@ -66,7 +66,7 @@ use Illuminate\Support\Str;
                                                     </div>
                                                     <div class="col-span-2 relative">
                                                         <label for="level" class="block mb-2 text-sm font-bold">Password Baru</label>
-                                                        <input id="pw-baru" name="pw-baru" type="password" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan password baru" value="">
+                                                        <input id="pw-baru" name="pw-baru" type="password" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Kosongkan jika tidak ada perubahan" value="">
                                                         <button type="button" id="pw-baru-show" class="absolute right-3 bottom-3" onclick="showPassword('pw-baru')">
                                                             <i class=" fa-solid fa-eye-slash text-lg"></i>
                                                         </button>

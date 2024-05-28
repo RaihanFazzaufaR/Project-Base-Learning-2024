@@ -6,6 +6,9 @@
     {{ $slot }}
     <link rel="icon" type="image/x-icon" href="{{ asset('assets/images/logo.png') }}">
     <title>Portal RW 3</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Sofia&display=swap" rel="stylesheet">
 </head>
 
 <body>

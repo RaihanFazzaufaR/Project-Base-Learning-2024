@@ -222,4 +222,5 @@ Route::group(['prefix' => 'profil'], function () {
 
 Route::group(['prefix' => 'profilku'], function () {
     Route::get('/', [ProfilkuController::class, 'index'])->name('profilku');
+    Route::post('/', [ProfilkuController::class, 'updateAccount'])->name('update');
 });
