@@ -131,8 +131,8 @@
                                         class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
                                         required>
                                         <option selected="">Pilih Level</option>
-                                        <option value="1">Admin</option>
-                                        <option value="2">User</option>
+                                        <option value="2">Admin</option>
+                                        <option value="3">User</option>
                                     </select>
                                 </div>
                             </div>
@@ -345,8 +345,8 @@
                                                                         class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
                                                                         required>
                                                                         <option selected="">Pilih Level</option>
-                                                                        <option value="1">Admin</option>
-                                                                        <option value="2">User</option>
+                                                                        <option value="2">Admin</option>
+                                                                        <option value="3">User</option>
                                                                     </select>
                                                                 </div>
                                                             </div>

@@ -21,7 +21,7 @@
 
             <div class=" p-2 border-2 rounded-sm">
                 <ul class="grid w-full">
-                    <li
+                    <li onclick="location.href='{{ route('sk') }}'"
                         class="inline-flex pl-3 items-center justify-between w-full p-1.5 text-[#2d5523] bg-white border border-gray-200 cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-[#2d5523] peer-checked:text-white peer-checked:bg-yellow-500 hover:text-white hover:bg-yellow-500 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                         <div class="block">
                             <div class="w-full text-lg font-semibold">
@@ -31,7 +31,7 @@
                     </li>
                 </ul>
                 <ul class="grid w-full">
-                    <li
+                    <li onclick="location.href='{{ route('sk-pindah') }}'"
                         class="inline-flex pl-3 items-center justify-between w-full p-1.5 text-[#2d5523] bg-white border border-gray-200 cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-[#2d5523] peer-checked:text-white peer-checked:bg-yellow-500 hover:text-white hover:bg-yellow-500 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                         <div class="block">
                             <div class="w-full text-lg font-semibold">
@@ -41,7 +41,7 @@
                     </li>
                 </ul>
                 <ul class="grid w-full">
-                    <li
+                    <li onclick="location.href='{{ route('sk-kematian') }}'"
                         class="inline-flex pl-3 items-center justify-between w-full p-1.5 text-[#2d5523] bg-white border border-gray-200 cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-[#2d5523] peer-checked:text-white peer-checked:bg-yellow-500 hover:text-white hover:bg-yellow-500 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">
                         <div class="block">
                             <div class="w-full text-lg font-semibold">
@@ -168,14 +168,16 @@
                                 class="text-lg font-bold  w-full text-[#2d5523] dark:text-white">Alamat Pindah</label>
                         </div>
                         <div class="basis-3/4 h-full flex items-center">
-                            <textarea id="alamat-pindah" name="alamat-pindah" cols="19" rows="3" placeholder="Masukkan Alamat Pindah"
+                            <textarea id="alamat-pindah" name="alamat-pindah" cols="19" rows="3"
+                                placeholder="Masukkan Alamat Pindah"
                                 class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
                         </div>
                     </div>
                     <div class="gap-2 flex w-full h-fit">
                         <div class="basis-1/4 h-full ps-8  flex my-auto items-center">
                             <label for="alasan"
-                                class="text-lg font-bold items-center flex w-full  text-[#2d5523] dark:text-white">Alasan Pindah</label>
+                                class="text-lg font-bold items-center flex w-full  text-[#2d5523] dark:text-white">Alasan
+                                Pindah</label>
                         </div>
                         <div class="basis-3/4 h-full flex items-center">
                             <input id="alasan" name="alasan" placeholder="Masukkan Alasan Pindah"
