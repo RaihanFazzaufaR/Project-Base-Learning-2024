@@ -604,8 +604,7 @@
                 currMonth = 0;
                 currYear++;
             }
-
-            agendaDate.href = `/?month=${currMonth+1}&year=${currYear}`;
+            agendaDate.href = `{{ route('home', ['month' => '']) }}${currMonth+1}&year=${currYear}`;
             agendaDate.click();
 
             renderCalendar();
@@ -617,7 +616,7 @@
                 currMonth = 11;
                 currYear--;
             }
-            agendaDate.href = `/?month=${currMonth+1}&year=${currYear}`;
+            agendaDate.href = `{{ route('home', ['month' => '']) }}${currMonth+1}&year=${currYear}`;
             agendaDate.click();
             renderCalendar();
         }
