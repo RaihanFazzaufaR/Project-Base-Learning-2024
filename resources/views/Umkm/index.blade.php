@@ -16,7 +16,7 @@
             RW</p>
     </div>
 </div>
-<div class="bg-[#Fff] md:min-h-[100vh] md:px-[65px] md:py-[34px] w-[100%]">
+<div class="bg-[#Fff] dark:bg-black md:min-h-[100vh] md:px-[65px] md:py-[34px] w-[100%]">
     <div class="flex flex-row gap-14 mt-9 w-full">
         <div class="md:basis-1/4 items-center flex-col hidden md:block">
             <div class="flex border-b-[1.9px] h-[57px] border-[#2d5523]">
@@ -50,7 +50,7 @@
             </div>
         </div>
         <div class="md:basis-3/4 w-full  ">
-            <div class="flex items-center bg-white gap-11 justify-center">
+            <div class="flex items-center bg-white dark:bg-black gap-11 justify-center">
                 <div
                     class=" md:basis-2/3 bg-white pt-3 pb-2 md:pt-0 md:pb-0  md:m-0 m-3 w-full -mt-5 md:-mt-0 fixed z-10 md:static top-22">
                     <form action="{{ route('umkm.search') }}" method="GET" class="w-full mb-0 md:shadow-2xl">
