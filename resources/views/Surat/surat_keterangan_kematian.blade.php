@@ -42,7 +42,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        Supriyanto
+                        {{ $permintaanSuratKematian->nama }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -55,7 +55,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        3525680174528153 / 3525680174528153
+                        {{ $permintaanSuratKematian->nik }} / {{ $permintaanSuratKematian->nomor_kk }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -68,7 +68,8 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        Lumajang, 30 Maret 1976
+                        {{ $permintaanSuratKematian->tempat_lahir }},
+                        {{ $permintaanSuratKematian->tanggal_lahir->format('d - m - Y') }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -81,7 +82,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        1000 Tahun
+                        {{ $permintaanSuratKematian->usia }} Tahun
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -94,7 +95,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        Laki-laki
+                        {{ $permintaanSuratKematian->jenis_kelamin }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -107,7 +108,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        Islam
+                        {{ $permintaanSuratKematian->agama }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -120,7 +121,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        Wiraswasta
+                        {{ $permintaanSuratKematian->pekerjaan }}
                     </div>
                 </div>
 
@@ -134,7 +135,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        WNI
+                        {{ $permintaanSuratKematian->warganegara }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -147,13 +148,13 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        Jl. Pahlawan No. 187
+                        {{ $permintaanSuratKematian->alamat }}
                     </div>
                 </div>
             </div>
             <p class="indent-10 pt-3">Adalah benar warga kami dilingkungan RT. 01 RW. 03 Jl. Pahlawan No. 187 Desa
                 Bumiayu, Kecamatan Kedungkandang, Kota Malang yang telah <span class="font-bold">MENINGGAL DUNIA</span>
-                dikarenakan <span class="font-bold">SAKIT</span> pada:</p>
+                dikarenakan <span class="font-bold">{{ $permintaanSuratKematian->penyebab_kematian }}</span> pada:</p>
 
             <div class="w-full my-0 pt-3 h-fit">
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -166,7 +167,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        Minggu
+                        {{ $permintaanSuratKematian->tanggal_wafat->format('l') }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -179,7 +180,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        19 Mei 2024
+                        {{ $permintaanSuratKematian->tanggal_wafat->format('d - m - Y') }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -192,7 +193,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        17:26
+                        {{ $permintaanSuratKematian->tanggal_wafat->format('H : i : s') }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -205,7 +206,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        RS. Saiful Anwar Malang
+                        {{ $permintaanSuratKematian->tempat_meninggal }}
                     </div>
                 </div>
             </div>
@@ -221,7 +222,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        Lucky Kurniawan Langoday
+                        {{ $permintaanSuratKematian->nama_pelapor }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -234,7 +235,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        Anak
+                        {{ $permintaanSuratKematian->hubungan_pelapor }}
                     </div>
                 </div>
             </div>
@@ -257,7 +258,7 @@
             <i class="fa-solid fa-print  text-xl"></i>
             <span class="sr-only">Open actions menu</span>
         </button>
-        <a href=""
+        <a href="{{ route('sk-kematian') }}"
             class="flex items-center justify-center print:hidden text-2xl  fixed end-25 bottom-6 group animate-bounce text-blue-700 hover:text-white  bg-white border-2 border-blue-700 rounded-full w-14 h-14 hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
             <i class="fa-solid fa-arrow-left"></i>
         </a>

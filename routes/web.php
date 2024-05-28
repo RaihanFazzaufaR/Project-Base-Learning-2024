@@ -78,13 +78,23 @@ Route::group(['middleware' => ['auth']], function () {
         //Route Surat
         Route::group(['prefix' => 'surat'], function () {
             Route::get('/', [SuratController::class, 'index'])->name('surat');
+            // suratSk
             Route::get('/sk', [SuratController::class, 'sk'])->name('sk');
+            Route::get('/suratSK', [SuratController::class, 'suratSK'])->name('suratSK');
+            Route::post('/storeSk', [SuratController::class, 'storeSk'])->name('storeSk');
+            Route::get('/show/{id}', [SuratController::class, 'show'])->name('show');
+
+            // suratPindah
             Route::get('/sk-pindah', [SuratController::class, 'skPindah'])->name('sk-pindah');
+
+            // suratKematian
             Route::get('/sk-kematian', [SuratController::class, 'skKematian'])->name('sk-kematian');
-            Route::get('/formSK', [SuratController::class, 'formSK'])->name('formSK');
-            Route::get('/sk-pindah', [SuratController::class, 'skPindah'])->name('sk-pindah');
-            Route::get('/sk-kematian', [SuratController::class, 'skKematian'])->name('sk-kematian');
+            Route::post('/storeSkKematian', [SuratController::class, 'storeSkKematian'])->name('storeSkKematian');
+
+            Route::get('/suratPindah', [SuratController::class, 'suratPindah'])->name('suratPindah');
+            Route::get('/suratKematian', [SuratController::class, 'suratKematian'])->name('suratKematian');
             Route::get('/suratku', [SuratController::class, 'suratku'])->name('suratku');
+            Route::get('/search', [SuratController::class, 'search'])->name('surat.search');
         });
         // Route::group(['prefix' => 'surat'], function () {
         //     Route::get('/', [SuratController::class, 'index'])->name('surat');

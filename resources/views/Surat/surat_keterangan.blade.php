@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        Lucky Kurniawan Langoday
+                        {{ $permintaanSurat->nama }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -54,7 +54,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        Gresik, 30 Desember 2003
+                        {{ $permintaanSurat->tempat_lahir }}, {{ $permintaanSurat->tanggal_lahir }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -67,7 +67,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        Laki-laki
+                        {{ $permintaanSurat->jenis_kelamin }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -80,7 +80,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        Islam
+                        {{ $permintaanSurat->agama }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -93,7 +93,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        Mahasiswa
+                        {{ $permintaanSurat->pekerjaan }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -106,7 +106,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        3525680174528153
+                        {{ $permintaanSurat->no_ktp }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -119,7 +119,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        Jl. Bunga Kumis Kucing Gang Macan No. 42A
+                        {{ $permintaanSurat->alamat }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -132,8 +132,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        Membenarkan bahwa orang tersebut merupakan warga RT 01 RW 03 yang tinggal di Jl. Bunga Kumis
-                        Kucing Gang Macan No. 42A
+                        {{ $permintaanSurat->keperluan }}
                     </div>
                 </div>
 
@@ -164,10 +163,11 @@
             <i class="fa-solid fa-print  text-xl"></i>
             <span class="sr-only">Open actions menu</span>
         </button>
-        <a href=""
+        <a href="{{ route('sk') }}"
             class="flex items-center justify-center print:hidden text-2xl  fixed end-25 bottom-6 group animate-bounce text-blue-700 hover:text-white  bg-white border-2 border-blue-700 rounded-full w-14 h-14 hover:bg-blue-800 dark:bg-blue-600 dark:hover:bg-blue-700 focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800">
             <i class="fa-solid fa-arrow-left"></i>
         </a>
+
     </div>
 
     <script type="text/javascript">
