@@ -78,9 +78,20 @@ Route::group(['middleware' => ['auth']], function () {
         //Route Surat
         Route::group(['prefix' => 'surat'], function () {
             Route::get('/', [SuratController::class, 'index'])->name('surat');
+            Route::get('/sk', [SuratController::class, 'sk'])->name('sk');
             Route::get('/sk-pindah', [SuratController::class, 'skPindah'])->name('sk-pindah');
+            Route::get('/sk-kematian', [SuratController::class, 'skKematian'])->name('sk-kematian');
+            Route::get('/formSK', [SuratController::class, 'formSK'])->name('formSK');
+            Route::get('/sk-pindah', [SuratController::class, 'skPindah'])->name('sk-pindah');
+            Route::get('/sk-kematian', [SuratController::class, 'skKematian'])->name('sk-kematian');
             Route::get('/suratku', [SuratController::class, 'suratku'])->name('suratku');
         });
+        // Route::group(['prefix' => 'surat'], function () {
+        //     Route::get('/', [SuratController::class, 'index'])->name('surat');
+        //     Route::get('/sk-pindah', [SuratController::class, 'skPindah'])->name('sk-pindah');
+        //     Route::get('/suratku', [SuratController::class, 'suratku'])->name('suratku');
+        // });
+
         Route::group(['middleware' => ['auth']], function () {
             Route::group(['prefix' => 'umkm'], function () {
                 Route::get('/', [UmkmController::class, 'index'])->name('umkm');

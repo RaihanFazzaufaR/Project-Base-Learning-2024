@@ -81,293 +81,310 @@
                             class="flex overflow-hidden fixed top-0 right-0 left-0 z-999  justify-center items-center w-full md:inset-0 h-full">
                             <div class="absolute z-999 bg-black/25 h-[100vh] w-full"></div>
                             <div class="relative z-[1000] p-4 w-full max-h-[700px]" @click.away="editModal = false"
-                            x-transition:enter="motion-safe:ease-out duration-300"
-                            x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
-                             <!-- Modal content -->
-                        <div
-                        class="relative bg-white rounded-lg shadow  dark:bg-gray-700 border-[3.5px] border-[#2d5523]">
-                        <!-- Modal header -->
-                        <div
-                        class="flex w-full items-center justify-between px-4 md:px-5 border-b-2 rounded-t mb-3 p-2 border-[#B8B8B8]">
-                        <h3 class="text-xl font-bold text-[#34662C] dark:text-white">
-                            Ajukan UMKM
-                        </h3>
-                            <button type="button"
-                                class=" bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                @click="editModal = false">
-                                <i class="fa-solid fa-xmark text-[#2d5523] font-extrabold text-xl"></i>
-                            </button>
-                        </div>
-                        <form class="p-4 md:p-5 w-full flex flex-col bg-white" method="POST"
-                            action="{{ route('umkm.store') }}" enctype="multipart/form-data">
-                            @csrf
-                            <div class="flex w-full h-fit gap-6">
-                                {{-- kolom kiri --}}
-                                <div class="grid gap-5 mb-4 w-full basis-1/2 ">
-                                    <div class="gap-2 flex w-full">
-                                        <div class="basis-1/4 h-full flex items-center">
-                                            <label for="nama_pemilik"
-                                                class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Nama
-                                                Pemilik</label>
-                                        </div>
-                                        <div class="basis-3/4 h-full flex items-center">
-                                            <input id="nama_pemilik" name="nama_pemilik"
-                                                value="{{ Auth::user()->penduduk->nama }}" readonly
-                                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                            <input type="hidden" id="id_penduduk" name="id_penduduk"
-                                                value="{{ Auth::user()->penduduk->id_penduduk }}">
-                                        </div>
+                                x-transition:enter="motion-safe:ease-out duration-300"
+                                x-transition:enter-start="opacity-0 scale-90"
+                                x-transition:enter-end="opacity-100 scale-100">
+                                <!-- Modal content -->
+                                <div
+                                    class="relative bg-white rounded-lg shadow  dark:bg-gray-700 border-[3.5px] border-[#2d5523]">
+                                    <!-- Modal header -->
+                                    <div
+                                        class="flex w-full items-center justify-between px-4 md:px-5 border-b-2 rounded-t mb-3 p-2 border-[#B8B8B8]">
+                                        <h3 class="text-xl font-bold text-[#34662C] dark:text-white">
+                                            Ajukan UMKM
+                                        </h3>
+                                        <button type="button"
+                                            class=" bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                            @click="editModal = false">
+                                            <i class="fa-solid fa-xmark text-[#2d5523] font-extrabold text-xl"></i>
+                                        </button>
+                                    </div>
+                                    <form class="p-4 md:p-5 w-full flex flex-col bg-white" method="POST"
+                                        action="{{ route('umkm.store') }}" enctype="multipart/form-data">
+                                        @csrf
+                                        <div class="flex w-full h-fit gap-6">
+                                            {{-- kolom kiri --}}
+                                            <div class="grid gap-5 mb-4 w-full basis-1/2 ">
+                                                <div class="gap-2 flex w-full">
+                                                    <div class="basis-1/4 h-full flex items-center">
+                                                        <label for="nama_pemilik"
+                                                            class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Nama
+                                                            Pemilik</label>
+                                                    </div>
+                                                    <div class="basis-3/4 h-full flex items-center">
+                                                        <input id="nama_pemilik" name="nama_pemilik"
+                                                            value="{{ Auth::user()->penduduk->nama }}" readonly
+                                                            class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                        <input type="hidden" id="id_penduduk" name="id_penduduk"
+                                                            value="{{ Auth::user()->penduduk->id_penduduk }}">
+                                                    </div>
 
-                                    </div>
-                                    <div class="gap-2 flex w-full">
-                                        <div class="basis-1/4 h-full flex items-center">
-                                            <label for="nama"
-                                                class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Nama
-                                                UMKM</label>
-                                        </div>
-                                        <div class="basis-3/4 h-full flex items-center">
-                                            <input id="nama" name="nama" placeholder="Masukkan Nama Toko"
-                                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                        </div>
-                                    </div>
-                                    <div class="gap-2 flex w-full">
-                                        <div class="basis-1/4 h-full flex items-center">
-                                            <label for="no_wa"
-                                                class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">No.
-                                                WhatsApp</label>
-                                        </div>
-                                        <div class="basis-3/4 h-full flex items-center">
-                                            <input id="no_wa" name="no_wa"
-                                                placeholder="Masukkan No. WhatsApp"
-                                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                        </div>
-                                    </div>
-                                    <div class="gap-2 flex w-full">
-                                        <div class="basis-1/4 h-full flex items-center">
-                                            <label for="foto"
-                                                class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Foto
-                                                UMKM</label>
-                                        </div>
-                                        <div class="basis-3/4 h-full flex items-center">
-                                            <input id="foto" name="foto" type="file"
-                                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                        </div>
-                                    </div>
-                                    <div class="gap-2 flex w-full">
-                                        <div class="basis-1/4 h-full flex items-center">
-                                            <label for="buka_waktu"
-                                                class="text-lg font-bold pt-[23px] items-center flex w-full text-[#2d5523] dark:text-white">Jam
-                                                Operasional</label>
-                                        </div>
-                                        <div class="basis-3/4 h-full flex items-center w-full justify-center">
-                                            <div class="basis-1/2 h-full flex w-full justify-center flex-col ">
-                                                <label for="buka_waktu"
-                                                    class=" mb-2 text-sm w-fit mx-auto font-medium text-[#2d5523] dark:text-white">Jam
-                                                    Buka:</label>
-                                                <div class="w-fit mx-auto">
-                                                    <input type="time" id="buka_waktu" name="buka_waktu"
-                                                        class="bg-gray-50 border-2 border-[#2d5523] leading-none text-lg text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit  py-2.5 px-[17px] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                        value="00:00" required />
                                                 </div>
-                                            </div>
-                                            <div class="basis-1/2 h-full flex w-full justify-center flex-col">
-                                                <label for="tutup_waktu"
-                                                    class="block mb-2 text-sm font-medium mx-auto text-[#2d5523] dark:text-white">Jam
-                                                    Tutup:</label>
-                                                <div class="w-fit mx-auto">
-                                                    <input type="time" id="tutup_waktu" name="tutup_waktu"
-                                                        class="bg-gray-50 border-2 border-[#2d5523] leading-none text-lg text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit  py-2.5 px-[17px] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                        value="00:00" required />
+                                                <div class="gap-2 flex w-full">
+                                                    <div class="basis-1/4 h-full flex items-center">
+                                                        <label for="nama"
+                                                            class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Nama
+                                                            UMKM</label>
+                                                    </div>
+                                                    <div class="basis-3/4 h-full flex items-center">
+                                                        <input id="nama" name="nama"
+                                                            placeholder="Masukkan Nama Toko"
+                                                            class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                    </div>
                                                 </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-
-
-                                <!-- kolom kanan -->
-                                <div class="flex flex-col gap-5  w-full basis-1/2 ">
-                                    <div class="gap-2 flex w-full">
-                                        <div class="basis-1/4 h-full flex items-center justify-center">
-                                            <label
-                                                class="text-lg font-bold  items-center flex w-full text-[#2d5523] dark:text-white">
-                                                Kategori
-                                            </label>
-                                        </div>
-                                        <div class="basis-3/4 h-full flex items-center">
-                                            <div
-                                                class="text-[#2d5523]  placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full  dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 ">
-                                                <select class="hidden" x-cloak id="select">
-                                                    <option value="1">Makanan</option>
-                                                    <option value="2">Minuman</option>
-                                                    <option value="3">Peralatan Rumah Tangga</option>
-                                                    <option value="4">Kebutuhan Pokok</option>
-                                                    <option value="5">Jasa</option>
-                                                    <option value="6">Lainnya</option>
-                                                </select>
-
-                                                <div x-data="dropdown()" x-init="loadOptions()"
-                                                    class="flex flex-col items-center">
-                                                    <input name="values" type="hidden"
-                                                        :value="selectedValues()" />
-                                                    <div class="relative z-20 inline-block  w-full">
-                                                        <div class="relative flex flex-col items-center h-full">
-                                                            <div @click="open" class="w-full">
-                                                                <div
-                                                                    class=" flex rounded border-2 border-[#2d5523] border-stroke py-2 pl-3 pr-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input">
-                                                                    <div class="flex flex-auto flex-wrap gap-3">
-                                                                        <template
-                                                                            x-for="(option,index) in selected"
-                                                                            :key="index">
-                                                                            <div
-                                                                                class="my-1.5 flex items-center justify-center rounded border-[.5px] border-stroke bg-gray  px-2.5 py-1.5 text-sm font-medium dark:border-strokedark dark:bg-white/30">
-                                                                                <div class="max-w-full flex-initial"
-                                                                                    x-model="options[option]"
-                                                                                    x-text="options[option].text">
-                                                                                </div>
-                                                                                <div
-                                                                                    class="flex flex-auto flex-row-reverse">
-                                                                                    <div @click="remove(index,option)"
-                                                                                        class="cursor-pointer pl-2 hover:text-danger">
-                                                                                        <svg class="fill-current"
-                                                                                            role="button"
-                                                                                            width="12"
-                                                                                            height="12"
-                                                                                            viewBox="0 0 12 12"
-                                                                                            fill="none"
-                                                                                            xmlns="http://www.w3.org/2000/svg">
-                                                                                            <path
-                                                                                                fill-rule="evenodd"
-                                                                                                clip-rule="evenodd"
-                                                                                                d="M9.35355 3.35355C9.54882 3.15829 9.54882 2.84171 9.35355 2.64645C9.15829 2.45118 8.84171 2.45118 8.64645 2.64645L6 5.29289L3.35355 2.64645C3.15829 2.45118 2.84171 2.45118 2.64645 2.64645C2.45118 2.84171 2.45118 3.15829 2.64645 3.35355L5.29289 6L2.64645 8.64645C2.45118 8.84171 2.45118 9.15829 2.64645 9.35355C2.84171 9.54882 3.15829 9.54882 3.35355 9.35355L6 6.70711L8.64645 9.35355C8.84171 9.54882 9.15829 9.54882 9.35355 9.35355C9.54882 9.15829 9.54882 8.84171 9.35355 8.64645L6.70711 6L9.35355 3.35355Z"
-                                                                                                fill="currentColor">
-                                                                                            </path>
-                                                                                        </svg>
-                                                                                    </div>
-                                                                                </div>
-                                                                            </div>
-                                                                        </template>
-                                                                        <div x-show="selected.length == 0"
-                                                                            class="flex-1 ">
-                                                                            <input
-                                                                                placeholder="Pilih Kategori UMKM"
-                                                                                class=" placeholder-[#2d5523]"
-                                                                                :value="selectedValues()" />
-                                                                        </div>
-                                                                    </div>
-                                                                    <div
-                                                                        class="flex w-8 items-center py-1 pl-1 pr-1">
-                                                                        <button type="button" @click="open"
-                                                                            class="h-6 w-6 cursor-pointer outline-none focus:outline-none"
-                                                                            :class="isOpen() === true ? 'rotate-180' : ''">
-                                                                            <svg width="24" height="24"
-                                                                                viewBox="0 0 24 24" fill="none"
-                                                                                xmlns="http://www.w3.org/2000/svg">
-                                                                                <g opacity="0.8">
-                                                                                    <path fill-rule="evenodd"
-                                                                                        clip-rule="evenodd"
-                                                                                        d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
-                                                                                        fill="#637381"></path>
-                                                                                </g>
-                                                                            </svg>
-                                                                        </button>
-                                                                    </div>
-                                                                </div>
+                                                <div class="gap-2 flex w-full">
+                                                    <div class="basis-1/4 h-full flex items-center">
+                                                        <label for="no_wa"
+                                                            class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">No.
+                                                            WhatsApp</label>
+                                                    </div>
+                                                    <div class="basis-3/4 h-full flex items-center">
+                                                        <input id="no_wa" name="no_wa"
+                                                            placeholder="Masukkan No. WhatsApp"
+                                                            class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                    </div>
+                                                </div>
+                                                <div class="gap-2 flex w-full">
+                                                    <div class="basis-1/4 h-full flex items-center">
+                                                        <label for="foto"
+                                                            class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Foto
+                                                            UMKM</label>
+                                                    </div>
+                                                    <div class="basis-3/4 h-full flex items-center">
+                                                        <input id="foto" name="foto" type="file"
+                                                            class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                    </div>
+                                                </div>
+                                                <div class="gap-2 flex w-full">
+                                                    <div class="basis-1/4 h-full flex items-center">
+                                                        <label for="buka_waktu"
+                                                            class="text-lg font-bold pt-[23px] items-center flex w-full text-[#2d5523] dark:text-white">Jam
+                                                            Operasional</label>
+                                                    </div>
+                                                    <div
+                                                        class="basis-3/4 h-full flex items-center w-full justify-center">
+                                                        <div
+                                                            class="basis-1/2 h-full flex w-full justify-center flex-col ">
+                                                            <label for="buka_waktu"
+                                                                class=" mb-2 text-sm w-fit mx-auto font-medium text-[#2d5523] dark:text-white">Jam
+                                                                Buka:</label>
+                                                            <div class="w-fit mx-auto">
+                                                                <input type="time" id="buka_waktu"
+                                                                    name="buka_waktu"
+                                                                    class="bg-gray-50 border-2 border-[#2d5523] leading-none text-lg text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit  py-2.5 px-[17px] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                    value="00:00" required />
                                                             </div>
-                                                            <div class="w-full px-4">
-                                                                <div x-show.transition.origin.top="isOpen()"
-                                                                    class="max-h-select absolute top-full left-0 z-40 w-full overflow-y-auto rounded bg-white shadow dark:bg-form-input"
-                                                                    @click.outside="close">
-                                                                    <div class="flex w-full flex-col">
-                                                                        <template x-for="(option,index) in options"
-                                                                            :key="index">
-                                                                            <div>
-                                                                                <div class="w-full cursor-pointer rounded-t border-b border-stroke hover:bg-primary/5 dark:border-form-strokedark"
-                                                                                    @click="select(index,$event)">
-                                                                                    <div :class="option.selected ?
-                                                                                        'border-primary' : ''"
-                                                                                        class="relative flex w-full items-center border-l-2 border-transparent p-2 pl-2">
+                                                        </div>
+                                                        <div
+                                                            class="basis-1/2 h-full flex w-full justify-center flex-col">
+                                                            <label for="tutup_waktu"
+                                                                class="block mb-2 text-sm font-medium mx-auto text-[#2d5523] dark:text-white">Jam
+                                                                Tutup:</label>
+                                                            <div class="w-fit mx-auto">
+                                                                <input type="time" id="tutup_waktu"
+                                                                    name="tutup_waktu"
+                                                                    class="bg-gray-50 border-2 border-[#2d5523] leading-none text-lg text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit  py-2.5 px-[17px] dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+                                                                    value="00:00" required />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+
+
+
+
+                                            <!-- kolom kanan -->
+                                            <div class="flex flex-col gap-5  w-full basis-1/2 ">
+                                                <div class="gap-2 flex w-full">
+                                                    <div class="basis-1/4 h-full flex items-center justify-center">
+                                                        <label
+                                                            class="text-lg font-bold  items-center flex w-full text-[#2d5523] dark:text-white">
+                                                            Kategori
+                                                        </label>
+                                                    </div>
+                                                    <div class="basis-3/4 h-full flex items-center">
+                                                        <div
+                                                            class="text-[#2d5523]  placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full  dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 ">
+                                                            <select class="hidden" x-cloak id="select">
+                                                                <option value="1">Makanan</option>
+                                                                <option value="2">Minuman</option>
+                                                                <option value="3">Peralatan Rumah Tangga</option>
+                                                                <option value="4">Kebutuhan Pokok</option>
+                                                                <option value="5">Jasa</option>
+                                                                <option value="6">Lainnya</option>
+                                                            </select>
+
+                                                            <div x-data="dropdown()" x-init="loadOptions()"
+                                                                class="flex flex-col items-center">
+                                                                <input name="values" type="hidden"
+                                                                    :value="selectedValues()" />
+                                                                <div class="relative z-20 inline-block  w-full">
+                                                                    <div
+                                                                        class="relative flex flex-col items-center h-full">
+                                                                        <div @click="open" class="w-full">
+                                                                            <div
+                                                                                class=" flex rounded border-2 border-[#2d5523] border-stroke py-2 pl-3 pr-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input">
+                                                                                <div
+                                                                                    class="flex flex-auto flex-wrap gap-3">
+                                                                                    <template
+                                                                                        x-for="(option,index) in selected"
+                                                                                        :key="index">
                                                                                         <div
-                                                                                            class="flex w-full items-center">
-                                                                                            <div class="mx-2 leading-6"
-                                                                                                x-model="option"
-                                                                                                x-text="option.text">
+                                                                                            class="my-1.5 flex items-center justify-center rounded border-[.5px] border-stroke bg-gray  px-2.5 py-1.5 text-sm font-medium dark:border-strokedark dark:bg-white/30">
+                                                                                            <div class="max-w-full flex-initial"
+                                                                                                x-model="options[option]"
+                                                                                                x-text="options[option].text">
+                                                                                            </div>
+                                                                                            <div
+                                                                                                class="flex flex-auto flex-row-reverse">
+                                                                                                <div @click="remove(index,option)"
+                                                                                                    class="cursor-pointer pl-2 hover:text-danger">
+                                                                                                    <svg class="fill-current"
+                                                                                                        role="button"
+                                                                                                        width="12"
+                                                                                                        height="12"
+                                                                                                        viewBox="0 0 12 12"
+                                                                                                        fill="none"
+                                                                                                        xmlns="http://www.w3.org/2000/svg">
+                                                                                                        <path
+                                                                                                            fill-rule="evenodd"
+                                                                                                            clip-rule="evenodd"
+                                                                                                            d="M9.35355 3.35355C9.54882 3.15829 9.54882 2.84171 9.35355 2.64645C9.15829 2.45118 8.84171 2.45118 8.64645 2.64645L6 5.29289L3.35355 2.64645C3.15829 2.45118 2.84171 2.45118 2.64645 2.64645C2.45118 2.84171 2.45118 3.15829 2.64645 3.35355L5.29289 6L2.64645 8.64645C2.45118 8.84171 2.45118 9.15829 2.64645 9.35355C2.84171 9.54882 3.15829 9.54882 3.35355 9.35355L6 6.70711L8.64645 9.35355C8.84171 9.54882 9.15829 9.54882 9.35355 9.35355C9.54882 9.15829 9.54882 8.84171 9.35355 8.64645L6.70711 6L9.35355 3.35355Z"
+                                                                                                            fill="currentColor">
+                                                                                                        </path>
+                                                                                                    </svg>
+                                                                                                </div>
                                                                                             </div>
                                                                                         </div>
+                                                                                    </template>
+                                                                                    <div x-show="selected.length == 0"
+                                                                                        class="flex-1 ">
+                                                                                        <input
+                                                                                            placeholder="Pilih Kategori UMKM"
+                                                                                            class=" placeholder-[#2d5523]"
+                                                                                            :value="selectedValues()" />
                                                                                     </div>
                                                                                 </div>
+                                                                                <div
+                                                                                    class="flex w-8 items-center py-1 pl-1 pr-1">
+                                                                                    <button type="button"
+                                                                                        @click="open"
+                                                                                        class="h-6 w-6 cursor-pointer outline-none focus:outline-none"
+                                                                                        :class="isOpen() === true ?
+                                                                                            'rotate-180' : ''">
+                                                                                        <svg width="24"
+                                                                                            height="24"
+                                                                                            viewBox="0 0 24 24"
+                                                                                            fill="none"
+                                                                                            xmlns="http://www.w3.org/2000/svg">
+                                                                                            <g opacity="0.8">
+                                                                                                <path
+                                                                                                    fill-rule="evenodd"
+                                                                                                    clip-rule="evenodd"
+                                                                                                    d="M5.29289 8.29289C5.68342 7.90237 6.31658 7.90237 6.70711 8.29289L12 13.5858L17.2929 8.29289C17.6834 7.90237 18.3166 7.90237 18.7071 8.29289C19.0976 8.68342 19.0976 9.31658 18.7071 9.70711L12.7071 15.7071C12.3166 16.0976 11.6834 16.0976 11.2929 15.7071L5.29289 9.70711C4.90237 9.31658 4.90237 8.68342 5.29289 8.29289Z"
+                                                                                                    fill="#637381">
+                                                                                                </path>
+                                                                                            </g>
+                                                                                        </svg>
+                                                                                    </button>
+                                                                                </div>
                                                                             </div>
-                                                                        </template>
+                                                                        </div>
+                                                                        <div class="w-full px-4">
+                                                                            <div x-show.transition.origin.top="isOpen()"
+                                                                                class="max-h-select absolute top-full left-0 z-40 w-full overflow-y-auto rounded bg-white shadow dark:bg-form-input"
+                                                                                @click.outside="close">
+                                                                                <div class="flex w-full flex-col">
+                                                                                    <template
+                                                                                        x-for="(option,index) in options"
+                                                                                        :key="index">
+                                                                                        <div>
+                                                                                            <div class="w-full cursor-pointer rounded-t border-b border-stroke hover:bg-primary/5 dark:border-form-strokedark"
+                                                                                                @click="select(index,$event)">
+                                                                                                <div :class="option.selected ?
+                                                                                                    'border-primary' :
+                                                                                                    ''"
+                                                                                                    class="relative flex w-full items-center border-l-2 border-transparent p-2 pl-2">
+                                                                                                    <div
+                                                                                                        class="flex w-full items-center">
+                                                                                                        <div class="mx-2 leading-6"
+                                                                                                            x-model="option"
+                                                                                                            x-text="option.text">
+                                                                                                        </div>
+                                                                                                    </div>
+                                                                                                </div>
+                                                                                            </div>
+                                                                                        </div>
+                                                                                    </template>
+                                                                                </div>
+                                                                            </div>
+                                                                        </div>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
+
+                                                <div class="gap-2 flex w-full">
+                                                    <div class="basis-1/4 h-full flex items-center">
+                                                        <label for="lokasi_map"
+                                                            class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Koordinat
+                                                            UMKM</label>
+                                                    </div>
+                                                    <div class="basis-3/4 h-full flex items-center">
+                                                        <input id="lokasi_map" name="lokasi_map"
+                                                            placeholder="Masukkan Koordinat Lokasi Sesuai Google Maps"
+                                                            class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                    </div>
+                                                </div>
+
+                                                <div class="gap-2 flex w-full">
+                                                    <div class="basis-1/4 h-fit ">
+                                                        <label for="lokasi"
+                                                            class="text-lg font-bold  w-full text-[#2d5523] dark:text-white">Alamat
+                                                            UMKM</label>
+                                                    </div>
+                                                    <div class="basis-3/4 h-full flex items-center">
+                                                        <textarea id="lokasi" name="lokasi" cols="19" rows="3" placeholder="Masukkan Alamat UMKM"
+                                                            class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
+                                                    </div>
+                                                </div>
+
+                                                <div class="gap-2 flex w-full">
+                                                    <div class="basis-1/4 h-fit ">
+                                                        <label for="deskripsi"
+                                                            class="text-lg font-bold  w-full text-[#2d5523] dark:text-white">Deskripsi
+                                                            Singkat</label>
+                                                    </div>
+                                                    <div class="basis-3/4 h-full flex items-center">
+                                                        <textarea id="deskripsi" name="deskripsi" cols="19" rows="3"
+                                                            placeholder="Masukkan Deskripsi Singkat UMKM"
+                                                            class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
+                                                    </div>
+                                                </div>
                                             </div>
                                         </div>
-                                    </div>
+                                        <div class="w-full text-[#2d5523] font-sm pb-4">
+                                            *Sebelum mengajukan UMKM Anda, pastikan UMKM Anda sudah ada pada Google Maps
+                                        </div>
+                                        <div class="flex w-full justify-end items-center px-7">
+                                            <button type="submit"
+                                                class="text-white items-center bg-[#2d5523] hover:bg-[#e2a229] hover:text-[#2d5523] focus:ring-4 text-center w-full focus:outline-none focus:ring-blue-300  rounded-lg text-lg font-bold  py-3  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
+                                                Ajukan UMKM
+                                            </button>
+                                        </div>
+                                    </form>
 
-                                    <div class="gap-2 flex w-full">
-                                        <div class="basis-1/4 h-full flex items-center">
-                                            <label for="lokasi_map"
-                                                class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Koordinat
-                                                UMKM</label>
-                                        </div>
-                                        <div class="basis-3/4 h-full flex items-center">
-                                            <input id="lokasi_map" name="lokasi_map"
-                                                placeholder="Masukkan Koordinat Lokasi Sesuai Google Maps"
-                                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                        </div>
-                                    </div>
-
-                                    <div class="gap-2 flex w-full">
-                                        <div class="basis-1/4 h-fit ">
-                                            <label for="lokasi"
-                                                class="text-lg font-bold  w-full text-[#2d5523] dark:text-white">Alamat
-                                                UMKM</label>
-                                        </div>
-                                        <div class="basis-3/4 h-full flex items-center">
-                                            <textarea id="lokasi" name="lokasi" cols="19" rows="3" placeholder="Masukkan Alamat UMKM"
-                                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
-                                        </div>
-                                    </div>
-
-                                    <div class="gap-2 flex w-full">
-                                        <div class="basis-1/4 h-fit ">
-                                            <label for="deskripsi"
-                                                class="text-lg font-bold  w-full text-[#2d5523] dark:text-white">Deskripsi
-                                                Singkat</label>
-                                        </div>
-                                        <div class="basis-3/4 h-full flex items-center">
-                                            <textarea id="deskripsi" name="deskripsi" cols="19" rows="3"
-                                                placeholder="Masukkan Deskripsi Singkat UMKM"
-                                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
-                                        </div>
-                                    </div>
                                 </div>
-                            </div>
-                            <div class="w-full text-[#2d5523] font-sm pb-4">
-                                *Sebelum mengajukan UMKM Anda, pastikan UMKM Anda sudah ada pada Google Maps
-                            </div>
-                            <div class="flex w-full justify-end items-center px-7">
-                                <button type="submit"
-                                    class="text-white items-center bg-[#2d5523] hover:bg-[#e2a229] hover:text-[#2d5523] focus:ring-4 text-center w-full focus:outline-none focus:ring-blue-300  rounded-lg text-lg font-bold  py-3  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">
-                                    Ajukan UMKM
-                                </button>
-                            </div>
-                        </form>
-
-                    </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                
+
             </div>
 
             {{-- list umkm laptop --}}
@@ -507,18 +524,16 @@
                                     </div>
                                     <div class="grid gap-4 sm:grid-cols-2 pb-3 sm:gap-6">
                                         <div class="sm:col-span-2 px-4">
-                                            <label
-                                                class="block mb-2   font-medium text-[#2d5523] dark:text-white">Nama
+                                            <label class="block mb-2   font-medium text-[#2d5523] dark:text-white">Nama
                                                 UMKM</label>
-                                            <input type="text" name="nama" id="nama" 
+                                            <input type="text" name="nama" id="nama"
                                                 class="bg-gray-50 border   border-[#518742]  text-[#2f5724] rounded-lg placeholder-[#34662C]/50 focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                                 placeholder="Masukkan Nama UMKM">
                                         </div>
                                     </div>
                                     <div class="grid gap-4 sm:grid-cols-2 pb-3 sm:gap-6">
                                         <div class="sm:col-span-2 px-4">
-                                            <label
-                                                class="block mb-2   font-medium text-[#2d5523] dark:text-white">No.
+                                            <label class="block mb-2   font-medium text-[#2d5523] dark:text-white">No.
                                                 WA</label>
                                             <input type="text" name="no_wa" id="no_wa"
                                                 class="bg-gray-50 border   border-[#518742]  text-[#2f5724] rounded-lg placeholder-[#34662C]/50 focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
@@ -527,8 +542,7 @@
                                     </div>
                                     <div class="grid gap-4 sm:grid-cols-2 pb-3 sm:gap-6">
                                         <div class="sm:col-span-2 px-4">
-                                            <label
-                                                class="block mb-2   font-medium text-[#2d5523] dark:text-white">Foto
+                                            <label class="block mb-2   font-medium text-[#2d5523] dark:text-white">Foto
                                                 UMKM</label>
                                             <input type="file" name="foto" id="foto"
                                                 class="bg-gray-50 border   border-[#518742]  text-[#2f5724] rounded-lg placeholder-[#34662C]/50 focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
@@ -689,7 +703,7 @@
 
                                         </div>
                                         <div class="sm:col-span-2 px-4">
-                                            <label 
+                                            <label
                                                 class="block mb-2   font-medium text-[#2d5523] dark:text-white">Lokasi
                                                 UMKM</label>
                                             <textarea id="deskripsi" name="deskripsi" cols="19" rows="3"
