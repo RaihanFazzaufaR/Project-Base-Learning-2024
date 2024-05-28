@@ -10,4 +10,4 @@
 
 <body>
     <x-navbar menu="{{ $menu }}" />
-    <div class="bg-white min-h-[100vh] w-[100%] rounded-b-[100px] shadow-xl pb-[13vh]">
+    <div class="bg-white dark:bg-[#24292d] min-h-[100vh] w-[100%] rounded-b-[100px] shadow-xl pb-[13vh]">
