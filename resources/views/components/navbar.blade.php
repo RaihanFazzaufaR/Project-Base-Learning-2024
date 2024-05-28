@@ -4,7 +4,7 @@
     <div class="max-w-full flex flex-wrap items-center justify-between lg:mx-12 mx-8 py-4">
         <a href="{{ url('/') }}" class="flex items-center space-x-3 rtl:space-x-reverse">
             <img src="{{ asset('assets/images/logo.png') }}" class="h-9" alt="Logo" />
-            <span class="self-center hidden md:block text-2xl font-semibold whitespace-nowrap dark:text-white">Barokah
+            <span class="self-center hidden md:block text-2xl font-semibold whitespace-nowrap dark:text-white sofia-regular">Barokah
                 Project</span>
         </a>
         <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse md:gap-5">
