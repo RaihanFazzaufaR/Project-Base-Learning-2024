@@ -19,7 +19,7 @@
                 </svg>
 
                 <div
-                    class="absolute block w-3 h-3 bg-red-500 border-2 border-white rounded-full -top-0.5 start-2.5 dark:border-gray-900">
+                    class="absolute w-3 h-3 bg-red-500 border-2 border-white rounded-full -top-0.5 start-2.5 dark:border-gray-900 {{ (empty($messages->toArray()))?'hidden':'block' }}">
                 </div>
             </button>
 
@@ -58,7 +58,13 @@
                                         disetujui oleh <span class="font-semibold text-gray-900 dark:text-white">Ketua
                                             RW</span> </div>
                                     <div class="text-xs text-blue-600 dark:text-blue-500">
-                                        {{ $message->diffTime < 1 ? 'beberapa saat yang lalu' : $message->diffTime . ' jam yang lalu' }}
+                                        @if ($message->diffMinutes < 60)
+                                            {{ $message->diffMinutes < 1 ? 'beberapa saat yang lalu' : $message->diffMinutes . ' menit yang lalu' }}
+                                        @elseif ($message->diffHours < 24)
+                                            {{ $message->diffHours . ' jam yang lalu' }}
+                                        @elseif ($message->diffDays < 7)
+                                            {{ $message->diffDays . ' hari yang lalu' }}
+                                        @endif
                                     </div>
                                 </div>
                             </a>
@@ -78,7 +84,13 @@
                                         diproses oleh <span class="font-semibold text-gray-900 dark:text-white">Ketua
                                             RW</span> </div>
                                     <div class="text-xs text-blue-600 dark:text-blue-500">
-                                        {{ $message->diffTime < 1 ? 'beberapa saat yang lalu' : $message->diffTime . ' jam yang lalu' }}
+                                        @if ($message->diffMinutes < 60)
+                                            {{ $message->diffMinutes < 1 ? 'beberapa saat yang lalu' : $message->diffMinutes . ' menit yang lalu' }}
+                                        @elseif ($message->diffHours < 24)
+                                            {{ $message->diffHours . ' jam yang lalu' }}
+                                        @elseif ($message->diffDays < 7)
+                                            {{ $message->diffDays . ' hari yang lalu' }}
+                                        @endif
                                     </div>
                                 </div>
                             </a>
@@ -105,7 +117,13 @@
                                     </div>
                                     <div class="flex justify-between items-center">
                                         <div class="text-xs text-blue-600 dark:text-blue-500">
-                                            {{ $message->diffTime < 1 ? 'beberapa saat yang lalu' : $message->diffTime . ' jam yang lalu' }}
+                                        @if ($message->diffMinutes < 60)
+                                            {{ $message->diffMinutes < 1 ? 'beberapa saat yang lalu' : $message->diffMinutes . ' menit yang lalu' }}
+                                        @elseif ($message->diffHours < 24)
+                                            {{ $message->diffHours . ' jam yang lalu' }}
+                                        @elseif ($message->diffDays < 7)
+                                            {{ $message->diffDays . ' hari yang lalu' }}
+                                        @endif
                                         </div>
                                         <i class="fa-solid"
                                             :class="(selected === 'tolak{{ $i }}') ? 'fa-angle-up' : 'fa-angle-down'"></i>
