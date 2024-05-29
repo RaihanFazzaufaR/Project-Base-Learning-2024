@@ -6,7 +6,7 @@ use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
 
-class header extends Component
+class Header extends Component
 {
     public $menu;
     public function __construct($menu)
@@ -19,6 +19,6 @@ class header extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components.header');
+        return view('components.Header');
     }
 }

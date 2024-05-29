@@ -37,6 +37,6 @@ class ProfilController extends Controller
             $profileRTnew[] = ['profile' => $rt, 'image' => $image];
         }
 
-        return view('profil.index', compact('menu', 'profileRW', 'profileRTnew', 'imageRW'));
+        return view('Profil.index', compact('menu', 'profileRW', 'profileRTnew', 'imageRW'));
     }
 }
