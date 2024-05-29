@@ -6,6 +6,7 @@ use Illuminate\Auth\Passwords\CanResetPassword;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Foundation\Auth\User;
 use Illuminate\Notifications\Notifiable;
@@ -26,6 +27,7 @@ class UserAccountModel extends User
         'username',
         'password',
         'id_penduduk',
+        'id_level',
         'image',
     ];
 
@@ -38,9 +40,9 @@ class UserAccountModel extends User
         'email_verified_at' => 'datetime',
     ];
 
-    public function levelDetail() : HasMany
+    public function levelDetail() : BelongsTo
     {
-        return $this->hasMany(LevelDetailModel::class, 'user_id', 'user_id');
+        return $this->belongsTo(LevelModel::class, 'id_level', 'level_id');
     }
 
     public function penduduk() : BelongsTo

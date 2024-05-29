@@ -448,18 +448,6 @@
         @endif
     });
 
-    $.ajax({
-            type: 'get',
-            url: '/token',
-            success: function(result) {
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': result.token
-                    }
-                });
-            }
-        });
-
 </script>
 <x-footer>
 

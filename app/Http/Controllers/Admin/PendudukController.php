@@ -5,9 +5,11 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\KartuKeluargaModel;
 use App\Models\PendudukModel;
+use App\Models\UserAccountModel;
 use GuzzleHttp\Promise\Create;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Hash;
 
 class PendudukController extends Controller
 {
@@ -62,6 +64,7 @@ class PendudukController extends Controller
             'alamat' => 'required',
             'penduduk.*.nik' => 'required|string|max:17|unique:tb_penduduk,nik',
             'penduduk.*.nama' => 'required',
+            'penduduk.*.email' => 'required|email',
             'penduduk.*.tempatLahir' => 'required',
             'penduduk.*.tanggalLahir' => 'required',
             'penduduk.*.jenisKelamin' => 'required|not_in:',
@@ -112,6 +115,17 @@ class PendudukController extends Controller
                 'warganegara' => $penduduk['kewarganegaraan'],
                 'jabatan' => $penduduk['jabatan'],
                 'gaji' => $penduduk['gaji'],
+            ]);
+
+            $pendudukCheck = PendudukModel::where('nik', $penduduk['nik'])->first();
+
+            UserAccountModel::create([
+                'username' => $penduduk['nik'],
+                'password' => Hash::make($penduduk['nik']),
+                'email' => $penduduk['email'],
+                'id_penduduk' => $pendudukCheck->id_penduduk,
+                'id_level' => 3,
+                'image' => null
             ]);
         }
 
