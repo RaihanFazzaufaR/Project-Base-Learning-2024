@@ -398,8 +398,8 @@
                                                         <img class="w-[60%] rounded-lg" src="{{ asset('assets/images/Aduan/' . $aduan->image) }}">
                                                     </div>
                                                     @endif
-                                                    <div class="flex w-full p-4 {{ Auth::user()->penduduk->id_penduduk == $aduan->pengadu_id ? 'justify-end' : '' }}">
-                                                        <div class="p-4 w-fit rounded-lg max-w-[75%] {{ Auth::user()->penduduk->id_penduduk == $aduan->pengadu_id ? 'bg-[#cdffc5]' : 'bg-gray-300' }}">
+                                                    <div class="flex w-full p-4 {{ Auth::check() && Auth::user()->penduduk->id_penduduk == $aduan->pengadu_id ? 'justify-end' : '' }}">
+                                                        <div class="p-4 w-fit rounded-lg max-w-[75%] {{Auth::check() && Auth::user()->penduduk->id_penduduk == $aduan->pengadu_id ? 'bg-[#cdffc5]' : 'bg-gray-300' }}">
                                                             <p class="text-sm font-semibold">
                                                                 Anonymous
                                                             </p>
@@ -409,8 +409,8 @@
                                                         </div>
                                                     </div>
                                                     @foreach ($aduan->respon as $response)
-                                                    <div class="flex w-full p-4 {{ Auth::user()->penduduk->id_penduduk == $response->perespon_id ? 'justify-end' : '' }}">
-                                                        <div class="p-4 w-fit rounded-lg max-w-[75%] {{ Auth::user()->penduduk->id_penduduk == $response->perespon_id ? 'bg-[#cdffc5]' : 'bg-gray-300' }}">
+                                                    <div class="flex w-full p-4 {{ Auth::check() && Auth::user()->penduduk->id_penduduk == $response->perespon_id ? 'justify-end' : '' }}">
+                                                        <div class="p-4 w-fit rounded-lg max-w-[75%] {{ Auth::check() && Auth::user()->penduduk->id_penduduk == $response->perespon_id ? 'bg-[#cdffc5]' : 'bg-gray-300' }}">
                                                             <p class="text-sm font-semibold">
                                                                 Admin
                                                             </p>
