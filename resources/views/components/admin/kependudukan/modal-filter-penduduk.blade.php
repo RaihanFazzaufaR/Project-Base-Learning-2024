@@ -3,7 +3,7 @@
     <div class="absolute z-999 bg-black/25 h-[100vh] w-full"></div>
     <div class="relative z-[1000] p-4 w-fit max-w-3xl max-h-[700px]" @click.away="filterModal = false" x-transition:enter="motion-safe:ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
         <!-- Modal content -->
-        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+        <div class="relative bg-white rounded-lg shadow dark:bg-[#2F363E]">
             <!-- Modal header -->
             <div class="flex h-[75px] items-center justify-between px-4 md:px-5 border-b-2 rounded-t border-[#B8B8B8]">
                 <h3 class="text-xl font-bold text-[#34662C] dark:text-white">
@@ -15,7 +15,7 @@
                 </button>
             </div>
             <!-- Modal body -->
-            <form class="w-full h-full text-[#34662C]" action="{{ route('daftar-penduduk') }}">
+            <form class="w-full h-full text-[#34662C] dark:text-[#57BA47]" action="{{ route('daftar-penduduk') }}">
                 @csrf
                 <div class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto rounded-b-xl scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin">
                     <div class="col-span-2 sm:col-span-1">
