@@ -7,11 +7,11 @@
             <span class="self-center hidden md:block text-2xl font-semibold whitespace-nowrap dark:text-white sofia-regular">Barokah
                 Project</span>
         </a>
-        <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse md:gap-5">
+        <div class="flex items-center md:order-2 space-x-3 md:space-x-0 rtl:space-x-reverse md:gap-5" x-data="{'open': true}">
             <!-- notification -->
             <button id="dropdownNotificationButton" data-dropdown-toggle="dropdownNotification"
                 class="relative inline-flex items-center text-sm font-medium text-center text-gray-500 hover:text-gray-900 focus:outline-none dark:hover:text-white dark:text-gray-400"
-                type="button">
+                type="button" @click="open = false">
                 <svg class="w-6 h-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor"
                     viewBox="0 0 14 20">
                     <path
@@ -19,7 +19,7 @@
                 </svg>
 
                 <div
-                    class="absolute w-3 h-3 bg-red-500 border-2 border-white rounded-full -top-0.5 start-2.5 dark:border-gray-900 {{ (empty($messages->toArray()))?'hidden':'block' }}">
+                    x-show="open" class="absolute w-3 h-3 bg-red-500 border-2 border-white rounded-full -top-0.5 start-2.5 dark:border-gray-900 {{ (empty($messages->toArray()))?'hidden':'block' }}">
                 </div>
             </button>
 
