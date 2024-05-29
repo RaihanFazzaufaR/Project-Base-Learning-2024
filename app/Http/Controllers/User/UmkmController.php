@@ -57,7 +57,7 @@ class UmkmController extends Controller
         $umkmKategoris = UmkmKategoriModel::all();
         $categories = KategoriModel::all();
         $kategori = '';
-        return view('umkm.umkmku', compact('menu', 'umkms', 'umkmKategoris', 'categories', 'kategori'));
+        return view('Umkm.umkmku', compact('menu', 'umkms', 'umkmKategoris', 'categories', 'kategori'));
     }
 
 
@@ -294,6 +294,6 @@ class UmkmController extends Controller
             ->orWhere('deskripsi', 'like', '%' . $searchTerm . '%')
             ->paginate(7);
 
-        return view('umkm.umkmku', compact('menu', 'umkms', 'umkmKategoris', 'categories', 'kategori'));
+        return view('Umkm.umkmku', compact('menu', 'umkms', 'umkmKategoris', 'categories', 'kategori'));
     }
 }
