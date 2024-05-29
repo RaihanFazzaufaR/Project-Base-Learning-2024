@@ -10,6 +10,6 @@ class BansosController extends Controller
     public function index()
     {
         $menu = 'Bansos';
-        return view('bansos.index', compact('menu'));
+        return view('Bansos.index', compact('menu'));
     }
 }

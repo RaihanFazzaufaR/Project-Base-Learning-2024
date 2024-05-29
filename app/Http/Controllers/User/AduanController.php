@@ -24,7 +24,7 @@ class AduanController extends Controller
 
         $aduans = $aduans->paginate(10)->withQueryString();
 
-        return view('aduan.index', compact('menu', 'aduans'));
+        return view('Aduan.index', compact('menu', 'aduans'));
     }
 
     public function indexAduanku(Request $request)
@@ -49,7 +49,7 @@ class AduanController extends Controller
 
         $aduans = $aduans->paginate(10)->withQueryString();
 
-        return view('aduan.aduanku', compact('menu', 'aduans', 'aduan_id'));
+        return view('Aduan.aduanku', compact('menu', 'aduans', 'aduan_id'));
     }
 
     public function addResponse(Request $request)

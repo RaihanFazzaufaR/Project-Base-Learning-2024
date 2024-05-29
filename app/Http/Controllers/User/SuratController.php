@@ -17,7 +17,7 @@ class SuratController extends Controller
         public function index()
     {
         $menu = 'Surat';
-        return view('Surat.formSKPindah', compact('menu'));
+        return view('Surat.formSKpindah', compact('menu'));
     }
     
     public function sk()
@@ -142,13 +142,13 @@ class SuratController extends Controller
     public function skPindah()
     {
         $menu = 'Surat';
-        return view('Surat.formSKPindah', compact('menu'));
+        return view('Surat.formSKpindah', compact('menu'));
     }
     
     public function skKematian()
     {
         $menu = 'Surat';
-        return view('Surat.formSkKematian', compact('menu'));
+        return view('Surat.formSkkematian', compact('menu'));
     }
     
     public function storeSkKematian(Request $request)
