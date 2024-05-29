@@ -48,7 +48,7 @@ class PendudukController extends Controller
 
         $user = $user->paginate(10)->withQueryString();
 
-        return view('admin.kependudukan.index', compact('user', 'page', 'selected', 'kartuKeluarga', 'id_penduduk'));
+        return view('Admin.Kependudukan.index', compact('user', 'page', 'selected', 'kartuKeluarga', 'id_penduduk'));
     }
 
 
@@ -200,7 +200,7 @@ class PendudukController extends Controller
 
         $user = $user->paginate(10)->withQueryString();
 
-        return view('admin.kependudukan.daftar-nkk', compact('user', 'page', 'selected', 'id_kk'));
+        return view('Admin.Kependudukan.daftar-nkk', compact('user', 'page', 'selected', 'id_kk'));
     }
 
     public function storeKartuKeluarga(Request $request)

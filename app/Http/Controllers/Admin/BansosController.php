@@ -16,7 +16,7 @@ class BansosController extends Controller
 
         $user = BansosModel::paginate(10)->withQueryString();
 
-        return view('admin.bansos.index', compact('user', 'page', 'selected'));
+        return view('Admin.Bansos.index', compact('user', 'page', 'selected'));
     }
 
     public function rekomendasiBansos()
@@ -26,6 +26,6 @@ class BansosController extends Controller
 
         $user = RekomendasiPenerimaModel::paginate(10)->withQueryString();
 
-        return view('admin.bansos.rekomendasi-bansos', compact('user', 'page', 'selected'));
+        return view('Admin.Bansos.rekomendasi-bansos', compact('user', 'page', 'selected'));
     }
 }

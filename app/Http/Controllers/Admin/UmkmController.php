@@ -21,7 +21,7 @@ class UmkmController extends Controller
         $umkmKategoris = UmkmKategoriModel::all();
         $categories = KategoriModel::all();
         // return $users;
-        return view('admin.umkm.index', compact('users', 'umkms', 'page', 'selected', 'umkmKategoris', 'categories'));
+        return view('Admin.Umkm.index', compact('users', 'umkms', 'page', 'selected', 'umkmKategoris', 'categories'));
     }
     public function ajuanUmkm()
     {
@@ -31,7 +31,7 @@ class UmkmController extends Controller
         $umkms = UmkmModel::where('status', 'diproses')->paginate(10);
         $umkmKategoris = UmkmKategoriModel::all();
         $categories = KategoriModel::all();
-        return view('admin.umkm.ajuan-umkm', compact('users', 'umkms', 'page', 'selected', 'umkmKategoris', 'categories'));
+        return view('Admin.Umkm.ajuan-umkm', compact('users', 'umkms', 'page', 'selected', 'umkmKategoris', 'categories'));
     }
     public function umkmReject(Request $request)
     {
@@ -248,7 +248,7 @@ class UmkmController extends Controller
         $umkmKategoris = UmkmKategoriModel::all();
         // $categories = KategoriModel::all();
         // return $users;
-        return view('admin.umkm.index', compact('users', 'umkms', 'page', 'selected', 'umkmKategoris', 'categories'));
+        return view('Admin.Umkm.index', compact('users', 'umkms', 'page', 'selected', 'umkmKategoris', 'categories'));
     }
     public function searchList(Request $request)
     {
@@ -268,7 +268,7 @@ class UmkmController extends Controller
 
         $umkms = $umkmQuery->paginate(10);
 
-        return view('admin.umkm.index', compact('users', 'umkms', 'page', 'selected', 'umkmKategoris', 'categories'));
+        return view('Admin.Umkm.index', compact('users', 'umkms', 'page', 'selected', 'umkmKategoris', 'categories'));
     }
     public function searchAjuan(Request $request)
     {
@@ -288,7 +288,7 @@ class UmkmController extends Controller
 
         $umkms = $umkmQuery->paginate(10);
 
-        return view('admin.umkm.ajuan-umkm', compact('users', 'umkms', 'page', 'selected', 'umkmKategoris', 'categories'));
+        return view('Admin.Umkm.ajuan-umkm', compact('users', 'umkms', 'page', 'selected', 'umkmKategoris', 'categories'));
     }
 
 }

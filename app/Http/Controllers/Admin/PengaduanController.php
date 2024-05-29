@@ -41,7 +41,7 @@ class PengaduanController extends Controller
 
         $complaints = $complaints->paginate(10)->withQueryString();
 
-        return view('admin.pengaduan.index', compact('page', 'selected', 'complaints', 'aduan_id'));
+        return view('Admin.Pengaduan.index', compact('page', 'selected', 'complaints', 'aduan_id'));
     }
 
     public function addResponse(Request $request)
