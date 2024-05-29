@@ -5,7 +5,7 @@
 
 <img src="{{ asset('assets/images/cover-home.png') }}" alt="" class="absolute top-26 right-30 h-[80vh]" data-aos="fade-left" data-aos-duration="1000">
 
-<div class="relative h-[65vh] sm:h-[85vh] md:h-[79vh] lg:h-[120vh] w-[60%] text-[#1C4F0F] pt-[25vh] pl-[7vw]" data-aos="fade-right" data-aos-duration="1000">
+<div class="relative h-[65vh] sm:h-[85vh] md:h-[79vh] lg:h-[120vh] w-[60%] text-[#1C4F0F] dark:text-[#57BA47] pt-[25vh] pl-[7vw]" data-aos="fade-right" data-aos-duration="1000">
     <div class="font-bold text-4xl mb-3">
         Selamat Datang di
     </div>

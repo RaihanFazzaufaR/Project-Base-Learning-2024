@@ -110,7 +110,8 @@
         <a href="{{ route('umkm') }}" class="py-1 px-4 bg-[#57BA47] dark:bg-[#2F363E] border border-transparent dark:border-[#57BA47] dark:text-[#57BA47] font-medium text-sm text-white rounded-lg shadow-md hover:bg-[#234C1D] transition ease-in-out duration-300 hover:scale-105">Lainnya</a>
       </div>
     </div>
-    <div class="2xl:col-span-8 lg:col-span-7 col-span-12 lg:row-span-2 bg-white dark:bg-[#2F363E] rounded-xl shadow-xl flex flex-col py-4 px-8 h-[245px]">
+
+    <div class="2xl:col-span-8 lg:col-span-7 col-span-12 lg:row-span-2 bg-white dark:bg-[#2F363E] rounded-xl shadow-xl flex flex-col py-4 px-8 h-full">
       <div class="h-fit w-full text-left font-bold text-lg text-black dark:text-white">Demografi Penduduk</div>
       <div class="h-full w-full flex items-center">
         <canvas id="barPendudukChart" style="height:100%; width:100%"></canvas>
