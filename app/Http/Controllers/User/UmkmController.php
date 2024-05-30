@@ -172,14 +172,14 @@ class UmkmController extends Controller
 
         $latitude = trim($koordinat_array[0]);
         $longtitude = trim($koordinat_array[1]);
-        return view('umkm.detail', compact('menu', 'umkm', 'latitude', 'longtitude', 'categories', 'umkmKategoris'));
+        return view('Umkm.detail', compact('menu', 'umkm', 'latitude', 'longtitude', 'categories', 'umkmKategoris'));
 
     }
 
     public function viewDetail()
     {
         $menu = 'UMKM';
-        return view('umkm.detail', compact('menu'));
+        return view('Umkm.detail', compact('menu'));
 
     }
 
