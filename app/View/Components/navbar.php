@@ -10,7 +10,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\Component;
 
-class navbar extends Component
+class Navbar extends Component
 {
     public $menu;
     public function __construct($menu)
@@ -24,7 +24,7 @@ class navbar extends Component
     public function render(): View|Closure|string
     {
         $messages = $this->messages();
-        return view('components.navbar', compact('messages'));
+        return view('components.Navbar', compact('messages'));
     }
 
     private function messages()

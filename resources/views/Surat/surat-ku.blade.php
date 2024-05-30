@@ -13,7 +13,7 @@
 <div class="bg-[#Fff] min-h-[100vh] px-[65px] py-5 w-[100%] mt-10">
     {{-- search --}}
     <div class="flex gap-7 justify-between pb-10 w-full ">
-        <form action="{{ route('penduduk-search') }}" method="GET" class="w-96 my-auto ">
+        <form action="{{ route('surat.search') }}" method="GET" class="w-96 my-auto ">
             <label for="default-search"
                 class="text-sm font-medium text-[#2d5523] sr-only dark:text-white">Search</label>
             <div class="relative  h-full">
@@ -59,8 +59,17 @@
                         </td>
                         <td scope="row"
                             class="px-6 py-4 font-medium text-base text-center text-[#2d5523] dark:text-white">
-                            {{ $surat->jenisSurat }}
+                            @if ($surat->jenisSurat == 1)
+                                Surat Keterangan
+                            @elseif($surat->jenisSurat == 2)
+                                Surat Keterangan Pindah
+                            @elseif($surat->jenisSurat == 3)
+                                Surat Keterangan Kematian
+                            @else
+                                Jenis Surat Tidak Dikenal
+                            @endif
                         </td>
+
                         <td scope="row"
                             class="px-6 py-4 font-medium text-base text-center text-[#2d5523] dark:text-white">
                             {{ $surat->minta_tanggal }}
@@ -68,21 +77,26 @@
                         <td scope="row"
                             class="px-6 py-4 font-medium text-base text-center text-[#2d5523] dark:text-white">
                             @if ($surat->status === 'selesai')
-                                <a href=""
+                                <!-- Display the surat file -->
+                                <a href="{{ route('show', $surat->permintaan_id) }}"
                                     class="w-fit text-white bg-[#7d5dd7] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#3b2a69] hover:scale-105 transition-all">
                                     <i class="fa-solid fa-envelope"></i>
                                     Lihat Surat
-                                </a>
-                            @elseif ($surat->status === 'ditolak')
-                                <button
-                                    class="w-fit text-white bg-red-500 rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-red-700 hover:scale-105 transition-all">
-                                    Ditolak
-                                </button>
-                            @elseif ($surat->status === 'diproses' || $surat->status === 'menunggu')
-                                <button
-                                    class="w-fit text-white bg-yellow-500 rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-yellow-700 hover:scale-105 transition-all">
-                                    Diproses
-                                </button>
+                                    {{-- <a href=""
+                                    class="w-fit text-white bg-[#7d5dd7] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#3b2a69] hover:scale-105 transition-all">
+                                    <i class="fa-solid fa-envelope"></i>
+                                    Lihat Surat
+                                </a> --}}
+                                @elseif ($surat->status === 'ditolak')
+                                    <button
+                                        class="w-fit text-white bg-red-500 rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-red-700 hover:scale-105 transition-all">
+                                        Ditolak
+                                    </button>
+                                @elseif ($surat->status === 'diproses' || $surat->status === 'menunggu')
+                                    <button
+                                        class="w-fit text-white bg-yellow-500 rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-yellow-700 hover:scale-105 transition-all">
+                                        Diproses
+                                    </button>
                             @endif
                         </td>
                     </tr>

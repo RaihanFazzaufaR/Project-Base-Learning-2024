@@ -36,7 +36,7 @@ class PendudukController extends Controller
 
         $penduduks = $query->paginate(10);
 
-        return view('penduduk.index', compact('menu', 'penduduks', 'rts'));
+        return view('Penduduk.index', compact('menu', 'penduduks', 'rts'));
     }
 
     public function getDataByRT($rt)
@@ -79,6 +79,6 @@ class PendudukController extends Controller
         
         $notification = $penduduks->isEmpty() ? 'Data Tidak Ditemukan' : null;
         
-        return view('penduduk.index', compact('menu', 'penduduks', 'notification'));
+        return view('Penduduk.index', compact('menu', 'penduduks', 'notification'));
     }
 }

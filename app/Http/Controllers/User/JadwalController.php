@@ -26,7 +26,7 @@ class JadwalController extends Controller
 
         if ($request->filled('search')) {
             $dataSearchingQuery->where('aktivitas_tipe', 'LIKE', '%' . $searchingKey . '%')
-            ->orWhere('judul', 'LIKE', '%' . $searchingKey . '%');
+                ->orWhere('judul', 'LIKE', '%' . $searchingKey . '%');
         }
 
         if ($request->filled('kategoriSearching')) {
@@ -112,10 +112,10 @@ class JadwalController extends Controller
             'dataSearching' => $dataSearching,
         ];
 
-        
+
         // dd($messages->toArray());
 
-        return view('jadwal.index', compact('menu', 'dataArray', 'kategoriPast', 'dateFormat', 'calendarDate', 'scrollAuto', 'searchingKey', 'kategoriSearching'));
+        return view('Jadwal.index', compact('menu', 'dataArray', 'kategoriPast', 'dateFormat', 'calendarDate', 'scrollAuto', 'searchingKey', 'kategoriSearching'));
     }
 
     private function messages()
@@ -186,5 +186,14 @@ class JadwalController extends Controller
         ]);
 
         return redirect('/jadwal')->with('success', 'Kegiatan yang anda ajukan sedang diproses!');
+    }
+
+    public function searchingJadwal(Request $request)
+    {
+        $dataSearchingQuery = JadwalModel::where('status', 'selesai')->orderBy('mulai_tanggal', 'asc')
+            ->where('aktivitas_tipe', 'LIKE', '%' . $request . '%')
+            ->orWhere('judul', 'LIKE', '%' . $request . '%');
+        
+        return json_encode($dataSearchingQuery->get());
     }
 }

@@ -60,7 +60,7 @@
                  <!-- Notification Menu Area -->
                  <li class="relative" x-data="{ dropdownOpen: false, notifying: true }" @click.outside="dropdownOpen = false">
                      <a class="relative flex h-9 w-9 items-center justify-center rounded-full dark:hover:bg-gray-600 hover:bg-slate-200" href="#" @click.prevent="dropdownOpen = ! dropdownOpen; notifying = false">
-                         <i class="fa-solid fa-circle text-[10px] text-red-500 absolute top-[7px] right-[7px]"></i>
+                         <div class="absolute w-3 h-3 bg-red-500 border-2 border-white rounded-full top-1 start-4 dark:border-gray-900 block"></div>
                          <i class="fa-solid fa-bell text-xl text-gray-500 dark:text-white"></i>
                      </a>
 

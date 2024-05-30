@@ -385,9 +385,10 @@
     </div>
     <script>
         $(document).ready(function() {
-            @if (session('aduan_id'))
+            var aduan_id = "{{ session('aduan_id') }}";
+            if (aduan_id) {
                 $('#detailModal').modal('show');
-            @endif
+            }
         });
     </script>
 </x-admin-layout>

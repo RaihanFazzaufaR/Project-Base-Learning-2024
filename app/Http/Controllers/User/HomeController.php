@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\User;
 
 use App\Http\Controllers\Controller;
+use App\Models\AduanModel;
 use App\Models\JadwalModel;
 use App\Models\UmkmModel;
 use Carbon\Carbon;
@@ -14,10 +15,10 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $menu = 'Home';
-        
+
         if (isset($request->date)) {
             $calendarDate = $request->date;
-    
+
             $dataKegiatan = JadwalModel::where('status', 'selesai')
                 ->where('mulai_tanggal', '<=', $calendarDate)
                 ->where('akhir_tanggal', '>=', $calendarDate)
@@ -26,7 +27,7 @@ class HomeController extends Controller
         } else {
             $currentMonth = $request->month ?? Carbon::now()->month;
             $currentYear = $request->year ?? Carbon::now()->year;
-    
+
             $dataKegiatan = JadwalModel::where('status', 'selesai')
                 ->whereMonth('mulai_tanggal', $currentMonth)
                 ->whereYear('mulai_tanggal', $currentYear)
@@ -57,7 +58,12 @@ class HomeController extends Controller
 
         $dataUmkm = $this->formatDateAndTime($dataUmkm);
 
-        return view('home', compact('menu', 'dataKegiatan', 'dataDate', 'dataUmkm'));
+        $aduans = AduanModel::where('status', 'selesai')
+            ->inRandomOrder()
+            ->limit(4)
+            ->get();;
+
+        return view('home', compact('menu', 'dataKegiatan', 'dataDate', 'dataUmkm', 'aduans'));
     }
 
     private function formatDateAndTime($data)

@@ -3,7 +3,7 @@
 </x-header>
 
 <div class="w-[100%] relative flex justify-center items-center">
-    <img src="{{ asset('assets/images/aduan-cover.jpg') }}" alt="" class="w-full">
+    <img src="{{ asset('assets/images/aduan-cover.webp') }}" alt="" class="w-full">
     <div class=" w-[571px] h-[185px] z-10 absolute flex justify-center rounded-[105px] flex-col text-center ">
         <p class="text-[#2d5523] font-bold text-[36px]">Aduan Warga RW 3</p>
         <p class="text-[#2d5523] font-sans text-[32px] text-center">Laporkan Segala Permasalahan di Lingkungan RW</p>
@@ -447,18 +447,6 @@
             $('#detailModal').modal('show');
         @endif
     });
-
-    $.ajax({
-            type: 'get',
-            url: '/token',
-            success: function(result) {
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': result.token
-                    }
-                });
-            }
-        });
 
 </script>
 <x-footer>

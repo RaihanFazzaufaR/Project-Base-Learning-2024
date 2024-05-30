@@ -4,7 +4,7 @@
 
 <div class="w-[100%] relative flex justify-center items-center flex-col">
     <div class="relative z-10 flex justify-center items-center">
-        <img src="{{ asset('assets/images/profil-cover.jpg') }}" alt="" class="w-full h-[80vh] ">
+        <img src="{{ asset('assets/images/profil-cover.webp') }}" alt="" class="w-full h-[80vh] ">
         <div class="bg-white/[0.73] w-[571px] h-[185px] z-10 absolute flex justify-center rounded-[105px] flex-col text-center shadow-2xl items-center">
             <p class="text-[#2d5523] font-bold text-[36px] w-[500px]">Profil RW 03</p>
             <p class="text-[#2d5523] font-sans text-[32px] text-center">Mari Mengenal Lebih Dekat RW 03</p>

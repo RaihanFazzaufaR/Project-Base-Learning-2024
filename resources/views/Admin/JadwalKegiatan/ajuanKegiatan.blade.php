@@ -116,7 +116,7 @@
     <div class="mt-10">
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-center">
-                <thead class="text-sm font-bold text-[#34662C] bg-[#91DF7D] dark:bg-gray-700 dark:text-gray-400">
+                <thead class="text-sm font-bold text-[#34662C] bg-[#91DF7D] dark:bg-[#428238] dark:text-white">
                     <tr>
                         <th scope="col" class="px-6 py-3 w-[20%]">
                             Pembuat
@@ -137,7 +137,7 @@
                 </thead>
                 <tbody>
                     @foreach ($data as $dt)
-                    <tr class="bg-white border-b text-sm font-medium text-[#7F7F7F] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    <tr class="bg-white border-b text-sm font-medium text-[#7F7F7F] dark:bg-[#2F363E] dark:text-white dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <td class="px-6 py-4">
                             {{ $dt->penduduk->nama }}
                         </td>
@@ -289,7 +289,7 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class="px-8 py-5">
+            <div class="px-8 py-5 dark:bg-[#343b44]">
                 {{ $data->links() }}
             </div>
         </div>

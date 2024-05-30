@@ -64,7 +64,7 @@ class JadwalKegiatanController extends Controller
         $penduduk = PendudukModel::all();
         // dd($penduduk->toArray());
 
-        return view('admin.Jadwal-Kegiatan.index', compact('dataArray', 'dateFormat', 'page', 'selected', 'penduduk'));
+        return view('Admin.JadwalKegiatan.index', compact('dataArray', 'dateFormat', 'page', 'selected', 'penduduk'));
     }
 
     private function formatDateAndTime($data)
@@ -93,7 +93,7 @@ class JadwalKegiatanController extends Controller
         $data = $this->formatDateAndTime($data);
         // $umkmKategoris = UmkmKategoriModel::all();
         // $categories = KategoriModel::all();
-        return view('admin.Jadwal-Kegiatan.ajuanKegiatan', compact('users', 'data', 'page', 'selected'));
+        return view('Admin.JadwalKegiatan.ajuanKegiatan', compact('users', 'data', 'page', 'selected'));
     }
 
     public function updateKegiatan(Request $request, $id)
