@@ -7,7 +7,7 @@
 
 </x-header>
 
-<div class="w-[100%] relative lg:flex justify-center items-center  ">
+<div class="w-[100%] relative flex justify-center items-center  ">
     <img src="{{ asset('assets/images/bg-index-UMKM.png') }}" alt="" class="w-full dark:brightness-[85%]">
     <div
         class="bg-white/[0.73] dark:bg-[#24292d]/[0.73]  w-[571px] h-[185px] z-10 absolute flex justify-center rounded-[105px] flex-col text-center shadow-2xl">
