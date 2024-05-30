@@ -4,7 +4,10 @@ on:
   push:
     branches:
       - new-dev
-
+  
+  pull_request:
+    branches:
+      - new-dev
 jobs:
   cd:
     runs-on: ubuntu-latest
