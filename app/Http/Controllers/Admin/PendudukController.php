@@ -48,7 +48,7 @@ class PendudukController extends Controller
             });
         }
 
-        $user = $user->paginate(10)->withQueryString();
+        $user = $user->orderBy('updated_at', 'desc')->paginate(10)->withQueryString();
 
         return view('Admin.Kependudukan.index', compact('user', 'page', 'selected', 'kartuKeluarga', 'id_penduduk'));
     }
@@ -57,25 +57,32 @@ class PendudukController extends Controller
     public function storePenduduk(Request $request)
     {
 
-        $validator = Validator::make($request->all(), [
-            'nkk' => 'required',
-            'kepalaKeluarga' => 'required',
-            'rt' => 'required|not_in:',
-            'alamat' => 'required',
-            'penduduk.*.nik' => 'required|string|max:17|unique:tb_penduduk,nik',
-            'penduduk.*.nama' => 'required',
-            'penduduk.*.email' => 'required|email',
-            'penduduk.*.tempatLahir' => 'required',
-            'penduduk.*.tanggalLahir' => 'required',
-            'penduduk.*.jenisKelamin' => 'required|not_in:',
-            'penduduk.*.agama' => 'required|not_in:',
-            'penduduk.*.pekerjaan' => 'required',
-            'penduduk.*.statusPernikahan' => 'required|not_in:',
-            'penduduk.*.kewarganegaraan' => 'required|not_in:',
-            'penduduk.*.statusPenduduk' => 'required|not_in:',
-            'penduduk.*.jabatan' => 'required|not_in:',
-            'penduduk.*.gaji' => 'required|numeric',
-        ]);
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'nkk' => 'required',
+                'kepalaKeluarga' => 'required',
+                'rt' => 'required|not_in:',
+                'alamat' => 'required',
+                'penduduk.*.nik' => 'required|string|max:17|unique:tb_penduduk,nik',
+                'penduduk.*.nama' => 'required',
+                'penduduk.*.email' => 'required|email',
+                'penduduk.*.tempatLahir' => 'required',
+                'penduduk.*.tanggalLahir' => 'required',
+                'penduduk.*.jenisKelamin' => 'required|not_in:',
+                'penduduk.*.agama' => 'required|not_in:',
+                'penduduk.*.pekerjaan' => 'required',
+                'penduduk.*.statusPernikahan' => 'required|not_in:',
+                'penduduk.*.kewarganegaraan' => 'required|not_in:',
+                'penduduk.*.statusPenduduk' => 'required|not_in:',
+                'penduduk.*.jabatan' => 'required|not_in:',
+                'penduduk.*.gaji' => 'required|numeric',
+                'penduduk.*.noHp' => 'required|numeric',
+            ],
+            [
+                'penduduk.*.noHp.numeric' => 'Nomor HP harus berupa angka.',
+            ]
+        );
 
         if ($validator->fails()) {
             return back()->with('errors', $validator->messages()->all()[0])->withInput();
@@ -115,6 +122,7 @@ class PendudukController extends Controller
                 'warganegara' => $penduduk['kewarganegaraan'],
                 'jabatan' => $penduduk['jabatan'],
                 'gaji' => $penduduk['gaji'],
+                'noTelp' => $penduduk['noHp'],
             ]);
 
             $pendudukCheck = PendudukModel::where('nik', $penduduk['nik'])->first();
@@ -134,30 +142,39 @@ class PendudukController extends Controller
 
     public function updatePenduduk(Request $request, string $nik)
     {
-        $validator = Validator::make($request->all(), [
-            'nik' => 'required|string|max:17|unique:tb_penduduk,nik,' . $nik . ',id_penduduk',
-            'nkk' => 'required',
-            'nama' => 'required',
-            'tempatLahir' => 'required',
-            'tanggalLahir' => 'required',
-            'jenisKelamin' => 'required',
-            'agama' => 'required',
-            'statusPernikahan' => 'required',
-            'statusPenduduk' => 'required',
-            'pekerjaan' => 'required',
-            'jabatan' => 'required',
-            'kewarganegaraan' => 'required',
-            'gaji' => 'required|numeric',
-        ]);
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'nik' => 'required|string|max:17|unique:tb_penduduk,nik,' . $nik . ',id_penduduk',
+                'nkk' => 'required',
+                'nama' => 'required',
+                'tempatLahir' => 'required',
+                'tanggalLahir' => 'required',
+                'jenisKelamin' => 'required',
+                'agama' => 'required',
+                'statusPernikahan' => 'required',
+                'statusPenduduk' => 'required',
+                'pekerjaan' => 'required',
+                'jabatan' => 'required',
+                'kewarganegaraan' => 'required',
+                'gaji' => 'required|numeric',
+                'noHp' => 'required|numeric',
+            ],
+            [
+                'noHp.numeric' => 'Nomor HP harus berupa angka.',
+            ]
+        );
 
         // dd(request()->all());
         if ($validator->fails()) {
             return back()->with('errors', $validator->messages()->all()[0])->withInput();
         }
 
+        $kartuKeluarga = KartuKeluargaModel::where('niKeluarga', $request->nkk)->first();
+
         PendudukModel::find($nik)->update([
             'nik' => $request->nik,
-            'id_kartuKeluarga' => $request->nkk,
+            'id_kartuKeluarga' => $kartuKeluarga->id_kartuKeluarga,
             'nama' => $request->nama,
             'tempatLahir' => $request->tempatLahir,
             'tanggalLahir' => $request->tanggalLahir,
@@ -169,6 +186,7 @@ class PendudukController extends Controller
             'warganegara' => $request->kewarganegaraan,
             'jabatan' => $request->jabatan,
             'gaji' => $request->gaji,
+            'noTelp' => $request->noHp,
         ]);
 
         // dd($update);
@@ -181,12 +199,17 @@ class PendudukController extends Controller
         $check = PendudukModel::find($nik);
 
         try {
-            PendudukModel::destroy($nik);
+            userAccountModel::where('id_penduduk', $check->id_penduduk)->delete();
+            KartuKeluargaModel::find($check->id_kartuKeluarga)->update([
+                'jmlAnggota' => KartuKeluargaModel::find($check->id_kartuKeluarga)->jmlAnggota - 1
+            ]); 
+            // PendudukModel::destroy($nik);
             return redirect('/admin/kependudukan')->with('success', 'Data berhasil dihapus!');
         } catch (\Illuminate\Database\QueryException $e) {
             return redirect('/admin/kependudukan')->with('error', 'Data penduduk gagal dihapus karena masih terdapat tabel lain yang terikat dengan data ini');
         }
     }
+
 
     public function daftarNkkViewAdmin(Request $request)
     {
