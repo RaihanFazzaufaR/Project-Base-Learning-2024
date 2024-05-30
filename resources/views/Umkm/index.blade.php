@@ -481,7 +481,6 @@
                                     {{ $umkm->deskripsi }}
                                 </div>
                             </div>
-
                         </div>
                     </a>
                 @endforeach
@@ -777,12 +776,8 @@
                             </form>
                         </div>
                     </div>
-                </div>
-
+                </a>
             </div>
-
-
-
         </div>
     </div>
 </div>

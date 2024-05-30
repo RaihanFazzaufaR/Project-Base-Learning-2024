@@ -1,6 +1,11 @@
 <x-header menu="{{ $menu }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        [x-cloak] {
+            display: none;
+        }
+    </style>
 </x-header>
 
 <img src="{{ asset('assets/images/cover-home.png') }}" alt="" class="absolute top-26 right-30 h-[80vh]" data-aos="fade-left" data-aos-duration="1000">
@@ -312,10 +317,10 @@
     </defs>
 </svg> -->
 
-<div class="relatif w-[80vw] mx-auto h-[90vh] flex flex-col mt-[20vh] gap-[45px]">
+<div class="relatif w-[80vw] mx-auto h-[90vh] flex flex-col mt-[20vh] gap-[45px]" >
     <div class="font-bold text-[#1C4F0F] text-5xl text-center w-full py-4 uppercase" data-aos="zoom-in" data-aos-duration="1500">Aduan Warga</div>
-    <div class="relative h-fit w-full bg-white shadow-md rounded-xl overflow-hidden border border-slate-200" data-aos="fade-right" data-aos-duration="1500">
-        <table class="w-full text-left rtl:text-right text-black dark:text-gray-400">
+    <div class="h-fit w-full bg-white shadow-md rounded-xl border border-slate-200">
+        <table class="w-full text-left text-black dark:text-gray-400">
             <thead class="text-xl text-center border-b-4 border-[#69CA57]/[0.32]">
                 <tr>
                     <th scope="col" class="w-[50%] py-5">
@@ -326,31 +331,115 @@
                     </th>
                 </tr>
             </thead>
+            @php
+            $stat = [
+            'diproses' => [
+            'classContent' =>
+            'text-white bg-[#FFDE68] rounded-full shadow-xl font-bold px-3 py-2 hover:bg-[#B39C49] hover:scale-105 transition-all',
+            'icon' => 'fa-minus',
+            'value' => 'diproses',
+            ],
+            'selesai' => [
+            'classContent' =>
+            'text-white bg-[#76D75D] rounded-full shadow-xl font-bold px-3 py-2 hover:bg-[#38682D] hover:scale-105 transition-all',
+            'icon' => 'fa-check',
+            'value' => 'selesai',
+            ],
+            'ditolak' => [
+            'classContent' =>
+            'text-white bg-[#FF5E5E] rounded-full shadow-xl font-bold px-3 py-2 hover:bg-[#B34242] hover:scale-105 transition-all',
+            'icon' => 'fa-xmark',
+            'value' => 'ditolak',
+            ],
+            ];
+            @endphp
             <tbody class="text-center text-lg font-normal ">
-                <tr class="min-h-28 border-b-4 border-[#69CA57]/[0.32]">
+                @foreach ($aduans as $aduan)
+                    <tr class="min-h-28 border-b-4 border-[#69CA57]/[0.32]">
                     <td scope="row" class="w-[50%] px-14 py-5">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla aliquet risus id eros tincidunt, dapibus aliquam velit elementum.
+                        {{ $aduan->judul }}
                     </td>
-                    <td scope="row" class="w-[50%] px-14 py-5">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla aliquet risus id eros tincidunt, dapibus aliquam velit elementum.
+
+                    <td class="">
+                        <div class="px-6 py-4 flex items-center h-full gap-4 justify-center">
+                            <div x-data="{ 'detailModal': false }" @keydown.escape="detailModal = false">
+                                <button @click="detailModal = true" class="flex justify-center items-center gap-2 w-fit text-white bg-[#446DFF] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#273E91] hover:scale-105 transition-all">
+                                    <i class="fa-solid fa-circle-info"></i>
+                                    <div>Detail</div>
+                                </button>
+                                <!-- Detail modal -->
+                                <div x-show="detailModal" x-cloak tabindex="-1" aria-hidden="true" class="flex overflow-hidden fixed top-0 right-0 left-0 z-999 justify-center items-center w-full md:inset-0 h-full">
+                                    <div class="absolute z-999 bg-black/25 h-[100vh] w-full"></div>
+                                    <div class="relative z-[1000] p-4 w-fit max-w-3xl max-h-[700px]" @click.away="detailModal = false" x-transition:enter="motion-safe:ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
+                                        <!-- Modal content -->
+                                        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
+                                            <!-- Modal header -->
+                                            <div class="flex h-[75px] items-center justify-between px-4 md:px-5 border-b-2 rounded-t border-[#B8B8B8]">
+                                                <h3 class="text-xl font-bold text-[#34662C] dark:text-white">
+                                                    {{ $aduan->judul }}
+                                                </h3>
+                                                <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" @click="detailModal = false">
+                                                    <i class="fa-solid fa-xmark text-xl"></i>
+                                                    <span class="sr-only">Close modal</span>
+                                                </button>
+                                            </div>
+                                            <!-- Modal body -->
+                                            <div class="w-full h-fit text-[#34662C] text-left">
+                                                <div class="flex p-4 w-full max-h-[450px] justify-end bg-[#F2F2F2]">
+                                                    @if (array_key_exists($aduan->status, $stat))
+                                                    <button class="flex justify-center items-center gap-2 w-8 h-8 {{ $stat[$aduan->status]['classContent'] }}">
+                                                        <i class="fa-solid text-lg {{ $stat[$aduan->status]['icon'] }}"></i>
+                                                    </button>
+                                                    @endif
+                                                </div>
+                                                <div class="max-h-[450px] overflow-y-auto scrollbar-thin pt-3">
+                                                    @if ($aduan->image != null)
+                                                    <div class="flex w-full justify-center">
+                                                        <img class="w-[60%] rounded-lg" src="{{ asset('assets/images/Aduan/' . $aduan->image) }}">
+                                                    </div>
+                                                    @endif
+                                                    <div class="flex w-full p-4 {{ Auth::check() && Auth::user()->penduduk->id_penduduk == $aduan->pengadu_id ? 'justify-end' : '' }}">
+                                                        <div class="p-4 w-fit rounded-lg max-w-[75%] {{Auth::check() && Auth::user()->penduduk->id_penduduk == $aduan->pengadu_id ? 'bg-[#cdffc5]' : 'bg-gray-300' }}">
+                                                            <p class="text-sm font-semibold">
+                                                                Anonymous
+                                                            </p>
+                                                            <p class="font-normal pt-3">
+                                                                {{ $aduan->konten_aduan }}
+                                                            </p>
+                                                        </div>
+                                                    </div>
+                                                    @foreach ($aduan->respon as $response)
+                                                    <div class="flex w-full p-4 {{ Auth::check() && Auth::user()->penduduk->id_penduduk == $response->perespon_id ? 'justify-end' : '' }}">
+                                                        <div class="p-4 w-fit rounded-lg max-w-[75%] {{ Auth::check() && Auth::user()->penduduk->id_penduduk == $response->perespon_id ? 'bg-[#cdffc5]' : 'bg-gray-300' }}">
+                                                            <p class="text-sm font-semibold">
+                                                                Admin
+                                                            </p>
+                                                            @if ($response->image != null)
+                                                            <div class="pt-3">
+                                                                <img class="w-fit rounded-lg" src="{{ asset('assets/images/Respon/' . $response->image) }}">
+                                                            </div>
+                                                            @endif
+                                                            @if ($response->konten_respon != null)
+                                                            <p class="font-normal pt-3">
+                                                                {{ $response->konten_respon }}
+                                                            </p>
+                                                            @endif
+                                                        </div>
+                                                    </div>
+                                                    @endforeach
+                                                </div>
+                                                <div class="w-full bg bg-[#F2F2F2] min-h-10 rounded-b-lg">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
                     </td>
                 </tr>
-                <tr class="min-h-28 border-b-4 border-[#69CA57]/[0.32]">
-                    <td scope="row" class="w-[50%] px-14 py-5">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla aliquet risus id eros tincidunt, dapibus aliquam velit elementum.
-                    </td>
-                    <td scope="row" class="w-[50%] px-14 py-5">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla aliquet risus id eros tincidunt, dapibus aliquam velit elementum.
-                    </td>
-                </tr>
-                <tr class="min-h-28 border-b-4 border-[#69CA57]/[0.32]">
-                    <td scope="row" class="w-[50%] px-14 py-5">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla aliquet risus id eros tincidunt, dapibus aliquam velit elementum.
-                    </td>
-                    <td scope="row" class="w-[50%] px-14 py-5">
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla aliquet risus id eros tincidunt, dapibus aliquam velit elementum.
-                    </td>
-                </tr>
+                @endforeach
+                
             </tbody>
         </table>
     </div>

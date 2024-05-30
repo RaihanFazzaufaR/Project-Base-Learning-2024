@@ -34,7 +34,7 @@ class AkunAdminController extends Controller
             return $item;
         });
     
-        return view('admin.akun-admin.index', compact('users', 'page', 'selected'));
+        return view('Admin.Akun.index', compact('users', 'page', 'selected'));
     }
     
 
@@ -186,7 +186,7 @@ class AkunAdminController extends Controller
             return $item;
         });
 
-        return view('admin.akun-admin.index', compact('users', 'page', 'selected'));
+        return view('Admin.Akun.index', compact('users', 'page', 'selected'));
     }
 
     public function search(Request $request)
@@ -220,7 +220,7 @@ class AkunAdminController extends Controller
             return $item;
         });
 
-        return view('admin.akun-admin.index', compact('users', 'page', 'selected'));
+        return view('Admin.Akun.index', compact('users', 'page', 'selected'));
     }
   
     public function indexAkun(Request $request)
@@ -247,7 +247,7 @@ class AkunAdminController extends Controller
             return $item;
         });
 
-        return view('admin.akun-admin.kelola-level', compact('users', 'page', 'selected'));
+        return view('Admin.Akun.kelola-level', compact('users', 'page', 'selected'));
     }
 
     
@@ -400,7 +400,7 @@ class AkunAdminController extends Controller
             return $item;
         });
 
-        return view('admin.akun-admin.kelola-level', compact('users', 'page', 'selected'));
+        return view('Admin.Akun.kelola-level', compact('users', 'page', 'selected'));
     }
 
     public function searchAkun(Request $request)
@@ -434,7 +434,7 @@ class AkunAdminController extends Controller
             return $item;
         });
 
-        return view('admin.akun-admin.kelola-level', compact('users', 'page', 'selected'));
+        return view('Admin.Akun.kelola-level', compact('users', 'page', 'selected'));
     }
 
 }

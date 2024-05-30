@@ -21,7 +21,7 @@ class PersuratanController extends Controller
         ->orderBy('tb_permintaansurat.minta_tanggal', 'desc') // Urutkan berdasarkan tanggal terbaru
         ->paginate(10);
 
-        return view('admin.persuratan.index', compact('permintaanSurat', 'page', 'selected'));
+        return view('Admin.Persuratan.index', compact('permintaanSurat', 'page', 'selected'));
     }
     public function ajuanPersuratan()
     {
@@ -36,7 +36,7 @@ class PersuratanController extends Controller
         ->paginate(10);
 
         // Return the view and pass the $permintaanSurat data, along with $page and $selected variables
-        return view('admin.persuratan.ajuanSurat', compact('permintaanSurat', 'page', 'selected'));
+        return view('Admin.Persuratan.ajuanSurat', compact('permintaanSurat', 'page', 'selected'));
     }
     
     public function templateSurat()
@@ -46,6 +46,6 @@ class PersuratanController extends Controller
 
         $user = PendudukModel::paginate(10);
 
-        return view('admin.persuratan.templateSurat', compact('user', 'page', 'selected'));
+        return view('Admin.Persuratan.templateSurat', compact('user', 'page', 'selected'));
     }
 }

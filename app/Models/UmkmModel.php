@@ -25,9 +25,6 @@ class UmkmModel extends Model
         'status',
         'foto',
         'tanggal_disetujui',
-        'tanggal_ditolak',
-        'alasan_warga',
-        'alasan_rw',
 
     ];
 

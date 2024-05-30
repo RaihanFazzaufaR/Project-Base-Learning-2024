@@ -5,8 +5,11 @@
                 @csrf
                 <div class="flex h-full items-center">
                     <div class="relative w-full">
-                        <input type="search" id="location-search" name="search" class="block py-2 px-4 h-11 w-full z-20 text-sm text-[#34662C] shadow-xl bg-gray-50 rounded-xl border border-[#34662C] focus:outline-none focus:border-[3px]" placeholder="Cari ..." required />
-                        <button type="submit" class="absolute top-0 end-0 h-11 py-2 px-4 text-sm font-medium text-white bg-[#57BA47] rounded-xl border border-[#34662C] hover:bg-[#336E2A] transition duration-300 ease-in-out">
+                        <input type="search" id="location-search" name="search"
+                            class="block py-2 px-4 h-11 w-full z-20 text-sm text-[#34662C] shadow-xl bg-gray-50 rounded-xl border border-[#34662C] focus:outline-none focus:border-[3px]"
+                            placeholder="Cari ..." required />
+                        <button type="submit"
+                            class="absolute top-0 end-0 h-11 py-2 px-4 text-sm font-medium text-white bg-[#57BA47] rounded-xl border border-[#34662C] hover:bg-[#336E2A] transition duration-300 ease-in-out">
                             <i class="fa-solid fa-magnifying-glass text-2xl"></i>
                             <span class="sr-only">Search</span>
                         </button>
@@ -14,7 +17,8 @@
                 </div>
             </form>
             <div class="h-full w-fit py-2" x-data="{ 'filterModal': false }" @keydown.escape="filterModal = false">
-                <button @click="filterModal = true" class="flex w-29 bg-[#57BA47] h-full text-white justify-between items-center px-4 rounded-lg shadow-xl hover:bg-[#336E2A] hover:scale-105 transition duration-300 ease-in-out">
+                <button @click="filterModal = true"
+                    class="flex w-29 bg-[#57BA47] h-full text-white justify-between items-center px-4 rounded-lg shadow-xl hover:bg-[#336E2A] hover:scale-105 transition duration-300 ease-in-out">
                     <i class="fa-solid fa-sliders text-2xl"></i>
                     <div class="text-xl font-semibold">Filter</div>
                 </button>
@@ -48,50 +52,55 @@
                 </thead>
                 <tbody>
                     @foreach ($user as $usr)
-                    <tr class="bg-white border-b text-sm font-medium text-[#7F7F7F] dark:bg-[#2F363E] dark:text-white dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                        <td class="px-6 py-4">
-                            {{ $usr->nik }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $usr->nama }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $usr->tempatLahir }}, {{ $usr->tanggalLahir }}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{ $usr->kartuKeluarga->rt }}
-                        </td>
-                        <td>
-                            <div class="px-6 py-4 flex items-center h-full gap-4 justify-center">
-                                <div x-data="{ 'idPenduduk': {{ $id_penduduk }} }">
-                                    <div x-data="{ 'detailModal': idPenduduk === {{ $usr->id_penduduk }} }" @keydown.escape="detailModal = false">
-                                        <button @click="detailModal = true" class="flex justify-center items-center gap-2 w-fit text-white bg-[#446DFF] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#273E91] hover:scale-105 transition-all">
-                                            <i class="fa-solid fa-circle-info"></i>
-                                            <div>Detail</div>
-                                        </button>
-                                        <x-admin.kependudukan.modal-detail-penduduk idPenduduk="{{ $id_penduduk }}" idUsr="{{ $usr->id_penduduk }}" />
+                        <tr
+                            class="bg-white border-b text-sm font-medium text-[#7F7F7F] dark:bg-[#2F363E] dark:text-white dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                            <td class="px-6 py-4">
+                                {{ $usr->nik }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $usr->nama }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $usr->tempatLahir }}, {{ $usr->tanggalLahir }}
+                            </td>
+                            <td class="px-6 py-4">
+                                {{ $usr->kartuKeluarga->rt }}
+                            </td>
+                            <td>
+                                <div class="px-6 py-4 flex items-center h-full gap-4 justify-center">
+                                    <div x-data="{ 'idPenduduk': {{ $id_penduduk }} }">
+                                        <div x-data="{ 'detailModal': idPenduduk === {{ $usr->id_penduduk }} }" @keydown.escape="detailModal = false">
+                                            <button @click="detailModal = true"
+                                                class="flex justify-center items-center gap-2 w-fit text-white bg-[#446DFF] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#273E91] hover:scale-105 transition-all">
+                                                <i class="fa-solid fa-circle-info"></i>
+                                                <div>Detail</div>
+                                            </button>
+                                            <x-admin.kependudukan.modal-detail-penduduk
+                                                idPenduduk="{{ $id_penduduk }}" idUsr="{{ $usr->id_penduduk }}" />
+                                        </div>
                                     </div>
-                                </div>
-                                <div x-data="{ 'editModal': false }" @keydown.escape="editModal = false">
-                                    <button @click="editModal = true" class="flex justify-center items-center gap-2 w-fit text-white bg-[#FFDE68] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#B39C49] hover:scale-105 transition-all">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                        <div>Edit</div>
-                                    </button>
-                                    <!-- Edit modal -->
-                                    <x-admin.kependudukan.modal-edit-penduduk idUsr="{{ $usr->id_penduduk }}" />
-                                </div>
+                                    <div x-data="{ 'editModal': false }" @keydown.escape="editModal = false">
+                                        <button @click="editModal = true"
+                                            class="flex justify-center items-center gap-2 w-fit text-white bg-[#FFDE68] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#B39C49] hover:scale-105 transition-all">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                            <div>Edit</div>
+                                        </button>
+                                        <!-- Edit modal -->
+                                        <x-admin.kependudukan.modal-edit-penduduk idUsr="{{ $usr->id_penduduk }}" />
+                                    </div>
 
-                                <form action="{{ route('destroyPenduduk', $usr->id_penduduk) }}" method="POST">
-                                    @csrf
-                                    {!! method_field('DELETE') !!}
-                                    <button type="submit" class="flex justify-center items-center gap-2 w-fit text-white bg-[#FF5E5E] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#B34242] hover:scale-105 transition-all">
-                                        <i class="fa-solid fa-trash-can"></i>
-                                        <div>Hapus</div>
-                                    </button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
+                                    <form action="{{ route('destroyPenduduk', $usr->id_penduduk) }}" method="POST">
+                                        @csrf
+                                        {!! method_field('DELETE') !!}
+                                        <button type="submit"
+                                            class="flex justify-center items-center gap-2 w-fit text-white bg-[#FF5E5E] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#B34242] hover:scale-105 transition-all">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                            <div>Hapus</div>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
                     @endforeach
                 </tbody>
             </table>
@@ -115,6 +124,9 @@
                     <td class="p-4">
                         <input type="text" name="penduduk[${counter}][nama]" id="nama" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]" placeholder="Masukkan Nama" required="">
                     </td>
+                    <td class="p-4">
+                        <input type="text" name="penduduk[${counter}][email]" id="email" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]" placeholder="Masukkan Email" required="">
+                        </td>
                     <td class="p-4">
                         <input type="text" name="penduduk[${counter}][tempatLahir]" id="tempatLahir" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]" placeholder="Masukkan Tempat Lahir" required="">
                     </td>

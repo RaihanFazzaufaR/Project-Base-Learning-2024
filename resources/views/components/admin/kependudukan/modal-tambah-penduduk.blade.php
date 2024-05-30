@@ -70,6 +70,9 @@
                                             Nama
                                         </th>
                                         <th scope="col" class="px-6 py-3">
+                                            email
+                                        </th>
+                                        <th scope="col" class="px-6 py-3">
                                             Tempat Lahir
                                         </th>
                                         <th scope="col" class="px-6 py-3">
@@ -114,6 +117,9 @@
                                         </td>
                                         <td class="p-4">
                                             <input type="text" name="penduduk[0][nama]" id="nama" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]" placeholder="Masukkan Nama" required="">
+                                        </td>
+                                        <td class="p-4">
+                                            <input type="text" name="penduduk[0][email]" id="email" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]" placeholder="Masukkan Email" required="">
                                         </td>
                                         <td class="p-4">
                                             <input type="text" name="penduduk[0][tempatLahir]" id="tempatLahir" class="bg-white shadow-md border border-[#34662C]  rounded-lg focus:outline-none focus:border-2 block p-2 placeholder-[#34662C]" placeholder="Masukkan Tempat Lahir" required="">

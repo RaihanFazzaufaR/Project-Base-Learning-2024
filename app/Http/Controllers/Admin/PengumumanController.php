@@ -15,6 +15,6 @@ class PengumumanController extends Controller
 
         $user = PendudukModel::paginate(10);
 
-        return view('admin.pengumuman.index', compact('user', 'page', 'selected'));
+        return view('Admin.Pengumuman.index', compact('user', 'page', 'selected'));
     }
 }

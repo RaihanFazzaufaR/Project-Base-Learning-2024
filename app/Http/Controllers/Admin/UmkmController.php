@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\PendudukModel;
-use App\Models\UmkmModel;
 use App\Models\UmkmKategoriModel;
 use App\Models\KategoriModel;
 use Illuminate\Support\Facades\Validator;
@@ -16,22 +15,22 @@ class UmkmController extends Controller
     {
         $page = 'listUmkm';
         $selected = 'Umkm';
-        $users = PendudukModel::all();
-        $umkms = UmkmModel::where('status', 'diterima')->paginate(10);
+
+        $user = PendudukModel::paginate(10);
         $umkmKategoris = UmkmKategoriModel::all();
         $categories = KategoriModel::all();
-        // return $users;
-        return view('admin.umkm.index', compact('users', 'umkms', 'page', 'selected', 'umkmKategoris', 'categories'));
+
+        return view('Admin.Umkm.index', compact('user', 'page', 'selected', 'umkmKategoris', 'categories'));
     }
     public function ajuanUmkm()
     {
         $page = 'ajuanUmkm';
         $selected = 'Umkm';
-        $users = PendudukModel::all();
-        $umkms = UmkmModel::where('status', 'diproses')->paginate(10);
+
+        $user = PendudukModel::paginate(10);
         $umkmKategoris = UmkmKategoriModel::all();
         $categories = KategoriModel::all();
-        return view('admin.umkm.ajuan-umkm', compact('users', 'umkms', 'page', 'selected', 'umkmKategoris', 'categories'));
+        return view('Admin.Umkm.ajuan-umkm', compact('user', 'page', 'selected', 'umkmKategoris', 'categories'));
     }
     public function umkmReject(Request $request)
     {
@@ -248,7 +247,7 @@ class UmkmController extends Controller
         $umkmKategoris = UmkmKategoriModel::all();
         // $categories = KategoriModel::all();
         // return $users;
-        return view('admin.umkm.index', compact('users', 'umkms', 'page', 'selected', 'umkmKategoris', 'categories'));
+        return view('Admin.Umkm.index', compact('users', 'umkms', 'page', 'selected', 'umkmKategoris', 'categories'));
     }
     public function searchList(Request $request)
     {
@@ -268,7 +267,7 @@ class UmkmController extends Controller
 
         $umkms = $umkmQuery->paginate(10);
 
-        return view('admin.umkm.index', compact('users', 'umkms', 'page', 'selected', 'umkmKategoris', 'categories'));
+        return view('Admin.Umkm.index', compact('users', 'umkms', 'page', 'selected', 'umkmKategoris', 'categories'));
     }
     public function searchAjuan(Request $request)
     {
@@ -288,7 +287,7 @@ class UmkmController extends Controller
 
         $umkms = $umkmQuery->paginate(10);
 
-        return view('admin.umkm.ajuan-umkm', compact('users', 'umkms', 'page', 'selected', 'umkmKategoris', 'categories'));
+        return view('Admin.Umkm.ajuan-umkm', compact('users', 'umkms', 'page', 'selected', 'umkmKategoris', 'categories'));
     }
 
 }
