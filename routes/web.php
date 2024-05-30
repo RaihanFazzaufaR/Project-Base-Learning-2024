@@ -19,7 +19,7 @@ use App\Http\Controllers\Admin\PengumumanController as AdminPengumumanController
 use App\Http\Controllers\Admin\AkunAdminController as AdminAkunAdminController;
 use App\Http\Controllers\Admin\JadwalKegiatanController as AdminKegiatanController;
 use App\Http\Controllers\ProfilkuController;
-use App\Http\Controllers\user\ProfilController;
+use App\Http\Controllers\User\ProfilController;
 
 /*
 |--------------------------------------------------------------------------
