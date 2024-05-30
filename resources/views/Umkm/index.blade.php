@@ -443,7 +443,6 @@
                     </div>
                 </a>
                 @endforeach
-                {{ $umkms->links() }}
                 <a href="##" class="">
                     <div class="w-full h-64 bg-white border-2 shadow-2xl border-[#2d5523] rounded-xl overflow-hidden flex hover:border-4 hover:border-yellow-500 justify-center items-center  group-hover:opacity-100 transition ease-in-out duration-500 hover:scale-105 group">
                         <div class="basis-1/3 h-full">
