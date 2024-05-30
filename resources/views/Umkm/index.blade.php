@@ -7,7 +7,7 @@
 
 </x-header>
 
-<div class="w-[100%] relative flex justify-center items-center  ">
+<div class="w-[100%] relative lg:flex justify-center items-center hidden ">
     <img src="{{ asset('assets/images/bg-index-UMKM.png') }}" alt="" class="w-full dark:brightness-[85%]">
     <div
         class="bg-white/[0.73] dark:bg-[#24292d]/[0.73]  w-[571px] h-[185px] z-10 absolute flex justify-center rounded-[105px] flex-col text-center shadow-2xl">
@@ -17,7 +17,7 @@
             RW</p>
     </div>
 </div>
-<div class="lg:min-h-[100vh] mx-auto lg:py-[34px] w-[90%]">
+<div class="lg:min-h-[100vh] mx-auto lg:py-[34px] w-[98%] lg:w-[90%]">
     <div class="flex flex-row gap-14 mt-9 w-full">
         <div class="lg:basis-1/4 items-center flex-col hidden lg:block">
             <div class="flex border-b-[1.9px] h-[57px] dark:border-white border-[#2d5523]">
@@ -55,20 +55,16 @@
             <div class="flex items-center   gap-11 justify-center">
                 <div
                     class=" lg:basis-2/3 pt-3  lg:pt-0 lg:pb-0  lg:m-0 m-3 w-full -mt-5 lg:-mt-0 fixed z-10 lg:static dark:bg-[#24292d] bg-white pb-2 top-22">
-                    <form action="{{ route('umkm.search') }}" method="GET" class="w-full mb-0 md:shadow-2xl">
+                    <form action="{{ route('umkm.search') }}" method="GET" class="w-[90%] mx-auto lg:mx-0  mb-0 md:shadow-2xl">
                         <label for="default-search"
                             class="text-sm font-medium text-[#2d5523] sr-only dark:text-white">Search</label>
-                        <div class="relative h-full lg:px-0 px-4">
+                        <div class="relative h-full lg:px-0 ">
                             <div
-                                class="absolute inset-y-0 lg:start-0 start-8 flex items-center px-3 pointer-events-none ">
-                                <svg class="w-4 h-4 -ml-4 lg:ml-0 text-[#2d5523] dark:text-gray-400" aria-hidden="true"
-                                    xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                        stroke-width="2" d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                                </svg>
+                                class="absolute inset-y-0 lg:start-0 text-3xl lg:text-lg flex justify-center start-8 text-[#58a444]  dark:text-gray-300 pr-5 items-center px-3 pointer-events-none ">
+                                <i class="fa-solid fa-magnifying-glass"></i>
                             </div>
                             <input type="search" id="default-search" name="search"
-                                class=" block w-full p-4 ps-10 border-[3px] border-[#2d5523] text-[#2d5523] text-base rounded-lg bg-[#fff] focus:ring-yellow-500 focus:border-yellow-500 dark:bg-[#30373F] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
+                                class=" block w-full p-10 lg:p-4 ps-30 lg:ps-10 border-[3px] border-[#2d5523] text-[#2d5523] text-base rounded-lg bg-[#fff] focus:ring-yellow-500 focus:border-yellow-500 dark:bg-[#30373F] dark:border-gray-600 dark:placeholder-gray-300 dark:text-white dark:focus:ring-yellow-500 placeholder:text-[#58a444] dark:focus:border-yellow-500 placeholder:text-3xl lg:placeholder:text-lg"
                                 placeholder="Cari UMKM" required />
                         </div>
                     </form>
