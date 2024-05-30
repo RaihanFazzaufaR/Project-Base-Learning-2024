@@ -357,7 +357,7 @@
         </div>
         
         {{-- table --}}
-        <div class="relative  overflow-x-auto shadow-md sm:rounded-lg">
+        <div class="relative  overflow-x-auto shadow-md sm:rounded-lg shadow-xl dark:shadow-gray-900">
             <table class="w-full text-sm text-left rtl:text-right table-fixed text-gray-500 dark:text-gray-400">
                 <thead
                     class="text-base text-white uppercase bg-[#436c39] text-center dark:bg-[#428238] dark:text-white">
@@ -1101,9 +1101,11 @@
                     
                    
                 </tbody>
-            </table>          
+            </table>
+            <div class="px-8 py-5 dark:bg-[#4f5966]">
+                {{ $umkms->links() }}
+            </div>          
         </div>              
-        <br>{{ $umkms->links() }}
     </div>
 </div>
 

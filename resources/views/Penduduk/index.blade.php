@@ -2,69 +2,53 @@
 
 </x-header>
 
-<div class="w-[100%] relative pb-3 flex justify-center items-center">
-    <img src="{{ asset('assets/images/penduduk-cover.png') }}" alt="" class="w-full">
+<div class="w-[100%] relative  flex justify-center items-center">
+    <img src="{{ asset('assets/images/penduduk-cover.png') }}" alt="" class="w-full dark:brightness-[85%]">
     <div
-        class="bg-white/[0.73] w-[571px] h-[185px] z-10 absolute flex justify-center rounded-[105px] flex-col text-center shadow-2xl">
-        <p class="text-[#2d5523] font-bold text-[36px]">Daftar Penduduk RW 3</p>
-        <p class="text-[#2d5523] font-sans text-[32px] text-center">Tingkatkan Persaudaraan di Lingkungan Warga</p>
+        class="bg-white/[0.73] dark:bg-[#24292d]/[0.73] w-[571px] h-[185px] z-10 absolute flex justify-center rounded-[105px] flex-col text-center shadow-2xl">
+        <p class="text-[#2d5523] font-bold text-[36px] dark:text-white">Daftar Penduduk RW 3</p>
+        <p class="text-[#2d5523] font-sans text-[32px] text-center dark:text-white">Tingkatkan Persaudaraan di Lingkungan
+            Warga</p>
     </div>
 </div>
-<div class="bg-[#Fff] min-h-[100vh] px-[65px] py-5 w-[100%]">
-    <div class="flex gap-7 justify-between pb-3 w-full px-5">
-        <div x-data>
-            <div class="gap-x-4 flex w-fit my-auto">
-                <label for="filterRT"
-                    class="text-base text-[#2d5523] font-semibold dark:text-white w-fit justify-center flex items-center">RT</label>
-                <select id="filterRT" name="filterRT" onchange="window.location.href = this.value"
-                    class="w-full h-fit py-3 text-center border-[3px] border-[#2d5523] text-[#2d5523] text-base rounded-lg bg-gray-50 focus:ring-yellow-500 focus:border-yellow-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500">
-                    {{-- <a href="{{ route('umkm.category', $category->kategori_id) }}"></a>
-            <a href=""></a> --}}
-
-                    <option value="{{ route('penduduk') }}" {{ request('rt') == '' ? 'selected' : '' }}>Pilih RT
-                    </option>
-                    <option value="{{ route('penduduk-rt', '01') }}" {{ request('rt') == '01' ? 'selected' : '' }}>01
-                    </option>
-                    <option value="{{ route('penduduk-rt', '02') }}" {{ request('rt') == '02' ? 'selected' : '' }}>02
-                    </option>
-                    <option value="{{ route('penduduk-rt', '03') }}" {{ request('rt') == '03' ? 'selected' : '' }}>03
-                    </option>
-                    <option value="{{ route('penduduk-rt', '04') }}" {{ request('rt') == '04' ? 'selected' : '' }}>04
-                    </option>
-                    <option value="{{ route('penduduk-rt', '05') }}" {{ request('rt') == '05' ? 'selected' : '' }}>05
-                    </option>
-                    {{-- <a href="{{ route('penduduk-rt','02') }}"><option value="02">02</option></a>
-            <a href="{{ route('penduduk-rt','03') }}"><option value="03">03</option></a>
-            <a href="{{ route('penduduk-rt','04') }}"><option value="04">04</option></a>
-            <a href="{{ route('penduduk-rt','05') }}"><option value="05">05</option></a> --}}
-
-                    {{-- <option value="02">02</option>
-            <option value="03">03</option>
-            <option value="04">04</option>
-            <option value="05">05</option> --}}
-                </select>
-            </div>
+<div class=" min-h-[100vh] mx-auto py-[34px] w-[90%]">
+    <div class="flex gap-7 justify-between  w-full pb-10">
+        <div class="gap-4 flex w-fit my-auto h-fit items-center">
+            <label for="filterRT"
+                class="text-base text-[#2d5523] font-semibold dark:text-white w-fit justify-center flex items-center">RT</label>
+            <select id="filterRT" name="filterRT" onchange="window.location.href = this.value"
+                class="w-full h-fit py-3 text-center border-[3px] border-[#2d5523] text-[#2d5523] text-base rounded-lg bg-gray-50 dark:bg-[#30373F] dark:border-gray-600focus:ring-yellow-500 focus:border-yellow-500  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500 shadow-xl dark:shadow-gray-900">
+                <option value="{{ route('penduduk') }}" {{ request('rt') == '' ? 'selected' : '' }}>Pilih RT
+                </option>
+                <option value="{{ route('penduduk-rt', '01') }}" {{ request('rt') == '01' ? 'selected' : '' }}>01
+                </option>
+                <option value="{{ route('penduduk-rt', '02') }}" {{ request('rt') == '02' ? 'selected' : '' }}>02
+                </option>
+                <option value="{{ route('penduduk-rt', '03') }}" {{ request('rt') == '03' ? 'selected' : '' }}>03
+                </option>
+                <option value="{{ route('penduduk-rt', '04') }}" {{ request('rt') == '04' ? 'selected' : '' }}>04
+                </option>
+                <option value="{{ route('penduduk-rt', '05') }}" {{ request('rt') == '05' ? 'selected' : '' }}>05
+                </option>
+            </select>
         </div>
         <form action="{{ route('penduduk-search') }}" method="GET" class="w-96 my-auto ">
             <label for="default-search"
                 class="text-sm font-medium text-[#2d5523] sr-only dark:text-white">Search</label>
             <div class="relative  h-full">
-                <div class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
-                    <svg class="w-4 h-4 text-[#2d5523] dark:text-gray-400" aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 20 20">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                            d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
-                    </svg>
+                <div
+                    class="absolute inset-y-0 lg:start-0 text-3xl lg:text-lg flex justify-center start-8 text-[#58a444]  dark:text-gray-300 pr-5 items-center px-3 pointer-events-none ">
+                    <i class="fa-solid fa-magnifying-glass"></i>
                 </div>
                 <input type="search" id="default-search" name="search"
-                    class="block w-full p-4 ps-10 border-[3px] border-[#2d5523] text-[#2d5523] text-base rounded-lg bg-gray-50 focus:ring-yellow-500 focus:border-yellow-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-yellow-500 dark:focus:border-yellow-500"
-                    placeholder="Cari" required />
+                    class=" block w-full p-10 lg:p-4 ps-30 lg:ps-10 border-[3px] border-[#2d5523] text-[#2d5523] text-base rounded-lg bg-[#fff] focus:ring-yellow-500 focus:border-yellow-500 dark:bg-[#30373F] dark:border-gray-600 dark:placeholder-gray-300 dark:text-white dark:focus:ring-yellow-500 placeholder:text-[#58a444] dark:focus:border-yellow-500 placeholder:text-3xl lg:placeholder:text-lg shadow-xl dark:shadow-gray-900"
+                    placeholder="Cari Warga RW 03" required />
             </div>
         </form>
     </div>
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-        <table class="w-full text-sm text-left rtl:text-right table-fixed text-gray-500 dark:text-gray-400">
-            <thead class="text-base text-white uppercase bg-[#436c39] text-center dark:bg-gray-700 dark:text-gray-400">
+    <div class="relative overflow-x-auto rounded-lg shadow-xl dark:shadow-gray-900">
+        <table class="w-full text-sm text-left rtl:text-right table-fixed text-gray-500 dark:text-gray-400 ">
+            <thead class="text-base text-white uppercase bg-[#436c39] text-center dark:bg-[#428238] dark:text-white">
                 <tr>
                     <th scope="col" class="px-6 w-[23%] py-3 ">
                         NIK
@@ -86,7 +70,7 @@
             <tbody>
                 @foreach ($penduduks as $warga)
                     <tr
-                        class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        class="bg-white border-b hover:bg-gray-50 dark:hover:bg-gray-600 dark:bg-[#2F363E] dark:text-white dark:border-gray-700">
                         <td scope="row"
                             class="px-6 py-4 font-medium text-base text-center text-[#2d5523]  dark:text-white">
                             {{ $warga->nik }}
@@ -113,7 +97,7 @@
 
             </tbody>
         </table>
-        <div class="px-8 py-5">
+        <div class="px-8 py-5 dark:bg-[#4f5966] rounded-b-lg">
             {{ $penduduks->links() }}
         </div>
     </div>
