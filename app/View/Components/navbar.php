@@ -24,7 +24,7 @@ class Navbar extends Component
     public function render(): View|Closure|string
     {
         $messages = $this->messages();
-        return view('components.Navbar', compact('messages'));
+        return view('components.navbar', compact('messages'));
     }
 
     private function messages()
