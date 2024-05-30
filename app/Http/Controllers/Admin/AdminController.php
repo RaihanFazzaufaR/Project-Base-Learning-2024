@@ -104,7 +104,7 @@ class AdminController extends Controller
         //     'dataDate' => $dataDate,
         // ];
 
-        return view('admin.index', compact('page', 'selected', 'dataJumlah', 'dataStatusPenduduk', 'dataDemografiPenduduk', 'newestUmkm', 'dataKegiatanMendatang', 'dataDate'));
+        return view('Admin.index', compact('page', 'selected', 'dataJumlah', 'dataStatusPenduduk', 'dataDemografiPenduduk', 'newestUmkm', 'dataKegiatanMendatang', 'dataDate'));
     }
 
     private function countAge($data)
