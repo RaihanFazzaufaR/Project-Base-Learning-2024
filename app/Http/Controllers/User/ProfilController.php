@@ -14,9 +14,9 @@ class ProfilController extends Controller
         $menu = 'Profil';
         $profileRW = PendudukModel::with('userAccount', 'kartuKeluarga')->where('jabatan', 'Ketua RW')->get()->first();
         $profileRT = PendudukModel::with('userAccount', 'kartuKeluarga')
-            ->join('tb_kartuKeluarga', 'tb_penduduk.id_kartuKeluarga', '=', 'tb_kartuKeluarga.id_kartuKeluarga')
+            ->join('tb_kartukeluarga', 'tb_penduduk.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')
             ->where('jabatan', 'Ketua RT')
-            ->orderBy('tb_kartuKeluarga.rt')
+            ->orderBy('tb_kartukeluarga.rt')
             ->select('tb_penduduk.*')
             ->get();
 

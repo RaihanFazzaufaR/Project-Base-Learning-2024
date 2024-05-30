@@ -207,7 +207,7 @@
             <div class="swiper-wrapper w-full !py-10">
                 @foreach ($profileRTnew as $rt)
                 <div class="swiper-slide relative !h-[400px] !w-[240px] flex flex-col transition-all group">
-                    <img src="{{ asset('assets/images/userAccount/'. $rt['image']) }}" alt="" class="h-[320px] w-[240px] mx-auto relative z-10 shadow-2xl rounded-full border-6 border-white">
+                    <img src="{{ asset('assets/images/UserAccount/'. $rt['image']) }}" alt="" class="h-[320px] w-[240px] mx-auto relative z-10 shadow-2xl rounded-full border-6 border-white">
                     <div class="absolute h-[320px] w-[240px] z-8 bg-green-500 top-4 left-7 rounded-full shadow-2xl border-6 border-white group-hover:-left-18 group-hover:top-6 transition-all">
                         <div class="relative w-[200px] h-fit py-2 pl-8 pr-13 bg-green-500 rounded-2xl flex justify-center items-center shadow-md top-34 -left-36 border-2 border-white opacity-0 group-hover:opacity-100 transition-all">
                             <div class="text-sm font-bold text-white">{{ $rt['profile']->nama }}</div>
