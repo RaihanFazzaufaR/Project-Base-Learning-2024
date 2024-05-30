@@ -1,9 +1,9 @@
 name: cd
 
 on:
-  pull_request:
+  push:
     branches:
-      - main
+      - new-dev
 
 jobs:
   cd:
@@ -23,7 +23,7 @@ jobs:
             cd /home/diy-projects.my.id/sirawa.diy-projects.my.id
             export ASDF_DATA_DIR=~/.asdf
             source ~/.asdf/asdf.sh
-            git pull origin dev
+            git pull origin new-dev
             php artisan optimize
             php artisan migrate:fresh --seed
             npm install
