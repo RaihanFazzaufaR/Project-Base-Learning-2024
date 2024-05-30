@@ -24,7 +24,7 @@
         </div>
 
         <div class="absolute sm:static h-full w-fit py-2" x-data="{ 'tambahModal': false }" @keydown.escape="tambahModal = false">
-            <button @click="tambahModal = true" class="fixed sm:static flex bottom-5 animate-bounce sm:animate-none z-99 right-5 w-10 h-10 sm:w-29 bg-[#57BA47] sm:h-full text-white justify-center sm:justify-between items-center px-4 rounded-full sm:rounded-lg shadow-xl hover:bg-[#336E2A] hover:scale-105 transition duration-300 ease-in-out">
+            <button @click="tambahModal = true" class="fixed sm:static flex bottom-5 animate-bounce sm:animate-none z-99 right-5 w-10 h-10 sm:w-fit bg-[#57BA47] sm:h-full text-white justify-center sm:justify-between gap-4 items-center px-4 rounded-full sm:rounded-lg shadow-xl hover:bg-[#336E2A] hover:scale-105 transition duration-300 ease-in-out">
                 <i class="fa-solid fa-plus sm:text-2xl text-xl"></i>
                 <div class="text-xl font-semibold hidden sm:block">Tambah</div>
             </button>
