@@ -7,16 +7,7 @@
 
 </x-header>
 
-<div class="w-[100%] relative lg:flex justify-center items-center hidden ">
-    <img src="{{ asset('assets/images/bg-index-UMKM.png') }}" alt="" class="w-full dark:brightness-[85%]">
-    <div
-        class="bg-white/[0.73] dark:bg-[#24292d]/[0.73]  w-[571px] h-[185px] z-10 absolute flex justify-center rounded-[105px] flex-col text-center shadow-2xl">
-        <p class="text-[#2d5523] dark:text-white font-bold text-[36px]">UMKM DI RW 3</p>
-        <p class="text-[#2d5523] dark:text-white font-sans text-[32px] text-center">Bangun Ekonomi Berkelanjutan di
-            Setiap Sudut
-            RW</p>
-    </div>
-</div>
+
 <div class="lg:min-h-[100vh] mx-auto lg:py-[34px] w-[90%]">
     <div class="flex flex-row gap-14 mt-9 w-full">
         <div class="lg:basis-1/4 items-center flex-col hidden lg:block">
