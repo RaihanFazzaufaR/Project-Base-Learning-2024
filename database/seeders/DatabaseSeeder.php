@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             DataSuratSeed::class,
             AduanSeeder::class,
             ResponSeeder::class,
+            PengumumanSeeder::class,
         ]);
     }
 }

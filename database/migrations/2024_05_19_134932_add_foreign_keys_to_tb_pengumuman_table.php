@@ -12,7 +12,8 @@ return new class extends Migration
     public function up(): void
     {
         Schema::table('tb_pengumuman', function (Blueprint $table) {
-            $table->foreign('pembuat_id', 'tb_pengumuman_ibfk_1')->references('id_penduduk')->on('tb_penduduk')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign('pembuat_id_jadwal', 'tb_pengumuman_ibfk_1')->references('id_penduduk')->on('tb_penduduk')->onUpdate('RESTRICT')->onDelete('RESTRICT');
+            $table->foreign('pembuat_id_pengumuman', 'tb_pengumuman_ibfk_2')->references('id_penduduk')->on('tb_penduduk')->onUpdate('RESTRICT')->onDelete('RESTRICT');
         });
     }
 
@@ -23,6 +24,7 @@ return new class extends Migration
     {
         Schema::table('tb_pengumuman', function (Blueprint $table) {
             $table->dropForeign('tb_pengumuman_ibfk_1');
+            $table->dropForeign('tb_pengumuman_ibfk_2');
         });
     }
 };
