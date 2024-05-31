@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\PendudukModel;
 use App\Models\UmkmKategoriModel;
+use App\Models\UmkmModel;
 use App\Models\KategoriModel;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -19,18 +20,25 @@ class UmkmController extends Controller
         $user = PendudukModel::paginate(10);
         $umkmKategoris = UmkmKategoriModel::all();
         $categories = KategoriModel::all();
-
-        return view('Admin.Umkm.index', compact('user', 'page', 'selected', 'umkmKategoris', 'categories'));
+        $umkms = UmkmModel::select('tb_umkm.*', 'tb_penduduk.nama as pemilik')
+            ->join('tb_penduduk', 'tb_umkm.id_pemilik', '=', 'tb_penduduk.id_penduduk')
+            ->where('status', 'diterima')
+            ->paginate(10);
+        // return $umkms;
+        return view('Admin.Umkm.index', compact('user', 'page', 'selected', 'umkmKategoris', 'categories', 'umkms'));
     }
     public function ajuanUmkm()
     {
         $page = 'ajuanUmkm';
         $selected = 'Umkm';
-
-        $user = PendudukModel::paginate(10);
+        // $user = PendudukModel::paginate(10);
         $umkmKategoris = UmkmKategoriModel::all();
         $categories = KategoriModel::all();
-        return view('Admin.Umkm.ajuan-umkm', compact('user', 'page', 'selected', 'umkmKategoris', 'categories'));
+        $umkms = UmkmModel::select('tb_umkm.*', 'tb_penduduk.nama as pemilik')
+            ->join('tb_penduduk', 'tb_umkm.id_pemilik', '=', 'tb_penduduk.id_penduduk')
+            ->where('status', 'diterima')
+            ->paginate(10);
+        return view('Admin.Umkm.ajuan-umkm', compact('umkms', 'page', 'selected', 'umkmKategoris', 'categories'));
     }
     public function umkmReject(Request $request)
     {
@@ -259,10 +267,13 @@ class UmkmController extends Controller
 
         $search = $request->input('search');
 
-        $umkmQuery = UmkmModel::where('status', 'diterima');
+        // $umkmQuery = UmkmModel::where('status', 'diterima');
+        $umkmQuery = UmkmModel::select('tb_umkm.*', 'tb_penduduk.nama as pemilik')
+            ->join('tb_penduduk', 'tb_umkm.id_pemilik', '=', 'tb_penduduk.id_penduduk')
+            ->where('status', 'diterima');
 
         if ($search) {
-            $umkmQuery->where('nama', 'like', '%' . $search . '%');
+            $umkmQuery->where('tb_umkm.snama', 'like', '%' . $search . '%');
         }
 
         $umkms = $umkmQuery->paginate(10);

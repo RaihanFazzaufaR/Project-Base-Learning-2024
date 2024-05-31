@@ -229,7 +229,7 @@
                         <th scope="col" class="px-6 py-3 w-[20%]">
                             Alamat
                         </th>
-                        <th scope="col" class="px-6 py-3">
+                        <th scope="col" class="px-6 py-3 w-[10%]" >
                             Lokasi
                         </th>
                         <th scope="col" class="px-6 py-3 w-[30%]">
@@ -238,26 +238,28 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @for ($i=0; $i<10; $i++) <tr class="bg-white border-b text-sm font-medium text-[#7F7F7F] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    @foreach ($umkms as $umkm)
+                        
+                    <tr class="bg-white border-b text-sm font-medium text-[#7F7F7F] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <td class="px-6 py-4">
-                            Lucky Kurniawan Langoday
+                            {{ $umkm->pemilik }}
                         </td>
                         <td class="px-6 py-4">
-                            Warung Madura
+                            {{ $umkm->nama }}
                         </td>
                         <td class="px-6 py-4" x-data="{ expanded: false }">
                             <a href="#" @click.prevent="expanded = !expanded">
                                 <span x-show="!expanded">{{ Str::limit($umkm->lokasi, 50) }}</span>
                                 <span x-show="expanded">{{ $umkm->lokasi }}</span>
                                 <span class="font-semibold" x-show="!expanded"></span>
-                                {{-- <td class="px-6 py-4" x-data="{'selected': 'false'}">
-=======
-                        <td class="px-6 py-4" x-data="{'selected': 'false'}">
+                                <td class="px-6 py-4" x-data="{'selected': 'false'}">
+
+                        {{-- <td class="px-6 py-4" x-data="{'selected': 'false'}">
                             <a href="#" @click.prevent="selected = (selected === 'true' ? '':'true')">
                                 Lorem ipsum, dolor sit amet consectetur adipisicing
                                 <span class="font-semibold" :class="(selected === 'true') ? 'hidden' :'inline-block'">...</span><span :class="(selected === 'true') ? 'inline-block' :'hidden'">elit. Expedita, eius? Mollitia quo adipisci,</span>
                             </a>
-                        </td>
+                        </td> --}}
                         <td class="px-6 py-4">
                             <div x-data="{ 'detailModal': false }" @keydown.escape="detailModal = false">
                                 <button @click="detailModal = true" class="flex justify-center items-center gap-2 w-fit text-white bg-[#7D5DD7] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#3C2D68] hover:scale-105 transition-all">
@@ -349,12 +351,12 @@
                                                 <div class="w-full h-full text-[#34662C] text-left">
                                                     <div class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto rounded-b-xl">
                                                         @php
-                                                        $user = $users->firstWhere('id_penduduk', $umkm->id_pemilik);
+                                                        // $user = $users->firstWhere('id_penduduk', $umkm->id_pemilik);
                                                         @endphp
                                                         <div class="col-span-2 sm:col-span-1 relative">
-                                                            <label class="block mb-2 text-sm font-bold">NIK</label>
+                                                            <label class="block mb-2 text-sm font-bold">Pemilik</label>
                                                             <input list="pemilik" name="pemilik" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
-                                                            value="{{ $user ? $user->nama : '' }}"readonly >
+                                                            value="{{ $umkm ? $umkm->pemilik : '' }}"readonly >
                                                             {{-- <datalist id="listNik">
                                                                 <option value="123456"></option>
                                                             </datalist> --}}
@@ -506,13 +508,13 @@
                                                                                 <!-- Modal body -->
                                                                                 <div class="w-full h-full text-[#34662C] text-left">
                                                                                     <div class="p-4 md:p-5  w-150 gap-4 flex justify-center items-center max-h-[450px] rounded-b-xl">
-                                                                                        <img src="{{ asset('assets/images/toko-kelontong.jpg') }}" alt="" class="w-full h-full rounded-xl shadow-xl border-4 border-white">
-        </div>
-        <div class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8]">
-            <button type="button" @click="fotoModal = false" class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
-                Keluar
-            </button>
-        </div>
+                                                                                        <img  src={{ asset('assets/images/' . $umkm->foto) }} alt="" class="w-full h-full rounded-xl shadow-xl border-4 border-white">
+                                                                                    </div>
+                                                                                <div class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8]">
+                                                                                    <button type="button" @click="fotoModal = false" class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
+                                                                                        Keluar
+                                                                                    </button>
+                                                                                </div>
     </div>
     </div>
     </div>
@@ -562,9 +564,9 @@
                         <div class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin rounded-b-xl">
                             <div class="col-span-2 sm:col-span-1 relative">
                                 <label class="block mb-2 text-sm font-bold">Pemilik</label>
-                                <input list="pemilik" name="pemilik" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $user->nama }}">
+                                <input list="pemilik" name="pemilik" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $umkm->pemilik }}">
                                 @php
-                                $user = $users->firstWhere('id_penduduk', $umkm->id_pemilik);
+                                // $user = $users->firstWhere('id_penduduk', $umkm->id_pemilik);
                                 @endphp
                             </div>
                             <div class="col-span-2 sm:col-span-1">
@@ -750,11 +752,11 @@
     </div>
     </td>
     </tr>
-    @endfor
+    @endforeach
     </tbody>
     </table>
     <div class="px-8 py-5">
-        {{ $user->links() }}
+        {{ $umkms->links() }}
     </div>
     </div>
     </div>
