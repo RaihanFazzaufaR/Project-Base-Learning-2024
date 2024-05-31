@@ -3,22 +3,22 @@
 </x-header>
 
 <div class="w-[100%]  relative  justify-center items-center hidden md:flex ">
-    <img src="{{ asset('assets/images/bg-index-UMKM.png') }}" alt="" class="w-full">
+    <img src="{{ asset('assets/images/bg-index-UMKM.png') }}" alt="" class="w-full dark:brightness-[85%]">
     <div
-        class="bg-white/[0.73] w-[571px] h-[185px] z-10 absolute flex justify-center rounded-[105px] flex-col text-center shadow-2xl">
-        <p class="text-[#2d5523] font-bold text-[36px]">UMKM DI RW 3</p>
-        <p class="text-[#2d5523] font-sans text-[32px] text-center">Bangun Ekonomi Berkelanjutan di Setiap Sudut
+        class="bg-white/[0.73] dark:bg-[#24292d]/[0.73]  w-[571px] h-[185px] z-10 absolute flex justify-center rounded-[105px] flex-col text-center shadow-2xl">
+        <p class="text-[#2d5523] dark:text-white font-bold text-[36px]">UMKM DI RW 3</p>
+        <p class="text-[#2d5523] dark:text-white font-sans text-[32px] text-center">Bangun Ekonomi Berkelanjutan di Setiap Sudut
             RW</p>
     </div>
 
 </div>
-<div class="bg-[#Fff] min-h-[100vh] md:px-[65px]  md:py-[34px] w-[100%]">
+<div class=" min-h-[100vh]   md:px-[65px]  md:py-[34px] w-[100%]">
     <div class="w-full  h-fit gap-10 flex-row mt-7 hidden md:flex">
-        <div class="basis-1/3 w-full border-[3px] h-fit rounded-lg border-[#2d5523]">
-            <div class="text-[#2d5523] pb-6 ">
-                {{-- <img src="{{ asset('assets/images/'.$umkm->foto) }}" alt="" class="w-full mb-3"> --}}
-                <img src="{{ asset('assets/images/toko-kelontong.jpg') }}" alt="" class="w-full mb-3  ">
-                <div class="text-3xl px-3 pb-3 font-semibold text-[#2d5523]">
+        <div class="basis-1/3 w-full  dark:bg-[#505c6a] border-[3px] h-fit rounded-lg border-[#2d5523] dark:border-gray-500">
+            <div class="text-[#2d5523] pb-6 dark:text-white overflow-hidden">
+                <img src="{{ asset('assets/images/'.$umkm->foto) }}" alt="" class="w-full mb-3 ">
+                {{-- <img src="{{ asset('assets/images/toko-kelontong.jpg') }}" alt="" class="w-full mb-3  "> --}}
+                <div class="text-3xl px-3 pb-3 font-semibold ">
                     {{ $umkm->nama }}
                 </div>
                 <div class="w-full  hidden md:flex justify-center pt-6 pb-3 items-start gap-2 px-2">
@@ -90,7 +90,7 @@
 
                 <div class="pb-6 pt-3 px-2 ">
 
-                    <table class="text-[#2d5523] px-[20px]">
+                    <table class="text-[#2d5523] dark:text-white px-[20px]">
                         <tr>
                             <td class="pl-3 py-1 flex items-start">
                                 <i class="fa-solid fa-map-location-dot text-2xl"></i>
