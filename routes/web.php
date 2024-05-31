@@ -184,6 +184,7 @@ Route::group(['middleware' => ['auth']], function () {
             });
             Route::prefix('pengumuman')->group(function () {
                 Route::get('/', [AdminPengumumanController::class, 'index'])->name('pengumuman-admin');
+                Route::post('/', [AdminPengumumanController::class, 'sendAnnouncement'])->name('kirim-pengumuman');
             });
             Route::prefix('pengaduan')->group(function () {
                 Route::get('/', [AdminPengaduanController::class, 'index'])->name('pengaduan-admin');
