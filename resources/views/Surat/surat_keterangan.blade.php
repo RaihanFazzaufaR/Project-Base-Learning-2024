@@ -54,7 +54,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        {{ $permintaanSurat->tempat_lahir }}, {{ $permintaanSurat->tanggal_lahir }}
+                        {{ $dataSurat->tanggalLahir }}, {{ $dataSurat->tanggalLahir }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -67,7 +67,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        {{ $permintaanSurat->jenis_kelamin }}
+                        {{ $dataSurat->jenisKelamin === 'L' ? 'Laki-laki' : 'Perempuan' }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -80,7 +80,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        {{ $permintaanSurat->agama }}
+                        {{ $dataSurat->agama }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -93,7 +93,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        {{ $permintaanSurat->pekerjaan }}
+                        {{ $dataSurat->pekerjaan }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -106,7 +106,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        {{ $permintaanSurat->no_ktp }}
+                        {{ $dataSurat->nik }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -119,7 +119,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        {{ $permintaanSurat->alamat }}
+                        {{ $dataSurat->alamat }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
