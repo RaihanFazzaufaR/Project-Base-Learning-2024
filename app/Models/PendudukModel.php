@@ -52,4 +52,8 @@ class PendudukModel extends Model
     public function jadwal() : HasMany {
         return $this->HasMany(JadwalModel::class, 'pembuat_id', 'id_penduduk');
     }
+
+    public function pengumuman() : HasMany {
+        return $this->HasMany(PengumumanModel::class, 'pembuat_id', 'id_penduduk');
+    }
 }
