@@ -5,6 +5,7 @@ namespace App\Http\Controllers\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\PermintaanSuratModel;
+use App\Models\DataSuratModel;
 use App\Models\PermintaanSuratSkModel;
 use App\Models\PermintaanSuratSkKematianModel;
 use Illuminate\Support\Facades\DB;
@@ -45,63 +46,75 @@ class SuratController extends Controller
         $tempatLahir = $ttl[0];
         $tanggalLahir = trim($ttl[1]); // Menghapus spasi di sekitar tanggal lahir jika ada
     
-        // Simpan data ke database tb_permintaansurat_sk
-        $permintaanSuratSkModel = PermintaanSuratSkModel::create([
-            'nama' => $validatedData['nama'],
-            'tempat_lahir' => $tempatLahir,
-            'tanggal_lahir' => $tanggalLahir,
-            'jenis_kelamin' => $validatedData['jk'],
-            'agama' => $validatedData['agama'],
-            'pekerjaan' => $validatedData['Pekerjaan'],
-            'no_ktp' => $validatedData['noKTP'],
-            'alamat' => $validatedData['alamat'],
-            'keperluan' => $validatedData['keperluan'],
-        ]);
-    
         // Mendapatkan peminta_id dari tabel tb_penduduk dengan mencocokkan noKTP dengan nik
-        $pemintaId = DB::table('tb_penduduk')
+        $penduduk = DB::table('tb_penduduk')
                         ->where('nik', $validatedData['noKTP'])
-                        ->value('id_penduduk');
+                        ->first();
+    
+        if (!$penduduk) {
+            return redirect()->back()->withErrors(['noKTP' => 'Data peminta tidak ditemukan.']);
+        }
+    
+        $pemintaId = $penduduk->id_penduduk;
     
         // Ambil tanggal hari ini dalam format "yyyy-mm-dd"
         $mintaTanggal = now()->format('Y-m-d');
-
-        $nik = $validatedData['noKTP'];
-        // Menghasilkan nama file
-        $dateTime = Carbon::now()->format('Y-m-d'); // Format tanggal dan waktu
-        $fileName = $nik . '-SuratSk-' . $dateTime . '.pdf';
-
+    
         // Simpan data ke database tb_permintaansurat
         $permintaanSurat = PermintaanSuratModel::create([
             'peminta_id' => $pemintaId,
             'minta_tanggal' => $mintaTanggal,
             'status' => 'selesai',
             'keperluan' => $validatedData['keperluan'],
-            'file' => $fileName, // Sementara diisi dengan default "surat_sk"
-            'jenisSurat' => 1, // Mengisi kolom jenisSurat dengan angka 1
+            'template_id' => 1, // Mengisi kolom template_id dengan nilai 1
         ]);
-
-        // Render PDF ke dalam memori
-        $html = view('Surat.surat_keterangan', compact('permintaanSurat'))->render();
-        $dompdf = new Dompdf();
-        $dompdf->loadHtml($html);
-        $dompdf->setPaper('A4', 'portrait');
-        $dompdf->render();
-
-        // Dapatkan konten PDF sebagai string
-        $pdfContent = $dompdf->output();
-
-        // Simpan string PDF ke dalam file di direktori 'assets/files/Surat/'
-        $filePath = public_path('assets/files/Surat/' . $fileName);
-        file_put_contents($filePath, $pdfContent);
     
-        // Mendapatkan data permintaan surat yang baru dibuat dari tb_permintaansurat_sk
-        $permintaanSurat = PermintaanSuratSkModel::latest()->first();
+        // Mendapatkan id kartu keluarga dari tb_penduduk
+        $idKartuKeluarga = $penduduk->id_kartuKeluarga;
     
-        // Redirect ke view 'Surat.surat_keterangan' dengan menyertakan variabel 'permintaanSurat'
-        return view('Surat.surat_keterangan', compact('permintaanSurat'));
+        // Mendapatkan nikeluarga dari tb_kartukeluarga berdasarkan id kartu keluarga
+        $keluarga = DB::table('tb_kartukeluarga')
+                        ->where('id_kartuKeluarga', $idKartuKeluarga)
+                        ->first();
+    
+        if (!$keluarga) {
+            return redirect()->back()->withErrors(['noKTP' => 'Data kartu keluarga tidak ditemukan.']);
+        }
+    
+        $nikeluarga = $keluarga->niKeluarga;
+    
+        // Simpan data ke database tb_datasurat, jika data input tidak ada, ambil dari tabel tb_penduduk
+        $dataSurat = DataSuratModel::create([
+            'permintaan_id' => $permintaanSurat->permintaan_id,
+            'tanggalLahir' => $tanggalLahir ?: $penduduk->tanggalLahir,
+            'jenisKelamin' => $validatedData['jk'] === 'Laki-laki' ? 'L' : 'P', // Modifikasi untuk menyesuaikan jenis kelamin
+            'statusNikah' => $penduduk->statusNikah, // Asumsi: diambil dari tb_penduduk jika tidak ada di input
+            'nik' => $validatedData['noKTP'],
+            'nikeluarga' => $nikeluarga,
+            'warganegara' => $penduduk->warganegara, // Asumsi: diambil dari tb_penduduk jika tidak ada di input
+            'agama' => $validatedData['agama'] ?: $penduduk->agama,
+            'pekerjaan' => $validatedData['Pekerjaan'] ?: $penduduk->pekerjaan,
+            'alamat' => $validatedData['alamat'] ?: $penduduk->alamat,
+            'tujuan_id' => $permintaanSurat->permintaan_id, // Mengisi kolom tujuan_id dengan permintaan_id
+        ]);
+    
+        // Ambil data tb_permintaansurat yang telah disimpan beserta nama dari tb_penduduk
+        $permintaanSurat = DB::table('tb_permintaansurat')
+                            ->join('tb_penduduk', 'tb_permintaansurat.peminta_id', '=', 'tb_penduduk.id_penduduk')
+                            ->where('tb_permintaansurat.permintaan_id', $permintaanSurat->permintaan_id)
+                            ->select('tb_permintaansurat.*', 'tb_penduduk.nama')
+                            ->first();
+    
+        // Ambil data tb_datasurat yang sesuai dengan permintaan_id
+        $dataSurat = DataSuratModel::where('permintaan_id', $permintaanSurat->permintaan_id)->first();
+    
+        // Redirect ke view 'Surat.surat_keterangan' dengan menyertakan variabel 'permintaanSurat' dan 'dataSurat'
+        return view('Surat.surat_keterangan', compact('permintaanSurat', 'dataSurat'));
     }
+    
+    
 
+    
     public function show($fileName)
     {
         // Ambil file PDF dari direktori 'assets/files/Surat/'

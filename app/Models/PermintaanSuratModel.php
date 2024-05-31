@@ -21,7 +21,7 @@ class PermintaanSuratModel extends Model
         'status',
         'keperluan',
         'file',
-        'jenisSurat' // Added the new column 'jenisSurat'
+        'template_id' // Removed 'jenisSurat' and added 'template_id'
     ];
 
     /**
