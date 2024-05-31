@@ -161,7 +161,7 @@
     @if (empty($dataArray['dataSearching']->toArray()))
     <div class="flex flex-col w-full justify-center items-center gap-4">
         <img src="{{ asset('assets/images/no-data.png') }}" alt="" class="w-[400px] h-[300px] object-cover">
-        <p class="text-2xl font-semibold text-green-900 dark:text-white">Tidak ada kegiatan</p>
+        <p class="text-2xl font-semibold text-green-900">Tidak ada kegiatan</p>
     </div>
     @else
     <div class="grid h-[90%] w-full grid-cols-3 gap-14">
@@ -318,7 +318,7 @@
         <div class="flex flex-col w-full justify-center items-center gap-4">
             <!-- <i class="fa-regular fa-circle-xmark text-2xl"></i> -->
             <img src="{{ asset('assets/images/no-data.png') }}" alt="" class="w-[400px] h-[300px] object-cover">
-            <p class="text-2xl font-semibold text-green-900">Tidak ada kegiatan pada {{ $dateFormat }}</p>
+            <p class="text-2xl font-semibold text-green-900 dark:text-white">Tidak ada kegiatan pada {{ $dateFormat }}</p>
         </div>
         @endif
         <div class="flex w-full max-h-[62vh] flex-wrap items-start justify-start px-10 py-10 overflow-y-auto  scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin">
