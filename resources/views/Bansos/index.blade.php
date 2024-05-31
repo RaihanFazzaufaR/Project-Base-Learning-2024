@@ -8,7 +8,7 @@
 </x-header>
 
 <div class="w-[100%] relative flex justify-center items-center">
-    <img src="{{ asset('assets/images/bansos-cover.jpg') }}" alt="" class="w-full dark:brightness-[85%]">
+    <img src="{{ asset('assets/images/bantuanSosial-cover.webp') }}" alt="" class="w-full dark:brightness-[85%]">
     <div
         class="bg-white/[0.73] w-[571px] dark:bg-[#24292d]/[0.73] h-[185px] z-10 absolute flex justify-center rounded-[105px] flex-col text-center shadow-2xl">
         <p class="text-[#2d5523] dark:text-white font-bold text-[36px]">Bantuan Sosial di RW 3</p>
@@ -124,7 +124,7 @@
 
                                 </div>
                                 <div
-                                    class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8  rounded-b border-[#B8B8B8] dark:bg-[#4f5966]">
+                                    class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8 border-t-2 rounded-b border-[#B8B8B8] dark:bg-[#4f5966]">
                                     <button @click="editModal = false"
                                         class="hover:text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center hover:bg-[#34662C] bg-white text-[#34662C] hover:scale-105 transition duration-300 ease-in-out dark:bg-white dark:hover:bg-white dark:text-[#2d5523]">
                                         Batal
