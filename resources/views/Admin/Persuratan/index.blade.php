@@ -1,147 +1,32 @@
 <x-admin-layout page="{{ $page }}" selected="{{ $selected }}">
     <div class="flex w-full h-15 justify-between items-center">
-        <div class="flex h-full w-fit gap-8 items-center justify-between">
-            <form class="w-[22vw]" method="post" action="{{ route('searchPenduduk') }}">
+        <div class="flex h-full w-full sm:w-fit gap-8 items-center justify-between">
+            <form class="lg:w-[22vw] w-[100%] sm:w-[300px]" action="{{ route('daftar-penduduk') }}">
                 @csrf
                 <div class="flex h-full items-center">
                     <div class="relative w-full">
-                        <input type="search" id="location-search" name="search"
-                            class="block py-2 px-4 h-11 w-full z-20 text-sm text-[#34662C] shadow-xl bg-gray-50 rounded-xl border border-[#34662C] focus:outline-none focus:border-[3px]"
-                            placeholder="Cari ..." required />
-                        <button type="submit"
-                            class="absolute top-0 end-0 h-11 py-2 px-4 text-sm font-medium text-white bg-[#57BA47] rounded-xl border border-[#34662C] hover:bg-[#336E2A] transition duration-300 ease-in-out">
-                            <i class="fa-solid fa-magnifying-glass text-2xl"></i>
+                        <input type="search" id="location-search" name="search" class="block py-2 px-4 h-11 w-full z-20 text-sm text-[#34662C] shadow-xl bg-gray-50 dark:border-[#57BA47] dark:bg-[#2F363E] dark:text-white rounded-xl border border-[#34662C] focus:outline-none focus:sm:border-[3px] focus:border-[2px]" placeholder="Cari ..." />
+                        <button type="submit" class="absolute top-0 end-0 h-11 py-2 px-4 text-sm font-medium text-white bg-[#57BA47] rounded-xl border border-[#34662C] hover:bg-[#336E2A] transition duration-300 ease-in-out">
+                            <i class="fa-solid fa-magnifying-glass text-xl sm:text-2xl"></i>
                             <span class="sr-only">Search</span>
                         </button>
                     </div>
                 </div>
             </form>
-            <div class="h-full w-fit py-2" x-data="{ 'filterModal': false }" @keydown.escape="filterModal = false">
-                <button @click="filterModal = true"
-                    class="flex w-29 bg-[#57BA47] h-full text-white justify-between items-center px-4 rounded-lg shadow-xl hover:bg-[#336E2A] hover:scale-105 transition duration-300 ease-in-out">
-                    <i class="fa-solid fa-sliders text-2xl"></i>
-                    <div class="text-xl font-semibold">Filter</div>
+            <div class="sm:h-full sm:w-fit sm:py-2 absolute sm:static" x-data="{ 'filterModal': false }" @keydown.escape="filterModal = false">
+                <button @click="filterModal = true" class="fixed sm:static flex bottom-5 animate-bounce sm:animate-none z-99 right-5 w-10 h-10 sm:w-29 bg-[#57BA47] sm:h-full text-white justify-center sm:justify-between items-center px-4 rounded-full sm:rounded-lg shadow-xl hover:bg-[#336E2A] hover:scale-105 transition duration-300 ease-in-out">
+                    <i class="fa-solid fa-sliders sm:text-2xl text-xl"></i>
+                    <div class="text-xl font-semibold hidden sm:block">Filter</div>
                 </button>
-
-                <!-- Main modal -->
-                <div x-show="filterModal" tabindex="-1" aria-hidden="true"
-                    class="flex overflow-hidden fixed top-0 right-0 left-0 z-999 justify-center items-center w-full md:inset-0 h-full">
-                    <div class="absolute z-999 bg-black/25 h-[100vh] w-full"></div>
-                    <div class="relative z-[1000] p-4 w-fit max-w-3xl max-h-[700px]" @click.away="filterModal = false"
-                        x-transition:enter="motion-safe:ease-out duration-300"
-                        x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
-                        <!-- Modal content -->
-                        <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                            <!-- Modal header -->
-                            <div
-                                class="flex h-[75px] items-center justify-between px-4 md:px-5 border-b-2 rounded-t border-[#B8B8B8]">
-                                <h3 class="text-xl font-bold text-[#34662C] dark:text-white">
-                                    Filter Data Penduduk
-                                </h3>
-                                <button type="button"
-                                    class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                    @click="filterModal = false">
-                                    <i class="fa-solid fa-xmark text-xl"></i>
-                                    <span class="sr-only">Close modal</span>
-                                </button>
-                            </div>
-                            <!-- Modal body -->
-                            <form class="w-full h-full text-[#34662C]" method="POST"
-                                action="{{ route('filterPenduduk') }}">
-                                @csrf
-                                <div
-                                    class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto rounded-b-xl">
-                                    <div class="col-span-2 sm:col-span-1">
-                                        <label for="agama" class="block mb-2 text-sm font-bold">Agama</label>
-                                        <select id="agama" name="agama"
-                                            class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                                            <option selected="">Pilih Agama</option>
-                                            <option value="islam">Islam</option>
-                                            <option value="katolik">Katolik</option>
-                                            <option value="kristen">Kristen</option>
-                                            <option value="buddha">Buddha</option>
-                                            <option value="khonghucu">Khonghucu</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-span-2 sm:col-span-1">
-                                        <label for="statusPenduduk" class="block mb-2 text-sm font-bold ">Status
-                                            Penduduk</label>
-                                        <select id="statusPenduduk" name="statusPenduduk"
-                                            class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                                            <option selected="">Pilih Status Penduduk</option>
-                                            <option value="penduduk">Penduduk</option>
-                                            <option value="RT">RT</option>
-                                            <option value="RW">RW</option>
-                                            <option value="penduduk tidak tetap">Penduduk Tidak Tetap</option>
-                                            <option value="orang luar">Orang Luar</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-span-2 sm:col-span-1">
-                                        <label for="statusPernikahan" class="block mb-2 text-sm font-bold ">Status
-                                            Pernikahan</label>
-                                        <select id="statusPernikahan" name="statusPernikahan"
-                                            class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                                            <option selected="">Pilih Status Pernikahan</option>
-                                            <option value="belum">Belum Menikah</option>
-                                            <option value="sudah">Sudah Menikah</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-span-2 sm:col-span-1">
-                                        <label for="kewarganegaraan"
-                                            class="block mb-2 text-sm font-bold">Kewarganegaraan</label>
-                                        <select id="kewarganegaraan" name="kewarganegaraan"
-                                            class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                                            <option selected="">Pilih Kewarganegaraan</option>
-                                            <option value="WNI">Indonesia</option>
-                                            <option value="WNA">Luar</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-span-2 sm:col-span-1">
-                                        <label for="jenisKelamin" class="block mb-2 text-sm font-bold ">Jenis
-                                            Kelamin</label>
-                                        <select id="jenisKelamin" name="jenisKelamin"
-                                            class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                                            <option selected="">Pilih Jenis Kelamin</option>
-                                            <option value="L">Laki-Laki</option>
-                                            <option value="P">Perempuan</option>
-                                        </select>
-                                    </div>
-                                    <div class="col-span-2 sm:col-span-1">
-                                        <label for="rt" class="block mb-2 text-sm font-bold ">RT</label>
-                                        <select id="rt" name="rt"
-                                            class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                                            <option selected="">Pilih RT</option>
-                                            <option value="01">01</option>
-                                            <option value="02">02</option>
-                                            <option value="03">03</option>
-                                            <option value="04">04</option>
-                                            <option value="05">05</option>
-                                        </select>
-                                    </div>
-                                </div>
-                                <div
-                                    class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8]">
-                                    <button type="submit" @click="filterModal = false"
-                                        class="hover:text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center hover:bg-[#34662C] bg-white text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
-                                        Batal
-                                    </button>
-                                    <button type="submit" @click="filterModal = false"
-                                        class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
-                                        Filter
-                                    </button>
-                                </div>
-                            </form>
-                        </div>
-                    </div>
-                </div>
+                <x-admin.kependudukan.modal-filter-penduduk />
             </div>
         </div>
     </div>
 
     <div class="mt-10">
-        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
-            <table class="w-full text-center">
-                <thead class="text-sm font-bold text-[#34662C] bg-[#91DF7D] dark:bg-gray-700 dark:text-gray-400">
+        <div class="relative overflow-x-auto shadow-md rounded-lg">
+            <table class="w-[650px] sm:w-full text-center table-fixed relative">
+                <thead class="sm:text-sm text-xs font-bold text-[#34662C] bg-[#91DF7D] dark:bg-[#428238] dark:text-white">
                     <tr>
                         <th scope="col" class="px-6 py- w-[20%]">
                             Pemohon
@@ -163,79 +48,189 @@
                 <tbody>
                 <tbody>
                     @foreach ($permintaanSurat as $permintaan)
-                        <tr
-                            class="bg-white border-b text-sm font-medium text-[#7F7F7F] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            <td class="px-6 py-4">
-                                {{ $permintaan->nama }}
-                            </td>
-                            <td class="px-6 py-4">
-                                {{ \Carbon\Carbon::parse($permintaan->minta_tanggal)->format('d-m-Y') }}
-                            </td>
-                            <td class="px-6 py-4">
-                                {{ $permintaan->jenisSurat }}
-                            </td>
-                            <td class="px-6 py-4" x-data="{ 'selected': 'false' }">
-                                <a href="#" @click.prevent="selected = (selected === 'true' ? '':'true')">
-                                    {{ $permintaan->keperluan }}
-                                    <span class="font-semibold"
-                                        :class="(selected === 'true') ? 'hidden' : 'inline-block'">...</span>
-                                    <span
-                                        :class="(selected === 'true') ? 'inline-block' : 'hidden'">{{ $permintaan->keperluan }}</span>
-                                </a>
-                            </td>
-                            <td>
-                                <div class="px-6 py-4 flex items-center justify-center h-full">
-                                    <div x-data="{ 'detailModal': false }" @keydown.escape="detailModal = false">
-                                        <button @click="detailModal = true"
-                                            class="flex justify-center items-center gap-2 w-fit text-white bg-[#446DFF] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#273E91] hover:scale-105 transition-all">
-                                            <i class="fa-solid fa-circle-info"></i>
-                                            <div>Detail</div>
-                                        </button>
-                                        <!-- Detail modal -->
-                                        <div x-show="detailModal" tabindex="-1" aria-hidden="true"
-                                            class="flex overflow-hidden fixed top-0 right-0 left-0 z-999 justify-center items-center w-full md:inset-0 h-full">
-                                            <div class="absolute z-999 bg-black/25 h-[100vh] w-full"></div>
-                                            <div class="relative z-[1000] p-4 w-fit max-w-3xl max-h-[700px]"
-                                                @click.away="detailModal = false"
-                                                x-transition:enter="motion-safe:ease-out duration-300"
-                                                x-transition:enter-start="opacity-0 scale-90"
-                                                x-transition:enter-end="opacity-100 scale-100">
-                                                <!-- Modal content -->
-                                                <div class="relative bg-white rounded-lg shadow dark:bg-gray-700">
-                                                    <!-- Modal header -->
-                                                    <div
-                                                        class="flex h-[75px] items-center justify-between px-4 md:px-5 border-b-2 rounded-t border-[#B8B8B8]">
-                                                        <h3 class="text-xl font-bold text-[#34662C] dark:text-white">
-                                                            Detail Data UMKM
-                                                        </h3>
-                                                        <button type="button"
-                                                            class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
-                                                            @click="detailModal = false">
-                                                            <i class="fa-solid fa-xmark text-xl"></i>
-                                                            <span class="sr-only">Close modal</span>
+                    <tr class="bg-white border-b text-sm font-medium text-[#7F7F7F] dark:bg-[#2F363E] dark:text-white dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                        <td class="px-6 py-4">
+                            {{ $permintaan->nama }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ \Carbon\Carbon::parse($permintaan->minta_tanggal)->format('d-m-Y') }}
+                        </td>
+                        <td class="px-6 py-4">
+                            {{ $permintaan->jenisSurat }}
+                        </td>
+                        <td class="px-6 py-4" x-data="{ 'selected': 'false' }">
+                            <a href="#" @click.prevent="selected = (selected === 'true' ? '':'true')">
+                                {{ $permintaan->keperluan }}
+                                <span class="font-semibold" :class="(selected === 'true') ? 'hidden' : 'inline-block'">...</span>
+                                <span :class="(selected === 'true') ? 'inline-block' : 'hidden'">{{ $permintaan->keperluan }}</span>
+                            </a>
+                        </td>
+                        <td>
+                            <div class="px-6 py-4 flex items-center justify-center h-full">
+                                <div x-data="{ 'detailModal': false }" @keydown.escape="detailModal = false">
+                                    <button @click="detailModal = true" class="flex justify-center items-center gap-2 w-fit text-white bg-[#446DFF]  rounded-full sm:rounded-lg shadow-xl font-bold h-full sm:px-3 sm:py-2 p-2 hover:bg-[#273E91] hover:scale-105 transition-all">
+                                        <i class="fa-solid fa-circle-info"></i>
+                                        <div class="hidden sm:inline-flex">Detail</div>
+                                    </button>
+                                    <!-- Detail modal -->
+                                    <!-- <div x-show="detailModal" tabindex="-1" aria-hidden="true" class="flex overflow-hidden fixed top-0 right-0 left-0 z-999 justify-center sm:items-center items-end w-full md:inset-0 h-full">
+                                        <div class="absolute z-999 bg-black/25 h-[100vh] w-full"></div>
+                                        <div class="relative z-[1000] sm:p-4 w-full sm:w-fit sm:max-w-3xl max-h-[700px]" @click.away="detailModal = false" x-transition:enter="motion-safe:ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
+                                            <div class="relative bg-white rounded-lg shadow dark:bg-[#2F363E]">
+                                                <div class="flex h-[75px] items-center justify-between px-4 md:px-5 border-b-2 rounded-t border-[#B8B8B8]">
+                                                    <h3 class="text-xl font-bold text-[#34662C] dark:text-white">
+                                                        Detail Surat Keterangan Pindah
+                                                    </h3>
+                                                    <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" @click="detailModal = false">
+                                                        <i class="fa-solid fa-xmark text-xl"></i>
+                                                        <span class="sr-only">Close modal</span>
+                                                    </button>
+                                                </div>
+                                                <div class="w-full h-full text-[#34662C] dark:text-white text-left">
+                                                    <div class="p-4 d:p-5 grid w-full sm:w-150 gap-4 grid-cols-2 max-h-[400px] sm:max-h-[450px] overflow-y-auto scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin rounded-b-xl">
+                                                        <div class="col-span-2 relative sm:col-span-1">
+                                                            <label class="block mb-2 text-sm font-bold">NIK</label>
+                                                            <input name="nik" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" readonly>
+                                                        </div>
+                                                        <div class="col-span-2 sm:col-span-1">
+                                                            <label class="block mb-2 text-sm font-bold">Nama</label>
+                                                            <input name="nama" id="nama" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" readonly>
+                                                        </div>
+                                                        <div class="col-span-2">
+                                                            <label class="block mb-2 text-sm font-bold">Alasan Pindah</label>
+                                                            <textarea name="alasanPindah" rows="4" id="alasanPindah" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" readonly></textarea>
+                                                        </div>
+                                                        <div class="col-span-2 sm:col-span-1">
+                                                            <label class="block mb-2 text-sm font-bold">Jenis Kelamin</label>
+                                                            <input name="jenisKelamin" id="jenisKelamin" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" readonly>
+                                                        </div>
+                                                        <div class="col-span-2 sm:col-span-1">
+                                                            <label class="block mb-2 text-sm font-bold">Tempat, Tanggal Lahir</label>
+                                                            <input name="ttl" id="ttl" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" readonly>
+                                                        </div>
+                                                        <div class="col-span-2 sm:col-span-1">
+                                                            <label class="block mb-2 text-sm font-bold">Kewarganegaraan / Agama</label>
+                                                            <input name="kewarganaan&agama" id="kewarganaan&agama" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" readonly>
+                                                        </div>
+                                                        <div class="col-span-2 sm:col-span-1">
+                                                            <label class="block mb-2 text-sm font-bold">Pekerjaan</label>
+                                                            <input name="pekerjaan" id="pekerjaan" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" readonly>
+                                                        </div>
+                                                        <div class="col-span-2 sm:col-span-1">
+                                                            <label class="block mb-2 text-sm font-bold">Status Pernikahan</label>
+                                                            <input name="statusPernikahan" id="statusPernikahan" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" readonly>
+                                                        </div>
+                                                        <div class="col-span-2 sm:col-span-1">
+                                                            <label class="block mb-2 text-sm font-bold">Jumlah Keluarga yang Pindah</label>
+                                                            <input name="jmlKeluarga" id="jmlKeluarga" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" readonly>
+                                                        </div>
+                                                        <div class="col-span-2">
+                                                            <label class="block mb-2 text-sm font-bold">Keluarga yang Pindah</label>
+                                                            <input name="keluargaPindah" id="keluargaPindah" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" readonly>
+                                                        </div>
+                                                        <div class="col-span-2">
+                                                            <label class="block mb-2 text-sm font-bold">Alamat Asal</label>
+                                                            <textarea name="alamatAsal" rows="4" id="alamatAsal" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" readonly></textarea>
+                                                        </div>
+                                                        <div class="col-span-2">
+                                                            <label class="block mb-2 text-sm font-bold">Alamat Pindah</label>
+                                                            <textarea name="alamatPindah" rows="4" id="alamatPindah" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" readonly></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex items-center justify-center sm:justify-end bg-[#F2F2F2] dark:bg-[#3e4852] gap-4 sm:h-[75px] h-[65px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8] dark:border-gray-500 rounded-b-md">
+                                                        <button @click="detailModal = false" class="hover:text-white inline-flex px-30 sm:px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center hover:bg-[#34662C] bg-white text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
+                                                            Keluar
                                                         </button>
                                                     </div>
-                                                    <!-- Modal body -->
-                                                    <div class="w-full h-full text-[#34662C] text-left">
-                                                        <div
-                                                            class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto rounded-b-xl">
-
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <div x-show="detailModal" tabindex="-1" aria-hidden="true" class="flex overflow-hidden fixed top-0 right-0 left-0 z-999 justify-center sm:items-center items-end w-full md:inset-0 h-full">
+                                        <div class="absolute z-999 bg-black/25 h-[100vh] w-full"></div>
+                                        <div class="relative z-[1000] sm:p-4 w-full sm:w-fit sm:max-w-3xl max-h-[700px]" @click.away="detailModal = false" x-transition:enter="motion-safe:ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
+                                            <div class="relative bg-white rounded-lg shadow dark:bg-[#2F363E]">
+                                                <div class="flex h-[75px] items-center justify-between px-4 md:px-5 border-b-2 rounded-t border-[#B8B8B8]">
+                                                    <h3 class="text-xl font-bold text-[#34662C] dark:text-white">
+                                                        Detail Surat Keterangan Kematian
+                                                    </h3>
+                                                    <button type="button" class="text-gray-400 bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white" @click="detailModal = false">
+                                                        <i class="fa-solid fa-xmark text-xl"></i>
+                                                        <span class="sr-only">Close modal</span>
+                                                    </button>
+                                                </div>
+                                                <div class="w-full h-full text-[#34662C] dark:text-white text-left">
+                                                    <div class="p-4 d:p-5 grid w-full sm:w-150 gap-4 grid-cols-2 max-h-[400px] sm:max-h-[450px] overflow-y-auto scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin rounded-b-xl">
+                                                        <div class="col-span-2 relative sm:col-span-1">
+                                                            <label class="block mb-2 text-sm font-bold">NIK</label>
+                                                            <input name="nik" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" readonly>
                                                         </div>
-                                                        <div
-                                                            class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8]">
-                                                            <button @click="detailModal = false"
-                                                                class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
-                                                                Keluar
-                                                            </button>
+                                                        <div class="col-span-2 relative sm:col-span-1">
+                                                            <label class="block mb-2 text-sm font-bold">No KK</label>
+                                                            <input name="nkk" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" readonly>
                                                         </div>
+                                                        <div class="col-span-2">
+                                                            <label class="block mb-2 text-sm font-bold">Nama</label>
+                                                            <input name="nama" id="nama" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" readonly>
+                                                        </div>
+                                                        <div class="col-span-2 relative sm:col-span-1">
+                                                            <label class="block mb-2 text-sm font-bold">Usia</label>
+                                                            <input name="usia" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" readonly>
+                                                        </div>
+                                                        <div class="col-span-2 sm:col-span-1">
+                                                            <label class="block mb-2 text-sm font-bold">Jenis Kelamin</label>
+                                                            <input name="jenisKelamin" id="jenisKelamin" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" readonly>
+                                                        </div>
+                                                        <div class="col-span-2 sm:col-span-1">
+                                                            <label class="block mb-2 text-sm font-bold">Tempat, Tanggal Lahir</label>
+                                                            <input name="ttl" id="ttl" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" readonly>
+                                                        </div>
+                                                        <div class="col-span-2 sm:col-span-1">
+                                                            <label class="block mb-2 text-sm font-bold">Kewarganegaraan / Agama</label>
+                                                            <input name="kewarganaan&agama" id="kewarganaan&agama" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" readonly>
+                                                        </div>
+                                                        <div class="col-span-2 sm:col-span-1">
+                                                            <label class="block mb-2 text-sm font-bold">Pekerjaan</label>
+                                                            <input name="pekerjaan" id="pekerjaan" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" readonly>
+                                                        </div>
+                                                        <div class="col-span-2 sm:col-span-1">
+                                                            <label class="block mb-2 text-sm font-bold">Tanggal dan Waktu</label>
+                                                            <input name="tgl&waktu" id="tgl&waktu" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" readonly>
+                                                        </div>
+                                                        <div class="col-span-2">
+                                                            <label class="block mb-2 text-sm font-bold">Alamat</label>
+                                                            <textarea name="alamat" rows="4" id="alamat" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" readonly></textarea>
+                                                        </div>
+                                                        <div class="col-span-2 sm:col-span-1">
+                                                            <label class="block mb-2 text-sm font-bold">Nama Pelapor</label>
+                                                            <input name="namaPelapor" id="namaPelapor" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" readonly>
+                                                        </div>
+                                                        <div class="col-span-2 sm:col-span-1">
+                                                            <label class="block mb-2 text-sm font-bold">Hubungan Pelapor</label>
+                                                            <input name="hubPelapor" id="hubPelapor" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" readonly>
+                                                        </div>
+                                                        <div class="col-span-2">
+                                                            <label class="block mb-2 text-sm font-bold">Penyebab Kematian</label>
+                                                            <textarea name="penyebab" rows="4" id="penyebab" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" readonly></textarea>
+                                                        </div>
+                                                        <div class="col-span-2">
+                                                            <label class="block mb-2 text-sm font-bold">Tempat Meninggal</label>
+                                                            <textarea name="tempatMeninggal" rows="4" id="tempatMeninggal" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" readonly></textarea>
+                                                        </div>
+                                                    </div>
+                                                    <div class="flex items-center justify-center sm:justify-end bg-[#F2F2F2] dark:bg-[#3e4852] gap-4 sm:h-[75px] h-[65px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8] dark:border-gray-500 rounded-b-md">
+                                                        <button @click="detailModal = false" class="hover:text-white inline-flex px-30 sm:px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center hover:bg-[#34662C] bg-white text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
+                                                            Keluar
+                                                        </button>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </td>
-                        </tr>
+                            </div>
+                        </td>
+                    </tr>
                     @endforeach
                 </tbody>
 
