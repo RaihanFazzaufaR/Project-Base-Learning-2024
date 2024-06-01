@@ -62,24 +62,6 @@
                 </div>
                 <form action="{{ route('storeSkKematian') }}" method="post" class="gap-4 flex flex-col h-fit">
                     @csrf
-                    {{-- Nama --}}
-                    <div class="gap-2 flex w-full h-fit">
-                        <div class="basis-1/4 h-full ps-8  flex my-auto items-center">
-                            <label for="nama"
-                                class="text-lg font-bold items-center flex w-full  text-[#2d5523] dark:text-white">Nama
-                            </label>
-                        </div>
-                        <div class="basis-3/4 h-full flex items-center relative">
-                            <input id="nama" name="nama" value="{{ Auth::user()->penduduk->nama }}"
-                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                            {{-- <input type="hidden" id="id_penduduk" name="id_penduduk"
-                                                    value="{{ Auth::user()->penduduk->id_penduduk }}"> --}}
-                            <div
-                                class="absolute inset-y-0 right-0 flex items-center pr-2 text-sm text-[#34662C] dark:text-gray-400">
-                                <span>(Nama)</span>
-                            </div>
-                        </div>
-                    </div>
                     {{-- NIK --}}
                     <div class="gap-2 flex w-full h-fit">
                         <div class="basis-1/4 h-full ps-8 flex my-auto items-center">
@@ -87,7 +69,7 @@
                                 class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">NIK</label>
                         </div>
                         <div class="basis-3/4 h-full flex items-center relative">
-                            <input id="nik" name="nik" value="{{ Auth::user()->penduduk->nik }}"
+                            <input id="nik" name="nik" value="{{ Auth::user()->penduduk->nik }}" readonly
                                 class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 pr-10 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             <div
                                 class="absolute inset-y-0 right-0 flex items-center pr-2 text-sm text-[#34662C] dark:text-gray-400">
@@ -95,7 +77,6 @@
                             </div>
                         </div>
                     </div>
-
                     {{-- Nomor KK --}}
                     <div class="gap-2 flex w-full h-fit mt-4">
                         <div class="basis-1/4 h-full ps-8 flex my-auto items-center">
@@ -105,153 +86,12 @@
                         </div>
                         <div class="basis-3/4 h-full flex items-center relative">
                             <input id="nomor_kk" name="nomor_kk"
-                                value="{{ Auth::user()->penduduk->kartuKeluarga->niKeluarga }}"
+                                value="{{ Auth::user()->penduduk->kartuKeluarga->niKeluarga }}" readonly
                                 class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 pr-10 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             <div
                                 class="absolute inset-y-0 right-0 flex items-center pr-2 text-sm text-[#34662C] dark:text-gray-400">
                                 <span>(No.KK)</span>
                             </div>
-                        </div>
-                    </div>
-                    {{-- Tempat dan Tanggal Lahir --}}
-                    <div class="gap-2 flex w-full h-fit">
-                        <div class="basis-1/4 h-full ps-8  flex my-auto items-center">
-                            <label for="ttl"
-                                class="text-lg font-bold items-center flex w-full  text-[#2d5523] dark:text-white">Tempat,
-                                Tanggal Lahir</label>
-                        </div>
-                        <div class="basis-3/4 h-full flex items-center relative">
-                            <input id="ttl" name="ttl"
-                                value="{{ Auth::user()->penduduk->tempatLahir }}, {{ Auth::user()->penduduk->tanggalLahir }}"
-                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                            <div
-                                class="absolute inset-y-0 right-0 flex items-center pr-2 text-sm text-[#34662C] dark:text-gray-400">
-                                <span>(Tempat, Tanggal lahir)</span>
-                            </div>
-                        </div>
-                    </div>
-                    {{-- Usia --}}
-                    <div class="gap-2 flex w-full h-fit">
-                        <div class="basis-1/4 h-full ps-8 flex my-auto items-center">
-                            <label for="usia"
-                                class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">Usia</label>
-                        </div>
-                        <div class="basis-3/4 h-full flex items-center relative">
-                            <?php
-                            // Hitung usia
-                            $tanggal_lahir = new DateTime(Auth::user()->penduduk->tanggalLahir);
-                            $tanggal_sekarang = new DateTime();
-                            $usia = $tanggal_sekarang->diff($tanggal_lahir)->y;
-                            ?>
-                            <input id="usia" name="usia" value="{{ $usia }}"
-                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                            <div
-                                class="absolute inset-y-0 right-0 flex items-center pr-2 text-sm text-[#34662C] dark:text-gray-400">
-                                <span>(Usia)</span>
-                            </div>
-                        </div>
-                    </div>
-                    {{-- Jenis Kelamin --}}
-                    <div class="gap-2 flex w-full h-fit">
-                        <div class="basis-1/4 h-full ps-8  flex my-auto items-center">
-                            <label for="jk"
-                                class="text-lg font-bold items-center flex w-full  text-[#2d5523] dark:text-white">Jenis
-                                Kelamin</label>
-                        </div>
-                        <div class="basis-3/4 h-full flex items-center relative">
-                            <input id="jk" name="jk"
-                                value="{{ Auth::user()->penduduk->jenisKelamin === 'L' ? 'Laki-laki' : 'Perempuan' }}"
-                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                            <div
-                                class="absolute inset-y-0 right-0 flex items-center pr-2 text-sm text-[#34662C] dark:text-gray-400">
-                                <span>(Jenis Kelamin)</span>
-                            </div>
-                        </div>
-                    </div>
-                    {{-- Agama --}}
-                    <div class="gap-2 flex w-full h-fit">
-                        <div class="basis-1/4 h-full ps-8  flex my-auto items-center">
-                            <label for="agama"
-                                class="text-lg font-bold items-center flex w-full  text-[#2d5523] dark:text-white">Agama</label>
-                        </div>
-                        <div class="basis-3/4 h-full flex items-center relative">
-                            <input id="agama" name="agama" value="{{ Auth::user()->penduduk->agama }}"
-                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                            <div
-                                class="absolute inset-y-0 right-0 flex items-center pr-2 text-sm text-[#34662C] dark:text-gray-400">
-                                <span>(Agama)</span>
-                            </div>
-                        </div>
-                    </div>
-                    {{-- Pekerjaan --}}
-                    <div class="gap-2 flex w-full h-fit">
-                        <div class="basis-1/4 h-full ps-8  flex my-auto items-center">
-                            <label for="pekerjaan"
-                                class="text-lg font-bold items-center flex w-full  text-[#2d5523] dark:text-white">Pekerjaan</label>
-                        </div>
-                        <div class="basis-3/4 h-full flex items-center relative">
-                            <input id="pekerjaan" name="pekerjaan" value="{{ Auth::user()->penduduk->pekerjaan }}"
-                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                            <div
-                                class="absolute inset-y-0 right-0 flex items-center pr-2 text-sm text-[#34662C] dark:text-gray-400">
-                                <span>(Pekerjaan)</span>
-                            </div>
-                        </div>
-                    </div>
-                    {{-- Kewarganegaraan --}}
-                    <div class="gap-2 flex w-full h-fit">
-                        <div class="basis-1/4 h-full ps-8  flex my-auto items-center">
-                            <label for="warganegara"
-                                class="text-lg font-bold items-center flex w-full  text-[#2d5523] dark:text-white">Warganegara</label>
-                        </div>
-                        <div class="basis-3/4 h-full flex items-center relative">
-                            <input id="warganegara" name="warganegara"
-                                value="{{ Auth::user()->penduduk->warganegara }}"
-                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                            <div
-                                class="absolute inset-y-0 right-0 flex items-center pr-2 text-sm text-[#34662C] dark:text-gray-400">
-                                <span>(Warganegara)</span>
-                            </div>
-                        </div>
-                    </div>
-                    {{-- Alamat --}}
-                    <div class="gap-2 flex w-full h-fit">
-                        <div class="basis-1/4 h-full ps-8  flex ">
-                            <label for="alamat"
-                                class="text-lg font-bold  w-full text-[#2d5523] dark:text-white">Alamat</label>
-                        </div>
-                        <div class="basis-3/4 h-full flex items-center">
-                            <input id="alamat" name="alamat" cols="19" rows="3"
-                                value="{{ Auth::user()->penduduk->kartuKeluarga->alamat }}"
-                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
-                        </div>
-                    </div>
-                    {{-- Penyebab Kematian --}}
-                    <div class="gap-2 flex w-full h-fit">
-                        <div class="basis-1/4 h-full ps-8  flex my-auto items-center">
-                            <label for="penyebab_kematian"
-                                class="text-lg font-bold items-center flex w-full  text-[#2d5523] dark:text-white">Penyebab
-                                Kematian</label>
-                        </div>
-                        <div class="basis-3/4 h-full flex items-center">
-                            <input id="penyebab_kematian" name="penyebab_kematian"
-                                placeholder="Masukkan Penyebab Kematian"
-                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                            {{-- <input type="hidden" id="id_penduduk" name="id_penduduk" value="{{ Auth::user()->penduduk->id_penduduk }}"> --}}
-                        </div>
-                    </div>
-                    {{-- Tempat Meninggal --}}
-                    <div class="gap-2 flex w-full h-fit">
-                        <div class="basis-1/4 h-full ps-8  flex my-auto items-center">
-                            <label for="tempat_meninggal"
-                                class="text-lg font-bold items-center flex w-full  text-[#2d5523] dark:text-white">Tempat
-                                Meninggal</label>
-                        </div>
-                        <div class="basis-3/4 h-full flex items-center">
-                            <input id="tempat_meninggal" name="tempat_meninggal"
-                                placeholder="Masukkan Tempat Meninggal"
-                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                            {{-- <input type="hidden" id="id_penduduk" name="id_penduduk" value="{{ Auth::user()->penduduk->id_penduduk }}"> --}}
                         </div>
                     </div>
                     {{-- Pelapor --}}
@@ -281,6 +121,33 @@
                             {{-- <input type="hidden" id="id_penduduk" name="id_penduduk" value="{{ Auth::user()->penduduk->id_penduduk }}"> --}}
                         </div>
                     </div>
+                    {{-- Penyebab Kematian --}}
+                    <div class="gap-2 flex w-full h-fit">
+                        <div class="basis-1/4 h-full ps-8  flex my-auto items-center">
+                            <label for="penyebab_kematian"
+                                class="text-lg font-bold items-center flex w-full  text-[#2d5523] dark:text-white">Penyebab
+                                Kematian</label>
+                        </div>
+                        <div class="basis-3/4 h-full flex items-center">
+                            <input id="penyebab_kematian" name="penyebab_kematian"
+                                placeholder="Masukkan Penyebab Kematian"
+                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            {{-- <input type="hidden" id="id_penduduk" name="id_penduduk" value="{{ Auth::user()->penduduk->id_penduduk }}"> --}}
+                        </div>
+                    </div>
+                    {{-- Tempat Meninggal --}}
+                    <div class="gap-2 flex w-full h-fit">
+                        <div class="basis-1/4 h-full ps-8  flex my-auto items-center">
+                            <label for="tempat_meninggal"
+                                class="text-lg font-bold items-center flex w-full  text-[#2d5523] dark:text-white">Tempat
+                                Meninggal</label>
+                        </div>
+                        <div class="basis-3/4 h-full flex items-center">
+                            <input id="tempat_meninggal" name="tempat_meninggal" placeholder="Masukkan Tempat Meninggal"
+                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            {{-- <input type="hidden" id="id_penduduk" name="id_penduduk" value="{{ Auth::user()->penduduk->id_penduduk }}"> --}}
+                        </div>
+                    </div>
                     {{-- Tanggal dan Waktu Meninggal --}}
                     <div class="gap-2 flex w-full h-fit">
                         <div class="basis-1/4 h-full ps-8  flex my-auto items-center">
@@ -294,7 +161,6 @@
                             {{-- <input type="hidden" id="id_penduduk" name="id_penduduk" value="{{ Auth::user()->penduduk->id_penduduk }}"> --}}
                         </div>
                     </div>
-
                     <div class="flex w-full justify-end items-center ps-8 pt-7">
                         <button type="submit"
                             class="text-white items-center bg-[#2d5523] hover:bg-[#e2a229] hover:text-[#2d5523] focus:ring-4 text-center w-full focus:outline-none focus:ring-blue-300  rounded-lg text-lg font-bold  py-3  dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 ">

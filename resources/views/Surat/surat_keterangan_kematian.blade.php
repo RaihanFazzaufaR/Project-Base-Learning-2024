@@ -55,7 +55,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        {{ $permintaanSuratKematian->nik }} / {{ $permintaanSuratKematian->nomor_kk }}
+                        {{ $dataSuratKematian->nik }} / {{ $dataSuratKematian->nomor_kk }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -68,8 +68,8 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        {{ $permintaanSuratKematian->tempat_lahir }},
-                        {{ $permintaanSuratKematian->tanggal_lahir->format('d - m - Y') }}
+                        {{ $dataSuratKematian->tempatLahir }},
+                        {{ $dataSuratKematian->tanggalLahir->format('d - m - Y') }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -82,7 +82,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        {{ $permintaanSuratKematian->usia }} Tahun
+                        {{ $dataSuratKematian->usia }} Tahun
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -95,7 +95,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        {{ $permintaanSuratKematian->jenis_kelamin }}
+                        {{ $dataSuratKematian->jenisKelamin === 'L' ? 'Laki-laki' : 'Perempuan' }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -108,7 +108,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        {{ $permintaanSuratKematian->agama }}
+                        {{ $dataSuratKematian->agama }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -121,7 +121,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        {{ $permintaanSuratKematian->pekerjaan }}
+                        {{ $dataSuratKematian->pekerjaan }}
                     </div>
                 </div>
 
@@ -135,7 +135,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        {{ $permintaanSuratKematian->warganegara }}
+                        {{ $dataSuratKematian->warganegara }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -148,13 +148,13 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        {{ $permintaanSuratKematian->alamat }}
+                        {{ $dataSuratKematian->alamat }}
                     </div>
                 </div>
             </div>
             <p class="indent-10 pt-3">Adalah benar warga kami dilingkungan RT. 01 RW. 03 Jl. Pahlawan No. 187 Desa
                 Bumiayu, Kecamatan Kedungkandang, Kota Malang yang telah <span class="font-bold">MENINGGAL DUNIA</span>
-                dikarenakan <span class="font-bold">{{ $permintaanSuratKematian->penyebab_kematian }}</span> pada:</p>
+                dikarenakan <span class="font-bold">{{ $dataSuratKematian->penyebab_kematian }}</span> pada:</p>
 
             <div class="w-full my-0 pt-3 h-fit">
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -167,7 +167,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        {{ $permintaanSuratKematian->tanggal_wafat->format('l') }}
+                        {{ $dataSuratKematian->tanggal_wafat->format('l') }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -180,7 +180,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        {{ $permintaanSuratKematian->tanggal_wafat->format('d - m - Y') }}
+                        {{ $dataSuratKematian->tanggal_wafat->format('d - m - Y') }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -193,7 +193,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        {{ $permintaanSuratKematian->tanggal_wafat->format('H : i : s') }}
+                        {{ $dataSuratKematian->tanggal_wafat->format('H : i : s') }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -206,7 +206,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        {{ $permintaanSuratKematian->tempat_meninggal }}
+                        {{ $dataSuratKematian->tempat_meninggal }}
                     </div>
                 </div>
             </div>
@@ -222,7 +222,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        {{ $permintaanSuratKematian->nama_pelapor }}
+                        {{ $dataSuratKematian->nama_pelapor }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -235,7 +235,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        {{ $permintaanSuratKematian->hubungan_pelapor }}
+                        {{ $dataSuratKematian->hubungan_pelapor }}
                     </div>
                 </div>
             </div>
