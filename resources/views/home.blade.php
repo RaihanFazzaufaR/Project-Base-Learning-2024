@@ -63,7 +63,7 @@
                 <div class="font-bold text-3xl">Kependudukan</div>
                 <div class="w-[85%] h-[35%] text-center font-normal text-lg">Informasi mengenai daftar warga yang tinggal di RW 3</div>
             </div>
-            <div class="absolute bg-[#C2D0EC]/80 dark:dark:bg-[#30373F]/80 h-[45%] w-full rounded-t-[60px] bottom-0 z-10  justify-center items-center flex  transition ease-in-out duration-500 translate-y-[110%] group-hover:-translate-y-[0%]">
+            <div class="absolute bg-[#C2D0EC]/80 dark:dark:bg-[#a6b2ca]/80 h-[45%] w-full rounded-t-[60px] bottom-0 z-10  justify-center items-center flex  transition ease-in-out duration-500 translate-y-[110%] group-hover:-translate-y-[0%]">
                 <a href="{{ route('penduduk') }}" class="bg-white text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm shadow-md border border-[#1C4F0F] hover:bg-yellow-500 cursor-pointer">Lihat Selengkapnya</a>
             </div>
         </div>
