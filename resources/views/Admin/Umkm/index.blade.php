@@ -447,7 +447,7 @@
                                                                                         <img src={{ asset('assets/images/' . $umkm->foto) }} alt="" class="w-full h-full rounded-xl shadow-xl border-4 border-white ">
                                                                                     </div>
                                                                                     <div class="flex items-center justify-center sm:justify-end bg-[#F2F2F2] dark:bg-[#3e4852] gap-4 sm:h-[75px] h-[65px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8] dark:border-gray-500 rounded-b-md">
-                                                                                        <button type="button" @click="fotoModal = false" class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
+                                                                                        <button type="button" @click="fotoModal = false" class="text-white inline-flex px-30 sm:px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
                                                                                             Keluar
                                                                                         </button>
                                                                                     </div>
@@ -473,14 +473,14 @@
 
                                 <div x-data="{ 'editModal': false }" @keydown.escape="editModal = false">
                                     @if (Auth::user()->penduduk->jabatan === 'Ketua RW')
-                                        <button @click="editModal = true" class="flex justify-center items-center gap-2 w-fit text-white bg-[#FFDE68] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#B39C49] hover:scale-105 transition-all">
+                                        <button @click="editModal = true" class="flex justify-center items-center gap-2 w-fit text-white bg-[#FFDE68] rounded-full sm:rounded-lg shadow-xl font-bold h-full sm:px-3 px-2 py-2 hover:bg-[#B39C49] hover:scale-105 transition-all">
                                             <i class="fa-solid fa-pen-to-square"></i>
-                                            <div>Edit</div>
+                                            <div class="hidden sm:inline-flex">Edit</div>
                                         </button>
                                     @else
-                                        <button @click="editModal = true" disabled class="flex justify-center items-center gap-2 w-fit text-white bg-[#FFDE68] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#B39C49] hover:scale-105 transition-all bg-opacity-50 cursor-not-allowed">
+                                    <button @click="editModal = true" disabled class="flex justify-center items-center gap-2 w-fit text-white bg-[#FFDE68] rounded-full sm:rounded-lg shadow-xl font-bold h-full sm:px-3 px-2 py-2 hover:bg-[#B39C49] hover:scale-105 transition-all">
                                             <i class="fa-solid fa-pen-to-square"></i>
-                                            <div>Edit</div>
+                                            <div class="hidden sm:inline-flex">Edit</div>
                                         </button>
                                     @endif
                                     <!-- Detail modal -->
@@ -648,7 +648,7 @@
                                                                                         <img src="{{ asset('assets/images/'.$umkm->foto) }}" alt="" class="w-full h-full rounded-xl shadow-xl border-4 border-white">
                                                                                     </div>
                                                                                     <div class="flex items-center justify-center sm:justify-end bg-[#F2F2F2] dark:bg-[#3e4852] gap-4 sm:h-[75px] h-[65px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8] dark:border-gray-500 rounded-b-md">
-                                                                                        <button type="button" @click="fotoModal = false" class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
+                                                                                        <button type="button" @click="fotoModal = false" class="text-white inline-flex px-30 sm:px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
                                                                                             Keluar
                                                                                         </button>
                                                                                     </div>
@@ -680,14 +680,14 @@
                                     {!! method_field('DELETE') !!}
 
                                     @if (Auth::user()->penduduk->jabatan === 'Ketua RW')
-                                        <button type="submit" class="flex justify-center items-center gap-2 w-fit text-white bg-[#FF5E5E] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#B34242] hover:scale-105 transition-all">
+                                        <button type="submit" class="flex justify-center items-center gap-2 w-fit text-white bg-[#FF5E5E] rounded-full sm:rounded-lg shadow-xl font-bold h-full sm:px-3 px-2 py-2 hover:bg-[#B34242] hover:scale-105 transition-all">
                                             <i class="fa-solid fa-trash-can"></i>
-                                            <div>Hapus</div>
+                                            <div class="hidden sm:inline-flex">Hapus</div>
                                         </button>
                                     @else
-                                        <button type="submit" class="flex justify-center items-center gap-2 w-fit text-white bg-[#FF5E5E] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#B34242] hover:scale-105 transition-all bg-opacity-50 cursor-not-allowed">
+                                        <button type="button" disabled class="flex justify-center items-center gap-2 w-fit text-white bg-[#FF5E5E] rounded-full sm:rounded-lg shadow-xl font-bold h-full sm:px-3 px-2 py-2 hover:bg-[#B34242] hover:scale-105 transition-all bg-opacity-50 cursor-not-allowed">
                                             <i class="fa-solid fa-trash-can"></i>
-                                            <div>Hapus</div>
+                                            <div class="hidden sm:inline-flex">Hapus</div>
                                         </button>
                                     @endif
                                 </form>
