@@ -8,7 +8,7 @@
 </x-header>
 
 <div class="w-[100%] relative lg:flex justify-center items-center hidden ">
-    <img src="{{ asset('assets/images/bg-index-UMKM.png') }}" alt="" class="w-full dark:brightness-[85%]">
+    <img src="{{ asset('assets/images/bg-index-UMKM.webp') }}" alt="" class="w-full dark:brightness-[85%]">
     <div
         class="bg-white/[0.73] dark:bg-[#24292d]/[0.73]  w-[571px] h-[185px] z-10 absolute flex justify-center rounded-[105px] flex-col text-center shadow-2xl">
         <p class="text-[#2d5523] dark:text-white font-bold text-[36px]">UMKM DI RW 3</p>
@@ -71,10 +71,21 @@
                 </div>
                 <div class="basis-1/3 hidden lg:flex justify-end">
                     <div class="" x-data="{ 'editModal': false }" @keydown.escape="editModal = false">
-                        <button @click="editModal = true"
+                        @if (Auth::check())
+                            <button @click="editModal = true"
+                                class="w-auto shadow-2xl h-[57px] text-[20px] px-[24px] bg-yellow-500  dark:text-white dark:hover:text-white dark:shadow-xl dark:shadow-gray-900 items-center flex rounded-[15px]  font-bold text-[#2d5523] hover:bg-[#E2A229] hover:text-white active:bg-yellow-500 justify-center  transition ease-in-out duration-300 hover:scale-105">
+                                Ajukan UMKM Anda
+                            </button>
+                        @else 
+                            <a href="{{ route('login') }}"
                             class="w-auto shadow-2xl h-[57px] text-[20px] px-[24px] bg-yellow-500  dark:text-white dark:hover:text-white dark:shadow-xl dark:shadow-gray-900 items-center flex rounded-[15px]  font-bold text-[#2d5523] hover:bg-[#E2A229] hover:text-white active:bg-yellow-500 justify-center  transition ease-in-out duration-300 hover:scale-105">
                             Ajukan UMKM Anda
-                        </button>
+                            </a>
+                        @endif
+                        {{-- <button @click="editModal = true"
+                            class="w-auto shadow-2xl h-[57px] text-[20px] px-[24px] bg-yellow-500  dark:text-white dark:hover:text-white dark:shadow-xl dark:shadow-gray-900 items-center flex rounded-[15px]  font-bold text-[#2d5523] hover:bg-[#E2A229] hover:text-white active:bg-yellow-500 justify-center  transition ease-in-out duration-300 hover:scale-105">
+                            Ajukan UMKM Anda
+                        </button> --}}
                         <div x-show="editModal" x-cloak tabindex="-1" aria-hidden="true"
                             class="flex overflow-hidden fixed top-0 right-0 left-0 z-999  justify-center items-center w-full md:inset-0 h-full">
                             <div class="absolute z-999 bg-black/25 h-[100vh] w-full"></div>
@@ -90,13 +101,19 @@
                                         class="flex w-full items-center justify-between px-4 lg:px-5 border-b-2 rounded-t mb-3 p-2 dark:border-white border-[#2d5523]">
                                         <h3 class="text-xl font-bold text-[#34662C] dark:text-white">
                                             Ajukan UMKM
-                                        </h3>
-                                        <button type="button"
+                                        </h3>                                        
+                                            <button type="button"
+                                            class=" bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
+                                                @click="editModal = false">
+                                                <i class="fa-solid fa-xmark text-[#2d5523] dark:text-white font-extrabold text-xl"></i>
+                                            </button>
+                                                               
+                                        {{-- <button type="button"
                                             class=" bg-transparent hover:bg-gray-200 hover:text-gray-900 rounded-lg text-sm w-8 h-8 ms-auto inline-flex justify-center items-center dark:hover:bg-gray-600 dark:hover:text-white"
                                             @click="editModal = false">
                                             <i
                                                 class="fa-solid fa-xmark text-[#2d5523] dark:text-white font-extrabold text-xl"></i>
-                                        </button>
+                                        </button> --}}
                                     </div>
                                     <form class="p-4 lg:p-5 w-full flex flex-col bg-white dark:bg-[#30373F]"
                                         method="POST" action="{{ route('umkm.store') }}" enctype="multipart/form-data">
@@ -111,11 +128,13 @@
                                                             Pemilik</label>
                                                     </div>
                                                     <div class="basis-3/4 h-full flex items-center">
-                                                        <input id="nama_pemilik" name="nama_pemilik"
+                                                        @if (Auth::check())
+                                                            <input id="nama_pemilik" name="nama_pemilik"
                                                             value="{{ Auth::user()->penduduk->nama }}" readonly
                                                             class="bg-white  border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-[#505c6a] dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
-                                                        <input type="hidden" id="id_penduduk" name="id_penduduk"
+                                                            <input type="hidden" id="id_penduduk" name="id_penduduk"
                                                             value="{{ Auth::user()->penduduk->id_penduduk }}">
+                                                        @endif
                                                     </div>
 
                                                 </div>
@@ -554,11 +573,14 @@
                                             <label
                                                 class="block mb-2 text-base font-medium text-[#2d5523] dark:text-white">Nama
                                                 Pemilik</label>
-                                            <input type="text"id="nama_pemilik" name="nama_pemilik"
+                                                @if (Auth::check())
+                                                    <input type="text"id="nama_pemilik" name="nama_pemilik"
                                                 class="bg-gray-50 border text-base border-[#518742] dark:bg-[#505c6a] dark:border-gray-500 text-[#2f5724] rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5  dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                                 readonly value="{{ Auth::user()->penduduk->nama }}">
                                             <input type="hidden" id="id_penduduk" name="id_penduduk"
-                                                value="{{ Auth::user()->penduduk->id_penduduk }}">
+                                                value="{{ Auth::user()->penduduk->id_penduduk }}">x
+                                                @endif
+                                            
                                         </div>
                                     </div>
                                     <div class="grid gap-4 sm:grid-cols-2 pb-3 sm:gap-6">

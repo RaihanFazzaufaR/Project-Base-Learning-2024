@@ -107,7 +107,7 @@
             @if (Auth::check())
             <button type="button" class="flex text-sm bg-gray-800 rounded-full md:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
                 <span class="sr-only">Open user menu</span>
-                <img class="w-9 h-9 rounded-full" src="{{ asset('assets/images/userProfile.png') }}" alt="user photo">
+                <img src="{{ asset('assets/images/UserAccount/' . (auth()->user()->penduduk->userAccount->image ?? 'default.jpg')) }}" class="h-9 w-9 rounded-full object-cover" />
             </button>
             <!-- Dropdown menu -->
             <div class="z-50 hidden !my-3 !-ml-5 text-base list-none bg-white divide-y divide-gray-100 rounded-lg overflow-hidden shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">

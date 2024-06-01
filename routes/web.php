@@ -43,7 +43,12 @@ Route::group(['prefix' => 'login'], function () {
     Route::post('/changing-password', [LoginController::class, 'updatePassword'])->middleware('guest')->name('password.update');
     Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 });
-
+Route::group(['prefix' => 'umkm'], function () {
+    Route::get('/', [UmkmController::class, 'index'])->name('umkm');
+    Route::get('/category/{category}', [UmkmController::class, 'getDataByCategory'])->name('umkm.category');
+    Route::get('/search', [UmkmController::class, 'search'])->name('umkm.search');
+    Route::get('/detail/{umkm_id}', [UmkmController::class, 'getDetailUmkm'])->name('umkm.detail');
+});
 Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['loginCheck:3']], function () {
         // Route Penduduk
@@ -69,11 +74,6 @@ Route::group(['middleware' => ['auth']], function () {
             Route::post('/aduanku/store', [AduanController::class, 'storeAduan'])->name('aduan.store');
         });
 
-        //Route Jadwal
-        Route::group(['prefix' => 'jadwal'], function () {
-            Route::get('/', [JadwalController::class, 'index'])->name('jadwal');
-            Route::post('/', [JadwalController::class, 'ajuanKegiatan'])->name('ajuanKegiatan');
-        });
 
         //Route Surat
         Route::group(['prefix' => 'surat'], function () {
@@ -102,19 +102,20 @@ Route::group(['middleware' => ['auth']], function () {
         //     Route::get('/suratku', [SuratController::class, 'suratku'])->name('suratku');
         // });
 
-        Route::group(['middleware' => ['auth']], function () {
-            Route::group(['prefix' => 'umkm'], function () {
-                Route::get('/', [UmkmController::class, 'index'])->name('umkm');
-                Route::get('/category/{category}', [UmkmController::class, 'getDataByCategory'])->name('umkm.category');
-                Route::get('/search', [UmkmController::class, 'search'])->name('umkm.search');
-                Route::get('/detail/{umkm_id}', [UmkmController::class, 'getDetailUmkm'])->name('umkm.detail');
-                Route::post('/edit/{umkm_id}', [UmkmController::class, 'editUmkm'])->name('umkm.edit');
-                Route::post('/store', [UmkmController::class, 'storeUmkm'])->name('umkm.store');
-                Route::get('/umkmku/{id_penduduk}', [UmkmController::class, 'umkmku'])->name('umkmku');
-                Route::delete('/delete/{umkm_id}', [UmkmController::class, 'destroyUmkm'])->name('umkm.destroy');
-                Route::post('/cancel/{umkm_id}', [UmkmController::class, 'cancelPengajuan'])->name('umkm.cancel');
-                Route::get('/search-umkm', [UmkmController::class, 'umkmkuSearch'])->name('umkmku.search');
-            });
+
+        Route::group(['prefix' => 'umkm'], function () {
+            // Route::get('/', [UmkmController::class, 'index'])->name('umkm');
+            // Route::get('/category/{category}', [UmkmController::class, 'getDataByCategory'])->name('umkm.category');
+            // Route::get('/search', [UmkmController::class, 'search'])->name('umkm.search');
+            // Route::get('/detail/{umkm_id}', [UmkmController::class, 'getDetailUmkm'])->name('umkm.detail');
+
+            Route::post('/edit/{umkm_id}', [UmkmController::class, 'editUmkm'])->name('umkm.edit');
+            Route::post('/store', [UmkmController::class, 'storeUmkm'])->name('umkm.store');
+            Route::get('/umkmku/{id_penduduk}', [UmkmController::class, 'umkmku'])->name('umkmku');
+            Route::delete('/delete/{umkm_id}', [UmkmController::class, 'destroyUmkm'])->name('umkm.destroy');
+            Route::post('/cancel/{umkm_id}', [UmkmController::class, 'cancelPengajuan'])->name('umkm.cancel');
+            Route::get('/search-umkm', [UmkmController::class, 'umkmkuSearch'])->name('umkmku.search');
+
         });
     });
 
@@ -223,4 +224,9 @@ Route::group(['prefix' => 'profil'], function () {
 Route::group(['prefix' => 'profilku'], function () {
     Route::get('/', [ProfilkuController::class, 'index'])->name('profilku');
     Route::post('/', [ProfilkuController::class, 'updateAccount'])->name('update');
+});
+//Route Jadwal
+Route::group(['prefix' => 'jadwal'], function () {
+    Route::get('/', [JadwalController::class, 'index'])->name('jadwal');
+    Route::post('/', [JadwalController::class, 'ajuanKegiatan'])->name('ajuanKegiatan');
 });
