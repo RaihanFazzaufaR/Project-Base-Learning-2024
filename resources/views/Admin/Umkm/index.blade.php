@@ -194,10 +194,8 @@
                                     <textarea name="deskripsi" rows="4" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" placeholder="Masukkan Deskripsi Singkat ..."></textarea>
                                 </div>
                                 <div class="col-span-2">
-                                    <div class="flex w-full justify-start items-center gap-4 pb-2 h-fit">
-                                        <label for="foto" class="text-sm font-bold">Foto UMKM</label>
-                                    </div>
-                                    <input type="file" name="foto" id="foto" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white">
+                                    <label for="foto" class="text-sm font-bold mb-2">Foto UMKM</label>
+                                    <input type="file" name="foto" id="foto" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full placeholder-[#34662C] dark:placeholder-white">
                                 </div>
                             </div>
                             <div class="flex items-center justify-center sm:justify-end bg-[#F2F2F2] dark:bg-[#3e4852] gap-4 sm:h-[75px] h-[65px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8] dark:border-gray-500 rounded-b-md">
@@ -473,15 +471,15 @@
 
                                 <div x-data="{ 'editModal': false }" @keydown.escape="editModal = false">
                                     @if (Auth::user()->penduduk->jabatan === 'Ketua RW')
-                                        <button @click="editModal = true" class="flex justify-center items-center gap-2 w-fit text-white bg-[#FFDE68] rounded-full sm:rounded-lg shadow-xl font-bold h-full sm:px-3 px-2 py-2 hover:bg-[#B39C49] hover:scale-105 transition-all">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                            <div class="hidden sm:inline-flex">Edit</div>
-                                        </button>
+                                    <button @click="editModal = true" class="flex justify-center items-center gap-2 w-fit text-white bg-[#FFDE68] rounded-full sm:rounded-lg shadow-xl font-bold h-full sm:px-3 px-2 py-2 hover:bg-[#B39C49] hover:scale-105 transition-all">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                        <div class="hidden sm:inline-flex">Edit</div>
+                                    </button>
                                     @else
                                     <button @click="editModal = true" disabled class="flex justify-center items-center gap-2 w-fit text-white bg-[#FFDE68] rounded-full sm:rounded-lg shadow-xl font-bold h-full sm:px-3 px-2 py-2 hover:bg-[#B39C49] hover:scale-105 transition-all">
-                                            <i class="fa-solid fa-pen-to-square"></i>
-                                            <div class="hidden sm:inline-flex">Edit</div>
-                                        </button>
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                        <div class="hidden sm:inline-flex">Edit</div>
+                                    </button>
                                     @endif
                                     <!-- Detail modal -->
                                     <div x-show="editModal" tabindex="-1" aria-hidden="true" class="flex overflow-hidden fixed top-0 right-0 left-0 z-999 justify-center sm:items-center items-end w-full md:inset-0 h-full">
@@ -658,7 +656,7 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
-                                                            <input type="file" name="foto" id="foto" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white">
+                                                            <input type="file" name="foto" id="foto" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full placeholder-[#34662C] dark:placeholder-white">
                                                         </div>
                                                     </div>
                                                     <div class="flex items-center justify-center sm:justify-end bg-[#F2F2F2] dark:bg-[#3e4852] gap-4 sm:h-[75px] h-[65px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8] dark:border-gray-500 rounded-b-md">
@@ -680,15 +678,15 @@
                                     {!! method_field('DELETE') !!}
 
                                     @if (Auth::user()->penduduk->jabatan === 'Ketua RW')
-                                        <button type="submit" class="flex justify-center items-center gap-2 w-fit text-white bg-[#FF5E5E] rounded-full sm:rounded-lg shadow-xl font-bold h-full sm:px-3 px-2 py-2 hover:bg-[#B34242] hover:scale-105 transition-all">
-                                            <i class="fa-solid fa-trash-can"></i>
-                                            <div class="hidden sm:inline-flex">Hapus</div>
-                                        </button>
+                                    <button type="submit" class="flex justify-center items-center gap-2 w-fit text-white bg-[#FF5E5E] rounded-full sm:rounded-lg shadow-xl font-bold h-full sm:px-3 px-2 py-2 hover:bg-[#B34242] hover:scale-105 transition-all">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                        <div class="hidden sm:inline-flex">Hapus</div>
+                                    </button>
                                     @else
-                                        <button type="button" disabled class="flex justify-center items-center gap-2 w-fit text-white bg-[#FF5E5E] rounded-full sm:rounded-lg shadow-xl font-bold h-full sm:px-3 px-2 py-2 hover:bg-[#B34242] hover:scale-105 transition-all bg-opacity-50 cursor-not-allowed">
-                                            <i class="fa-solid fa-trash-can"></i>
-                                            <div class="hidden sm:inline-flex">Hapus</div>
-                                        </button>
+                                    <button type="button" disabled class="flex justify-center items-center gap-2 w-fit text-white bg-[#FF5E5E] rounded-full sm:rounded-lg shadow-xl font-bold h-full sm:px-3 px-2 py-2 hover:bg-[#B34242] hover:scale-105 transition-all bg-opacity-50 cursor-not-allowed">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                        <div class="hidden sm:inline-flex">Hapus</div>
+                                    </button>
                                     @endif
                                 </form>
                             </div>

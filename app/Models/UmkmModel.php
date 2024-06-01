@@ -25,7 +25,9 @@ class UmkmModel extends Model
         'status',
         'foto',
         'tanggal_disetujui',
-
+        'alasan_rw',
+        'alasan_warga',
+        'tanggal_ditolak'
     ];
 
     public function penduduk(): BelongsTo

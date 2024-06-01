@@ -36,7 +36,7 @@ class UmkmController extends Controller
         $categories = KategoriModel::all();
         $umkms = UmkmModel::select('tb_umkm.*', 'tb_penduduk.nama as pemilik')
             ->join('tb_penduduk', 'tb_umkm.id_pemilik', '=', 'tb_penduduk.id_penduduk')
-            ->where('status', 'diterima')
+            ->where('status', 'diproses')
             ->paginate(10);
         return view('Admin.Umkm.ajuan-umkm', compact('umkms', 'page', 'selected', 'umkmKategoris', 'categories'));
     }
@@ -49,12 +49,12 @@ class UmkmController extends Controller
         // return $request->input('alasan');
         try {
 
-            $umkm_id = $request->input('umkm_id');
+            $umkm_id = $request->umkm_id;
 
             $umkm = UmkmModel::findOrFail($umkm_id);
             $umkm->update([
                 'status' => 'ditolak',
-                'alasan_rw' => $request->input('alasan'),
+                'alasan_rw' => $request->alasan,
                 'tanggal_ditolak' => now(),
             ]);
 
