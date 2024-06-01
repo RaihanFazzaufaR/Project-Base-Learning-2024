@@ -1,4 +1,4 @@
-<nav class="sticky top-0 z-[99] bg-white border-gray-200 dark:bg-gray-900 border-b-2 h-fit" id="navbar" data-aos="fade-down" data-aos-duration="1000" data-aos-once="true" style="transition: all 0.5s">
+<nav class="sticky top-0 z-[99] bg-white border-gray-200 dark:bg-[#2F363E] border-b-2 h-fit" id="navbar" data-aos="fade-down" data-aos-duration="1000" data-aos-once="true" style="transition: all 0.5s">
     <div class="w-full flex flex-wrap items-center justify-between lg:px-12 px-10 py-4">
         <a href="{{ url('/') }}" class="flex items-center space-x-3">
             <img src="{{ asset('assets/images/logo.png') }}" class="h-12" alt="Logo" />
@@ -6,9 +6,9 @@
                 <p>ꦱꦶꦫꦮ</p>
             </div>
         </a>
-        <div class="flex items-center lg:order-2 space-x-3 lg:space-x-0 lg:gap-5" x-data="{'open': true}">
+        <div class="flex items-center lg:order-2 space-x-3 lg:space-x-0 lg:gap-3" x-data="{'open': true}">
             <!-- notification -->
-            <button id="dropdownNotificationButton" data-dropdown-toggle="dropdownNotification" class="relative inline-flex items-center text-sm font-medium text-center text-gray-500 hover:text-gray-900 focus:outline-none dark:hover:text-white dark:text-gray-400" type="button" @click="open = false">
+            <button id="dropdownNotificationButton" data-dropdown-toggle="dropdownNotification" class="relative inline-flex items-center text-sm font-medium text-center text-gray-500 hover:text-gray-900 focus:outline-none dark:hover:bg-gray-600 hover:bg-slate-200 dark:text-white p-2 rounded-full" type="button" @click="open = false">
                 <svg class="lg:w-6 lg:h-6 w-8 h-8" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 14 20">
                     <path d="M12.133 10.632v-1.8A5.406 5.406 0 0 0 7.979 3.57.946.946 0 0 0 8 3.464V1.1a1 1 0 0 0-2 0v2.364a.946.946 0 0 0 .021.106 5.406 5.406 0 0 0-4.154 5.262v1.8C1.867 13.018 0 13.614 0 14.807 0 15.4 0 16 .538 16h12.924C14 16 14 15.4 14 14.807c0-1.193-1.867-1.789-1.867-4.175ZM3.823 17a3.453 3.453 0 0 0 6.354 0H3.823Z" />
                 </svg>
@@ -18,16 +18,16 @@
             </button>
 
             <!-- Dropdown menu -->
-            <div id="dropdownNotification" class="z-20 hidden w-full max-h-70 overflow-y-auto !absolute !-left-10 !top-5 max-w-sm bg-white divide-y divide-gray-100 rounded-lg shadow dark:bg-gray-800 dark:divide-gray-700" aria-labelledby="dropdownNotificationButton">
-                <div class="block px-4 py-2 font-medium text-center text-gray-700 rounded-t-lg bg-gray-50 dark:bg-gray-800 dark:text-white">
-                    Notifications
+            <div id="dropdownNotification" class="z-20 hidden w-full max-h-70 overflow-y-auto !absolute !-left-10 !top-5 max-w-sm bg-white divide-y divide-gray-400 rounded-lg shadow dark:bg-[#2F363E] dark:divide-gray-300" aria-labelledby="dropdownNotificationButton">
+                <div class="block px-4 py-2 font-medium text-center text-gray-700 rounded-t-lg bg-gray-50 dark:bg-[#2F363E] dark:text-white">
+                    Notifikasi
                 </div>
                 <div class="divide-y divide-gray-100 dark:divide-gray-700" x-data="{ selected: 'normal' }">
                     @if (empty($messages->toArray()))
                     <div class="flex flex-col w-full h-[80%] justify-center items-center gap-4 py-5">
                         <!-- <i class="fa-regular fa-circle-xmark text-2xl"></i> -->
                         <img src="{{ asset('assets/images/no-data.png') }}" alt="" class="w-[200px] h-[100px] object-cover">
-                        <p class="text-base font-semibold text-green-900">Tidak ada pesan</p>
+                        <p class="text-base font-semibold text-green-900 dark:text-white">Tidak ada pesan</p>
                     </div>
                     @endif
                     <?php $i = 0; ?>
@@ -106,10 +106,10 @@
                 <img src="{{ asset('assets/images/UserAccount/' . (auth()->user()->penduduk->userAccount->image ?? 'default.jpg')) }}" class="h-11 w-11 rounded-full object-cover" />
             </button>
             <!-- Dropdown menu -->
-            <div class="z-50 hidden !my-3 !-ml-5 text-base list-none bg-white divide-y divide-gray-100 rounded-lg overflow-hidden shadow dark:bg-gray-700 dark:divide-gray-600" id="user-dropdown">
+            <div class="z-50 hidden !my-3 !-ml-5 text-base list-none bg-white divide-y divide-gray-400 rounded-lg overflow-hidden shadow dark:bg-[#2F363E] dark:divide-gray-300" id="user-dropdown">
                 <div class="px-4 py-3">
-                    <span class="block text-sm font-semibold text-gray-900">{{ Auth::user()->penduduk->nama }}</span>
-                    <span class="block text-sm font-medium  text-gray-500 truncate dark:text-gray-400">
+                    <span class="block text-sm font-semibold text-gray-900 dark:text-white">{{ Auth::user()->penduduk->nama }}</span>
+                    <span class="block text-sm font-medium  text-gray-500 truncate dark:text-gray-300">
                         {{ Auth::user()->penduduk->jabatan !== 'Tidak ada' ? Auth::user()->penduduk->jabatan : 'Penduduk' }}
                         {{ Auth::user()->penduduk->jabatan !== 'Tidak Ada' ? Auth::user()->penduduk->kartuKeluarga->rt : 'RT ' . Auth::user()->penduduk->kartuKeluarga->rt }}
                     </span>
@@ -154,26 +154,26 @@
             </button>
         </div>
         <div class="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1" id="navbar-user">
-            <ul class="flex flex-col font-bold p-4 lg:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 lg:space-x-8 rtl:space-x-reverse lg:flex-row lg:mt-0 lg:border-0 lg:bg-transparent dark:bg-gray-800 lg:dark:bg-transparent dark:border-gray-700">
+            <ul class="flex flex-col font-bold p-4 lg:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 lg:space-x-8 rtl:space-x-reverse lg:flex-row lg:mt-0 lg:border-0 lg:bg-transparent dark:bg-[#2F363E] lg:dark:bg-transparent dark:border-gray-400">
                 <li>
-                    <a href="{{ url('/') }}" class="block py-2 px-3 text-white bg-blue-700 rounded lg:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:relative group {{ $menu === 'Home' ? 'lg:text-[#1C4F0F]' : 'lg:text-gray-500' }}">
+                    <a href="{{ url('/') }}" class="block py-2 px-3 text-gray-900 dark:text-white hover:bg-gray-100 dark:hover:bg-gray-400  rounded lg:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:hover:dark:text-[#57BA47] lg:relative group {{ $menu === 'Home' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F]' : 'lg:text-gray-500 lg:dark:text-white' }}">
                         Home
-                        <div class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F]  group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'Home' ? '' : 'lg:scale-x-0' }}">
+                        <div class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F] lg:dark:bg-[#57BA47] group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'Home' ? '' : 'lg:scale-x-0' }}">
                         </div>
                     </a>
                 </li>
                 <li>
-                    <button id="dropdownUmkmLink" data-dropdown-toggle="dropdownUmkm" class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:relative group {{ $menu === 'UMKM' || $menu === 'UMKMKU' ? 'lg:text-[#1C4F0F]' : 'lg:text-gray-500' }}">
+                    <button id="dropdownUmkmLink" data-dropdown-toggle="dropdownUmkm" class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded dark:text-white hover:bg-gray-100 dark:hover:bg-gray-400 lg:hover:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:hover:dark:text-[#57BA47] lg:relative group {{ $menu === 'UMKM' || $menu === 'UMKMKU' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F]' : 'lg:text-gray-500 lg:dark:text-white' }}">
                         UMKM
                         <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
                         </svg>
-                        <div class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F] -bottom-1 group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'UMKM' || $menu === 'UMKMKU' ? '' : 'lg:scale-x-0' }}">
+                        <div class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F] lg:dark:bg-[#57BA47] -bottom-1 group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'UMKM' || $menu === 'UMKMKU' ? '' : 'lg:scale-x-0' }}">
                         </div>
                     </button>
                     <!-- Dropdown menu -->
-                    <div id="dropdownUmkm" class="z-10 hidden font-normal overflow-hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-                        <ul class="text-sm font-semibold text-gray-700 dark:text-gray-400 " aria-labelledby="dropdownLargeButton">
+                    <div id="dropdownUmkm" class="z-10 hidden font-normal overflow-hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-[#2F363E] dark:divide-gray-300">
+                        <ul class="text-sm font-semibold text-gray-700 dark:text-gray-300 " aria-labelledby="dropdownLargeButton">
                             <li>
                                 <a href="{{ route('umkm') }}" class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">UMKM
                                     Di RW 3</a>
@@ -189,31 +189,31 @@
                     </div>
                 </li>
                 <li>
-                    <a href="{{ route('jadwal') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:relative group {{ $menu === 'Kegiatan' ? 'lg:text-[#1C4F0F]' : 'lg:text-gray-500' }}">
+                    <a href="{{ route('jadwal') }}" class="block py-2 px-3 text-gray-900 rounded dark:text-white hover:bg-gray-100 dark:hover:bg-gray-400 lg:hover:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:hover:dark:text-[#57BA47] lg:relative group {{ $menu === 'Kegiatan' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F]' : 'lg:text-gray-500 lg:dark:text-white' }}">
                         Kegiatan
-                        <div class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F]  group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'Kegiatan' ? '' : 'lg:scale-x-0' }}">
+                        <div class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F] lg:dark:bg-[#57BA47]  group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'Kegiatan' ? '' : 'lg:scale-x-0' }}">
                         </div>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('penduduk') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:relative group {{ $menu === 'Penduduk' ? 'lg:text-[#1C4F0F]' : 'lg:text-gray-500' }}">
+                    <a href="{{ route('penduduk') }}" class="block py-2 px-3 text-gray-900 rounded dark:text-white hover:bg-gray-100 dark:hover:bg-gray-400 lg:hover:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:hover:dark:text-[#57BA47] lg:relative group {{ $menu === 'Penduduk' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F]' : 'lg:text-gray-500 lg:dark:text-white' }}">
                         Penduduk
-                        <div class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F]  group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'Penduduk' ? '' : 'lg:scale-x-0' }}">
+                        <div class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F] lg:dark:bg-[#57BA47] group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'Penduduk' ? '' : 'lg:scale-x-0' }}">
                         </div>
                     </a>
                 </li>
                 <li>
-                    <button id="dropdownSuratLink" data-dropdown-toggle="dropdownSurat" class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:relative group {{ $menu === 'Surat' || $menu === 'Suratku' ? 'lg:text-[#1C4F0F]' : 'lg:text-gray-500' }}">
+                    <button id="dropdownSuratLink" data-dropdown-toggle="dropdownSurat" class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded dark:text-white hover:bg-gray-100 dark:hover:bg-gray-400 lg:hover:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:hover:dark:text-[#57BA47] lg:relative group {{ $menu === 'Surat' || $menu === 'Suratku' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F]' : 'lg:text-gray-500 lg:dark:text-white' }}">
                         Surat
                         <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
                         </svg>
-                        <div class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F] -bottom-1 group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'Surat' || $menu === 'Suratku' ? '' : 'lg:scale-x-0' }}">
+                        <div class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F] lg:dark:bg-[#57BA47] -bottom-1 group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'Surat' || $menu === 'Suratku' ? '' : 'lg:scale-x-0' }}">
                         </div>
                     </button>
                     <!-- Dropdown menu -->
-                    <div id="dropdownSurat" class="z-10 hidden font-normal overflow-hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-                        <ul class="text-sm font-semibold text-gray-700 dark:text-gray-400 " aria-labelledby="dropdownLargeButton">
+                    <div id="dropdownSurat" class="z-10 hidden font-normal overflow-hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-[#2F363E] dark:divide-gray-300">
+                        <ul class="text-sm font-semibold text-gray-700 dark:text-gray-300 " aria-labelledby="dropdownLargeButton">
                             <li>
                                 <a href="{{ route('surat') }}" class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">Surat</a>
                             </li>
@@ -228,24 +228,24 @@
                     </div>
                 </li>
                 <li>
-                    <a href="{{ route('bansos') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:relative group {{ $menu === 'Bansos' ? 'lg:text-[#1C4F0F]' : 'lg:text-gray-500' }}">
+                    <a href="{{ route('bansos') }}" class="block py-2 px-3 text-gray-900 rounded dark:text-white hover:bg-gray-100 dark:hover:bg-gray-400 lg:hover:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:hover:dark:text-[#57BA47] lg:relative group {{ $menu === 'Bansos' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F]' : 'lg:text-gray-500 lg:dark:text-white' }}">
                         Bansos
-                        <div class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F]  group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'Bansos' ? '' : 'lg:scale-x-0' }}">
+                        <div class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F] lg:dark:bg-[#57BA47] group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'Bansos' ? '' : 'lg:scale-x-0' }}">
                         </div>
                     </a>
                 </li>
                 <li>
-                    <button id="dropdownAduanLink" data-dropdown-toggle="dropdownAduan" class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:relative group {{ $menu === 'Aduan' || $menu === 'Aduan-Ku' ? 'lg:text-[#1C4F0F]' : 'lg:text-gray-500' }}">
+                    <button id="dropdownAduanLink" data-dropdown-toggle="dropdownAduan" class="flex items-center justify-between w-full py-2 px-3 text-gray-900 rounded dark:text-white hover:bg-gray-100 dark:hover:bg-gray-400 lg:hover:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:hover:dark:text-[#57BA47] lg:relative group {{ $menu === 'Aduan' || $menu === 'Aduan-Ku' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F]' : 'lg:text-gray-500 lg:dark:text-white' }}">
                         Aduan
                         <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
                         </svg>
-                        <div class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F] -bottom-1 group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'Aduan' || $menu === 'Aduanku' ? '' : 'lg:scale-x-0' }}">
+                        <div class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F] lg:dark:bg-[#57BA47] -bottom-1 group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'Aduan' || $menu === 'Aduanku' ? '' : 'lg:scale-x-0' }}">
                         </div>
                     </button>
                     {{-- Dropdown menu --}}
-                    <div id="dropdownAduan" class="z-10 hidden font-normal overflow-hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-gray-700 dark:divide-gray-600">
-                        <ul class="text-sm font-semibold text-gray-700 dark:text-gray-400 " aria-labelledby="dropdownLargeButton">
+                    <div id="dropdownAduan" class="z-10 hidden font-normal overflow-hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-[#2F363E] dark:divide-gray-300">
+                        <ul class="text-sm font-semibold text-gray-700 dark:text-gray-300 " aria-labelledby="dropdownLargeButton">
                             <li>
                                 <a href="{{ route('aduan') }}" class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">Aduan</a>
                             </li>
@@ -258,15 +258,15 @@
                             </li>
                         </ul>
                     </div>
-                    {{-- <a href="{{ route('aduan') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:relative group {{ ($menu === 'Aduan') ? 'lg:text-[#1C4F0F]':'lg:text-gray-500' }}">
+                    {{-- <a href="{{ route('aduan') }}" class="block py-2 px-3 text-gray-900 rounded dark:text-white hover:bg-gray-100 dark:hover:bg-gray-400 lg:hover:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:hover:dark:text-[#57BA47] lg:relative group {{ ($menu === 'Aduan') ? 'lg:text-[#1C4F0F]':'lg:text-gray-500' }}">
                     Aduan
                     <div class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F]  group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ ($menu === 'Aduan') ? '':'lg:scale-x-0' }}"></div>
                     </a> --}}
                 </li>
                 <li>
-                    <a href="{{ route('profil') }}" class="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 lg:hover:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:relative group {{ $menu === 'Profil' ? 'lg:text-[#1C4F0F]' : 'lg:text-gray-500' }}">
+                    <a href="{{ route('profil') }}" class="block py-2 px-3 text-gray-900 rounded dark:text-white hover:bg-gray-100 dark:hover:bg-gray-400 lg:hover:bg-transparent lg:hover:text-[#1C4F0F] lg:hover:dark:text-[#57BA47] lg:p-0 lg:relative group {{ $menu === 'Profil' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F]' : 'lg:text-gray-500 lg:dark:text-white' }}">
                         Profil
-                        <div class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F]  group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'Profil' ? '' : 'lg:scale-x-0' }}">
+                        <div class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F] lg:dark:bg-[#57BA47] group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'Profil' ? '' : 'lg:scale-x-0' }}">
                         </div>
                     </a>
                 </li>
