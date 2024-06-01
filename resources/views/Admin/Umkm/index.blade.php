@@ -472,10 +472,17 @@
                                 </div>
 
                                 <div x-data="{ 'editModal': false }" @keydown.escape="editModal = false">
-                                    <button @click="editModal = true" class="flex justify-center items-center gap-2 w-fit text-white bg-[#FFDE68] rounded-full sm:rounded-lg shadow-xl font-bold h-full sm:px-3 px-2 py-2 hover:bg-[#B39C49] hover:scale-105 transition-all">
-                                        <i class="fa-solid fa-pen-to-square"></i>
-                                        <div class="hidden sm:inline-flex">Edit</div>
-                                    </button>
+                                    @if (Auth::user()->penduduk->jabatan === 'Ketua RW')
+                                        <button @click="editModal = true" class="flex justify-center items-center gap-2 w-fit text-white bg-[#FFDE68] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#B39C49] hover:scale-105 transition-all">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                            <div>Edit</div>
+                                        </button>
+                                    @else
+                                        <button @click="editModal = true" disabled class="flex justify-center items-center gap-2 w-fit text-white bg-[#FFDE68] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#B39C49] hover:scale-105 transition-all bg-opacity-50 cursor-not-allowed">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                            <div>Edit</div>
+                                        </button>
+                                    @endif
                                     <!-- Detail modal -->
                                     <div x-show="editModal" tabindex="-1" aria-hidden="true" class="flex overflow-hidden fixed top-0 right-0 left-0 z-999 justify-center sm:items-center items-end w-full md:inset-0 h-full">
                                         <div class="absolute z-999 bg-black/25 h-[100vh] w-full"></div>
@@ -672,10 +679,17 @@
                                     @csrf
                                     {!! method_field('DELETE') !!}
 
-                                    <button type="submit" class="flex justify-center items-center gap-2 w-fit text-white bg-[#FF5E5E] rounded-full sm:rounded-lg shadow-xl font-bold h-full sm:px-3 px-2 py-2 hover:bg-[#B34242] hover:scale-105 transition-all">
-                                        <i class="fa-solid fa-trash-can"></i>
-                                        <div class="hidden sm:inline-flex">Hapus</div>
-                                    </button>
+                                    @if (Auth::user()->penduduk->jabatan === 'Ketua RW')
+                                        <button type="submit" class="flex justify-center items-center gap-2 w-fit text-white bg-[#FF5E5E] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#B34242] hover:scale-105 transition-all">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                            <div>Hapus</div>
+                                        </button>
+                                    @else
+                                        <button type="submit" class="flex justify-center items-center gap-2 w-fit text-white bg-[#FF5E5E] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#B34242] hover:scale-105 transition-all bg-opacity-50 cursor-not-allowed">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                            <div>Hapus</div>
+                                        </button>
+                                    @endif
                                 </form>
                             </div>
                         </td>
