@@ -47,7 +47,7 @@ class Navbar extends Component
             ->where('id_pemilik', $id);
 
         // Combining the queries with unionAll
-        $data = $jadwalQuery->unionAll($umkmQuery)->orderBy('updated_at', 'desc')->get();
+        $data = $jadwalQuery->unionAll($umkmQuery)->get();
 
         // dd($data);
         foreach ($data as  $value) {
