@@ -26,7 +26,7 @@
                     <ul class="mb-6 flex flex-col gap-1.5">
                         <!-- Menu Item Dashboard -->
                         <li>
-                            <a class="group relative justify-start flex items-center gap-2.5 px-4 py-3 font-bold duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] dark:hover:bg-meta-4 rounded-l-2xl hover:dark:bg-[#57BA47] hover:dark:text-white hover:dark:border-white" href="{{ route('admin') }}" :class="{
+                            <a class="group relative justify-start flex items-center gap-2.5 px-4 py-3 font-bold duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] rounded-l-2xl hover:dark:bg-[#57BA47] hover:dark:text-white hover:dark:border-white" href="{{ route('admin') }}" :class="{
                                 'bg-[#E4F7DF] text-[#57BA47] border-r-4 border-[#57BA47] dark:bg-[#57BA47] dark:text-white dark:border-white': (selected === 'Dashboard') &&
                                     (page === 'dashboard')
                             }">
@@ -40,7 +40,7 @@
 
                         <!-- Menu Item Kependudukan -->
                         <li>
-                            <a class="group relative justify-start flex items-center gap-2.5 px-4 py-3 font-bold duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] dark:hover:bg-meta-4 rounded-l-2xl hover:dark:bg-[#57BA47] hover:dark:text-white hover:dark:border-white" href="#" @click.prevent="selected = (selected === 'Kependudukan' ? '':'Kependudukan')" :class="{
+                            <a class="group relative justify-start flex items-center gap-2.5 px-4 py-3 font-bold duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] rounded-l-2xl hover:dark:bg-[#57BA47] hover:dark:text-white hover:dark:border-white" href="#" @click.prevent="selected = (selected === 'Kependudukan' ? '':'Kependudukan')" :class="{
                                 'bg-[#E4F7DF] text-[#57BA47] border-r-4 border-[#57BA47] dark:bg-[#57BA47] dark:text-white dark:border-white': (
                                     selected === 'Kependudukan') || (page === 'daftarPenduduk') || (
                                     page === 'daftarAkun') || (page === 'daftarNkk')
@@ -69,7 +69,7 @@
                             <!-- Dropdown Menu End -->
                         </li>
                         <li>
-                            <a class="group relative justify-start flex items-center gap-2.5 px-4 py-3 font-bold duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] dark:hover:bg-meta-4 rounded-l-2xl hover:dark:bg-[#57BA47] hover:dark:text-white hover:dark:border-white" href="#" @click.prevent="selected = (selected === 'Bansos' ? '':'Bansos')" :class="{
+                            <a class="group relative justify-start flex items-center gap-2.5 px-4 py-3 font-bold duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] rounded-l-2xl hover:dark:bg-[#57BA47] hover:dark:text-white hover:dark:border-white" href="#" @click.prevent="selected = (selected === 'Bansos' ? '':'Bansos')" :class="{
                                 'bg-[#E4F7DF] text-[#57BA47] border-r-4 border-[#57BA47] dark:bg-[#57BA47] dark:text-white dark:border-white': (selected === 'Bansos') ||
                                     (page === 'listBansos') || (page === 'rekomendasiBansos')
                             }">
@@ -98,7 +98,7 @@
                             <!-- Dropdown Menu End -->
                         </li>
                         <li>
-                            <a class="group relative justify-start flex items-center gap-2.5 px-4 py-3 font-bold duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] dark:hover:bg-meta-4 rounded-l-2xl hover:dark:bg-[#57BA47] hover:dark:text-white hover:dark:border-white" href="#" @click.prevent="selected = (selected === 'Umkm' ? '':'Umkm')" :class="{
+                            <a class="group relative justify-start flex items-center gap-2.5 px-4 py-3 font-bold duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] rounded-l-2xl hover:dark:bg-[#57BA47] hover:dark:text-white hover:dark:border-white" href="#" @click.prevent="selected = (selected === 'Umkm' ? '':'Umkm')" :class="{
                                 'bg-[#E4F7DF] text-[#57BA47] border-r-4 border-[#57BA47] dark:bg-[#57BA47] dark:text-white dark:border-white': (selected === 'Umkm') ||
                                     (page === 'listUmkm') || (page === 'ajuanUmkm')
                             }">
@@ -106,7 +106,9 @@
                                     <i class="fa-solid fa-store text-xl"></i>
                                 </div>
                                 UMKM
-
+                                @if ($UmkmRequest > 0)
+                                <div class="absolute size-7 rounded-full flex justify-center items-center bg-yellow-400 text-white right-10 shadow-md" :class="(selected === 'Umkm')? 'hidden' : 'flex'">{{ $UmkmRequest }}</div>
+                                @endif
                                 <svg class="absolute right-4 top-1/2 -translate-y-1/2 fill-current" :class="{ 'rotate-180': (selected === 'Umkm') }" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M4.41107 6.9107C4.73651 6.58527 5.26414 6.58527 5.58958 6.9107L10.0003 11.3214L14.4111 6.91071C14.7365 6.58527 15.2641 6.58527 15.5896 6.91071C15.915 7.23614 15.915 7.76378 15.5896 8.08922L10.5896 13.0892C10.2641 13.4147 9.73651 13.4147 9.41107 13.0892L4.41107 8.08922C4.08563 7.76378 4.08563 7.23614 4.41107 6.9107Z" fill="" />
                                 </svg>
@@ -119,7 +121,12 @@
                                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-[#57BA47]" href="{{ route('umkm-admin') }}" :class="page === 'listUmkm' && '!text-[#57BA47]'">Daftar UMKM</a>
                                     </li>
                                     <li>
-                                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-[#57BA47]" href="{{ route('ajuan-umkm-admin') }}" :class="page === 'ajuanUmkm' && '!text-[#57BA47]'">Ajuan UMKM</a>
+                                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-[#57BA47]" href="{{ route('ajuan-umkm-admin') }}" :class="page === 'ajuanUmkm' && '!text-[#57BA47]'">
+                                            Ajuan UMKM
+                                            @if ($UmkmRequest > 0)
+                                            <div class="absolute size-7 rounded-full flex justify-center items-center bg-yellow-400 text-white right-10 shadow-md" :class="(selected === 'Umkm')? 'flex' : 'hidden'">{{ $UmkmRequest }}</div>
+                                            @endif
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
@@ -127,7 +134,7 @@
                         </li>
                         <!-- Menu Item Pengaduan -->
                         <li>
-                            <a class="group relative justify-start flex items-center gap-2.5 px-4 py-3 font-bold duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] dark:hover:bg-meta-4 rounded-l-2xl hover:dark:bg-[#57BA47] hover:dark:text-white hover:dark:border-white" href="{{ route('pengaduan-admin') }}" @click="selected = (selected === 'Pengaduan' ? '':'Pengaduan')" :class="{
+                            <a class="group relative justify-start flex items-center gap-2.5 px-4 py-3 font-bold duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] rounded-l-2xl hover:dark:bg-[#57BA47] hover:dark:text-white hover:dark:border-white" href="{{ route('pengaduan-admin') }}" @click="selected = (selected === 'Pengaduan' ? '':'Pengaduan')" :class="{
                                 'bg-[#E4F7DF] text-[#57BA47] border-r-4 border-[#57BA47] dark:bg-[#57BA47] dark:text-white dark:border-white': (
                                     selected === 'Pengaduan') && (page === 'pengaduan')
                             }">
@@ -135,12 +142,15 @@
                                     <i class="fa-solid fa-envelope-open-text text-xl"></i>
                                 </div>
                                 Pengaduan
+                                @if ($AduanRequest > 0)
+                                <div class="absolute size-7 rounded-full flex justify-center items-center bg-yellow-400 text-white right-10 shadow-md">{{ $AduanRequest }}</div>
+                                @endif
                             </a>
                         </li>
                         <!-- Menu Item Pengaduan -->
                         <!-- Menu Item Jadwal Kegiatan -->
                         <li>
-                            <a class="group relative justify-start flex items-center gap-2.5 px-4 py-3 font-bold duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] dark:hover:bg-meta-4 rounded-l-2xl hover:dark:bg-[#57BA47] hover:dark:text-white hover:dark:border-white" href="#" @click.prevent="selected = (selected === 'Kegiatan' ? '':'Kegiatan')" :class="{
+                            <a class="group relative justify-start flex items-center gap-2.5 px-4 py-3 font-bold duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] rounded-l-2xl hover:dark:bg-[#57BA47] hover:dark:text-white hover:dark:border-white" href="#" @click.prevent="selected = (selected === 'Kegiatan' ? '':'Kegiatan')" :class="{
                                 'bg-[#E4F7DF] text-[#57BA47] border-r-4 border-[#57BA47] dark:bg-[#57BA47] dark:text-white dark:border-white': (selected === 'Kegiatan') ||
                                     (page === 'jadwal kegiatan') || (page === 'ajuan kegiatan')
                             }">
@@ -148,7 +158,9 @@
                                     <i class="fa-solid fa-calendar-day text-xl"></i>
                                 </div>
                                 Jadwal Kegiatan
-
+                                @if ($KegiatanRequest > 0)
+                                <div class="absolute size-7 rounded-full flex justify-center items-center bg-yellow-400 text-white right-10 shadow-md" :class="(selected === 'Kegiatan')? 'hidden' : 'flex'">{{ $KegiatanRequest }}</div>
+                                @endif
                                 <svg class="absolute right-4 top-1/2 -translate-y-1/2 fill-current" :class="{ 'rotate-180': (selected === 'Kegiatan') }" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M4.41107 6.9107C4.73651 6.58527 5.26414 6.58527 5.58958 6.9107L10.0003 11.3214L14.4111 6.91071C14.7365 6.58527 15.2641 6.58527 15.5896 6.91071C15.915 7.23614 15.915 7.76378 15.5896 8.08922L10.5896 13.0892C10.2641 13.4147 9.73651 13.4147 9.41107 13.0892L4.41107 8.08922C4.08563 7.76378 4.08563 7.23614 4.41107 6.9107Z" fill="" />
                                 </svg>
@@ -161,7 +173,12 @@
                                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-[#57BA47]" href="{{ route('jadwal-kegiatan-admin') }}" :class="page === 'jadwal kegiatan' && '!text-[#57BA47]'">Daftar Kegiatan</a>
                                     </li>
                                     <li>
-                                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-[#57BA47]" href="{{ route('ajuan-kegiatan-admin') }}" :class="page === 'ajuan kegiatan' && '!text-[#57BA47]'">Ajuan Kegiatan</a>
+                                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-[#57BA47]" href="{{ route('ajuan-kegiatan-admin') }}" :class="page === 'ajuan kegiatan' && '!text-[#57BA47]'">
+                                            Ajuan Kegiatan
+                                            @if ($KegiatanRequest > 0)
+                                            <div class="absolute size-7 rounded-full flex justify-center items-center bg-yellow-400 text-white right-10 shadow-md" :class="(selected === 'Kegiatan')? 'flex' : 'hidden'">{{ $KegiatanRequest }}</div>
+                                            @endif
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
@@ -170,7 +187,7 @@
                         <!-- Menu Item Jadwal Kegiatan -->
                         <!-- Menu Item Pengumuman -->
                         <li>
-                            <a class="group relative justify-start flex items-center gap-2.5 px-4 py-3 font-bold duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] dark:hover:bg-meta-4 rounded-l-2xl hover:dark:bg-[#57BA47] hover:dark:text-white hover:dark:border-white" href="{{ route('pengumuman-admin') }}" @click="selected = (selected === 'Pengumuman' ? '':'Pengumuman')" :class="{
+                            <a class="group relative justify-start flex items-center gap-2.5 px-4 py-3 font-bold duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] rounded-l-2xl hover:dark:bg-[#57BA47] hover:dark:text-white hover:dark:border-white" href="{{ route('pengumuman-admin') }}" @click="selected = (selected === 'Pengumuman' ? '':'Pengumuman')" :class="{
                                 'bg-[#E4F7DF] text-[#57BA47] border-r-4 border-[#57BA47] dark:bg-[#57BA47] dark:text-white dark:border-white': (
                                     selected === 'Pengumuman') && (page === 'pengumuman')
                             }">
@@ -182,7 +199,7 @@
                         </li>
                         <!-- Menu Item Pengumuman -->
                         <li>
-                            <a class="group relative justify-start flex items-center gap-2.5 px-4 py-3 font-bold duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] dark:hover:bg-meta-4 rounded-l-2xl hover:dark:bg-[#57BA47] hover:dark:text-white hover:dark:border-white" href="{{ route('persuratan-admin') }}" @click="selected = (selected === 'Jadwal Kegiatan' ? '':'Jadwal Kegiatan')" :class="{
+                            <a class="group relative justify-start flex items-center gap-2.5 px-4 py-3 font-bold duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] rounded-l-2xl hover:dark:bg-[#57BA47] hover:dark:text-white hover:dark:border-white" href="{{ route('persuratan-admin') }}" @click="selected = (selected === 'Jadwal Kegiatan' ? '':'Jadwal Kegiatan')" :class="{
                                 'bg-[#E4F7DF] text-[#57BA47] border-r-4 border-[#57BA47] dark:bg-[#57BA47] dark:text-white dark:border-white': (
                                     selected === 'Persuratan') && (page === 'daftarPersuratan')
                             }">
@@ -193,43 +210,10 @@
                             </a>
                         </li>
                         <!-- Menu Item Persuratan -->
-                        <!-- <li>
-                        <a class="group relative flex items-center justify-start gap-2.5 px-4 py-3 font-bold duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47]" href="#" @click.prevent="selected = (selected === 'Persuratan' ? '':'Persuratan')" :class="{
-                            'bg-[#E4F7DF] text-[#57BA47] border-r-4 border-[#57BA47] dark:bg-[#57BA47] dark:text-white dark:border-white': (selected === 'Persuratan') || (
-                                page === 'daftarPersuratan') || (page === 'templateSurat') || (
-                                page === 'AjuanPersuratan')
-                        }">
-                            <div class="w-7">
-                                <i class="fa-solid fa-envelopes-bulk text-xl"></i>
-                            </div>
-                            Persuratan
-
-                            <svg class="absolute right-4 top-1/2 -translate-y-1/2 fill-current" :class="{ 'rotate-180': (selected === 'Persuratan') }" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                                <path fill-rule="evenodd" clip-rule="evenodd" d="M4.41107 6.9107C4.73651 6.58527 5.26414 6.58527 5.58958 6.9107L10.0003 11.3214L14.4111 6.91071C14.7365 6.58527 15.2641 6.58527 15.5896 6.91071C15.915 7.23614 15.915 7.76378 15.5896 8.08922L10.5896 13.0892C10.2641 13.4147 9.73651 13.4147 9.41107 13.0892L4.41107 8.08922C4.08563 7.76378 4.08563 7.23614 4.41107 6.9107Z" fill="" />
-                            </svg>
-                        </a>
-
-                        
-                        <div class="translate transform overflow-hidden" :class="(selected === 'Persuratan') ? 'block' : 'hidden'">
-                            <ul class="mb-5.5 mt-4 flex flex-col gap-2.5 pl-6">
-                                <li>
-                                    <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-[#57BA47]" href="{{ route('persuratan-admin') }}" :class="page === 'daftarPersuratan' && '!text-[#57BA47]'">Daftar Persuratan</a>
-                                </li>
-                                <li>
-                                    <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-[#57BA47]" href="{{ route('ajuan-persuratan-admin') }}" :class="page === 'ajuanPersuratan' && '!text-[#57BA47]'">Ajuan Persuratan</a>
-                                </li>
-                                <li>
-                                    <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-[#57BA47]" href="{{ route('template-surat-admin') }}" :class="page === 'templateSurat' && '!text-[#57BA47]'">Template Surat</a>
-                                </li>
-                            </ul>
-                        </div>
-                        
-                    </li> -->
-                        <!-- Menu Item Persuratan -->
                         <!-- Menu Item Akun Admin -->
                         @if (Auth::user()->id_level == 1)
                         <li>
-                            <a class="group relative justify-start flex items-center gap-2.5 px-4 py-3 font-bold duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] dark:hover:bg-meta-4 rounded-l-2xl hover:dark:bg-[#57BA47] hover:dark:text-white hover:dark:border-white" href="#" @click.prevent="selected = (selected === 'Akun' ? '':'Akun')" :class="{
+                            <a class="group relative justify-start flex items-center gap-2.5 px-4 py-3 font-bold duration-300 ease-in-out hover:bg-[#E4F7DF] hover:text-[#57BA47] hover:border-r-4 hover:border-[#57BA47] rounded-l-2xl hover:dark:bg-[#57BA47] hover:dark:text-white hover:dark:border-white" href="#" @click.prevent="selected = (selected === 'Akun' ? '':'Akun')" :class="{
                                     'bg-[#E4F7DF] text-[#57BA47] border-r-4 border-[#57BA47] dark:bg-[#57BA47] dark:text-white dark:border-white': (
                                             selected === 'Akun') ||
                                         (page === 'daftarAkun') || (page === 'kelolaLevel')

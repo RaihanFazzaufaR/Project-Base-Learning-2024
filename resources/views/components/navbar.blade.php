@@ -32,7 +32,7 @@
                     @endif
                     <?php $i = 0; ?>
                     @foreach ($messages as $message)
-                    @if ($message->status === 'selesai')
+                    @if ($message->status === 'selesai' || $message->status === 'diterima')
                     <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">
                         <div class="flex-shrink-0">
                             <img class="rounded-full w-11 h-11" src="{{ asset('assets/images/userProfile.png') }}" alt="">
@@ -43,8 +43,7 @@
                         <div class="w-full ps-3">
                             <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Selamat,
                                 {{ $message->source == 'tb_umkm' ? 'UMKM' : 'Kegiatan' }} yang Anda ajukan telah
-                                disetujui oleh <span class="font-semibold text-gray-900 dark:text-white">Ketua
-                                    RW</span>
+                                disetujui oleh <span class="font-semibold text-gray-900 dark:text-white">{{ $message->source == 'tb_umkm' ? 'Ketua RW 03' : 'Ketua RW 03 / Ketua RT '. auth()->user()->penduduk->kartuKeluarga->rt }}</span>
                             </div>
                             <div class="text-xs text-blue-600 dark:text-blue-500">
                                 @if ($message->diffMinutes < 60) {{ $message->diffMinutes < 1 ? 'beberapa saat yang lalu' : $message->diffMinutes . ' menit yang lalu' }} @elseif ($message->diffHours < 24) {{ $message->diffHours . ' jam yang lalu' }} @elseif ($message->diffDays < 7) {{ $message->diffDays . ' hari yang lalu' }} @endif </div>
@@ -61,8 +60,7 @@
                         <div class="w-full ps-3">
                             <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Mohon Menunggu,
                                 {{ $message->source == 'tb_umkm' ? 'UMKM' : 'Kegiatan' }} yang Anda ajukan sedang
-                                diproses oleh <span class="font-semibold text-gray-900 dark:text-white">Ketua
-                                    RW</span>
+                                diproses oleh <span class="font-semibold text-gray-900 dark:text-white">{{ $message->source == 'tb_umkm' ? 'Ketua RW 03' : 'Ketua RW 03 / Ketua RT '. auth()->user()->penduduk->kartuKeluarga->rt }}</span>
                             </div>
                             <div class="text-xs text-blue-600 dark:text-blue-500">
                                 @if ($message->diffMinutes < 60) {{ $message->diffMinutes < 1 ? 'beberapa saat yang lalu' : $message->diffMinutes . ' menit yang lalu' }} @elseif ($message->diffHours < 24) {{ $message->diffHours . ' jam yang lalu' }} @elseif ($message->diffDays < 7) {{ $message->diffDays . ' hari yang lalu' }} @endif </div>
@@ -79,8 +77,7 @@
                         <div class="w-full ps-3">
                             <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Maaf,
                                 {{ $message->source == 'tb_umkm' ? 'UMKM' : 'Kegiatan' }} yang Anda ajukan telah
-                                ditolak oleh <span class="font-semibold text-gray-900 dark:text-white">Ketua
-                                    RW</span>
+                                ditolak oleh <span class="font-semibold text-gray-900 dark:text-white">{{ $message->source == 'tb_umkm' ? 'Ketua RW 03' : 'Ketua RW 03 / Ketua RT '. auth()->user()->penduduk->kartuKeluarga->rt }}</span>
                             </div>
                             <div class="w-full border-y-2 border-gray-300 text-sm py-2" :class="(selected === 'tolak{{ $i }}') ? 'block' : 'hidden'">
                                 <p class="text-black font-bold">Alasan Penolakan :</p>
