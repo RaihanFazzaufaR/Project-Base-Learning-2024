@@ -124,7 +124,7 @@
                     {{-- Penyebab Kematian --}}
                     <div class="gap-2 flex w-full h-fit">
                         <div class="basis-1/4 h-full ps-8  flex my-auto items-center">
-                            <label for="penyebab_kematian"
+                            <label for="penyebab_wafat"
                                 class="text-lg font-bold items-center flex w-full  text-[#2d5523] dark:text-white">Penyebab
                                 Kematian</label>
                         </div>
