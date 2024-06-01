@@ -124,11 +124,11 @@
                         <td class="px-6 py-4 font-semibold text-[15px]">
                             {{ $complaint->prioritas }}
                         </td>
-                        <td class="">
+                        <td class="modal">
                             <div class="px-6 py-4 flex items-center h-full gap-4 justify-center">
                                 <div x-data="{ 'idAduan': {{ $aduan_id }} }">
                                     <div x-data="{ 'detailModal': idAduan === {{ $complaint->aduan_id }} }" @keydown.escape="detailModal = false">
-                                        <button @click="detailModal = true" class="flex justify-center items-center gap-2 w-fit text-white bg-[#446DFF] rounded-full sm:rounded-lg shadow-xl font-bold h-full px-3 py-3 sm:py-2 hover:bg-[#273E91] hover:scale-105 transition-all">
+                                        <button @click="detailModal = true" class="btn-modal flex justify-center items-center gap-2 w-fit text-white bg-[#446DFF] rounded-full sm:rounded-lg shadow-xl font-bold h-full px-3 py-3 sm:py-2 hover:bg-[#273E91] hover:scale-105 transition-all">
                                             <i class="fa-solid fa-circle-info"></i>
                                             <div class="hidden sm:inline-flex">Detail</div>
                                         </button>
@@ -157,7 +157,7 @@
                                                             </button>
                                                             @endif
                                                         </div>
-                                                        <div class="max-h-[450px] overflow-y-auto scrollbar-thin pt-3 scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF]">
+                                                        <div class="max-h-[450px] overflow-y-auto scrollbar-thin pt-3 scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] chat-div">
                                                             @if ($complaint->image != null)
                                                             <div class="flex w-full justify-center">
                                                                 <img class="w-[60%] rounded-lg dark:shadow-md" src="{{ asset('assets/images/Aduan/' . $complaint->image) }}">
@@ -332,6 +332,31 @@
                     inputFile.value = '';
                     imagePreview.classList.add('opacity-0');
                     image.src = '';
+                });
+            });
+
+            document.querySelectorAll('.modal').forEach((modal) => {
+                const btn = modal.querySelector('.btn-modal');
+                const div = modal.querySelector('.chat-div');
+
+                if (btn && div) {
+                    btn.addEventListener('click', () => {
+                        setTimeout(() => {
+                            const bottomElement = div.lastElementChild;
+                            if (bottomElement) {
+                                bottomElement.scrollIntoView({
+                                    block: 'end'
+                                });
+                            }
+                        }, 0);
+                    });
+                }
+            });
+
+            const div = document.querySelectorAll('.chat-div');
+            div.forEach((d) => {
+                d.lastElementChild.scrollIntoView({
+                    block: 'end'
                 });
             });
         });

@@ -150,7 +150,7 @@
 </div>
 
 @if ($searchingKey != '' || $kategoriSearching != '')
-<div class="relative min-h-[40vh] w-[90%] mx-auto flex flex-col mt-20 gap-18 mb-30">
+<div class="relative min-h-[40vh] w-[90%] mx-auto flex flex-col mt-20 gap-18 mb-30" id="searching">
     <div class="flex h-[10%] w-full justify-center items-center text-4xl font-bold text-green-900">Pencarian "@if ($searchingKey != '')
         {{$searchingKey}}
         @else
@@ -312,7 +312,7 @@
             </div>
         </div>
     </div>
-    <div class="w-[1050px] h-fit flex flex-col pl-25 py-7 gap-11 justify-center items-center">
+    <div class="w-[1050px] h-fit flex flex-col pl-25 py-7 gap-11 justify-center items-center" id="kegiatan">
         <div class="flex justify-center items-center text-4xl font-bold text-green-900 dark:text-white">Jadwal Kegiatan</div>
         @if (empty($dataArray['dataToday']->toArray()))
         <div class="flex flex-col w-full justify-center items-center gap-4">
@@ -681,25 +681,18 @@
     <script>
         let scroll = @json($scrollAuto);
         if (scroll == 'calendar') {
-            // const element = document.querySelector('#dateToday');
-            // console.log(element.offsetTop);
-            window.scrollTo({
-                // top: element.offsetTop - 20,
-                top: 1099,
+            let element = document.querySelector('#kegiatan');
+            element.scrollIntoView({
                 behavior: 'smooth'
             });
         } else if (scroll == 'kategori') {
-            // const element = document.querySelector('#pastSchedule');
-            // console.log(element.offsetTop);
-            window.scrollTo({
-                top: 1800,
+            let element = document.querySelector('#pastSchedule');
+            element.scrollIntoView({
                 behavior: 'smooth'
             });
         } else if (scroll == 'search') {
-            // const element = document.querySelector('#pastSchedule');
-            // console.log(element.offsetTop);
-            window.scrollTo({
-                top: 400,
+            let element = document.querySelector('#searching');
+            element.scrollIntoView({
                 behavior: 'smooth'
             });
         }
