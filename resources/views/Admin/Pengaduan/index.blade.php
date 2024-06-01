@@ -196,7 +196,7 @@
                                                         </div>
                                                         <div class="w-full bg bg-[#e9e9e9] dark:bg-[#3e4852] min-h-10 rounded-b-lg">
                                                             @if ($complaint->status != 'selesai' && $complaint->status != 'ditolak')
-                                                            <form action="{{ route('add-response-admin') }}" method="post" enctype="multipart/form-data">
+                                                            <form action="{{ route('add-response-admin') }}" method="post" enctype="multipart/form-data" class="response-form">
                                                                 @csrf
                                                                 <div class="flex px-4 py-3 justify-around w-full items-start bg-[#e9e9e9] dark:bg-[#3e4852] rounded-b-lg">
                                                                     <input type="hidden" name="perespon_id" id="perespon_id" value="{{ Auth::user()->penduduk->id_penduduk }}">
@@ -207,20 +207,20 @@
                                                                     <input type="hidden" name="prioritas" id="prioritas" value="{{ request()->prioritas ? request()->prioritas : null }}">
                                                                     <input type="hidden" name="_token" id="_token" value="{{ csrf_token() }}">
 
-                                                                    <div class="absolute w-full h-fit py-4 px-6 flex opacity-0 flex-col justify-between items-center bg-[#e9e9e9] dark:bg-[#3e4852] bottom-16">
+                                                                    <div class="absolute w-full h-fit py-4 px-6 flex opacity-0 flex-col justify-between items-center bg-[#e9e9e9] dark:bg-[#3e4852] bottom-16 image-preview">
                                                                         <div class="flex w-full justify-end">
-                                                                            <button type="button" onclick="closeImage()">
-                                                                                <i class="fa-solid fa-xmark text-lg dark:text-white"></i>
+                                                                            <button type="button" class="delete-image">
+                                                                                <i class="fa-solid fa-trash text-lg dark:text-white"></i>
                                                                             </button>
                                                                         </div>
-                                                                        <img src="" alt="" class="w-[300px] h-[150px] object-cover rounded-lg" id="imgFile">
+                                                                        <img src="" alt="" class="w-[300px] h-[150px] object-cover rounded-lg imgFile mx-auto">
                                                                     </div>
                                                                     <div class="relative w-[80%] sm:w-[90%] flex justify-center items-center">
-                                                                        <button type="button" class="w-fit absolute left-2">
-                                                                            <i class="fa-solid fa-paperclip text-lg dark:text-white" id="clip"></i>
+                                                                        <button type="button" class="w-fit absolute left-2 clip-button">
+                                                                            <i class="fa-solid fa-paperclip text-lg dark:text-white"></i>
                                                                         </button>
-                                                                        <input type="text" name="konten_respon" class="pl-8 konten_respon flex flex-col w-full min-h-10 max-h-20 p-2 border border-[#34662C] rounded-lg focus:outline-none dark:bg-[#505c6a] dark:border-gray-500 dark:text-white" {{-- oninput="formCheck(this)" --}}>
-                                                                        <input type="file" name="image" class="hidden" id="image">
+                                                                        <input type="text" name="konten_respon" class="pl-8 konten_respon flex flex-col w-full min-h-10 max-h-20 p-2 border border-[#34662C] rounded-lg focus:outline-none dark:bg-[#505c6a] dark:border-gray-500 dark:text-white">
+                                                                        <input type="file" name="image" class="hidden file-input">
                                                                     </div>
                                                                     <button type="submit" class="submit text-white inline-flex px-4 py-4 h-10 w-10 text-sm font-bold rounded-full shadow-md items-center justify-center bg-[#57BA47] hover:bg-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
                                                                         <i id="sendicon" class="text-lg fa-regular fa-paper-plane"></i>
@@ -303,33 +303,37 @@
         </div>
     </div>
     <script>
-        let idx = 0;
-        let fileClip = document.querySelectorAll("#clip");
-        let inputFile = document.querySelectorAll("#image");
-        let image = document.querySelectorAll("#imgFile");
+        document.addEventListener("DOMContentLoaded", () => {
+            document.querySelectorAll(".response-form").forEach((form, idx) => {
+                const fileClip = form.querySelector(".clip-button");
+                const inputFile = form.querySelector(".file-input");
+                const image = form.querySelector(".imgFile");
+                const imagePreview = form.querySelector(".image-preview");
+                const deleteImage = form.querySelector(".delete-image");
 
-        document.addEventListener("click", (e) => {
-            fileClip.forEach((node, id) => {
-                if (e.target === node) {
-                    idx = id;
-                    node.parentElement.nextElementSibling.nextElementSibling.click();
-                }
+                fileClip.addEventListener("click", () => {
+                    inputFile.click();
+                });
+
+                inputFile.addEventListener("change", (e) => {
+                    let file = e.target.files[0];
+                    if (file) {
+                        image.src = URL.createObjectURL(file);
+                        image.onload = function() {
+                            URL.revokeObjectURL(image.src);
+                        }
+                        if (imagePreview.classList.contains('opacity-0'))
+                            imagePreview.classList.add('opacity-0');
+                        imagePreview.classList.remove('opacity-0');
+                    }
+                });
+
+                deleteImage.addEventListener("click", () => {
+                    inputFile.value = '';
+                    imagePreview.classList.add('opacity-0');
+                    image.src = '';
+                });
             });
         });
-
-        inputFile[idx].addEventListener("change", (e) => {
-            let file = e.target.files[0];
-            image[idx].src = URL.createObjectURL(file);
-            image[idx].onload = function() {
-                URL.revokeObjectURL(image[idx].src)
-            }
-            let parent = image[idx].parentElement;
-            parent.classList.toggle('opacity-0');
-        });
-
-        const closeImage = () => {
-            let parent = image[idx].parentElement;
-            parent.classList.toggle('opacity-0');
-        };
     </script>
 </x-admin-layout>
