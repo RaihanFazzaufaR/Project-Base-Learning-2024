@@ -10,7 +10,7 @@
 
 
 <div class="relative h-[100vh] w-full flex text-[#1C4F0F] dark:text-white px-25 items-center justify-between" >
-    <div class="w-[58%] h-fit pb-12" data-aos="fade-right" data-aos-duration="1000">
+    <div class="w-[58%] h-fit pb-12" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="500">
         <div class="font-bold text-4xl mb-3">
             Selamat Datang di
         </div>
@@ -25,7 +25,7 @@
 
         <p class="font-medium text-xl w-[47vw]">"Temukan informasi terkini, kegiatan komunitas, dan layanan kami untuk memajukan lingkungan kami. Bergabunglah dalam membangun kehidupan yang lebih baik untuk warga RW 3!"</p>
     </div>
-    <div class="absolute pb-[12vh] right-15" data-aos="fade-left" data-aos-duration="1000">
+    <div class="absolute pb-[12vh] right-15" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="500">
         <img src="{{ asset('assets/images/cover-home.png') }}" alt="" class="h-[80vh]" >
     </div>
 </div>
@@ -394,8 +394,8 @@
                                                                 src="{{ asset('assets/images/Aduan/' . $aduan->image) }}">
                                                         </div>
                                                     @endif
-                                                    <div class="flex w-full p-4  {{ Auth::user()->penduduk->id_penduduk == $aduan->pengadu_id ? 'justify-end' : '' }}">
-                                                        <div class="p-4 w-fit rounded-lg max-w-[75%] {{ Auth::user()->penduduk->id_penduduk == $aduan->pengadu_id ? 'bg-[#cdffc5] text-black dark:text-white dark:bg-[#005c4b]' : 'bg-white text-black dark:text-white dark:bg-gray-700' }}">
+                                                    <div class="flex w-full p-4  {{ Auth::check() && Auth::user()->penduduk->id_penduduk == $aduan->pengadu_id ? 'justify-end' : '' }}">
+                                                        <div class="p-4 w-fit rounded-lg max-w-[75%] {{  Auth::check() && Auth::user()->penduduk->id_penduduk == $aduan->pengadu_id ? 'bg-[#cdffc5] text-black dark:text-white dark:bg-[#005c4b]' : 'bg-white text-black dark:text-white dark:bg-gray-700' }}">
                                                             <p class="text-sm font-semibold">
                                                                 Anonymous
                                                             </p>
@@ -406,9 +406,9 @@
                                                     </div>
                                                     @foreach ($aduan->respon as $response)
                                                         <div
-                                                            class="flex w-full p-4 {{ Auth::user()->penduduk->id_penduduk == $response->perespon_id ? 'justify-end' : '' }}">
+                                                            class="flex w-full p-4 {{ Auth::check() && Auth::user()->penduduk->id_penduduk == $response->perespon_id ? 'justify-end' : '' }}">
                                                             <div
-                                                                class="p-4 w-fit rounded-lg max-w-[75%] {{ Auth::user()->penduduk->id_penduduk == $response->perespon_id ? 'bg-[#cdffc5] text-black dark:text-white dark:bg-[#005c4b]' : 'bg-white text-black dark:text-white dark:bg-gray-700' }}">
+                                                                class="p-4 w-fit rounded-lg max-w-[75%] {{ Auth::check() && Auth::user()->penduduk->id_penduduk == $response->perespon_id ? 'bg-[#cdffc5] text-black dark:text-white dark:bg-[#005c4b]' : 'bg-white text-black dark:text-white dark:bg-gray-700' }}">
                                                                 <p class="text-sm font-semibold">
                                                                     Admin
                                                                 </p>

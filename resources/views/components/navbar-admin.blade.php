@@ -132,9 +132,7 @@
                          </span>
                      </span>
 
-                     <span class="h-12 w-12 rounded-full">
-                         <img src="{{ asset('assets/images/userProfile.png') }}" alt="User" />
-                     </span>
+                     <img src="{{ asset('assets/images/UserAccount/' . (auth()->user()->penduduk->userAccount->image ?? 'default.jpg')) }}" class="h-12 w-12 rounded-full object-cover" />
 
                      <i class="fa-solid fa-chevron-down transition-all duration-200 dark:text-white" :class="dropdownOpen && 'rotate-180'"></i>
                  </a>
