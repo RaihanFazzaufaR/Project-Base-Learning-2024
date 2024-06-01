@@ -9,7 +9,7 @@
 </x-header>
 
 
-<div class="relative h-[100vh] w-full flex text-[#1C4F0F] dark:text-[#57BA47] px-15 items-center justify-between" >
+<div class="relative h-[100vh] w-full flex text-[#1C4F0F] dark:text-[#57BA47] px-25 items-center justify-between" >
     <div class="w-[58%] h-fit pb-12" data-aos="fade-right" data-aos-duration="1000">
         <div class="font-bold text-4xl mb-3">
             Selamat Datang di
@@ -25,7 +25,7 @@
 
         <p class="font-medium text-xl w-[47vw]">"Temukan informasi terkini, kegiatan komunitas, dan layanan kami untuk memajukan lingkungan kami. Bergabunglah dalam membangun kehidupan yang lebih baik untuk warga RW 3!"</p>
     </div>
-    <div class="absolute pb-[12vh] right-7" data-aos="fade-left" data-aos-duration="1000">
+    <div class="absolute pb-[12vh] right-15" data-aos="fade-left" data-aos-duration="1000">
         <img src="{{ asset('assets/images/cover-home.png') }}" alt="" class="h-[80vh]" >
     </div>
 </div>
