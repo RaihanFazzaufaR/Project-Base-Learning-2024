@@ -24,6 +24,7 @@ return new class extends Migration
             $table->unsignedBigInteger('pembuat_id_pengumuman')->nullable();
             $table->decimal('iuran', 15, 2)->nullable();
             $table->text('lokasi')->nullable();
+            $table->timestamp('sent_at')->nullable();
             $table->timestamps();
         });
     }

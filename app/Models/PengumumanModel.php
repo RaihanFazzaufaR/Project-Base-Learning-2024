@@ -25,6 +25,7 @@ class PengumumanModel extends Model
         'pembuat_id',
         'iuran',
         'lokasi',
+        'sent_at',
     ];
 
     public function penduduk() : BelongsTo
