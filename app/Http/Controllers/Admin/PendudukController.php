@@ -19,7 +19,7 @@ class PendudukController extends Controller
         $selected = 'Kependudukan';
         $kartuKeluarga = KartuKeluargaModel::all();
         $id_penduduk = 0;
-        $user = PendudukModel::query();
+        $user = PendudukModel::query()->orderBy('updated_at', 'desc');
 
         if ($request->filled('id_penduduk')) {
             $id_penduduk = $request->id_penduduk;
@@ -48,7 +48,7 @@ class PendudukController extends Controller
             });
         }
 
-        $user = $user->orderBy('updated_at', 'desc')->paginate(10)->withQueryString();
+        $user = $user->paginate(10)->withQueryString();
 
         return view('Admin.Kependudukan.index', compact('user', 'page', 'selected', 'kartuKeluarga', 'id_penduduk'));
     }
