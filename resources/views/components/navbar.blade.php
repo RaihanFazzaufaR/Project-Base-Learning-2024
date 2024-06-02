@@ -156,14 +156,14 @@
         <div class="items-center justify-between hidden sm:w-[40%] w-[60%] lg:flex lg:w-auto lg:order-1 absolute lg:static sm:top-15 top-17 right-5" id="navbar-user">
             <ul class="flex flex-col font-bold p-4 lg:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 lg:space-x-8 rtl:space-x-reverse lg:flex-row lg:mt-0 lg:border-0 lg:bg-transparent dark:bg-[#2F363E] lg:dark:bg-transparent dark:border-gray-400">
                 <li>
-                    <a href="{{ url('/') }}" class="block py-2 px-3 hover:bg-[#1C4F0F] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white rounded lg:bg-transparent lg:hover:bg-transparent dark:lg:hover:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:hover:dark:text-[#57BA47] lg:relative group {{ $menu === 'Home' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F] text-white dark:bg-gray-600' : 'text-[#1C4F0F] lg:text-gray-500 dark:text-white' }}">
+                    <a href="{{ url('/') }}" class="block py-2 px-3 hover:bg-[#1C4F0F] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white rounded lg:bg-transparent dark:lg:bg-transparent lg:hover:bg-transparent dark:lg:hover:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:hover:dark:text-[#57BA47] lg:relative group {{ $menu === 'Home' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F] text-white dark:bg-gray-600' : 'text-[#1C4F0F] lg:text-gray-500 dark:text-white' }}">
                         Home
                         <div class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F] lg:dark:bg-[#57BA47] group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'Home' ? '' : 'lg:scale-x-0' }}">
                         </div>
                     </a>
                 </li>
                 <li>
-                    <button id="dropdownUmkmLink" data-dropdown-toggle="dropdownUmkm" class="flex items-center justify-between w-full py-2 px-3 hover:bg-[#1C4F0F] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white lg:hover:bg-transparent dark:lg:hover:bg-transparent lg:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:hover:dark:text-[#57BA47] lg:relative group {{ $menu === 'UMKM' || $menu === 'UMKMKU' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F] text-white dark:bg-gray-600' : 'text-[#1C4F0F] lg:text-gray-500 dark:text-white' }}">
+                    <button id="dropdownUmkmLink" data-dropdown-toggle="dropdownUmkm" class="flex items-center justify-between w-full py-2 px-3 hover:bg-[#1C4F0F] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white lg:hover:bg-transparent dark:lg:hover:bg-transparent lg:bg-transparent dark:lg:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:hover:dark:text-[#57BA47] lg:relative group {{ $menu === 'UMKM' || $menu === 'UMKMKU' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F] text-white dark:bg-gray-600' : 'text-[#1C4F0F] lg:text-gray-500 dark:text-white' }}">
                         UMKM
                         <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
@@ -189,21 +189,21 @@
                     </div>
                 </li>
                 <li>
-                    <a href="{{ route('jadwal') }}" class="block py-2 px-3 hover:bg-[#1C4F0F] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white lg:hover:bg-transparent dark:lg:hover:bg-transparent lg:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:hover:dark:text-[#57BA47] lg:relative group {{ $menu === 'Kegiatan' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F] text-white dark:bg-gray-600' : 'text-[#1C4F0F] lg:text-gray-500 dark:text-white' }}">
+                    <a href="{{ route('jadwal') }}" class="block py-2 px-3 hover:bg-[#1C4F0F] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white lg:hover:bg-transparent dark:lg:hover:bg-transparent lg:bg-transparent dark:lg:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:hover:dark:text-[#57BA47] lg:relative group {{ $menu === 'Kegiatan' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F] text-white dark:bg-gray-600' : 'text-[#1C4F0F] lg:text-gray-500 dark:text-white' }}">
                         Kegiatan
                         <div class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F] lg:dark:bg-[#57BA47]  group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'Kegiatan' ? '' : 'lg:scale-x-0' }}">
                         </div>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('penduduk') }}" class="block py-2 px-3 hover:bg-[#1C4F0F] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white lg:hover:bg-transparent dark:lg:hover:bg-transparent lg:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:hover:dark:text-[#57BA47] lg:relative group {{ $menu === 'Penduduk' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F] text-white dark:bg-gray-600' : 'text-[#1C4F0F] lg:text-gray-500 dark:text-white' }}">
+                    <a href="{{ route('penduduk') }}" class="block py-2 px-3 hover:bg-[#1C4F0F] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white lg:hover:bg-transparent dark:lg:hover:bg-transparent lg:bg-transparent dark:lg:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:hover:dark:text-[#57BA47] lg:relative group {{ $menu === 'Penduduk' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F] text-white dark:bg-gray-600' : 'text-[#1C4F0F] lg:text-gray-500 dark:text-white' }}">
                         Penduduk
                         <div class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F] lg:dark:bg-[#57BA47] group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'Penduduk' ? '' : 'lg:scale-x-0' }}">
                         </div>
                     </a>
                 </li>
                 <li>
-                    <button id="dropdownSuratLink" data-dropdown-toggle="dropdownSurat" class="flex items-center justify-between w-full py-2 px-3 hover:bg-[#1C4F0F] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white lg:bg-transparent lg:hover:bg-transparent dark:lg:hover:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:hover:dark:text-[#57BA47] lg:relative group {{ $menu === 'Surat' || $menu === 'Suratku' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F] text-white dark:bg-gray-600' : 'text-[#1C4F0F] lg:text-gray-500 dark:text-white' }}">
+                    <button id="dropdownSuratLink" data-dropdown-toggle="dropdownSurat" class="flex items-center justify-between w-full py-2 px-3 hover:bg-[#1C4F0F] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white lg:bg-transparent dark:lg:bg-transparent lg:hover:bg-transparent dark:lg:hover:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:hover:dark:text-[#57BA47] lg:relative group {{ $menu === 'Surat' || $menu === 'Suratku' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F] text-white dark:bg-gray-600' : 'text-[#1C4F0F] lg:text-gray-500 dark:text-white' }}">
                         Surat
                         <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
@@ -228,14 +228,14 @@
                     </div>
                 </li>
                 <li>
-                    <a href="{{ route('bansos') }}" class="block py-2 px-3 hover:bg-[#1C4F0F] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white lg:hover:bg-transparent dark:lg:hover:bg-transparent lg:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:hover:dark:text-[#57BA47] lg:relative group {{ $menu === 'Bansos' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F] text-white dark:bg-gray-600' : 'text-[#1C4F0F] lg:text-gray-500 dark:text-white' }}">
+                    <a href="{{ route('bansos') }}" class="block py-2 px-3 hover:bg-[#1C4F0F] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white lg:hover:bg-transparent dark:lg:hover:bg-transparent lg:bg-transparent dark:lg:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:hover:dark:text-[#57BA47] lg:relative group {{ $menu === 'Bansos' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F] text-white dark:bg-gray-600' : 'text-[#1C4F0F] lg:text-gray-500 dark:text-white' }}">
                         Bansos
                         <div class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F] lg:dark:bg-[#57BA47] group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'Bansos' ? '' : 'lg:scale-x-0' }}">
                         </div>
                     </a>
                 </li>
                 <li>
-                    <button id="dropdownAduanLink" data-dropdown-toggle="dropdownAduan" class="flex items-center justify-between w-full py-2 px-3 hover:bg-[#1C4F0F] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white lg:bg-transparent lg:hover:bg-transparent dark:lg:hover:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:hover:dark:text-[#57BA47] lg:relative group {{ $menu === 'Aduan' || $menu === 'Aduan-Ku' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F] text-white dark:bg-gray-600' : 'text-[#1C4F0F] lg:text-gray-500 dark:text-white' }}">
+                    <button id="dropdownAduanLink" data-dropdown-toggle="dropdownAduan" class="flex items-center justify-between w-full py-2 px-3 hover:bg-[#1C4F0F] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white lg:bg-transparent dark:lg:bg-transparent lg:hover:bg-transparent dark:lg:hover:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:hover:dark:text-[#57BA47] lg:relative group {{ $menu === 'Aduan' || $menu === 'Aduan-Ku' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F] text-white dark:bg-gray-600' : 'text-[#1C4F0F] lg:text-gray-500 dark:text-white' }}">
                         Aduan
                         <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                             <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
@@ -264,7 +264,7 @@
                     </a> --}}
                 </li>
                 <li>
-                    <a href="{{ route('profil') }}" class="block py-2 px-3 hover:bg-[#1C4F0F] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white lg:hover:bg-transparent dark:lg:hover:bg-transparent lg:bg-transparent lg:hover:text-[#1C4F0F] lg:hover:dark:text-[#57BA47] lg:p-0 lg:relative group {{ $menu === 'Profil' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F] text-white dark:bg-gray-600' : 'text-[#1C4F0F] lg:text-gray-500 dark:text-white' }}">
+                    <a href="{{ route('profil') }}" class="block py-2 px-3 hover:bg-[#1C4F0F] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white lg:hover:bg-transparent dark:lg:hover:bg-transparent lg:bg-transparent dark:lg:bg-transparent lg:hover:text-[#1C4F0F] lg:hover:dark:text-[#57BA47] lg:p-0 lg:relative group {{ $menu === 'Profil' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F] text-white dark:bg-gray-600' : 'text-[#1C4F0F] lg:text-gray-500 dark:text-white' }}">
                         Profil
                         <div class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F] lg:dark:bg-[#57BA47] group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'Profil' ? '' : 'lg:scale-x-0' }}">
                         </div>
