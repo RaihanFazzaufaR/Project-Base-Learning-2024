@@ -5,15 +5,14 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
-use Illuminate\Database\Eloquent\Relations\HasOne;
 
-class JadwalModel extends Model
+class PengumumanModel extends Model
 {
     use HasFactory;
 
-    protected $table = 'tb_jadwal';
+    protected $table = 'tb_pengumuman';
 
-    protected $primaryKey = 'jadwal_id';
+    protected $primaryKey = 'pengumuman_id';
 
     protected $fillable = [
         'judul',
@@ -24,19 +23,17 @@ class JadwalModel extends Model
         'akhir_waktu',
         'konten',
         'pembuat_id',
-        'status',
         'iuran',
         'lokasi',
-        'alasan_tolak',
     ];
 
     public function penduduk() : BelongsTo
     {
-        return $this->belongsTo(PendudukModel::class, 'pembuat_id', 'id_penduduk');
+        return $this->belongsTo(PendudukModel::class, 'pembuat_id', 'penduduk_id');
     }
 
-    public function pengumuman() : HasOne
+    public function jadwal() : BelongsTo
     {
-        return $this->hasOne(PengumumanModel::class, 'jadwal_id', 'pengumuman_id');
+        return $this->belongsTo(JadwalModel::class, 'jadwal_id', 'jadwal_id');
     }
 }
