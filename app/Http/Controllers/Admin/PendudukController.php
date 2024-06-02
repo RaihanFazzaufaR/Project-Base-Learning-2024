@@ -52,7 +52,7 @@ class PendudukController extends Controller
         }
 
         // Ordering should be before pagination
-        $user = $user->orderBy('updated_at', 'desc')->paginate(10)->withQueryString();
+        $user = $user->orderBy('updated_at', 'desc')->orderBy('id_penduduk', 'desc')->paginate(10)->withQueryString();
 
         return view('Admin.Kependudukan.index', compact('user', 'page', 'selected', 'kartuKeluarga', 'id_penduduk'));
     }
