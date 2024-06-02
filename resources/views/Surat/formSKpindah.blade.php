@@ -283,7 +283,7 @@
                                 async loadOptions() {
                                     try {
                                         const response = await fetch('/getNames', {
-                                            method: 'GET',
+                                            method: 'POST',
                                             body: JSON.stringify({
                                                 id_kartuKeluarga: id_kartuKeluarga
                                             }),
@@ -468,18 +468,19 @@
                     this.selected.splice(index, 1);
                 },
                 async loadOptions() {
-                    // Fetch names from your database based on the common id_kartuKeluarga
+                    // Get the id_kartuKeluarga value from the DOM, set by PHP
+                    const idKartuKeluarga = document.getElementById('id_kartuKeluarga').value;
+
                     try {
                         const response = await fetch('/getNames', {
                             method: 'POST',
                             body: JSON.stringify({
-                                id_kartuKeluarga: 'YOUR_ID_KARTUKELUARGA_VALUE'
+                                id_kartuKeluarga: id_kartuKeluarga
                             }),
                             headers: {
                                 'Content-Type': 'application/json'
                             }
                         });
-
                         const data = await response.json();
 
                         // Populate options array with fetched names
