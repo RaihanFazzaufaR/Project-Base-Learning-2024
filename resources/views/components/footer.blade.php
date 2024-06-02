@@ -34,7 +34,7 @@
         <div class="sm:pl-5 pl-0 lg:pl-0">
             <span class="text-base font-bold tracking-wide text-gray-900 dark:text-white">Sosial Media</span>
             <div class="flex items-center mt-1 space-x-3 text-xl">
-                <a href="https://x.com/?lang=id" class="text-gray-500 dark:text-white transition-colors duration-300 hover:text-deep-purple-accent-400 dark:text-white">
+                <a href="https://x.com/?lang=id" class="text-gray-500 dark:text-white transition-colors duration-300 hover:text-deep-purple-accent-400">
                     <i class="fa-brands fa-square-x-twitter"></i>
                 </a>
                 <a href="https://www.instagram.com/" class="text-gray-500 dark:text-white transition-colors duration-300 hover:text-deep-purple-accent-400">
