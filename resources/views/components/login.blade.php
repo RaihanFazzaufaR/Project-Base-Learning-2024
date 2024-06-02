@@ -19,8 +19,8 @@
         </div>
         <div class="lg:basis-[70%] relative w-full h-full">
             <div class="h-full w-full absolute z-[0] imgBg">
-                <img src="{{ asset('assets/images/bg-login-1.jpg') }}" alt="" class="h-full w-full absolute z-1 brightness-[0.6]">
-                <img src="{{ asset('assets/images/bg-login-2.jpg') }}" alt="" class="h-full w-full absolute z-1 brightness-[0.6]">
+                <img src="{{ asset('assets/images/bg-login-1.jpg') }}" alt="" class="h-full w-full absolute z-1 brightness-[0.6] object-cover">
+                <img src="{{ asset('assets/images/bg-login-2.jpg') }}" alt="" class="h-full w-full absolute z-1 brightness-[0.6] object-cover">
             </div>
 
             <div class="absolute z-[3] h-full w-full flex justify-center items-center flex-col gap-12">
