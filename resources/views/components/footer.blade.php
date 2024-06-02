@@ -2,8 +2,8 @@
 <!-- footer -->
 
 <div class="pt-16 w-full ">
-    <div class="grid gap-10 row-gap-6 mb-6 sm:grid-cols-2 lg:grid-cols-4 mx-auto w-[80%]">
-        <div class="sm:col-span-2 text-center lg:text-left">
+    <div class="grid gap-10 row-gap-6 mb-6 grid-cols-2 lg:grid-cols-4 mx-auto sm:w-[80%] w-[90%]">
+        <div class="col-span-2 text-center lg:text-left">
             <a href="/" aria-label="Go home" title="Company" class="inline-flex items-center">
                 <img src="{{ asset('assets/images/logo.png') }}" alt="" class="size-8 object-cover">
                 <span class="ml-2 text-xl font-bold tracking-wide text-gray-800 dark:text-white uppercase">SIRAWA</span>
@@ -14,7 +14,7 @@
                 </p>
             </div>
         </div>
-        <div class="space-y-2 text-sm text-right lg:text-left pr-5 lg:pr-0">
+        <div class="space-y-2 text-sm text-right lg:text-left sm:pr-5 lg:pr-0">
             <p class="text-base font-bold tracking-wide text-gray-900 dark:text-white">Hubungi</p>
             <div class="flex lg:justify-start justify-end">
                 <p class="mr-1 text-gray-800 dark:text-white">Telepon :</p>
@@ -31,7 +31,7 @@
                 </a>
             </div>
         </div>
-        <div class="pl-5 lg:pl-0">
+        <div class="sm:pl-5 pl-0 lg:pl-0">
             <span class="text-base font-bold tracking-wide text-gray-900 dark:text-white">Sosial Media</span>
             <div class="flex items-center mt-1 space-x-3 text-xl">
                 <a href="https://x.com/?lang=id" class="text-gray-500 dark:text-white transition-colors duration-300 hover:text-deep-purple-accent-400 dark:text-white">
