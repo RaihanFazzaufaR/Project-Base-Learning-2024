@@ -20,7 +20,7 @@ return new class extends Migration
             $table->time('mulai_waktu')->nullable();
             $table->time('akhir_waktu')->nullable();
             $table->text('konten');
-            $table->unsignedBigInteger('pembuat_id_jadwal')->nullable();
+            $table->unsignedBigInteger('jadwal_id')->nullable();
             $table->unsignedBigInteger('pembuat_id_pengumuman')->nullable();
             $table->decimal('iuran', 15, 2)->nullable();
             $table->text('lokasi')->nullable();

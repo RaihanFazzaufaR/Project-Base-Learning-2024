@@ -31,4 +31,9 @@ class PengumumanModel extends Model
     {
         return $this->belongsTo(PendudukModel::class, 'pembuat_id', 'penduduk_id');
     }
+
+    public function jadwal() : BelongsTo
+    {
+        return $this->belongsTo(JadwalModel::class, 'jadwal_id', 'jadwal_id');
+    }
 }
