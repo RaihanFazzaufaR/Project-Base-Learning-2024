@@ -24,7 +24,7 @@ class PengumumanController extends Controller
             $pengumumans->where('judul', 'like', $searchTerm);
         }
 
-        $users = PendudukModel::join('tb_kartuKeluarga', 'tb_penduduk.id_kartuKeluarga', '=', 'tb_kartuKeluarga.id_kartuKeluarga')
+        $users = PendudukModel::join('tb_kartukeluarga', 'tb_penduduk.id_kartukeluarga', '=', 'tb_kartukeluarga.id_kartukeluarga')
             ->whereIn('jabatan', ['Ketua RT', 'Ketua RW'])
             ->orWhere('id_penduduk', '1')
             ->orderBy('jabatan')

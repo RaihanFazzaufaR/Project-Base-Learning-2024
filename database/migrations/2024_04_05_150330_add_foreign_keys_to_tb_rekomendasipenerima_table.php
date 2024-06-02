@@ -4,8 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-return new class extends Migration
-{
+return new class extends Migration {
     /**
      * Run the migrations.
      *
@@ -13,8 +12,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('tb_rekomendasipenerima', function (Blueprint $table) {
-            $table->foreign(['id_kartuKeluarga'], 'tb_rekomendasipenerima_ibfk_1')->references(['id_kartuKeluarga'])->on('tb_kartukeluarga')->onUpdate('restrict')->onDelete('restrict');
+        Schema::table('tb_ajuan_bansos', function (Blueprint $table) {
+            $table->foreign(['id_kartuKeluarga'], 'tb_ajuan_bansos_ibfk_1')->references(['id_kartuKeluarga'])->on('tb_kartukeluarga')->onUpdate('restrict')->onDelete('restrict');
         });
     }
 
@@ -25,8 +24,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('tb_rekomendasipenerima', function (Blueprint $table) {
-            $table->dropForeign('tb_rekomendasipenerima_ibfk_1');
+        Schema::table('tb_ajuan_bansos', function (Blueprint $table) {
+            $table->dropForeign('tb_ajuan_bansos_ibfk_1');
         });
     }
 };
