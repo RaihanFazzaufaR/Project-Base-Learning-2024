@@ -65,11 +65,10 @@
                                     <label for="pembuat" class="block mb-2 text-sm font-bold">Pembuat</label>
                                     <select name="pembuat_id"
                                         class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
-                                        placeholder="Masukkan Pembuat ...">
-                                        <option value="">Admin (Admin)</option>
+                                        required placeholder="Masukkan Pembuat ...">
                                         @foreach ($users as $user)
                                             <option value="{{ $user->nik }}">{{ $user->nama }} (
-                                                {{ $user->jabatan }}{{ $user->jabatan == 'Ketua RW' ? '' : $user->kartuKeluarga->rt }}
+                                                {{ $user->jabatan == 'Tidak ada' ? 'Admin' : $user->jabatan }} {{ $user->jabatan == 'Ketua RW' || $user->nama == 'Admin' ? '' : $user->kartuKeluarga->rt }}
                                                 )</option>
                                         @endforeach
                                     </select>
@@ -159,11 +158,11 @@
             <table class="w-full text-center">
                 <thead class="text-sm font-bold text-[#34662C] bg-[#91DF7D] dark:bg-gray-700 dark:text-gray-400">
                     <tr>
-                        <th scope="col" class="px-6 py- w-[20%]">
+                        <th scope="col" class="px-6 py-3">
                             Pembuat
                         </th>
-                        <th scope="col" class="px-6 py-3 w-[20%]">
-                            Tanggal Dibuat
+                        <th scope="col" class="px-6 py-3">
+                            Tanggal Diperbarui
                         </th>
                         <th scope="col" class="px-6 py-3">
                             Judul
@@ -171,7 +170,7 @@
                         <th scope="col" class="px-6 py-3">
                             Asal Pengumuman
                         </th>
-                        <th scope="col" class="px-6 py-3 w-[30%]">
+                        <th scope="col" class="px-6 py-3">
                             Aksi
                         </th>
                     </tr>
@@ -184,13 +183,13 @@
                                 {{ $pengumuman->jadwal_id != null ? $pengumuman->jadwal->penduduk->nama : 'Admin'}}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $pengumuman->created_at ? $pengumuman->created_at->format('d-m-y') : '-' }}
+                                {{ $pengumuman->updated_at ? $pengumuman->updated_at->format('Y-m-d') : '-'}}
                             </td>
                             <td class="px-6 py-4">
                                 {{ $pengumuman->judul }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $pengumuman->jadwal_id != null ? 'Pengumuman Jadwal' : 'Pengumuman' }}
+                                {{ $pengumuman->jadwal_id != null ? 'Jadwal' : 'Pengumuman' }}
                             </td>
                             <td>
                                 <div class="px-6 py-4 flex gap-4 justify-center items-center h-full">
