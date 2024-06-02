@@ -19,7 +19,7 @@ class PendudukController extends Controller
         $selected = 'Kependudukan';
         $kartuKeluarga = KartuKeluargaModel::all();
         $id_penduduk = 0;
-        $user = PendudukModel::query()->orderBy('updated_at', 'desc');
+        $user = PendudukModel::query();
 
         if ($request->filled('id_penduduk')) {
             $id_penduduk = $request->id_penduduk;
