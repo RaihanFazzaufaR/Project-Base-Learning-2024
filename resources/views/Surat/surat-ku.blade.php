@@ -59,11 +59,11 @@
                         </td>
                         <td scope="row"
                             class="px-6 py-4 font-medium text-base text-center text-[#2d5523] dark:text-white">
-                            @if ($surat->jenisSurat == 1)
+                            @if ($surat->template_id == 1)
                                 Surat Keterangan
-                            @elseif($surat->jenisSurat == 2)
+                            @elseif($surat->template_id == 2)
                                 Surat Keterangan Pindah
-                            @elseif($surat->jenisSurat == 3)
+                            @elseif($surat->template_id == 3)
                                 Surat Keterangan Kematian
                             @else
                                 Jenis Surat Tidak Dikenal
@@ -78,16 +78,41 @@
                             class="px-6 py-4 font-medium text-base text-center text-[#2d5523] dark:text-white">
                             @if ($surat->status === 'selesai')
                                 <!-- Display the surat file -->
-                                <a href="{{ route('show', $surat->permintaan_id) }}"
-                                    class="w-fit text-white bg-[#7d5dd7] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#3b2a69] hover:scale-105 transition-all">
-                                    <i class="fa-solid fa-envelope"></i>
-                                    Lihat Surat
-                                    {{-- <a href=""
+                                @switch($surat->template_id)
+                                    @case(1)
+                                        <a href="{{ route('showSk', $surat->peminta_id) }}"
+                                            class="w-fit text-white bg-[#7d5dd7] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#3b2a69] hover:scale-105 transition-all">
+                                            <i class="fa-solid fa-envelope"></i>
+                                            Lihat Surat
+                                        </a>
+                                    @break
+
+                                    @case(2)
+                                        <a href="{{ route('showSkPindah', $surat->peminta_id) }}"
+                                            class="w-fit text-white bg-[#7d5dd7] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#3b2a69] hover:scale-105 transition-all">
+                                            <i class="fa-solid fa-envelope"></i>
+                                            Lihat Surat
+                                        </a>
+                                    @break
+
+                                    @case(3)
+                                        <a href="{{ route('showSkKematian', $surat->peminta_id) }}"
+                                            class="w-fit text-white bg-[#7d5dd7] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#3b2a69] hover:scale-105 transition-all">
+                                            <i class="fa-solid fa-envelope"></i>
+                                            Lihat Surat
+                                        </a>
+                                    @break
+
+                                    @default
+                                        <!-- Jika template_id tidak cocok dengan kasus yang telah ditentukan -->
+                                @endswitch
+
+                                {{-- <a href=""
                                     class="w-fit text-white bg-[#7d5dd7] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#3b2a69] hover:scale-105 transition-all">
                                     <i class="fa-solid fa-envelope"></i>
                                     Lihat Surat
                                 </a> --}}
-                                @elseif ($surat->status === 'ditolak')
+                                {{-- @elseif ($surat->status === 'ditolak')
                                     <button
                                         class="w-fit text-white bg-red-500 rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-red-700 hover:scale-105 transition-all">
                                         Ditolak
@@ -96,7 +121,7 @@
                                     <button
                                         class="w-fit text-white bg-yellow-500 rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-yellow-700 hover:scale-105 transition-all">
                                         Diproses
-                                    </button>
+                                    </button> --}}
                             @endif
                         </td>
                     </tr>

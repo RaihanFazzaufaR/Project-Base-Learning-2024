@@ -3,7 +3,7 @@
 </x-header>
 
 <div class="w-[100%]  relative  justify-center items-center hidden md:flex ">
-    <img src="{{ asset('assets/images/bg-index-UMKM.png') }}" alt="" class="w-full dark:brightness-[85%]">
+    <img src="{{ asset('assets/images/bg-index-UMKM.webp') }}" alt="" class="w-full dark:brightness-[85%]">
     <div
         class="bg-white/[0.73] dark:bg-[#24292d]/[0.73]  w-[571px] h-[185px] z-10 absolute flex justify-center rounded-[105px] flex-col text-center shadow-2xl">
         <p class="text-[#2d5523] dark:text-white font-bold text-[36px]">UMKM DI RW 3</p>

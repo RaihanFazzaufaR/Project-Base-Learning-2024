@@ -9,8 +9,20 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Lobster&family=Noto+Sans+Javanese&display=swap" rel="stylesheet">
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
-<body>
+<body x-data="{'loaded': true}">
+    <div x-show="loaded" x-init="window.addEventListener('DOMContentLoaded', () => {setTimeout(() => loaded = false, 500)})" class="fixed left-0 top-0 z-[9999999] flex h-screen w-screen items-center justify-center bg-white dark:bg-[#2F363E]">
+        <div class="flex items-center justify-center h-screen">
+            <div class="relative">
+                <div class="h-24 w-24 rounded-full border-t-8 border-b-8 border-gray-200"></div>
+                <div class="absolute top-0 left-0 h-24 w-24 rounded-full border-t-8 border-b-8 border-[#57BA47] animate-spin">
+                </div>
+            </div>
+        </div>
+    </div>
     <x-navbar menu="{{ $menu }}" />
     <div class="bg-white dark:bg-[#24292d] min-h-[100vh] w-[100%] rounded-b-[100px] shadow-xl pb-[13vh]">

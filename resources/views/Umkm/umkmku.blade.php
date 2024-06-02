@@ -8,7 +8,7 @@
 
 
 <div class="w-[100%] hidden md:flex relative justify-center items-center ">    
-    <img src="{{ asset('assets/images/bg-index-UMKM.png') }}" alt="" class="w-full dark:brightness-[85%]">
+    <img src="{{ asset('assets/images/bg-index-UMKM.webp') }}" alt="" class="w-full dark:brightness-[85%]">
     <div
         class="bg-white/[0.73] dark:bg-[#24292d]/[0.73]  w-[571px] h-[185px] z-10 absolute flex justify-center rounded-[105px] flex-col text-center shadow-2xl">
         <p class="text-[#2d5523] dark:text-white font-bold text-[36px]">UMKM DI RW 3</p>
@@ -18,7 +18,7 @@
 
 </div>
 <div class=" min-h-[100vh] mx-auto py-[34px] w-[90%]">
-    <div class="  justify-between w-full">   
+    <div class="justify-between w-full">   
         <div class="mt-7  md:flex justify-between w-full">
             <div class="w-full items-center  justify-between"> <!-- Menambahkan kelas justify-between di sini -->
                 <div class="hidden md:flex justify-between pb-5">
@@ -38,7 +38,7 @@
                     <div class="felx justify-end pb-7">
                         <div class="" x-data="{ 'editModal': false }" @keydown.escape="editModal = false">
                             <button @click="editModal = true"
-                                class="w-auto shadow-2xl h-[57px] text-[20px] px-[24px] bg-yellow-500  dark:text-white dark:hover:text-white dark:shadow-xl dark:shadow-gray-900 items-center flex rounded-[15px]  font-bold text-[#2d5523] hover:bg-[#E2A229] hover:text-white active:bg-yellow-500 justify-center  transition ease-in-out duration-300 hover:scale-105">
+                                class="w-auto shadow-2xl h-[57px] text-[20px] px-[24px] bg-yellow-500  dark:text-white dark:hover:text-white dark:shadow-gray-900 items-center flex rounded-[15px]  font-bold text-[#2d5523] hover:bg-[#E2A229] hover:text-white active:bg-yellow-500 justify-center  transition ease-in-out duration-300 hover:scale-105">
                                 Ajukan UMKM Anda
                             </button>
                             <div x-show="editModal" x-cloak tabindex="-1" aria-hidden="true"
@@ -357,7 +357,7 @@
         </div>
         
         {{-- table --}}
-        <div class="relative  overflow-x-auto shadow-md sm:rounded-lg shadow-xl dark:shadow-gray-900">
+        <div class="relative  overflow-x-auto  sm:rounded-lg shadow-2xl dark:shadow-gray-900">
             <table class="w-full text-sm text-left rtl:text-right table-fixed text-gray-500 dark:text-gray-400">
                 <thead
                     class="text-base text-white uppercase bg-[#436c39] text-center dark:bg-[#428238] dark:text-white">

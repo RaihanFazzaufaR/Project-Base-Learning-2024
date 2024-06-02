@@ -13,10 +13,18 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tb_datasurat', function (Blueprint $table) {
-            $table->id('data_id');
-            $table->unsignedBigInteger('permintaan_id');
-            $table->string('tempatLahir', 100)->nullable(); // Menambah kolom tempatLahir
+        Schema::create('tb_surat', function (Blueprint $table) {
+            $table->id('surat_id');
+            
+            // Columns from tb_permintaansurat
+            $table->unsignedBigInteger('peminta_id');
+            $table->date('minta_tanggal');
+            $table->enum('status', ['diproses', 'selesai', 'ditolak', 'menunggu']);
+            $table->text('keperluan');
+            $table->unsignedBigInteger('template_id');
+
+            // Columns from tb_datasurat
+            $table->string('tempatLahir', 100)->nullable();
             $table->date('tanggalLahir')->nullable();
             $table->enum('jenisKelamin', ['L', 'P'])->nullable();
             $table->enum('statusNikah', ['belum', 'sudah'])->nullable();
@@ -26,18 +34,21 @@ return new class extends Migration
             $table->enum('agama', ['islam', 'kristen', 'katolik', 'hindu', 'buddha', 'konghucu', 'lainnya']);
             $table->string('pekerjaan', 20)->nullable();
             $table->string('alamat', 100)->nullable();
-
-            // Added columns for new input fields
             $table->string('penyebab_kematian')->nullable();
             $table->string('tempat_meninggal')->nullable();
             $table->string('nama_pelapor')->nullable();
             $table->string('hubungan_pelapor')->nullable();
             $table->dateTime('tanggal_wafat')->nullable();
-            
-            // Added columns for new input fields
             $table->text('alamat_pindah')->nullable();
             $table->text('alasan_pindah')->nullable();
             $table->integer('jumlah_keluarga_pindah')->nullable();
+            
+            // Foreign key relationships (if needed)
+            $table->foreign('peminta_id')->references('id_penduduk')->on('tb_penduduk')->onDelete('cascade');
+            $table->foreign('template_id')->references('template_id')->on('tb_template')->onDelete('cascade');
+
+            // Timestamps for record tracking
+            $table->timestamps();
         });
     }
 
@@ -48,6 +59,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('tb_datasurat');
+        Schema::dropIfExists('tb_surat');
     }
 };

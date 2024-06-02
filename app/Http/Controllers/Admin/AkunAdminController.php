@@ -374,7 +374,7 @@ class AkunAdminController extends Controller
     
     public function filterAkun(Request $request)
     {
-        $page = 'daftarAkun';
+        $page = 'kelolaLevel';
         $selected = 'Akun';
 
         // Mengambil nilai jabatan dari request
@@ -405,7 +405,7 @@ class AkunAdminController extends Controller
 
     public function searchAkun(Request $request)
     {
-        $page = 'daftarAkun';
+        $page = 'kelolaLevel';
         $selected = 'Akun';
 
         // Ambil nilai pencarian dari input

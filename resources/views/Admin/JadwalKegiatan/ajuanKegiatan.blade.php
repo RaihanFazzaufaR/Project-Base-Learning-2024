@@ -5,7 +5,7 @@
                 @csrf
                 <div class="flex h-full items-center">
                     <div class="relative w-full">
-                        <input type="search" id="location-search" name="search" class="block py-2 px-4 h-11 w-full z-20 text-sm text-[#34662C] shadow-xl bg-gray-50 rounded-xl border border-[#34662C] focus:outline-none focus:border-[3px] dark:border-[#57BA47]" placeholder="Cari ..." required />
+                        <input type="search" id="location-search" name="search" class="block py-2 px-4 h-11 w-full z-20 text-sm text-[#34662C] shadow-xl bg-gray-50 dark:bg-[#2F363E] rounded-xl border border-[#34662C] focus:outline-none focus:border-[3px] dark:border-[#57BA47]" placeholder="Cari ..." required />
                         <button type="submit" class="absolute top-0 end-0 h-11 py-2 px-4 text-sm font-medium text-white bg-[#57BA47] rounded-xl border border-[#34662C]  hover:bg-[#336E2A] transition duration-300 ease-in-out">
                             <i class="fa-solid fa-magnifying-glass text-2xl"></i>
                             <span class="sr-only">Search</span>
@@ -17,7 +17,7 @@
     </div>
 
     <div class="mt-10">
-        <div class="relative overflow-x-auto shadow-md rounded-lg">
+        <div class="relative overflow-x-auto shadow-sm rounded-lg">
             <table class="w-[650px] sm:w-full text-center table-fixed relative">
                 <thead class="sm:text-sm text-xs font-bold text-[#34662C] bg-[#91DF7D] dark:bg-[#428238] dark:text-white">
                     <tr>
@@ -193,7 +193,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="px-8 py-5 dark:bg-[#343b44] rounded-b-lg">
+        <div class="px-8 py-5 dark:bg-[#343b44] rounded-b-lg shadow-md">
             {{ $data->links() }}
         </div>
     </div>
