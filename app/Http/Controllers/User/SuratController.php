@@ -21,13 +21,15 @@ class SuratController extends Controller
         public function index()
     {
         $menu = 'Surat';
-        return view('Surat.formSKpindah', compact('menu'));
+        $subMenu = 'SK';
+        return view('Surat.formSK', compact('menu', 'subMenu'));
     }
     
     public function sk()
     {
         $menu = 'Surat';
-        return view('Surat.formSK', compact('menu'));
+        $subMenu = 'SK';
+        return view('Surat.formSK', compact('menu', 'subMenu'));
     }
 
    public function storeSk(Request $request)
@@ -110,7 +112,10 @@ class SuratController extends Controller
     public function skPindah()
     {
         $menu = 'Surat';
-        return view('Surat.formSKpindah', compact('menu'));
+        $anggotaKeluarga = PendudukModel::where('id_kartuKeluarga', Auth::user()->penduduk->id_kartuKeluarga)->get(); 
+        $subMenu = 'SKP';
+        // dd($anggotaKeluarga);
+        return view('Surat.formSKpindah', compact('menu', 'anggotaKeluarga', 'subMenu'));
     }
 
     public function storeSkPindah(Request $request)
@@ -216,7 +221,8 @@ class SuratController extends Controller
     public function skKematian()
     {
         $menu = 'Surat';
-        return view('Surat.formSkkematian', compact('menu'));
+        $subMenu = 'SKK';
+        return view('Surat.formSkkematian', compact('menu', 'subMenu'));
     }
     
     public function storeSkKematian(Request $request)
