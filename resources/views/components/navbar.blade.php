@@ -1,4 +1,4 @@
-<nav class="sticky top-0 z-[99] bg-white border-gray-200 dark:bg-[#2F363E] border-b-2 h-fit" id="navbar" data-aos="fade-down" data-aos-duration="1000" data-aos-once="true" style="transition: all 0.5s">
+<nav class="sticky top-0 z-[99] bg-white border-gray-200 dark:border-gray-600 dark:bg-[#2F363E] border-b-2 h-fit" id="navbar" data-aos="fade-down" data-aos-duration="1000" data-aos-once="true" style="transition: all 0.5s">
     <div class="w-full flex flex-wrap items-center justify-between lg:px-12 sm:px-10 px-5 py-4">
         <a href="{{ url('/') }}" class="flex items-center space-x-3">
             <img src="{{ asset('assets/images/logo.png') }}" class="sm:h-12 h-9" alt="Logo" />
