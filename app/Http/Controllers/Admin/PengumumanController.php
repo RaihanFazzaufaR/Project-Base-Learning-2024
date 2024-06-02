@@ -46,6 +46,10 @@ class PengumumanController extends Controller
 
     public function tambahPengumuman(Request $request)
     {
+        $now = Carbon::now()->startOfDay();
+        $sevenDayFromNow = Carbon::now()->copy()->addDays(7);
+        $oneDayFromNow = Carbon::now()->copy()->addDays();
+
         $request->validate([
             'judul' => 'required',
             'kategori' => 'required|not_in:',
@@ -60,17 +64,13 @@ class PengumumanController extends Controller
             'mulai_waktu' => $request->mulai_waktu ? $request->mulai_waktu : null,
             'akhir_waktu' => $request->akhir_waktu ? $request->akhir_waktu : null,
             'konten' => $request->konten,
-            'jadwal_id' => null,
+            'jadwal_id' => $request->jadwal_id ? $request->jadwal_id : null,
             'pembuat_id_pengumuman' => $request->pembuat_id != "" ? PendudukModel::where('nik', $request->pembuat_id)->value('id_penduduk') : null,
             'iuran' => $request->iuran ? $request->iuran : null,
             'lokasi' => $request->lokasi ? $request->lokasi : null,
-        ]);
+        ]);   
 
-        $now = Carbon::now()->startOfDay();
-        $sevenDayFromNow = Carbon::now()->copy()->addDays(7);
-        $oneDayFromNow = Carbon::now()->copy()->addDays();
-
-        if (!$request->mulai_waktu) {
+        if (!$request->mulai_tanggal) {
             $message = $this->formatMessage($request);
             $this->telegramService->sendMessage($message);
 
@@ -79,7 +79,7 @@ class PengumumanController extends Controller
             ]);
         }
 
-        if ($request->mulai_tanggal >= $oneDayFromNow && $request->mulai_tanggal <= $sevenDayFromNow) {
+        if (($request->mulai_tanggal >= $oneDayFromNow) && ($request->mulai_tanggal <= $sevenDayFromNow)) {
             $message = $this->formatMessage($request);
             $this->telegramService->sendMessage($message);
 

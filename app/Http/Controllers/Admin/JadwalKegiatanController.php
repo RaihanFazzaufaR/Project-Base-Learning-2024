@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\PengumumanController;
 use App\Models\JadwalModel;
 use App\Models\PendudukModel;
+use App\Services\TelegramService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -172,7 +174,7 @@ class JadwalKegiatanController extends Controller
         }
 
 
-        JadwalModel::create([
+        $jadwal = JadwalModel::create([
             'judul' => $request->nama,
             'aktivitas_tipe' => $request->kategori,
             'mulai_tanggal' => $request->tanggal_mulai,
@@ -186,6 +188,22 @@ class JadwalKegiatanController extends Controller
             'lokasi' => $request->lokasi,
         ]);
 
+        $pengumumanController = new PengumumanController(new TelegramService());
+        $reqPengumuman = new Request([
+            'judul' => $request->nama,
+            'kategori' => $request->kategori,
+            'mulai_tanggal' => $request->tanggal_mulai,
+            'akhir_tanggal' => $request->tanggal_selesai,
+            'mulai_waktu' => $request->jam_mulai,
+            'akhir_waktu' => $request->jam_selesai,
+            'konten' => $request->deskripsi,
+            'jadwal_id' => $jadwal->jadwal_id,
+            'pembuat_id_pengumuman' => null,
+            'iuran' => $request->iuran,
+            'lokasi' => $request->lokasi,
+        ]);
+        $pengumumanController->tambahPengumuman($reqPengumuman);
+
         return redirect('/admin/jadwal-kegiatan')->with('success', 'Data berhasil ditambahkan!');
     }
 
@@ -195,6 +213,24 @@ class JadwalKegiatanController extends Controller
         JadwalModel::find($request->id)->update([
             'status' => 'selesai'
         ]);
+
+        $jadwal = JadwalModel::where('jadwal_id', $request->id)->get()->first();
+
+        $pengumumanController = new PengumumanController(new TelegramService());
+        $reqPengumuman = new Request([
+            'judul' => $jadwal->judul,
+            'kategori' => $jadwal->aktivitas_tipe,
+            'mulai_tanggal' => $jadwal->mulai_tanggal,
+            'akhir_tanggal' => $jadwal->akhir_tanggal,
+            'mulai_waktu' => $jadwal->mulai_waktu,
+            'akhir_waktu' => $jadwal->akhir_waktu,
+            'konten' => $jadwal->konten,
+            'jadwal_id' => $jadwal->jadwal_id,
+            'pembuat_id_pengumuman' => null,
+            'iuran' => $jadwal->iuran,
+            'lokasi' => $jadwal->lokasi,
+        ]);
+        $pengumumanController->tambahPengumuman($reqPengumuman);
 
         return redirect('/admin/jadwal-kegiatan/ajuan-kegiatan')->with('success', 'Data berhasil diterima!');
     }

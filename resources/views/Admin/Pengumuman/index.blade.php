@@ -55,12 +55,6 @@
                             @csrf
                             <div
                                 class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto rounded-b-xl">
-                                <div class="col-span-2">
-                                    <label for="judul" class="block mb-2 text-sm font-bold">judul Pengumuman</label>
-                                    <input type="text" name="judul" id="judul"
-                                        class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
-                                        required placeholder="Masukkan Judul Pengumuman ...">
-                                </div>
                                 <div class="col-span-2 sm:col-span-1">
                                     <label for="pembuat" class="block mb-2 text-sm font-bold">Pembuat</label>
                                     <select name="pembuat_id"
@@ -74,10 +68,25 @@
                                     </select>
                                 </div>
                                 <div class="col-span-2 sm:col-span-1">
-                                    <label for="iuran" class="block mb-2 text-sm font-bold">Iuran</label>
-                                    <input type="number" name="iuran" id="iuran"
+                                    <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
+                                    <select name="kategori" id="kategori"
+                                        class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                        <option selected value="">Pilih Kategori</option>
+                                        <option value="Kebersihan">Kebersihan</option>
+                                        <option value="Lingkungan">Lingkungan</option>
+                                        <option value="Kesehatan">Kesehatan</option>
+                                        <option value="Pendidikan">Pendidikan</option>
+                                        <option value="Budaya">Budaya</option>
+                                        <option value="Kemanusiaan">Kemanusiaan</option>
+                                        <option value="Kuliner">Kuliner</option>
+                                        <option value="Ekonomi">Ekonomi</option>
+                                    </select>
+                                </div>
+                                <div class="col-span-2">
+                                    <label for="judul" class="block mb-2 text-sm font-bold">judul Pengumuman</label>
+                                    <input type="text" name="judul" id="judul"
                                         class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
-                                        placeholder="Masukkan Iuran ...">
+                                        required placeholder="Masukkan Judul Pengumuman ...">
                                 </div>
                                 <div class="col-span-2 sm:col-span-1">
                                     <label for="mulai_tanggal" class="block mb-2 text-sm font-bold">Tanggal
@@ -108,19 +117,10 @@
                                     </div>
                                 </div>
                                 <div class="col-span-2 sm:col-span-1">
-                                    <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
-                                    <select name="kategori" id="kategori"
-                                        class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
-                                        <option selected value="">Pilih Kategori</option>
-                                        <option value="Kebersihan">Kebersihan</option>
-                                        <option value="Lingkungan">Lingkungan</option>
-                                        <option value="Kesehatan">Kesehatan</option>
-                                        <option value="Pendidikan">Pendidikan</option>
-                                        <option value="Budaya">Budaya</option>
-                                        <option value="Kemanusiaan">Kemanusiaan</option>
-                                        <option value="Kuliner">Kuliner</option>
-                                        <option value="Ekonomi">Ekonomi</option>
-                                    </select>
+                                    <label for="iuran" class="block mb-2 text-sm font-bold">Iuran</label>
+                                    <input type="number" name="iuran" id="iuran"
+                                        class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
+                                        placeholder="Masukkan Iuran ...">
                                 </div>
                                 <div class="col-span-2">
                                     <label for="lokasi" class="block mb-2 text-sm font-bold">Lokasi</label>
