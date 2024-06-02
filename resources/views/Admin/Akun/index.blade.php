@@ -137,7 +137,7 @@
     </div>
 
     <div class="mt-10">
-        <div class="relative overflow-x-auto shadow-md rounded-lg">
+        <div class="relative overflow-x-auto shadow-sm rounded-lg">
             <table class="w-[650px] sm:w-full text-center table-fixed relative">
                 <thead class="sm:text-sm text-xs font-bold text-[#34662C] bg-[#91DF7D] dark:bg-[#428238] dark:text-white">
                     <tr>
@@ -333,9 +333,9 @@
                     @endforeach
                 </tbody>
             </table>
-            <div class="px-8 py-5">
-                {{ $users->links() }}
-            </div>
+        </div>
+        <div class="px-8 py-5 dark:bg-[#343b44] rounded-b-lg shadow-md">
+            {{ $users->links() }}
         </div>
     </div>
 </x-admin-layout>
