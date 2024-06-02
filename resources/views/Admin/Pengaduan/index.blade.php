@@ -71,7 +71,7 @@
         </div>
     </div>
     <div class="mt-10">
-        <div class="relative shadow-md rounded-lg overflow-x-auto">
+        <div class="relative shadow-sm rounded-lg overflow-x-auto">
             <table class="w-[600px] sm:w-full text-center table-fixed relative">
                 <thead class="text-sm font-bold text-[#34662C] bg-[#91DF7D] dark:bg-[#428238] dark:text-white">
                     <tr>
@@ -298,7 +298,7 @@
                 </tbody>
             </table>
         </div>
-        <div class="px-8 py-5 dark:bg-[#343b44] rounded-b-lg">
+        <div class="px-8 py-5 dark:bg-[#343b44] rounded-b-lg shadow-md">
             {{ $complaints->links() }}
         </div>
     </div>
