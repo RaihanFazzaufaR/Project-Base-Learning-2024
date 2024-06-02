@@ -57,7 +57,8 @@
                 <div class="text-[#2d5523] text-2xl pb-10 font-bold">
                     Formulir Surat Keterangan Pindah
                 </div>
-                <form action="{{ route('sk-pindah') }}" method="GET" class="gap-4 flex flex-col h-fit">
+                <form action="{{ route('storeSkPindah') }}" method="post" class="gap-4 flex flex-col h-fit">
+                    @csrf
                     {{-- nama --}}
                     <div class="gap-2 flex w-full h-fit">
                         <div class="basis-1/4 h-full ps-8  flex my-auto items-center">
@@ -197,26 +198,57 @@
                     </div>
                     {{-- Alamat Pindah --}}
                     <div class="gap-2 flex w-full h-fit">
-                        <div class="basis-1/4 h-full ps-8  flex ">
+                        <div class="basis-1/4 h-full ps-8 flex my-auto items-center">
                             <label for="alamat-pindah"
-                                class="text-lg font-bold  w-full text-[#2d5523] dark:text-white">Alamat Pindah</label>
+                                class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">
+                                Alamat Pindah
+                            </label>
                         </div>
-                        <div class="basis-3/4 h-full flex items-center">
-                            <textarea id="alamat-pindah" name="alamat-pindah" cols="19" rows="3"
-                                placeholder="Masukkan Alamat Pindah"
-                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
+                        <div class="basis-3/4 h-full flex items-center relative">
+                            <input id="alamat-pindah" name="alamat-pindah" placeholder="Masukkan Alamat Pindah"
+                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                         </div>
                     </div>
-                    {{-- Alasan Pindah --}}
-                    <div class="gap-2 flex w-full h-fit">
-                        <div class="basis-1/4 h-full ps-8  flex my-auto items-center">
-                            <label for="alasan"
-                                class="text-lg font-bold items-center flex w-full  text-[#2d5523] dark:text-white">Alasan
-                                Pindah</label>
+
+                    <div class="gap-2 flex w-full h-fit mt-4">
+                        <div class="basis-1/4 h-full ps-8 flex my-auto items-center">
+                            <label for="rt" class="text-lg font-bold text-[#2d5523] dark:text-white">
+                                RT
+                            </label>
                         </div>
-                        <div class="basis-3/4 h-full flex items-center">
-                            <input id="alasan" name="alasan" placeholder="Masukkan Alasan Pindah"
-                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                        <div class="basis-1/4 h-full flex items-center">
+                            <select name="rt" id="rt"
+                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                required>
+                                <option selected="">Pilih RT</option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                                <option value="06">06</option>
+                                <option value="07">07</option>
+                                <option value="08">08</option>
+                                <option value="09">09</option>
+                                <option value="10">10</option>
+                            </select>
+                        </div>
+                        <div class="basis-1/4 h-full ps-8 flex my-auto items-center">
+                            <label for="rw" class="text-lg font-bold text-[#2d5523] dark:text-white">
+                                RW
+                            </label>
+                        </div>
+                        <div class="basis-1/4 h-full flex items-center">
+                            <select name="rw" id="rw"
+                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                required>
+                                <option selected="">Pilih RW</option>
+                                <option value="01">01</option>
+                                <option value="02">02</option>
+                                <option value="03">03</option>
+                                <option value="04">04</option>
+                                <option value="05">05</option>
+                            </select>
                         </div>
                     </div>
                     {{-- Keluarga yang pindah --}}
@@ -417,7 +449,6 @@
                             Simpan
                         </button>
                     </div>
-
                 </form>
             </div>
         </div>
