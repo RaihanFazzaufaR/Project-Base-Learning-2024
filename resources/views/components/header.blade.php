@@ -14,7 +14,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 </head>
 
-<body x-data="{'loaded': true}">
+<body x-data="{'loaded': true}" class="bg-white dark:bg-[#30373F]">
     <div x-show="loaded" x-init="window.addEventListener('DOMContentLoaded', () => {setTimeout(() => loaded = false, 500)})" class="fixed left-0 top-0 z-[9999999] flex h-screen w-screen items-center justify-center bg-white dark:bg-[#2F363E]">
         <div class="flex items-center justify-center h-screen">
             <div class="relative">
@@ -25,4 +25,4 @@
         </div>
     </div>
     <x-navbar menu="{{ $menu }}" />
-    <div class="bg-white dark:bg-[#24292d] min-h-[100vh] w-[100%] rounded-b-[100px] shadow-xl pb-[13vh]">
+    <div class="bg-white dark:bg-[#24292d] min-h-[100vh] w-[100%] rounded-b-[100px] shadow-xl pb-[13vh] scrollbar-none">
