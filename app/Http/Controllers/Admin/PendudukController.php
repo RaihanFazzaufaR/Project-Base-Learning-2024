@@ -23,12 +23,15 @@ class PendudukController extends Controller
 
         if ($request->filled('id_penduduk')) {
             $id_penduduk = $request->id_penduduk;
+            $user->where('id_penduduk', $id_penduduk);
         } elseif ($request->filled('search')) {
             $searchTerm = '%' . $request->search . '%';
-            $user->where('nik', 'like', $searchTerm)
-                ->orWhere('nama', 'like', $searchTerm)
-                ->orWhere('tempatLahir', 'like', $searchTerm);
-        } elseif ($request->all()) {
+            $user->where(function ($query) use ($searchTerm) {
+                $query->where('nik', 'like', $searchTerm)
+                    ->orWhere('nama', 'like', $searchTerm)
+                    ->orWhere('tempatLahir', 'like', $searchTerm);
+            });
+        } else {
             $user->where(function ($query) use ($request) {
                 if ($request->filled('jenisKelamin')) {
                     $query->where('jenisKelamin', $request->jenisKelamin);
@@ -48,6 +51,7 @@ class PendudukController extends Controller
             });
         }
 
+        // Ordering should be before pagination
         $user = $user->orderBy('updated_at', 'desc')->paginate(10)->withQueryString();
 
         return view('Admin.Kependudukan.index', compact('user', 'page', 'selected', 'kartuKeluarga', 'id_penduduk'));
@@ -202,7 +206,7 @@ class PendudukController extends Controller
             userAccountModel::where('id_penduduk', $check->id_penduduk)->delete();
             KartuKeluargaModel::find($check->id_kartuKeluarga)->update([
                 'jmlAnggota' => KartuKeluargaModel::find($check->id_kartuKeluarga)->jmlAnggota - 1
-            ]); 
+            ]);
             // PendudukModel::destroy($nik);
             return redirect('/admin/kependudukan')->with('success', 'Data berhasil dihapus!');
         } catch (\Illuminate\Database\QueryException $e) {
