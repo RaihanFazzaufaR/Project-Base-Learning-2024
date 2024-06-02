@@ -482,7 +482,6 @@
                             }
                         });
                         const data = await response.json();
-
                         // Populate options array with fetched names
                         data.names.forEach(name => {
                             this.options.push({
