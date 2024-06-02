@@ -209,7 +209,6 @@
                                 class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                         </div>
                     </div>
-
                     <div class="gap-2 flex w-full h-fit mt-4">
                         <div class="basis-1/4 h-full ps-8 flex my-auto items-center">
                             <label for="rt" class="text-lg font-bold text-[#2d5523] dark:text-white">
@@ -259,47 +258,16 @@
                                 yang pindah</label>
                         </div>
                         <div class="basis-3/4 h-full flex items-center">
-                            <input id="keluarga-pindah" name="keluarga-pindah" type="number"
+                            <input id="keluarga-pindah" name="keluarga-pindah" type="number" min="1"
                                 placeholder="Masukkan Jumlah Anggota Keluarga yang Pindah"
                                 class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                                 x-model="maxSelection" @change="validateSelection">
                         </div>
                     </div>
-
                     <script>
                         function dropdown() {
                             return {
-                                options: [{
-                                        value: 1,
-                                        text: 'Lucky Kurniawan Langoday',
-                                        selected: false
-                                    },
-                                    {
-                                        value: 2,
-                                        text: 'Lucky Kurniawan Langoday',
-                                        selected: false
-                                    },
-                                    {
-                                        value: 3,
-                                        text: 'Lucky Kurniawan Langoday',
-                                        selected: false
-                                    },
-                                    {
-                                        value: 4,
-                                        text: 'Lucky Kurniawan Langoday',
-                                        selected: false
-                                    },
-                                    {
-                                        value: 5,
-                                        text: 'Lucky Kurniawan Langoday',
-                                        selected: false
-                                    },
-                                    {
-                                        value: 6,
-                                        text: 'Lucky Kurniawan Langoday',
-                                        selected: false
-                                    }
-                                ],
+                                options: [],
                                 selected: [],
                                 maxSelection: 0,
                                 open: false,
@@ -311,6 +279,30 @@
                                 },
                                 closeDropdown() {
                                     this.open = false;
+                                },
+                                async loadOptions() {
+                                    try {
+                                        const response = await fetch('/getNames', {
+                                            method: 'GET',
+                                            body: JSON.stringify({
+                                                id_kartuKeluarga: id_kartuKeluarga
+                                            }),
+                                            headers: {
+                                                'Content-Type': 'application/json'
+                                            }
+                                        });
+
+                                        const data = await response.json();
+
+                                        // Populate options array with fetched names
+                                        this.options = data.names.map(name => ({
+                                            value: name.id,
+                                            text: name.name,
+                                            selected: false
+                                        }));
+                                    } catch (error) {
+                                        console.error('Error fetching names:', error);
+                                    }
                                 },
                                 select(index, event) {
                                     if (this.selected.length < this.maxSelection) {
@@ -326,9 +318,6 @@
                                     this.options[index].selected = false;
                                     this.selected.splice(this.selected.indexOf(index), 1);
                                 },
-                                loadOptions() {
-                                    // Load options if needed
-                                },
                                 selectedValues() {
                                     return this.selected.map(index => this.options[index].text).join(', ');
                                 },
@@ -340,6 +329,7 @@
                             }
                         }
                     </script>
+
                     {{-- Pengikut/Keluarga Yang Pindah --}}
                     <div class="gap-2 flex w-full h-fit">
                         <div class="basis-1/4 h-full ps-8  flex ">
@@ -349,24 +339,15 @@
                         </div>
                         <div class="basis-3/4 h-full flex items-center">
                             <div
-                                class="text-[#2d5523]  placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full  dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 ">
-                                <select class="hidden" x-cloak id="select">
-                                    <option value="1">Lucky Kurniawan Langoday</option>
-                                    <option value="2">Lucky Kurniawan Langoday</option>
-                                    <option value="3">Lucky Kurniawan Langoday</option>
-                                    <option value="4">Lucky Kurniawan Langoday</option>
-                                    <option value="5">Lucky Kurniawan Langoday</option>
-                                    <option value="6">Lucky Kurniawan Langoday</option>
-                                </select>
-
+                                class="text-[#2d5523] placeholder-[#34662C]/50 font-semibold text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500 ">
                                 <div x-data="dropdown()" x-init="loadOptions()"
                                     class="flex flex-col items-center">
                                     <input name="values" type="hidden" :value="selectedValues()" />
-                                    <div class="relative z-20 inline-block  w-full">
+                                    <div class="relative z-20 inline-block w-full">
                                         <div class="relative flex flex-col items-center h-full">
                                             <div @click="open" class="w-full">
                                                 <div
-                                                    class=" flex rounded-lg border-2 border-[#2d5523] border-stroke py-2 pl-3 pr-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input">
+                                                    class="flex rounded-lg border-2 border-[#2d5523] border-stroke py-2 pl-3 pr-3 outline-none transition focus:border-primary active:border-primary dark:border-form-strokedark dark:bg-form-input">
                                                     <div class="flex flex-auto flex-wrap gap-3">
                                                         <template x-for="(option,index) in selected"
                                                             :key="index">
@@ -393,7 +374,7 @@
                                                         </template>
                                                         <div x-show="selected.length == 0" class="flex-1 ">
                                                             <input placeholder="Pilih Anggota Keluarga"
-                                                                class=" placeholder-[#2d5523]"
+                                                                class="placeholder-[#2d5523]"
                                                                 :value="selectedValues()" />
                                                         </div>
                                                     </div>
@@ -486,15 +467,31 @@
                     this.options[option].selected = false;
                     this.selected.splice(index, 1);
                 },
-                loadOptions() {
-                    const options = document.getElementById("select").options;
-                    for (let i = 0; i < options.length; i++) {
-                        this.options.push({
-                            value: options[i].value,
-                            text: options[i].innerText,
-                            selected: options[i].getAttribute("selected") != null ?
-                                options[i].getAttribute("selected") : false,
+                async loadOptions() {
+                    // Fetch names from your database based on the common id_kartuKeluarga
+                    try {
+                        const response = await fetch('/getNames', {
+                            method: 'POST',
+                            body: JSON.stringify({
+                                id_kartuKeluarga: 'YOUR_ID_KARTUKELUARGA_VALUE'
+                            }),
+                            headers: {
+                                'Content-Type': 'application/json'
+                            }
                         });
+
+                        const data = await response.json();
+
+                        // Populate options array with fetched names
+                        data.names.forEach(name => {
+                            this.options.push({
+                                value: name.id,
+                                text: name.name,
+                                selected: false
+                            });
+                        });
+                    } catch (error) {
+                        console.error('Error fetching names:', error);
                     }
                 },
                 selectedValues() {

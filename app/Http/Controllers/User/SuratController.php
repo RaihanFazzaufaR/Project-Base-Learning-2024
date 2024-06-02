@@ -13,6 +13,7 @@ use App\Models\PermintaanSuratSkKematianModel;
 use Illuminate\Support\Facades\DB;
 use Dompdf\Dompdf;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Auth;
 
 
 class SuratController extends Controller
