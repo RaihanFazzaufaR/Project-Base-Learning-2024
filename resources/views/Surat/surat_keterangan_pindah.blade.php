@@ -41,7 +41,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        Lucky Kurniawan Langoday
+                        {{ $surat->nama }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -54,7 +54,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        3525680174528153
+                        {{ $surat->nik }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -67,7 +67,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        Laki-laki
+                        {{ $surat->jenisKelamin === 'L' ? 'Laki-laki' : 'Perempuan' }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -80,7 +80,8 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        Gresik, 30 Desember 2003
+                        {{ $surat->tempatLahir }},
+                        {{ $surat->tanggalLahir->format('d - m - Y') }}
                     </div>
                 </div>
 
@@ -94,7 +95,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        WNI / Islam
+                        {{ $surat->warganegara }} / {{ $surat->agama }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -107,7 +108,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        Mahasiswa
+                        {{ $surat->pekerjaan }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
@@ -120,7 +121,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        Belum Menikah
+                        {{ $surat->statusNikah }} Menikah
                     </div>
                 </div>
 
@@ -134,7 +135,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        Jl. Bunga Kumis Kucing Gang Macan No. 42A
+                        {{ $surat->alamat }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
