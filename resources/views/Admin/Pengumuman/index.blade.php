@@ -159,9 +159,9 @@
             <table class="w-full text-center">
                 <thead class="text-sm font-bold text-[#34662C] bg-[#91DF7D] dark:bg-gray-700 dark:text-gray-400">
                     <tr>
-                        {{-- <th scope="col" class="px-6 py- w-[20%]">
+                        <th scope="col" class="px-6 py- w-[20%]">
                             Pembuat
-                        </th> --}}
+                        </th>
                         <th scope="col" class="px-6 py-3 w-[20%]">
                             Tanggal Dibuat
                         </th>
@@ -180,9 +180,9 @@
                     @foreach ($pengumumans as $pengumuman)
                         <tr
                             class="bg-white border-b text-sm font-medium text-[#7F7F7F] dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
-                            {{-- <td class="px-6 py-4">
-                                {{ $pengumuman->pembuat_id_jadwal != null ? $pengumuman->pembuat_id_jadwal->nama : 'Admin'}}
-                            </td> --}}
+                            <td class="px-6 py-4">
+                                {{ $pengumuman->jadwal_id != null ? $pengumuman->jadwal->penduduk->nama : 'Admin'}}
+                            </td>
                             <td class="px-6 py-4">
                                 {{ $pengumuman->created_at ? $pengumuman->created_at->format('d-m-y') : '-' }}
                             </td>
@@ -190,7 +190,7 @@
                                 {{ $pengumuman->judul }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ $pengumuman->pembuat_id_jadwal != null ? 'Pengumuman Jadwal' : 'Pengumuman' }}
+                                {{ $pengumuman->jadwal_id != null ? 'Pengumuman Jadwal' : 'Pengumuman' }}
                             </td>
                             <td>
                                 <div class="px-6 py-4 flex gap-4 justify-center items-center h-full">

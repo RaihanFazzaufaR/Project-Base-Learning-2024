@@ -69,7 +69,7 @@ class PengumumanController extends Controller
 
         $this->telegramService->sendMessage($message);
 
-        return redirect()->back()->with('success', 'Pengumuman berhasil dikirim');
+        return redirect()->back()->with('success', 'Pengumuman berhasil ditambah');
     }
 
     private function formatMessage(Request $request)
