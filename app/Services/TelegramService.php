@@ -20,7 +20,7 @@ class TelegramService
 
     public function sendMessage($message) {
         $url = "https://api.telegram.org/bot" . $this->botToken . "/sendMessage";
-
+    
         $response = $this->client->post($url, [
             'json' => [
                 'chat_id' => $this->chatId,
@@ -29,7 +29,7 @@ class TelegramService
             ],
             'verify' => false,
         ]);
-
+    
         return $response->getBody();
     }
 }
