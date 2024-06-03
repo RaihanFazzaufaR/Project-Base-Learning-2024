@@ -2,7 +2,7 @@
 <!-- footer -->
 
 <div class="pt-16 w-full ">
-    <div class="grid gap-10 row-gap-6 mb-6 grid-cols-2 lg:grid-cols-4 mx-auto sm:w-[80%] w-[90%]">
+    <div class="grid sm:gap-10 gap-5 row-gap-6 mb-6 grid-cols-2 lg:grid-cols-4 mx-auto sm:w-[80%] w-[90%]">
         <div class="col-span-2 text-center lg:text-left">
             <a href="/" aria-label="Go home" title="Company" class="inline-flex items-center">
                 <img src="{{ asset('assets/images/logo.png') }}" alt="" class="size-8 object-cover">
@@ -17,15 +17,15 @@
         <div class="space-y-2 text-sm text-right lg:text-left sm:pr-5 lg:pr-0">
             <p class="text-base font-bold tracking-wide text-gray-900 dark:text-white">Hubungi</p>
             <div class="flex lg:justify-start justify-end">
-                <p class="mr-1 text-gray-800 dark:text-white">Telepon :</p>
+                <p class="mr-1 text-gray-800 dark:text-white hidden sm:inline-flex">Telepon :</p>
                 <a href="tel:850-123-5021" aria-label="Our phone" title="Our phone" class="transition-colors duration-300 text-deep-purple-accent-400 dark:text-white hover:text-deep-purple-800">850-123-5021</a>
             </div>
             <div class="flex lg:justify-start justify-end">
-                <p class="mr-1 text-gray-800 dark:text-white">Email :</p>
+                <p class="mr-1 text-gray-800 dark:text-white hidden sm:inline-flex">Email :</p>
                 <a href="mailto:info@lorem.mail" aria-label="Our email" title="Our email" class="transition-colors duration-300 text-deep-purple-accent-400 dark:text-white hover:text-deep-purple-800">info@lorem.mail</a>
             </div>
             <div class="flex lg:justify-start justify-end">
-                <p class="mr-1 text-gray-800 dark:text-white">Alamat :</p>
+                <p class="mr-1 text-gray-800 dark:text-white hidden sm:inline-flex">Alamat :</p>
                 <a href="https://www.google.com/maps" target="_blank" rel="noopener noreferrer" aria-label="Our address" title="Our address" class="transition-colors duration-300 text-deep-purple-accent-400 dark:text-white hover:text-deep-purple-800">
                     312 Lovely Street, NY
                 </a>
