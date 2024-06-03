@@ -420,7 +420,7 @@
             @endif
             <div class="flex flex-col h-full overflow-y-auto pb-2 pt-1 px-4 scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin gap-3">
                 @foreach ($dataArray['dataToday'] as $dt)
-                <div class="flex w-full h-[100px] group border-2 border-green-900 dark:border-[#57BA47] rounded-lg shadow-md">
+                <div class="flex w-full h-fit 2xl:h-[100px] group border-2 border-green-900 dark:border-[#57BA47] rounded-lg shadow-md">
                     <div class="w-fit h-full flex flex-col bg-green-900 dark:bg-[#57BA47] rounded-l-md px-4 text-white items-center justify-center">
                         <p class="font-bold text-3xl">{{ substr($dt->mulai_tanggal, 0, 2) }}</p>
                         <p class="font-medium text-lg">{{ substr($dt->mulai_tanggal, 3, 6) }}</p>

@@ -17,7 +17,7 @@
     </div>
 
     <div class="mt-10">
-        <div class="relative overflow-x-auto shadow-sm rounded-lg">
+        <div class="relative overflow-x-auto shadow-sm rounded-t-lg">
             <table class="w-[650px] sm:w-full text-center table-fixed relative">
                 <thead class="sm:text-sm text-xs font-bold text-[#34662C] bg-[#91DF7D] dark:bg-[#428238] dark:text-white">
                     <tr>
@@ -193,6 +193,13 @@
                 </tbody>
             </table>
         </div>
+        @if ($data->total() == 0)
+        <div class="flex flex-col w-full h-[100%] justify-center items-center gap-4 py-5 dark:bg-[#343b44] shadow-sm border-b-2 dark:border-gray-600">
+            <!-- <i class="fa-regular fa-circle-xmark text-2xl"></i> -->
+            <img src="{{ asset('assets/images/no-data.png') }}" alt="" class="w-[200px] h-[100px] object-cover">
+            <p class="text-base font-semibold text-green-900 dark:text-white">Tidak ada Ajuan Kegiatan</p>
+        </div>
+        @endif
         <div class="px-8 py-5 dark:bg-[#343b44] rounded-b-lg shadow-md">
             {{ $data->links() }}
         </div>
