@@ -7,7 +7,8 @@
 
 </x-header>
 <div class="w-[100%] relative sm:flex justify-center items-center hidden ">
-    <img src="{{ asset('assets/images/bg-index-UMKM.webp') }}" alt="" class="w-full dark:brightness-[85%]">
+    <img src="{{ asset('assets/images/bg-index-UMKM.webp') }}" alt=""
+        class="w-full dark:brightness-[85%] hidden lg:block">
     <div
         class="bg-white/[0.73] dark:bg-[#24292d]/[0.73]  w-[571px] h-[185px]  absolute flex justify-center rounded-[105px] flex-col text-center shadow-2xl">
         <p class="text-[#2d5523] dark:text-white font-bold text-[36px]">UMKM DI RW 3</p>
@@ -22,9 +23,10 @@
 <div
     class=" lg:hidden sm:sticky sm:top-0 fixed text-[#2d5523] w-[100%] dark:text-white font-bold border-b-2 z-9  bg-white dark:bg-[#2F363E] h-fit border-gray-300 dark:border-gray-600 py-6">
     <div class="w-[90%] mx-auto gap-4 flex flex-col">
-        <div class="sm:hidden text-2xl sm:text-4xl flex flex-col gap-2">
+        <div class="lg:hidden text-2xl sm:text-4xl flex flex-col gap-2">
             <p class="text-[#2d5523] dark:text-white font-bold">UMKM DI RW 3</p>
-            <p class="text-[#2d5523] dark:text-white font-sans text-sm text-left">Bangun Ekonomi Berkelanjutan
+            <p class="text-[#2d5523] dark:text-white font-sans text-sm sm:text-lg text-left">Bangun Ekonomi
+                Berkelanjutan
                 di Setiap Sudut RW</p>
         </div>
 
@@ -32,7 +34,7 @@
             <div class="sm:basis-1/5 basis-1/4" x-data="{ editModal: false }" @keydown.escape="editModal = false">
                 <button @click="editModal = true"
                     :class="{
-                        'bg-yellow-500  dark:bg-[#505c6a] text-white': {{ $kategori }} !==
+                        'bg-yellow-500  dark:bg-yellow-500 text-white': {{ $kategori }} !==
                             0,
                         'bg-gray-100 text-[#2d5523]': {{ $kategori }} === 0
                     }"
@@ -41,23 +43,23 @@
                 </button>
 
                 <!-- Modal Overlay -->
-                <div x-show="editModal" x-cloak class="fixed inset-0 z-99 flex items-end justify-center">
-                    <div class="fixed inset-0 bg-black opacity-50" @click="editModal = false"></div>
+                <div x-show="editModal" x-cloak class="fixed inset-0 z-999 flex items-end justify-center">
+                    <div class="fixed inset-0 " @click="editModal = false"></div>
 
                     <!-- Modal Content -->
                     <div x-show="editModal" x-transition:enter="transition ease-out duration-300 transform"
-                        x-transition:enter-start="translate-y-full opacity-0"
-                        x-transition:enter-end="translate-y-0 opacity-100"
+                        x-transition:enter-start="-translate-x-full opacity-0"
+                        x-transition:enter-end="translate-x-0 opacity-100"
                         x-transition:leave="transition ease-in duration-300 transform"
-                        x-transition:leave-start="translate-y-0 opacity-100"
-                        x-transition:leave-end="translate-y-full opacity-0"
-                        class="bg-white dark:bg-[#30373F] rounded-t-lg shadow-lg w-full absolute z-999999 p-6">
+                        x-transition:leave-start="translate-x-0 opacity-100"
+                        x-transition:leave-end="-translate-x-full opacity-0"
+                        class="bg-[#f3f3f3] dark:bg-[#30373F] rounded-r-lg shadow-lg h-fit max-w-screen-sm fixed left-0 sm:top-[282px] top-[257px] z-999999 p-6">
                         <!-- Modal header -->
                         <h2 class="text-center text-2xl font-bold mb-4">Pilih Kategori</h2>
                         <ul class="grid w-full">
                             <li>
                                 <a href="{{ route('umkm') }}"
-                                    class="inline-flex pl-3 items-center justify-between w-full p-1.5 text-[#2d5523] dark:border-gray-300 cursor-pointer dark:hover:text-gray-300 border border-gray-200 peer-checked:border-[#2d5523] peer-checked:text-white hover:text-white hover:bg-yellow-500 dark:bg-[#30373F] dark:hover:bg-gray-700 {{ $kategori === 0 ? 'bg-yellow-500 dark:bg-[#505c6a] text-white border border-gray-200' : 'bg-white dark:text-gray-300' }}">
+                                    class="inline-flex pl-3 items-center justify-between w-full p-1.5 text-[#2d5523] dark:border-gray-300 cursor-pointer dark:hover:text-gray-300 border border-gray-200 peer-checked:border-[#2d5523] peer-checked:text-white hover:text-white hover:bg-yellow-500 dark:bg-[#30373F] dark:hover:bg-gray-700 {{ $kategori === 0 ? 'bg-yellow-500 dark:bg-yellow-500 text-white border border-gray-200' : 'bg-[#f3f3f3] dark:bg-[#30373F] dark:text-gray-300' }}">
                                     <div class="block">
                                         <div class="w-full text-lg font-semibold">Semua Kategori</div>
                                     </div>
@@ -66,7 +68,7 @@
                             @foreach ($categories as $category)
                                 <li>
                                     <a href="{{ route('umkm.category', $category->kategori_id) }}"
-                                        class="inline-flex pl-3 items-center justify-between w-full p-1.5 text-[#2d5523] dark:border-gray-300 cursor-pointer dark:hover:text-gray-300 border border-gray-200 peer-checked:border-[#2d5523] peer-checked:text-white hover:text-white hover:bg-yellow-500 dark:bg-[#30373F] dark:hover:bg-gray-700 {{ $kategori == $category->kategori_id ? 'bg-yellow-500 dark:bg-[#505c6a] text-white border border-gray-200' : 'bg-white dark:text-gray-300' }}">
+                                        class="inline-flex pl-3 items-center justify-between w-full p-1.5 text-[#2d5523] dark:border-gray-300 cursor-pointer dark:hover:text-gray-300 border border-gray-200 peer-checked:border-[#2d5523] peer-checked:text-white hover:text-white hover:bg-yellow-500 dark:bg-[#30373F] dark:hover:bg-gray-700 {{ $kategori == $category->kategori_id ? 'bg-yellow-500 dark:bg-yellow-500 text-white border border-gray-200' : 'bg-[#f3f3f3] dark:bg-[#30373F] dark:text-gray-300' }}">
                                         <div class="block">
                                             <div class="w-full text-lg font-semibold">{{ $category->nama_kategori }}
                                             </div>
@@ -82,6 +84,7 @@
 
 
             <div class="sm:basis-4/5 basis-3/4">
+
                 <form action="{{ route('umkm.search') }}" method="GET" class="w-full mx-auto lg:shadow-2xl">
                     <label for="default-search"
                         class="text-sm font-medium text-[#2d5523] sr-only dark:text-white">Search</label>
@@ -103,7 +106,7 @@
         <div x-data="{ 'editModal': false }" @keydown.escape="editModal = false" class="absolute  z-30">
             @if (Auth::check())
                 <button @click="editModal = true"
-                    class="flex lg:hidden items-center justify-center fixed z-0 end-6 bottom-6 group animate-bounce text-white bg-[#2d5523] rounded-full sm:size-19 size-17 border-2 border-[#2d5523] hover:border-[#e2a229] dark:hover:border-[#2d5523]  dark:bg-[#e2a229] dark:border-[#e2a229] hover:bg-[#e2a229]  dark:hover:bg-[#2d5523] focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800 text-3xl ">
+                    class="flex lg:hidden items-center justify-center fixed z-0 end-6 bottom-6 group animate-bounce text-white bg-[#2d5523] rounded-full sm:size-19 size-13 border-2 border-[#2d5523] hover:border-[#e2a229] dark:hover:border-[#2d5523]  dark:bg-[#e2a229] dark:border-[#e2a229] hover:bg-[#e2a229]  dark:hover:bg-[#2d5523] focus:ring-4 focus:ring-blue-300 focus:outline-none dark:focus:ring-blue-800 text-[25px] sm:text-4xl ">
                     <i class="fa-solid fa-plus"></i>
                 </button>
             @else
@@ -161,7 +164,7 @@
                                             UMKM</label>
                                         <input type="text" name="nama" id="nama"
                                             class="bg-gray-50 border   border-[#518742] dark:bg-[#505c6a] dark:border-gray-500 text-[#2f5724] rounded-lg placeholder-[#34662C]/50 focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5  dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                            placeholder="Masukkan Nama UMKM">
+                                            placeholder="Masukkan Nama UMKM" value="{{old('nama')}}">
                                     </div>
                                 </div>
                                 <div class="grid gap-4 sm:grid-cols-2 pb-3 sm:gap-6">
@@ -170,7 +173,7 @@
                                             WA</label>
                                         <input type="text" name="no_wa" id="no_wa"
                                             class="bg-gray-50 border   border-[#518742] dark:bg-[#505c6a] dark:border-gray-500 text-[#2f5724] rounded-lg placeholder-[#34662C]/50 focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5  dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                            placeholder="Masukkan No. WhatsApp">
+                                            placeholder="Masukkan No. WhatsApp" value="{{old('no_wa')}}">
                                     </div>
                                 </div>
                                 <div class="grid gap-4 sm:grid-cols-2 pb-3 sm:gap-6">
@@ -179,7 +182,7 @@
                                             UMKM</label>
                                         <input type="file" name="foto" id="foto"
                                             class="bg-gray-50 border   border-[#518742] dark:bg-[#505c6a] dark:border-gray-500  text-[#2f5724] rounded-lg placeholder-[#34662C]/50 focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5  dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                            placeholder="Masukkan No. WhatsApp" required>
+                                            placeholder="Masukkan No. WhatsApp" required value="{{old('foto')}}">
                                     </div>
                                 </div>
 
@@ -191,7 +194,7 @@
                                         <div class="w-fit mx-auto">
                                             <input type="time" id="buka_waktu" name="buka_waktu"
                                                 class="bg-gray-50 border-2 border-[#2d5523]  dark:bg-[#505c6a] leading-none text-lg text-[#2d5523]  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit  py-2.5 px-[17px]   dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                value="00:00" required />
+                                                value="00:00" required value="{{old('buka_waktu')}}">
                                         </div>
                                     </div>
                                     <div class="flex flex-col">
@@ -201,7 +204,7 @@
                                         <div class="w-fit mx-auto">
                                             <input type="time" id="tutup_waktu" name="tutup_waktu"
                                                 class="bg-gray-50 border-2 border-[#2d5523] leading-none text-lg text-[#2d5523]  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit  py-2.5 px-[17px] dark:bg-[#505c6a] dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                value="00:00" required />
+                                                value="00:00" required value="{{old('tutup_waktu')}}">
                                         </div>
                                     </div>
 
@@ -324,24 +327,24 @@
                                         <input id="lokasi_map" name="lokasi_map"
                                             placeholder="Masukkan Koordinat Lokasi Sesuai GMaps"
                                             class="bg-gray-50 border   border-[#518742] dark:bg-[#505c6a] dark:border-gray-500 text-[#2f5724] rounded-lg placeholder-[#34662C]/50 focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5  dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                                            placeholder="Masukkan No. WhatsApp">
+                                            value="{{old('lokasi_map')}}">
                                     </div>
                                     <div class="sm:col-span-2 px-4">
                                         <label class="block mb-2   font-medium text-[#2d5523] dark:text-white">Lokasi
                                             UMKM</label>
                                         <textarea id="lokasi" name="lokasi" cols="19" rows="3" placeholder="Masukkan Alamat UMKM"
-                                            class="bg-gray-50 border   border-[#518742]  text-[#2f5724] rounded-lg placeholder-[#34662C]/50 focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-[#505c6a] dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
+                                            class="bg-gray-50 border   border-[#518742]  text-[#2f5724] rounded-lg placeholder-[#34662C]/50 focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-[#505c6a] dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{old('lokasi')}}"></textarea>
 
                                     </div>
                                     <div class="sm:col-span-2 px-4">
-                                        <label class="block mb-2   font-medium text-[#2d5523] dark:text-white">Lokasi
+                                        <label class="block mb-2   font-medium text-[#2d5523] dark:text-white">Deskripsi
                                             UMKM</label>
                                         <textarea id="deskripsi" name="deskripsi" cols="19" rows="3"
                                             placeholder="Masukkan Deskripsi Singkat UMKM"
-                                            class="bg-gray-50 border text-base border-[#518742] dark:bg-[#505c6a] dark:border-gray-500 text-[#2f5724] rounded-lg placeholder-[#34662C]/50 focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5  dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
+                                            class="bg-gray-50 border text-base border-[#518742] dark:bg-[#505c6a] dark:border-gray-500 text-[#2f5724] rounded-lg placeholder-[#34662C]/50 focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5  dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{old('deskripsi')}}"></textarea>
 
                                     </div>
-                                    
+
                                 </div>
                                 <div class="w-full text-[#2d5523] font-sm px-4 pb-4 dark:text-white">
                                     *Sebelum mengajukan UMKM Anda, pastikan UMKM Anda sudah ada pada Google Maps
@@ -410,17 +413,35 @@
             <div class="lg:flex items-center hidden gap-11 justify-center">
                 <div class="basis-2/3 h-fit flex justify-center items-center">
                     <form action="{{ route('umkm.search') }}" method="GET"
-                        class="w-full mx-auto mb-0 md:shadow-2xl h-full ">
-                        <label for="default-search"
-                            class="text-sm font-medium text-[#2d5523] sr-only dark:text-white">Search</label>
-                        <div class="relative h-full m-0 ">
-                            <div
-                                class="absolute inset-y-0 text-lg flex justify-center  text-[#58a444]  dark:text-gray-300 pr-5 items-center px-3 pointer-events-none ">
-                                <i class="fa-solid fa-magnifying-glass"></i>
+                        class="w-full h-full flex items-center justify-center mb-0">
+                        <div
+                            class="flex shadow-md rounded-xl w-full bg-white dark:bg-[#30373F] border-2 border-[#2d5523] dark:border-gray-600 items-center justify-between py-2 h-fit">
+                            <div class="flex w-full">
+                                <div class="w-full px-4">
+                                    <label for="search"
+                                        class="text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                                    <div class="relative">
+                                        <div
+                                            class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                            <svg class="w-4 text-[#58a444] dark:text-white h-4 " aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 20 20">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2"
+                                                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                            </svg>
+                                        </div>
+                                        <input type="search" name="search" id="search"
+                                            class="block w-full p-2 ps-10 text-sm dark:bg-[#30373F] text-gray-900 rounded-lg focus:outline-none dark:border-gray-600 placeholder:text-[#58a444] dark:placeholder-white dark:text-white"
+                                            rounded-lg" placeholder="Cari Penduduk" />
+                                    </div>
+                                </div>
                             </div>
-                            <input type="search" id="default-search" name="search"
-                                class=" block w-full lg:p-4 ps-30 lg:ps-10 border-[3px] border-[#2d5523] text-[#2d5523] text-base rounded-lg bg-[#fff] focus:ring-yellow-500 focus:border-yellow-500 dark:bg-[#30373F] dark:border-gray-600 dark:placeholder-gray-300 dark:text-white dark:focus:ring-yellow-500 placeholder:text-[#58a444] dark:focus:border-yellow-500 placeholder:text-3xl lg:placeholder:text-lg"
-                                placeholder="Cari UMKM" required />
+                            <div class="w-fit flex justify-end items-center px-4">
+                                <button type="submit">
+                                    <i class="fa-solid fa-circle-chevron-right text-3xl text-yellow-500"></i>
+                                </button>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -493,7 +514,7 @@
                                                     <div class="basis-3/4 h-full flex items-center">
                                                         <input id="nama" name="nama"
                                                             placeholder="Masukkan Nama Toko"
-                                                            class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-[#505c6a] dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                            class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-[#505c6a] dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{old('nama')}}">
                                                     </div>
                                                 </div>
                                                 <div class="gap-2 flex w-full">
@@ -505,7 +526,7 @@
                                                     <div class="basis-3/4 h-full flex items-center">
                                                         <input id="no_wa" name="no_wa"
                                                             placeholder="Masukkan No. WhatsApp"
-                                                            class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-[#505c6a] dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                            class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-[#505c6a] dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{old('no_wa')}}">
                                                     </div>
                                                 </div>
                                                 <div class="gap-2 flex w-full">
@@ -516,7 +537,7 @@
                                                     </div>
                                                     <div class="basis-3/4 h-full flex items-center">
                                                         <input id="foto" name="foto" type="file"
-                                                            class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-[#505c6a] dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                            class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-[#505c6a] dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{old('foto')}}">
                                                     </div>
                                                 </div>
                                                 <div class="gap-2 flex w-full">
@@ -536,7 +557,7 @@
                                                                 <input type="time" id="buka_waktu"
                                                                     name="buka_waktu"
                                                                     class="bg-gray-50 border-2 border-[#2d5523] leading-none text-lg text-gray-900 dark:bg-[#505c6a] rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit  py-2.5 px-[17px]  dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                                    value="00:00" required />
+                                                                    value="00:00" required value="{{old('buka_waktu')}}">
                                                             </div>
                                                         </div>
                                                         <div
@@ -548,17 +569,12 @@
                                                                 <input type="time" id="tutup_waktu"
                                                                     name="tutup_waktu"
                                                                     class="bg-gray-50 border-2 border-[#2d5523] leading-none text-lg text-gray-900  rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-fit  py-2.5 px-[17px] dark:bg-[#505c6a] dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
-                                                                    value="00:00" required />
+                                                                    value="00:00" required value="{{old('tutup_waktu')}}">
                                                             </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
-
-
-
-
-
                                             <!-- kolom kanan -->
                                             <div class="flex flex-col gap-5  w-full basis-1/2 ">
                                                 <div class="gap-2 flex w-full">
@@ -691,7 +707,6 @@
                                                         </div>
                                                     </div>
                                                 </div>
-
                                                 <div class="gap-2 flex w-full">
                                                     <div class="basis-1/4 h-full flex items-center">
                                                         <label for="lokasi_map"
@@ -701,7 +716,7 @@
                                                     <div class="basis-3/4 h-full flex items-center">
                                                         <input id="lokasi_map" name="lokasi_map"
                                                             placeholder="Masukkan Koordinat Lokasi Sesuai Google Maps"
-                                                            class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-[#505c6a] dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                                            class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-[#505c6a] dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{old('lokasi_map')}}">
                                                     </div>
                                                 </div>
 
@@ -713,7 +728,7 @@
                                                     </div>
                                                     <div class="basis-3/4 h-full flex items-center">
                                                         <textarea id="lokasi" name="lokasi" cols="19" rows="3" placeholder="Masukkan Alamat UMKM"
-                                                            class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-[#505c6a] dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
+                                                            class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-[#505c6a] dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{old('lokasi')}}"></textarea>
                                                     </div>
                                                 </div>
 
@@ -726,7 +741,7 @@
                                                     <div class="basis-3/4 h-full flex items-center">
                                                         <textarea id="deskripsi" name="deskripsi" cols="19" rows="3"
                                                             placeholder="Masukkan Deskripsi Singkat UMKM"
-                                                            class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-[#505c6a] dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"></textarea>
+                                                            class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold  text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-[#505c6a] dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500" value="{{old('deskripsi')}}"></textarea>
                                                     </div>
                                                 </div>
                                             </div>
@@ -811,6 +826,16 @@
                         </div>
                     </a>
                 @endforeach
+
+                @if ($umkms->isEmpty())
+                    <div
+                        class="flex flex-col w-full h-fit py-8 justify-center items-center gap-4 shadow-sm my-auto  dark:border-gray-600">
+                        <!-- <i class="fa-regular fa-circle-xmark text-2xl"></i> -->
+                        <img src="{{ asset('assets/images/no-data.png') }}" alt=""
+                            class="w-[500px] h-[300px] object-cover">
+                        <p class="text-2xl font-semibold text-green-900 dark:text-white">Data Tidak Ditemukan</p>
+                    </div>
+                @endif
             </div>
 
         </div>
@@ -876,35 +901,53 @@
                     </div>
                 </a>
             @endforeach
+            @if ($umkms->isEmpty())
+            <div
+                class="flex flex-col w-full h-fit py-8 justify-center items-center gap-4 shadow-sm my-auto  dark:border-gray-600">
+                <!-- <i class="fa-regular fa-circle-xmark text-2xl"></i> -->
+                <img src="{{ asset('assets/images/no-data.png') }}" alt=""
+                    class="w-[500px] h-[300px] object-cover">
+                <p class="text-2xl font-semibold text-green-900 dark:text-white">Data Tidak Ditemukan</p>
+            </div>
+        @endif
         </div>
         {{-- umkm mobile --}}
-        <div class="pt-48 justify-center sm:hidden flex-col gap-y-10 h-fit flex w-[90%] mx-auto dark:bg-[#24292d]">
+        <div class="pt-48 justify-center sm:hidden flex-col gap-5 h-fit flex w-[90%] mx-auto dark:bg-[#24292d]">
             @foreach ($umkms as $umkm)
                 <a href="{{ route('umkm.detail', ['umkm_id' => $umkm->umkm_id]) }}">
                     <div
                         class="shadow-xl rounded-2xl overflow-hidden border-black border-2 dark:text-white dark:bg-[#30373F] justify-start">
                         <div class="flex justify-start items-end relative">
                             <img src="{{ asset('assets/images/' . $umkm->foto) }}" alt=""
-                                class="h-50 w-full group-hover:scale-110 object-cover transition ease-in-out duration-500">
+                                class="h-45 w-full group-hover:scale-110 object-cover transition ease-in-out duration-500">
                             @if ($umkm->buka_waktu && $umkm->tutup_waktu)
                                 <div
-                                    class="py-3 px-4 absolute z-1 bg-[#2d5523] dark:bg-[#57ba47] text-xl -bottom-7 left-5 rounded-full text-white font-semibold flex items-center gap-2">
+                                    class="py-2 px-4 absolute z-1 bg-[#2d5523] dark:bg-[#57ba47] text-sm -bottom-4 left-5 rounded-full text-white font-semibold flex items-center gap-2">
                                     <i class="fa-regular fa-clock"></i>
                                     <p>{{ $umkm->buka_waktu }} - {{ $umkm->tutup_waktu }}</p>
                                 </div>
                             @endif
                         </div>
                         <div class="w-fit py-3">
-                            <div class="text-2xl font-bold text-[#2d5523] dark:text-white ps-5 pt-7">
+                            <div class="text-xl font-bold text-[#2d5523] dark:text-white ps-5 pt-1">
                                 {{ $umkm->nama }}
                             </div>
-                            <div class="text-xl font-medium text-[#2d5523] dark:text-white ps-5">
+                            <div class="text-sm font-medium text-[#2d5523] dark:text-white ps-5">
                                 {{ $umkm->lokasi }}
                             </div>
                         </div>
                     </div>
                 </a>
             @endforeach
+            @if ($umkms->isEmpty())
+            <div
+                class="flex flex-col w-full h-fit py-8 justify-center items-center gap-4 shadow-sm my-auto  dark:border-gray-600">
+                <!-- <i class="fa-regular fa-circle-xmark text-2xl"></i> -->
+                <img src="{{ asset('assets/images/no-data.png') }}" alt=""
+                    class="w-[500px] h-[300px] object-cover">
+                <p class="text-2xl font-semibold text-green-900 dark:text-white">Data Tidak Ditemukan</p>
+            </div>
+        @endif
         </div>
 
 

@@ -101,7 +101,7 @@
                                 </svg>
                             </div>
                             <input type="search" name="search" id="search"
-                                class="block w-full p-2 ps-10 text-sm dark:bg-[#30373F] text-gray-900 rounded-lg dark:border-gray-600 placeholder:text-[#58a444] dark:placeholder-white dark:text-white"
+                                class="block w-full p-2 ps-10 text-sm dark:bg-[#30373F] text-gray-900 rounded-lg focus:outline-none dark:border-gray-600 placeholder:text-[#58a444] dark:placeholder-white dark:text-white"
                                 rounded-lg" placeholder="Cari Penduduk" />
                         </div>
                     </div>
