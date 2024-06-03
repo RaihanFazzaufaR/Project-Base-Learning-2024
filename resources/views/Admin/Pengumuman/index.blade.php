@@ -142,6 +142,9 @@
                         <th scope="col" class="px-6 py-3">
                             Tanggal Diperbarui
                         </th>
+                        <th scope="col" class="px-6 py-3">
+                            Tanggal Pesan Dikirim
+                        </th>
                         <th scope="col" class="px-6 py-3 w-[15%] sm:w-[30%]">
                             Aksi
                         </th>
@@ -151,16 +154,19 @@
                     @foreach ($pengumumans as $pengumuman)
                     <tr class="bg-white border-b text-sm font-medium text-[#7F7F7F] dark:bg-[#2F363E] dark:text-white dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <td class="px-6 py-4">
-                            {{ $pengumuman->jadwal_id != null ? $pengumuman->jadwal->penduduk->nama : $pengumuman->pembuat->nama }}
+                            {{ $pengumuman->jadwal_id ? $pengumuman->jadwal->penduduk->nama : ($pengumuman->pembuat ? $pengumuman->pembuat->nama : '-') }}
                         </td>
                         <td class="px-6 py-4">
                             {{ $pengumuman->judul }}
                         </td>
                         <td class="px-6 py-4">
-                            {{ $pengumuman->jadwal_id != null ? 'Jadwal' : 'Pengumuman' }}
+                            {{ $pengumuman->jadwal_id ? 'Jadwal' : ($pengumuman->pembuat_id_pengumuman ? 'Pengumuman' : '-') }}
                         </td>
                         <td class="px-6 py-4">
                             {{ $pengumuman->updated_at ? $pengumuman->updated_at->format('Y-m-d') : '-' }}
+                        </td>
+                        <td>
+                            {{ $pengumuman->sent_at ? date('Y-m-d', strtotime($pengumuman->sent_at)) : '-' }}
                         </td>
                         <td>
                             <div class="px-6 py-4 flex gap-4 justify-center items-center h-full">
@@ -191,7 +197,7 @@
                                                         <div class="col-span-2 relative sm:col-span-1">
                                                             <label class="block mb-2 text-sm font-bold">Nama
                                                                 Pembuat</label>
-                                                            <input name="nama" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $pengumuman->jadwal_id != null ? $pengumuman->jadwal->penduduk->nama : $pengumuman->pembuat->nama }}" readonly>
+                                                            <input name="nama" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $pengumuman->jadwal_id ? $pengumuman->jadwal->penduduk->nama : ($pengumuman->pembuat ? $pengumuman->pembuat->nama : '-') }}" readonly>
                                                         </div>
                                                         <div class="col-span-2 sm:col-span-1">
                                                             <label class="block mb-2 text-sm font-bold">Kategori</label>

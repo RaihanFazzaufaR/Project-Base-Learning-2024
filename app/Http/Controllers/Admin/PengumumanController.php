@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\PendudukModel;
 use App\Models\PengumumanModel;
+use App\Models\JadwalModel;
 use Illuminate\Http\Request;
 use App\Services\TelegramService;
 use Carbon\Carbon;
@@ -32,8 +33,8 @@ class PengumumanController extends Controller
             ->get();
 
         $pengumumans = $pengumumans
+            ->orderBy('sent_at', 'desc')
             ->orderBy('updated_at', 'desc')
-            ->orderBy('created_at', 'desc')
             ->paginate(10)->withQueryString();
 
         foreach ($pengumumans as $pengumuman) {
@@ -131,6 +132,23 @@ class PengumumanController extends Controller
             }
             if(($pengumuman->mulai_tanggal >= $now) && ($pengumuman->mulai_tanggal <= $sevenDayFromNow)){
                 $message = $this->formatMessage($request, true);
+                $this->telegramService->sendMessage($message);
+
+                $pengumuman->update([
+                    'sent_at' => $now
+                ]);
+            }
+        }else{
+            if(!$pengumuman->mulai_tanggal){
+                $message = $this->formatMessage($request, false);
+                $this->telegramService->sendMessage($message);
+
+                $pengumuman->update([
+                    'sent_at' => $now
+                ]);
+            }
+            if(($pengumuman->mulai_tanggal >= $now) && ($pengumuman->mulai_tanggal <= $sevenDayFromNow)){
+                $message = $this->formatMessage($request, false);
                 $this->telegramService->sendMessage($message);
 
                 $pengumuman->update([
