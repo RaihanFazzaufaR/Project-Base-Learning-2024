@@ -20,29 +20,30 @@
     {{-- select option --}}
     {{-- opsi yang dipilih berdasarkan kategori bansos yg diterima --}}
     <div class=" flex w-full justify-between mb-10">
-        <form action="{{ route('aduanku') }}" class="w-fit h-full flex items-center justify-center mb-0">
+        <form action="{{ route('filter-bansos') }}" method="POST" enctype="multipart/form-data" class="w-fit h-full flex items-center justify-center mb-0">
             @csrf
             <div
                 class="flex shadow-md rounded-xl w-full bg-white border-2 dark:bg-[#30373F] border-[#2d5523] dark:border-gray-600 items-center justify-between py-2 h-fit">
                 <div class="flex w-full">
                     <div class=" border-gray-400 px-4 w-fit">
                         <div class="relative">
-                            <select name="prioritas" id="prioritas"
-                                class="block py-2.5 px-9 w-full text-sm  bg-white dark:bg-[#30373F] appearance-none text-[#58a444] dark:text-white border-none">
+                            <select name="bulan" id="bulan"
+                                    class="block py-2.5 px-9 w-full text-sm bg-white dark:bg-[#30373F] appearance-none text-[#58a444] dark:text-white border-none">
                                 <option selected value="">Bulan</option>
-                                <option value="Januari">Januari</option>
-                                <option value="Februari">Februari</option>
-                                <option value="Maret">Maret</option>
-                                <option value="April">April</option>
-                                <option value="Mei">Mei</option>
-                                <option value="Juni">Juni</option>
-                                <option value="Juli">Juli</option>
-                                <option value="Agustus">Agustus</option>
-                                <option value="September">September</option>
-                                <option value="Oktober">Oktober</option>
-                                <option value="November">November</option>
-                                <option value="Desember">Desember</option>
+                                <option value="1">Januari</option>
+                                <option value="2">Februari</option>
+                                <option value="3">Maret</option>
+                                <option value="4">April</option>
+                                <option value="5">Mei</option>
+                                <option value="6">Juni</option>
+                                <option value="7">Juli</option>
+                                <option value="8">Agustus</option>
+                                <option value="9">September</option>
+                                <option value="10">Oktober</option>
+                                <option value="11">November</option>
+                                <option value="12">Desember</option>
                             </select>
+
                             <i
                                 class="fa-solid fa-regular fa-star absolute left-2 -top-1 pt-4  dark:text-white text-sm text-[#58a444]"></i>
                             {{-- <i class="fa-solid fa-angle-down absolute right-2 top-0 pt-4  dark:text-white text-sm"></i> --}}
@@ -50,7 +51,7 @@
                     </div>
                     <div class="border-l-2 border-gray-400 px-4 w-fit">
                         <div class="relative">
-                            <select name="status" id="status"
+                            <select name="tahun" id="tahun"
                                 class="block py-2.5 px-9 w-full text-sm  bg-white dark:bg-[#30373F] appearance-none text-[#58a444] dark:text-white border-none">
                                 <option selected value="">Tahun</option>
                                 <option value="2024">2024</option>
@@ -103,82 +104,82 @@
                                 </button>
                             </div>
                             <form class=" w-full flex flex-col  bg-white dark:bg-[#30373F]" method="POST"
-                                action="{{ route('umkm.store') }}" enctype="multipart/form-data">
+                                action="{{ route('store.bansos') }}" enctype="multipart/form-data">
                                 @csrf
                                 <div
                                     class="px-4 overflow-y-scroll scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin   max-h-100">
 
-
+                                    <input type="hidden" id="id_kartuKeluarga" name="id_kartuKeluarga" value="{{ Auth::user()->penduduk->id_kartuKeluarga }}">
                                     <label for=""
                                         class="block mb-2 text-sm font-medium text-[#2d5523] dark:text-white">Status
                                         Rumah</label>
-                                    <select id=""
+                                    <select id="" name="status_rumah"
                                         class="bg-gray-50 border mb-3 border-[#2d5523] text-[#2d5523] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:bg-[#505c6a] dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
                                         <option selected>Pilih Status Kepemilikan Rumah</option>
-                                        <option value="">Kontrak/Kos</option>
-                                        <option value="">Tinggal Dengan Keluarga</option>
-                                        <option value="">Milik Sendiri</option>
+                                        <option value="Kontrak/kos">Kontrak/Kos</option>
+                                        <option value="Tinggal dengan keluarga">Tinggal Dengan Keluarga</option>
+                                        <option value="Milik sendiri">Milik Sendiri</option>
                                     </select>
                                     <label for=""
                                         class="block mb-2 text-sm font-medium text-[#2d5523] dark:text-white">Tanggungan</label>
-                                    <select id=""
+                                    <select id="" name="tanggungan"
                                         class="bg-gray-50 border mb-3 border-[#2d5523] text-[#2d5523] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:bg-[#505c6a] dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
                                         <option selected>Pilih Jumlah Tanggungan</option>
-                                        <option value="">1</option>
-                                        <option value="">2</option>
-                                        <option value="">3</option>
-                                        <option value="">4</option>
-                                        <option value="">5</option>
-                                        <option value="">&gt;5 </option>
+                                        <option value="1">1</option>
+                                        <option value="2">2</option>
+                                        <option value="3">3</option>
+                                        <option value="4">4</option>
+                                        <option value="5">5</option>
+                                        <option value=">5">&gt;5 </option>
                                     </select>
                                     <label for=""
                                         class="block mb-2 text-sm font-medium text-[#2d5523] dark:text-white">Total
                                         Penghasilan Dalam 1 Keluarga</label>
-                                    <select id=""
+                                    <select id="" name="penghasilan_keluarga"
                                         class="bg-gray-50 border mb-3 border-[#2d5523] text-[#2d5523] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:bg-[#505c6a] dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
                                         <option selected>Pilih Total Penghasilan</option>
-                                        <option value="">&le; Rp. 1.000.000</option>
-                                        <option value="">Rp. 1.000.000 - Rp. 2.000.000</option>
-                                        <option value="">Rp. 2.000.000 - Rp. 3.000.000</option>
-                                        <option value="">Rp. 3.000.000 - Rp. 4.000.000</option>
-                                        <option value="">Rp. 4.000.000 - Rp. 5.000.000</option>
-                                        <option value="">&ge; Rp. 5.000.000 </option>
+                                        <option value="<1.000.000">&le; Rp. 1.000.000</option>
+                                        <option value="1.000.000 - 2.000.000">Rp. 1.000.000 - Rp. 2.000.000</option>
+                                        <option value="2.000.000 - 3.000.000">Rp. 2.000.000 - Rp. 3.000.000</option>
+                                        <option value="3.000.000 - 4.000.000">Rp. 3.000.000 - Rp. 4.000.000</option>
+                                        <option value="4.000.000 - 5.000.000">Rp. 4.000.000 - Rp. 5.000.000</option>
+                                        <option value=">5.000.000">&ge; Rp. 5.000.000 </option>
                                     </select>
                                     <label for=""
                                         class="block mb-2 text-sm font-medium text-[#2d5523] dark:text-white">Luas
                                         Tanah
                                         Rumah yang Ditempati</label>
-                                    <select id=""
+                                    <select id="" name="luas_tempat_tinggal"
                                         class="bg-gray-50 border mb-3 border-[#2d5523] text-[#2d5523] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:bg-[#505c6a] dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
                                         <option selected>Pilih Luas Tanah</option>
-                                        <option value="">&le; 20 m&sup2;</option>
-                                        <option value="">20 m&sup2; - 40 m&sup2;</option>
-                                        <option value="">40 m&sup2; - 60 m&sup2;</option>
-                                        <option value="">60 m&sup2; - 80 m&sup2;</option>
-                                        <option value="">&ge; 80m&sup2;</option>
+                                        <option value="<20m">&le; 20 m&sup2;</option>
+                                        <option value="20m - 40m">20 m&sup2; - 40 m&sup2;</option>
+                                        <option value="40m - 60m">40 m&sup2; - 60 m&sup2;</option>
+                                        <option value="60m - 80m">60 m&sup2; - 80 m&sup2;</option>
+                                        <option value=">80m">&ge; 80m&sup2;</option>
                                     </select>
                                     <label for=""
                                         class="block mb-2 text-sm font-medium text-[#2d5523] dark:text-white">Total
                                         Pengeluaran Listrik dalam 1 Bulan</label>
-                                    <select id=""
+                                    <select id="" name="pengeluaran_listrik"
                                         class="bg-gray-50 border mb-3 border-[#2d5523] text-[#2d5523] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5  dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:bg-[#505c6a] dark:border-gray-500 dark:placeholder-gray-400 dark:text-white">
                                         <option selected>Pilih Total Pengeluaran Listrik</option>
-                                        <option value="">&le; Rp. 50.000</option>
-                                        <option value="">Rp. 50.000 - Rp. 100.000</option>
-                                        <option value="">Rp. 100.000 - Rp. 200.000</option>
-                                        <option value="">Rp. 200.000 - Rp. 300.000</option>
-                                        <option value="">&ge; Rp. 300.000 </option>
+                                        <option value="<50.000">&le; Rp. 50.000</option>
+                                        <option value="50.000 - 100.000">Rp. 50.000 - Rp. 100.000</option>
+                                        <option value="100.000 - 200.000">Rp. 100.000 - Rp. 200.000</option>
+                                        <option value="200.000 - 300.000">Rp. 200.000 - Rp. 300.000</option>
+                                        <option value=">300.000">&ge; Rp. 300.000 </option>
                                     </select>
                                     <label class="block mb-2 text-sm font-medium text-[#2d5523] dark:text-white"
                                         for="">Masukkan Foto Rumah</label>
                                     <input
                                         class="bg-gray-50 border mb-3 border-[#2d5523] text-[#2d5523] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full   dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:bg-[#505c6a] dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                        id="" type="file">
+                                        id="" name="foto_rumah" type="file">
                                     <label class="block mb-2 text-sm font-medium text-[#2d5523] dark:text-white"
                                         for="">Masukkan Surat Keterangan Tidak Mampu(SKTM)</label>
                                     <input
                                         class="bg-gray-50 border mb-3 border-[#2d5523] text-[#2d5523] text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full   dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:bg-[#505c6a] dark:border-gray-500 dark:placeholder-gray-400 dark:text-white"
-                                        id="" type="file">
+                                        id="" name="SKTM" type="file">
 
 
                                 </div>
@@ -223,69 +224,29 @@
                 </tr>
             </thead>
             <tbody>
-                <tr
-                    class="bg-white border-b hover:bg-gray-50 dark:hover:bg-gray-600 dark:bg-[#2F363E] dark:text-white dark:border-gray-700">
-                    <td scope="row"
-                        class="px-6 py-4 font-medium text-base text-center text-[#2d5523]  dark:text-white">
-                        Lucky Kurniawan Langoday
+                @foreach ($ajuan_saya as $ajuan)
+                <tr class="bg-white border-b hover:bg-gray-50 dark:hover:bg-gray-600 dark:bg-[#2F363E] dark:text-white dark:border-gray-700">
+                    <td scope="row" class="px-6 py-4 font-medium text-base text-center text-[#2d5523] dark:text-white">
+                        {{ $namaKepalaKeluarga }}
                     </td>
-                    <td scope="row"
-                        class="px-6 py-4 font-medium text-base text-center text-[#2d5523]  dark:text-white">
-                        3525981037628153
+                    <td scope="row" class="px-6 py-4 font-medium text-base text-center text-[#2d5523] dark:text-white">
+                        {{$niKeluarga }}
                     </td>
-                    <td scope="row"
-                        class="px-6 py-4 font-medium text-base text-center text-[#2d5523]  dark:text-white">
-                        Mei 2024
+                    <td scope="row" class="px-6 py-4 font-medium text-base text-center text-[#2d5523] dark:text-white">
+                        {{ $ajuan->created_at_text }}
                     </td>
-                    <td scope="row"
-                        class="px-6 py-4  font-medium  text-base text-center text-[#2d5523]  dark:text-white flex justify-start gap-3 w-fit mx-auto h-full items-center">
-                        <div class="h-2.5 w-2.5 rounded-full  bg-blue-500"></div>
-                        <div class="text-base  font-semibold">Diproses</div>
-                    </td>
+                    <td scope="row" class="px-6 py-4 font-medium text-base text-center text-[#2d5523] dark:text-white flex justify-start gap-3 w-fit mx-auto h-full items-center">
+                        @if($ajuan->status === 'diproses')
+                            <div class="h-2.5 w-2.5 rounded-full bg-blue-500"></div>
+                        @elseif($ajuan->status === 'diterima')
+                            <div class="h-2.5 w-2.5 rounded-full bg-green-500"></div>
+                        @elseif($ajuan->status === 'ditolak')
+                            <div class="h-2.5 w-2.5 rounded-full bg-red-500"></div>
+                        @endif
+                        <div class="text-base font-semibold">{{ $ajuan->status }}</div>
+                    </td>                    
                 </tr>
-                <tr
-                    class="bg-white border-b hover:bg-gray-50 dark:hover:bg-gray-600 dark:bg-[#2F363E] dark:text-white dark:border-gray-700">
-                    <td scope="row"
-                        class="px-6 py-4 font-medium text-base text-center text-[#2d5523]  dark:text-white">
-                        Lucky Kurniawan Langoday
-                    </td>
-                    <td scope="row"
-                        class="px-6 py-4 font-medium text-base text-center text-[#2d5523]  dark:text-white">
-                        3525981037628153
-                    </td>
-                    <td scope="row"
-                        class="px-6 py-4 font-medium text-base text-center text-[#2d5523]  dark:text-white">
-                        Juni 2024
-                    </td>
-                    <td scope="row"
-                        class="px-6 py-4  font-medium  text-base text-center text-[#2d5523]  dark:text-white flex justify-start gap-3 w-fit mx-auto h-full items-center">
-                        <div class="h-2.5 w-2.5 rounded-full  bg-green-500"></div>
-                        <div class="text-base  font-semibold">Diterima</div>
-                    </td>
-                </tr>
-                <tr
-                    class="bg-white border-b  hover:bg-gray-50 dark:hover:bg-gray-600 dark:bg-[#2F363E] dark:text-white dark:border-gray-700">
-                    <td scope="row"
-                        class="px-6 py-4 font-medium text-base text-center text-[#2d5523]  dark:text-white">
-                        Lucky Kurniawan Langoday
-                    </td>
-                    <td scope="row"
-                        class="px-6 py-4 font-medium text-base text-center text-[#2d5523]  dark:text-white">
-                        3525981037628153
-                    </td>
-                    <td scope="row"
-                        class="px-6 py-4 font-medium text-base text-center text-[#2d5523]  dark:text-white">
-                        Juli 2024
-                    </td>
-                    <td scope="row"
-                        class="px-6 py-4  font-medium  text-base text-center text-[#2d5523]  dark:text-white flex justify-start gap-3 w-fit mx-auto h-full items-center">
-                        <div class="h-2.5 w-2.5 rounded-full  bg-red-500"></div>
-                        <div class="text-base  font-semibold">Ditolak</div>
-                    </td>
-                </tr>
-
-
-
+                @endforeach
             </tbody>
         </table>
     </div>
@@ -295,18 +256,19 @@
 
         
 
-
+        
         <div id="accordion-open" data-accordion="open">
-            <h2 id="accordion-open-heading-1">
+            @foreach ($ajuan_saya as $index => $ajuan)
+            <h2 id="accordion-open-heading-{{$index}}">
                 <button type="button"
                     class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
-                    data-accordion-target="#accordion-open-body-1" aria-expanded="false"
-                    aria-controls="accordion-open-body-1">
+                    data-accordion-target="#accordion-open-body-{{$index}}" aria-expanded="false"
+                    aria-controls="accordion-open-body-{{$index}}">
                     <span class="flex items-center">
                         <i class="fa-solid fa-hand-holding-hand"></i>
                         <svg class="w-5 h-5 me-2 shrink-0" fill="currentColor" viewBox="0 0 20 20"
                             xmlns="http://www.w3.org/2000/svg">
-                        </svg>Bansos Periode Mei 2024</span>
+                        </svg>Bansos Periode {{ $ajuan->created_at_text }}</span>
                     <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
                         xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
                         <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
@@ -314,7 +276,7 @@
                     </svg>
                 </button>
             </h2>
-            <div id="accordion-open-body-1" class="hidden" aria-labelledby="accordion-open-heading-1">
+            <div id="accordion-open-body-{{$index}}" class="hidden" aria-labelledby="accordion-open-heading-1">
                 <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
                     <table class="text-[#2d5523] dark:text-white">
                         <tr>
@@ -323,7 +285,7 @@
                             </td>
                             <td class="pl-3 py-1">
                                 <span class="font-normal">
-                                    3525981037628153
+                                    {{$niKeluarga }}
                                 </span>
                             </td>
                         </tr>
@@ -333,7 +295,7 @@
                             </td>
                             <td class="pl-3 py-1">
                                 <span class="font-normal">
-                                    Lucky Kurniawan Langoday
+                                    {{ $namaKepalaKeluarga }}
                                 </span>
                             </td>
                         </tr>
@@ -343,15 +305,16 @@
                             </td>
                             <td class="pl-3 py-1">
                                 <div
-                                    class="px-3 py-1 text-base text-center h-full my-auto items-center bg-blue-500 font-semibold text-white flex justify-start gap-3 rounded-full w-fit">
-                                    Diproses
+                                    class="px-3 py-1 text-base text-center h-full my-auto items-center {{ $ajuan->status === 'diproses' ? 'bg-blue-500' : ($ajuan->status === 'diterima' ? 'bg-green-500' : 'bg-red-500') }} font-semibold text-white flex justify-start gap-3 rounded-full w-fit">
+                                    {{ $ajuan->status }}
                                 </div>
                             </td>
                         </tr>
                     </table>
                 </div>
             </div>
-            <h2 id="accordion-open-heading-2">
+            @endforeach
+            {{-- <h2 id="accordion-open-heading-2">
                 <button type="button"
                     class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
                     data-accordion-target="#accordion-open-body-2" aria-expanded="false"
@@ -460,7 +423,7 @@
                 </div>
             </div>
 
-        </div>
+        </div> --}}
 
     </div>
     {{-- <div class="px-8 py-5">

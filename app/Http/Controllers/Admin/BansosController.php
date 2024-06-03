@@ -18,7 +18,22 @@ class BansosController extends Controller
 
         $user = BansosModel::paginate(10)->withQueryString();
 
-        return view('Admin.Bansos.index', compact('user', 'page', 'selected'));
+        // get month
+        $month = [];
+
+        for ($m = 1; $m <= 12; $m++) {
+            $month[] = date('F', mktime(0, 0, 0, $m, 1, date('Y')));
+        }
+
+        // get years
+        $years = [
+            'before' => Carbon::now()->subYear()->year,
+            'now' => Carbon::now()->year,
+            'next' => Carbon::now()->addYear()->year,
+        ];
+
+
+        return view('Admin.Bansos.index', compact('user', 'page', 'selected', 'month', 'years'));
     }
 
     public function rekomendasiBansos()
@@ -26,9 +41,22 @@ class BansosController extends Controller
         $page = 'rekomendasiBansos';
         $selected = 'Bansos';
 
-        $user = RekomendasiPenerimaModel::paginate(10)->withQueryString();
+        $user = AjuanBansosModel::paginate(10)->withQueryString();
 
-        return view('Admin.Bansos.rekomendasi-bansos', compact('user', 'page', 'selected'));
+        $month = [];
+
+        for ($m = 1; $m <= 12; $m++) {
+            $month[] = date('F', mktime(0, 0, 0, $m, 1, date('Y')));
+        }
+
+        // get years
+        $years = [
+            'before' => Carbon::now()->subYear()->year,
+            'now' => Carbon::now()->year,
+            'next' => Carbon::now()->addYear()->year,
+        ];
+
+        return view('Admin.Bansos.rekomendasi-bansos', compact('user', 'page', 'selected', 'month', 'years'));
     }
 
     private function ahpCalculate($pairwise_matrix)
@@ -262,5 +290,4 @@ class BansosController extends Controller
         ];
         return $conversion[$value];
     }
-
 }

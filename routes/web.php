@@ -63,6 +63,8 @@ Route::group(['middleware' => ['auth']], function () {
         // Route Bansos
         Route::group(['prefix' => 'bansos'], function () {
             Route::get('/', [UserBansosController::class, 'index'])->name('bansos');
+            Route::post('/ajuan', [UserBansosController::class, 'storeBansos'])->name('store.bansos');
+            Route::post('/filter-bansos', [userBansosController::class, 'filterBansos'])->name('filter-bansos');
         });
 
         //Route Aduan

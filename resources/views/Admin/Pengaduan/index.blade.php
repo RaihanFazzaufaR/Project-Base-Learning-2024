@@ -18,8 +18,8 @@
                     <i class="fa-solid fa-sliders sm:text-2xl text-xl"></i>
                     <div class="text-xl font-semibold hidden sm:inline-flex">Filter</div>
                 </button>
-                <div x-show="filterModal" tabindex="-1" aria-hidden="true" class="flex overflow-hidden fixed top-0 right-0 left-0 z-999 justify-center sm:items-center items-end w-full md:inset-0 h-full">
-                    <div class="absolute z-999 bg-black/25 h-[100vh] w-full"></div>
+                <div x-show="filterModal" x-transition:enter="md:transition-none transition ease-out duration-300 transform" x-transition:enter-start="md:transition-none translate-y-full" x-transition:enter-end="md:transition-none translate-y-0" x-transition:leave="md:transition-none transition ease-in duration-300 transform" x-transition:leave-start="md:transition-none translate-y-0" x-transition:leave-end="md:transition-none translate-y-full" tabindex="-1" aria-hidden="true" class="flex overflow-hidden fixed top-0 right-0 left-0 z-999 justify-center sm:items-center items-end w-full md:inset-0 h-full">
+                    <div class="absolute z-999 bg-black/25 h-[100vh] w-full hidden sm:block"></div>
                     <div class="relative z-[1000] sm:p-4 w-full sm:w-fit sm:max-w-3xl max-h-[700px]" @click.away="detailModal = false" x-transition:enter="motion-safe:ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
                         <div class="relative bg-white rounded-lg shadow dark:bg-[#2F363E]">
                             <!-- Modal header -->
@@ -133,8 +133,8 @@
                                             <div class="hidden sm:inline-flex">Detail</div>
                                         </button>
                                         <!-- Detail modal -->
-                                        <div x-show="detailModal" tabindex="-1" aria-hidden="true" class="flex overflow-hidden fixed top-0 right-0 left-0 z-999 justify-center sm:items-center items-end w-full md:inset-0 h-full">
-                                            <div class="absolute z-999 bg-black/25 h-[100vh] w-full"></div>
+                                        <div x-show="detailModal" x-transition:enter="md:transition-none transition ease-out duration-300 transform" x-transition:enter-start="md:transition-none translate-y-full" x-transition:enter-end="md:transition-none translate-y-0" x-transition:leave="md:transition-none transition ease-in duration-300 transform" x-transition:leave-start="md:transition-none translate-y-0" x-transition:leave-end="md:transition-none translate-y-full" tabindex="-1" aria-hidden="true" class="flex overflow-hidden fixed top-0 right-0 left-0 z-999 justify-center sm:items-center items-end w-full md:inset-0 h-full">
+                                            <div class="absolute z-999 bg-black/25 h-[100vh] w-full hidden sm:block"></div>
                                             <div class="relative z-[1000] sm:p-4 w-full sm:w-fit sm:max-w-3xl max-h-[700px] rounded-lg" @click.away="detailModal = false" x-transition:enter="motion-safe:ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
                                                 <!-- Modal content -->
                                                 <div class="relative bg-[#f4f4f4] rounded-lg shadow dark:bg-[#2F363E]">

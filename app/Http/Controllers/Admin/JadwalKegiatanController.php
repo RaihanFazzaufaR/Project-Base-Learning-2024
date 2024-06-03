@@ -91,8 +91,20 @@ class JadwalKegiatanController extends Controller
         $page = 'ajuan kegiatan';
         $selected = 'Jadwal Kegiatan';
         $users = PendudukModel::all();
-        $data = JadwalModel::where('status', 'diproses')->paginate(10);
+
+        if (auth()->user()->penduduk->jabatan == 'Ketua RW') {
+            $data = JadwalModel::where('status', 'diproses')->paginate(10);
+        } else {
+            $data = JadwalModel::where('status', 'diproses')
+                ->whereHas('penduduk', function ($query) {
+                    $query->whereHas('kartuKeluarga', function ($query) {
+                        $query->where('rt', auth()->user()->penduduk->kartuKeluarga->rt);
+                    });
+                })
+                ->paginate(10);;
+        }
         $data = $this->formatDateAndTime($data);
+        
         // $umkmKategoris = UmkmKategoriModel::all();
         // $categories = KategoriModel::all();
         return view('Admin.JadwalKegiatan.ajuanKegiatan', compact('users', 'data', 'page', 'selected'));
@@ -207,7 +219,8 @@ class JadwalKegiatanController extends Controller
         return redirect('/admin/jadwal-kegiatan')->with('success', 'Data berhasil ditambahkan!');
     }
 
-    public function acceptKegiatan(Request $request) {
+    public function acceptKegiatan(Request $request)
+    {
         // dd($request->all());
 
         JadwalModel::find($request->id)->update([
@@ -235,8 +248,9 @@ class JadwalKegiatanController extends Controller
         return redirect('/admin/jadwal-kegiatan/ajuan-kegiatan')->with('success', 'Data berhasil diterima!');
     }
 
-    public function rejectKegiatan(Request $request, $id) {
-        
+    public function rejectKegiatan(Request $request, $id)
+    {
+
         JadwalModel::find($id)->update([
             'status' => 'ditolak',
             'alasan_tolak' => $request->alasan,
