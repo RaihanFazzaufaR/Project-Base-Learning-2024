@@ -719,7 +719,7 @@
                                                         class="w-full h-full text-[#34662C] dark:text-white text-left"
                                                         method="POST">
                                                         @csrf
-                                                        {!! method_field('PUT') !!}
+                                                        {!! method_field('POST') !!}
 
                                                         <div
                                                             class="p-4 md:p-5 grid w-full sm:w-150 gap-4 grid-cols-2 max-h-[400px] sm:max-h-[450px] overflow-y-auto rounded-b-xl scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin">

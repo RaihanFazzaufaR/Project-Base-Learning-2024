@@ -225,18 +225,18 @@ class UmkmController extends Controller
             'deskripsi' => 'nullable|string',
             'lokasi_map' => 'nullable|string',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'values' => 'nullable',
-            'alasan' => 'required|string|max:150',
+            'kategori' => 'nullable',
+            // 'alasan' => 'required|string|max:150',
         ]);
         if ($validator->fails()) {
-            return $request->all();
-            // return back()->with('errors', $validator->messages()->all()[0])->withInput();
+            // return $request->all();
+            return back()->with('errors', $validator->messages()->all()[0])->withInput();
         }
 
-        $kategori = $request->values;
+        $kategori = $request->kategori;
         $kategori_id = explode(',', $kategori);
         // $umkm_id = $request->umkm_id;
-
+        // return $request->kategori;
         $umkmData = [
             'nama' => $request->nama,
             'id_penduduk' => $request->id_penduduk,
@@ -247,7 +247,7 @@ class UmkmController extends Controller
             'deskripsi' => $request->deskripsi,
             'lokasi_map' => $request->lokasi_map,
             'status' => 'diproses',
-            'alasan_warga' => $request->alasan,
+            // 'alasan_warga' => $request->alasan,
         ];
 
         if ($request->hasFile('foto')) {
@@ -292,7 +292,7 @@ class UmkmController extends Controller
             ->where('nama', 'like', '%' . $searchTerm . '%')
             ->orWhere('deskripsi', 'like', '%' . $searchTerm . '%')
             ->paginate(7);
-            $umkms = $this->formatDateAndTime($umkms);
+        $umkms = $this->formatDateAndTime($umkms);
 
         return view('Umkm.umkmku', compact('menu', 'umkms', 'umkmKategoris', 'categories', 'kategori'));
     }
