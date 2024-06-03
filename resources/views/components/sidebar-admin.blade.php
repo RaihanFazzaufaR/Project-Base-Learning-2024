@@ -106,7 +106,7 @@
                                     <i class="fa-solid fa-store text-xl"></i>
                                 </div>
                                 UMKM
-                                @if ($UmkmRequest > 0)
+                                @if ($UmkmRequest > 0 && (auth()->user()->penduduk->jabatan == 'Ketua RW'))
                                 <div class="absolute size-7 rounded-full flex justify-center items-center bg-yellow-400 text-white right-10 shadow-md" :class="(selected === 'Umkm')? 'hidden' : 'flex'">{{ $UmkmRequest }}</div>
                                 @endif
                                 <svg class="absolute right-4 top-1/2 -translate-y-1/2 fill-current" :class="{ 'rotate-180': (selected === 'Umkm') }" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
