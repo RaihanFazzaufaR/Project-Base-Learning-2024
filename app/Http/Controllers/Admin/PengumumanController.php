@@ -137,6 +137,23 @@ class PengumumanController extends Controller
                     'sent_at' => $now
                 ]);
             }
+        }else{
+            if(!$pengumuman->mulai_tanggal){
+                $message = $this->formatMessage($request, false);
+                $this->telegramService->sendMessage($message);
+
+                $pengumuman->update([
+                    'sent_at' => $now
+                ]);
+            }
+            if(($pengumuman->mulai_tanggal >= $now) && ($pengumuman->mulai_tanggal <= $sevenDayFromNow)){
+                $message = $this->formatMessage($request, false);
+                $this->telegramService->sendMessage($message);
+
+                $pengumuman->update([
+                    'sent_at' => $now
+                ]);
+            }
         }
 
         return redirect()->back()->with('success', 'Pengumuman berhasil diubah');

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Controllers\Admin\PengumumanController;
 use App\Models\JadwalModel;
 use App\Models\PendudukModel;
+use App\Models\PengumumanModel;
 use App\Services\TelegramService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -134,7 +135,9 @@ class JadwalKegiatanController extends Controller
             return back()->with('errors', $validator->messages()->all()[0])->withInput();
         }
 
-        JadwalModel::find($id)->update([
+        $jadwal = JadwalModel::find($id);
+        
+        $jadwal->update([
             'judul' => $request->nama,
             'aktivitas_tipe' => $request->kategori,
             'mulai_tanggal' => $request->tanggal_mulai,
@@ -147,6 +150,26 @@ class JadwalKegiatanController extends Controller
             'iuran' => $request->iuran,
             'lokasi' => $request->lokasi,
         ]);
+
+        $pengumuman_id = PengumumanModel::where('jadwal_id', $id)->value('pengumuman_id');
+
+        $pengumumanController = new PengumumanController(new TelegramService());
+        $reqPengumuman = new Request([
+            'judul' => $request->nama,
+            'kategori' => $request->kategori,
+            'mulai_tanggal' => $request->tanggal_mulai,
+            'akhir_tanggal' => $request->tanggal_selesai,
+            'mulai_waktu' => $request->jam_mulai,
+            'akhir_waktu' => $request->jam_selesai,
+            'konten' => $request->deskripsi,
+            'jadwal_id' => $id,
+            'pembuat_id_pengumuman' => null,
+            'iuran' => $request->iuran,
+            'lokasi' => $request->lokasi,
+        ]);
+        // dd($reqPengumuman, $pengumuman_id);
+
+        $pengumumanController->updatePengumuman($reqPengumuman, $pengumuman_id);
 
         return redirect('/admin/jadwal-kegiatan')->with('success', 'Data berhasil diupdate!');
     }
