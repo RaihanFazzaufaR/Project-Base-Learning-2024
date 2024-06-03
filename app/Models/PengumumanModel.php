@@ -22,7 +22,8 @@ class PengumumanModel extends Model
         'mulai_waktu',
         'akhir_waktu',
         'konten',
-        'pembuat_id',
+        'jadwal_id',
+        'pembuat_id_pengumuman',
         'iuran',
         'lokasi',
         'sent_at',
@@ -30,7 +31,7 @@ class PengumumanModel extends Model
 
     public function penduduk() : BelongsTo
     {
-        return $this->belongsTo(PendudukModel::class, 'pembuat_id', 'penduduk_id');
+        return $this->belongsTo(PendudukModel::class, 'pembuat_id_pengumuman', 'penduduk_id');
     }
 
     public function jadwal() : BelongsTo

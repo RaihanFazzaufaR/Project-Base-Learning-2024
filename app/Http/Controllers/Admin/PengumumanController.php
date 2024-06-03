@@ -36,6 +36,10 @@ class PengumumanController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10)->withQueryString();
 
+        foreach ($pengumumans as $pengumuman) {
+            $pengumuman->pembuat = PendudukModel::where('id_penduduk', $pengumuman->pembuat_id_pengumuman)->first();
+        }
+
         return view('Admin.Pengumuman.index', compact('pengumumans', 'users', 'page', 'selected'));
     }
 
@@ -48,7 +52,6 @@ class PengumumanController extends Controller
     {
         $now = Carbon::now()->startOfDay();
         $sevenDayFromNow = Carbon::now()->copy()->addDays(7);
-        $oneDayFromNow = Carbon::now()->copy()->addDays();
 
         $request->validate([
             'judul' => 'required',
@@ -65,10 +68,10 @@ class PengumumanController extends Controller
             'akhir_waktu' => $request->akhir_waktu ? $request->akhir_waktu : null,
             'konten' => $request->konten,
             'jadwal_id' => $request->jadwal_id ? $request->jadwal_id : null,
-            'pembuat_id_pengumuman' => $request->pembuat_id != "" ? PendudukModel::where('nik', $request->pembuat_id)->value('id_penduduk') : null,
+            'pembuat_id_pengumuman' => $request->pembuat_id ? PendudukModel::where('nik', $request->pembuat_id)->value('id_penduduk') : null,
             'iuran' => $request->iuran ? $request->iuran : null,
             'lokasi' => $request->lokasi ? $request->lokasi : null,
-        ]);   
+        ]);
 
         if (!$request->mulai_tanggal) {
             $message = $this->formatMessage($request);
@@ -79,7 +82,7 @@ class PengumumanController extends Controller
             ]);
         }
 
-        if (($request->mulai_tanggal >= $oneDayFromNow) && ($request->mulai_tanggal <= $sevenDayFromNow)) {
+        if (($request->mulai_tanggal >= $now) && ($request->mulai_tanggal <= $sevenDayFromNow)) {
             $message = $this->formatMessage($request);
             $this->telegramService->sendMessage($message);
 
@@ -91,10 +94,69 @@ class PengumumanController extends Controller
         return redirect()->back()->with('success', 'Pengumuman berhasil ditambah');
     }
 
-    private function formatMessage(Request $request)
+    public function updatePengumuman(Request $request, $id){
+        $now = Carbon::now()->startOfDay();
+        $sevenDayFromNow = Carbon::now()->copy()->addDays(7);
+
+        $request->validate([
+            'judul' => 'required',
+            'kategori' => 'required|not_in:',
+            'konten' => 'required',
+        ]);
+
+        PengumumanModel::find($id)->update([
+            'judul' => $request->judul,
+            'aktivitas_tipe' => $request->kategori,
+            'mulai_tanggal' => $request->mulai_tanggal ? $request->mulai_tanggal : null,
+            'akhir_tanggal' => $request->akhir_tanggal ? $request->akhir_tanggal : null,
+            'mulai_waktu' => $request->mulai_waktu ? $request->mulai_waktu : null,
+            'akhir_waktu' => $request->akhir_waktu ? $request->akhir_waktu : null,
+            'konten' => $request->konten,
+            'jadwal_id' => $request->jadwal_id ? $request->jadwal_id : null,
+            'pembuat_id_pengumuman' => $request->pembuat_id ? PendudukModel::where('nik', $request->pembuat_id)->value('id_penduduk') : null,
+            'iuran' => $request->iuran ? $request->iuran : null,
+            'lokasi' => $request->lokasi ? $request->lokasi : null,
+        ]);
+
+        $pengumuman = PengumumanModel::where('pengumuman_id', $id)->get()->first();
+
+        if($pengumuman->sent_at != null){
+            if(!$pengumuman->mulai_tanggal){
+                $message = $this->formatMessage($request, true);
+                $this->telegramService->sendMessage($message);
+
+                $pengumuman->update([
+                    'sent_at' => $now
+                ]);
+            }
+            if(($pengumuman->mulai_tanggal >= $now) && ($pengumuman->mulai_tanggal <= $sevenDayFromNow)){
+                $message = $this->formatMessage($request, true);
+                $this->telegramService->sendMessage($message);
+
+                $pengumuman->update([
+                    'sent_at' => $now
+                ]);
+            }
+        }
+
+        return redirect()->back()->with('success', 'Pengumuman berhasil diubah');
+    }
+
+    public function destroyPengumuman($id)
+    {
+        $pengumuman = PengumumanModel::find($id);
+        $pengumuman->delete();
+
+        return redirect()->back()->with('success', 'Pengumuman berhasil dihapus');
+    }
+
+    private function formatMessage(Request $request, $ralat = false)
     {
         $message = '';
-        $message = "<b>" . $request->judul . "</b>\n\n";
+        if($ralat){
+            $message = "<b>Perubahan Pengumuman</b>\n\n";
+        }
+        $message .= "<b>" . $request->judul . "</b>\n\n";
         if ($request->kategori != null) {
             $message .= "Kategori: $request->kategori\n";
         }

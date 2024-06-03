@@ -23,9 +23,8 @@ class SendScheduledAnnouncements extends Command
     {
         $now = Carbon::now()->startOfDay();
         $sevenDayFromNow = Carbon::now()->copy()->addDays(7);
-        $oneDayFromNow = Carbon::now()->copy()->addDays();
 
-        $announcements = PengumumanModel::whereBetween('mulai_tanggal', [$oneDayFromNow, $sevenDayFromNow])
+        $announcements = PengumumanModel::whereBetween('mulai_tanggal', [$now, $sevenDayFromNow])
             ->whereNull('sent_at')
             ->get();
 
