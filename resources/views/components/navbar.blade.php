@@ -6,94 +6,95 @@
                 <p>ꦱꦶꦫꦮ</p>
             </div>
         </a>
+
         <div class="flex items-center lg:order-2 sm:space-x-3 space-x-2 lg:space-x-0 lg:gap-3" x-data="{'open': true}">
             <!-- notification -->
-            <button id="dropdownNotificationButton" data-dropdown-toggle="dropdownNotification" class="relative inline-flex items-center text-sm font-medium text-center text-gray-500 hover:text-gray-900 focus:outline-none dark:hover:bg-gray-600 hover:bg-slate-200 dark:text-white p-2 rounded-full" type="button" @click="open = false">
-                <svg class="lg:w-6 lg:h-6 sm:w-8 sm:h-8 size-6" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 14 20">
-                    <path d="M12.133 10.632v-1.8A5.406 5.406 0 0 0 7.979 3.57.946.946 0 0 0 8 3.464V1.1a1 1 0 0 0-2 0v2.364a.946.946 0 0 0 .021.106 5.406 5.406 0 0 0-4.154 5.262v1.8C1.867 13.018 0 13.614 0 14.807 0 15.4 0 16 .538 16h12.924C14 16 14 15.4 14 14.807c0-1.193-1.867-1.789-1.867-4.175ZM3.823 17a3.453 3.453 0 0 0 6.354 0H3.823Z" />
-                </svg>
+            <div class="relative" x-data="{ dropdownOpen: false, notifying: true, open: true }" @click.outside="dropdownOpen = false">
+                <a class="relative flex h-9 w-9 items-center justify-center rounded-full dark:hover:bg-gray-600 hover:bg-slate-200" href="#" @click.prevent="dropdownOpen = ! dropdownOpen; notifying = false; open = false">
+                    <div x-show="open" class="absolute w-3 h-3 bg-red-500 border-2 border-white rounded-full top-1 start-4 dark:border-gray-900 block {{ (empty($messages->toArray()))?'hidden':'block' }}"></div>
+                    <i class="fa-solid fa-bell text-xl text-gray-500 dark:text-white"></i>
+                </a>
 
-                <div x-show="open" class="absolute w-3 h-3 bg-red-500 border-2 border-white rounded-full -top-0.5 start-2.5 dark:border-gray-900 {{ (empty($messages->toArray()))?'hidden':'block' }}">
-                </div>
-            </button>
-
-            <!-- Dropdown menu -->
-            <div id="dropdownNotification" class="z-20 hidden sm:w-full w-[80%] max-h-70 overflow-y-auto !absolute !sm:-left-10 !left-5 !top-5 max-w-sm bg-white divide-y divide-gray-400 rounded-lg shadow dark:bg-[#2F363E] dark:divide-gray-300" aria-labelledby="dropdownNotificationButton">
-                <div class="block px-4 py-2 font-medium text-center text-gray-700 rounded-t-lg bg-gray-50 dark:bg-[#2F363E] dark:text-white">
-                    Notifikasi
-                </div>
-                <div class="divide-y divide-gray-100 dark:divide-gray-700" x-data="{ selected: 'normal' }">
-                    @if (empty($messages->toArray()))
-                    <div class="flex flex-col w-full h-[80%] justify-center items-center gap-4 py-5">
-                        <!-- <i class="fa-regular fa-circle-xmark text-2xl"></i> -->
-                        <img src="{{ asset('assets/images/no-data.png') }}" alt="" class="w-[200px] h-[100px] object-cover">
-                        <p class="text-base font-semibold text-green-900 dark:text-white">Tidak ada pesan</p>
+                <!-- Dropdown Start -->
+                <div x-show="dropdownOpen" class="absolute sm:-right-27 -right-30 mt-2.5 flex max-h-70 w-75 overflow-y-auto text-black dark:text-white flex-col border border-gray-300 bg-white rounded-md dark:bg-[#2F363E] shadow-default dark:border-gray-600 lg:right-0 sm:w-90">
+                    <div class="px-4.5 py-3 text-center border-b-2 border-gray-400 dark:border-gray-300">
+                        <h5 class="text-sm font-medium">Notifikasi</h5>
                     </div>
-                    @endif
-                    <?php $i = 0; ?>
-                    @foreach ($messages as $message)
-                    @if ($message->status === 'selesai' || $message->status === 'diterima')
-                    <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <div class="flex-shrink-0">
-                            <img class="rounded-full w-11 h-11" src="{{ asset('assets/images/userProfile.png') }}" alt="">
-                            <div class="absolute flex items-center justify-center w-5 h-5 ms-6 -mt-5 bg-[#22C55E] border border-white rounded-full dark:border-gray-800">
-                                <i class="fa-solid fa-check text-xs text-white"></i>
-                            </div>
+
+                    <div class="divide-y divide-gray-100 dark:divide-gray-700" x-data="{ selected: 'normal' }">
+                        @if (empty($messages->toArray()))
+                        <div class="flex flex-col w-full h-[80%] justify-center items-center gap-4 py-5">
+                            <!-- <i class="fa-regular fa-circle-xmark text-2xl"></i> -->
+                            <img src="{{ asset('assets/images/no-data.png') }}" alt="" class="w-[200px] h-[100px] object-cover">
+                            <p class="text-base font-semibold text-green-900 dark:text-white">Tidak ada pesan</p>
                         </div>
-                        <div class="w-full ps-3">
-                            <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Selamat,
-                                {{ $message->source == 'tb_umkm' ? 'UMKM' : 'Kegiatan' }} yang Anda ajukan telah
-                                disetujui oleh <span class="font-semibold text-gray-900 dark:text-white">{{ $message->source == 'tb_umkm' ? 'Ketua RW 03' : 'Ketua RW 03 / Ketua RT '. auth()->user()->penduduk->kartuKeluarga->rt }}</span>
-                            </div>
-                            <div class="text-xs text-blue-600 dark:text-blue-500">
-                                @if ($message->diffMinutes < 60) {{ $message->diffMinutes < 1 ? 'beberapa saat yang lalu' : $message->diffMinutes . ' menit yang lalu' }} @elseif ($message->diffHours < 24) {{ $message->diffHours . ' jam yang lalu' }} @elseif ($message->diffDays < 7) {{ $message->diffDays . ' hari yang lalu' }} @endif </div>
-                            </div>
-                    </a>
-                    @elseif ($message->status === 'diproses')
-                    <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">
-                        <div class="flex-shrink-0">
-                            <img class="rounded-full w-11 h-11" src="{{ asset('assets/images/userProfile.png') }}" alt="">
-                            <div class="absolute flex items-center justify-center w-5 h-5 ms-6 -mt-5 bg-[#FFDE68] border border-white rounded-full dark:border-gray-800">
-                                <i class="fa-solid fa-minus text-xs text-white"></i>
-                            </div>
-                        </div>
-                        <div class="w-full ps-3">
-                            <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Mohon Menunggu,
-                                {{ $message->source == 'tb_umkm' ? 'UMKM' : 'Kegiatan' }} yang Anda ajukan sedang
-                                diproses oleh <span class="font-semibold text-gray-900 dark:text-white">{{ $message->source == 'tb_umkm' ? 'Ketua RW 03' : 'Ketua RW 03 / Ketua RT '. auth()->user()->penduduk->kartuKeluarga->rt }}</span>
-                            </div>
-                            <div class="text-xs text-blue-600 dark:text-blue-500">
-                                @if ($message->diffMinutes < 60) {{ $message->diffMinutes < 1 ? 'beberapa saat yang lalu' : $message->diffMinutes . ' menit yang lalu' }} @elseif ($message->diffHours < 24) {{ $message->diffHours . ' jam yang lalu' }} @elseif ($message->diffDays < 7) {{ $message->diffDays . ' hari yang lalu' }} @endif </div>
-                            </div>
-                    </a>
-                    @elseif ($message->status === 'ditolak')
-                    <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700" @click.prevent="selected = (selected === 'tolak{{ $i }}' ? '':'tolak{{ $i }}')">
-                        <div class="flex-shrink-0">
-                            <img class="rounded-full w-11 h-11" src="{{ asset('assets/images/userProfile.png') }}" alt="">
-                            <div class="absolute flex items-center justify-center w-5 h-5 ms-6 -mt-5 bg-[#EF4444] border border-white rounded-full dark:border-gray-800">
-                                <i class="fa-solid fa-xmark text-xs text-white"></i>
-                            </div>
-                        </div>
-                        <div class="w-full ps-3">
-                            <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Maaf,
-                                {{ $message->source == 'tb_umkm' ? 'UMKM' : 'Kegiatan' }} yang Anda ajukan telah
-                                ditolak oleh <span class="font-semibold text-gray-900 dark:text-white">{{ $message->source == 'tb_umkm' ? 'Ketua RW 03' : 'Ketua RW 03 / Ketua RT '. auth()->user()->penduduk->kartuKeluarga->rt }}</span>
-                            </div>
-                            <div class="w-full border-y-2 border-gray-300 text-sm py-2" :class="(selected === 'tolak{{ $i }}') ? 'block' : 'hidden'">
-                                <p class="text-black font-bold">Alasan Penolakan :</p>
-                                <p class="text-gray-500 dark:text-gray-400">"{{ $message->reason }}"</p>
-                            </div>
-                            <div class="flex justify-between items-center">
-                                <div class="text-xs text-blue-600 dark:text-blue-500">
-                                    @if ($message->diffMinutes < 60) {{ $message->diffMinutes < 1 ? 'beberapa saat yang lalu' : $message->diffMinutes . ' menit yang lalu' }} @elseif ($message->diffHours < 24) {{ $message->diffHours . ' jam yang lalu' }} @elseif ($message->diffDays < 7) {{ $message->diffDays . ' hari yang lalu' }} @endif </div>
-                                                <i class="fa-solid" :class="(selected === 'tolak{{ $i }}') ? 'fa-angle-up' : 'fa-angle-down'"></i>
+                        @endif
+                        <?php $i = 0; ?>
+                        @foreach ($messages as $message)
+                        @if ($message->status === 'selesai' || $message->status === 'diterima')
+                        <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <div class="flex-shrink-0">
+                                <img class="rounded-full w-11 h-11" src="{{ asset('assets/images/userProfile.png') }}" alt="">
+                                <div class="absolute flex items-center justify-center w-5 h-5 ms-6 -mt-5 bg-[#22C55E] border border-white rounded-full dark:border-gray-800">
+                                    <i class="fa-solid fa-check text-xs text-white"></i>
                                 </div>
                             </div>
-                    </a>
-                    @endif
-                    <?php $i++; ?>
-                    @endforeach
+                            <div class="w-full ps-3">
+                                <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Selamat,
+                                    {{ $message->source == 'tb_umkm' ? 'UMKM' : 'Kegiatan' }} yang Anda ajukan telah
+                                    disetujui oleh <span class="font-semibold text-gray-900 dark:text-white">{{ $message->source == 'tb_umkm' ? 'Ketua RW 03' : 'Ketua RW 03 / Ketua RT '. auth()->user()->penduduk->kartuKeluarga->rt }}</span>
+                                </div>
+                                <div class="text-xs text-blue-600 dark:text-blue-500">
+                                    @if ($message->diffMinutes < 60) {{ $message->diffMinutes < 1 ? 'beberapa saat yang lalu' : $message->diffMinutes . ' menit yang lalu' }} @elseif ($message->diffHours < 24) {{ $message->diffHours . ' jam yang lalu' }} @elseif ($message->diffDays < 7) {{ $message->diffDays . ' hari yang lalu' }} @endif </div>
+                                </div>
+                        </a>
+                        @elseif ($message->status === 'diproses')
+                        <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <div class="flex-shrink-0">
+                                <img class="rounded-full w-11 h-11" src="{{ asset('assets/images/userProfile.png') }}" alt="">
+                                <div class="absolute flex items-center justify-center w-5 h-5 ms-6 -mt-5 bg-[#FFDE68] border border-white rounded-full dark:border-gray-800">
+                                    <i class="fa-solid fa-minus text-xs text-white"></i>
+                                </div>
+                            </div>
+                            <div class="w-full ps-3">
+                                <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Mohon Menunggu,
+                                    {{ $message->source == 'tb_umkm' ? 'UMKM' : 'Kegiatan' }} yang Anda ajukan sedang
+                                    diproses oleh <span class="font-semibold text-gray-900 dark:text-white">{{ $message->source == 'tb_umkm' ? 'Ketua RW 03' : 'Ketua RW 03 / Ketua RT '. auth()->user()->penduduk->kartuKeluarga->rt }}</span>
+                                </div>
+                                <div class="text-xs text-blue-600 dark:text-blue-500">
+                                    @if ($message->diffMinutes < 60) {{ $message->diffMinutes < 1 ? 'beberapa saat yang lalu' : $message->diffMinutes . ' menit yang lalu' }} @elseif ($message->diffHours < 24) {{ $message->diffHours . ' jam yang lalu' }} @elseif ($message->diffDays < 7) {{ $message->diffDays . ' hari yang lalu' }} @endif </div>
+                                </div>
+                        </a>
+                        @elseif ($message->status === 'ditolak')
+                        <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700" @click.prevent="selected = (selected === 'tolak{{ $i }}' ? '':'tolak{{ $i }}')">
+                            <div class="flex-shrink-0">
+                                <img class="rounded-full w-11 h-11" src="{{ asset('assets/images/userProfile.png') }}" alt="">
+                                <div class="absolute flex items-center justify-center w-5 h-5 ms-6 -mt-5 bg-[#EF4444] border border-white rounded-full dark:border-gray-800">
+                                    <i class="fa-solid fa-xmark text-xs text-white"></i>
+                                </div>
+                            </div>
+                            <div class="w-full ps-3">
+                                <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Maaf,
+                                    {{ $message->source == 'tb_umkm' ? 'UMKM' : 'Kegiatan' }} yang Anda ajukan telah
+                                    ditolak oleh <span class="font-semibold text-gray-900 dark:text-white">{{ $message->source == 'tb_umkm' ? 'Ketua RW 03' : 'Ketua RW 03 / Ketua RT '. auth()->user()->penduduk->kartuKeluarga->rt }}</span>
+                                </div>
+                                <div class="w-full border-y-2 border-gray-300 text-sm py-2" :class="(selected === 'tolak{{ $i }}') ? 'block' : 'hidden'">
+                                    <p class="text-black font-bold">Alasan Penolakan :</p>
+                                    <p class="text-gray-500 dark:text-gray-400">"{{ $message->reason }}"</p>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div class="text-xs text-blue-600 dark:text-blue-500">
+                                        @if ($message->diffMinutes < 60) {{ $message->diffMinutes < 1 ? 'beberapa saat yang lalu' : $message->diffMinutes . ' menit yang lalu' }} @elseif ($message->diffHours < 24) {{ $message->diffHours . ' jam yang lalu' }} @elseif ($message->diffDays < 7) {{ $message->diffDays . ' hari yang lalu' }} @endif </div>
+                                                    <i class="fa-solid" :class="(selected === 'tolak{{ $i }}') ? 'fa-angle-up' : 'fa-angle-down'"></i>
+                                    </div>
+                                </div>
+                        </a>
+                        @endif
+                        <?php $i++; ?>
+                        @endforeach
+                    </div>
                 </div>
+                <!-- Dropdown End -->
             </div>
 
 
@@ -106,12 +107,16 @@
                 <img src="{{ asset('assets/images/UserAccount/' . (auth()->user()->penduduk->userAccount->image ?? 'default.jpg')) }}" class="h-11 w-11 rounded-full object-cover" />
             </button>
             <!-- Dropdown menu -->
-            <div class="z-50 hidden !my-3 !-ml-5 text-base list-none bg-white divide-y divide-gray-400 rounded-lg overflow-hidden shadow dark:bg-[#2F363E] dark:divide-gray-300" id="user-dropdown">
+            <div class="z-50 hidden !my-3 !-ml-5 lg:w-[200px] text-base list-none bg-white divide-y divide-gray-400 rounded-lg overflow-hidden shadow dark:bg-[#2F363E] dark:divide-gray-300" id="user-dropdown">
                 <div class="px-4 py-3">
                     <span class="block text-sm font-semibold text-gray-900 dark:text-white">{{ Auth::user()->penduduk->nama }}</span>
                     <span class="block text-sm font-medium  text-gray-500 truncate dark:text-gray-300">
+                        @if (auth()->user()->penduduk->userAccount->id_level == '1')
+                        Admin
+                        @else
                         {{ Auth::user()->penduduk->jabatan !== 'Tidak ada' ? Auth::user()->penduduk->jabatan : 'Penduduk' }}
                         {{ Auth::user()->penduduk->jabatan !== 'Tidak Ada' ? Auth::user()->penduduk->kartuKeluarga->rt : 'RT ' . Auth::user()->penduduk->kartuKeluarga->rt }}
+                        @endif
                     </span>
 
                 </div>

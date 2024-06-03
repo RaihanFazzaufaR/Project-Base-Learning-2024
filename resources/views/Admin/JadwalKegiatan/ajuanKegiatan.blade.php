@@ -17,7 +17,7 @@
     </div>
 
     <div class="mt-10">
-        <div class="relative overflow-x-auto shadow-sm rounded-lg">
+        <div class="relative overflow-x-auto shadow-sm rounded-t-lg">
             <table class="w-[650px] sm:w-full text-center table-fixed relative">
                 <thead class="sm:text-sm text-xs font-bold text-[#34662C] bg-[#91DF7D] dark:bg-[#428238] dark:text-white">
                     <tr>
@@ -58,8 +58,8 @@
                                         <div class="hidden sm:inline-flex">Detail</div>
                                     </button>
                                     <!-- Detail modal -->
-                                    <div x-show="detailModal" tabindex="-1" aria-hidden="true" class="flex overflow-hidden fixed top-0 right-0 left-0 z-999 justify-center sm:items-center items-end w-full md:inset-0 h-full">
-                                        <div class="absolute z-999 bg-black/25 h-[100vh] w-full"></div>
+                                    <div x-show="detailModal" x-transition:enter="md:transition-none transition ease-out duration-300 transform" x-transition:enter-start="md:transition-none translate-y-full" x-transition:enter-end="md:transition-none translate-y-0" x-transition:leave="md:transition-none transition ease-in duration-300 transform" x-transition:leave-start="md:transition-none translate-y-0" x-transition:leave-end="md:transition-none translate-y-full" tabindex="-1" aria-hidden="true" class="flex overflow-hidden fixed top-0 right-0 left-0 z-999 justify-center sm:items-center items-end w-full md:inset-0 h-full">
+                                        <div class="absolute z-999 bg-black/25 h-[100vh] w-full hidden sm:block"></div>
                                         <div class="relative z-[1000] sm:p-4 w-full sm:w-fit sm:max-w-3xl max-h-[700px]" @click.away="detailModal = false" x-transition:enter="motion-safe:ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
                                             <!-- Modal content -->
                                             <div class="relative bg-white rounded-lg shadow dark:bg-[#2F363E]">
@@ -146,8 +146,8 @@
                                         <div class="hidden sm:inline-flex">Tolak</div>
                                     </button>
                                     <!-- Detail modal -->
-                                    <div x-show="tolakModal" tabindex="-1" aria-hidden="true" class="flex overflow-hidden fixed top-0 right-0 left-0 z-999 justify-center sm:items-center items-end w-full md:inset-0 h-full">
-                                        <div class="absolute z-999 bg-black/25 h-[100vh] w-full"></div>
+                                    <div x-show="tolakModal" x-transition:enter="md:transition-none transition ease-out duration-300 transform" x-transition:enter-start="md:transition-none translate-y-full" x-transition:enter-end="md:transition-none translate-y-0" x-transition:leave="md:transition-none transition ease-in duration-300 transform" x-transition:leave-start="md:transition-none translate-y-0" x-transition:leave-end="md:transition-none translate-y-full" tabindex="-1" aria-hidden="true" class="flex overflow-hidden fixed top-0 right-0 left-0 z-999 justify-center sm:items-center items-end w-full md:inset-0 h-full">
+                                        <div class="absolute z-999 bg-black/25 h-[100vh] w-full hidden sm:block"></div>
                                         <div class="relative z-[1000] sm:p-4 w-full sm:w-fit sm:max-w-3xl max-h-[700px]" @click.away="tolakModal = false" x-transition:enter="motion-safe:ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
                                             <!-- Modal content -->
                                             <div class="relative bg-white rounded-lg shadow dark:bg-[#2F363E]">
@@ -193,6 +193,13 @@
                 </tbody>
             </table>
         </div>
+        @if ($data->total() == 0)
+        <div class="flex flex-col w-full h-[100%] justify-center items-center gap-4 py-5 dark:bg-[#343b44] shadow-sm border-b-2 dark:border-gray-600">
+            <!-- <i class="fa-regular fa-circle-xmark text-2xl"></i> -->
+            <img src="{{ asset('assets/images/no-data.png') }}" alt="" class="w-[200px] h-[100px] object-cover">
+            <p class="text-base font-semibold text-green-900 dark:text-white">Tidak ada Ajuan Kegiatan</p>
+        </div>
+        @endif
         <div class="px-8 py-5 dark:bg-[#343b44] rounded-b-lg shadow-md">
             {{ $data->links() }}
         </div>
