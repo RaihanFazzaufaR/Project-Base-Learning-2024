@@ -377,12 +377,12 @@ class SuratController extends Controller
     public function suratku()
     {
         $menu = 'Surat';
-        $permintaanSurat = SuratModel::select('tb_surat.*', 'tb_penduduk.nama')
+        $dataSurat = SuratModel::select('tb_surat.*', 'tb_penduduk.nama')
         ->join('tb_penduduk', 'tb_surat.peminta_id', '=', 'tb_penduduk.id_penduduk')
         ->orderBy('tb_surat.minta_tanggal', 'desc')
         ->paginate(10);   
 
-        return view('Surat.surat-ku', compact('permintaanSurat', 'menu'));
+        return view('Surat.surat-ku', compact('dataSurat', 'menu'));
     }
     public function search(Request $request)
     {
@@ -450,7 +450,7 @@ class SuratController extends Controller
         // Konversi tanggal_wafat menjadi objek Carbon
         $surat->tanggal_wafat = Carbon::parse($surat->tanggal_wafat);
         $surat->usia = $usia;
-
+        $surat->penyebab_kematian;
         // Tampilkan view 'Surat.surat_keterangan' dengan data 'surat'
         return view('Surat.surat_keterangan_kematian', compact('surat'));
     }
@@ -460,10 +460,10 @@ class SuratController extends Controller
         // Retrieve the requested Surat Keterangan Pindah
         $surat = DB::table('tb_surat')
             ->join('tb_penduduk', 'tb_surat.peminta_id', '=', 'tb_penduduk.id_penduduk')
-            ->select('tb_surat.*', 'tb_penduduk.nama', 'tb_penduduk.id_kartuKeluarga')
+            ->select('tb_surat.*', 'tb_penduduk.nama', 'tb_penduduk.id_kartuKeluarga', 'tb_surat.alamat_pindah', 'tb_surat.alasan_pindah', 'tb_surat.jumlah_keluarga_pindah', )
             ->where('tb_surat.peminta_id', $pemintaId)
             ->first();
-    
+
         // If surat not found, redirect back with error
         if (!$surat) {
             return redirect()->back()->withErrors(['error' => 'Surat tidak ditemukan.']);
@@ -471,7 +471,7 @@ class SuratController extends Controller
     
         // Parse date of birth into Carbon object for easier manipulation
         $surat->tanggalLahir = Carbon::parse($surat->tanggalLahir);
-    
+        
         // Get data of family members who moved
         $data = PindahPendudukModel::where('id_kartuKeluarga', $surat->id_kartuKeluarga)->get();
     

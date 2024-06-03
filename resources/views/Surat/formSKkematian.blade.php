@@ -69,8 +69,9 @@
                                 class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">NIK</label>
                         </div>
                         <div class="basis-3/4 h-full flex items-center relative">
-                            <input id="nik" name="nik" value="{{ Auth::user()->penduduk->nik }}" readonly
-                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 pr-10 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                            <input id="nik" name="nik"
+                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 pr-10 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                placeholder="Masukkan NIK Almarhum">
                             <div
                                 class="absolute inset-y-0 right-0 flex items-center pr-2 text-sm text-[#34662C] dark:text-gray-400">
                                 <span>(NIK)</span>
@@ -78,7 +79,7 @@
                         </div>
                     </div>
                     {{-- Nomor KK --}}
-                    <div class="gap-2 flex w-full h-fit mt-4">
+                    <div class="gap-2 flex w-full h-fit">
                         <div class="basis-1/4 h-full ps-8 flex my-auto items-center">
                             <label for="nomor_kk"
                                 class="text-lg font-bold items-center flex w-full text-[#2d5523] dark:text-white">No.
@@ -86,8 +87,8 @@
                         </div>
                         <div class="basis-3/4 h-full flex items-center relative">
                             <input id="nomor_kk" name="nomor_kk"
-                                value="{{ Auth::user()->penduduk->kartuKeluarga->niKeluarga }}" readonly
-                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 pr-10 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
+                                class="bg-white border-2 border-[#2d5523] text-[#2d5523] shadow-md placeholder-[#34662C]/50 font-semibold text-lg rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 pr-10 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+                                placeholder="Masukkan NIK Almarhum">
                             <div
                                 class="absolute inset-y-0 right-0 flex items-center pr-2 text-sm text-[#34662C] dark:text-gray-400">
                                 <span>(No.KK)</span>

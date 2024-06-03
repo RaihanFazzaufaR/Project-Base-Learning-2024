@@ -50,7 +50,7 @@
                 </tr>
             </thead>
             <tbody>
-                @foreach ($permintaanSurat as $surat)
+                @foreach ($dataSurat as $surat)
                     <tr
                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <td scope="row"
@@ -129,7 +129,7 @@
             </tbody>
         </table>
         <div class="px-8 py-5">
-            {{ $permintaanSurat->links() }}
+            {{ $dataSurat->links() }}
         </div>
     </div>
 </div>
