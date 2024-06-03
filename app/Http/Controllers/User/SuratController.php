@@ -120,6 +120,7 @@ class SuratController extends Controller
 
     public function storeSkPindah(Request $request)
 {
+    // dd($request->all());
     // Validasi input, sesuaikan dengan nama dan kebutuhan aktual Anda
     $validatedData = $request->validate([
         'nik' => 'required|string',
@@ -127,10 +128,22 @@ class SuratController extends Controller
         'ttl' => 'required|string', // Pisahkan tempat dan tanggal lahir
         'jk' => 'required|string', // Tambahkan validasi jenis kelamin
         'warganegara' => 'required|string', // Validasi kewarganegaraan
+        'alamat-pindah' => 'required|string', // Validasi alamat pindah
+        'rt' => 'required|string', // Validasi RT
+        'rw' => 'required|string', // Validasi RW
+        'alasan-pindah' => 'required|string', // Validasi alasan pindah
+        'keluarga-pindah' => 'required|integer|min:1', // Validasi jumlah keluarga yang pindah
+        'values' => 'required',
         // Tambahkan aturan validasi required untuk setiap field lainnya
     ], [
         'ttl.required' => 'Kolom tempat lahir dan tanggal lahir diperlukan.',
         'warganegara.required' => 'Kolom warganegara diperlukan.',
+        'alamat-pindah.required' => 'Kolom alamat pindah diperlukan.',
+        'rt.required' => 'Kolom RT diperlukan.',
+        'rw.required' => 'Kolom RW diperlukan.',
+        'alasan-pindah.required' => 'Kolom alasan pindah diperlukan.',
+        'keluarga-pindah.required' => 'Kolom keluarga yang pindah diperlukan.',
+        'keluarga-pindah.min' => 'Jumlah keluarga yang pindah harus minimal 1.',
         // Tambahkan pesan kesalahan khusus untuk setiap field jika diperlukan
     ]);
 
@@ -165,7 +178,7 @@ class SuratController extends Controller
     $nikeluarga = $kartuKeluarga->niKeluarga;
     $idKartuKeluarga = $penduduk->id_kartuKeluarga;
 
-    // Simpan data ke dalam tabel tb_pindahPenduduk
+    // // Simpan data ke dalam tabel tb_pindahPenduduk
     // $pindahPenduduk = PindahPendudukModel::create([
     //     'nik' => $validatedData['nik'],
     //     'nama' => $validatedData['nama'],
@@ -180,10 +193,40 @@ class SuratController extends Controller
     //     // Tambahkan lebih banyak field jika diperlukan
     // ]);
 
+    $data = [];
+
+    $id_penduduk = $request->values;
+    $id_penduduk = explode(',', $id_penduduk);
+    // Simpan data anggota keluarga yang ikut pindah
+    foreach ($id_penduduk as $id) {
+        $newData = [
+            'nik' => DB::table('tb_penduduk')->where('id_penduduk', $id)->value('nik'),
+            'nama' => DB::table('tb_penduduk')->where('id_penduduk', $id)->value('nama'),
+            'tempatLahir' => DB::table('tb_penduduk')->where('id_penduduk', $id)->value('tempatLahir'),
+            'tanggalLahir' => DB::table('tb_penduduk')->where('id_penduduk', $id)->value('tanggalLahir'),
+            'jenisKelamin' => DB::table('tb_penduduk')->where('id_penduduk', $id)->value('jenisKelamin'),
+            'agama' => DB::table('tb_penduduk')->where('id_penduduk', $id)->value('agama'),
+            'pekerjaan' => DB::table('tb_penduduk')->where('id_penduduk', $id)->value('pekerjaan'),
+            'statusNikah' => DB::table('tb_penduduk')->where('id_penduduk', $id)->value('statusNikah'),
+            'warganegara' => DB::table('tb_penduduk')->where('id_penduduk', $id)->value('warganegara'),
+            'id_kartuKeluarga' => $idKartuKeluarga,
+        ];
+        
+        // Tambahkan data baru ke dalam variabel $data
+        $data[] = $newData;
+    
+        // Simpan data ke dalam model PindahPendudukModel
+        PindahPendudukModel::create($newData);
+    }
+    
+
     $keluarga = DB::table('tb_kartukeluarga')
     ->select('alamat')
     ->where('id_kartuKeluarga', $idKartuKeluarga)
     ->first();
+
+        // Gabungkan alamat pindah, RT, dan RW
+        $alamatPindah = $validatedData['alamat-pindah'] . ', RT ' . $validatedData['rt'] . ', RW ' . $validatedData['rw'];
     
     // Simpan data ke dalam tabel tb_surat
     $surat = SuratModel::create([
@@ -204,6 +247,9 @@ class SuratController extends Controller
         'agama' => $penduduk->agama, // Gunakan nilai agama dari peminta
         'pekerjaan' => $penduduk->pekerjaan,
         'alamat' => $keluarga->alamat, // Gunakan alamat dari peminta
+        'alamat_pindah'=> $alamatPindah, // Gunakan alamat pindah yang telah digabungkan
+        'alasan_pindah' => $validatedData['alasan-pindah'],
+        'jumlah_keluarga_pindah' => $validatedData['keluarga-pindah'],
         // Tambahkan lebih banyak field jika diperlukan
     ]);
     $surat = DB::table('tb_surat')
@@ -212,9 +258,12 @@ class SuratController extends Controller
     ->first();
     // Konversi tanggalLahir menjadi objek Carbon
     $surat->tanggalLahir = Carbon::parse($surat->tanggalLahir);
+    $surat->alamat_pindah = $alamatPindah;
+    $surat->alasan_pindah = $validatedData['alasan-pindah'];
+    $surat->jumlah_keluarga_pindah = $validatedData['keluarga-pindah'];
 
     // Redirect ke view 'Surat.surat_keterangan' dengan data 'surat'
-    return view('Surat.surat_keterangan_pindah', compact('surat'));
+    return view('Surat.surat_keterangan_pindah', compact('surat', 'data'));
 }
 
                            
@@ -405,4 +454,30 @@ class SuratController extends Controller
         // Tampilkan view 'Surat.surat_keterangan' dengan data 'surat'
         return view('Surat.surat_keterangan_kematian', compact('surat'));
     }
+
+    public function showSkPindah($pemintaId)
+    {
+        // Retrieve the requested Surat Keterangan Pindah
+        $surat = DB::table('tb_surat')
+            ->join('tb_penduduk', 'tb_surat.peminta_id', '=', 'tb_penduduk.id_penduduk')
+            ->select('tb_surat.*', 'tb_penduduk.nama', 'tb_penduduk.id_kartuKeluarga')
+            ->where('tb_surat.peminta_id', $pemintaId)
+            ->first();
+    
+        // If surat not found, redirect back with error
+        if (!$surat) {
+            return redirect()->back()->withErrors(['error' => 'Surat tidak ditemukan.']);
+        }
+    
+        // Parse date of birth into Carbon object for easier manipulation
+        $surat->tanggalLahir = Carbon::parse($surat->tanggalLahir);
+    
+        // Get data of family members who moved
+        $data = PindahPendudukModel::where('id_kartuKeluarga', $surat->id_kartuKeluarga)->get();
+    
+        // Return the view with surat and data
+        return view('Surat.surat_keterangan_pindah', compact('surat', 'data'));
+    }
+    
+    
 }

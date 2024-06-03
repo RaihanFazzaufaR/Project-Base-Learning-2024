@@ -112,6 +112,17 @@
 
                  <!-- Dropdown Start -->
                  <div x-show="dropdownOpen" class="absolute right-0 mt-4 flex w-62.5 flex-col border border-gray-300 bg-white shadow-default dark:border-gray-600 dark:bg-[#2F363E] dark:text-white rounded-md">
+                     <div class="lg:hidden border-b border-gray-300 dark:border-gray-600 flex flex-col items-start gap-3 px-6 py-4 text-sm font-medium lg:text-base">
+                         <span class="block text-sm font-medium text-black dark:text-white text-left">{{ auth()->user()->penduduk->nama }}</span>
+                         <span class="block text-xs font-medium dark:text-white text-left">
+                             @if (auth()->user()->penduduk->userAccount->id_level == '1')
+                             Admin Sirawa
+                             @else
+                             {{ auth()->user()->penduduk->jabatan }}
+                             {{ (auth()->user()->penduduk->jabatan === 'Ketua RT')? auth()->user()->penduduk->kartuKeluarga->rt : '03'}}
+                             @endif
+                         </span>
+                     </div>
                      <ul class="flex flex-col border-b border-gray-300 dark:border-gray-600">
                          <li>
                              <a href="{{ route('profilku') }}" class="flex items-center gap-3.5 text-sm font-medium duration-300 ease-in-out hover:bg-gray-200 hover:dark:bg-gray-600 lg:text-base px-6 py-4">

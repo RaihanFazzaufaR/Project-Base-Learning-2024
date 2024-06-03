@@ -89,6 +89,7 @@ Route::group(['middleware' => ['auth']], function () {
             // suratPindah
             Route::get('/sk-pindah', [SuratController::class, 'skPindah'])->name('sk-pindah');
             Route::post('/storeSkPindah', [SuratController::class, 'storeSkPindah'])->name('storeSkPindah');
+            Route::get('/showSkPindah/{id}', [SuratController::class, 'showSkPindah'])->name('showSkPindah');
 
             // suratKematian
             Route::get('/sk-kematian', [SuratController::class, 'skKematian'])->name('sk-kematian');

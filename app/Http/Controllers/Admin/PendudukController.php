@@ -17,9 +17,9 @@ class PendudukController extends Controller
     {
         $page = 'daftarPenduduk';
         $selected = 'Kependudukan';
-        $kartuKeluarga = KartuKeluargaModel::all();
+        $kartuKeluarga = KartuKeluargaModel::all()->where('niKeluarga', '!=', '0000000000000001');
         $id_penduduk = 0;
-        $user = PendudukModel::query();
+        $user = PendudukModel::query()->where('nik', '!=', '0000000000000001');
 
         if ($request->filled('id_penduduk')) {
             $id_penduduk = $request->id_penduduk;
@@ -220,7 +220,7 @@ class PendudukController extends Controller
         $page = 'daftarNkk';
         $selected = 'Kependudukan';
         $id_kk = 0;
-        $user = KartuKeluargaModel::query();
+        $user = KartuKeluargaModel::query()->where('niKeluarga', '!=', '0000000000000001');
 
         if ($request->has('id_kk')) {
             $id_kk = $request->id_kk;

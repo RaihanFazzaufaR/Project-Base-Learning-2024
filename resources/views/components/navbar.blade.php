@@ -9,7 +9,7 @@
 
         <div class="flex items-center lg:order-2 sm:space-x-3 space-x-2 lg:space-x-0 lg:gap-3" x-data="{'open': true}">
             <!-- notification -->
-            <div class="relative" x-data="{ dropdownOpen: false, notifying: true, open: true }" @click.outside="dropdownOpen = false">
+            <div class="relative {{ Auth::check()?'static':'hidden' }}" x-data="{ dropdownOpen: false, notifying: true, open: true }" @click.outside="dropdownOpen = false">
                 <a class="relative flex h-9 w-9 items-center justify-center rounded-full dark:hover:bg-gray-600 hover:bg-slate-200" href="#" @click.prevent="dropdownOpen = ! dropdownOpen; notifying = false; open = false">
                     <div x-show="open" class="absolute w-3 h-3 bg-red-500 border-2 border-white rounded-full top-1 start-4 dark:border-gray-900 block {{ (empty($messages->toArray()))?'hidden':'block' }}"></div>
                     <i class="fa-solid fa-bell text-xl text-gray-500 dark:text-white"></i>

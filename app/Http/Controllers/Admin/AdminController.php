@@ -21,8 +21,8 @@ class AdminController extends Controller
         $page = 'dashboard';
         $selected = 'Dashboard';
 
-        $jumlahKK = KartuKeluargaModel::count();
-        $jumlahPenduduk = PendudukModel::count();
+        $jumlahKK = KartuKeluargaModel::where('niKeluarga', '!=', '0000000000000001')->count();
+        $jumlahPenduduk = PendudukModel::where('nik', '!=', '0000000000000001')->count();
         $jumlahUmkm = UmkmModel::count();
         $jumlahAduan = AduanModel::count();
 
@@ -34,11 +34,11 @@ class AdminController extends Controller
         ];
 
         $dataStatusPenduduk = [
-            'tetap' => PendudukModel::where('statusPenduduk', 'penduduk tetap')->count(),
-            'tidak tetap' => PendudukModel::where('statusPenduduk', 'penduduk tidak tetap')->count(),
+            'tetap' => PendudukModel::where('statusPenduduk', 'penduduk tetap')->where('nik', '!=', '0000000000000001')->count(),
+            'tidak tetap' => PendudukModel::where('statusPenduduk', 'penduduk tidak tetap')->where('nik', '!=', '0000000000000001')->count(),
         ];
 
-        $dataPendudukAll = PendudukModel::all();
+        $dataPendudukAll = PendudukModel::all()->where('nik', '!=', '0000000000000001');
         $dataPendudukAll = $this->countAge($dataPendudukAll);
 
         $dataDemografiPenduduk = [

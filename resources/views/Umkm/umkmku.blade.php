@@ -991,11 +991,11 @@
                                                     </button>
                                                 </div>
                                                 <!-- Modal body -->
-                                                <form action="{{ route('umkm-edit', ['umkm_id' => $umkm->umkm_id]) }}"
+                                                <form action="{{ route('umkm.edit', ['umkm_id' => $umkm->umkm_id]) }}"
                                                     class="w-full h-full text-[#34662C] dark:text-white text-left"
                                                     method="POST">
                                                     @csrf
-                                                    {!! method_field('PUT') !!}
+                                                    {!! method_field('POST') !!}
 
                                                     <div
                                                         class="p-4 md:p-5 grid w-full sm:w-150 gap-4 grid-cols-2 max-h-[400px] sm:max-h-[450px] overflow-y-auto rounded-b-xl scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin">
@@ -1004,6 +1004,8 @@
                                                             <input list="pemilik" name="pemilik"
                                                                 class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white"
                                                                 value="{{ Auth::user()->penduduk->nama }}">
+                                                                <input type="hidden" id="id_penduduk" name="id_penduduk"
+                                                                value="{{ Auth::user()->penduduk->id_penduduk }}">
                                                         </div>
                                                         <div class="col-span-2 sm:col-span-1">
                                                             <label for="nama"
