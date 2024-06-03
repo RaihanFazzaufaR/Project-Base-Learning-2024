@@ -39,25 +39,30 @@ class PendudukController extends Controller
         return view('Penduduk.index', compact('menu', 'penduduks', 'rts'));
     }
 
-    public function getDataByRT($rt)
-    {
-        $query = DB::table('tb_penduduk')
+    public function getDataByRT($rt = null)
+{
+    $query = DB::table('tb_penduduk')
         ->select(
-            DB::raw("CONCAT(SUBSTRING(tb_penduduk.nik, 1, 4), '**********', SUBSTRING(tb_penduduk.nik, -2)) AS nik"), 
+            DB::raw("CONCAT(SUBSTRING(tb_penduduk.nik, 1, 4), '**********', SUBSTRING(tb_penduduk.nik, -2)) AS nik"),
             'tb_penduduk.nama',
             'tb_penduduk.statusPenduduk',
             'kk.rt',
             'kk.alamat'
         )
-        ->join('tb_kartukeluarga as kk', 'tb_penduduk.id_kartuKeluarga', '=', 'kk.id_kartuKeluarga')
-        ->where('kk.rt', $rt);
+        ->join('tb_kartukeluarga as kk', 'tb_penduduk.id_kartuKeluarga', '=', 'kk.id_kartuKeluarga');
 
-        $rts = DB::table('tb_kartukeluarga')->select('rt')->distinct()->pluck('rt');
-
-        $menu = 'Penduduk';
-        $penduduks = $query->paginate(10);
-        return view('penduduk.index', compact('menu', 'rts', 'penduduks'));
+    if ($rt) {
+        $query->where('kk.rt', $rt);
     }
+
+    // Mengambil nilai RT yang unik dari tabel tb_kartukeluarga
+    $rts = DB::table('tb_kartukeluarga')->distinct()->pluck('rt');
+    $menu = 'Penduduk';
+    $penduduks = $query->paginate(10);
+
+    return view('penduduk.index', compact('menu', 'rts', 'penduduks'));
+}
+
     
     public function search(Request $request)
     {
@@ -76,9 +81,10 @@ class PendudukController extends Controller
             ->where('tb_penduduk.nama', 'LIKE', "%{$searchTerm}%");
         
         $penduduks = $query->paginate(10);
+        $rts = DB::table('tb_kartukeluarga')->distinct()->pluck('rt');
         
         $notification = $penduduks->isEmpty() ? 'Data Tidak Ditemukan' : null;
         
-        return view('Penduduk.index', compact('menu', 'penduduks', 'notification'));
+        return view('Penduduk.index', compact('menu', 'penduduks', 'notification', 'rts'));
     }
 }
