@@ -84,17 +84,17 @@ Route::group(['middleware' => ['auth']], function () {
             Route::get('/sk', [SuratController::class, 'sk'])->name('sk');
             Route::get('/suratSK', [SuratController::class, 'suratSK'])->name('suratSK');
             Route::post('/storeSk', [SuratController::class, 'storeSk'])->name('storeSk');
-            Route::get('/showSk/{id}', [SuratController::class, 'showSk'])->name('showSk');
+            Route::get('/showSk/{pemintaId}/{templateId}', [SuratController::class, 'showSk'])->name('showSk');
 
             // suratPindah
             Route::get('/sk-pindah', [SuratController::class, 'skPindah'])->name('sk-pindah');
             Route::post('/storeSkPindah', [SuratController::class, 'storeSkPindah'])->name('storeSkPindah');
-            Route::get('/showSkPindah/{id}', [SuratController::class, 'showSkPindah'])->name('showSkPindah');
+            Route::get('/surat/sk-pindah/{pemintaId}/{templateId}', [SuratController::class, 'showSkPindah'])->name('showSkPindah');
 
             // suratKematian
             Route::get('/sk-kematian', [SuratController::class, 'skKematian'])->name('sk-kematian');
             Route::post('/storeSkKematian', [SuratController::class, 'storeSkKematian'])->name('storeSkKematian');
-            Route::get('/showSkKematian/{id}', [SuratController::class, 'showSkKematian'])->name('showSkKematian');
+            Route::get('/surat/sk-kematian/{pemintaId}/{templateId}', [SuratController::class, 'showSkKematian'])->name('showSkKematian');
 
             Route::get('/suratPindah', [SuratController::class, 'suratPindah'])->name('suratPindah');
             Route::get('/suratKematian', [SuratController::class, 'suratKematian'])->name('suratKematian');

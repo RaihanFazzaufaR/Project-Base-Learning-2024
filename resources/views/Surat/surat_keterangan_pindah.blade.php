@@ -140,7 +140,7 @@
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
                     <div class="basis-2/5 w-full flex justify-between my-0 text-left">
-                        <div class="basis-2/3 my-0  text-left">
+                        <div class="basis-2/3 my-0 text-left">
                             <p>Alamat Pindah</p>
                         </div>
                         <div class="basis-1/3 my-0 text-right">
@@ -153,7 +153,7 @@
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
                     <div class="basis-2/5 w-full flex justify-between my-0 text-left">
-                        <div class="basis-2/3 my-0  text-left">
+                        <div class="basis-2/3 my-0 text-left">
                             <p>Alasan Pindah</p>
                         </div>
                         <div class="basis-1/3 my-0 text-right">
@@ -166,7 +166,7 @@
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
                     <div class="basis-2/5 w-full flex justify-between my-0 text-left">
-                        <div class="basis-2/3 my-0  text-left">
+                        <div class="basis-2/3 my-0 text-left">
                             <p>Keluarga yang Pindah</p>
                         </div>
                         <div class="basis-1/3 my-0 text-right">

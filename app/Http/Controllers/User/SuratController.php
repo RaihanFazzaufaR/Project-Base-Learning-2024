@@ -275,86 +275,90 @@ class SuratController extends Controller
     }
     
     public function storeSkKematian(Request $request)
-    {
-        // Validasi input, sesuaikan dengan kebutuhan Anda
-        $validatedData = $request->validate([
-            'nik' => 'required|string',
-            'nomor_kk' => 'required|string',
-            'nama_pelapor' => 'required|string',
-            'hubungan_pelapor' => 'required|string',
-            'penyebab_kematian' => 'required|string',
-            'tempat_meninggal' => 'required|string',
-            'tanggal_wafat' => 'required|date',
-        ]);
-    
-        // Mendapatkan peminta_id dari tabel tb_penduduk dengan mencocokkan NIK
-        $penduduk = DB::table('tb_penduduk')
-            ->select('id_penduduk', 'tempatLahir', 'tanggalLahir', 'jenisKelamin', 'statusNikah', 'warganegara', 'agama', 'pekerjaan', 'id_kartuKeluarga')
-            ->where('nik', $validatedData['nik'])
-            ->first();
-    
-        if (!$penduduk) {
-            return redirect()->back()->withErrors(['nik' => 'Data orang yang meninggal tidak ditemukan.']);
-        }
-    
-        // Mendapatkan data keluarga dari tabel tb_kartukeluarga berdasarkan nomor_kk
-        $keluarga = DB::table('tb_kartukeluarga')
-            ->select('id_kartuKeluarga', 'niKeluarga', 'alamat')
-            ->where('niKeluarga', $validatedData['nomor_kk'])
-            ->first();
-    
-        // Get today's date in "yyyy-mm-dd" format
-        $mintaTanggal = now()->format('Y-m-d');
-    
-        // Simpan data ke database tb_surat
-        $surat = SuratModel::create([
-            'peminta_id' => $penduduk->id_penduduk,
-            'minta_tanggal' => $mintaTanggal,
-            'status' => 'selesai',
-            'keperluan' => 'Surat Keterangan Kematian', // Keperluan diisi sesuai dengan jenis surat
-            'template_id' => 3, // Mengisi kolom template_id dengan nilai yang sesuai
-    
-            // Fields from the validated request and related tables
-            'tempatLahir' => $penduduk->tempatLahir,
-            'tanggalLahir' => $penduduk->tanggalLahir,
-            'jenisKelamin' => $penduduk->jenisKelamin,
-            'statusNikah' => $penduduk->statusNikah,
-            'nik' => $validatedData['nik'],
-            'nikeluarga' => $validatedData['nomor_kk'], // Menggunakan nomor_kk dari input
-            'warganegara' => $penduduk->warganegara,
-            'agama' => $penduduk->agama,
-            'pekerjaan' => $penduduk->pekerjaan,
-            'alamat' => $keluarga->alamat, // Mengambil alamat dari tb_kartukeluarga
-            'penyebab_kematian' => $validatedData['penyebab_kematian'],
-            'tempat_meninggal' => $validatedData['tempat_meninggal'],
-            'nama_pelapor' => $validatedData['nama_pelapor'],
-            'hubungan_pelapor' => $validatedData['hubungan_pelapor'],
-            'tanggal_wafat' => $validatedData['tanggal_wafat'],
-        ]);
-    
-        // Calculate the age based on the date of birth (tanggalLahir) and current date
-        $tanggalLahir = Carbon::parse($penduduk->tanggalLahir);
-        $usia = $tanggalLahir->diffInYears(Carbon::now());
-    
-        // Ambil data surat dari database beserta nama peminta dari tabel tb_penduduk
-        $surat = DB::table('tb_surat')
-            ->join('tb_penduduk', 'tb_surat.peminta_id', '=', 'tb_penduduk.id_penduduk')
-            ->select('tb_surat.*', 'tb_penduduk.nama')
-            ->first();
-    
-        // Konversi tanggalLahir menjadi objek Carbon
-        $surat->tanggalLahir = Carbon::parse($surat->tanggalLahir);
-        // Konversi tanggal_wafat menjadi objek Carbon
-        $surat->tanggal_wafat = Carbon::parse($surat->tanggal_wafat);
-        $surat->usia = $usia;
-        $surat->penyebab_kematian = $validatedData['penyebab_kematian'];
-        $surat->tempat_meninggal = $validatedData['tempat_meninggal'];
-        $surat->nama_pelapor = $validatedData['nama_pelapor'];
-        $surat->hubungan_pelapor = $validatedData['hubungan_pelapor'];
+{
+    // Validasi input, sesuaikan dengan kebutuhan Anda
+    $validatedData = $request->validate([
+        'nik' => 'required|string',
+        'nama_pelapor' => 'required|string',
+        'hubungan_pelapor' => 'required|string',
+        'penyebab_kematian' => 'required|string',
+        'tempat_meninggal' => 'required|string',
+        'tanggal_wafat' => 'required|date',
+    ]);
 
-        // Redirect ke view 'Surat.surat_keterangan_kematian' dengan menyertakan data surat
-        return view('Surat.surat_keterangan_kematian', compact('surat'));
+    // Mendapatkan peminta_id dari tabel tb_penduduk dengan mencocokkan NIK
+    $penduduk = DB::table('tb_penduduk')
+        ->select('id_penduduk', 'tempatLahir', 'tanggalLahir', 'jenisKelamin', 'statusNikah', 'warganegara', 'agama', 'pekerjaan', 'id_kartuKeluarga')
+        ->where('nik', $validatedData['nik'])
+        ->first();
+
+    if (!$penduduk) {
+        return redirect()->back()->withErrors(['nik' => 'Data orang yang meninggal tidak ditemukan.']);
     }
+
+    // Mendapatkan data keluarga dari tabel tb_kartukeluarga berdasarkan id_kartuKeluarga dari tb_penduduk
+    $keluarga = DB::table('tb_kartukeluarga')
+        ->select('id_kartuKeluarga', 'niKeluarga', 'alamat')
+        ->where('id_kartuKeluarga', $penduduk->id_kartuKeluarga)
+        ->first();
+
+    if (!$keluarga) {
+        return redirect()->back()->withErrors(['id_kartuKeluarga' => 'Data keluarga tidak ditemukan.']);
+    }
+
+    // Get today's date in "yyyy-mm-dd" format
+    $mintaTanggal = now()->format('Y-m-d');
+
+    // Simpan data ke database tb_surat
+    $surat = SuratModel::create([
+        'peminta_id' => $penduduk->id_penduduk,
+        'minta_tanggal' => $mintaTanggal,
+        'status' => 'selesai',
+        'keperluan' => 'Surat Keterangan Kematian', // Keperluan diisi sesuai dengan jenis surat
+        'template_id' => 3, // Mengisi kolom template_id dengan nilai yang sesuai
+
+        // Fields from the validated request and related tables
+        'tempatLahir' => $penduduk->tempatLahir,
+        'tanggalLahir' => $penduduk->tanggalLahir,
+        'jenisKelamin' => $penduduk->jenisKelamin,
+        'statusNikah' => $penduduk->statusNikah,
+        'nik' => $validatedData['nik'],
+        'nikeluarga' => $keluarga->niKeluarga, // Menggunakan niKeluarga dari tb_kartukeluarga
+        'warganegara' => $penduduk->warganegara,
+        'agama' => $penduduk->agama,
+        'pekerjaan' => $penduduk->pekerjaan,
+        'alamat' => $keluarga->alamat, // Mengambil alamat dari tb_kartukeluarga
+        'penyebab_kematian' => $validatedData['penyebab_kematian'],
+        'tempat_meninggal' => $validatedData['tempat_meninggal'],
+        'nama_pelapor' => $validatedData['nama_pelapor'],
+        'hubungan_pelapor' => $validatedData['hubungan_pelapor'],
+        'tanggal_wafat' => $validatedData['tanggal_wafat'],
+    ]);
+
+    // Calculate the age based on the date of birth (tanggalLahir) and current date
+    $tanggalLahir = Carbon::parse($penduduk->tanggalLahir);
+    $usia = $tanggalLahir->diffInYears(Carbon::now());
+
+    // Ambil data surat dari database beserta nama peminta dari tabel tb_penduduk
+    $surat = DB::table('tb_surat')
+        ->join('tb_penduduk', 'tb_surat.peminta_id', '=', 'tb_penduduk.id_penduduk')
+        ->select('tb_surat.*', 'tb_penduduk.nama')
+        ->first();
+
+    // Konversi tanggalLahir menjadi objek Carbon
+    $surat->tanggalLahir = Carbon::parse($surat->tanggalLahir);
+    // Konversi tanggal_wafat menjadi objek Carbon
+    $surat->tanggal_wafat = Carbon::parse($surat->tanggal_wafat);
+    $surat->usia = $usia;
+    $surat->penyebab_kematian = $validatedData['penyebab_kematian'];
+    $surat->tempat_meninggal = $validatedData['tempat_meninggal'];
+    $surat->nama_pelapor = $validatedData['nama_pelapor'];
+    $surat->hubungan_pelapor = $validatedData['hubungan_pelapor'];
+
+    // Redirect ke view 'Surat.surat_keterangan_kematian' dengan menyertakan data surat
+    return view('Surat.surat_keterangan_kematian', compact('surat'));
+}
+
                   
     public function suratSK()
     {
@@ -399,11 +403,12 @@ class SuratController extends Controller
         return view('Surat.surat-ku', compact('surat', 'menu'));
     }
 
-    public function showSk($pemintaId)
+    public function showSk($pemintaId, $templateId)
     {
         // Cari surat yang sesuai dengan peminta_id
         $surat = DB::table('tb_surat')
             ->where('peminta_id', $pemintaId)
+            ->where('template_id', $templateId)
             ->first();
 
         // Pastikan surat ditemukan
@@ -422,48 +427,53 @@ class SuratController extends Controller
         return view('Surat.surat_keterangan', compact('surat'));
     }
 
-    public function showSkKematian($pemintaId)
+    public function showSkKematian($pemintaId, $templateId)
     {
-        // Cari surat yang sesuai dengan peminta_id
-        $surat = DB::table('tb_surat')
-            ->select('penyebab_kematian', 'tempat_meninggal', 'nama_pelapor', 'hubungan_pelapor')
-            ->where('peminta_id', $pemintaId)
-            ->first();
-    
-        // Pastikan surat ditemukan
-        if (!$surat) {
-            return redirect()->back()->withErrors(['error' => 'Surat tidak ditemukan.']);
-        }
-    
-        // Ambil data tb_permintaansurat yang telah disimpan beserta nama dari tb_penduduk
+        // Retrieve the requested Surat Keterangan Kematian
         $surat = DB::table('tb_surat')
             ->join('tb_penduduk', 'tb_surat.peminta_id', '=', 'tb_penduduk.id_penduduk')
             ->select('tb_surat.*', 'tb_penduduk.nama', 'tb_penduduk.tanggalLahir')
             ->where('tb_surat.peminta_id', $pemintaId)
+            ->where('tb_surat.template_id', $templateId)
             ->first();
+    
+        // If surat not found, redirect back with error
+        if (!$surat) {
+            return redirect()->back()->withErrors(['error' => 'Surat tidak ditemukan.']);
+        }
     
         // Calculate the age based on the date of birth (tanggalLahir) and current date
         $tanggalLahir = Carbon::parse($surat->tanggalLahir);
         $usia = $tanggalLahir->diffInYears(Carbon::now());
-        // Konversi tanggalLahir menjadi objek Carbon
+    
+        // Convert tanggalLahir and tanggal_wafat to Carbon objects
         $surat->tanggalLahir = Carbon::parse($surat->tanggalLahir);
-        // Konversi tanggal_wafat menjadi objek Carbon
         $surat->tanggal_wafat = Carbon::parse($surat->tanggal_wafat);
+    
+        // Add age (usia) to the surat object
         $surat->usia = $usia;
-        $surat->penyebab_kematian;
-        // Tampilkan view 'Surat.surat_keterangan' dengan data 'surat'
+    
+        // Return the view with surat data
         return view('Surat.surat_keterangan_kematian', compact('surat'));
-    }
+    }    
 
-    public function showSkPindah($pemintaId)
+    public function showSkPindah($pemintaId, $templateId)
     {
         // Retrieve the requested Surat Keterangan Pindah
         $surat = DB::table('tb_surat')
             ->join('tb_penduduk', 'tb_surat.peminta_id', '=', 'tb_penduduk.id_penduduk')
-            ->select('tb_surat.*', 'tb_penduduk.nama', 'tb_penduduk.id_kartuKeluarga', 'tb_surat.alamat_pindah', 'tb_surat.alasan_pindah', 'tb_surat.jumlah_keluarga_pindah', )
+            ->select(
+                'tb_surat.*', 
+                'tb_penduduk.nama', 
+                'tb_penduduk.id_kartuKeluarga',
+                'tb_surat.alamat_pindah', 
+                'tb_surat.alasan_pindah', 
+                'tb_surat.jumlah_keluarga_pindah'
+            )
             ->where('tb_surat.peminta_id', $pemintaId)
+            ->where('tb_surat.template_id', $templateId)
             ->first();
-
+    
         // If surat not found, redirect back with error
         if (!$surat) {
             return redirect()->back()->withErrors(['error' => 'Surat tidak ditemukan.']);
@@ -479,5 +489,7 @@ class SuratController extends Controller
         return view('Surat.surat_keterangan_pindah', compact('surat', 'data'));
     }
     
+
+
     
 }

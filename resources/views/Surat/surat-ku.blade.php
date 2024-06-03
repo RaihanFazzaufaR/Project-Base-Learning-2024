@@ -80,7 +80,7 @@
                                 <!-- Display the surat file -->
                                 @switch($surat->template_id)
                                     @case(1)
-                                        <a href="{{ route('showSk', $surat->peminta_id) }}"
+                                        <a href="{{ route('showSk', ['pemintaId' => $surat->peminta_id, 'templateId' => 1]) }}"
                                             class="w-fit text-white bg-[#7d5dd7] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#3b2a69] hover:scale-105 transition-all">
                                             <i class="fa-solid fa-envelope"></i>
                                             Lihat Surat
@@ -88,7 +88,7 @@
                                     @break
 
                                     @case(2)
-                                        <a href="{{ route('showSkPindah', $surat->peminta_id) }}"
+                                        <a href="{{ route('showSkPindah', ['pemintaId' => $surat->peminta_id, 'templateId' => 2]) }}"
                                             class="w-fit text-white bg-[#7d5dd7] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#3b2a69] hover:scale-105 transition-all">
                                             <i class="fa-solid fa-envelope"></i>
                                             Lihat Surat
@@ -96,7 +96,7 @@
                                     @break
 
                                     @case(3)
-                                        <a href="{{ route('showSkKematian', $surat->peminta_id) }}"
+                                        <a href="{{ route('showSkKematian', ['pemintaId' => $surat->peminta_id, 'templateId' => 3]) }}"
                                             class="w-fit text-white bg-[#7d5dd7] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#3b2a69] hover:scale-105 transition-all">
                                             <i class="fa-solid fa-envelope"></i>
                                             Lihat Surat
