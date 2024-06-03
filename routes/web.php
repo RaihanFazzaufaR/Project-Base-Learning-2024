@@ -63,6 +63,8 @@ Route::group(['middleware' => ['auth']], function () {
         // Route Bansos
         Route::group(['prefix' => 'bansos'], function () {
             Route::get('/', [UserBansosController::class, 'index'])->name('bansos');
+            Route::post('/ajuan', [UserBansosController::class, 'storeBansos'])->name('store.bansos');
+            Route::post('/filter-bansos', [userBansosController::class, 'filterBansos'])->name('filter-bansos');
         });
 
         //Route Aduan
@@ -188,6 +190,8 @@ Route::group(['middleware' => ['auth']], function () {
             Route::prefix('pengumuman')->group(function () {
                 Route::get('/', [AdminPengumumanController::class, 'index'])->name('pengumuman-admin');
                 Route::post('/', [AdminPengumumanController::class, 'tambahPengumuman'])->name('kirim-pengumuman');
+                Route::put('/{id}', [AdminPengumumanController::class, 'updatePengumuman'])->name('update-pengumuman');
+                Route::delete('/{id}', [AdminPengumumanController::class, 'destroyPengumuman'])->name('destroy-pengumuman');
             });
             Route::prefix('pengaduan')->group(function () {
                 Route::get('/', [AdminPengaduanController::class, 'index'])->name('pengaduan-admin');

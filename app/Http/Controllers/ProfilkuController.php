@@ -33,7 +33,13 @@ class ProfilkuController extends Controller
             'username' => 'required|string',
             'pw-lama' => 'required|string|min:5',
             'pw-baru' => 'nullable|string|min:5',
-        ]);
+        ],
+    [
+        
+        'pw-lama.required' => 'Password lama tidak boleh kosong.',
+        
+    
+    ]);
 
         if (Auth::attempt(['username' => Auth::user()->username, 'password' => $credentials['pw-lama']])) {
             $user = Auth::user();

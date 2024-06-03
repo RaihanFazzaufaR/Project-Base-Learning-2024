@@ -31,7 +31,7 @@ class UmkmController extends Controller
 
     public function formatDateAndTime($data)
     {
-        foreach ($data as $value) { 
+        foreach ($data as $value) {
             $value->buka_waktu = Carbon::parse($value->buka_waktu)->format('H:i');
             $value->tutup_waktu = Carbon::parse($value->tutup_waktu)->format('H:i');
         }
@@ -41,9 +41,9 @@ class UmkmController extends Controller
 
     public function formatDateAndTimeforDetail($data)
     {
-         
-            $data->buka_waktu = Carbon::parse($data->buka_waktu)->format('H:i');
-            $data->tutup_waktu = Carbon::parse($data->tutup_waktu)->format('H:i');
+
+        $data->buka_waktu = Carbon::parse($data->buka_waktu)->format('H:i');
+        $data->tutup_waktu = Carbon::parse($data->tutup_waktu)->format('H:i');
 
 
         return $data; // Mengembalikan data yang telah diformat
@@ -54,6 +54,7 @@ class UmkmController extends Controller
     {
         $menu = 'UMKM';
         $umkms = UmkmModel::where('id_pemilik', $id_penduduk)->paginate(8);
+        $umkms = $this->formatDateAndTime($umkms);
         $umkmKategoris = UmkmKategoriModel::all();
         $categories = KategoriModel::all();
         $kategori = '';
@@ -88,7 +89,7 @@ class UmkmController extends Controller
         $umkms = UmkmModel::where('nama', 'LIKE', "%{$searchTerm}%")
             ->where('status', 'diterima')
             ->get();
-
+        $umkms = $this->formatDateAndTime($umkms);
         if ($umkms->isEmpty()) {
             $notification = 'Tidak ada UMKM yang ditemukan dengan nama "' . $searchTerm . '"';
         } else {
@@ -173,14 +174,12 @@ class UmkmController extends Controller
         $latitude = trim($koordinat_array[0]);
         $longtitude = trim($koordinat_array[1]);
         return view('Umkm.detail', compact('menu', 'umkm', 'latitude', 'longtitude', 'categories', 'umkmKategoris'));
-
     }
 
     public function viewDetail()
     {
         $menu = 'UMKM';
         return view('Umkm.detail', compact('menu'));
-
     }
 
     public function destroyUmkm($id_umkm)
@@ -226,18 +225,18 @@ class UmkmController extends Controller
             'deskripsi' => 'nullable|string',
             'lokasi_map' => 'nullable|string',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'values' => 'nullable',
-            'alasan' => 'required|string|max:150',
+            'kategori' => 'nullable',
+            // 'alasan' => 'required|string|max:150',
         ]);
         if ($validator->fails()) {
-            return $request->all();
-            // return back()->with('errors', $validator->messages()->all()[0])->withInput();
+            // return $request->all();
+            return back()->with('errors', $validator->messages()->all()[0])->withInput();
         }
 
-        $kategori = $request->values;
+        $kategori = $request->kategori;
         $kategori_id = explode(',', $kategori);
         // $umkm_id = $request->umkm_id;
-
+        // return $request->kategori;
         $umkmData = [
             'nama' => $request->nama,
             'id_penduduk' => $request->id_penduduk,
@@ -248,7 +247,7 @@ class UmkmController extends Controller
             'deskripsi' => $request->deskripsi,
             'lokasi_map' => $request->lokasi_map,
             'status' => 'diproses',
-            'alasan_warga' => $request->alasan,
+            // 'alasan_warga' => $request->alasan,
         ];
 
         if ($request->hasFile('foto')) {
@@ -293,6 +292,7 @@ class UmkmController extends Controller
             ->where('nama', 'like', '%' . $searchTerm . '%')
             ->orWhere('deskripsi', 'like', '%' . $searchTerm . '%')
             ->paginate(7);
+        $umkms = $this->formatDateAndTime($umkms);
 
         return view('Umkm.umkmku', compact('menu', 'umkms', 'umkmKategoris', 'categories', 'kategori'));
     }

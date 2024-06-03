@@ -168,15 +168,15 @@ class UmkmController extends Controller
             'deskripsi' => 'nullable|string',
             'lokasi_map' => 'nullable|string',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
-            'values' => 'nullable',
+            'kategori' => 'nullable',
             // 'alasan' => 'required|string|max:150',
         ]);
         if ($validator->fails()) {
-            return $request->all();
-            // return back()->with('errors', $validator->messages()->all()[0])->withInput();
+            // return $request->all();
+            return back()->with('errors', $validator->messages()->all()[0])->withInput();
         }
 
-        $kategori = $request->values;
+        $kategori = $request->kategori;
         $kategori_id = explode(',', $kategori);
         // $umkm_id = $request->umkm_id;
 
@@ -273,7 +273,7 @@ class UmkmController extends Controller
             ->where('status', 'diterima');
 
         if ($search) {
-            $umkmQuery->where('tb_umkm.snama', 'like', '%' . $search . '%');
+            $umkmQuery->where('tb_umkm.nama', 'like', '%' . $search . '%');
         }
 
         $umkms = $umkmQuery->paginate(10);

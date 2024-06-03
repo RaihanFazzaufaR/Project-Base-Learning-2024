@@ -49,6 +49,12 @@ return [
             'url' => env('APP_URL') . '/assets/images',
             'visibility' => 'public',
         ],
+        'bansos' => [
+            'driver' => 'local',
+            'root' => public_path('assets/images/Bansos'),
+            'url' => env('APP_URL') . '/assets/images/Bansos',
+            'visibility' => 'public',
+        ],
 
         's3' => [
             'driver' => 's3',
