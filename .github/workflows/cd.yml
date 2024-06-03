@@ -30,4 +30,5 @@ jobs:
             php artisan optimize
             php artisan migrate:fresh --seed
             npm install
+            composer install
             npm run build
