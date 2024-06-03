@@ -33,8 +33,8 @@ class PengumumanController extends Controller
             ->get();
 
         $pengumumans = $pengumumans
+            ->orderBy('sent_at', 'desc')
             ->orderBy('updated_at', 'desc')
-            ->orderBy('created_at', 'desc')
             ->paginate(10)->withQueryString();
 
         foreach ($pengumumans as $pengumuman) {

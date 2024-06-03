@@ -178,10 +178,10 @@ class JadwalKegiatanController extends Controller
         $check = JadwalModel::find($id);
 
         try {
-            PengumumanModel::where('jadwal_id', $id)->delete();
-            // PengumumanModel::where('jadwal_id', $id)->update([
-            //     'jadwal_id' => null,
-            // ]);
+            // PengumumanModel::where('jadwal_id', $id)->delete();
+            PengumumanModel::where('jadwal_id', $id)->update([
+                'jadwal_id' => null,
+            ]);
             JadwalModel::destroy($id);
             return redirect('/admin/jadwal-kegiatan')->with('success', 'Data berhasil dihapus!');
         } catch (\Illuminate\Database\QueryException $e) {
