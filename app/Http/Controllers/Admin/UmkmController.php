@@ -273,7 +273,7 @@ class UmkmController extends Controller
             ->where('status', 'diterima');
 
         if ($search) {
-            $umkmQuery->where('tb_umkm.snama', 'like', '%' . $search . '%');
+            $umkmQuery->where('tb_umkm.nama', 'like', '%' . $search . '%');
         }
 
         $umkms = $umkmQuery->paginate(10);

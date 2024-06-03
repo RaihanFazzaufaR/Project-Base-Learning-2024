@@ -536,7 +536,7 @@
                                                                     <input type="time" name="jam-tutup"
                                                                         id="jam-tutup"
                                                                         class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white"
-                                                                        value="{{ $umkm->buka_waktu }}" readonly>
+                                                                        value="{{ $umkm->tutup_waktu }}" readonly>
                                                                 </div>
                                                             </div>
                                                             <div class="col-span-2">
@@ -666,7 +666,7 @@
                                             </div>
                                         </div>
                                     </div>
-
+                                    {{-- edit --}}
                                     <div x-data="{ 'editModal': false }" @keydown.escape="editModal = false">
                                         @if (Auth::user()->penduduk->jabatan === 'Ketua RW')
                                             <button @click="editModal = true"
@@ -842,7 +842,7 @@
                                                                                         <div x-show="selected.length == 0"
                                                                                             class="flex-1 ">
                                                                                             <input
-                                                                                                placeholder={{ $kategori }}
+                                                                                                placeholder="Kosongkan Jika Tetap"
                                                                                                 class=" placeholder-[#2d5523] dark:placeholder-white dark:border-gray-500 dark:bg-[#505c6a]"
                                                                                                 :value="selectedValues()" />
                                                                                         </div>
@@ -992,7 +992,7 @@
                                                                     </div>
                                                                 </div>
                                                                 <input type="file" name="foto" id="foto"
-                                                                    class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full placeholder-[#34662C] dark:placeholder-white">
+                                                                    class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white">
                                                             </div>
                                                         </div>
                                                         <div
