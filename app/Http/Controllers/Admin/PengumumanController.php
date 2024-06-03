@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Models\PendudukModel;
 use App\Models\PengumumanModel;
+use App\Models\JadwalModel;
 use Illuminate\Http\Request;
 use App\Services\TelegramService;
 use Carbon\Carbon;
