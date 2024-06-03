@@ -16,7 +16,7 @@
                 </a>
 
                 <!-- Dropdown Start -->
-                <div x-show="dropdownOpen" class="absolute sm:-right-27 -right-30 mt-2.5 flex max-h-70 w-75 overflow-y-auto text-black dark:text-white flex-col border border-gray-300 bg-white rounded-md dark:bg-[#2F363E] shadow-default dark:border-gray-600 sm:right-0 sm:w-90">
+                <div x-show="dropdownOpen" class="absolute sm:-right-27 -right-30 mt-2.5 flex max-h-70 w-75 overflow-y-auto text-black dark:text-white flex-col border border-gray-300 bg-white rounded-md dark:bg-[#2F363E] shadow-default dark:border-gray-600 lg:right-0 sm:w-90">
                     <div class="px-4.5 py-3 text-center border-b-2 border-gray-400 dark:border-gray-300">
                         <h5 class="text-sm font-medium">Notifikasi</h5>
                     </div>
