@@ -26,6 +26,6 @@
             <label for="email" class="font-bold text-normal text-[#1C4F0F]">Recovery Email</label>
             <input type="email" name="email" id="email" class="w-full p-2 ring-2 bg-[#EDEDED] ring-slate-400 focus:outline-none focus:ring-green-500 focus:ring-offset-1 rounded-lg" placeholder="Email">
         </div>
-        <button class="bg-[#81B076] py-3 rounded-lg w-full text-white font-bold hover:bg-[#607f59] hover:shadow-xl">PROCEED</button>
+        <button class="bg-[#57BA47] py-3 rounded-lg w-full text-white font-bold hover:bg-[#336E2A] hover:shadow-xl transition-all duration-300 ease-in-out">PROCEED</button>
     </form>
 </x-login>
