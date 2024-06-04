@@ -21,7 +21,7 @@
     <div class="w-[90%] mx-auto gap-4 flex flex-col">
         <div class="lg:hidden text-2xl sm:text-4xl flex flex-col gap-2">
             <p class="text-[#2d5523] dark:text-white font-bold">Bantuan Sosial di RW 3</p>
-            <p class="text-[#2d5523] dark:text-white font-sans text-sm text-left">Salurkan Bantuan Sosial di Lingkungan
+            <p class="text-[#2d5523] dark:text-white font-sans sm:text-lg text-sm text-left">Salurkan Bantuan Sosial di Lingkungan
                 RW 3</p>
         </div>
 
