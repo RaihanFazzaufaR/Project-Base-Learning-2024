@@ -524,14 +524,14 @@
         <a href="jadwal?kategoriPast=Kuliner&date={{ $calendarDate }}" class="h-fit py-1 px-4 border-2 border-[#2d5523] dark:border-yellow-500 rounded-2xl text-sm font-semibold  dark:hover:text-white shadow-md hover:bg-[#2d5523] dark:hover:bg-[#e2a229] hover:text-white transition-all {{ ($kategoriPast == 'Kuliner')?'bg-[#2d5523] text-white dark:text-white dark:bg-yellow-500 ':'text-[#2d5523] dark:text-yellow-500' }}">Kuliner</a>
         <a href="jadwal?kategoriPast=Ekonomi&date={{ $calendarDate }}" class="h-fit py-1 px-4 border-2 border-[#2d5523] dark:border-yellow-500 rounded-2xl text-sm font-semibold  dark:hover:text-white shadow-md hover:bg-[#2d5523] dark:hover:bg-[#e2a229] hover:text-white transition-all {{ ($kategoriPast == 'Ekonomi')?'bg-[#2d5523] text-white dark:text-white dark:bg-yellow-500 ':'text-[#2d5523] dark:text-yellow-500' }}">Ekonomi</a>
     </div>
+    @if (empty($dataArray['dataPast']->toArray()))
+    <div class="flex flex-col w-full justify-center items-center gap-4">
+        <!-- <i class="fa-regular fa-circle-xmark text-2xl"></i> -->
+        <img src="{{ asset('assets/images/no-data.png') }}" alt="" class="w-[400px] h-[300px] object-cover">
+        <p class="text-2xl font-semibold text-green-900 dark:text-white">Tidak ada kegiatan dengan kategori {{ $kategoriPast }}</p>
+    </div>
+    @endif
     <div class="grid h-full w-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-20">
-        @if (empty($dataArray['dataPast']->toArray()))
-        <div class="flex flex-col w-full justify-center items-center gap-4">
-            <!-- <i class="fa-regular fa-circle-xmark text-2xl"></i> -->
-            <img src="{{ asset('assets/images/no-data.png') }}" alt="" class="w-[400px] h-[300px] object-cover">
-            <p class="text-2xl font-semibold text-green-900 dark:text-white">Tidak ada kegiatan dengan kategori {{ $kategoriPast }}</p>
-        </div>
-        @endif
         @foreach ($dataArray['dataPast'] as $dt)
         <div class="bg-white rounded-xl shadow-xl flex flex-col w-[350px] lg:w-[380px] h-[270px] pt-8 pb-4 gap-3 border-2 border-green-900  hover:border-green-500 dark:hover:border-white hover:shadow-2xl transition ease-in-out duration-300 group dark:bg-[#30373F] dark:border-gray-600 group">
             <!-- <div class="absolute w-full h-full bg-black/40 rounded-xl left-0 top-0 flex justify-center items-center opacity-0 transition ease-in-out duration-300 group-hover:opacity-100">
