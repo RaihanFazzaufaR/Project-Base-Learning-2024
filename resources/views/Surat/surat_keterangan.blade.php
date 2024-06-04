@@ -25,7 +25,7 @@
         <div class="text-center  p-4 text-xl flex justify-center flex-col font-bold">
             <p>SURAT KETERANGAN</p>
             <p class="w-fit border-t-2 flex justify-center text-center mx-auto text-base border-black">
-                Nomor:&emsp;<span id="nomor-report"></span>/SK/RT-rt/tahun</p>
+                Nomor:&emsp;<span id="nomor-report"></span>/SK/RT-rt/<span id="tahun"></span></p>
         </div>
         <div class="text-left my-0 ">
             <p class="indent-10 pb-3">Yang bertanda tangan di bawah ini, Ketua RT. 01 RW. 03 Desa Bumiayu, Kecamatan
@@ -140,7 +140,7 @@
             </div>
             <p class="indent-10 pt-3">Demikian Surat Keterangan ini dibuat dan diberikan kepada yang bersangkutan
                 untuk dipergunakan sebagaimana mestinya.</p>
-            <p class="indent-10 pt-6 text-right">Malang, 19 Mei 2024</p>
+            <p class="indent-10 pt-6 text-right" id="tanggal"></p>
         </div>
         <div class="flex w-full justify-between items-end">
             <div class="flex flex-col justify-start w-fit h-fit m-0">
@@ -194,6 +194,34 @@
         document.getElementById("nomor-report").innerHTML = generateString(3);
 
         // console.log(generateString(3));
+    </script>
+    <script>
+        // Mendapatkan elemen dengan id "tanggal"
+        var tanggalElement = document.getElementById('tanggal');
+
+        // Mendapatkan tanggal saat ini
+        var today = new Date();
+        var options = {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        };
+
+        // Mengubah tanggal menjadi format bahasa Indonesia
+        var formattedDate = today.toLocaleDateString('id-ID', options);
+
+        // Mengubah teks elemen menjadi tanggal saat ini
+        tanggalElement.innerText = 'Malang, ' + formattedDate;
+    </script>
+    <script>
+        // Mendapatkan elemen dengan id "tahun"
+        var tahunElement = document.getElementById('tahun');
+
+        // Mendapatkan tahun saat ini
+        var currentYear = new Date().getFullYear();
+
+        // Mengubah teks elemen menjadi tahun saat ini
+        tahunElement.innerText = currentYear;
     </script>
 
 </body>
