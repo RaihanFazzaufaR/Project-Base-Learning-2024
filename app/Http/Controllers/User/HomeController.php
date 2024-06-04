@@ -15,9 +15,11 @@ class HomeController extends Controller
     public function index(Request $request)
     {
         $menu = 'Home';
-
+        Carbon::setLocale('id');
+    
+        $calendarDate = $request->filled('date') ? $request->date : date('Y-m-d');
+        
         if (isset($request->date)) {
-            $calendarDate = $request->date;
 
             $dataKegiatan = JadwalModel::where('status', 'selesai')
                 ->where('mulai_tanggal', '<=', $calendarDate)
@@ -63,7 +65,17 @@ class HomeController extends Controller
             ->limit(4)
             ->get();;
 
-        return view('home', compact('menu', 'dataKegiatan', 'dataDate', 'dataUmkm', 'aduans'));
+        // Initialize $startDate with the current date if no date is provided in the request
+        $startDate = $request->input('date') ? Carbon::parse($request->input('date')) : Carbon::now();
+
+        // Initialize an array to store the dates
+        $dates = [];
+
+        // Loop to generate dates for the next 7 days
+        for ($i = 0; $i < 7; $i++) {
+            $dates[] = $startDate->copy()->addDays($i);
+        }
+        return view('home', compact('menu', 'dataKegiatan', 'dataDate', 'dataUmkm', 'aduans', 'calendarDate', 'dates'));
     }
 
     private function formatDateAndTime($data)

@@ -130,7 +130,7 @@
         <div class="swiper mySwiper !xl:w-full !w-full">
             <div class="swiper-wrapper !w-full !sm:py-20 !py-12">
                 @foreach ($dataUmkm as $dt)
-                <div class="swiper-slide relative !h-[300px] bg-white dark:bg-[#30373F] rounded-2xl shadow-lg flex flex-col overflow-hidden hover:shadow-2xl transition ease-in-out duration-500 group">
+                <div class="swiper-slide relative !h-[300px] bg-white dark:bg-[#30373F] rounded-2xl shadow-lg flex flex-col overflow-hidden hover:shadow-2xl transition ease-in-out duration-500 group cursor-pointer" onclick="window.location='{{ route('umkm.detail', ['umkm_id' => $dt->umkm_id]) }}'">
                     <div class="h-[70%] w-full overflow-hidden">
                         <img src="{{ asset('assets/images/'.$dt->foto ) }}" alt="" class="h-full w-full object-cover group-hover:brightness-[0.4] transition ease-in-out duration-500 group-hover:scale-110">
                     </div>
@@ -159,10 +159,22 @@
 </div>
 
 <!-- Agenda Kegiatan -->
-<div class="relative w-[80vw] mx-auto lg:h-[90vh] h-[100vh] flex flex-col sm:mt-[13vh] mt-[8vh] lg:gap-[45px] gap-8">
+<div class="relative w-[80vw] mx-auto lg:h-[90vh] flex flex-col mt-[13vh] lg:gap-[45px] gap-8">
     <div class="font-bold text-[#1C4F0F] dark:text-white sm:text-5xl text-4xl text-center w-full py-4 uppercase" id="agenda">Agenda Warga</div>
-    <div class="relative flex h-full w-full lg:flex-row sm:flex-col flex-col-reverse sm:justify-end justify-start items-center lg:justify-start">
-        <div class="lg:basis-[65%] w-full lg:h-[80vh] sm:h-[70vh] h-[40vh] bg-cover bg-center shadow-lg rounded-lg bg-no-repeat pl-6 lg:py-10 sm:pt-50 pt-20 pb-10" style="background-image: url('{{ asset('assets/images/bg-home-agenda.png') }}')">
+    <div class="flex lg:hidden w-full min-h-20 gap-x-6 gap-y-3 flex-wrap items-center justify-center">
+        <div class="flex flex-wrap gap-4 justify-center items-center">
+            @foreach($dates as $index => $date)
+            <a href="{{ route('home', ['date' => $date->format('Y-m-d')]) }}" class="h-fit py-1 px-4 border-2 border-[#2d5523] dark:border-yellow-500 rounded-2xl text-sm font-semibold dark:hover:text-white shadow-md hover:bg-[#2d5523] dark:hover:bg-[#e2a229] hover:text-white transition-all
+            {{ ($date->format('Y-m-d') == $calendarDate) ? 'bg-[#2d5523] text-white dark:text-white dark:bg-yellow-500' : 'text-[#2d5523] dark:text-yellow-500' }}
+           {{ ($index >= 5) ? 'hidden md:block' : '' }}">
+                {{ $date->translatedFormat('j F') }}
+            </a>
+            @endforeach
+        </div>
+
+    </div>
+    <div class="relative flex h-full w-full lg:flex-row items-center lg:justify-start">
+        <div class="lg:basis-[65%] w-full lg:h-[80vh] sm:h-[70vh] h-[40vh] bg-cover bg-center shadow-lg rounded-lg bg-no-repeat pl-6 py-8 lg:py-10 pb-10" style="background-image: url('{{ asset('assets/images/bg-home-agenda.png') }}')">
             @if (empty($dataKegiatan->toArray()))
             <div class="flex flex-col w-[80%] h-full justify-center items-center gap-4">
                 <!-- <i class="fa-regular fa-circle-xmark text-2xl"></i> -->
@@ -170,7 +182,7 @@
                 <p class="text-xl font-semibold text-white">Tidak ada kegiatan pada bulan ini</p>
             </div>
             @else
-            <div class="lg:h-[440px] h-full sm:w-[80%] w-[95%] flex flex-col overflow-y-auto gap-7">
+            <div class="lg:h-[440px] h-full lg:w-[80%] w-[95%] flex flex-col overflow-y-auto gap-7">
                 @php
                 $previousDate = null;
                 $activities = [];
@@ -229,8 +241,8 @@
         </div>
 
         <!-- calendar -->
-        <div class="relative sm:absolute bg-white sm:w-[60%] lg:w-[45%] lg:h-[70%] h-fit lg:right-0 lg:top-[75px] top-0 rounded-xl shadow-2xl overflow-hidden">
-            <div class="px-8 py-4 dark:bg-[#30373F] bg-white flex flex-col justify-between gap-8 h-[380px]">
+        <div class="relative sm:absolute bg-white hidden lg:block lg:w-[45%] lg:h-[70%] h-fit lg:right-0 lg:top-[75px] top-0 rounded-xl shadow-2xl overflow-hidden">
+            <div class="px-8 py-4 dark:bg-[#30373F] bg-white flex flex-col justify-between gap-8 h-full">
                 <div class="flex items-center justify-around">
                     <button id="prev" aria-label="calendar backward" onclick="prev()" class="focus:text-gray-400 hover:text-gray-400 text-gray-800 dark:text-gray-100 button-calendar">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
