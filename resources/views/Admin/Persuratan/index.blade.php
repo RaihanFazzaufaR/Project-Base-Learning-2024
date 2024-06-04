@@ -133,7 +133,7 @@
                                                                         <div class="col-span-2 relative sm:col-span-1">
                                                                             <label
                                                                                 class="block mb-2 text-sm font-bold">NIK</label>
-                                                                            <input name="nik"
+                                                                            <input name="nik" value="{{ $surat->nik }}"
                                                                                 class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
                                                                                 readonly>
                                                                         </div>
@@ -141,6 +141,7 @@
                                                                             <label
                                                                                 class="block mb-2 text-sm font-bold">Nama</label>
                                                                             <input name="nama" id="nama"
+                                                                                value="{{ $surat->nama }}"
                                                                                 class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
                                                                                 readonly>
                                                                         </div>
@@ -148,6 +149,7 @@
                                                                             <label class="block mb-2 text-sm font-bold">Jenis
                                                                                 Kelamin</label>
                                                                             <input name="jenisKelamin" id="jenisKelamin"
+                                                                                value="@if ($surat->jenisKelamin == 'L') Laki-laki @elseif($surat->jenisKelamin == 'P') Perempuan @endif"
                                                                                 class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
                                                                                 readonly>
                                                                         </div>
@@ -155,14 +157,15 @@
                                                                             <label class="block mb-2 text-sm font-bold">Tempat,
                                                                                 Tanggal Lahir</label>
                                                                             <input name="ttl" id="ttl"
+                                                                                value="{{ $surat->tempatLahir . ', ' . \Carbon\Carbon::parse($surat->tanggalLahir)->format('d-m-Y') }}"
                                                                                 class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
                                                                                 readonly>
                                                                         </div>
                                                                         <div class="col-span-2 sm:col-span-1">
                                                                             <label
                                                                                 class="block mb-2 text-sm font-bold">Agama</label>
-                                                                            <input name="kewarganaan&agama"
-                                                                                id="kewarganaan&agama"
+                                                                            <input name="agama" id="agama"
+                                                                                value="{{ $surat->agama }}"
                                                                                 class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
                                                                                 readonly>
                                                                         </div>
@@ -170,6 +173,7 @@
                                                                             <label
                                                                                 class="block mb-2 text-sm font-bold">Pekerjaan</label>
                                                                             <input name="pekerjaan" id="pekerjaan"
+                                                                                value="{{ $surat->pekerjaan }}"
                                                                                 class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
                                                                                 readonly>
                                                                         </div>
@@ -178,14 +182,14 @@
                                                                                 class="block mb-2 text-sm font-bold">Alamat</label>
                                                                             <textarea name="alamat" rows="4" id="alamat"
                                                                                 class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
-                                                                                readonly></textarea>
+                                                                                readonly>{{ $surat->alamat }}</textarea>
                                                                         </div>
                                                                         <div class="col-span-2">
                                                                             <label
                                                                                 class="block mb-2 text-sm font-bold">Keperluan</label>
                                                                             <textarea name="keperluan" rows="4" id="keperluan"
                                                                                 class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
-                                                                                readonly></textarea>
+                                                                                readonly>{{ $surat->keperluan }}</textarea>
                                                                         </div>
                                                                     </div>
                                                                     <div
@@ -242,27 +246,28 @@
                                                                                 class="block mb-2 text-sm font-bold">NIK</label>
                                                                             <input name="nik"
                                                                                 class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
-                                                                                readonly>
+                                                                                value="{{ $surat->nik }}" readonly>
                                                                         </div>
                                                                         <div class="col-span-2 sm:col-span-1">
                                                                             <label
                                                                                 class="block mb-2 text-sm font-bold">Nama</label>
                                                                             <input name="nama" id="nama"
                                                                                 class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
-                                                                                readonly>
+                                                                                value="{{ $surat->nama }}" readonly>
                                                                         </div>
                                                                         <div class="col-span-2">
                                                                             <label class="block mb-2 text-sm font-bold">Alasan
                                                                                 Pindah</label>
                                                                             <textarea name="alasanPindah" rows="4" id="alasanPindah"
                                                                                 class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
-                                                                                readonly></textarea>
+                                                                                readonly>{{ $surat->alasan_pindah }}</textarea>
                                                                         </div>
                                                                         <div class="col-span-2 sm:col-span-1">
                                                                             <label class="block mb-2 text-sm font-bold">Jenis
                                                                                 Kelamin</label>
                                                                             <input name="jenisKelamin" id="jenisKelamin"
                                                                                 class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
+                                                                                value="@if ($surat->jenisKelamin == 'L') Laki-laki @elseif($surat->jenisKelamin == 'P') Perempuan @endif"
                                                                                 readonly>
                                                                         </div>
                                                                         <div class="col-span-2 sm:col-span-1">
@@ -270,6 +275,7 @@
                                                                                 Tanggal Lahir</label>
                                                                             <input name="ttl" id="ttl"
                                                                                 class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
+                                                                                value="{{ $surat->tempatLahir . ', ' . \Carbon\Carbon::parse($surat->tanggalLahir)->format('d-m-Y') }}"
                                                                                 readonly>
                                                                         </div>
                                                                         <div class="col-span-2 sm:col-span-1">
@@ -279,6 +285,7 @@
                                                                             <input name="kewarganaan&agama"
                                                                                 id="kewarganaan&agama"
                                                                                 class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
+                                                                                value="{{ $surat->warganegara }} / {{ $surat->agama }}"
                                                                                 readonly>
                                                                         </div>
                                                                         <div class="col-span-2 sm:col-span-1">
@@ -286,7 +293,7 @@
                                                                                 class="block mb-2 text-sm font-bold">Pekerjaan</label>
                                                                             <input name="pekerjaan" id="pekerjaan"
                                                                                 class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
-                                                                                readonly>
+                                                                                value="{{ $surat->pekerjaan }}" readonly>
                                                                         </div>
                                                                         <div class="col-span-2 sm:col-span-1">
                                                                             <label class="block mb-2 text-sm font-bold">Status
@@ -294,6 +301,7 @@
                                                                             <input name="statusPernikahan"
                                                                                 id="statusPernikahan"
                                                                                 class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
+                                                                                value="{{ $surat->statusNikah }} Menikah"
                                                                                 readonly>
                                                                         </div>
                                                                         <div class="col-span-2 sm:col-span-1">
@@ -301,29 +309,58 @@
                                                                                 Keluarga yang Pindah</label>
                                                                             <input name="jmlKeluarga" id="jmlKeluarga"
                                                                                 class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
+                                                                                value="{{ $surat->jumlah_keluarga_pindah }}"
                                                                                 readonly>
                                                                         </div>
                                                                         <div class="col-span-2">
                                                                             <label
                                                                                 class="block mb-2 text-sm font-bold">Keluarga
                                                                                 yang Pindah</label>
-                                                                            <input name="keluargaPindah" id="keluargaPindah"
-                                                                                class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
-                                                                                readonly>
+                                                                            <table class="w-full">
+                                                                                <thead>
+                                                                                    <tr class="bg-gray-200 dark:bg-gray-700">
+                                                                                        <th class="py-2 px-3 border-[2px]">No
+                                                                                        </th>
+                                                                                        <th class="py-2 px-3 border-[2px]">NIK
+                                                                                        </th>
+                                                                                        <th class="py-2 px-3 border-[2px]">Nama
+                                                                                        </th>
+                                                                                    </tr>
+                                                                                </thead>
+                                                                                <tbody>
+                                                                                    @foreach ($detailpindah as $index => $anggota)
+                                                                                        <tr
+                                                                                            class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                                                                                            <td
+                                                                                                class="py-2 text-center border-[2px] ">
+                                                                                                {{ $index + 1 }}
+                                                                                            </td>
+                                                                                            <td
+                                                                                                class="py-2 ps-3 border-[2px] ">
+                                                                                                {{ $anggota['nik'] }}
+                                                                                            </td>
+                                                                                            <td
+                                                                                                class="py-2 ps-3 border-[2px] ">
+                                                                                                {{ $anggota['nama'] }}
+                                                                                            </td>
+                                                                                        </tr>
+                                                                                    @endforeach
+                                                                                </tbody>
+                                                                            </table>
                                                                         </div>
                                                                         <div class="col-span-2">
                                                                             <label class="block mb-2 text-sm font-bold">Alamat
                                                                                 Asal</label>
                                                                             <textarea name="alamatAsal" rows="4" id="alamatAsal"
                                                                                 class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
-                                                                                readonly></textarea>
+                                                                                readonly>{{ $surat->alamat }}</textarea>
                                                                         </div>
                                                                         <div class="col-span-2">
                                                                             <label class="block mb-2 text-sm font-bold">Alamat
                                                                                 Pindah</label>
                                                                             <textarea name="alamatPindah" rows="4" id="alamatPindah"
                                                                                 class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
-                                                                                readonly></textarea>
+                                                                                readonly>{{ $surat->alamat_pindah }}</textarea>
                                                                         </div>
                                                                     </div>
                                                                     <div
@@ -378,7 +415,7 @@
                                                                         <div class="col-span-2 relative sm:col-span-1">
                                                                             <label
                                                                                 class="block mb-2 text-sm font-bold">NIK</label>
-                                                                            <input name="nik"
+                                                                            <input name="nik" value="{{ $surat->nik }}"
                                                                                 class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
                                                                                 readonly>
                                                                         </div>
@@ -386,6 +423,7 @@
                                                                             <label class="block mb-2 text-sm font-bold">No
                                                                                 KK</label>
                                                                             <input name="nkk"
+                                                                                value="{{ $surat->nikeluarga }}"
                                                                                 class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
                                                                                 readonly>
                                                                         </div>
@@ -393,6 +431,7 @@
                                                                             <label
                                                                                 class="block mb-2 text-sm font-bold">Nama</label>
                                                                             <input name="nama" id="nama"
+                                                                                value="{{ $surat->nama }}"
                                                                                 class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
                                                                                 readonly>
                                                                         </div>
@@ -400,6 +439,7 @@
                                                                             <label
                                                                                 class="block mb-2 text-sm font-bold">Usia</label>
                                                                             <input name="usia"
+                                                                                value="{{ \Carbon\Carbon::parse($surat->tanggalLahir)->diffInYears(\Carbon\Carbon::now()) }} Tahun"
                                                                                 class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
                                                                                 readonly>
                                                                         </div>
@@ -407,6 +447,7 @@
                                                                             <label class="block mb-2 text-sm font-bold">Jenis
                                                                                 Kelamin</label>
                                                                             <input name="jenisKelamin" id="jenisKelamin"
+                                                                                value="{{ $surat->jenisKelamin == 'L' ? 'Laki-laki' : 'Perempuan' }}"
                                                                                 class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
                                                                                 readonly>
                                                                         </div>
@@ -414,6 +455,7 @@
                                                                             <label class="block mb-2 text-sm font-bold">Tempat,
                                                                                 Tanggal Lahir</label>
                                                                             <input name="ttl" id="ttl"
+                                                                                value="{{ $surat->tempatLahir . ', ' . \Carbon\Carbon::parse($surat->tanggalLahir)->format('d-m-Y') }}"
                                                                                 class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
                                                                                 readonly>
                                                                         </div>
@@ -421,8 +463,9 @@
                                                                             <label
                                                                                 class="block mb-2 text-sm font-bold">Kewarganegaraan
                                                                                 / Agama</label>
-                                                                            <input name="kewarganaan&agama"
-                                                                                id="kewarganaan&agama"
+                                                                            <input name="kewarganegaraan&agama"
+                                                                                id="kewarganegaraan&agama"
+                                                                                value="{{ $surat->warganegara . ' / ' . $surat->agama }}"
                                                                                 class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
                                                                                 readonly>
                                                                         </div>
@@ -430,14 +473,15 @@
                                                                             <label
                                                                                 class="block mb-2 text-sm font-bold">Pekerjaan</label>
                                                                             <input name="pekerjaan" id="pekerjaan"
+                                                                                value="{{ $surat->pekerjaan }}"
                                                                                 class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
                                                                                 readonly>
                                                                         </div>
                                                                         <div class="col-span-2 sm:col-span-1">
                                                                             <label class="block mb-2 text-sm font-bold">Tanggal
-                                                                                dan
-                                                                                Waktu</label>
+                                                                                dan Waktu</label>
                                                                             <input name="tgl&waktu" id="tgl&waktu"
+                                                                                value="{{ \Carbon\Carbon::parse($surat->tanggal_wafat)->format('d-m-Y H:i') }}"
                                                                                 class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
                                                                                 readonly>
                                                                         </div>
@@ -446,12 +490,13 @@
                                                                                 class="block mb-2 text-sm font-bold">Alamat</label>
                                                                             <textarea name="alamat" rows="4" id="alamat"
                                                                                 class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
-                                                                                readonly></textarea>
+                                                                                readonly>{{ $surat->alamat }}</textarea>
                                                                         </div>
                                                                         <div class="col-span-2 sm:col-span-1">
                                                                             <label class="block mb-2 text-sm font-bold">Nama
                                                                                 Pelapor</label>
                                                                             <input name="namaPelapor" id="namaPelapor"
+                                                                                value="{{ $surat->nama_pelapor }}"
                                                                                 class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
                                                                                 readonly>
                                                                         </div>
@@ -460,6 +505,7 @@
                                                                                 class="block mb-2 text-sm font-bold">Hubungan
                                                                                 Pelapor</label>
                                                                             <input name="hubPelapor" id="hubPelapor"
+                                                                                value="{{ $surat->hubungan_pelapor }}"
                                                                                 class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
                                                                                 readonly>
                                                                         </div>
@@ -469,14 +515,14 @@
                                                                                 Kematian</label>
                                                                             <textarea name="penyebab" rows="4" id="penyebab"
                                                                                 class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
-                                                                                readonly></textarea>
+                                                                                readonly>{{ $surat->penyebab_kematian }}</textarea>
                                                                         </div>
                                                                         <div class="col-span-2">
                                                                             <label class="block mb-2 text-sm font-bold">Tempat
                                                                                 Meninggal</label>
                                                                             <textarea name="tempatMeninggal" rows="4" id="tempatMeninggal"
                                                                                 class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
-                                                                                readonly></textarea>
+                                                                                readonly>{{ $surat->tempat_meninggal }}</textarea>
                                                                         </div>
                                                                     </div>
                                                                     <div

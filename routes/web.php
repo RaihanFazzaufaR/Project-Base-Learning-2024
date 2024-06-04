@@ -163,7 +163,9 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::get('/', [AdminPersuratanController::class, 'index'])->name('persuratan-admin');
                 Route::get('/ajuan-persuratan', [AdminPersuratanController::class, 'ajuanPersuratan'])->name('ajuan-persuratan-admin');
                 Route::get('/template-surat', [AdminPersuratanController::class, 'templateSurat'])->name('template-surat-admin');
-                Route::get('/surat/{pemintaId}/{templateId}', [AdminPersuratanController::class, 'showDetail'])->name('surat-detail');
+                Route::get('/detail-sk/{pemintaId}/{templateId}', [AdminPersuratanController::class, 'detailSk'])->name('detail-sk');
+                Route::get('/detail-sk-kematian/{pemintaId}/{templateId}', [AdminPersuratanController::class, 'detailSkKematian'])->name('detail-sk-kematian');
+                Route::get('/detail-sk-pindah/{pemintaId}/{templateId}', [AdminPersuratanController::class, 'detailSkPindah'])->name('detail-sk-pindah');
             });
             Route::prefix('akun-admin')->group(function () {
                 Route::get('/', [AdminAkunAdminController::class, 'index'])->name('akun-admin');

@@ -14,17 +14,32 @@ use App\Models\PindahPendudukModel;
 class PersuratanController extends Controller
 {
     public function index()
-    {
-        $page = 'daftarPersuratan';
-        $selected = 'Persuratan';
-    
-        $dataSurat = SuratModel::select('tb_surat.*', 'tb_penduduk.nama')
+{
+    $page = 'daftarPersuratan';
+    $selected = 'Persuratan';
+
+    $dataSurat = SuratModel::select('tb_surat.*', 'tb_penduduk.nama')
         ->join('tb_penduduk', 'tb_surat.peminta_id', '=', 'tb_penduduk.id_penduduk')
         ->orderBy('tb_surat.minta_tanggal', 'desc')
-        ->paginate(10);   
+        ->paginate(10);
 
-        return view('Admin.Persuratan.index', compact('dataSurat', 'page', 'selected'));
-    }
+        $data = SuratModel::select('tb_penduduk.id_kartuKeluarga')
+        ->join('tb_penduduk', 'tb_surat.peminta_id', '=', 'tb_penduduk.id_penduduk')
+        ->get();
+    
+    // Retrieve all distinct id_kartuKeluarga from dataSurat
+    $idKartuKeluarga = $data->pluck('id_kartuKeluarga')->unique()->toArray();
+    
+    // Retrieve detailed moving data for all id_kartuKeluarga
+    $detailpindah = PindahPendudukModel::whereIn('id_kartuKeluarga', $idKartuKeluarga)->get();
+    
+
+    // Now $detailpindah contains detailed moving data for each family
+
+    return view('Admin.Persuratan.index', compact('dataSurat', 'page', 'selected', 'detailpindah'));
+}
+
+
     public function ajuanPersuratan()
     {
         $page = 'ajuanPersuratan';
@@ -50,46 +65,5 @@ class PersuratanController extends Controller
 
         return view('Admin.Persuratan.templateSurat', compact('user', 'page', 'selected'));
     }
-
-    public function showDetail($pemintaId, $templateId)
-    {
-        // Retrieve the requested Surat
-        $surat = DB::table('tb_surat')
-            ->join('tb_penduduk', 'tb_surat.peminta_id', '=', 'tb_penduduk.id_penduduk')
-            ->select('tb_surat.*', 'tb_penduduk.nama', 'tb_penduduk.tanggalLahir')
-            ->where('tb_surat.peminta_id', $pemintaId)
-            ->where('tb_surat.template_id', $templateId)
-            ->first();
-
-        // If surat not found, redirect back with error
-        if (!$surat) {
-            return redirect()->back()->withErrors(['error' => 'Surat tidak ditemukan.']);
-        }
-
-        // Common processing
-        $surat->tanggalLahir = Carbon::parse($surat->tanggalLahir);
-
-        // Additional processing for Surat Keterangan Kematian
-        if (isset($surat->tanggal_wafat)) {
-            $tanggalLahir = Carbon::parse($surat->tanggalLahir);
-            $usia = $tanggalLahir->diffInYears(Carbon::now());
-            $surat->tanggal_wafat = Carbon::parse($surat->tanggal_wafat);
-            $surat->usia = $usia;
-        }
-
-        // Additional processing for Surat Keterangan Pindah
-        $data = [];
-        if (isset($surat->alamat_pindah) && isset($surat->alasan_pindah) && isset($surat->jumlah_keluarga_pindah)) {
-            $data = PindahPendudukModel::where('id_kartuKeluarga', $surat->id_kartuKeluarga)->get();
-        }
-
-        // Determine the appropriate view to return based on available data
-        if (isset($surat->tanggal_wafat)) {
-            return view('Surat.surat_keterangan_kematian', compact('surat'));
-        } elseif (!empty($data)) {
-            return view('Surat.surat_keterangan_pindah', compact('surat', 'data'));
-        } else {
-            return view('Surat.surat_keterangan', compact('surat'));
-        }
-    }
+    
 }
