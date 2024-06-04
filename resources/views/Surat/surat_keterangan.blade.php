@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     <div class="basis-3/5 my-0 text-left">
-                        {{ $surat->nama }}
+                        {{ $surat->peminta->nama }}
                     </div>
                 </div>
                 <div class="flex mt-0 mb-1 ps-10 w-full">
