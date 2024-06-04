@@ -90,7 +90,7 @@
                                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-[#57BA47]" href="{{ route('bansos-admin') }}" :class="page === 'listBansos' && '!text-[#57BA47]'">Daftar Bansos</a>
                                     </li>
                                     <li>
-                                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-[#57BA47]" href="{{ route('rekomendasi-bansos') }}" :class="page === 'rekomendasiBansos' && '!text-[#57BA47]'">Rekomendasi
+                                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-[#57BA47]" href="{{ route('spk') }}" :class="page === 'rekomendasiBansos' && '!text-[#57BA47]'">Rekomendasi
                                             Bansos</a>
                                     </li>
                                 </ul>

@@ -145,7 +145,13 @@ Route::group(['middleware' => ['auth']], function () {
             });
             Route::prefix('bansos')->group(function () {
                 Route::get('/', [AdminBansosController::class, 'index'])->name('bansos-admin');
-                Route::get('/rekomendasi-bansos', [AdminBansosController::class, 'rekomendasiBansos'])->name('rekomendasi-bansos');
+                // Route::get('/rekomendasi-bansos', [AdminBansosController::class, 'rekomendasiBansos'])->name('rekomendasi-bansos');
+                Route::get('/rekomendasi-bansos', [AdminBansosController::class, 'calculateAHPandSAW'])->name('spk');
+                Route::get('/terima-bansos', [AdminBansosController::class, 'acceptBansos'])->name('acc');
+                Route::get('/tolak-bansos', [AdminBansosController::class, 'rejectBansos'])->name('rjct');
+                Route::post('/search-bansos', [AdminBansosController::class, 'searchBansos'])->name('search-bansos');
+                Route::post('/filter-bansos', [AdminBansosController::class, 'filterBansos'])->name('filter-bansos');
+
             });
             Route::prefix('umkm')->group(function () {
                 Route::get('/', [AdminUmkmController::class, 'index'])->name('umkm-admin');
