@@ -129,10 +129,13 @@
 
 
     <div x-data="{ 'tambahModal': false }" @keydown.escape="tambahModal = false">
-        <button @click="tambahModal = true" class="fixed sm:bottom-10 sm:right-10 bottom-5 right-5 lg:static lg:w-auto shadow-2xl lg:h-[57px] lg:text-[20px] lg:px-[24px] bg-yellow-500 sm:size-20 size-13 rounded-full lg:dark:text-white dark:hover:text-white dark:shadow-gray-900 items-center flex lg:rounded-[15px]  font-bold text-[#2d5523] hover:bg-[#E2A229] hover:text-white active:bg-yellow-500 justify-center  transition ease-in-out duration-300 hover:scale-105 lg:animate-none animate-bounce z-[99]">
+        <button @click="tambahModal = true" class="fixed sm:bottom-10 sm:right-10 bottom-5 right-5 lg:static lg:w-auto shadow-2xl lg:h-[57px] lg:text-[20px] lg:px-[24px] bg-yellow-500 sm:size-20 size-13 rounded-full lg:dark:text-white dark:hover:text-white dark:shadow-gray-900 items-center flex lg:rounded-[15px] font-bold text-[#2d5523] hover:bg-[#E2A229] hover:text-white active:bg-yellow-500 justify-center transition ease-in-out duration-300 hover:scale-105 lg:animate-none animate-bounce z-[99]">
             <span class="hidden lg:block">Ajukan Kegiatan</span>
-            <i class="fa-solid fa-plus block lg:hidden text-3xl sm:text-4xl text-white"></i>
+            <div class="lg:hidden block">
+                <i class="fa-solid fa-plus text-3xl sm:text-4xl text-white"></i>
+            </div>
         </button>
+
 
         <!-- Main modal -->
         <div x-show="tambahModal" x-cloak tabindex="-1" aria-hidden="true" class="flex overflow-hidden fixed top-0 right-0 left-0 z-999 justify-center items-center w-full md:inset-0 h-full">
@@ -154,7 +157,10 @@
                     <form class="w-full h-fit text-[#34662C] dark:text-white" method="POST" action="{{ route('ajuanKegiatan') }}">
                         @csrf
                         <div class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto rounded-b-xl scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin">
+                            @auth
+
                             <input type="hidden" name="id" value="{{ Auth::user()->penduduk->id_penduduk }}">
+                            @endauth
                             <div class="col-span-2 sm:col-span-1">
                                 <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
                                 <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:bg-[#505c6a] dark:border-gray-500 dark:placeholder-gray-400  dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
@@ -387,11 +393,16 @@
     <div class="w-full px-10 lg:w-[1050px] h-fit flex flex-col 2xl:pl-[230px] lg:pl-[300px] py-7 gap-11 justify-center items-center" id="kegiatan">
         <div class="flex justify-center items-center text-3xl sm:text-4xl font-bold text-green-900 dark:text-white">Jadwal Kegiatan</div>
         <div class="flex lg:hidden w-full min-h-20 gap-x-6 gap-y-3 flex-wrap items-center justify-center">
-            @foreach($dates as $date)
-            <a href="{{ route('jadwal', ['kategoriPast' => $kategoriPast, 'date' => $date->format('Y-m-d')]) }}" class="h-fit py-1 px-4 border-2 border-[#2d5523] dark:border-yellow-500 rounded-2xl text-sm font-semibold dark:hover:text-white shadow-md hover:bg-[#2d5523] dark:hover:bg-[#e2a229] hover:text-white transition-all {{ ($date->format('Y-m-d') == $calendarDate) ? 'bg-[#2d5523] text-white dark:text-white dark:bg-yellow-500' : 'text-[#2d5523] dark:text-yellow-500' }}">
-                {{ $date->translatedFormat('j F') }}
-            </a>
-            @endforeach
+            <div class="flex flex-wrap gap-2 justify-center items-center">
+                @foreach($dates as $index => $date)
+                <a href="{{ route('jadwal', ['kategoriPast' => $kategoriPast, 'date' => $date->format('Y-m-d')]) }}" class="h-fit py-1 px-4 border-2 border-[#2d5523] dark:border-yellow-500 rounded-2xl text-sm font-semibold dark:hover:text-white shadow-md hover:bg-[#2d5523] dark:hover:bg-[#e2a229] hover:text-white transition-all
+           {{ ($date->format('Y-m-d') == $calendarDate) ? 'bg-[#2d5523] text-white dark:text-white dark:bg-yellow-500' : 'text-[#2d5523] dark:text-yellow-500' }}
+           {{ ($index >= 5) ? 'hidden md:block' : '' }}">
+                    {{ $date->translatedFormat('j F') }}
+                </a>
+                @endforeach
+            </div>
+
         </div>
         @if (empty($dataArray['dataToday']->toArray()))
         <div class="flex flex-col w-full justify-center items-center gap-4">
@@ -514,6 +525,13 @@
         <a href="jadwal?kategoriPast=Ekonomi&date={{ $calendarDate }}" class="h-fit py-1 px-4 border-2 border-[#2d5523] dark:border-yellow-500 rounded-2xl text-sm font-semibold  dark:hover:text-white shadow-md hover:bg-[#2d5523] dark:hover:bg-[#e2a229] hover:text-white transition-all {{ ($kategoriPast == 'Ekonomi')?'bg-[#2d5523] text-white dark:text-white dark:bg-yellow-500 ':'text-[#2d5523] dark:text-yellow-500' }}">Ekonomi</a>
     </div>
     <div class="grid h-full w-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-20">
+        @if (empty($dataArray['dataPast']->toArray()))
+        <div class="flex flex-col w-full justify-center items-center gap-4">
+            <!-- <i class="fa-regular fa-circle-xmark text-2xl"></i> -->
+            <img src="{{ asset('assets/images/no-data.png') }}" alt="" class="w-[400px] h-[300px] object-cover">
+            <p class="text-2xl font-semibold text-green-900 dark:text-white">Tidak ada kegiatan dengan kategori {{ $kategoriPast }}</p>
+        </div>
+        @endif
         @foreach ($dataArray['dataPast'] as $dt)
         <div class="bg-white rounded-xl shadow-xl flex flex-col w-[350px] lg:w-[380px] h-[270px] pt-8 pb-4 gap-3 border-2 border-green-900  hover:border-green-500 dark:hover:border-white hover:shadow-2xl transition ease-in-out duration-300 group dark:bg-[#30373F] dark:border-gray-600 group">
             <!-- <div class="absolute w-full h-full bg-black/40 rounded-xl left-0 top-0 flex justify-center items-center opacity-0 transition ease-in-out duration-300 group-hover:opacity-100">
