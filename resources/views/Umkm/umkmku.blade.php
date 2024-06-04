@@ -7,7 +7,7 @@
 </x-header>
 
 
-<div class="w-[100%] hidden md:flex relative justify-center items-center ">
+<div class="w-[100%] hidden lg:flex relative justify-center items-center ">
     <img src="{{ asset('assets/images/bg-index-UMKM.webp') }}" alt="" class="w-full dark:brightness-[85%]">
     <div class="bg-white/[0.73] dark:bg-[#24292d]/[0.73]  w-[571px] h-[185px]  absolute flex justify-center rounded-[105px] flex-col text-center shadow-2xl">
         <p class="text-[#2d5523] dark:text-white font-bold text-[36px]">UMKM DI RW 3</p>
@@ -19,14 +19,51 @@
 </div>
 <div class=" lg:hidden sm:sticky sm:top-0 fixed text-[#2d5523] w-[100%] dark:text-white font-bold border-b-2 z-9  bg-white dark:bg-[#2F363E] h-fit border-gray-300 dark:border-gray-600 py-6">
     <div class="w-[90%] mx-auto gap-4 flex flex-col">
-        <div class="sm:hidden text-2xl sm:text-4xl flex flex-col gap-2">
+        <div class=" text-2xl sm:text-4xl flex flex-col gap-2">
             <p class="text-[#2d5523] dark:text-white font-bold">UMKM DI RW 3</p>
-            <p class="text-[#2d5523] dark:text-white font-sans text-sm text-left">Bangun Ekonomi Berkelanjutan
+            <p class="text-[#2d5523] dark:text-white font-sans sm:text-lg text-sm  text-left">Bangun Ekonomi Berkelanjutan
                 di Setiap Sudut RW</p>
         </div>
 
         <div class="flex gap-6">
+            <div class="lg:flex items-center hidden gap-11 justify-center">
+                <div class="basis-2/3 h-fit flex justify-center items-center">
+                    <form action="{{ route('umkm.search') }}" method="GET"
+                        class="w-full h-full flex items-center justify-center mb-0">
+                        <div
+                            class="flex shadow-md rounded-xl w-full bg-white dark:bg-[#30373F] border-2 border-[#2d5523] dark:border-gray-600 items-center justify-between py-2 h-fit">
+                            <div class="flex w-full">
+                                <div class="w-full px-4">
+                                    <label for="search"
+                                        class="text-sm font-medium text-gray-900 sr-only dark:text-white">Search</label>
+                                    <div class="relative">
+                                        <div
+                                            class="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
+                                            <svg class="w-4 text-[#58a444] dark:text-white h-4 " aria-hidden="true"
+                                                xmlns="http://www.w3.org/2000/svg" fill="none"
+                                                viewBox="0 0 20 20">
+                                                <path stroke="currentColor" stroke-linecap="round"
+                                                    stroke-linejoin="round" stroke-width="2"
+                                                    d="m19 19-4-4m0-7A7 7 0 1 1 1 8a7 7 0 0 1 14 0Z" />
+                                            </svg>
+                                        </div>
+                                        <input type="search" name="search" id="search"
+                                            class="block w-full p-2 ps-10 text-sm dark:bg-[#30373F] text-gray-900 rounded-lg focus:outline-none dark:border-gray-600 placeholder:text-[#58a444] dark:placeholder-white dark:text-white"
+                                            rounded-lg" placeholder="Cari Penduduk" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="w-fit flex justify-end items-center px-4">
+                                <button type="submit">
+                                    <i class="fa-solid fa-circle-chevron-right text-3xl text-yellow-500"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+                <
 
+            </div>
             <div class="w-full">
                 <form action="{{ route('umkmku.search') }}" method="GET" class="w-full mx-auto lg:shadow-2xl">
                     <label for="default-search" class="text-sm font-medium text-[#2d5523] sr-only dark:text-white">Search</label>

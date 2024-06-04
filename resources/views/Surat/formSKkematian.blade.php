@@ -15,8 +15,8 @@
     <div class="w-[90%] mx-auto gap-4 flex flex-col">
         <div class="lg:hidden text-2xl sm:text-4xl flex flex-col gap-2">
             <p class="text-[#2d5523] dark:text-white font-bold">Ajuan Surat di RW 3</p>
-            <p class="text-[#2d5523] dark:text-white font-sans text-sm text-left">Mudahkan Akses Surat di Lingkungan RW</p>
-            <p class="text-[#468337] dark:text-gray-400 font-sans text-sm text-left">Pilih Jenis Surat</p>
+            <p class="text-[#2d5523] dark:text-white font-sans sm:text-lg text-sm text-left">Mudahkan Akses Surat di Lingkungan RW</p>
+            <p class="text-[#468337] dark:text-gray-400 font-sans sm:text-lg text-sm text-left">Pilih Jenis Surat</p>
         </div>
        <div class="w-full overflow-x-auto">
 

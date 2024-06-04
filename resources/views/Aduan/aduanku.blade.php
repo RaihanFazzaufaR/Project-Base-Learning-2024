@@ -299,7 +299,7 @@
                 @endphp
 
                 @foreach ($aduans as $aduan)
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                <tr class="bg-white border-b hover:bg-gray-50 dark:hover:bg-gray-600 dark:bg-[#2F363E] dark:text-white dark:border-gray-700 ">
                     <td scope="row" class="px-6 py-4 font-medium text-base text-center text-[#2d5523]  dark:text-white">
                         {{ $aduan->judul }}
                     </td>
