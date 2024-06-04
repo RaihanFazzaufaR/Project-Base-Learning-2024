@@ -55,7 +55,7 @@
                         class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <td scope="row"
                             class="px-6 py-4 font-medium text-base text-center text-[#2d5523] dark:text-white">
-                            {{ $surat->nama }}
+                            {{ $surat->peminta->nama }}
                         </td>
                         <td scope="row"
                             class="px-6 py-4 font-medium text-base text-center text-[#2d5523] dark:text-white">
