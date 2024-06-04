@@ -288,8 +288,8 @@ class SuratController extends Controller
 
     // Mendapatkan peminta_id dari tabel tb_penduduk dengan mencocokkan NIK
     $penduduk = DB::table('tb_penduduk')
-        ->select('id_penduduk', 'tempatLahir', 'tanggalLahir', 'jenisKelamin', 'statusNikah', 'warganegara', 'agama', 'pekerjaan', 'id_kartuKeluarga')
-        ->where('nik', $validatedData['nik'])
+        ->select('nik', 'id_penduduk', 'tempatLahir', 'tanggalLahir', 'jenisKelamin', 'statusNikah', 'warganegara', 'agama', 'pekerjaan', 'id_kartuKeluarga')
+        ->where('nik', $validatedData['nik'],)
         ->first();
 
     if (!$penduduk) {
@@ -354,6 +354,7 @@ class SuratController extends Controller
     $surat->tempat_meninggal = $validatedData['tempat_meninggal'];
     $surat->nama_pelapor = $validatedData['nama_pelapor'];
     $surat->hubungan_pelapor = $validatedData['hubungan_pelapor'];
+    
 
     // Redirect ke view 'Surat.surat_keterangan_kematian' dengan menyertakan data surat
     return view('Surat.surat_keterangan_kematian', compact('surat'));
