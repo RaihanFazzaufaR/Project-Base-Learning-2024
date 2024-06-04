@@ -29,19 +29,28 @@
             </div>
             <div class="absolute z-[4] h-full w-full flex justify-around">
                 <div class="h-full w-[1vh] bg-gradient-to-b from-transparent to-[#57BA47]/5 overflow-hidden">
-                    <div class="w-full h-[10%] -translate-y-[10vh] bg-gradient-to-b from-transparent to-[#57BA47]/[0.5] rain"></div>
+                    <div class="w-full h-[10%] -translate-y-[10vh] bg-gradient-to-b from-transparent to-[#57BA47]/[0.5] rain rounded-b-lg"></div>
                 </div>
                 <div class="h-full w-[1vh] bg-gradient-to-b from-transparent to-[#57BA47]/5 overflow-hidden">
-                    <div class="w-full h-[10%] -translate-y-[10vh] bg-gradient-to-b from-transparent to-[#57BA47]/[0.5] rain"></div>
+                    <div class="w-full h-[10%] -translate-y-[10vh] bg-gradient-to-b from-transparent to-[#57BA47]/[0.5] rain rounded-b-lg"></div>
                 </div>
                 <div class="h-full w-[1vh] bg-gradient-to-b from-transparent to-[#57BA47]/5 overflow-hidden">
-                    <div class="w-full h-[10%] -translate-y-[10vh] bg-gradient-to-b from-transparent to-[#57BA47]/[0.5] rain"></div>
+                    <div class="w-full h-[10%] -translate-y-[10vh] bg-gradient-to-b from-transparent to-[#57BA47]/[0.5] rain rounded-b-lg"></div>
                 </div>
                 <div class="h-full w-[1vh] bg-gradient-to-b from-transparent to-[#57BA47]/5 overflow-hidden">
-                    <div class="w-full h-[10%] -translate-y-[10vh] bg-gradient-to-b from-transparent to-[#57BA47]/[0.5] rain"></div>
+                    <div class="w-full h-[10%] -translate-y-[10vh] bg-gradient-to-b from-transparent to-[#57BA47]/[0.5] rain rounded-b-lg"></div>
                 </div>
                 <div class="h-full w-[1vh] bg-gradient-to-b from-transparent to-[#57BA47]/5 overflow-hidden">
-                    <div class="w-full h-[10%] -translate-y-[10vh] bg-gradient-to-b from-transparent to-[#57BA47]/[0.5] rain"></div>
+                    <div class="w-full h-[10%] -translate-y-[10vh] bg-gradient-to-b from-transparent to-[#57BA47]/[0.5] rain rounded-b-lg"></div>
+                </div>
+                <div class="h-full w-[1vh] bg-gradient-to-b from-transparent to-[#57BA47]/5 overflow-hidden">
+                    <div class="w-full h-[10%] -translate-y-[10vh] bg-gradient-to-b from-transparent to-[#57BA47]/[0.5] rain rounded-b-lg"></div>
+                </div>
+                <div class="h-full w-[1vh] bg-gradient-to-b from-transparent to-[#57BA47]/5 overflow-hidden">
+                    <div class="w-full h-[10%] -translate-y-[10vh] bg-gradient-to-b from-transparent to-[#57BA47]/[0.5] rain rounded-b-lg"></div>
+                </div>
+                <div class="h-full w-[1vh] bg-gradient-to-b from-transparent to-[#57BA47]/5 overflow-hidden">
+                    <div class="w-full h-[10%] -translate-y-[10vh] bg-gradient-to-b from-transparent to-[#57BA47]/[0.5] rain rounded-b-lg"></div>
                 </div>
             </div>
         </div>
@@ -51,13 +60,13 @@
         let index = [];
 
         const setRainAnimation = () => {
-            let random = Math.floor(Math.random() * 5);
+            let random = Math.floor(Math.random() * 8);
             if (index.includes(random))
                 setRainAnimation();
             index.push(random);
             rain[random].classList.add('animate-rain');
 
-            if (index.length == 5) {
+            if (index.length == 8) {
                 clearInterval(intervalRain);
             }
         }
