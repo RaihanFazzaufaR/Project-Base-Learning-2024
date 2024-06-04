@@ -112,10 +112,11 @@
                     <span class="block text-sm font-semibold text-gray-900 dark:text-white">{{ Auth::user()->penduduk->nama }}</span>
                     <span class="block text-sm font-medium  text-gray-500 truncate dark:text-gray-300">
                         @if (auth()->user()->penduduk->userAccount->id_level == '1')
-                        Admin
-                        @else
-                        {{ Auth::user()->penduduk->jabatan !== 'Tidak ada' ? Auth::user()->penduduk->jabatan : 'Penduduk' }}
-                        {{ Auth::user()->penduduk->jabatan !== 'Tidak Ada' ? Auth::user()->penduduk->kartuKeluarga->rt : 'RT ' . Auth::user()->penduduk->kartuKeluarga->rt }}
+                        Admin Sirawa
+                        @elseif (auth()->user()->penduduk->jabatan == 'Ketua RW')
+                        Ketua RW 03
+                        @else 
+                        {{ Auth::user()->penduduk->jabatan !== 'Tidak ada' ? Auth::user()->penduduk->jabatan .' '. Auth::user()->penduduk->kartuKeluarga->rt  : 'Penduduk RT ' . Auth::user()->penduduk->kartuKeluarga->rt }}
                         @endif
                     </span>
 
