@@ -2,7 +2,7 @@
 
 </x-header>
 
-<div class="w-[100%] relative flex justify-center items-center">
+<div class="w-[100%] relative lg:flex hidden justify-center items-center">
     <img src="{{ asset('assets/images/aduan-cover.webp') }}" alt="" class="w-full dark:hidden block">
     <img src="{{ asset('assets/images/dark-aduan-cover.webp') }}" alt="" class="w-full dark:block hidden">
     <div class=" w-[571px] h-[185px] z-10 absolute flex justify-center rounded-[105px] flex-col text-center ">
@@ -10,9 +10,99 @@
         <p class="text-[#2d5523] dark:text-white font-sans text-[32px] text-center">Laporkan Segala Permasalahan di Lingkungan RW</p>
     </div>
 </div>
+<div class=" lg:hidden sm:sticky sm:top-0 top-21 fixed text-[#2d5523] w-[100%] dark:text-white font-bold border-b-2 z-9  bg-white dark:bg-[#2F363E] h-fit border-gray-300 dark:border-gray-600 py-6">
+    <div class="w-[90%] mx-auto gap-4 flex flex-col">
+        <div class="lg:hidden text-2xl sm:text-4xl flex flex-col gap-2">
+            <p class="text-[#2d5523] dark:text-white font-bold">Aduan Warga RW 3</p>
+            <p class="text-[#2d5523] dark:text-white font-sans text-sm sm:text-lg text-left">Laporkan Segala Permasalahan di Lingkungan RW</p>
+        </div>
+
+        <div class="flex gap-2">
+            <div class="sm:basis-1/5 basis-1/5" x-data="{ filterModal: false }" @keydown.escape="filterModal = false">
+                <button @click="filterModal = true" :class="{
+                        'bg-yellow-500  text-white': {{ request('prioritas') ? 'true' : 'false' }},
+                        'bg-gray-100 text-[#2d5523] dark:bg-[#1f2429] dark:text-gray-300': {{ request('prioritas') ? 'false' : 'true' }}
+                    }" class="border-gray-400 border px-5 text-center py-3 rounded-full">
+                    <i class="fa-solid fa-sliders sm:text-3xl text-xl"></i>
+                </button>
+
+                <!-- Modal Overlay -->
+                <div x-show="filterModal" x-cloak class="fixed inset-0 z-99 flex items-end justify-center">
+                    <div class="fixed inset-0" @click="filterModal = false"></div>
+
+                    <!-- Modal Content -->
+                    <div x-show="filterModal" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="-translate-x-full opacity-0" x-transition:enter-end="translate-x-0 opacity-100" x-transition:leave="transition ease-in duration-300 transform" x-transition:leave-start="translate-x-0 opacity-100" x-transition:leave-end="-translate-x-full opacity-0" class="bg-[#f3f3f3] dark:bg-[#30373F] rounded-r-lg shadow-lg h-fit max-w-screen-sm fixed left-0 sm:top-[282px] top-[257px] z-999999 p-6">
+                        <!-- Modal header -->
+                        <div class="w-fit flex flex-col">
+                            <div class="w-fit">
+                                <a href="{{ route('aduanku') }}" class="{{ request('prioritas') == '' ? 'font-bold bg-yellow-500 text-white hover:bg-yellow-600' : 'hover:bg-gray-200 dark:hover:bg-gray-700' }} block py-2 px-4 rounded ">Semua Prioritas</a>
+                            </div>
+                            <div class="w-fit">
+                                <a href="{{ route('aduanku', ['prioritas'=>'biasa']) }}" class="{{ request('prioritas') == 'biasa' ? 'font-bold bg-yellow-500 text-white hover:bg-yellow-600' : 'hover:bg-gray-200 dark:hover:bg-gray-700' }} block py-2 px-4 rounded ">Biasa</a>
+                            </div>
+                            <div class="w-fit">
+                                <a href="{{ route('aduanku', ['prioritas'=>'penting']) }}" class="{{ request('prioritas') == 'penting' ? 'font-bold bg-yellow-500 text-white hover:bg-yellow-600' : 'hover:bg-gray-200 dark:hover:bg-gray-700' }} block py-2 px-4 rounded ">Penting</a>
+                            </div>
+                            <div class="w-fit">
+                                <a href="{{ route('aduanku', ['prioritas'=>'darurat']) }}" class="{{ request('prioritas') == 'darurat' ? 'font-bold bg-yellow-500 text-white hover:bg-yellow-600' : 'hover:bg-gray-200 dark:hover:bg-gray-700' }} block py-2 px-4 rounded ">Darurat</a>
+                            </div>
+                            
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sm:basis-1/5 basis-1/5" x-data="{ filterModal: false }" @keydown.escape="filterModal = false">
+                <button @click="filterModal = true" :class="{
+                        'bg-yellow-500  text-white': {{ request('prioritas') ? 'true' : 'false' }},
+                        'bg-gray-100 text-[#2d5523] dark:bg-[#1f2429] dark:text-gray-300': {{ request('prioritas') ? 'false' : 'true' }}
+                    }" class="border-gray-400 border px-5 text-center py-3 rounded-full">
+                    <i class="fa-solid fa-sliders sm:text-3xl text-xl"></i>
+                </button>
+
+                <!-- Modal Overlay -->
+                <div x-show="filterModal" x-cloak class="fixed inset-0 z-99 flex items-end justify-center">
+                    <div class="fixed inset-0" @click="filterModal = false"></div>
+
+                    <!-- Modal Content -->
+                    <div x-show="filterModal" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="-translate-x-full opacity-0" x-transition:enter-end="translate-x-0 opacity-100" x-transition:leave="transition ease-in duration-300 transform" x-transition:leave-start="translate-x-0 opacity-100" x-transition:leave-end="-translate-x-full opacity-0" class="bg-[#f3f3f3] dark:bg-[#30373F] rounded-r-lg shadow-lg h-fit max-w-screen-sm fixed left-0 sm:top-[282px] top-[257px] z-999999 p-6">
+                        <!-- Modal header -->
+                        <div class="w-fit flex flex-col">
+                            <div class="w-fit">
+                                <a href="{{ route('aduanku') }}" class="{{ request('status') == '' ? 'font-bold bg-yellow-500 text-white hover:bg-yellow-600' : 'hover:bg-gray-200 dark:hover:bg-gray-700' }} block py-2 px-4 rounded ">Semua Status</a>
+                            </div>
+                            <div class="w-fit">
+                                <a href="{{ route('aduanku', ['status'=>'diproses']) }}" class="{{ request('status') == 'diproses' ? 'font-bold bg-yellow-500 text-white hover:bg-yellow-600' : 'hover:bg-gray-200 dark:hover:bg-gray-700' }} block py-2 px-4 rounded ">Diproses</a>
+                            </div>
+                            <div class="w-fit">
+                                <a href="{{ route('aduanku', ['status'=>'selesai']) }}" class="{{ request('status') == 'selesai' ? 'font-bold bg-yellow-500 text-white hover:bg-yellow-600' : 'hover:bg-gray-200 dark:hover:bg-gray-700' }} block py-2 px-4 rounded ">Selesai</a>
+                            </div>
+                            <div class="w-fit">
+                                <a href="{{ route('aduanku', ['status'=>'ditolak']) }}" class="{{ request('status') == 'ditolak' ? 'font-bold bg-yellow-500 text-white hover:bg-yellow-600' : 'hover:bg-gray-200 dark:hover:bg-gray-700' }} block py-2 px-4 rounded ">Ditolak</a>
+                            </div>
+                            
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="sm:basis-4/5 basis-3/5">
+                <form action="{{ route('aduanku') }}" method="GET" class="w-full mx-auto lg:shadow-2xl">
+                    <label for="default-search" class="text-sm font-medium text-[#2d5523] sr-only dark:text-white">Search</label>
+                    <div class="relative h-full">
+                        <div class="absolute inset-y-0 ps-6 text-lg flex justify-center  text-[#2d5523]  dark:text-gray-300 pr-5 items-center px-3 pointer-events-none ">
+                            <i class="fa-solid fa-magnifying-glass"></i>
+                        </div>
+                        <input type="search" id="default-search" name="search" class=" bg-gray-100 dark:bg-[#1f2429] border-gray-400 border block w-full  ps-13 text-[#2d5523] text-base rounded-full h-full focus:ring-yellow-500 focus:border-yellow-500  dark:border-gray-600 dark:placeholder-gray-300 dark:text-white dark:focus:ring-yellow-500 placeholder:text-[#2d5523] dark:focus:border-yellow-500 sm:placeholder:text-lg placeholder:text-base pr-5" placeholder="Cari Aduan" required />
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 {{-- content --}}
-<div class="w-[90%] mx-auto h-fit flex justify-between items-center mt-15">
+<div class="w-[90%] mx-auto h-fit hidden lg:flex justify-between items-center mt-15">
     <form action="{{ route('aduanku') }}" class="w-fit h-full flex items-center justify-center mb-0">
         @csrf
         <div class="flex shadow-md rounded-xl w-full bg-white border-2 dark:bg-[#30373F] border-[#2d5523] dark:border-gray-600 items-center justify-between py-2 h-fit">
@@ -162,9 +252,9 @@
 
 </div>
 
-<div class=" min-h-[100vh] w-[90%] py-5 mx-auto mt-10">
-    <div class="relative overflow-x-auto shadow-md sm:rounded-lg ">
-        <table class="w-full text-sm text-left rtl:text-right table-fixed text-gray-500 dark:text-gray-400">
+<div class=" min-h-[100vh] w-[90%] py-5 mx-auto lg:mt-10 sm:mt-6 mt-44">
+    <div class="relative overflow-x-auto shadow-md rounded-lg ">
+        <table class="sm:w-full  w-150 text-sm text-left rtl:text-right table-fixed text-gray-500 dark:text-gray-400">
             <thead class="text-base text-white uppercase bg-[#436c39] text-center dark:bg-[#428238] dark:text-white">
                 <tr>
                     <th scope="col" class="px-6 w-fit py-3 ">
@@ -179,7 +269,7 @@
                     <th scope="col" class="px-6 w-fit py-3">
                         Aksi
                     </th>
-                    <th scope="col" class="px-6 w-[10%] py-3">
+                    <th scope="col" class="px-6 w-fit py-3">
                         Status
                     </th>
                 </tr>
@@ -214,7 +304,7 @@
                         {{ $aduan->judul }}
                     </td>
                     <td scope="row" class="px-6 py-4 font-medium text-base text-center text-[#2d5523]  dark:text-white">
-                        Anonymous
+                        {{ $aduan->penduduk->nama }}
                     </td>
                     <td scope="row" class="px-6 py-4 font-medium text-base text-center text-[#2d5523]  dark:text-white">
                         {{ $aduan->prioritas }}
@@ -225,7 +315,7 @@
                                 <div x-data="{ 'detailModal': idAduan === {{ $aduan->aduan_id }} }" @keydown.escape="detailModal = false">
                                     <button @click="detailModal = true" class="btn-modal flex justify-center items-center gap-2 w-fit text-white bg-[#446DFF] rounded-full sm:rounded-lg shadow-xl font-bold h-full px-3 py-3 sm:py-2 hover:bg-[#273E91] hover:scale-105 transition-all">
                                         <i class="fa-solid fa-circle-info"></i>
-                                        <div class="hidden sm:inline-flex">Detail</div>
+                                        <div class="hidden lg::inline-flex">Detail</div>
                                     </button>
                                     <!-- Detail modal -->
                                     <div x-show="detailModal" tabindex="-1" aria-hidden="true" class="flex overflow-hidden fixed top-0 right-0 left-0 z-999 justify-center sm:items-center items-end w-full md:inset-0 h-full">
@@ -345,7 +435,7 @@
                                 </form>
                                 <button type="button" class="flex justify-center items-center gap-2 w-fit text-white bg-[#FF5E5E] rounded-lg shadow-xl font-bold h-full px-3 py-2 hover:bg-[#B34242] hover:scale-105 transition-all" onclick="event.preventDefault(); if(confirm('Apakah Anda yakin ingin menghapus aduan ini?')) document.getElementById('delete-aduan-form-{{ $aduan->aduan_id }}').submit();">
                                     <i class="fa-solid fa-trash-can"></i>
-                                    <div>Hapus</div>
+                                    <div class="hidden lg::inline-flex">Hapus</div>
                                 </button>
                             </div>
                             @endif
@@ -369,6 +459,15 @@
                 @endforeach
             </tbody>
         </table>
+        @if ($aduans->isEmpty())
+            <div
+                class="flex flex-col w-full h-fit py-8 justify-center items-center gap-4 shadow-sm my-auto  dark:border-gray-600">
+                <!-- <i class="fa-regular fa-circle-xmark text-2xl"></i> -->
+                <img src="{{ asset('assets/images/no-data.png') }}" alt=""
+                    class="w-[500px] h-[300px] object-cover">
+                <p class="text-2xl font-semibold text-green-900 dark:text-white">Data Tidak Ditemukan</p>
+            </div>
+        @endif
         <div class="px-8 py-5">
             {{ $aduans->links() }}
         </div>
