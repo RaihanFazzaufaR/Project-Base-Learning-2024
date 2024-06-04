@@ -35,11 +35,11 @@
                         class="text-sm font-medium text-[#2d5523] sr-only dark:text-white">Search</label>
                     <div class="relative h-full">
                         <div
-                            class="absolute inset-y-0 ps-6 text-lg flex justify-center  text-[#2d5523]  dark:text-gray-300 pr-5 items-center px-3 pointer-events-none ">
+                            class="absolute inset-y-0 ps-6 sm:text-lg text-sm flex justify-center  text-[#2d5523]  dark:text-gray-300 pr-5 items-center px-3 pointer-events-none ">
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </div>
                         <input type="search" id="default-search" name="search"
-                            class=" bg-gray-100 dark:bg-[#1f2429] border-gray-400 border block w-full py-3 ps-13 text-[#2d5523] text-base rounded-full h-full focus:ring-yellow-500 focus:border-yellow-500  dark:border-gray-600 dark:placeholder-gray-300 dark:text-white dark:focus:ring-yellow-500 placeholder:text-[#2d5523] dark:focus:border-yellow-500 placeholder:text-lg"
+                            class=" bg-gray-100 dark:bg-[#1f2429] border-gray-400 border block w-full sm:py-3 py-1 ps-13 text-[#2d5523] text-base rounded-full h-full focus:ring-yellow-500 focus:border-yellow-500  dark:border-gray-600 dark:placeholder-gray-300 dark:text-white dark:focus:ring-yellow-500 placeholder:text-[#2d5523] dark:focus:border-yellow-500 sm:placeholder:text-lg placeholder:text-sm pr-5"
                             placeholder="Cari UMKM" required />
                             <input type="hidden" id="id_penduduk" name="id_penduduk"
                             value="{{ Auth::user()->penduduk->id_penduduk }}">
@@ -58,7 +58,7 @@
         <div x-show="editModal" x-cloak tabindex="-1" aria-hidden="true"
             class="flex overflow-hidden fixed top-0 right-0 left-0 z-999 lg:hidden justify-center items-center w-full lg:inset-0 h-full">
             <div class="absolute z-999 bg-black/25 h-[100vh] w-full"></div>
-            <div class="relative z-[1000] p-4 w-full max-h-[700px]" @click.away="editModal = false"
+            <div class="relative z-[1000] p-4 w-full h-fit  pt-25" @click.away="editModal = false"
                 x-transition:enter="motion-safe:ease-out duration-300" x-transition:enter-start="opacity-0 scale-90"
                 x-transition:enter-end="opacity-100 scale-100">
                 <!-- Modal content -->
@@ -651,7 +651,7 @@
     </div>
 
     {{-- table --}}
-    <div class="relative mt-[200px] sm:mt-0 overflow-x-auto rounded-t-lg sm:rounded-lg sm:shadow-2xl shadow-none dark:shadow-gray-900">
+    <div class="relative mt-[175px] sm:mt-0 overflow-x-auto scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin  rounded-t-lg sm:rounded-lg  shadow-none dark:shadow-gray-900">
         <table class="sm:w-full w-150 text-sm text-left rtl:text-right table-fixed text-gray-500 dark:text-gray-400">
             <thead class="text-base text-white uppercase bg-[#436c39] text-center dark:bg-[#428238] dark:text-white">
                 <tr>
@@ -1336,13 +1336,24 @@
                 @endforeach
             </tbody>
         </table>
-        <div class="px-8 py-5 w-full dark:bg-[#4f5966] hidden sm:block">
-        {{ $umkms->links() }}
-        </div>
+
+        @if ($umkms->isEmpty())
+            <div
+                class="flex flex-col w-full h-fit py-8 justify-center items-center gap-4 shadow-sm my-auto  dark:border-gray-600">
+                <!-- <i class="fa-regular fa-circle-xmark text-2xl"></i> -->
+                <img src="{{ asset('assets/images/no-data.png') }}" alt=""
+                    class="w-[500px] h-[300px] object-cover">
+                <p class="text-2xl font-semibold text-green-900 dark:text-white">Data Tidak Ditemukan</p>
+            </div>
+        @endif
     </div>
-    <div class="px-8 py-5 w-full dark:bg-[#4f5966] shadow-2xl dark:shadow-gray-900 sm:hidden rounded-b-lg">
+    <div class="px-8 py-5 w-full shadow-2xl dark:shadow-gray-900  rounded-b-lg dark:bg-[#4f5966] ">
     {{ $umkms->links() }}
     </div>
+    
+    {{-- <div class="px-8 py-5 w-full dark:bg-[#4f5966] shadow-2xl dark:shadow-gray-900 sm:hidden rounded-b-lg">
+    {{ $umkms->links() }}
+    </div> --}}
 </div>
 </div>
 

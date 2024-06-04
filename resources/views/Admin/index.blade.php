@@ -347,7 +347,6 @@
             '#EAE509'
           ],
           hoverOffset: 4,
-          borderRadius: 4,
           barThickness: 10,
         }]
       },

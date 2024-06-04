@@ -344,7 +344,7 @@
 
         if (window.innerWidth >= 500) {
             if (prevScrollpos > currentScrollPos) {
-                console.log(window.innerWidth);
+                // console.log(window.innerWidth);
                 document.getElementById("navbar").style.top = "0";
             } else {
                 document.getElementById("navbar").style.top = "-80px";

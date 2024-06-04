@@ -108,10 +108,10 @@
                         <th scope="col" class="px-6 py-3">
                             Prioritas
                         </th>
-                        <th scope="col" class="px-6 py-3 w-[35%] lg:w-[30%]">
+                        <th scope="col" class="px-6 py-3 w-[30%] lg:w-[30%]">
                             Aksi
                         </th>
-                        <th scope="col" class="px-6 py-3 w-[5%]">
+                        <th scope="col" class="px-6 py-3 w-[10%] sm:w-[8%]">
                         </th>
                     </tr>
                 </thead>
