@@ -198,6 +198,10 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+                                                        <div class="col-span-2">
+                                                            <label class="block mb-2 text-sm font-bold">Alasan Pengeditan</label>
+                                                            <textarea name="alasan" rows="4" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 " readonly>{{$umkm->alasan_warga}}</textarea>
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <div class="flex items-center justify-center sm:justify-end bg-[#F2F2F2] dark:bg-[#3e4852] gap-4 sm:h-[75px] h-[65px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8] dark:border-gray-500 rounded-b-md">
