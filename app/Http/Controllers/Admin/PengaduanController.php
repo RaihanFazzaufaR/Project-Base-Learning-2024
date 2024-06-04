@@ -6,11 +6,12 @@ use App\Http\Controllers\Controller;
 use App\Models\AduanModel;
 use Illuminate\Http\Request;
 use App\Models\ResponModel;
+use Illuminate\Support\Facades\Auth;
 
 class PengaduanController extends Controller
 {
     public function index(Request $request)
-    {   
+    {
 
         $page = 'pengaduan';
         $selected = 'Pengaduan';
@@ -39,7 +40,7 @@ class PengaduanController extends Controller
             });
         }
 
-        $complaints = $complaints->paginate(10)->withQueryString();
+        $complaints = $complaints->orderBy('created_at', 'desc')->paginate(10)->withQueryString();
 
         return view('Admin.Pengaduan.index', compact('page', 'selected', 'complaints', 'aduan_id'));
     }
@@ -49,7 +50,7 @@ class PengaduanController extends Controller
         $imageName = null;
 
         if ($request->konten_respon == null && $request->image == null) {
-            return redirect()->back()->with('error','Konten respon tidak boleh kosong');
+            return redirect()->back()->with('error', 'Konten respon tidak boleh kosong');
         }
 
         if ($request->image != null) {
@@ -136,7 +137,6 @@ class PengaduanController extends Controller
                     'status' => $request->status,
                     'prioritas' => $request->prioritas
                 ]);
-        
         } else {
             return redirect()->route('pengaduan-admin')->withInput();
         }
@@ -148,17 +148,17 @@ class PengaduanController extends Controller
             $aduan = AduanModel::find($aduan_id);
             $imagePath = null;
 
-            if($aduan->image != null){
+            if ($aduan->image != null) {
                 $imagePath = public_path('assets/images/Respon/' . $aduan->image);
             }
-            
+
             // Try to delete child data, but don't treat it as an error if no rows are deleted
             ResponModel::where('aduan_id', $aduan_id)->delete();
-        
-            $redirectParams = $request->only('_token','search', 'status', 'prioritas', 'page');
-        
+
+            $redirectParams = $request->only('_token', 'search', 'status', 'prioritas', 'page');
+
             $deleted_aduan = AduanModel::destroy($aduan_id);
-        
+
             if ($deleted_aduan) {
                 if (file_exists($imagePath)) {
                     unlink($imagePath);
@@ -167,7 +167,7 @@ class PengaduanController extends Controller
             } else {
                 $message = ['error' => 'Gagal menghapus data utama'];
             }
-        
+
             return redirect()->route('pengaduan-admin', $redirectParams)
                 ->withInput()
                 ->with($message);

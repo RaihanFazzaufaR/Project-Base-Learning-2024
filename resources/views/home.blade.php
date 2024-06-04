@@ -10,7 +10,7 @@
 
 
 <div class="relative sm:h-[100vh] h-fit w-full flex flex-col lg:flex-row text-[#1C4F0F] dark:text-white 2xl:px-25 sm:px-20 px-5 items-center justify-center lg:justify-between py-10 sm:py-0">
-    <div class="2xl:w-[58%] lg:w-[60%] w-full flex flex-col justify-center items-start sm:items-center md:items-start h-fit 2xl:pb-12 lg:pb-13 pt-5 sm:pt-0" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="500">
+    <div class="2xl:w-[58%] lg:w-[60%] w-full flex flex-col justify-center items-start sm:items-center md:items-start h-fit 2xl:pb-12 lg:pb-13 pt-5 sm:pt-0">
         <div class="font-bold sm:text-4xl text-3xl sm:mb-3">
             Selamat Datang di
         </div>
@@ -25,7 +25,7 @@
 
         <p class="font-medium text-xl lg:w-[47vw] sm:w-full w-[95%] text-justify">"Temukan informasi terkini, kegiatan komunitas, dan layanan kami untuk memajukan lingkungan kami. Bergabunglah dalam membangun kehidupan yang lebih baik untuk warga RW 3!"</p>
     </div>
-    <div class="lg:absolute relative lg:pb-[12vh] 2xl:right-15 lg:right-10" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="500">
+    <div class="lg:absolute relative lg:pb-[12vh] 2xl:right-15 lg:right-10">
         <img src="{{ asset('assets/images/cover-home.png') }}" alt="" class="lg:h-[80vh] h-[50vh] dark:hidden block">
         <img src="{{ asset('assets/images/cover-home-dark.png') }}" alt="" class="lg:h-[80vh] hidden dark:block">
     </div>
@@ -43,8 +43,8 @@
 </svg>
 
 <div class="relative sm:w-[80vw] w-[90%] mx-auto lg:mt-[20vh] sm:mt-[15vh] mt-[7vh]  flex flex-col gap-14">
-    <div class="text-center font-bold sm:text-5xl text-4xl text-[#236612] dark:text-white uppercase" data-aos="zoom-in" data-aos-duration="1500">Layanan Warga</div>
-    <div class="grid lg:grid-cols-3 grid-cols-2 sm:gap-10 gap-7" data-aos="fade-right" data-aos-duration="1000">
+    <div class="text-center font-bold sm:text-5xl text-4xl text-[#236612] dark:text-white uppercase">Layanan Warga</div>
+    <div class="grid lg:grid-cols-3 grid-cols-2 sm:gap-10 gap-7">
         <div class="relative rounded-xl shadow-lg sm:h-[45vh] md:h-[280px] group hover:-translate-y-3 hover:shadow-2xl transition ease-in-out duration-500 overflow-hidden cursor-pointer" onclick="window.location='{{ route('umkm') }}'">
             <div class="bg-white dark:bg-[#30373F] dark:text-white text-[#1C4F0F] h-full flex flex-col items-center gap-3 py-5">
                 <div class="bg-[#F9C0E2] dark:bg-[#ca9cb8]  flex justify-center items-center rounded-lg p-1">
@@ -53,7 +53,7 @@
                 <div class="font-bold sm:text-3xl text-xl">UMKM</div>
                 <div class="w-[85%] h-[35%] text-center font-normal text-lg hidden sm:block">Temukan informasi mengenai daftar Usaha Mikro Kecil dan Menengah (UMKM) di RW 3</div>
             </div>
-            <div class="absolute bg-[#F9C0E2]/80 dark:dark:bg-[#ca9cb8]/80 h-[45%] w-full rounded-t-[60px] bottom-0 z-10  justify-center items-center flex  transition ease-in-out duration-500 translate-y-[110%] group-hover:-translate-y-[0%]">
+            <div class=" absolute bg-[#F9C0E2]/80 dark:dark:bg-[#ca9cb8]/80 h-[45%] w-full rounded-t-[60px] bottom-0 z-10 hidden sm:flex justify-center items-center transition ease-in-out duration-500 translate-y-[110%] group-hover:-translate-y-[0%]">
                 <a href="{{ route('umkm') }}" class="bg-white text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm shadow-md border border-[#1C4F0F] hover:bg-yellow-500 cursor-pointer">Lihat Selengkapnya</a>
             </div>
         </div>
@@ -66,7 +66,7 @@
                 <div class="font-bold sm:text-3xl text-xl">Kependudukan</div>
                 <div class="w-[85%] h-[35%] text-center font-normal text-lg hidden sm:block">Informasi mengenai daftar warga yang tinggal di RW 3</div>
             </div>
-            <div class="absolute bg-[#C2D0EC]/80 dark:dark:bg-[#a6b2ca]/80 h-[45%] w-full rounded-t-[60px] bottom-0 z-10  justify-center items-center flex  transition ease-in-out duration-500 translate-y-[110%] group-hover:-translate-y-[0%]">
+            <div class="absolute bg-[#C2D0EC]/80 dark:dark:bg-[#a6b2ca]/80 h-[45%] w-full rounded-t-[60px] bottom-0 z-10 hidden sm:flex justify-center items-center transition ease-in-out duration-500 translate-y-[110%] group-hover:-translate-y-[0%]">
                 <a href="{{ route('penduduk') }}" class="bg-white text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm shadow-md border border-[#1C4F0F] hover:bg-yellow-500 cursor-pointer">Lihat Selengkapnya</a>
             </div>
         </div>
@@ -78,7 +78,7 @@
                 <div class="font-bold sm:text-3xl text-xl">Bansos</div>
                 <div class="w-[85%] h-[35%] text-center font-normal text-lg hidden sm:block">Informasi mengenai daftar masyarakat yang mendapatkan Bantuan Sosial (Bansos) dari Pemerintah di RW 3</div>
             </div>
-            <div class="absolute bg-[#D2BDFF]/80 dark:bg-[#af9ed5]/80 h-[45%] w-full rounded-t-[60px] bottom-0 z-10  justify-center items-center flex  transition ease-in-out duration-500 translate-y-[110%] group-hover:-translate-y-[0%]">
+            <div class="absolute bg-[#D2BDFF]/80 dark:bg-[#af9ed5]/80 h-[45%] w-full rounded-t-[60px] bottom-0 z-10 hidden sm:flex justify-center items-center transition ease-in-out duration-500 translate-y-[110%] group-hover:-translate-y-[0%]">
                 <a href="{{ route('bansos') }}" class="bg-white text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm shadow-md border border-[#1C4F0F] hover:bg-yellow-500 cursor-pointer">Lihat Selengkapnya</a>
             </div>
         </div>
@@ -90,7 +90,7 @@
                 <div class="font-bold sm:text-3xl text-xl">Pengaduan</div>
                 <div class="w-[85%] h-[35%] text-center font-normal text-lg hidden sm:block">Layanan informasi terkait sarana penyampaian aspirasi dan pengaduan warga RW 3</div>
             </div>
-            <div class="absolute bg-[#C3FBB8]/80 dark:bg-[#a7d69e]/80 h-[45%] w-full rounded-t-[60px] bottom-0 z-10  justify-center items-center flex  transition ease-in-out duration-500 translate-y-[110%] group-hover:-translate-y-[0%]">
+            <div class="absolute bg-[#C3FBB8]/80 dark:bg-[#a7d69e]/80 h-[45%] w-full rounded-t-[60px] bottom-0 z-10 hidden sm:flex justify-center items-center transition ease-in-out duration-500 translate-y-[110%] group-hover:-translate-y-[0%]">
                 <a href="{{ route('aduan') }}" class="bg-white text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm shadow-md border border-[#1C4F0F] hover:bg-yellow-500 cursor-pointer">Lihat Selengkapnya</a>
             </div>
         </div>
@@ -102,7 +102,7 @@
                 <div class="font-bold sm:text-3xl text-xl">Jadwal Kegiatan</div>
                 <div class="w-[85%] h-[35%] text-center font-normal text-lg hidden sm:block">Informasi seputar kegiatan yang akan dilakukan warga RW 3</div>
             </div>
-            <div class="absolute bg-[#FCDFAD]/80 dark:bg-[#cfb78e]/80 h-[45%] w-full rounded-t-[60px] bottom-0 z-10  justify-center items-center flex  transition ease-in-out duration-500 translate-y-[110%] group-hover:-translate-y-[0%]">
+            <div class="absolute bg-[#FCDFAD]/80 dark:bg-[#cfb78e]/80 h-[45%] w-full rounded-t-[60px] bottom-0 z-10 hidden sm:flex justify-center items-center transition ease-in-out duration-500 translate-y-[110%] group-hover:-translate-y-[0%]">
                 <a href="{{ route('jadwal') }}" class="bg-white text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm shadow-md border border-[#1C4F0F] hover:bg-yellow-500 cursor-pointer">Lihat Selengkapnya</a>
             </div>
         </div>
@@ -114,7 +114,7 @@
                 <div class="font-bold sm:text-3xl text-xl">Surat Pengantar</div>
                 <div class="w-[85%] h-[35%] text-center font-normal text-lg hidden sm:block">Layanan informasi terkait surat pengantar RT/RW</div>
             </div>
-            <div class="absolute bg-[#F9C9BB]/80 dark:bg-[#c5a095]/80 h-[45%] w-full rounded-t-[60px] bottom-0 z-10  justify-center items-center flex  transition ease-in-out duration-500 translate-y-[110%] group-hover:-translate-y-[0%]">
+            <div class="absolute bg-[#F9C9BB]/80 dark:bg-[#c5a095]/80 h-[45%] w-full rounded-t-[60px] bottom-0 z-10 hidden sm:flex justify-center items-center transition ease-in-out duration-500 translate-y-[110%] group-hover:-translate-y-[0%]">
                 <a href="{{ route('surat') }}" class="bg-white text-[#1C4F0F] py-2 px-3 rounded-xl font-bold text-sm shadow-md border border-[#1C4F0F] hover:bg-yellow-500 cursor-pointer">Lihat Selengkapnya</a>
             </div>
         </div>
@@ -126,11 +126,11 @@
 
 <div class="lg:h-[90vh] h-fit w-[84vw] mt-[13vh] lg:py-[5vh] mx-auto relative">
     <div class="h-full w-full flex flex-col justify-between">
-        <div class="font-bold  text-[#1C4F0F] dark:text-white sm:text-5xl text-4xl text-center w-full py-4 uppercase" data-aos="zoom-in" data-aos-duration="1500">UMKM Sekitar</div>
-        <div class="swiper mySwiper !xl:w-full !w-full" data-aos="fade-left" data-aos-duration="1500">
+        <div class="font-bold  text-[#1C4F0F] dark:text-white sm:text-5xl text-4xl text-center w-full py-4 uppercase">UMKM Sekitar</div>
+        <div class="swiper mySwiper !xl:w-full !w-full">
             <div class="swiper-wrapper !w-full !sm:py-20 !py-12">
                 @foreach ($dataUmkm as $dt)
-                <div class="swiper-slide relative !h-[300px] bg-white dark:bg-[#30373F] rounded-2xl shadow-lg flex flex-col overflow-hidden hover:shadow-2xl transition ease-in-out duration-500 group">
+                <div class="swiper-slide relative !h-[300px] bg-white dark:bg-[#30373F] rounded-2xl shadow-lg flex flex-col overflow-hidden hover:shadow-2xl transition ease-in-out duration-500 group cursor-pointer" onclick="window.location='{{ route('umkm.detail', ['umkm_id' => $dt->umkm_id]) }}'">
                     <div class="h-[70%] w-full overflow-hidden">
                         <img src="{{ asset('assets/images/'.$dt->foto ) }}" alt="" class="h-full w-full object-cover group-hover:brightness-[0.4] transition ease-in-out duration-500 group-hover:scale-110">
                     </div>
@@ -154,15 +154,27 @@
         </div>
 
 
-        <a href="{{ route('umkm') }}" class="hidden sm:block mx-auto bg-yellow-500 text-[#1C4F0F] py-4 px-8 rounded-[30px] shadow-xl font-bold text-lg hover:bg-[#E2A229] transition ease-in-out duration-500 hover:scale-105 hover:shadow-2xl" data-aos="zoom-in" data-aos-duration="1500" data-aos-offset="-50">Lihat Selengkapnya</a>
+        <a href="{{ route('umkm') }}" class="mx-auto bg-yellow-500 text-[#1C4F0F] py-4 px-8 rounded-[30px] shadow-xl font-bold text-lg hover:bg-[#E2A229] transition ease-in-out duration-500 hover:scale-105 hover:shadow-2xl">Lihat Selengkapnya</a>
     </div>
 </div>
 
 <!-- Agenda Kegiatan -->
-<div class="relative w-[80vw] mx-auto lg:h-[90vh] h-[100vh] flex flex-col sm:mt-[13vh] mt-[8vh] lg:gap-[45px] gap-8">
+<div class="relative w-[80vw] mx-auto lg:h-[90vh] flex flex-col mt-[13vh] lg:gap-[45px] gap-8">
     <div class="font-bold text-[#1C4F0F] dark:text-white sm:text-5xl text-4xl text-center w-full py-4 uppercase" id="agenda">Agenda Warga</div>
-    <div class="relative flex h-full w-full lg:flex-row sm:flex-col flex-col-reverse sm:justify-end justify-start items-center lg:justify-start">
-        <div class="lg:basis-[65%] w-full lg:h-[80vh] sm:h-[50vh] h-[40vh] bg-cover bg-center shadow-lg rounded-lg bg-no-repeat pl-6 lg:py-10 sm:pt-50 pt-20 pb-10" style="background-image: url('{{ asset('assets/images/bg-home-agenda.png') }}')">
+    <div class="flex lg:hidden w-full min-h-20 gap-x-6 gap-y-3 flex-wrap items-center justify-center">
+        <div class="flex flex-wrap gap-4 justify-center items-center">
+            @foreach($dates as $index => $date)
+            <a href="{{ route('home', ['date' => $date->format('Y-m-d')]) }}" class="h-fit py-1 px-4 border-2 border-[#2d5523] dark:border-yellow-500 rounded-2xl text-sm font-semibold dark:hover:text-white shadow-md hover:bg-[#2d5523] dark:hover:bg-[#e2a229] hover:text-white transition-all
+            {{ ($date->format('Y-m-d') == $calendarDate) ? 'bg-[#2d5523] text-white dark:text-white dark:bg-yellow-500' : 'text-[#2d5523] dark:text-yellow-500' }}
+           {{ ($index >= 5) ? 'hidden md:block' : '' }}">
+                {{ $date->translatedFormat('j F') }}
+            </a>
+            @endforeach
+        </div>
+
+    </div>
+    <div class="relative flex h-full w-full lg:flex-row items-center lg:justify-start">
+        <div class="lg:basis-[65%] w-full lg:h-[80vh] sm:h-[70vh] h-[40vh] bg-cover bg-center shadow-lg rounded-lg bg-no-repeat pl-6 py-8 lg:py-10 pb-10" style="background-image: url('{{ asset('assets/images/bg-home-agenda.png') }}')">
             @if (empty($dataKegiatan->toArray()))
             <div class="flex flex-col w-[80%] h-full justify-center items-center gap-4">
                 <!-- <i class="fa-regular fa-circle-xmark text-2xl"></i> -->
@@ -170,7 +182,7 @@
                 <p class="text-xl font-semibold text-white">Tidak ada kegiatan pada bulan ini</p>
             </div>
             @else
-            <div class="h-[440px] sm:w-[80%] w-[95%] flex flex-col overflow-y-auto gap-7">
+            <div class="lg:h-[440px] h-full lg:w-[80%] w-[95%] flex flex-col overflow-y-auto gap-7">
                 @php
                 $previousDate = null;
                 $activities = [];
@@ -229,8 +241,8 @@
         </div>
 
         <!-- calendar -->
-        <div class="relative sm:absolute bg-white sm:w-[60%] lg:w-[45%] lg:h-[70%] h-fit lg:right-0 lg:top-[75px] top-0 rounded-xl shadow-2xl overflow-hidden">
-            <div class="px-8 py-4 dark:bg-[#30373F] bg-white flex flex-col justify-between gap-8 h-[380px]">
+        <div class="relative sm:absolute bg-white hidden lg:block lg:w-[45%] lg:h-[70%] h-fit lg:right-0 lg:top-[75px] top-0 rounded-xl shadow-2xl overflow-hidden">
+            <div class="px-8 py-4 dark:bg-[#30373F] bg-white flex flex-col justify-between gap-8 h-full">
                 <div class="flex items-center justify-around">
                     <button id="prev" aria-label="calendar backward" onclick="prev()" class="focus:text-gray-400 hover:text-gray-400 text-gray-800 dark:text-gray-100 button-calendar">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -306,7 +318,7 @@
 
 
 <div class="relative sm:w-[80vw] w-[90%] mx-auto lg:h-[90vh] h-fit flex flex-col mt-20 lg:mt-[20vh] gap-[45px]">
-    <div class="font-bold text-[#1C4F0F] dark:text-white sm:text-5xl text-4xl text-center w-full py-4 uppercase" data-aos="zoom-in" data-aos-duration="1500">Aduan Warga</div>
+    <div class="font-bold text-[#1C4F0F] dark:text-white sm:text-5xl text-4xl text-center w-full py-4 uppercase">Aduan Warga</div>
     <div class="h-fit w-full bg-white dark:bg-[#30373F] shadow-md rounded-xl border border-slate-200 dark:border-gray-600">
         <table class="w-full text-left text-black dark:text-gray-400">
             <thead class="text-xl text-center border-b-4 border-[#69CA57]/[0.32] dark:border-gray-300/80 dark:text-white text-[#2d5523]">
@@ -356,8 +368,8 @@
                                     <div>Detail</div>
                                 </button>
                                 <!-- Detail modal -->
-                                <div x-show="detailModal" tabindex="-1" aria-hidden="true" class="flex overflow-hidden fixed top-0 right-0 left-0 z-999 justify-center items-center w-full md:inset-0 h-full">
-                                    <div class="absolute z-999 bg-black/25 h-[100vh] w-full"></div>
+                                <div x-show="detailModal" tabindex="-1" aria-hidden="true" class="flex overflow-hidden fixed top-0 right-0 left-0 bottom-0 z-999 justify-center items-center w-full md:inset-0 h-full">
+                                    <div class="absolute z-999 bg-black/25 h-[100vh] w-[100vw]"></div>
                                     <div class="relative z-[1000] p-4 w-fit max-w-3xl max-h-[700px]" @click.away="detailModal = false" x-transition:enter="motion-safe:ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
                                         <!-- Modal content -->
                                         <div class="relative bg-white rounded-lg shadow  dark:bg-[#30373F]">

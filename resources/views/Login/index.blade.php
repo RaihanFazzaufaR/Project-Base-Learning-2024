@@ -34,11 +34,11 @@
         @csrf
         <div class="flex flex-col gap-2">
             <label for="username" class="font-bold text-normal text-[#1C4F0F]">Username</label>
-            <input type="text" name="username" id="username" class="w-full p-2 ring-2 bg-[#EDEDED] ring-slate-400 focus:outline-none focus:ring-green-500 focus:ring-offset-1 rounded-lg @error('username') is-invalid @enderror" placeholder="Username" value="{{ old('username') }}" required>
+            <input type="text" name="username" id="username" class="w-full p-2 ring-2 bg-[#EDEDED] ring-slate-400 focus:outline-none focus:ring-[#57BA47] focus:ring-offset-1 rounded-lg @error('username') is-invalid @enderror" placeholder="Username" value="{{ old('username') }}" required>
         </div>
         <div class="flex flex-col gap-2 relative">
             <label for="password" class="font-bold text-normal text-[#1C4F0F]">Password</label>
-            <input type="password" name="password" id="password" class="w-full p-2 ring-2 bg-[#EDEDED] ring-slate-400 focus:outline-none focus:ring-green-500 focus:ring-offset-1 rounded-lg @error('password') is-invalid @enderror" placeholder="Password" value="{{ old('username') }}" required>
+            <input type="password" name="password" id="password" class="w-full p-2 ring-2 bg-[#EDEDED] ring-slate-400 focus:outline-none focus:ring-[#57BA47] focus:ring-offset-1 rounded-lg @error('password') is-invalid @enderror" placeholder="Password" value="{{ old('username') }}" required>
             <button type="button" id="showPw" class="absolute right-3 bottom-2"">
                 <i class=" fa-solid fa-eye-slash text-lg"></i>
             </button>
@@ -46,7 +46,7 @@
         <div class="flex -mt-3 w-full justify-end">
             <a href="{{ route('password.forgot') }}" class="text-[#1C4F0F] font-medium">forgot password?</a>
         </div>
-        <button class="bg-[#81B076] py-3 rounded-lg w-full text-white font-bold hover:bg-[#607f59] hover:shadow-xl">LOGIN</button>
+        <button class="bg-[#57BA47] py-3 rounded-lg w-full text-white font-bold hover:bg-[#336E2A] hover:shadow-xl transition-all duration-300 ease-in-out">LOGIN</button>
     </form>
 
     <script>

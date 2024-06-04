@@ -127,7 +127,7 @@
 
     <div class="mt-10">
         <div class="relative overflow-x-auto shadow-sm rounded-t-lg">
-            <table class="w-[650px] sm:w-full text-center table-fixed relative">
+            <table class="w-[650px] sm:w-[1000px] lg:w-full text-center table-fixed relative">
                 <thead class="sm:text-sm text-xs font-bold text-[#34662C] bg-[#91DF7D] dark:bg-[#428238] dark:text-white">
                     <tr>
                         <th scope="col" class="px-6 py-3">
@@ -145,7 +145,7 @@
                         <th scope="col" class="px-6 py-3">
                             Tanggal Pesan Dikirim
                         </th>
-                        <th scope="col" class="px-6 py-3 w-[15%] sm:w-[30%]">
+                        <th scope="col" class="px-6 py-3 w-[20%] sm:w-[35%]">
                             Aksi
                         </th>
                     </tr>

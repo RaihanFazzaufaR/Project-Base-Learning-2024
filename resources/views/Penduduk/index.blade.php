@@ -73,7 +73,7 @@
                             <i class="fa-solid fa-magnifying-glass"></i>
                         </div>
                         <input type="search" id="default-search" name="search"
-                            class=" bg-gray-100 dark:bg-[#1f2429] border-gray-400 border block w-full  ps-13 text-[#2d5523] text-base rounded-full h-full focus:ring-yellow-500 focus:border-yellow-500  dark:border-gray-600 dark:placeholder-gray-300 dark:text-white dark:focus:ring-yellow-500 placeholder:text-[#2d5523] dark:focus:border-yellow-500 sm:placeholder:text-lg placeholder:text-base "
+                            class=" bg-gray-100 dark:bg-[#1f2429] border-gray-400 border block w-full pr-5 ps-13 text-[#2d5523] text-base rounded-full h-full focus:ring-yellow-500 focus:border-yellow-500  dark:border-gray-600 dark:placeholder-gray-300 dark:text-white dark:focus:ring-yellow-500 placeholder:text-[#2d5523] dark:focus:border-yellow-500 sm:placeholder:text-lg placeholder:text-base "
                             placeholder="Cari Penduduk" required />
                     </div>
                 </form>
@@ -101,7 +101,7 @@
                                 </svg>
                             </div>
                             <input type="search" name="search" id="search"
-                                class="block w-full p-2 ps-10 text-sm dark:bg-[#30373F] text-gray-900 rounded-lg dark:border-gray-600 placeholder:text-[#58a444] dark:placeholder-white dark:text-white"
+                                class="block w-full p-2 ps-10 text-sm dark:bg-[#30373F] pr-5 text-gray-900 rounded-lg focus:outline-none dark:border-gray-600 placeholder:text-[#58a444] dark:placeholder-white dark:text-white"
                                 rounded-lg" placeholder="Cari Penduduk" />
                         </div>
                     </div>

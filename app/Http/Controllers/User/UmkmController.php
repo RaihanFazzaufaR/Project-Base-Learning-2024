@@ -226,7 +226,7 @@ class UmkmController extends Controller
             'lokasi_map' => 'nullable|string',
             'foto' => 'nullable|image|mimes:jpeg,png,jpg|max:2048',
             'kategori' => 'nullable',
-            // 'alasan' => 'required|string|max:150',
+            'alasan' => 'required|string|max:150',
         ]);
         if ($validator->fails()) {
             // return $request->all();
@@ -247,7 +247,7 @@ class UmkmController extends Controller
             'deskripsi' => $request->deskripsi,
             'lokasi_map' => $request->lokasi_map,
             'status' => 'diproses',
-            // 'alasan_warga' => $request->alasan,
+            'alasan_warga' => $request->alasan,
         ];
 
         if ($request->hasFile('foto')) {
