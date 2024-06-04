@@ -10,9 +10,6 @@ export default {
     darkMode: "class",
     theme: {
         extend: {
-            // screens: {
-            //     'print': { 'raw': 'print' },
-            // },
             fontSize: {
                 "title-xxl": ["44px", "55px"],
                 "title-xl": ["36px", "45px"],
@@ -290,11 +287,8 @@ export default {
             },
         },
     },
-    plugins: [
-        require('tailwind-scrollbar'),
-        
-    ],
-    variants:{
-        display: ['print']
-    }
+    plugins: [require("tailwind-scrollbar")],
+    variants: {
+        display: ["print"],
+    },
 };

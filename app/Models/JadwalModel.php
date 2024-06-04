@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class JadwalModel extends Model
 {
@@ -32,5 +33,10 @@ class JadwalModel extends Model
     public function penduduk() : BelongsTo
     {
         return $this->belongsTo(PendudukModel::class, 'pembuat_id', 'id_penduduk');
+    }
+
+    public function pengumuman() : HasOne
+    {
+        return $this->hasOne(PengumumanModel::class, 'jadwal_id', 'pengumuman_id');
     }
 }

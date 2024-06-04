@@ -32,24 +32,38 @@ class PendudukModel extends Model
         'noTelp',
     ];
 
-    public function kartuKeluarga() : BelongsTo
+    public function kartuKeluarga(): BelongsTo
     {
         return $this->belongsTo(KartuKeluargaModel::class, 'id_kartuKeluarga', 'id_kartuKeluarga');
     }
 
-    public function userAccount() : HasOne {
+    public function userAccount(): HasOne
+    {
         return $this->HasOne(UserAccountModel::class, 'id_penduduk', 'id_penduduk');
     }
 
-    public function umkm() : HasMany {
+    public function umkm(): HasMany
+    {
         return $this->HasMany(UmkmModel::class, 'pemilik_id', 'id_penduduk');
     }
 
-    public function bansos() : HasMany {
+    public function bansos(): HasMany
+    {
         return $this->HasMany(BansosModel::class, 'penerima_id', 'id_penduduk');
     }
 
-    public function jadwal() : HasMany {
+    public function jadwal(): HasMany
+    {
         return $this->HasMany(JadwalModel::class, 'pembuat_id', 'id_penduduk');
+    }
+
+    public function pengumuman(): HasMany
+    {
+        return $this->HasMany(PengumumanModel::class, 'pembuat_id_pengumuman', 'id_penduduk');
+    }
+
+    public function surat(): HasMany
+    {
+        return $this->HasMany(SuratModel::class, 'peminta_id', 'id_penduduk');
     }
 }

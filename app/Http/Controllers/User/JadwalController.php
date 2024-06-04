@@ -19,6 +19,7 @@ class JadwalController extends Controller
         $menu = 'Kegiatan';
         $scrollAuto = '';
 
+        // data searching
         $searchingKey = $request->filled('search') ? $request->search : '';
         $kategoriSearching = $request->filled('kategoriSearching') ? $request->kategoriSearching : '';
 
@@ -30,16 +31,12 @@ class JadwalController extends Controller
         }
 
         if ($request->filled('kategoriSearching')) {
-            $dataSearchingQuery->where('aktivitas_tipe', '=', $kategoriSearching);
+            $dataSearchingQuery->where('aktivitas_tipe', $kategoriSearching);
         }
 
-        $dataSearching = $dataSearchingQuery->get();
+        $dataSearching = $this->formatDateAndTime($dataSearchingQuery->get());
 
-        $dataSearching = $this->formatDateAndTime($dataSearching);
-
-        // dd($request->filled('search'));
-        // dd($dataSearching->toArray());
-
+        // data upcoming
         $dataUpcoming = JadwalModel::where('mulai_tanggal', '>', date('Y-m-d'))
             ->where('status', 'selesai')
             ->orderBy('mulai_tanggal', 'asc')
@@ -51,6 +48,7 @@ class JadwalController extends Controller
         $calendarDatePrev = $request->session()->has('date') ? $request->session()->get('date') : '';
         $calendarDate = $request->filled('date') ? $request->date : date('Y-m-d');
 
+        // data today
         $dataToday = JadwalModel::where('status', 'selesai')
             ->where('mulai_tanggal', '<=', $calendarDate)
             ->where('akhir_tanggal', '>=', $calendarDate)
@@ -67,6 +65,7 @@ class JadwalController extends Controller
         $kategoriPastPrev = $request->session()->has('kategori') ? $request->session()->get('kategori') : '';
         $kategoriPast = $request->filled('kategoriPast') ? $request->kategoriPast : 'Umum';
 
+        // data past
         $dataPast = JadwalModel::where('mulai_tanggal', '<', date('Y-m-d'))
             ->where('status', 'selesai')
             ->orderBy('mulai_tanggal', 'desc')
@@ -77,6 +76,7 @@ class JadwalController extends Controller
             $dataPast = $dataPast->where('aktivitas_tipe', '=', $kategoriPast);
         }
 
+        // data date untuk js
         $dataDate = JadwalModel::select(
             DB::raw('mulai_tanggal as dateStart'),
             DB::raw('YEAR(mulai_tanggal) as yearStart'),
@@ -112,10 +112,21 @@ class JadwalController extends Controller
             'dataSearching' => $dataSearching,
         ];
 
+        // Initialize $startDate with the current date if no date is provided in the request
+        $startDate = $request->input('date') ? Carbon::parse($request->input('date')) : Carbon::now();
 
+        // Initialize an array to store the dates
+        $dates = [];
+
+        // Loop to generate dates for the next 7 days
+        for ($i = 0; $i < 7; $i++) {
+            $dates[] = $startDate->copy()->addDays($i);
+        }
+
+        // dd($scrollAuto);
         // dd($messages->toArray());
 
-        return view('Jadwal.index', compact('menu', 'dataArray', 'kategoriPast', 'dateFormat', 'calendarDate', 'scrollAuto', 'searchingKey', 'kategoriSearching'));
+        return view('Jadwal.index', compact('menu', 'dataArray', 'kategoriPast', 'dateFormat', 'calendarDate', 'scrollAuto', 'searchingKey', 'kategoriSearching', 'dates'));
     }
 
     private function messages()
@@ -193,7 +204,7 @@ class JadwalController extends Controller
         $dataSearchingQuery = JadwalModel::where('status', 'selesai')->orderBy('mulai_tanggal', 'asc')
             ->where('aktivitas_tipe', 'LIKE', '%' . $request . '%')
             ->orWhere('judul', 'LIKE', '%' . $request . '%');
-        
+
         return json_encode($dataSearchingQuery->get());
     }
 }

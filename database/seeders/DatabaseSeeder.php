@@ -17,16 +17,14 @@ class DatabaseSeeder extends Seeder
             KartuKeluargaSeeder::class,
             PendudukSeeder::class,
             UserAccountSeeder::class,
-            BansosSeeder::class,
             JadwalSeeder::class,
             KategoriSeeder::class,
             UmkmSeeder::class,
             UmkmKategoriSeeder::class,
             templateSuratSeeder::class,
-            PermintaanSuratSeeder::class,
-            DataSuratSeed::class,
             AduanSeeder::class,
             ResponSeeder::class,
+            PengumumanSeeder::class,
         ]);
     }
 }

@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Controllers\Admin\PengumumanController;
 use App\Models\JadwalModel;
 use App\Models\PendudukModel;
+use App\Models\PengumumanModel;
+use App\Services\TelegramService;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -89,8 +92,20 @@ class JadwalKegiatanController extends Controller
         $page = 'ajuan kegiatan';
         $selected = 'Jadwal Kegiatan';
         $users = PendudukModel::all();
-        $data = JadwalModel::where('status', 'diproses')->paginate(10);
+
+        if (auth()->user()->penduduk->jabatan == 'Ketua RW') {
+            $data = JadwalModel::where('status', 'diproses')->paginate(10);
+        } else {
+            $data = JadwalModel::where('status', 'diproses')
+                ->whereHas('penduduk', function ($query) {
+                    $query->whereHas('kartuKeluarga', function ($query) {
+                        $query->where('rt', auth()->user()->penduduk->kartuKeluarga->rt);
+                    });
+                })
+                ->paginate(10);;
+        }
         $data = $this->formatDateAndTime($data);
+        
         // $umkmKategoris = UmkmKategoriModel::all();
         // $categories = KategoriModel::all();
         return view('Admin.JadwalKegiatan.ajuanKegiatan', compact('users', 'data', 'page', 'selected'));
@@ -120,7 +135,9 @@ class JadwalKegiatanController extends Controller
             return back()->with('errors', $validator->messages()->all()[0])->withInput();
         }
 
-        JadwalModel::find($id)->update([
+        $jadwal = JadwalModel::find($id);
+        
+        $jadwal->update([
             'judul' => $request->nama,
             'aktivitas_tipe' => $request->kategori,
             'mulai_tanggal' => $request->tanggal_mulai,
@@ -134,6 +151,26 @@ class JadwalKegiatanController extends Controller
             'lokasi' => $request->lokasi,
         ]);
 
+        $pengumuman_id = PengumumanModel::where('jadwal_id', $id)->value('pengumuman_id');
+
+        $pengumumanController = new PengumumanController(new TelegramService());
+        $reqPengumuman = new Request([
+            'judul' => $request->nama,
+            'kategori' => $request->kategori,
+            'mulai_tanggal' => $request->tanggal_mulai,
+            'akhir_tanggal' => $request->tanggal_selesai,
+            'mulai_waktu' => $request->jam_mulai,
+            'akhir_waktu' => $request->jam_selesai,
+            'konten' => $request->deskripsi,
+            'jadwal_id' => $id,
+            'pembuat_id_pengumuman' => null,
+            'iuran' => $request->iuran,
+            'lokasi' => $request->lokasi,
+        ]);
+        // dd($reqPengumuman, $pengumuman_id);
+
+        $pengumumanController->updatePengumuman($reqPengumuman, $pengumuman_id);
+
         return redirect('/admin/jadwal-kegiatan')->with('success', 'Data berhasil diupdate!');
     }
     public function destroyKegiatan(Request $request, $id)
@@ -141,6 +178,10 @@ class JadwalKegiatanController extends Controller
         $check = JadwalModel::find($id);
 
         try {
+            // PengumumanModel::where('jadwal_id', $id)->delete();
+            PengumumanModel::where('jadwal_id', $id)->update([
+                'jadwal_id' => null,
+            ]);
             JadwalModel::destroy($id);
             return redirect('/admin/jadwal-kegiatan')->with('success', 'Data berhasil dihapus!');
         } catch (\Illuminate\Database\QueryException $e) {
@@ -172,7 +213,7 @@ class JadwalKegiatanController extends Controller
         }
 
 
-        JadwalModel::create([
+        $jadwal = JadwalModel::create([
             'judul' => $request->nama,
             'aktivitas_tipe' => $request->kategori,
             'mulai_tanggal' => $request->tanggal_mulai,
@@ -186,21 +227,57 @@ class JadwalKegiatanController extends Controller
             'lokasi' => $request->lokasi,
         ]);
 
+        $pengumumanController = new PengumumanController(new TelegramService());
+        $reqPengumuman = new Request([
+            'judul' => $request->nama,
+            'kategori' => $request->kategori,
+            'mulai_tanggal' => $request->tanggal_mulai,
+            'akhir_tanggal' => $request->tanggal_selesai,
+            'mulai_waktu' => $request->jam_mulai,
+            'akhir_waktu' => $request->jam_selesai,
+            'konten' => $request->deskripsi,
+            'jadwal_id' => $jadwal->jadwal_id,
+            'pembuat_id_pengumuman' => null,
+            'iuran' => $request->iuran,
+            'lokasi' => $request->lokasi,
+        ]);
+        $pengumumanController->tambahPengumuman($reqPengumuman);
+
         return redirect('/admin/jadwal-kegiatan')->with('success', 'Data berhasil ditambahkan!');
     }
 
-    public function acceptKegiatan(Request $request) {
+    public function acceptKegiatan(Request $request)
+    {
         // dd($request->all());
 
         JadwalModel::find($request->id)->update([
             'status' => 'selesai'
         ]);
 
+        $jadwal = JadwalModel::where('jadwal_id', $request->id)->get()->first();
+
+        $pengumumanController = new PengumumanController(new TelegramService());
+        $reqPengumuman = new Request([
+            'judul' => $jadwal->judul,
+            'kategori' => $jadwal->aktivitas_tipe,
+            'mulai_tanggal' => $jadwal->mulai_tanggal,
+            'akhir_tanggal' => $jadwal->akhir_tanggal,
+            'mulai_waktu' => $jadwal->mulai_waktu,
+            'akhir_waktu' => $jadwal->akhir_waktu,
+            'konten' => $jadwal->konten,
+            'jadwal_id' => $jadwal->jadwal_id,
+            'pembuat_id_pengumuman' => null,
+            'iuran' => $jadwal->iuran,
+            'lokasi' => $jadwal->lokasi,
+        ]);
+        $pengumumanController->tambahPengumuman($reqPengumuman);
+
         return redirect('/admin/jadwal-kegiatan/ajuan-kegiatan')->with('success', 'Data berhasil diterima!');
     }
 
-    public function rejectKegiatan(Request $request, $id) {
-        
+    public function rejectKegiatan(Request $request, $id)
+    {
+
         JadwalModel::find($id)->update([
             'status' => 'ditolak',
             'alasan_tolak' => $request->alasan,

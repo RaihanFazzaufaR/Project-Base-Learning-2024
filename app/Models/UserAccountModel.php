@@ -40,13 +40,18 @@ class UserAccountModel extends User
         'email_verified_at' => 'datetime',
     ];
 
-    public function levelDetail() : BelongsTo
-    {
-        return $this->belongsTo(LevelModel::class, 'id_level', 'level_id');
-    }
-
     public function penduduk() : BelongsTo
     {
         return $this->belongsTo(PendudukModel::class, 'id_penduduk', 'id_penduduk');
+    }
+
+    public function level() : BelongsTo
+    {
+        return $this->belongsTo(LevelModel::class, 'id_level', 'id_level');
+    }
+
+    public function pengumuman() : HasMany
+    {
+        return $this->HasMany(PengumumanModel::class, 'pembuat_id', 'user_id');
     }
 }
