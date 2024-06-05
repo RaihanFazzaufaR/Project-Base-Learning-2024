@@ -243,7 +243,8 @@ Route::group(['prefix' => 'profil'], function () {
 
 Route::group(['prefix' => 'profilku'], function () {
     Route::get('/', [ProfilkuController::class, 'index'])->name('profilku');
-    Route::post('/', [ProfilkuController::class, 'updateAccount'])->name('update');
+    Route::post('/perbarui.data', [ProfilkuController::class, 'updateAccount'])->name('update');
+    Route::post('/perbarui.foto', [ProfilkuController::class, 'updateFoto'])->name('update-foto');
 });
 //Route Jadwal
 Route::group(['prefix' => 'jadwal'], function () {
