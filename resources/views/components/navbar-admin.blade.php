@@ -74,7 +74,7 @@
                                  </div>
                                  <div class="w-full ps-3">
                                      <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Sedang Menunggu Persutujuan,
-                                         {{ $message->source == 'tb_umkm' ? 'UMKM' : 'Kegiatan' }} yang diajukan oleh <span class="font-semibold text-gray-900 dark:text-white">{{ $message->nama }}</span>.
+                                         {{ $message->source == 'tb_umkm' ? 'UMKM' : ($message->source == 'tb_bansos' ? 'Bansos' : 'Kegiatan') }} yang diajukan oleh <span class="font-semibold text-gray-900 dark:text-white">{{ $message->nama }}</span>.
                                          Mohon segera diproses.
                                      </div>
                                      <div class="text-xs text-blue-600 dark:text-blue-500">

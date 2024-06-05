@@ -1,142 +1,104 @@
-<nav class="sticky top-0 z-[99] bg-white border-gray-200 dark:border-gray-600 dark:bg-[#2F363E] border-b-2 h-fit"
-    id="navbar" data-aos="fade-down" data-aos-duration="1000" data-aos-once="true" style="transition: all 0.5s">
+<nav class="sticky top-0 z-[99] bg-white border-gray-200 dark:border-gray-600 dark:bg-[#2F363E] border-b-2 h-fit" id="navbar" data-aos="fade-down" data-aos-duration="1000" data-aos-once="true" style="transition: all 0.5s">
     <div class="w-full flex flex-wrap items-center justify-between lg:px-12 sm:px-10 px-5 py-4">
         <a href="{{ url('/') }}" class="flex items-center space-x-3">
             <img src="{{ asset('assets/images/logo.png') }}" class="sm:h-12 h-9" alt="Logo" />
-            <div
-                class="font-extrabold self-center hidden whitespace-nowrap md:flex flex-col bg-gradient-to-r from-[#57BA47] to-black bg-clip-text h-fit justify-center items-start text-transparent dark:to-white">
-                <p class="text-sm">ꦱꦶꦫꦮ</p>
-                <p class="text-lg">SIRAWA</p>
+            <div class="font-extrabold self-center hidden whitespace-nowrap md:flex flex-col bg-gradient-to-r from-[#57BA47] to-black bg-clip-text h-fit justify-center items-start text-transparent dark:to-white">
+                <div class="text-3xl">ꦱꦶꦫꦮ</div>
+                <div class="text-xs flex justify-between w-full">
+                    <div class="">S</div>
+                    <div class="">I</div>
+                    <div class="">R</div>
+                    <div class="">A</div>
+                    <div class="">W</div>
+                    <div class="">A</div>
+                </div>
             </div>
         </a>
 
-        <div class="flex items-center lg:order-2 sm:space-x-3 space-x-2 lg:space-x-0 lg:gap-3" x-data="{ 'open': true }">
+        <div class="flex items-center lg:order-2 sm:space-x-3 space-x-2 lg:space-x-0 lg:gap-3" x-data="{'open': true}">
             <!-- notification -->
-            <div class="relative {{ Auth::check() ? 'static' : 'hidden' }}" x-data="{ dropdownOpen: false, notifying: true, open: true }"
-                @click.outside="dropdownOpen = false">
-                <a class="relative flex h-9 w-9 items-center justify-center rounded-full dark:hover:bg-gray-600 hover:bg-slate-200"
-                    href="#" @click.prevent="dropdownOpen = ! dropdownOpen; notifying = false; open = false">
-                    <div x-show="open"
-                        class="absolute w-3 h-3 bg-red-500 border-2 border-white rounded-full top-1 start-4 dark:border-gray-900 block {{ empty($messages->toArray()) ? 'hidden' : 'block' }}">
-                    </div>
+            <div class="relative {{ Auth::check()?'static':'hidden' }}" x-data="{ dropdownOpen: false, notifying: true, open: true }" @click.outside="dropdownOpen = false">
+                <a class="relative flex h-9 w-9 items-center justify-center rounded-full dark:hover:bg-gray-600 hover:bg-slate-200" href="#" @click.prevent="dropdownOpen = ! dropdownOpen; notifying = false; open = false">
+                    <div x-show="open" class="absolute w-3 h-3 bg-red-500 border-2 border-white rounded-full top-1 start-4 dark:border-gray-900 block {{ (empty($messages->toArray()))?'hidden':'block' }}"></div>
                     <i class="fa-solid fa-bell text-xl text-gray-500 dark:text-white"></i>
                 </a>
 
                 <!-- Dropdown Start -->
-                <div x-show="dropdownOpen"
-                    class="absolute sm:-right-27 -right-30 mt-2.5 flex max-h-70 w-75 overflow-y-auto text-black dark:text-white flex-col border border-gray-300 bg-white rounded-md dark:bg-[#2F363E] shadow-default dark:border-gray-600 lg:right-0 sm:w-90">
+                <div x-show="dropdownOpen" class="absolute sm:-right-27 -right-30 mt-2.5 flex max-h-70 w-75 overflow-y-auto text-black dark:text-white flex-col border border-gray-300 bg-white rounded-md dark:bg-[#2F363E] shadow-default dark:border-gray-600 lg:right-0 sm:w-90">
                     <div class="px-4.5 py-3 text-center border-b-2 border-gray-400 dark:border-gray-300">
                         <h5 class="text-sm font-medium">Notifikasi</h5>
                     </div>
 
                     <div class="divide-y divide-gray-100 dark:divide-gray-700" x-data="{ selected: 'normal' }">
                         @if (empty($messages->toArray()))
-                            <div class="flex flex-col w-full h-[80%] justify-center items-center gap-4 py-5">
-                                <!-- <i class="fa-regular fa-circle-xmark text-2xl"></i> -->
-                                <img src="{{ asset('assets/images/no-data.png') }}" alt=""
-                                    class="w-[200px] h-[100px] object-cover">
-                                <p class="text-base font-semibold text-green-900 dark:text-white">Tidak ada pesan</p>
-                            </div>
+                        <div class="flex flex-col w-full h-[80%] justify-center items-center gap-4 py-5">
+                            <!-- <i class="fa-regular fa-circle-xmark text-2xl"></i> -->
+                            <img src="{{ asset('assets/images/no-data.png') }}" alt="" class="w-[200px] h-[100px] object-cover">
+                            <p class="text-base font-semibold text-green-900 dark:text-white">Tidak ada pesan</p>
+                        </div>
                         @endif
                         <?php $i = 0; ?>
                         @foreach ($messages as $message)
-                            @if ($message->status === 'selesai' || $message->status === 'diterima')
-                                <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">
-                                    <div class="flex-shrink-0">
-                                        <img class="rounded-full w-11 h-11"
-                                            src="{{ asset('assets/images/userProfile.png') }}" alt="">
-                                        <div
-                                            class="absolute flex items-center justify-center w-5 h-5 ms-6 -mt-5 bg-[#22C55E] border border-white rounded-full dark:border-gray-800">
-                                            <i class="fa-solid fa-check text-xs text-white"></i>
-                                        </div>
+                        @if ($message->status === 'selesai' || $message->status === 'diterima')
+                        <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <div class="flex-shrink-0">
+                                <img class="rounded-full w-11 h-11" src="{{ asset('assets/images/userProfile.png') }}" alt="">
+                                <div class="absolute flex items-center justify-center w-5 h-5 ms-6 -mt-5 bg-[#22C55E] border border-white rounded-full dark:border-gray-800">
+                                    <i class="fa-solid fa-check text-xs text-white"></i>
+                                </div>
+                            </div>
+                            <div class="w-full ps-3">
+                                <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Selamat,
+                                    {{ $message->source == 'tb_umkm' ? 'UMKM' : ($message->source == 'tb_bansos' ? 'Bansos' : 'Kegiatan') }} yang Anda ajukan telah
+                                    disetujui oleh <span class="font-semibold text-gray-900 dark:text-white">{{ $message->source == 'tb_umkm' ? 'Ketua RW 03' : ($message->source == 'tb_bansos' ? 'Ketua RT '. auth()->user()->penduduk->kartuKeluarga->rt : 'Ketua RW 03 / Ketua RT '. auth()->user()->penduduk->kartuKeluarga->rt ) }}</span>
+                                </div>
+                                <div class="text-xs text-blue-600 dark:text-blue-500">
+                                    @if ($message->diffMinutes < 60) {{ $message->diffMinutes < 1 ? 'beberapa saat yang lalu' : $message->diffMinutes . ' menit yang lalu' }} @elseif ($message->diffHours < 24) {{ $message->diffHours . ' jam yang lalu' }} @elseif ($message->diffDays < 7) {{ $message->diffDays . ' hari yang lalu' }} @endif </div>
+                                </div>
+                        </a>
+                        @elseif ($message->status === 'diproses')
+                        <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">
+                            <div class="flex-shrink-0">
+                                <img class="rounded-full w-11 h-11" src="{{ asset('assets/images/userProfile.png') }}" alt="">
+                                <div class="absolute flex items-center justify-center w-5 h-5 ms-6 -mt-5 bg-[#FFDE68] border border-white rounded-full dark:border-gray-800">
+                                    <i class="fa-solid fa-minus text-xs text-white"></i>
+                                </div>
+                            </div>
+                            <div class="w-full ps-3">
+                                <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Mohon Menunggu,
+                                    {{ $message->source == 'tb_umkm' ? 'UMKM' : ($message->source == 'tb_bansos' ? 'Bansos' : 'Kegiatan') }} yang Anda ajukan sedang
+                                    diproses oleh <span class="font-semibold text-gray-900 dark:text-white">{{ $message->source == 'tb_umkm' ? 'Ketua RW 03' : ($message->source == 'tb_bansos' ? 'Ketua RT '. auth()->user()->penduduk->kartuKeluarga->rt : 'Ketua RW 03 / Ketua RT '. auth()->user()->penduduk->kartuKeluarga->rt ) }}</span>
+                                </div>
+                                <div class="text-xs text-blue-600 dark:text-blue-500">
+                                    @if ($message->diffMinutes < 60) {{ $message->diffMinutes < 1 ? 'beberapa saat yang lalu' : $message->diffMinutes . ' menit yang lalu' }} @elseif ($message->diffHours < 24) {{ $message->diffHours . ' jam yang lalu' }} @elseif ($message->diffDays < 7) {{ $message->diffDays . ' hari yang lalu' }} @endif </div>
+                                </div>
+                        </a>
+                        @elseif ($message->status === 'ditolak')
+                        <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700" @click.prevent="selected = (selected === 'tolak{{ $i }}' ? '':'tolak{{ $i }}')">
+                            <div class="flex-shrink-0">
+                                <img class="rounded-full w-11 h-11" src="{{ asset('assets/images/userProfile.png') }}" alt="">
+                                <div class="absolute flex items-center justify-center w-5 h-5 ms-6 -mt-5 bg-[#EF4444] border border-white rounded-full dark:border-gray-800">
+                                    <i class="fa-solid fa-xmark text-xs text-white"></i>
+                                </div>
+                            </div>
+                            <div class="w-full ps-3">
+                                <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Maaf,
+                                    {{ $message->source == 'tb_umkm' ? 'UMKM' : ($message->source == 'tb_bansos' ? 'Bansos' : 'Kegiatan') }} yang Anda ajukan telah
+                                    ditolak oleh <span class="font-semibold text-gray-900 dark:text-white">{{ $message->source == 'tb_umkm' ? 'Ketua RW 03' : ($message->source == 'tb_bansos' ? 'Ketua RT '. auth()->user()->penduduk->kartuKeluarga->rt : 'Ketua RW 03 / Ketua RT '. auth()->user()->penduduk->kartuKeluarga->rt ) }}</span>
+                                </div>
+                                <div class="w-full border-y-2 border-gray-300 text-sm py-2" :class="(selected === 'tolak{{ $i }}') ? 'block' : 'hidden'">
+                                    <p class="text-black font-bold">Alasan Penolakan :</p>
+                                    <p class="text-gray-500 dark:text-gray-400">"{{ $message->reason }}"</p>
+                                </div>
+                                <div class="flex justify-between items-center">
+                                    <div class="text-xs text-blue-600 dark:text-blue-500">
+                                        @if ($message->diffMinutes < 60) {{ $message->diffMinutes < 1 ? 'beberapa saat yang lalu' : $message->diffMinutes . ' menit yang lalu' }} @elseif ($message->diffHours < 24) {{ $message->diffHours . ' jam yang lalu' }} @elseif ($message->diffDays < 7) {{ $message->diffDays . ' hari yang lalu' }} @endif </div>
+                                                    <i class="fa-solid" :class="(selected === 'tolak{{ $i }}') ? 'fa-angle-up' : 'fa-angle-down'"></i>
                                     </div>
-                                    <div class="w-full ps-3">
-                                        <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Selamat,
-                                            {{ $message->source == 'tb_umkm' ? 'UMKM' : 'Kegiatan' }} yang Anda ajukan
-                                            telah
-                                            disetujui oleh <span
-                                                class="font-semibold text-gray-900 dark:text-white">{{ $message->source == 'tb_umkm' ? 'Ketua RW 03' : 'Ketua RW 03 / Ketua RT ' . auth()->user()->penduduk->kartuKeluarga->rt }}</span>
-                                        </div>
-                                        <div class="text-xs text-blue-600 dark:text-blue-500">
-                                            @if ($message->diffMinutes < 60)
-                                                {{ $message->diffMinutes < 1 ? 'beberapa saat yang lalu' : $message->diffMinutes . ' menit yang lalu' }}
-                                            @elseif ($message->diffHours < 24)
-                                                {{ $message->diffHours . ' jam yang lalu' }}
-                                            @elseif ($message->diffDays < 7)
-                                                {{ $message->diffDays . ' hari yang lalu' }}
-                                            @endif
-                                        </div>
-                                    </div>
-                                </a>
-                            @elseif ($message->status === 'diproses')
-                                <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700">
-                                    <div class="flex-shrink-0">
-                                        <img class="rounded-full w-11 h-11"
-                                            src="{{ asset('assets/images/userProfile.png') }}" alt="">
-                                        <div
-                                            class="absolute flex items-center justify-center w-5 h-5 ms-6 -mt-5 bg-[#FFDE68] border border-white rounded-full dark:border-gray-800">
-                                            <i class="fa-solid fa-minus text-xs text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div class="w-full ps-3">
-                                        <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Mohon Menunggu,
-                                            {{ $message->source == 'tb_umkm' ? 'UMKM' : 'Kegiatan' }} yang Anda ajukan
-                                            sedang
-                                            diproses oleh <span
-                                                class="font-semibold text-gray-900 dark:text-white">{{ $message->source == 'tb_umkm' ? 'Ketua RW 03' : 'Ketua RW 03 / Ketua RT ' . auth()->user()->penduduk->kartuKeluarga->rt }}</span>
-                                        </div>
-                                        <div class="text-xs text-blue-600 dark:text-blue-500">
-                                            @if ($message->diffMinutes < 60)
-                                                {{ $message->diffMinutes < 1 ? 'beberapa saat yang lalu' : $message->diffMinutes . ' menit yang lalu' }}
-                                            @elseif ($message->diffHours < 24)
-                                                {{ $message->diffHours . ' jam yang lalu' }}
-                                            @elseif ($message->diffDays < 7)
-                                                {{ $message->diffDays . ' hari yang lalu' }}
-                                            @endif
-                                        </div>
-                                    </div>
-                                </a>
-                            @elseif ($message->status === 'ditolak')
-                                <a href="#" class="flex px-4 py-3 hover:bg-gray-100 dark:hover:bg-gray-700"
-                                    @click.prevent="selected = (selected === 'tolak{{ $i }}' ? '':'tolak{{ $i }}')">
-                                    <div class="flex-shrink-0">
-                                        <img class="rounded-full w-11 h-11"
-                                            src="{{ asset('assets/images/userProfile.png') }}" alt="">
-                                        <div
-                                            class="absolute flex items-center justify-center w-5 h-5 ms-6 -mt-5 bg-[#EF4444] border border-white rounded-full dark:border-gray-800">
-                                            <i class="fa-solid fa-xmark text-xs text-white"></i>
-                                        </div>
-                                    </div>
-                                    <div class="w-full ps-3">
-                                        <div class="text-gray-500 text-sm mb-1.5 dark:text-gray-400">Maaf,
-                                            {{ $message->source == 'tb_umkm' ? 'UMKM' : 'Kegiatan' }} yang Anda ajukan
-                                            telah
-                                            ditolak oleh <span
-                                                class="font-semibold text-gray-900 dark:text-white">{{ $message->source == 'tb_umkm' ? 'Ketua RW 03' : 'Ketua RW 03 / Ketua RT ' . auth()->user()->penduduk->kartuKeluarga->rt }}</span>
-                                        </div>
-                                        <div class="w-full border-y-2 border-gray-300 text-sm py-2"
-                                            :class="(selected === 'tolak{{ $i }}') ? 'block' : 'hidden'">
-                                            <p class="text-black font-bold">Alasan Penolakan :</p>
-                                            <p class="text-gray-500 dark:text-gray-400">"{{ $message->reason }}"</p>
-                                        </div>
-                                        <div class="flex justify-between items-center">
-                                            <div class="text-xs text-blue-600 dark:text-blue-500">
-                                                @if ($message->diffMinutes < 60)
-                                                    {{ $message->diffMinutes < 1 ? 'beberapa saat yang lalu' : $message->diffMinutes . ' menit yang lalu' }}
-                                                @elseif ($message->diffHours < 24)
-                                                    {{ $message->diffHours . ' jam yang lalu' }}
-                                                @elseif ($message->diffDays < 7)
-                                                    {{ $message->diffDays . ' hari yang lalu' }}
-                                                @endif
-                                            </div>
-                                            <i class="fa-solid"
-                                                :class="(selected === 'tolak{{ $i }}') ? 'fa-angle-up' :
-                                                'fa-angle-down'"></i>
-                                        </div>
-                                    </div>
-                                </a>
-                            @endif
-                            <?php $i++; ?>
+                                </div>
+                        </a>
+                        @endif
+                        <?php $i++; ?>
                         @endforeach
                     </div>
                 </div>
@@ -145,222 +107,167 @@
 
 
             <!-- dark mode -->
-            <div class="lg:h-11 lg:w-11 h-13 w-13 flex justify-center items-center cursor-pointer rounded-full p-2"
-                id="darkMode"></div>
+            <div class="lg:h-11 lg:w-11 h-13 w-13 flex justify-center items-center cursor-pointer rounded-full p-2" id="darkMode"></div>
 
             @if (Auth::check())
-                <button type="button"
-                    class="flex text-sm bg-gray-800 rounded-full lg:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
-                    id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown"
-                    data-dropdown-placement="bottom">
-                    <span class="sr-only">Open user menu</span>
-                    <img src="{{ asset('assets/images/UserAccount/' . (auth()->user()->penduduk->userAccount->image ?? 'default.jpg')) }}"
-                        class="h-11 w-11 rounded-full object-cover" />
-                </button>
-                <!-- Dropdown menu -->
-                <div class="z-50 hidden !my-3 !-ml-5 lg:w-[200px] text-base list-none bg-white divide-y divide-gray-400 rounded-lg overflow-hidden shadow dark:bg-[#2F363E] dark:divide-gray-300"
-                    id="user-dropdown">
-                    <div class="px-4 py-3">
-                        <span
-                            class="block text-sm font-semibold text-gray-900 dark:text-white">{{ Auth::user()->penduduk->nama }}</span>
-                        <span class="block text-sm font-medium  text-gray-500 truncate dark:text-gray-300">
-                            @if (auth()->user()->penduduk->userAccount->id_level == '1')
-                                Admin Sirawa
-                            @elseif (auth()->user()->penduduk->jabatan == 'Ketua RW')
-                                Ketua RW 03
-                            @else
-                                {{ Auth::user()->penduduk->jabatan !== 'Tidak ada' ? Auth::user()->penduduk->jabatan . ' ' . Auth::user()->penduduk->kartuKeluarga->rt : 'Penduduk RT ' . Auth::user()->penduduk->kartuKeluarga->rt }}
-                            @endif
-                        </span>
-
-                    </div>
-                    <ul class="font-semibold" aria-labelledby="user-menu-button">
-                        <li>
-                            <a href="{{ route('profilku') }}"
-                                class="block px-4 py-2 text-sm text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Profil-Ku</a>
-                        </li>
-                        <li>
-                            @if (Auth::user()->penduduk->id_penduduk)
-                                <a href="{{ route('umkmku', ['id_penduduk' => Auth::user()->penduduk->id_penduduk]) }}"
-                                    class="block px-4 py-2 text-sm text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">UMKM-Ku</a>
-                            @endif
-                        </li>
-                        <li>
-                            <a href="{{ route('aduanku') }}"
-                                class="block px-4 py-2 text-sm text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Aduan-Ku</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('suratku') }}"
-                                class="block px-4 py-2 text-sm text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Surat-Ku</a>
-                        </li>
-                        @if (Auth::user()->id_level == 1 || Auth::user()->id_level == 2)
-                            <li>
-                                <a href="{{ route('admin') }}"
-                                    class="block px-4 py-2 text-sm text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Portal
-                                    Admin</a>
-                            </li>
+            <button type="button" class="flex text-sm bg-gray-800 rounded-full lg:me-0 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600" id="user-menu-button" aria-expanded="false" data-dropdown-toggle="user-dropdown" data-dropdown-placement="bottom">
+                <span class="sr-only">Open user menu</span>
+                <img src="{{ asset('assets/images/UserAccount/' . (auth()->user()->penduduk->userAccount->image ?? 'default.jpg')) }}" class="h-11 w-11 rounded-full object-cover" />
+            </button>
+            <!-- Dropdown menu -->
+            <div class="z-50 hidden !my-3 !-ml-5 lg:w-[200px] text-base list-none bg-white divide-y divide-gray-400 rounded-lg overflow-hidden shadow dark:bg-[#2F363E] dark:divide-gray-300" id="user-dropdown">
+                <div class="px-4 py-3">
+                    <span class="block text-sm font-semibold text-gray-900 dark:text-white">{{ Auth::user()->penduduk->nama }}</span>
+                    <span class="block text-sm font-medium  text-gray-500 truncate dark:text-gray-300">
+                        @if (auth()->user()->penduduk->userAccount->id_level == '1')
+                        Admin Sirawa
+                        @elseif (auth()->user()->penduduk->jabatan == 'Ketua RW')
+                        Ketua RW 03
+                        @else
+                        {{ Auth::user()->penduduk->jabatan !== 'Tidak ada' ? Auth::user()->penduduk->jabatan .' '. Auth::user()->penduduk->kartuKeluarga->rt  : 'Penduduk RT ' . Auth::user()->penduduk->kartuKeluarga->rt }}
                         @endif
-                        <li>
-                            <a href="{{ route('logout') }}"
-                                class="block px-4 py-2 text-sm text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Keluar</a>
-                        </li>
-                    </ul>
+                    </span>
+
                 </div>
+                <ul class="font-semibold" aria-labelledby="user-menu-button">
+                    <li>
+                        <a href="{{ route('profilku') }}" class="block px-4 py-2 text-sm text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Profil-Ku</a>
+                    </li>
+                    <li>
+                        @if (Auth::user()->penduduk->id_penduduk)
+                        <a href="{{ route('umkmku', ['id_penduduk' => Auth::user()->penduduk->id_penduduk]) }}" class="block px-4 py-2 text-sm text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">UMKM-Ku</a>
+                        @endif
+                    </li>
+                    <li>
+                        <a href="{{ route('aduanku') }}" class="block px-4 py-2 text-sm text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Aduan-Ku</a>
+                    </li>
+                    <li>
+                        <a href="{{ route('suratku') }}" class="block px-4 py-2 text-sm text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Surat-Ku</a>
+                    </li>
+                    @if (Auth::user()->id_level == 1 || Auth::user()->id_level == 2)
+                    <li>
+                        <a href="{{ route('admin') }}" class="block px-4 py-2 text-sm text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Portal
+                            Admin</a>
+                    </li>
+                    @endif
+                    <li>
+                        <a href="{{ route('logout') }}" class="block px-4 py-2 text-sm text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Keluar</a>
+                    </li>
+                </ul>
+            </div>
             @else
-                <a href="{{ route('login') }}"
-                    class="py-1 px-5 bg-[#34662C] shadow-lg rounded-2xl text-lg font-semibold text-white hover:bg-white hover:text-[#34662C] border-2 border-transparent hover:border-[#34662C] transition ease-in-out duration-200">Masuk</a>
+            <a href="{{ route('login') }}" class="py-1 px-5 bg-[#34662C] shadow-lg rounded-2xl text-lg font-semibold text-white hover:bg-white hover:text-[#34662C] border-2 border-transparent hover:border-[#34662C] transition ease-in-out duration-200">Masuk</a>
             @endif
 
 
-            <button data-collapse-toggle="navbar-user" type="button"
-                class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600"
-                aria-controls="navbar-user" aria-expanded="false">
+            <button data-collapse-toggle="navbar-user" type="button" class="inline-flex items-center p-2 w-10 h-10 justify-center text-sm text-gray-500 rounded-lg lg:hidden hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-gray-200 dark:text-gray-400 dark:hover:bg-gray-700 dark:focus:ring-gray-600" aria-controls="navbar-user" aria-expanded="false">
                 <span class="sr-only">Open main menu</span>
-                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none"
-                    viewBox="0 0 17 14">
-                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                        d="M1 1h15M1 7h15M1 13h15" />
+                <svg class="w-5 h-5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 17 14">
+                    <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M1 1h15M1 7h15M1 13h15" />
                 </svg>
             </button>
         </div>
-        <div class="items-center justify-between hidden sm:w-[40%] w-[60%] lg:flex lg:w-auto lg:order-1 absolute lg:static sm:top-15 top-17 right-5"
-            id="navbar-user">
-            <ul
-                class="flex flex-col font-bold p-4 lg:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 lg:space-x-8 rtl:space-x-reverse lg:flex-row lg:mt-0 lg:border-0 lg:bg-transparent dark:bg-[#2F363E] lg:dark:bg-transparent dark:border-gray-400">
+        <div class="items-center justify-between hidden sm:w-[40%] w-[60%] lg:flex lg:w-auto lg:order-1 absolute lg:static sm:top-15 top-17 right-5" id="navbar-user">
+            <ul class="flex flex-col font-bold p-4 lg:p-0 mt-4 border border-gray-100 rounded-lg bg-gray-50 lg:space-x-8 rtl:space-x-reverse lg:flex-row lg:mt-0 lg:border-0 lg:bg-transparent dark:bg-[#2F363E] lg:dark:bg-transparent dark:border-gray-400">
                 <li>
-                    <a href="{{ url('/') }}"
-                        class="block py-2 px-3 hover:bg-[#1C4F0F] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white rounded lg:bg-transparent dark:lg:bg-transparent lg:hover:bg-transparent dark:lg:hover:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:hover:dark:text-[#57BA47] lg:relative group {{ $menu === 'Home' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F] text-white dark:bg-gray-600' : 'text-[#1C4F0F] lg:text-gray-500 dark:text-white' }}">
+                    <a href="{{ url('/') }}" class="block py-2 px-3 hover:bg-[#1C4F0F] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white rounded lg:bg-transparent dark:lg:bg-transparent lg:hover:bg-transparent dark:lg:hover:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:hover:dark:text-[#57BA47] lg:relative group {{ $menu === 'Home' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F] text-white dark:bg-gray-600' : 'text-[#1C4F0F] lg:text-gray-500 dark:text-white' }}">
                         Home
-                        <div
-                            class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F] lg:dark:bg-[#57BA47] group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'Home' ? '' : 'lg:scale-x-0' }}">
+                        <div class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F] lg:dark:bg-[#57BA47] group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'Home' ? '' : 'lg:scale-x-0' }}">
                         </div>
                     </a>
                 </li>
                 <li>
-                    <button id="dropdownUmkmLink" data-dropdown-toggle="dropdownUmkm"
-                        class="flex items-center justify-between w-full py-2 px-3 hover:bg-[#1C4F0F] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white lg:hover:bg-transparent dark:lg:hover:bg-transparent lg:bg-transparent dark:lg:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:hover:dark:text-[#57BA47] lg:relative group {{ $menu === 'UMKM' || $menu === 'UMKMKU' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F] text-white dark:bg-gray-600' : 'text-[#1C4F0F] lg:text-gray-500 dark:text-white' }}">
+                    <button id="dropdownUmkmLink" data-dropdown-toggle="dropdownUmkm" class="flex items-center justify-between w-full py-2 px-3 hover:bg-[#1C4F0F] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white lg:hover:bg-transparent dark:lg:hover:bg-transparent lg:bg-transparent dark:lg:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:hover:dark:text-[#57BA47] lg:relative group {{ $menu === 'UMKM' || $menu === 'UMKMKU' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F] text-white dark:bg-gray-600' : 'text-[#1C4F0F] lg:text-gray-500 dark:text-white' }}">
                         UMKM
-                        <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 10 6">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" d="m1 1 4 4 4-4" />
+                        <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
                         </svg>
-                        <div
-                            class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F] lg:dark:bg-[#57BA47] -bottom-1 group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'UMKM' || $menu === 'UMKMKU' ? '' : 'lg:scale-x-0' }}">
+                        <div class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F] lg:dark:bg-[#57BA47] -bottom-1 group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'UMKM' || $menu === 'UMKMKU' ? '' : 'lg:scale-x-0' }}">
                         </div>
                     </button>
                     <!-- Dropdown menu -->
-                    <div id="dropdownUmkm"
-                        class="z-10 hidden font-normal overflow-hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-[#2F363E] dark:divide-gray-300">
-                        <ul class="text-sm font-semibold text-gray-700 dark:text-gray-300 "
-                            aria-labelledby="dropdownLargeButton">
+                    <div id="dropdownUmkm" class="z-10 hidden font-normal overflow-hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-[#2F363E] dark:divide-gray-300">
+                        <ul class="text-sm font-semibold text-gray-700 dark:text-gray-300 " aria-labelledby="dropdownLargeButton">
                             <li>
-                                <a href="{{ route('umkm') }}"
-                                    class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">UMKM
+                                <a href="{{ route('umkm') }}" class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">UMKM
                                     Di RW 3</a>
                             </li>
                             <li>
                                 @if (Auth::check())
-                                    <a href="{{ route('umkmku', ['id_penduduk' => Auth::user()->penduduk->id_penduduk]) }}) }}"
-                                        class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">UMKM-Ku</a>
+                                <a href="{{ route('umkmku', ['id_penduduk' => Auth::user()->penduduk->id_penduduk]) }}) }}" class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">UMKM-Ku</a>
                                 @else
-                                    <a href="{{ route('login') }}"
-                                        class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">UMKM-Ku</a>
+                                <a href="{{ route('login') }}" class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">UMKM-Ku</a>
                                 @endif
                             </li>
                         </ul>
                     </div>
                 </li>
                 <li>
-                    <a href="{{ route('jadwal') }}"
-                        class="block py-2 px-3 hover:bg-[#1C4F0F] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white lg:hover:bg-transparent dark:lg:hover:bg-transparent lg:bg-transparent dark:lg:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:hover:dark:text-[#57BA47] lg:relative group {{ $menu === 'Kegiatan' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F] text-white dark:bg-gray-600' : 'text-[#1C4F0F] lg:text-gray-500 dark:text-white' }}">
+                    <a href="{{ route('jadwal') }}" class="block py-2 px-3 hover:bg-[#1C4F0F] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white lg:hover:bg-transparent dark:lg:hover:bg-transparent lg:bg-transparent dark:lg:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:hover:dark:text-[#57BA47] lg:relative group {{ $menu === 'Kegiatan' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F] text-white dark:bg-gray-600' : 'text-[#1C4F0F] lg:text-gray-500 dark:text-white' }}">
                         Kegiatan
-                        <div
-                            class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F] lg:dark:bg-[#57BA47]  group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'Kegiatan' ? '' : 'lg:scale-x-0' }}">
+                        <div class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F] lg:dark:bg-[#57BA47]  group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'Kegiatan' ? '' : 'lg:scale-x-0' }}">
                         </div>
                     </a>
                 </li>
                 <li>
-                    <a href="{{ route('penduduk') }}"
-                        class="block py-2 px-3 hover:bg-[#1C4F0F] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white lg:hover:bg-transparent dark:lg:hover:bg-transparent lg:bg-transparent dark:lg:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:hover:dark:text-[#57BA47] lg:relative group {{ $menu === 'Penduduk' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F] text-white dark:bg-gray-600' : 'text-[#1C4F0F] lg:text-gray-500 dark:text-white' }}">
+                    <a href="{{ route('penduduk') }}" class="block py-2 px-3 hover:bg-[#1C4F0F] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white lg:hover:bg-transparent dark:lg:hover:bg-transparent lg:bg-transparent dark:lg:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:hover:dark:text-[#57BA47] lg:relative group {{ $menu === 'Penduduk' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F] text-white dark:bg-gray-600' : 'text-[#1C4F0F] lg:text-gray-500 dark:text-white' }}">
                         Penduduk
-                        <div
-                            class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F] lg:dark:bg-[#57BA47] group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'Penduduk' ? '' : 'lg:scale-x-0' }}">
+                        <div class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F] lg:dark:bg-[#57BA47] group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'Penduduk' ? '' : 'lg:scale-x-0' }}">
                         </div>
                     </a>
                 </li>
                 <li>
-                    <button id="dropdownSuratLink" data-dropdown-toggle="dropdownSurat"
-                        class="flex items-center justify-between w-full py-2 px-3 hover:bg-[#1C4F0F] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white lg:bg-transparent dark:lg:bg-transparent lg:hover:bg-transparent dark:lg:hover:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:hover:dark:text-[#57BA47] lg:relative group {{ $menu === 'Surat' || $menu === 'Suratku' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F] text-white dark:bg-gray-600' : 'text-[#1C4F0F] lg:text-gray-500 dark:text-white' }}">
+                    <button id="dropdownSuratLink" data-dropdown-toggle="dropdownSurat" class="flex items-center justify-between w-full py-2 px-3 hover:bg-[#1C4F0F] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white lg:bg-transparent dark:lg:bg-transparent lg:hover:bg-transparent dark:lg:hover:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:hover:dark:text-[#57BA47] lg:relative group {{ $menu === 'Surat' || $menu === 'Suratku' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F] text-white dark:bg-gray-600' : 'text-[#1C4F0F] lg:text-gray-500 dark:text-white' }}">
                         Surat
-                        <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 10 6">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" d="m1 1 4 4 4-4" />
+                        <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
                         </svg>
-                        <div
-                            class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F] lg:dark:bg-[#57BA47] -bottom-1 group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'Surat' || $menu === 'Suratku' ? '' : 'lg:scale-x-0' }}">
+                        <div class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F] lg:dark:bg-[#57BA47] -bottom-1 group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'Surat' || $menu === 'Suratku' ? '' : 'lg:scale-x-0' }}">
                         </div>
                     </button>
                     <!-- Dropdown menu -->
-                    <div id="dropdownSurat"
-                        class="z-10 hidden font-normal overflow-hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-[#2F363E] dark:divide-gray-300">
-                        <ul class="text-sm font-semibold text-gray-700 dark:text-gray-300 "
-                            aria-labelledby="dropdownLargeButton">
+                    <div id="dropdownSurat" class="z-10 hidden font-normal overflow-hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-[#2F363E] dark:divide-gray-300">
+                        <ul class="text-sm font-semibold text-gray-700 dark:text-gray-300 " aria-labelledby="dropdownLargeButton">
                             <li>
-                                <a href="{{ route('surat') }}"
-                                    class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">Surat</a>
+                                <a href="{{ route('surat') }}" class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">Surat</a>
                             </li>
                             <li>
                                 @if (Auth::check())
-                                    <a href="{{ route('suratku') }}"
-                                        class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">Surat-Ku</a>
+                                <a href="{{ route('suratku') }}" class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">Surat-Ku</a>
                                 @else
-                                    <a href="{{ route('login') }}"
-                                        class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">Surat-Ku</a>
+                                <a href="{{ route('login') }}" class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">Surat-Ku</a>
                                 @endif
                             </li>
                         </ul>
                     </div>
                 </li>
                 <li>
-                    <a href="{{ route('bansos') }}"
-                        class="block py-2 px-3 hover:bg-[#1C4F0F] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white lg:hover:bg-transparent dark:lg:hover:bg-transparent lg:bg-transparent dark:lg:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:hover:dark:text-[#57BA47] lg:relative group {{ $menu === 'Bansos' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F] text-white dark:bg-gray-600' : 'text-[#1C4F0F] lg:text-gray-500 dark:text-white' }}">
+                    <a href="{{ route('bansos') }}" class="block py-2 px-3 hover:bg-[#1C4F0F] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white lg:hover:bg-transparent dark:lg:hover:bg-transparent lg:bg-transparent dark:lg:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:hover:dark:text-[#57BA47] lg:relative group {{ $menu === 'Bansos' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F] text-white dark:bg-gray-600' : 'text-[#1C4F0F] lg:text-gray-500 dark:text-white' }}">
                         Bansos
-                        <div
-                            class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F] lg:dark:bg-[#57BA47] group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'Bansos' ? '' : 'lg:scale-x-0' }}">
+                        <div class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F] lg:dark:bg-[#57BA47] group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'Bansos' ? '' : 'lg:scale-x-0' }}">
                         </div>
                     </a>
                 </li>
                 <li>
-                    <button id="dropdownAduanLink" data-dropdown-toggle="dropdownAduan"
-                        class="flex items-center justify-between w-full py-2 px-3 hover:bg-[#1C4F0F] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white lg:bg-transparent dark:lg:bg-transparent lg:hover:bg-transparent dark:lg:hover:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:hover:dark:text-[#57BA47] lg:relative group {{ $menu === 'Aduan' || $menu === 'Aduan-Ku' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F] text-white dark:bg-gray-600' : 'text-[#1C4F0F] lg:text-gray-500 dark:text-white' }}">
+                    <button id="dropdownAduanLink" data-dropdown-toggle="dropdownAduan" class="flex items-center justify-between w-full py-2 px-3 hover:bg-[#1C4F0F] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white lg:bg-transparent dark:lg:bg-transparent lg:hover:bg-transparent dark:lg:hover:bg-transparent lg:hover:text-[#1C4F0F] lg:p-0 lg:hover:dark:text-[#57BA47] lg:relative group {{ $menu === 'Aduan' || $menu === 'Aduan-Ku' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F] text-white dark:bg-gray-600' : 'text-[#1C4F0F] lg:text-gray-500 dark:text-white' }}">
                         Aduan
-                        <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
-                            fill="none" viewBox="0 0 10 6">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" d="m1 1 4 4 4-4" />
+                        <svg class="w-2.5 h-2.5 ms-2.5" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="m1 1 4 4 4-4" />
                         </svg>
-                        <div
-                            class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F] lg:dark:bg-[#57BA47] -bottom-1 group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'Aduan' || $menu === 'Aduanku' ? '' : 'lg:scale-x-0' }}">
+                        <div class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F] lg:dark:bg-[#57BA47] -bottom-1 group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'Aduan' || $menu === 'Aduanku' ? '' : 'lg:scale-x-0' }}">
                         </div>
                     </button>
                     {{-- Dropdown menu --}}
-                    <div id="dropdownAduan"
-                        class="z-10 hidden font-normal overflow-hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-[#2F363E] dark:divide-gray-300">
-                        <ul class="text-sm font-semibold text-gray-700 dark:text-gray-300 "
-                            aria-labelledby="dropdownLargeButton">
+                    <div id="dropdownAduan" class="z-10 hidden font-normal overflow-hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-44 dark:bg-[#2F363E] dark:divide-gray-300">
+                        <ul class="text-sm font-semibold text-gray-700 dark:text-gray-300 " aria-labelledby="dropdownLargeButton">
                             <li>
-                                <a href="{{ route('aduan') }}"
-                                    class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">Aduan</a>
+                                <a href="{{ route('aduan') }}" class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">Aduan</a>
                             </li>
                             <li>
                                 @if (Auth::check())
-                                    <a href="{{ route('aduanku') }}"
-                                        class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">Aduan-Ku</a>
+                                <a href="{{ route('aduanku') }}" class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">Aduan-Ku</a>
                                 @else
-                                    <a href="{{ route('login') }}"
-                                        class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">Aduan-Ku</a>
+                                <a href="{{ route('login') }}" class="block px-4 py-2 hover:text-[#1C4F0F] hover:bg-[#e9f4e6] dark:hover:bg-gray-600 dark:hover:text-white transition-all">Aduan-Ku</a>
                                 @endif
                             </li>
                         </ul>
@@ -371,11 +278,9 @@
                     </a> --}}
                 </li>
                 <li>
-                    <a href="{{ route('profil') }}"
-                        class="block py-2 px-3 hover:bg-[#1C4F0F] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white lg:hover:bg-transparent dark:lg:hover:bg-transparent lg:bg-transparent dark:lg:bg-transparent lg:hover:text-[#1C4F0F] lg:hover:dark:text-[#57BA47] lg:p-0 lg:relative group {{ $menu === 'Profil' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F] text-white dark:bg-gray-600' : 'text-[#1C4F0F] lg:text-gray-500 dark:text-white' }}">
+                    <a href="{{ route('profil') }}" class="block py-2 px-3 hover:bg-[#1C4F0F] hover:text-white dark:hover:bg-gray-600 dark:hover:text-white lg:hover:bg-transparent dark:lg:hover:bg-transparent lg:bg-transparent dark:lg:bg-transparent lg:hover:text-[#1C4F0F] lg:hover:dark:text-[#57BA47] lg:p-0 lg:relative group {{ $menu === 'Profil' ? 'lg:text-[#1C4F0F] lg:dark:text-[#57BA47] bg-[#1C4F0F] text-white dark:bg-gray-600' : 'text-[#1C4F0F] lg:text-gray-500 dark:text-white' }}">
                         Profil
-                        <div
-                            class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F] lg:dark:bg-[#57BA47] group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'Profil' ? '' : 'lg:scale-x-0' }}">
+                        <div class="lg:absolute lg:h-[2.5px] lg:w-full lg:bg-[#1C4F0F] lg:dark:bg-[#57BA47] group-hover:scale-x-100 lg:transition lg:ease-in-out lg:duration-500 {{ $menu === 'Profil' ? '' : 'lg:scale-x-0' }}">
                         </div>
                     </a>
                 </li>
