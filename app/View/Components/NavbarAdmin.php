@@ -47,7 +47,7 @@ class NavbarAdmin extends Component
             ->whereDate('tb_jadwal.updated_at', '<=', $today)
             ->whereDate('tb_jadwal.updated_at', '>=', $sevenDaysAgo)
             ->where('tb_jadwal.status', 'diproses')
-            ->where('tb_kartuKeluarga.rt', auth()->user()->penduduk->kartukeluarga->rt);
+            ->where('tb_kartukeluarga.rt', auth()->user()->penduduk->kartukeluarga->rt);
 
         $jadwalQueryRW = JadwalModel::join('tb_penduduk', 'tb_jadwal.pembuat_id', '=', 'tb_penduduk.id_penduduk')
             ->join('tb_useraccount', 'tb_penduduk.id_penduduk', '=', 'tb_useraccount.id_penduduk')
