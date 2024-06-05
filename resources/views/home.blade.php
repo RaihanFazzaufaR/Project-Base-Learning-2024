@@ -127,7 +127,7 @@
 <div class="lg:h-[90vh] h-fit w-[84vw] mt-[13vh] lg:py-[5vh] mx-auto relative">
     <div class="h-full w-full flex flex-col justify-between">
         <div class="font-bold  text-[#1C4F0F] dark:text-white sm:text-5xl text-4xl text-center w-full py-4 uppercase">UMKM Sekitar</div>
-        <div class="swiper mySwiper !xl:w-full !w-full">
+        <div class="swiper mySwiper !xl:w-full !w-full !px-8 lg:!px-10">
             <div class="swiper-wrapper !w-full !sm:py-20 !py-12">
                 @foreach ($dataUmkm as $dt)
                 <div class="swiper-slide relative !h-[300px] bg-white dark:bg-[#30373F] rounded-2xl shadow-lg flex flex-col overflow-hidden hover:shadow-2xl transition ease-in-out duration-500 group cursor-pointer" onclick="window.location='{{ route('umkm.detail', ['umkm_id' => $dt->umkm_id]) }}'">
@@ -466,7 +466,7 @@
     <script>
         var swiper = new Swiper(".mySwiper", {
             slidesPerView: 1,
-            spaceBetween: 20,
+            spaceBetween: 40,
             loop: true,
             pagination: {
                 el: ".swiper-pagination",
