@@ -15,16 +15,15 @@ use Illuminate\Support\Str;
                 <div class="basis-1/3">
 
                     <div class="size-80 rounded-full overflow-hidden">
-                        <form action="" method="post" id="fotoForm" enctype="multipart/form-data">
+                        <form action="{{ route('update-foto') }}" method="POST" id="fotoForm" enctype="multipart/form-data">
                             @csrf
-                            <input type="hidden" name="id" value="{{ auth()->user()->penduduk->id }}">
-                            <button onclick="showInput()" type="button" class="absolute size-15 bg-[#2d5523] dark:bg-[#57ba47] dark:hover:bg-[#4ea840] hover:bg-[#1d3018] flex justify-center items-center rounded-full text-2xl         lg:left-[430px] lg:top-[372px] sm:left-[480px] sm:top-[390px] left-[290px] top-[390px] text-white ">
+                            <input type="hidden" name="id_penduduk" value="{{ auth()->user()->penduduk->id_penduduk }}">
+                            <input type="file" name="imgUser" id="imgUser" class="hidden" onchange="submitForm()">
+                            <button type="button" class="absolute size-15 bg-[#2d5523] dark:bg-[#57ba47] dark:hover:bg-[#4ea840] hover:bg-[#1d3018] flex justify-center items-center rounded-full text-2xl lg:left-[430px] lg:top-[372px] sm:left-[480px] sm:top-[390px] left-[290px] top-[390px] text-white" onclick="showInput()">
                                 <i class="fa-solid fa-pen"></i>
                             </button>
-                            <input type="file" name="imgUser" id="imgUser" class="hidden">
                             <img src="{{ asset('assets/images/UserAccount/' . (auth()->user()->penduduk->userAccount->image ?? 'default.jpg')) }}" alt="profile" class="w-full h-full object-cover">
                         </form>
-
                     </div>
                 </div>
                 <div class="basis-2/3 my-auto">

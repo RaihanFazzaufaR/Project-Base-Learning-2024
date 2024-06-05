@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::create('tb_surat', function (Blueprint $table) {
             $table->id('surat_id');
-            
+
             // Columns from tb_permintaansurat
             $table->unsignedBigInteger('peminta_id');
             $table->date('minta_tanggal');
@@ -31,7 +31,7 @@ return new class extends Migration
             $table->string('nik', 17)->nullable();
             $table->string('nikeluarga', 20)->nullable();
             $table->enum('warganegara', ['WNI', 'WNA'])->nullable();
-            $table->enum('agama', ['islam', 'kristen', 'katolik', 'hindu', 'buddha', 'konghucu', 'lainnya']);
+            $table->enum('agama', ['islam', 'kristen', 'katolik', 'hindu', 'buddha', 'konghucu', 'lainnya'])->nullable();
             $table->string('pekerjaan', 20)->nullable();
             $table->string('alamat', 100)->nullable();
             $table->string('penyebab_kematian')->nullable();
@@ -41,8 +41,8 @@ return new class extends Migration
             $table->dateTime('tanggal_wafat')->nullable();
             $table->text('alamat_pindah')->nullable();
             $table->text('alasan_pindah')->nullable();
-            $table->integer('jumlah_keluarga_pindah')->nullable();
-            
+            $table->unsignedSmallInteger('jumlah_keluarga_pindah')->nullable();
+
             // Foreign key relationships (if needed)
             $table->foreign('peminta_id')->references('id_penduduk')->on('tb_penduduk')->onDelete('cascade');
             $table->foreign('template_id')->references('template_id')->on('tb_template')->onDelete('cascade');

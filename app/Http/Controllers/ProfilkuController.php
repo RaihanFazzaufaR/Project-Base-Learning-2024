@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\PendudukModel;
 use App\Models\UserAccountModel;
+use Illuminate\Support\Facades\Storage;
 
 class ProfilkuController extends Controller
 {
@@ -29,17 +30,19 @@ class ProfilkuController extends Controller
     }
     public function updateAccount(Request $request)
     {
-        $credentials = $request->validate([
-            'username' => 'required|string',
-            'pw-lama' => 'required|string|min:5',
-            'pw-baru' => 'nullable|string|min:5',
-        ],
-    [
-        
-        'pw-lama.required' => 'Password lama tidak boleh kosong.',
-        
-    
-    ]);
+        $credentials = $request->validate(
+            [
+                'username' => 'required|string',
+                'pw-lama' => 'required|string|min:5',
+                'pw-baru' => 'nullable|string|min:5',
+            ],
+            [
+
+                'pw-lama.required' => 'Password lama tidak boleh kosong.',
+
+
+            ]
+        );
 
         if (Auth::attempt(['username' => Auth::user()->username, 'password' => $credentials['pw-lama']])) {
             $user = Auth::user();
@@ -73,6 +76,32 @@ class ProfilkuController extends Controller
             return back()->with('error', 'Password lama salah. Silahkan cek kembali password Anda.');
         }
     }
+    public function updateFoto(Request $request)
+    {
+        // Validasi permintaan yang masuk
+        $request->validate([
+            'id_penduduk' => 'required|exists:tb_penduduk,id_penduduk',
+            'imgUser' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
 
+        $userAccount = UserAccountModel::where('id_penduduk', $request->id_penduduk)->first();
+
+        if ($userAccount) {
+
+            if ($request->hasFile('imgUser')) {
+
+                $file = $request->file('imgUser');
+                $fileName = md5(time() . $file->getClientOriginalName()) . '.' . $file->extension();
+                $request->imgUser->move(public_path('assets/images/UserAccount'), $fileName);
+
+                $userAccount->image = $fileName;
+                $userAccount->save();
+
+                return back()->with('success', 'Foto profil berhasil diperbarui.');
+            }
+        }
+
+        return back()->with('error', 'Pengguna tidak ditemukan.');
+    }
 
 }
