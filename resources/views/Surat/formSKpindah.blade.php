@@ -22,7 +22,7 @@
 
            <div class=" flex min-w-[670px] h-fit gap-3  items-center ">
                <div onclick="location.href='{{ route('sk') }}'"
-                   class=" py-1 px-4 border-2 border-[#2d5523] text-sm sm:text-lg font-semibold dark:border-yellow-500 rounded-2xl   dark:hover:text-white shadow-md hover:bg-[#2d5523] dark:hover:bg-[#e2a229] hover:text-white transition-all{{ $subMenu == 'SK' ? 'bg-[#2d5523] text-white dark:text-white dark:bg-yellow-500 ':'text-[#2d5523] dark:text-yellow-500' }}">
+                   class=" py-1 px-4 border-2 border-[#2d5523] text-sm sm:text-lg font-semibold dark:border-yellow-500 rounded-2xl   dark:hover:text-white shadow-md hover:bg-[#2d5523] dark:hover:bg-[#e2a229] hover:text-white transition-all{{ $subMenu == 'SK' ? 'dark:bg-yellow-500 bg-yellow-500 text-white' : 'text-[#2d5523] bg-white' }}  pl-3 items-center  w-fit p-1.5 border border-gray-200 cursor-pointer  dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-[#2d5523] peer-checked:text-white peer-checked:bg-yellow-500 hover:text-white hover:bg-yellow-500 dark:hover:bg-yellow-500 dark:text-white  dark:bg-[#30373F] dark:hover:text-white' }}">
                    Keterangan
                </div>
                <div onclick="location.href='{{ route('sk-pindah') }}'"
@@ -210,7 +210,7 @@
                         </div>
                     </div>
                     {{-- RT RW --}}
-                    <div class="gap-2 flex w-full flex-col sm:flex-row h-fit">
+                    {{-- <div class="gap-2 flex w-full flex-col sm:flex-row h-fit">
                         <div class="basis-1/4 h-full sm:ps-8 flex my-auto items-center">
                             <label for="rt" class="sm:text-lg text-base sm:font-bold font-semibold items-center flex w-full  text-[#2d5523] dark:text-white">
                                 RT
@@ -250,7 +250,7 @@
                                 <option value="05">05</option>
                             </select>
                         </div>
-                    </div>
+                    </div> --}}
                     {{-- Alasan Pindah --}}
                     <div class="gap-2 flex w-full flex-col sm:flex-row h-fit">
                         <div class="basis-1/4 h-full sm:ps-8 flex my-auto items-center">

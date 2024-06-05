@@ -280,7 +280,7 @@ class SuratController extends Controller
     {
         $menu = 'Surat';
         $subMenu = 'SKK';
-        return view('Surat.formSkkematian', compact('menu', 'subMenu'));
+        return view('Surat.formSKkematian', compact('menu', 'subMenu'));
     }
 
     public function storeSkKematian(Request $request)

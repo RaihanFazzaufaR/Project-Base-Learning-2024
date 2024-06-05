@@ -19,7 +19,7 @@
                         'bg-yellow-500  text-white': {{ request('kategoriSearching') ? 'true' : 'false' }},
                         'bg-gray-100 text-[#2d5523] dark:bg-[#1f2429] dark:text-gray-300': {{ request('kategoriSearching') ? 'false' : 'true' }}
                     }" class="border-gray-400 border px-9 text-center py-3 rounded-full">
-                    <i class="fa-solid fa-sliders sm:text-3xl text-xl"></i>
+                    <i class="fa-solid fa-sliders sm:text-3xl text-xl"></i> 
                 </button>
 
                 <!-- Modal Overlay -->
@@ -229,7 +229,7 @@
 
 @if ($searchingKey != '' || $kategoriSearching != '')
 <div class="relative min-h-[40vh] w-[90%] mx-auto flex flex-col mt-15 lg:mt-20 gap-18 mb-30" id="searching">
-    <div class="flex h-[10%] w-full justify-center items-center text-3xl sm:text-4xl font-bold text-green-900">Pencarian "@if ($searchingKey != '')
+    <div class="flex h-[10%] w-full justify-center items-center dark:text-white text-3xl sm:text-4xl font-bold text-green-900">Pencarian "@if ($searchingKey != '')
         {{$searchingKey}}
         @else
         {{$kategoriSearching}}
@@ -239,7 +239,7 @@
     @if (empty($dataArray['dataSearching']->toArray()))
     <div class="flex flex-col w-full justify-center items-center gap-4">
         <img src="{{ asset('assets/images/no-data.png') }}" alt="" class="w-[400px] h-[300px] object-cover">
-        <p class="text-2xl font-semibold text-green-900">Tidak ada kegiatan</p>
+        <p class="text-2xl font-semibold dark:text-white text-green-900">Tidak ada kegiatan</p>
     </div>
     @else
     <div class="grid h-[90%] w-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-14">
@@ -250,17 +250,17 @@
             </div>
             <div class="flex w-full h-fit justify-start items-center gap-5 px-7">
                 <div class="px-3 py-1 bg-green-500 rounded-xl text-sm font-medium text-white">{{ $dt->aktivitas_tipe }}</div>
-                <div class="py-1 px-4 flex border border-green-900 rounded-xl text-sm font-medium text-green-900 justify-center items-center gap-2">
+                <div class="py-1 px-4 flex border border-green-900 rounded-xl text-sm font-medium dark:border-white dark:text-white text-green-900 justify-center items-center gap-2">
                     <i class="fa-regular fa-clock"></i>
                     <p>{{ $dt->mulai_waktu }} - {{ $dt->akhir_waktu }}</p>
                 </div>
             </div>
-            <div class="text-2xl font-semibold text-green-900 flex justify-start px-7">{{ $dt->judul }}</div>
-            <div class="flex gap-3 items-center justify-start text-sm font-medium text-green-900 px-7">
+            <div class="text-2xl font-semibold text-green-900 dark:text-white flex justify-start px-7">{{ $dt->judul }}</div>
+            <div class="flex gap-3 items-center justify-start text-sm font-medium text-green-900 dark:text-white px-7">
                 <i class="fa-solid fa-map-location-dot"></i>
                 <p class="text-left">{{ $dt->lokasi }}</p>
             </div>
-            <div class="flex gap-4 items-center justify-start text-sm font-medium text-green-900 px-7">
+            <div class="flex gap-4 items-center justify-start text-sm font-medium text-green-900 dark:text-white px-7">
                 <i class="fa-solid fa-user"></i>
                 <p>
                     {{ $dt->penduduk->nama }}
@@ -269,7 +269,7 @@
                     @endif
                 </p>
             </div>
-            <div class="flex gap-5 items-center justify-start text-sm font-medium text-green-900 px-7">
+            <div class="flex gap-5 items-center justify-start text-sm font-medium text-green-900 dark:text-white px-7">
                 <i class="fa-solid fa-dollar-sign"></i>
                 <p>Rp. {{ $dt->iuran }} / KK</p>
             </div>
