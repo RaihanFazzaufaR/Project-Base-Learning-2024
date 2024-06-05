@@ -14,21 +14,18 @@ class CreateTbPindahPendudukTable extends Migration
     public function up()
     {
         Schema::create('tb_pindahPenduduk', function (Blueprint $table) {
-            $table->id('id_penduduk');
-            $table->string('nik', 17)->unique();
-            $table->string('nama', 100);
-            $table->string('tempatLahir', 25);
-            $table->date('tanggalLahir');
-            $table->enum('jenisKelamin', ['L', 'P']);
-            $table->enum('agama', ['islam', 'kristen', 'katolik', 'hindu', 'buddha', 'khonghucu', 'lainnya']);
-            $table->string('pekerjaan', 20);
-            $table->enum('statusNikah', ['belum', 'sudah']);
-            $table->enum('warganegara', ['WNI', 'WNA']);
-            $table->unsignedBigInteger('id_kartuKeluarga');
-            $table->enum('statusPenduduk', ['penduduk tetap', 'penduduk tidak tetap']);
-            $table->enum('jabatan', ['Ketua RW', 'Ketua RT', 'Bendahara', 'Sekretaris', 'Tidak ada']);
-            $table->decimal('gaji', 15)->nullable();
-            $table->string('noTelp', 15)->nullable();
+            // Primary key auto increment starting from 1
+            $table->id('id_PindahPenduduk');
+
+            // Foreign keys
+            $table->unsignedBigInteger('id_foreign_penduduk');
+            $table->unsignedBigInteger('id_foreign_surat');
+
+            // Define foreign key constraints
+            $table->foreign('id_foreign_penduduk')->references('id_penduduk')->on('tb_penduduk')->onDelete('cascade');
+            $table->foreign('id_foreign_surat')->references('surat_id')->on('tb_surat')->onDelete('cascade');
+
+            // Timestamps for record tracking
             $table->timestamps();
         });
     }
