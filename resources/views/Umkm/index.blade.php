@@ -389,7 +389,7 @@
                 <ul class="grid w-full">
                     <li>
                         <a href="{{ route('umkm') }}"
-                            class="inline-flex pl-3 items-center justify-between w-full p-1.5 text-[#2d5523]  dark:border-gray-300   cursor-pointer dark:hover:text-gray-300   border border-gray-200'dark:peer-checked:text-blue-500 peer-checked:border-[#2d5523] peer-checked:text-white  hover:text-white hover:bg-yellow-500  dark:bg-[#30373F] dark:hover:bg-gray-700 {{ $kategori === 0 ? 'bg-yellow-500 dark:bg-[#505c6a] text-white border border-gray-200' : 'bg-white dark:text-gray-300' }}">
+                            class="inline-flex pl-3 items-center justify-between w-full p-1.5 text-[#2d5523]  dark:border-gray-300   cursor-pointer dark:hover:text-white   border border-gray-200'dark:peer-checked:text-blue-500 peer-checked:border-[#2d5523] peer-checked:text-white  hover:text-white hover:bg-[#E2A229]  dark:bg-[#30373F] dark:hover:bg-[#E2A229] {{ $kategori === 0 ? 'bg-yellow-500 dark:bg-yellow-500 text-white border border-gray-200 dark:text-white' : 'bg-white dark:text-white' }}">
                             <div class="block">
                                 <div class="w-full text-lg font-semibold">Semua Kategori</div>
                             </div>
@@ -398,7 +398,7 @@
                     @foreach ($categories as $category)
                         <li>
                             <a href="{{ route('umkm.category', $category->kategori_id) }}"
-                                class="inline-flex pl-3 items-center justify-between w-full p-1.5 text-[#2d5523]  dark:border-gray-300   cursor-pointer dark:hover:text-gray-300   border border-gray-200'dark:peer-checked:text-blue-500 peer-checked:border-[#2d5523] peer-checked:text-white  hover:text-white hover:bg-yellow-500  dark:bg-[#30373F] dark:hover:bg-gray-700 {{ $kategori == $category->kategori_id ? 'bg-yellow-500 dark:bg-[#505c6a] text-white border border-gray-200' : 'bg-white dark:text-gray-300' }}">
+                                class="inline-flex pl-3 items-center justify-between w-full p-1.5 text-[#2d5523]  dark:border-gray-300   cursor-pointer dark:hover:text-white   border border-gray-200'dark:peer-checked:text-blue-500 peer-checked:border-[#2d5523] peer-checked:text-white  hover:text-white hover:bg-[#E2A229]  dark:bg-[#30373F] dark:hover:bg-[#E2A229] {{ $kategori == $category->kategori_id ? 'bg-yellow-500 dark:bg-yellow-500 text-white border border-gray-200 dark:text-white' : 'bg-white dark:text-white' }}">
                                 <div class="block">
                                     <div class="w-full text-lg font-semibold">{{ $category->nama_kategori }}</div>
                                 </div>

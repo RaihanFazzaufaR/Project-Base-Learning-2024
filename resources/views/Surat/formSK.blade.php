@@ -51,7 +51,7 @@
             <div class=" p-2 border-2 rounded-sm">
                 <ul class="grid w-full">
                     <li onclick="location.href='{{ route('sk') }}'"
-                        class=" {{ $subMenu == 'SK' ? 'dark:bg-yellow-500 bg-yellow-500 text-white  ' : 'text-[#2d5523] bg-white' }} inline-flex pl-3 items-center justify-between w-full p-1.5  border border-gray-200 cursor-pointer  dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-[#2d5523] peer-checked:text-white peer-checked:bg-yellow-500 hover:text-white hover:bg-yellow-500 dark:hover:bg-yellow-500 dark:text-white  dark:bg-[#30373F] dark:hover:text-white ">
+                        class=" {{ $subMenu == 'SK' ? 'dark:bg-yellow-500 bg-yellow-500 text-white  ' : 'text-[#2d5523] bg-white' }} inline-flex pl-3 items-center justify-between w-full p-1.5  border border-gray-200 cursor-pointer  dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-[#2d5523] peer-checked:text-white peer-checked:bg-yellow-500 hover:text-white hover:bg-[#E2A229] dark:hover:bg-[#E2A229] dark:text-white  dark:bg-[#30373F] dark:hover:text-white ">
                         <div class="block">
                             <div class="w-full text-lg font-semibold">
                                 Surat Keterangan
@@ -61,7 +61,7 @@
                 </ul>
                 <ul class="grid w-full">
                     <li onclick="location.href='{{ route('sk-pindah') }}'"
-                        class="{{ $subMenu == 'SKP' ? 'dark:bg-yellow-500 bg-yellow-500 text-white  ' : 'text-[#2d5523] bg-white' }} inline-flex pl-3 items-center justify-between w-full p-1.5 border border-gray-200 cursor-pointer  dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-[#2d5523] peer-checked:text-white peer-checked:bg-yellow-500 hover:text-white hover:bg-yellow-500 dark:hover:bg-yellow-500 dark:text-white  dark:bg-[#30373F] dark:hover:text-white">
+                        class="{{ $subMenu == 'SKP' ? 'dark:bg-yellow-500 bg-yellow-500 text-white  ' : 'text-[#2d5523] bg-white' }} inline-flex pl-3 items-center justify-between w-full p-1.5 border border-gray-200 cursor-pointer  dark:border-gray-700 dark:peer-checked:text-blue-500 peer-checked:border-[#2d5523] peer-checked:text-white peer-checked:bg-yellow-500 hover:text-white hover:bg-[#E2A229] dark:hover:bg-[#E2A229] dark:text-white  dark:bg-[#30373F] dark:hover:text-white">
                         <div class="block">
                             <div class="w-full text-lg font-semibold">
                                 Surat Keterangan Pindah
