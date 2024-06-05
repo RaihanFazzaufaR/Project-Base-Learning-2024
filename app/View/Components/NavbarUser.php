@@ -2,15 +2,13 @@
 
 namespace App\View\Components;
 
-use App\Models\JadwalModel;
-use App\Models\PendudukModel;
 use Carbon\Carbon;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\DB;
 use Illuminate\View\Component;
 
-class Navbar extends Component
+class NavbarUser extends Component
 {
     public $menu;
     public function __construct($menu)
@@ -24,7 +22,7 @@ class Navbar extends Component
     public function render(): View|Closure|string
     {
         $messages = $this->messages();
-        return view('components.navbar', compact('messages'));
+        return view('components.navbar-user', compact('messages'));
     }
 
     private function messages()

@@ -79,8 +79,25 @@ class NavbarAdmin extends Component
             ->whereDate('tb_umkm.updated_at', '>=', $sevenDaysAgo)
             ->where('tb_umkm.status', 'diproses');
 
-        
-        $data = (auth()->user()->penduduk->jabatan == 'Ketua RW') ? $jadwalQueryRW->unionAll($umkmQuery)->orderBy('updated_at', 'desc')->get() : $jadwalQueryRT->get();
+        $bansosQuery = DB::table('tb_ajuan_bansos')
+            ->join('tb_kartukeluarga', 'tb_ajuan_bansos.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')
+            ->join('tb_penduduk', 'tb_kartukeluarga.kepalaKeluarga', '=', 'tb_penduduk.nik')
+            ->join('tb_useraccount', 'tb_penduduk.id_penduduk', '=', 'tb_useraccount.id_penduduk')
+            ->select(
+                DB::raw('"Maaf anda tidak termasuk ke dalam kriteria penerima bansos" as reason'),
+                'tb_ajuan_bansos.updated_at',
+                'tb_ajuan_bansos.status',
+                DB::raw('tb_ajuan_bansos.id_kartuKeluarga as id'),
+                DB::raw("'tb_bansos' as source"),
+                'tb_penduduk.nama as nama',
+                'tb_useraccount.image as image'
+            )
+            ->whereDate('tb_ajuan_bansos.updated_at', '<=', $today)
+            ->whereDate('tb_ajuan_bansos.updated_at', '>=', $sevenDaysAgo)
+            ->where('tb_ajuan_bansos.status', 'diproses')
+            ->where('tb_ajuan_bansos.id_kartuKeluarga', auth()->user()->penduduk->id_kartuKeluarga);
+
+        $data = (auth()->user()->penduduk->jabatan == 'Ketua RW') ? $jadwalQueryRW->union($umkmQuery)->orderBy('updated_at', 'desc')->get() : $jadwalQueryRT->unionAll($bansosQuery)->orderBy('updated_at', 'desc')->get();
 
         // dd($umkmQuery);
 

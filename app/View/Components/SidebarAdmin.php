@@ -7,6 +7,7 @@ use App\Models\JadwalModel;
 use App\Models\UmkmModel;
 use Closure;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\DB;
 use Illuminate\View\Component;
 
 class SidebarAdmin extends Component
@@ -43,7 +44,13 @@ class SidebarAdmin extends Component
                     });
                 })
                 ->count();
+
+            $bansosRequest = DB::table('tb_ajuan_bansos')
+                ->join('tb_kartukeluarga', 'tb_ajuan_bansos.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')
+                ->where('tb_ajuan_bansos.status', 'diproses')
+                ->where('tb_kartukeluarga.rt', auth()->user()->penduduk->kartuKeluarga->rt)
+                ->count();
         }
-        return view('components.sidebar-admin', compact('UmkmRequest', 'KegiatanRequest', 'AduanRequest'));
+        return view('components.sidebar-admin', compact('UmkmRequest', 'KegiatanRequest', 'AduanRequest', 'bansosRequest'));
     }
 }
