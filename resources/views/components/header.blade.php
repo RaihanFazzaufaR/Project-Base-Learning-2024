@@ -24,5 +24,5 @@
             </div>
         </div>
     </div>
-    <x-navbar menu="{{ $menu }}" />
+    <x-navbar-user menu="{{ $menu }}" />
     <div class="bg-white dark:bg-[#24292d] min-h-[20vh] w-[100%] rounded-b-[100px] shadow-xl pb-[13vh] scrollbar-none">
