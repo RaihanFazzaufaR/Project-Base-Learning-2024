@@ -34,10 +34,10 @@ class BansosController extends Controller
         ];
         $current_month = Carbon::now()->month;
         $data_records = AjuanBansosModel::whereMonth('tb_ajuan_bansos.created_at', $current_month)
-            ->join('tb_kartuKeluarga', 'tb_ajuan_bansos.id_kartuKeluarga', '=', 'tb_kartuKeluarga.id_kartuKeluarga')
-            ->join('tb_penduduk', 'tb_kartuKeluarga.kepalaKeluarga', '=', 'tb_penduduk.nik')
+            ->join('tb_kartukeluarga', 'tb_ajuan_bansos.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')
+            ->join('tb_penduduk', 'tb_kartukeluarga.kepalaKeluarga', '=', 'tb_penduduk.nik')
             ->where('tb_ajuan_bansos.status', 'diterima')
-            ->select('tb_ajuan_bansos.*', 'tb_kartuKeluarga.niKeluarga', 'tb_kartuKeluarga.rt', 'tb_penduduk.nama')
+            ->select('tb_ajuan_bansos.*', 'tb_kartukeluarga.niKeluarga', 'tb_kartukeluarga.rt', 'tb_penduduk.nama')
             ->paginate(10)
             ->map(function ($record) {
                 $record->created_at_text = $record->created_at->format('F Y');
@@ -205,11 +205,11 @@ class BansosController extends Controller
 
         $current_month = Carbon::now()->month;
         $data_records = AjuanBansosModel::whereMonth('tb_ajuan_bansos.created_at', $current_month)
-            ->join('tb_kartuKeluarga', 'tb_ajuan_bansos.id_kartuKeluarga', '=', 'tb_kartuKeluarga.id_kartuKeluarga')
-            ->join('tb_penduduk', 'tb_kartuKeluarga.kepalaKeluarga', '=', 'tb_penduduk.nik')
-            ->where('tb_kartuKeluarga.rt', $RT)
+            ->join('tb_kartukeluarga', 'tb_ajuan_bansos.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')
+            ->join('tb_penduduk', 'tb_kartukeluarga.kepalaKeluarga', '=', 'tb_penduduk.nik')
+            ->where('tb_kartukeluarga.rt', $RT)
             // ->where('tb_ajuan_bansos.status', 'diproses')
-            ->select('tb_ajuan_bansos.*', 'tb_kartuKeluarga.*', 'tb_penduduk.nama')
+            ->select('tb_ajuan_bansos.*', 'tb_kartukeluarga.*', 'tb_penduduk.nama')
             ->get();
 
         // Convert data 
@@ -390,15 +390,15 @@ class BansosController extends Controller
         $searchTerm = $request->input('search');
         // return $searchTerm;
         $data_records = AjuanBansosModel::whereMonth('tb_ajuan_bansos.created_at', $current_month)
-            ->join('tb_kartuKeluarga', 'tb_ajuan_bansos.id_kartuKeluarga', '=', 'tb_kartuKeluarga.id_kartuKeluarga')
-            ->join('tb_penduduk', 'tb_kartuKeluarga.kepalaKeluarga', '=', 'tb_penduduk.nik')
+            ->join('tb_kartukeluarga', 'tb_ajuan_bansos.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')
+            ->join('tb_penduduk', 'tb_kartukeluarga.kepalaKeluarga', '=', 'tb_penduduk.nik')
             ->where('tb_ajuan_bansos.status', 'diterima')
             ->where(function ($query) use ($searchTerm) {
                 $query->where('tb_penduduk.nama', 'like', '%' . $searchTerm . '%')
-                    ->orWhere('tb_kartuKeluarga.niKeluarga', 'like', '%' . $searchTerm . '%')
-                    ->orWhere('tb_kartuKeluarga.rt', 'like', '%' . $searchTerm . '%');
+                    ->orWhere('tb_kartukeluarga.niKeluarga', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('tb_kartukeluarga.rt', 'like', '%' . $searchTerm . '%');
             })
-            ->select('tb_ajuan_bansos.*', 'tb_kartuKeluarga.niKeluarga', 'tb_kartuKeluarga.rt', 'tb_penduduk.nama')
+            ->select('tb_ajuan_bansos.*', 'tb_kartukeluarga.niKeluarga', 'tb_kartukeluarga.rt', 'tb_penduduk.nama')
             ->get()
             ->map(function ($record) {
                 $record->created_at_text = $record->created_at->format('F Y');
@@ -430,10 +430,10 @@ class BansosController extends Controller
         $tahun = $request->input('tahun', Carbon::now()->format('Y'));
         $rt = $request->input('rt');
         // return $request->all();
-        $query = AjuanBansosModel::join('tb_kartuKeluarga', 'tb_ajuan_bansos.id_kartuKeluarga', '=', 'tb_kartuKeluarga.id_kartuKeluarga')
-            ->join('tb_penduduk', 'tb_kartuKeluarga.kepalaKeluarga', '=', 'tb_penduduk.nik')
+        $query = AjuanBansosModel::join('tb_kartukeluarga', 'tb_ajuan_bansos.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')
+            ->join('tb_penduduk', 'tb_kartukeluarga.kepalaKeluarga', '=', 'tb_penduduk.nik')
             ->where('tb_ajuan_bansos.status', 'diproses')
-            ->select('tb_ajuan_bansos.*', 'tb_kartuKeluarga.*', 'tb_penduduk.nama');
+            ->select('tb_ajuan_bansos.*', 'tb_kartukeluarga.*', 'tb_penduduk.nama');
 
         if ($bulan) {
             $query->whereMonth('tb_ajuan_bansos.created_at', $bulan);
@@ -444,7 +444,7 @@ class BansosController extends Controller
         }
 
         if ($rt) {
-            $query->where('tb_kartuKeluarga.rt', $rt);
+            $query->where('tb_kartukeluarga.rt', $rt);
         }
 
         $data_records = $query->get();
