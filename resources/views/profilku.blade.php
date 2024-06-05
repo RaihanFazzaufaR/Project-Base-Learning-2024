@@ -205,6 +205,7 @@ use Illuminate\Support\Str;
             </div>
         </div>
     </div>
+</div>
 
     <x-footer>
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
