@@ -5,8 +5,9 @@
         <div class="flex items-center justify-between gap-2 py-4 pr-3">
             <a href="/admin" class="w-full flex justify-center items-center gap-3 font-bold h-fit text-black dark:text-white text-4xl">
                 <img src="{{ asset('assets/images/logo.png') }}" alt="Logo" class="h-12 w-12" />
-                <div class="font-extrabold bg-gradient-to-r from-[#57BA47] to-black bg-clip-text h-12 flex justify-center items-end text-transparent dark:to-white">
-                    <p>ꦱꦶꦫꦮ</p>
+                <div class="font-extrabold bg-gradient-to-r from-[#57BA47] to-black bg-clip-text h-fit flex flex-col justify-center items-start text-transparent dark:to-white">
+                    <p class="text-lg">ꦱꦶꦫꦮ</p>
+                    <p class="text-lg">SIRAWA</p>
                 </div>
             </a>
 
