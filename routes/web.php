@@ -49,6 +49,11 @@ Route::group(['prefix' => 'umkm'], function () {
     Route::get('/search', [UmkmController::class, 'search'])->name('umkm.search');
     Route::get('/detail/{umkm_id}', [UmkmController::class, 'getDetailUmkm'])->name('umkm.detail');
 });
+
+Route::group(['prefix' => 'aduan'], function () {
+    Route::get('/', [AduanController::class, 'index'])->name('aduan');
+});
+
 Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['loginCheck:3']], function () {
         // Route Penduduk
@@ -69,7 +74,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         //Route Aduan
         Route::group(['prefix' => 'aduan'], function () {
-            Route::get('/', [AduanController::class, 'index'])->name('aduan');
+            // Route::get('/', [AduanController::class, 'index'])->name('aduan');
             Route::get('/aduanku', [AduanController::class, 'indexAduanku'])->name('aduanku');
             Route::post('/aduanku', [AduanController::class, 'addResponse'])->name('add-response');
             Route::delete('/aduanku/delete/{id}', [AduanController::class, 'destroyAduan'])->name('aduan.destroy');
@@ -120,7 +125,6 @@ Route::group(['middleware' => ['auth']], function () {
             Route::delete('/delete/{umkm_id}', [UmkmController::class, 'destroyUmkm'])->name('umkm.destroy');
             Route::post('/cancel/{umkm_id}', [UmkmController::class, 'cancelPengajuan'])->name('umkm.cancel');
             Route::get('/search-umkm', [UmkmController::class, 'umkmkuSearch'])->name('umkmku.search');
-
         });
     });
 
@@ -151,7 +155,6 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::get('/tolak-bansos', [AdminBansosController::class, 'rejectBansos'])->name('rjct');
                 Route::post('/search-bansos', [AdminBansosController::class, 'searchBansos'])->name('search-bansos');
                 Route::post('/filter-bansos', [AdminBansosController::class, 'filterBansos'])->name('filter-bansos');
-
             });
             Route::prefix('umkm')->group(function () {
                 Route::get('/', [AdminUmkmController::class, 'index'])->name('umkm-admin');
