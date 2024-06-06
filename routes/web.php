@@ -173,6 +173,7 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::get('/ajuan-persuratan', [AdminPersuratanController::class, 'ajuanPersuratan'])->name('ajuan-persuratan-admin');
                 Route::get('/template-surat', [AdminPersuratanController::class, 'templateSurat'])->name('template-surat-admin');
                 Route::get('/persuratan/search', [AdminPersuratanController::class, 'search'])->name('persuratan-admin-search');
+                Route::get('/persuratan/filter', [AdminPersuratanController::class, 'filter'])->name('persuratan-admin-filter');
             });
             Route::prefix('akun-admin')->group(function () {
                 Route::get('/', [AdminAkunAdminController::class, 'index'])->name('akun-admin');

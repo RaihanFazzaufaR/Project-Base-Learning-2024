@@ -81,8 +81,40 @@ class PersuratanController extends Controller
         return view('Admin.Persuratan.index', compact('dataSurat', 'page', 'selected'));
     }
     
-
+    public function filter(Request $request)
+    {
+        $page = 'daftarPersuratan';
+        $selected = 'Persuratan';
     
+        // Ambil nilai jenis surat dari input
+        $jenisSurat = $request->input('jenis-surat');
+    
+        // Build the query based on the selected jenis surat
+        $query = SuratModel::select('tb_surat.*', 'tb_penduduk.nama')
+            ->join('tb_penduduk', 'tb_surat.peminta_id', '=', 'tb_penduduk.id_penduduk');
+    
+        if (!empty($jenisSurat)) {
+            // Jika dipilih jenis surat tertentu, sesuaikan filter berdasarkan template_id
+            $query->where('tb_surat.template_id', $jenisSurat);
+        }
+    
+        // Lakukan pengurutan dan paginasi data
+        $dataSurat = $query->orderBy('tb_surat.minta_tanggal', 'desc')
+            ->paginate(10)
+            ->withQueryString();
+    
+        // Transformasi data jika diperlukan
+        $dataSurat->getCollection()->transform(function ($item) {
+            if ($item->peminta) {
+                $item->nama = $item->peminta->nama;
+            } else {
+                $item->nama = null;
+            }
+            return $item;
+        });
+    
+        return view('Admin.Persuratan.index', compact('dataSurat', 'page', 'selected'));
+    }
 
     public function ajuanPersuratan()
     {
