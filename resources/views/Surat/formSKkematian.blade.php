@@ -109,7 +109,8 @@
                                 Pelapor</label>
                         </div>
                         <div class="basis-3/4 h-full flex items-center">
-                            <input id="nama_pelapor" name="nama_pelapor" placeholder="Masukkan Nama Pelapor Kematian"
+                            <input type="hidden" name="nik_pelapor" value="{{ Auth::user()->penduduk->id_penduduk }}">
+                            <input id="nama_pelapor" name="nama_pelapor" value="{{ Auth::user()->penduduk->nama }}" readonly
                                 class="bg-white border-2 border-[#2d5523] dark:bg-[#505c6a] sm:text-lg text-base sm:font-bold font-semibold dark:border-gray-500 dark:placeholder-gray-400 dark:text-white text-[#2d5523] shadow-md placeholder-[#34662C]/50  rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full sm:p-2.5 p-1.5  dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             {{-- <input type="hidden" id="id_penduduk" name="id_penduduk" value="{{ Auth::user()->penduduk->id_penduduk }}"> --}}
                         </div>

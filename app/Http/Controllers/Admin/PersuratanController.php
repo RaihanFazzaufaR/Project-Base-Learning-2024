@@ -23,6 +23,12 @@ class PersuratanController extends Controller
             ->orderBy('tb_surat.minta_tanggal', 'desc')
             ->paginate(10);
 
+        foreach($dataSurat as $surat) {
+            if($surat->template_id == 3){
+                $surat->nama_wafat = PendudukModel::where('nik', $surat->nik)->first()->nama;
+            }
+        }
+
         return view('Admin.Persuratan.index', compact('dataSurat', 'page', 'selected'));
     }
 

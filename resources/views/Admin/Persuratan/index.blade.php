@@ -491,7 +491,7 @@
                                                                             <label
                                                                                 class="block mb-2 text-sm font-bold">Nama</label>
                                                                             <input name="nama" id="nama"
-                                                                                value="{{ $surat->nama }}"
+                                                                                value="{{ $surat->nama_wafat }}"
                                                                                 class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"
                                                                                 readonly>
                                                                         </div>
