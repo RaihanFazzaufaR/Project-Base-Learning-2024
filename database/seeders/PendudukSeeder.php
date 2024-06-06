@@ -5,6 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Faker\Factory as Faker;
 
 class PendudukSeeder extends Seeder
 {
@@ -37,8 +38,48 @@ class PendudukSeeder extends Seeder
             ['nik' => "3570000000000131", 'nama' => "Eko Wijaya", 'tempatLahir' => "Mojokerto", 'tanggalLahir' => '1988-12-19', 'jenisKelamin' => 'L',  'agama' => 'katolik', 'pekerjaan' => 'mahasiswa', 'statusNikah' => 'belum', 'warganegara' => 'WNA', 'id_kartuKeluarga' => 14, 'statusPenduduk' => 'penduduk tidak tetap', 'jabatan' => 'Tidak Ada', 'gaji' => 3000000, 'noTelp' => '081234567908'],
             ['nik' => "3570000000000141", 'nama' => "Surya Pratama", 'tempatLahir' => "Sidoarjo", 'tanggalLahir' => '1945-12-19', 'jenisKelamin' => 'L',  'agama' => 'katolik', 'pekerjaan' => 'mahasiswa', 'statusNikah' => 'belum', 'warganegara' => 'WNA', 'id_kartuKeluarga' => 15, 'statusPenduduk' => 'penduduk tidak tetap', 'jabatan' => 'Tidak Ada', 'gaji' => 3000000, 'noTelp' => '081234567909'],
             ['nik' => "3570000000000151", 'nama' => "Sari Ningsih", 'tempatLahir' => "Surabaya", 'tanggalLahir' => '1950-12-19', 'jenisKelamin' => 'P',  'agama' => 'buddha', 'pekerjaan' => 'mahasiswa', 'statusNikah' => 'belum', 'warganegara' => 'WNA', 'id_kartuKeluarga' => 16, 'statusPenduduk' => 'penduduk tidak tetap', 'jabatan' => 'Tidak Ada', 'gaji' => 3000000, 'noTelp' => '081234567910'],
-            ['nik' => "3570000000000192", 'nama' => "Tirta Nurrochman Bintang Prawira", 'tempatLahir' => "Surabaya", 'tanggalLahir' => '1995-12-19', 'jenisKelamin' => 'L',  'agama' => 'islam', 'pekerjaan' => 'mahasiswa', 'statusNikah' => 'belum', 'warganegara' => 'WNI', 'id_kartuKeluarga' => 8, 'statusPenduduk' => 'penduduk tetap', 'jabatan' => 'Ketua RT', 'gaji' => 3000000, 'noTelp' => '081234567911']
+            ['nik' => "3570000000000161", 'nama' => "Tirta Nurrochman Bintang Prawira", 'tempatLahir' => "Surabaya", 'tanggalLahir' => '1995-12-19', 'jenisKelamin' => 'L',  'agama' => 'islam', 'pekerjaan' => 'mahasiswa', 'statusNikah' => 'belum', 'warganegara' => 'WNI', 'id_kartuKeluarga' => 17, 'statusPenduduk' => 'penduduk tetap', 'jabatan' => 'Ketua RT', 'gaji' => 3000000, 'noTelp' => '081234567911'],
+            ['nik' => "3570000000000171", 'nama' => "Eko Candra", 'tempatLahir' => "Surabaya", 'tanggalLahir' => '1995-12-19', 'jenisKelamin' => 'L',  'agama' => 'islam', 'pekerjaan' => 'mahasiswa', 'statusNikah' => 'belum', 'warganegara' => 'WNI', 'id_kartuKeluarga' => 18, 'statusPenduduk' => 'penduduk tetap', 'jabatan' => 'Tidak Ada', 'gaji' => 3000000, 'noTelp' => '081234567911'],
+            ['nik' => "3570000000000181", 'nama' => "Aditya Wijaya", 'tempatLahir' => "Jakarta", 'tanggalLahir' => '1989-7-20', 'jenisKelamin' => 'L',  'agama' => 'kristen', 'pekerjaan' => 'PNS', 'statusNikah' => 'sudah', 'warganegara' => 'WNI', 'id_kartuKeluarga' => 19, 'statusPenduduk' => 'penduduk tetap', 'jabatan' => 'Tidak Ada', 'gaji' => 15000000, 'noTelp' => '081234567911'],
+            ['nik' => "3570000000000191", 'nama' => "Andi Firmansyah", 'tempatLahir' => "Bandung", 'tanggalLahir' => '1975-8-5', 'jenisKelamin' => 'L',  'agama' => 'buddha', 'pekerjaan' => 'Insinyur', 'statusNikah' => 'sudah', 'warganegara' => 'WNI', 'id_kartuKeluarga' => 20, 'statusPenduduk' => 'penduduk tetap', 'jabatan' => 'Tidak Ada', 'gaji' => 7500000, 'noTelp' => '081234567911'],
+            ['nik' => "3570000000000201", 'nama' => "Budi Santoso", 'tempatLahir' => "Gresik", 'tanggalLahir' => '1992-4-10', 'jenisKelamin' => 'L',  'agama' => 'hindu', 'pekerjaan' => 'Dokter', 'statusNikah' => 'sudah', 'warganegara' => 'WNI', 'id_kartuKeluarga' => 21, 'statusPenduduk' => 'penduduk tetap', 'jabatan' => 'Tidak Ada', 'gaji' => 100000000, 'noTelp' => '081234567911'],
+            ['nik' => "3570000000000211", 'nama' => "Rudi Hartono", 'tempatLahir' => "Medan", 'tanggalLahir' => '1980-12-15', 'jenisKelamin' => 'L',  'agama' => 'islam', 'pekerjaan' => 'Dosen', 'statusNikah' => 'sudah', 'warganegara' => 'WNI', 'id_kartuKeluarga' => 22, 'statusPenduduk' => 'penduduk tetap', 'jabatan' => 'Tidak Ada', 'gaji' => 15000000, 'noTelp' => '081234567911'],
+            ['nik' => "3570000000000221", 'nama' => "Agus Salim", 'tempatLahir' => "Semarang", 'tanggalLahir' => '1991-1-1', 'jenisKelamin' => 'L',  'agama' => 'konghucu', 'pekerjaan' => 'Guru', 'statusNikah' => 'sudah', 'warganegara' => 'WNI', 'id_kartuKeluarga' => 23, 'statusPenduduk' => 'penduduk tetap', 'jabatan' => 'Tidak Ada', 'gaji' => 3570000, 'noTelp' => '081234567911'],
+            ['nik' => "3570000000000231", 'nama' => "Joko Suryadi", 'tempatLahir' => "Malang", 'tanggalLahir' => '1999-9-9', 'jenisKelamin' => 'L',  'agama' => 'buddha', 'pekerjaan' => 'Koki', 'statusNikah' => 'sudah', 'warganegara' => 'WNI', 'id_kartuKeluarga' => 24, 'statusPenduduk' => 'penduduk tetap', 'jabatan' => 'Tidak Ada', 'gaji' => 6890000, 'noTelp' => '081234567911'],
+            ['nik' => "3570000000000241", 'nama' => "Rima Dewi Kusuma", 'tempatLahir' => "Bandung", 'tanggalLahir' => '1990-05-15', 'jenisKelamin' => 'P',  'agama' => 'islam', 'pekerjaan' => 'Guru', 'statusNikah' => 'sudah', 'warganegara' => 'WNI', 'id_kartuKeluarga' => 25, 'statusPenduduk' => 'penduduk tetap', 'jabatan' => 'Tidak ada', 'gaji' => 3000000, 'noTelp' => '081234567911'],
+            ['nik' => "3570000000000251", 'nama' => "Budi Pratama Nugroho", 'tempatLahir' => "Surabaya", 'tanggalLahir' => '1988-09-20', 'jenisKelamin' => 'L',  'agama' => 'Kristen', 'pekerjaan' => 'Wiraswasta', 'statusNikah' => 'belum', 'warganegara' => 'WNI', 'id_kartuKeluarga' => 26, 'statusPenduduk' => 'penduduk tetap', 'jabatan' => 'Tidak ada', 'gaji' => 3000000, 'noTelp' => '081234567911'],
+            ['nik' => "3570000000000261", 'nama' => "Agung Wijaya Santoso", 'tempatLahir' => "Jakarta", 'tanggalLahir' => '1985-07-08', 'jenisKelamin' => 'L',  'agama' => 'islam', 'pekerjaan' => 'insinyur', 'statusNikah' => 'sudah', 'warganegara' => 'WNI', 'id_kartuKeluarga' => 27, 'statusPenduduk' => 'penduduk tetap', 'jabatan' => 'Tidak ada', 'gaji' => 3000000, 'noTelp' => '081234567911'],
+            ['nik' => "3570000000000271", 'nama' => "Reza Saputra Ramadhan", 'tempatLahir' => "Surakarta", 'tanggalLahir' => '1991-12-30', 'jenisKelamin' => 'L',  'agama' => 'islam', 'pekerjaan' => 'Programmer', 'statusNikah' => 'belum', 'warganegara' => 'WNI', 'id_kartuKeluarga' => 28, 'statusPenduduk' => 'penduduk tetap', 'jabatan' => 'Tidak ada', 'gaji' => 3000000, 'noTelp' => '081234567911'],
+            ['nik' => "3570000000000281", 'nama' => "Yoga Susanto Pratama", 'tempatLahir' => "Semarang", 'tanggalLahir' => '1993-02-08', 'jenisKelamin' => 'L',  'agama' => 'islam', 'pekerjaan' => 'Akademisi', 'statusNikah' => 'belum', 'warganegara' => 'WNI', 'id_kartuKeluarga' => 29, 'statusPenduduk' => 'penduduk tetap', 'jabatan' => 'Tidak ada', 'gaji' => 3000000, 'noTelp' => '081234567911'],
+            ['nik' => "3570000000000291", 'nama' => "Novita Sari Dewi", 'tempatLahir' => "Bandung", 'tanggalLahir' => '1996-10-12', 'jenisKelamin' => 'P',  'agama' => 'buddha', 'pekerjaan' => 'Penulis', 'statusNikah' => 'belum', 'warganegara' => 'WNI', 'id_kartuKeluarga' => 30, 'statusPenduduk' => 'penduduk tetap', 'jabatan' => 'Tidak ada', 'gaji' => 3000000, 'noTelp' => '081234567911'],
+            ['nik' => "3570000000000301", 'nama' => "Dwi Kurniawan Siregar", 'tempatLahir' => "Medan", 'tanggalLahir' => '1989-04-05', 'jenisKelamin' => 'L',  'agama' => 'islam', 'pekerjaan' => 'Konsultan', 'statusNikah' => 'sudah', 'warganegara' => 'WNI', 'id_kartuKeluarga' => 31, 'statusPenduduk' => 'penduduk tetap', 'jabatan' => 'Tidak ada', 'gaji' => 3000000, 'noTelp' => '081234567911'],
+
+
         ];
+        $faker = Faker::create('id_ID');
+
+        for ($i = 17; $i <= 100; $i++) {
+            $lastDigit = rand(2, 9); // Pilih angka acak antara 2 hingga 9 untuk angka terakhir pada nik
+            $data[] = [
+                'nik' => '3570000000000' . str_pad($i, 3, '0', STR_PAD_LEFT) . $lastDigit, // Menambahkan angka terakhir sesuai variabel $lastDigit
+                'nama' => $faker->name(),
+                'tempatLahir' => 'Kota ' . ($i % 10 + 1),
+                'tanggalLahir' => '19' . rand(60, 99) . '-' . str_pad(rand(1, 12), 2, '0', STR_PAD_LEFT) . '-' . str_pad(rand(1, 28), 2, '0', STR_PAD_LEFT),
+                'jenisKelamin' => rand(0, 1) ? 'L' : 'P',
+                'agama' => ['islam', 'kristen', 'katolik', 'hindu', 'buddha', 'konghucu', 'lainnya'][rand(0, 6)],
+                'pekerjaan' => ['Petani', 'Guru', 'Karyawan', 'Pedagang', 'Ibu Rumah Tangga'][rand(0, 4)],
+                'statusNikah' => rand(0, 1) ? 'belum' : 'sudah',
+                'warganegara' => 'WNI',
+                'id_kartuKeluarga' => rand(1, 31),
+                'statusPenduduk' => rand(0, 1) ? 'penduduk tetap' : 'penduduk tidak tetap',
+                'jabatan' => 'Tidak ada',
+                'gaji' => rand(0, 1) ? rand(1000000, 5000000) : null,
+                'noTelp' => '0812' . rand(10000000, 99999999),
+            ];
+        }
+        
+
+
         DB::table('tb_penduduk')->insert($data);
     }
 }
