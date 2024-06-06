@@ -28,6 +28,7 @@ class SidebarAdmin extends Component
         if (auth()->user()->penduduk->jabatan == 'Ketua RW') {
             $KegiatanRequest = JadwalModel::where('status', 'diproses')->count();
             $AduanRequest = AduanModel::where('status', 'diproses')->count();
+            $bansosRequest = 0;
         } else {
             $KegiatanRequest = JadwalModel::where('status', 'diproses')
                 ->whereHas('penduduk', function ($query) {
