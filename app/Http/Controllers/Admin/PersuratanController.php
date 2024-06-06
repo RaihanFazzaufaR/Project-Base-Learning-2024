@@ -29,6 +29,14 @@ class PersuratanController extends Controller
     
     // Retrieve all distinct id_kartuKeluarga from dataSurat
     $idKartuKeluarga = $data->pluck('id_kartuKeluarga')->unique()->toArray();
+    
+    // Retrieve detailed moving data for all id_kartuKeluarga
+    $detailpindah = PindahPendudukModel::whereIn('id_foreign_kk', $idKartuKeluarga)
+        ->join('tb_penduduk', 'tb_pindahpenduduk.id_foreign_penduduk', '=', 'tb_penduduk.id_penduduk')
+        ->select('tb_pindahpenduduk.*', 'tb_penduduk.nik', 'tb_penduduk.nama')
+        ->get();
+
+    // Now $detailpindah contains detailed moving data for each family
 
     return view('Admin.Persuratan.index', compact('dataSurat', 'page', 'selected', 'detailpindah'));
 }
