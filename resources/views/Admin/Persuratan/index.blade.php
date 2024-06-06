@@ -1,7 +1,7 @@
 <x-admin-layout page="{{ $page }}" selected="{{ $selected }}">
     <div class="flex w-full h-15 justify-between items-center">
         <div class="flex h-full w-full sm:w-fit gap-8 items-center justify-between">
-            <form class="lg:w-[22vw] w-[100%] sm:w-[300px]" action="{{ route('daftar-penduduk') }}">
+            <form class="lg:w-[22vw] w-[100%] sm:w-[300px]" action="{{ route('persuratan-admin-search') }}" method="GET">
                 @csrf
                 <div class="flex h-full items-center">
                     <div class="relative w-full">
@@ -16,6 +16,7 @@
                     </div>
                 </div>
             </form>
+
             <div class="sm:h-full sm:w-fit sm:py-2 absolute sm:static" x-data="{ 'filterModal': false }"
                 @keydown.escape="filterModal = false">
                 <button @click="filterModal = true"
@@ -57,7 +58,7 @@
                         <tr
                             class="bg-white border-b text-sm font-medium text-[#7F7F7F] dark:bg-[#2F363E] dark:text-white dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td class="px-6 py-4">
-                                {{ $surat->peminta->nama }}
+                                {{ $surat->nama }}
                             </td>
                             <td class="px-6 py-4">
                                 {{ \Carbon\Carbon::parse($surat->minta_tanggal)->format('d-m-Y') }}

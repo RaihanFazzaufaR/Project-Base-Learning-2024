@@ -14,41 +14,75 @@ use App\Models\PindahPendudukModel;
 class PersuratanController extends Controller
 {
     public function index()
-{
-    $page = 'daftarPersuratan';
-    $selected = 'Persuratan';
+    {
+        $page = 'daftarPersuratan';
+        $selected = 'Persuratan';
 
-    $dataSurat = SuratModel::orderBy('tb_surat.minta_tanggal', 'desc')
-        ->paginate(10);
+        $dataSurat = SuratModel::select('tb_surat.*', 'tb_penduduk.nama')
+            ->join('tb_penduduk', 'tb_surat.peminta_id', '=', 'tb_penduduk.id_penduduk')
+            ->orderBy('tb_surat.minta_tanggal', 'desc')
+            ->paginate(10);
 
-        $data = SuratModel::select('tb_penduduk.id_kartuKeluarga')
-        ->join('tb_penduduk', 'tb_surat.peminta_id', '=', 'tb_penduduk.id_penduduk')
-        ->get();
+        return view('Admin.Persuratan.index', compact('dataSurat', 'page', 'selected'));
+    }
+
+    public function search(Request $request)
+    {
+        $page = 'daftarPersuratan';
+        $selected = 'Persuratan';
     
-    // dd($dataSurat[0]->pindahPenduduk[0]->penduduk->nama);
-    // // Retrieve all distinct id_kartuKeluarga from dataSurat
-    // $idKartuKeluarga = $data->pluck('id_kartuKeluarga')->unique()->toArray();
+        // Ambil nilai pencarian dari input
+        $search = $request->input('search');
     
-    // // Retrieve detailed moving data for all id_kartuKeluarga
-    // $detailpindah = PindahPendudukModel::whereIn('id_foreign_kk', $idKartuKeluarga)
-    //     ->join('tb_penduduk', 'tb_pindahpenduduk.id_foreign_penduduk', '=', 'tb_penduduk.id_penduduk')
-    //     ->select('tb_pindahpenduduk.*', 'tb_penduduk.nik', 'tb_penduduk.nama')
-    //     ->get();
-
-    // Retrieve all distinct id_foreign_surat from dataSurat
+        // Jika input pencarian kosong, tampilkan semua data
+        if (empty($search)) {
+            $dataSurat = SuratModel::select('tb_surat.*', 'tb_penduduk.nama')
+                ->join('tb_penduduk', 'tb_surat.peminta_id', '=', 'tb_penduduk.id_penduduk')
+                ->orderBy('tb_surat.minta_tanggal', 'desc')
+                ->paginate(10)
+                ->withQueryString();
+        } else {
+            // Check if the search query contains keywords related to different template_ids
+            if (strpos(strtolower($search), 'keterangan') !== false) {
+                $templateId = 1;
+            } elseif (strpos(strtolower($search), 'pindah') !== false) {
+                $templateId = 2;
+            } elseif (strpos(strtolower($search), 'kematian') !== false) {
+                $templateId = 3;
+            } else {
+                $templateId = null; // If no specific keyword found, set templateId to null
+            }
+    
+            // Build the query based on the search keyword
+            $query = SuratModel::select('tb_surat.*', 'tb_penduduk.nama')
+                ->join('tb_penduduk', 'tb_surat.peminta_id', '=', 'tb_penduduk.id_penduduk');
+    
+            if (!is_null($templateId)) {
+                $query->where('tb_surat.template_id', $templateId);
+            } else {
+                $query->where('tb_penduduk.nama', 'LIKE', "%{$search}%")
+                    ->orWhereDate('tb_surat.minta_tanggal', $search);
+            }
+    
+            $dataSurat = $query->orderBy('tb_surat.minta_tanggal', 'desc')
+                ->paginate(10)
+                ->withQueryString();
+        }
+    
+        $dataSurat->getCollection()->transform(function ($item) {
+            if ($item->peminta) {
+                $item->nama = $item->peminta->nama;
+            } else {
+                $item->nama = null;
+            }
+            return $item;
+        });
+    
+        return view('Admin.Persuratan.index', compact('dataSurat', 'page', 'selected'));
+    }
     
 
-    // Retrieve detailed moving data for all id_kartuKeluarga
-    // $detailpindah = PindahPendudukModel::whereIn('id_foreign_surat', $idForeignSurat)
-    //     ->join('tb_penduduk', 'tb_pindahpenduduk.id_foreign_penduduk', '=', 'tb_penduduk.id_penduduk')
-    //     ->select('tb_pindahpenduduk.*', 'tb_penduduk.nik', 'tb_penduduk.nama')
-    //     ->get();
-
-    // Now $detailpindah contains detailed moving data for each family
-
-    return view('Admin.Persuratan.index', compact('dataSurat', 'page', 'selected'));
-}
-
+    
 
     public function ajuanPersuratan()
     {

@@ -202,13 +202,6 @@ class SuratController extends Controller
         'alamat' => $keluarga->alamat,
     ]);
 
-    // // Simpan data ke dalam tabel PindahPendudukModel
-    // PindahPendudukModel::create([
-    //     'id_foreign_penduduk' => $penduduk->id_penduduk,
-    //     'id_foreign_surat' => $createSurat->surat_id,
-    //     'id_foreign_kk' => $idKartuKeluarga,
-    // ]);
-
     $rw = PendudukModel::where('jabatan', 'Ketua RW')->first();
     $rt = PendudukModel::join('tb_kartukeluarga', 'tb_penduduk.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')
         ->where('tb_penduduk.jabatan', 'Ketua RT')
@@ -383,32 +376,66 @@ class SuratController extends Controller
 
         return view('Surat.surat-ku', compact('dataSurat', 'menu'));
     }
+
     public function search(Request $request)
     {
         $menu = 'Surat';
-        $search = $request->search;
         
-        // Ambil data surat dari database tb_surat
-        $surat = SuratModel::select('tb_surat.*', 'tb_penduduk.nama')
-            ->join('tb_penduduk', 'tb_surat.peminta_id', '=', 'tb_penduduk.id_penduduk')
-            ->where(function($query) use ($search) {
-                $query->where('tb_penduduk.nama', 'like', '%' . $search . '%')
-                      ->orWhere('tb_surat.minta_tanggal', 'like', "%{$search}%")
-                      ->orWhere(function($query) use ($search) {
-                          // Menentukan template_id berdasarkan isi kolom keperluan
-                          $query->where('tb_surat.keperluan', 'like', "%{$search}%")
-                                ->orWhere('tb_surat.keperluan', 'like', "%{$search}%")
-                                ->orWhere('tb_surat.keperluan', 'like', "%{$search}%");
-                      });
-            })
-            ->orderBy('tb_surat.minta_tanggal', 'desc')
-            ->paginate(10);
-            $dataSurat = SuratModel::where('peminta_id', Auth::user()->penduduk->id_penduduk)
-            ->orderBy('updated_at', 'desc')
-            ->paginate(10);
+        // Ambil nilai pencarian dari input
+        $search = $request->input('search');
     
-        return view('Surat.surat-ku', compact('surat', 'menu', 'dataSurat'));
+        // Mendapatkan id_penduduk dari user yang sedang login
+        $loggedInUserId = Auth::user()->penduduk->id_penduduk;
+    
+        // Jika input pencarian kosong, tampilkan semua data terkait dengan user yang login
+        if (empty($search)) {
+            $dataSurat = SuratModel::select('tb_surat.*', 'tb_penduduk.nama')
+                ->join('tb_penduduk', 'tb_surat.peminta_id', '=', 'tb_penduduk.id_penduduk')
+                ->where('tb_surat.peminta_id', $loggedInUserId)
+                ->orderBy('tb_surat.minta_tanggal', 'desc')
+                ->paginate(10)
+                ->withQueryString();
+        } else {
+            // Check if the search query contains keywords related to different template_ids
+            if (strpos(strtolower($search), 'keterangan') !== false) {
+                $templateId = 1;
+            } elseif (strpos(strtolower($search), 'pindah') !== false) {
+                $templateId = 2;
+            } elseif (strpos(strtolower($search), 'kematian') !== false) {
+                $templateId = 3;
+            } else {
+                $templateId = null; // If no specific keyword found, set templateId to null
+            }
+    
+            // Build the query based on the search keyword
+            $query = SuratModel::select('tb_surat.*', 'tb_penduduk.nama')
+                ->join('tb_penduduk', 'tb_surat.peminta_id', '=', 'tb_penduduk.id_penduduk')
+                ->where('tb_surat.peminta_id', $loggedInUserId);
+    
+            if (!is_null($templateId)) {
+                $query->where('tb_surat.template_id', $templateId);
+            } else {
+                $query->where('tb_penduduk.nama', 'LIKE', "%{$search}%")
+                    ->orWhereDate('tb_surat.minta_tanggal', $search);
+            }
+    
+            $dataSurat = $query->orderBy('tb_surat.minta_tanggal', 'desc')
+                ->paginate(10)
+                ->withQueryString();
+        }
+    
+        $dataSurat->getCollection()->transform(function ($item) {
+            if ($item->peminta) {
+                $item->nama = $item->peminta->nama;
+            } else {
+                $item->nama = null;
+            }
+            return $item;
+        });
+    
+        return view('Surat.surat-ku', compact('dataSurat', 'menu'));
     }
+    
     
     
     
@@ -501,4 +528,5 @@ class SuratController extends Controller
         // Return the view with surat and data
         return view('Surat.surat_keterangan_pindah', compact('surat', 'rw', 'penduduk', 'rt'));
     }
+    
 }
