@@ -204,13 +204,17 @@ class BansosController extends Controller
         $priority_vector = $ahp_result['priority_vector'];
 
         $current_month = Carbon::now()->month;
+        $current_year = Carbon::now()->year;
         $data_records = AjuanBansosModel::whereMonth('tb_ajuan_bansos.created_at', $current_month)
+            ->whereYear('tb_ajuan_bansos.created_at', '>=', $current_year)
             ->join('tb_kartukeluarga', 'tb_ajuan_bansos.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')
             ->join('tb_penduduk', 'tb_kartukeluarga.kepalaKeluarga', '=', 'tb_penduduk.nik')
             ->where('tb_kartukeluarga.rt', $RT)
-            // ->where('tb_ajuan_bansos.status', 'diproses')
+            ->where('tb_ajuan_bansos.status', 'diproses')
             ->select('tb_ajuan_bansos.*', 'tb_kartukeluarga.*', 'tb_penduduk.nama')
             ->get();
+
+        // dd($data_records);
 
         // Convert data 
         $data = [];
