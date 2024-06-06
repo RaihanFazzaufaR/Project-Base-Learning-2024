@@ -129,14 +129,13 @@ class SuratController extends Controller
     $validatedData = $request->validate([
         'nik' => 'required|string',
         'nama' => 'required|string',
-        'ttl' => 'required|string', // Pisahkan tempat dan tanggal lahir
-        'jk' => 'required|string', // Tambahkan validasi jenis kelamin
-        'warganegara' => 'required|string', // Validasi kewarganegaraan
-        'alamat-pindah' => 'required|string', // Validasi alamat pindah
-        'alasan-pindah' => 'required|string', // Validasi alasan pindah
-        'keluarga-pindah' => 'required|integer|min:1', // Validasi jumlah keluarga yang pindah
+        'ttl' => 'required|string', 
+        'jk' => 'required|string', 
+        'warganegara' => 'required|string',
+        'alamat-pindah' => 'required|string', 
+        'alasan-pindah' => 'required|string', 
+        'keluarga-pindah' => 'required|integer|min:1', 
         'values' => 'required',
-        // Tambahkan aturan validasi required untuk setiap field lainnya
     ], [
         'ttl.required' => 'Kolom tempat lahir dan tanggal lahir diperlukan.',
         'warganegara.required' => 'Kolom warganegara diperlukan.',
@@ -144,7 +143,6 @@ class SuratController extends Controller
         'alasan-pindah.required' => 'Kolom alasan pindah diperlukan.',
         'keluarga-pindah.required' => 'Kolom keluarga yang pindah diperlukan.',
         'keluarga-pindah.min' => 'Jumlah keluarga yang pindah harus minimal 1.',
-        // Tambahkan pesan kesalahan khusus untuk setiap field jika diperlukan
     ]);
 
     // Pisahkan tempat dan tanggal lahir
@@ -244,14 +242,27 @@ class SuratController extends Controller
                 'warganegara' => DB::table('tb_penduduk')->where('id_penduduk', $id)->value('warganegara'),
                 'id_kartuKeluarga' => $idKartuKeluarga,
             ];
+            $pendudukData = DB::table('tb_penduduk')->where('id_penduduk', $id)->first([
+                'nik', 'nama', 'tempatLahir', 'tanggalLahir', 'jenisKelamin', 'agama', 'pekerjaan', 'statusNikah', 'warganegara'
+            ]);
+            // Simpan data ke dalam tabel PindahPendudukModel
+            PindahPendudukModel::create([
+                'id_foreign_penduduk' => $id, // id penduduk yang ikut pindah
+                'id_foreign_surat' => $createSurat->surat_id,
+                'id_foreign_kk' => $idKartuKeluarga,
+            ]);
 
             // Tambahkan data baru ke dalam variabel $data
             $data[] = $newData;
         }
 
+        $detailpindah = PindahPendudukModel::whereIn('id_foreign_kk', $idKartuKeluarga)
+        ->join('tb_penduduk', 'tb_pindahpenduduk.id_foreign_penduduk', '=', 'tb_penduduk.id_penduduk')
+        ->select('tb_pindahpenduduk.*', 'tb_penduduk.nik', 'tb_penduduk.nama')
+        ->get();
 
     // Redirect ke view 'Surat.surat_keterangan'
-    return view('Surat.surat_keterangan_pindah', compact('surat', 'data', 'rw', 'rt'));
+    return view('Surat.surat_keterangan_pindah', compact('surat', 'data', 'rw', 'rt', 'detailpindah'));
 }
 
     public function skKematian()
