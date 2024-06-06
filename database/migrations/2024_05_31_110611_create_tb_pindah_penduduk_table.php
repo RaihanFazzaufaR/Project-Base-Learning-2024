@@ -13,7 +13,7 @@ class CreateTbPindahPendudukTable extends Migration
      */
     public function up()
     {
-        Schema::create('tb_pindahPenduduk', function (Blueprint $table) {
+        Schema::create('tb_pindahpenduduk', function (Blueprint $table) {
             // Primary key auto increment starting from 1
             $table->id('id_PindahPenduduk');
 
