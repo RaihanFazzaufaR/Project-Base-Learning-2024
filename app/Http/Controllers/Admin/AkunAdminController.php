@@ -329,34 +329,13 @@ class AkunAdminController extends Controller
     {
         // Dapatkan objek UserAccountModel berdasarkan username
         $user = UserAccountModel::where('username', $username)->firstOrFail();
-    
-        // Dapatkan objek PendudukModel berdasarkan NIK
-        $penduduk = PendudukModel::where('nik', $user->penduduk->nik)->first();
-    
-        if (!$penduduk) {
-            // Jika NIK tidak ditemukan, tampilkan pesan warning
-            return back()->with('warning', 'Warga tersebut belum terdaftar sebagai penduduk tetap.');
-        }
-    
-        // Update jabatan sesuai dengan level_id
-        if ($request->level_id == 2) {
-            $penduduk->jabatan = 'Ketua RT';
-        } elseif ($request->level_id == 3) {
-            $penduduk->jabatan = 'Tidak ada';
-        }
-        $penduduk->save();
-    
-        // Check if user_id exists in tb_leveldetail and tb_useraccount
-        // $userExistsInLevelDetail = LevelDetailModel::where('user_id', $user->user_id)->exists();
-        $userExistsInUserAccount = UserAccountModel::where('user_id', $user->user_id)->exists();
-    
-        if (!$userExistsInUserAccount) {
-            // Handle if user_id does not exist in either tb_leveldetail or tb_useraccount
-            return back()->with('error', 'Data user tidak ditemukan di salah satu tabel terkait.');
-        }
+
+        $user->update([
+            'id_level' => $request->level,
+        ]);
     
         // Redirect dengan pesan sukses
-        return redirect('/admin/akun-admin')->with('success', 'Jabatan warga berhasil diperbarui.');
+        return redirect('/admin/akun-admin/kelola-level')->with('success', 'Jabatan warga berhasil diperbarui.');
     }
                  
     public function destroyAkun($username)
