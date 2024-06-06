@@ -4,9 +4,19 @@
 <div class="pt-16 w-full ">
     <div class="grid sm:gap-10 gap-5 row-gap-6 mb-6 grid-cols-2 lg:grid-cols-4 mx-auto sm:w-[80%] w-[90%]">
         <div class="col-span-2 text-center lg:text-left">
-            <a href="/" aria-label="Go home" title="Company" class="inline-flex items-center">
-                <img src="{{ asset('assets/images/logo.png') }}" alt="" class="size-8 object-cover">
-                <span class="ml-2 text-xl font-bold tracking-wide text-gray-800 dark:text-white uppercase">SIRAWA</span>
+            <a href="/" aria-label="Go home" title="Company" class="inline-flex items-center gap-4">
+                <img src="{{ asset('assets/images/logo.png') }}" alt="" class="size-13 object-cover">
+                <div class="font-extrabold self-center hidden whitespace-nowrap md:flex flex-col bg-gradient-to-r from-[#57BA47] to-black bg-clip-text h-fit justify-center items-start text-transparent dark:to-white">
+                    <div class="text-3xl">ꦱꦶꦫꦮ</div>
+                    <div class="text-xs flex justify-between w-full">
+                        <div class="">S</div>
+                        <div class="">I</div>
+                        <div class="">R</div>
+                        <div class="">A</div>
+                        <div class="">W</div>
+                        <div class="">A</div>
+                    </div>
+                </div>
             </a>
             <div class="mt-6 lg:max-w-sm">
                 <p class="text-sm text-gray-800 dark:text-white">
