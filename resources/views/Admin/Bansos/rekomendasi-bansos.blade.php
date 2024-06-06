@@ -5,7 +5,7 @@
                 <thead class="sm:text-sm text-xs font-bold text-[#34662C] bg-[#91DF7D] dark:bg-[#428238] dark:text-white">
                     <tr>
                         <th scope="col" class="px-6 py-3">
-                            No
+                            Rank
                         </th>
                         <th scope="col" class="px-6 py-3 w-[20%]">
                             No Kartu Keluarga
@@ -23,7 +23,7 @@
                 </thead>
                 <tbody>
                     @foreach ($results as $hasil)
-                        
+                    @if($hasil['data']['status']=='diproses')
                     
                     {{-- @for ($i=0; $i<10; $i++)  --}}
                     <tr class="bg-white border-b text-sm font-medium text-[#7F7F7F] dark:bg-[#2F363E] dark:text-white dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
@@ -141,8 +141,7 @@
                                         </div>
                                     </div>
                                 </div>
-
-                                {{-- <a href="{{ route('your.route.name', ['id' => $hasil['data']['id_kartuKeluarga']]) }}"> --}}
+                                {{-- @if($hasil['data']['status']=='diproses') --}}
                                     <form action="{{ route('acc') }}" method="GET" style="display:inline;">
                                         <input type="hidden" name="id" value="{{ $hasil['data']['id_ajuanBansos'] }}">
                                         <button class="hover:bg-[#34662C] p-2 shadow-lg rounded-full text-white sm:text-2xl text-xl sm:size-10 size-8 flex items-center justify-center bg-[#52A245] hover:scale-105 transition ease-in-out duration-500">
@@ -156,6 +155,7 @@
                                             <i class="fa-solid fa-xmark"></i>
                                         </button>
                                     </form>
+                                @endif
                             </div>
                         </td>
                         </tr>
