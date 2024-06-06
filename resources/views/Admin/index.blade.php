@@ -67,16 +67,16 @@
           <p class="font-normal text-sm text-gray-500 dark:text-gray-200 sm:block hidden">Menunjukkan jumlah penerima bansos per tahunnya</p>
         </div>
         <div class="flex w-[45%] flex-col gap-1">
-          <div class="font-bold text-2xl text-black text-right sm:pr-4 w-full dark:text-white">175 Orang</div>
+          <div class="font-bold text-2xl text-black text-right sm:pr-4 w-full dark:text-white">{{ $dataBansos->count() }} Orang</div>
           <div class="flex w-full gap-1 items-center justify-end">
             <span class="font-normal text-sm text-gray-500 dark:text-gray-200 sm:block hidden">Rata-rata pada tahun</span>
-            <form class="w-fit">
-              <select id="countries" class="bg-[#E4F7DF] dark:bg-[#2F363E] border border-[#57BA47] text-[#57BA47] text-sm font-bold rounded-lg focus:ring-[#57BA47] focus:border-[#57BA47]  block w-full py-1 px-2">
-                <option value="2022">2022</option>
-                <option value="2023">2023</option>
-                <option value="2024" selected>2024</option>
+            <div class="w-fit">
+              <select id="tahunBansos" class="bg-[#E4F7DF] dark:bg-[#2F363E] border border-[#57BA47] text-[#57BA47] text-sm font-bold rounded-lg focus:ring-[#57BA47] focus:border-[#57BA47]  block w-full py-1 px-2" onchange="window.location.href = this.value">
+                @foreach ($year as $y)
+                <option value="{{ route('admin', ['tahunBansos' => $y]) }}" {{ $y == $yearBansos ? 'selected' : '' }}>{{ $y }}</option>
+                @endforeach
               </select>
-            </form>
+            </div>
           </div>
         </div>
       </div>
@@ -250,8 +250,19 @@
   <!-- Initialize Chart js -->
   <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.2/dist/chart.umd.min.js"></script>
   <script>
+    let dataBansosPerBulan = @json($dataBansosPerBulan);
+
     let labelsLineChart = ["Jan", "Feb", "Mar", "Apr", "Mei", "Jun", "Jul", "Agu", "Sep", "Okt", "Nov", "Des"];
-    let itemLineChart = [0, 90, 0, 110, 0, 80, 0, 100, 0, 120, 0, 130];
+    let itemLineChart = [];
+    // let itemLineChart = [0, 90, 0, 110, 0, 80, 0, 100, 0, 120, 0, 130];
+
+    for (const key in dataBansosPerBulan) {
+      if (dataBansosPerBulan.hasOwnProperty(key)) {
+        itemLineChart.push(dataBansosPerBulan[key]);
+      }
+    }
+
+    // console.log(itemLineChart);
 
     let ctx = document.getElementById("lineChart").getContext("2d");
     let gradient = ctx.createLinearGradient(0, 0, 0, 250);
