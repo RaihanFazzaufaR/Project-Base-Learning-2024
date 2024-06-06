@@ -45,7 +45,7 @@
                             <div class="p-4 d:p-5 grid w-full sm:w-150 gap-4 grid-cols-2 max-h-[400px] sm:max-h-[450px] overflow-y-auto scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin rounded-b-xl">
                                 <div class="col-span-2 sm:col-span-1">
                                     <label for="pembuat" class="block mb-2 text-sm font-bold">Pembuat</label>
-                                    <select name="pembuat_id" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Pembuat ...">
+                                    <select name="pembuat_id" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" required placeholder="Masukkan Pembuat ...">
                                         @foreach ($users as $user)
                                         <option value="{{ $user->nik }}">{{ $user->nama }} (
                                             {{ $user->jabatan == 'Tidak ada' ? 'Admin' : $user->jabatan }}
@@ -57,7 +57,7 @@
                                 </div>
                                 <div class="col-span-2 sm:col-span-1">
                                     <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
-                                    <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                    <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white">
                                         <option selected value="">Pilih Kategori</option>
                                         <option value="Kebersihan">Kebersihan</option>
                                         <option value="Lingkungan">Lingkungan</option>
@@ -71,43 +71,43 @@
                                 </div>
                                 <div class="col-span-2">
                                     <label for="judul" class="block mb-2 text-sm font-bold">judul Pengumuman</label>
-                                    <input type="text" name="judul" id="judul" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Judul Pengumuman ...">
+                                    <input type="text" name="judul" id="judul" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" required placeholder="Masukkan Judul Pengumuman ...">
                                 </div>
                                 <div class="col-span-2 sm:col-span-1">
                                     <label for="mulai_tanggal" class="block mb-2 text-sm font-bold">Tanggal
                                         Mulai</label>
-                                    <input type="date" name="mulai_tanggal" id="mulai_tanggal" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                    <input type="date" name="mulai_tanggal" id="mulai_tanggal" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white">
                                 </div>
                                 <div class="col-span-2 sm:col-span-1">
                                     <label for="akhir_tanggal" class="block mb-2 text-sm font-bold">Tanggal
                                         Selesai</label>
-                                    <input type="date" name="akhir_tanggal" id="akhir_tanggal" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                    <input type="date" name="akhir_tanggal" id="akhir_tanggal" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white">
                                 </div>
                                 <div class="col-span-2 sm:col-span-1">
                                     <div class="grid grid-cols-2 gap-2">
                                         <div class="col-span-2 sm:col-span-1">
                                             <label for="mulai_waktu" class="block mb-2 text-sm font-bold">Jam
                                                 Mulai</label>
-                                            <input type="time" name="mulai_waktu" id="mulai_waktu" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                            <input type="time" name="mulai_waktu" id="mulai_waktu" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white">
                                         </div>
                                         <div class="col-span-2 sm:col-span-1">
                                             <label for="jam_selesai" class="block mb-2 text-sm font-bold">Jam
                                                 Selesai</label>
-                                            <input type="time" name="akhir_waktu" id="akhir_waktu" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                            <input type="time" name="akhir_waktu" id="akhir_waktu" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-span-2 sm:col-span-1">
                                     <label for="iuran" class="block mb-2 text-sm font-bold">Iuran</label>
-                                    <input type="number" name="iuran" id="iuran" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" placeholder="Masukkan Iuran ...">
+                                    <input type="number" name="iuran" id="iuran" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" placeholder="Masukkan Iuran ...">
                                 </div>
                                 <div class="col-span-2">
                                     <label for="lokasi" class="block mb-2 text-sm font-bold">Lokasi</label>
-                                    <textarea name="lokasi" rows="4" id="lokasi" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]"></textarea>
+                                    <textarea name="lokasi" rows="4" id="lokasi" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white"></textarea>
                                 </div>
                                 <div class="col-span-2">
                                     <label for="konten" class="block mb-2 text-sm font-bold">Deskripsi</label>
-                                    <textarea name="konten" rows="4" id="konten" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required></textarea>
+                                    <textarea name="konten" rows="4" id="konten" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" required></textarea>
                                 </div>
                             </div>
                             <div class="flex items-center justify-center sm:justify-end bg-[#F2F2F2] dark:bg-[#3e4852] gap-4 sm:h-[75px] h-[65px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8] dark:border-gray-500 rounded-b-md">
@@ -197,52 +197,52 @@
                                                         <div class="col-span-2 relative sm:col-span-1">
                                                             <label class="block mb-2 text-sm font-bold">Nama
                                                                 Pembuat</label>
-                                                            <input name="nama" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $pengumuman->jadwal_id ? $pengumuman->jadwal->penduduk->nama : ($pengumuman->pembuat ? $pengumuman->pembuat->nama : '-') }}" readonly>
+                                                            <input name="nama" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" value="{{ $pengumuman->jadwal_id ? $pengumuman->jadwal->penduduk->nama : ($pengumuman->pembuat ? $pengumuman->pembuat->nama : '-') }}" readonly>
                                                         </div>
                                                         <div class="col-span-2 sm:col-span-1">
                                                             <label class="block mb-2 text-sm font-bold">Kategori</label>
-                                                            <input name="kategori" id="kategori" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required readonly value="{{ $pengumuman->aktivitas_tipe }}">
+                                                            <input name="kategori" id="kategori" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" required readonly value="{{ $pengumuman->aktivitas_tipe }}">
                                                         </div>
                                                         <div class="col-span-2">
                                                             <label class="block mb-2 text-sm font-bold">Nama
                                                                 Kegiatan</label>
-                                                            <input type="text" name="nama" id="nama" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required readonly value="{{ $pengumuman->judul }}">
+                                                            <input type="text" name="nama" id="nama" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" required readonly value="{{ $pengumuman->judul }}">
                                                         </div>
                                                         <div class="col-span-2 sm:col-span-1">
                                                             <label class="block mb-2 text-sm font-bold">Tanggal
                                                                 Mulai</label>
-                                                            <input type="text" name="tanggal_mulai" id="tanggal_mulai" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required readonly value="{{ $pengumuman->mulai_tanggal ? $pengumuman->mulai_tanggal : '-' }}">
+                                                            <input type="text" name="tanggal_mulai" id="tanggal_mulai" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" required readonly value="{{ $pengumuman->mulai_tanggal ? $pengumuman->mulai_tanggal : '-' }}">
                                                         </div>
                                                         <div class="col-span-2 sm:col-span-1">
                                                             <label class="block mb-2 text-sm font-bold">Tanggal
                                                                 Selesai</label>
-                                                            <input type="text" name="tanggal_selesai" id="tanggal_selesai" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required readonly value="{{ $pengumuman->akhir_tanggal ? $pengumuman->akhir_tanggal : '-' }}">
+                                                            <input type="text" name="tanggal_selesai" id="tanggal_selesai" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" required readonly value="{{ $pengumuman->akhir_tanggal ? $pengumuman->akhir_tanggal : '-' }}">
                                                         </div>
                                                         <div class="col-span-2 sm:col-span-1">
                                                             <div class="grid grid-cols-2 gap-2">
                                                                 <div class="col-span-2 sm:col-span-1">
                                                                     <label class="block mb-2 text-sm font-bold">Jam
                                                                         Mulai</label>
-                                                                    <input type="text" name="jam_mulai" id="jam_mulai" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required readonly value="{{ $pengumuman->mulai_waktu ? date('H:i', strtotime($pengumuman->mulai_waktu)) : '-' }}">
+                                                                    <input type="text" name="jam_mulai" id="jam_mulai" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" required readonly value="{{ $pengumuman->mulai_waktu ? date('H:i', strtotime($pengumuman->mulai_waktu)) : '-' }}">
                                                                 </div>
                                                                 <div class="col-span-2 sm:col-span-1">
                                                                     <label class="block mb-2 text-sm font-bold">Jam
                                                                         Selesai</label>
-                                                                    <input type="text" name="jam_selesai" id="jam_selesai" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required readonly value="{{ $pengumuman->akhir_waktu ? date('H:i', strtotime($pengumuman->akhir_waktu)) : '-' }}">
+                                                                    <input type="text" name="jam_selesai" id="jam_selesai" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" required readonly value="{{ $pengumuman->akhir_waktu ? date('H:i', strtotime($pengumuman->akhir_waktu)) : '-' }}">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-span-2 sm:col-span-1">
                                                             <label class="block mb-2 text-sm font-bold">Iuran</label>
-                                                            <input type="number" name="iuran" id="iuran" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required readonly value="{{ $pengumuman->iuran ? $pengumuman->iuran : 0 }}">
+                                                            <input type="number" name="iuran" id="iuran" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" required readonly value="{{ $pengumuman->iuran ? $pengumuman->iuran : 0 }}">
                                                         </div>
                                                         <div class="col-span-2">
                                                             <label class="block mb-2 text-sm font-bold">Lokasi</label>
-                                                            <textarea name="lokasi" rows="4" id="lokasi" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required readonly>{{ $pengumuman->lokasi ? $pengumuman->lokasi : '-' }}</textarea>
+                                                            <textarea name="lokasi" rows="4" id="lokasi" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" required readonly>{{ $pengumuman->lokasi ? $pengumuman->lokasi : '-' }}</textarea>
                                                         </div>
                                                         <div class="col-span-2">
                                                             <label class="block mb-2 text-sm font-bold">Deskripsi</label>
-                                                            <textarea name="deskripsi" rows="4" id="deskripsi" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required readonly>{{ $pengumuman->konten }}</textarea>
+                                                            <textarea name="deskripsi" rows="4" id="deskripsi" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" required readonly>{{ $pengumuman->konten }}</textarea>
                                                         </div>
                                                     </div>
                                                     <div class="flex items-center justify-center sm:justify-between bg-[#F2F2F2] dark:bg-[#3e4852] gap-4 sm:h-[75px] h-[65px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8] dark:border-gray-500 rounded-b-md">
@@ -290,7 +290,7 @@
                                                     <div class="p-4 d:p-5 grid w-full sm:w-150 gap-4 grid-cols-2 max-h-[400px] sm:max-h-[450px] overflow-y-auto scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin rounded-b-xl">
                                                         <div class="col-span-2 relative sm:col-span-1">
                                                             <label class="block mb-2 text-sm font-bold">Pembuat</label>
-                                                            <select name="pembuat_id" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required placeholder="Masukkan Pembuat ...">
+                                                            <select name="pembuat_id" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" required placeholder="Masukkan Pembuat ...">
                                                                 @foreach ($users as $user)
                                                                 <option value="{{ $user->nik }}">
                                                                     {{ $user->nama }} (
@@ -303,7 +303,7 @@
                                                         </div>
                                                         <div class="col-span-2 sm:col-span-1">
                                                             <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
-                                                            <select name="kategori" id="kategori" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">
+                                                            <select name="kategori" id="kategori" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white">
                                                                 <option value="">Pilih Kategori</option>
                                                                 <option value="Kebersihan" @if ($pengumuman->aktivitas_tipe === 'Kebersihan') selected @endif>
                                                                     Kebersihan</option>
@@ -326,43 +326,43 @@
                                                         <div class="col-span-2">
                                                             <label for="nama" class="block mb-2 text-sm font-bold">Nama
                                                                 Kegiatan</label>
-                                                            <input type="text" name="judul" id="nama" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required value="{{ $pengumuman->judul }}">
+                                                            <input type="text" name="judul" id="nama" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" required value="{{ $pengumuman->judul }}">
                                                         </div>
                                                         <div class="col-span-2 sm:col-span-1">
                                                             <label for="tanggal_mulai" class="block mb-2 text-sm font-bold">Tanggal
                                                                 Mulai</label>
-                                                            <input type="date" name="mulai_tanggal" id="mulai_tanggal" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $pengumuman->mulai_tanggal }}">
+                                                            <input type="date" name="mulai_tanggal" id="mulai_tanggal" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" value="{{ $pengumuman->mulai_tanggal }}">
                                                         </div>
                                                         <div class="col-span-2 sm:col-span-1">
                                                             <label for="akhir_tanggal" class="block mb-2 text-sm font-bold">Tanggal
                                                                 Selesai</label>
-                                                            <input type="date" name="akhir_tanggal" id="akhir_tanggal" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $pengumuman->akhir_tanggal }}">
+                                                            <input type="date" name="akhir_tanggal" id="akhir_tanggal" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" value="{{ $pengumuman->akhir_tanggal }}">
                                                         </div>
                                                         <div class="col-span-2 sm:col-span-1">
                                                             <div class="grid grid-cols-2 gap-2">
                                                                 <div class="col-span-2 sm:col-span-1">
                                                                     <label for="mulai_waktu" class="block mb-2 text-sm font-bold">Jam
                                                                         Mulai</label>
-                                                                    <input type="time" name="mulai_waktu" id="mulai_waktu" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $pengumuman->mulai_waktu }}">
+                                                                    <input type="time" name="mulai_waktu" id="mulai_waktu" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" value="{{ $pengumuman->mulai_waktu }}">
                                                                 </div>
                                                                 <div class="col-span-2 sm:col-span-1">
                                                                     <label for="akhir_waktu" class="block mb-2 text-sm font-bold">Jam
                                                                         Selesai</label>
-                                                                    <input type="time" name="akhir_Waktu" id="akhir_waktu" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $pengumuman->akhir_waktu }}">
+                                                                    <input type="time" name="akhir_Waktu" id="akhir_waktu" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" value="{{ $pengumuman->akhir_waktu }}">
                                                                 </div>
                                                             </div>
                                                         </div>
                                                         <div class="col-span-2 sm:col-span-1">
                                                             <label for="iuran" class="block mb-2 text-sm font-bold">Iuran</label>
-                                                            <input type="number" name="iuran" id="iuran" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" value="{{ $pengumuman->iuran }}">
+                                                            <input type="number" name="iuran" id="iuran" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" value="{{ $pengumuman->iuran }}">
                                                         </div>
                                                         <div class="col-span-2">
                                                             <label for="lokasi" class="block mb-2 text-sm font-bold">Lokasi</label>
-                                                            <textarea name="lokasi" rows="4" id="lokasi" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]">{{ $pengumuman->lokasi }}</textarea>
+                                                            <textarea name="lokasi" rows="4" id="lokasi" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white">{{ $pengumuman->lokasi }}</textarea>
                                                         </div>
                                                         <div class="col-span-2">
                                                             <label for="konten" class="block mb-2 text-sm font-bold">Deskripsi</label>
-                                                            <textarea name="konten" rows="4" id="konten" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C]" required>{{ $pengumuman->konten }}</textarea>
+                                                            <textarea name="konten" rows="4" id="konten" class="bg-white shadow-md border dark:border-gray-500 dark:bg-[#505c6a] border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" required>{{ $pengumuman->konten }}</textarea>
                                                         </div>
                                                     </div>
                                                     <div class="flex items-center justify-center sm:justify-end bg-[#F2F2F2] dark:bg-[#3e4852] gap-4 sm:h-[75px] h-[65px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8] dark:border-gray-500 rounded-b-md">
