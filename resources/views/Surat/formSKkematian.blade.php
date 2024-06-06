@@ -83,7 +83,7 @@
         </div>
         <div class="lg:basis-3/4 w-full h-full">
             <div class=" gap-11  w-full h-full border-2 dark:border-gray-500 rounded-xl">
-                <div class="sm:text-2xl text-[18px] sm:px-8 py-5 sm:pb-0  font-bold dark:text-white sm:w-[100%] w-[90%]  mx-auto">
+                <div class="sm:text-2xl text-[18px] sm:px-8 py-5 sm:pb-0  font-bold dark:text-white text-[#2d5523] sm:w-[100%] w-[90%]  mx-auto">
                     Formulir Surat Keterangan Kematian
                     <p class="text-[#2d5523] sm:text-lg text-base  sm:pt-4 pt-2 font-medium dark:text-white ">Masukkan identitas orang yang meninggal</p>
                 </div>
