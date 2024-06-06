@@ -66,4 +66,9 @@ class PendudukModel extends Model
     {
         return $this->HasMany(SuratModel::class, 'peminta_id', 'id_penduduk');
     }
+
+    public function pindahPenduduk(): HasMany
+    {
+        return $this->HasMany(PindahPendudukModel::class, 'id_foreign_penduduk', 'id_penduduk');
+    }
 }

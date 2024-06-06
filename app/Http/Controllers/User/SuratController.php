@@ -129,14 +129,13 @@ class SuratController extends Controller
     $validatedData = $request->validate([
         'nik' => 'required|string',
         'nama' => 'required|string',
-        'ttl' => 'required|string', // Pisahkan tempat dan tanggal lahir
-        'jk' => 'required|string', // Tambahkan validasi jenis kelamin
-        'warganegara' => 'required|string', // Validasi kewarganegaraan
-        'alamat-pindah' => 'required|string', // Validasi alamat pindah
-        'alasan-pindah' => 'required|string', // Validasi alasan pindah
-        'keluarga-pindah' => 'required|integer|min:1', // Validasi jumlah keluarga yang pindah
+        'ttl' => 'required|string', 
+        'jk' => 'required|string', 
+        'warganegara' => 'required|string',
+        'alamat-pindah' => 'required|string', 
+        'alasan-pindah' => 'required|string', 
+        'keluarga-pindah' => 'required|integer|min:1', 
         'values' => 'required',
-        // Tambahkan aturan validasi required untuk setiap field lainnya
     ], [
         'ttl.required' => 'Kolom tempat lahir dan tanggal lahir diperlukan.',
         'warganegara.required' => 'Kolom warganegara diperlukan.',
@@ -144,7 +143,6 @@ class SuratController extends Controller
         'alasan-pindah.required' => 'Kolom alasan pindah diperlukan.',
         'keluarga-pindah.required' => 'Kolom keluarga yang pindah diperlukan.',
         'keluarga-pindah.min' => 'Jumlah keluarga yang pindah harus minimal 1.',
-        // Tambahkan pesan kesalahan khusus untuk setiap field jika diperlukan
     ]);
 
     // Pisahkan tempat dan tanggal lahir
@@ -204,13 +202,6 @@ class SuratController extends Controller
         'alamat' => $keluarga->alamat,
     ]);
 
-    // Simpan data ke dalam tabel PindahPendudukModel
-    PindahPendudukModel::create([
-        'id_foreign_penduduk' => $penduduk->id_penduduk,
-        'id_foreign_surat' => $createSurat->surat_id,
-        'id_foreign_kk' => $idKartuKeluarga,
-    ]);
-
     $rw = PendudukModel::where('jabatan', 'Ketua RW')->first();
     $rt = PendudukModel::join('tb_kartukeluarga', 'tb_penduduk.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')
         ->where('tb_penduduk.jabatan', 'Ketua RT')
@@ -244,14 +235,22 @@ class SuratController extends Controller
                 'warganegara' => DB::table('tb_penduduk')->where('id_penduduk', $id)->value('warganegara'),
                 'id_kartuKeluarga' => $idKartuKeluarga,
             ];
+            $pendudukData = DB::table('tb_penduduk')->where('id_penduduk', $id)->first([
+                'nik', 'nama', 'tempatLahir', 'tanggalLahir', 'jenisKelamin', 'agama', 'pekerjaan', 'statusNikah', 'warganegara'
+            ]);
+            // Simpan data ke dalam tabel PindahPendudukModel
+            PindahPendudukModel::create([
+                'id_foreign_penduduk' => $id, // id penduduk yang ikut pindah
+                'id_foreign_surat' => $createSurat->surat_id,
+                'id_foreign_kk' => $idKartuKeluarga,
+            ]);
 
             // Tambahkan data baru ke dalam variabel $data
             $data[] = $newData;
         }
 
-
     // Redirect ke view 'Surat.surat_keterangan'
-    return view('Surat.surat_keterangan_pindah', compact('surat', 'data', 'rw', 'rt'));
+    return view('Surat.surat_keterangan_pindah', compact('surat', 'data', 'rw', 'rt',));
 }
 
     public function skKematian()
@@ -377,20 +376,69 @@ class SuratController extends Controller
 
         return view('Surat.surat-ku', compact('dataSurat', 'menu'));
     }
+
     public function search(Request $request)
     {
         $menu = 'Surat';
-        $search = $request->search;
-        $surat = PermintaanSuratModel::select('tb_permintaansurat.*', 'tb_penduduk.nama')
-            ->join('tb_penduduk', 'tb_permintaansurat.peminta_id', '=', 'tb_penduduk.id_penduduk')
-            ->where('tb_penduduk.nama', 'like', '%' . $search . '%')
-            ->orWhere('minta_tanggal', 'LIKE', "%{$search}%")
-            ->orWhere('jenisSurat', 'LIKE', "%{$search}%")
-            ->orderBy('tb_permintaansurat.minta_tanggal', 'desc')
-            ->paginate(10);
-
-        return view('Surat.surat-ku', compact('surat', 'menu'));
+        
+        // Ambil nilai pencarian dari input
+        $search = $request->input('search');
+    
+        // Mendapatkan id_penduduk dari user yang sedang login
+        $loggedInUserId = Auth::user()->penduduk->id_penduduk;
+    
+        // Jika input pencarian kosong, tampilkan semua data terkait dengan user yang login
+        if (empty($search)) {
+            $dataSurat = SuratModel::select('tb_surat.*', 'tb_penduduk.nama')
+                ->join('tb_penduduk', 'tb_surat.peminta_id', '=', 'tb_penduduk.id_penduduk')
+                ->where('tb_surat.peminta_id', $loggedInUserId)
+                ->orderBy('tb_surat.minta_tanggal', 'desc')
+                ->paginate(10)
+                ->withQueryString();
+        } else {
+            // Check if the search query contains keywords related to different template_ids
+            if (strpos(strtolower($search), 'keterangan') !== false) {
+                $templateId = 1;
+            } elseif (strpos(strtolower($search), 'pindah') !== false) {
+                $templateId = 2;
+            } elseif (strpos(strtolower($search), 'kematian') !== false) {
+                $templateId = 3;
+            } else {
+                $templateId = null; // If no specific keyword found, set templateId to null
+            }
+    
+            // Build the query based on the search keyword
+            $query = SuratModel::select('tb_surat.*', 'tb_penduduk.nama')
+                ->join('tb_penduduk', 'tb_surat.peminta_id', '=', 'tb_penduduk.id_penduduk')
+                ->where('tb_surat.peminta_id', $loggedInUserId);
+    
+            if (!is_null($templateId)) {
+                $query->where('tb_surat.template_id', $templateId);
+            } else {
+                $query->where('tb_penduduk.nama', 'LIKE', "%{$search}%")
+                    ->orWhereDate('tb_surat.minta_tanggal', $search);
+            }
+    
+            $dataSurat = $query->orderBy('tb_surat.minta_tanggal', 'desc')
+                ->paginate(10)
+                ->withQueryString();
+        }
+    
+        $dataSurat->getCollection()->transform(function ($item) {
+            if ($item->peminta) {
+                $item->nama = $item->peminta->nama;
+            } else {
+                $item->nama = null;
+            }
+            return $item;
+        });
+    
+        return view('Surat.surat-ku', compact('dataSurat', 'menu'));
     }
+    
+    
+    
+    
 
     public function showSk($pemintaId, $templateId)
     {
@@ -467,7 +515,7 @@ class SuratController extends Controller
         $surat->tanggalLahir = Carbon::parse($surat->tanggalLahir);
 
         // Get data of family members who moved
-        $data = PindahPendudukModel::where('id_foreign_kk', $surat->id_kartuKeluarga)->get();
+        // $data = PindahPendudukModel::where('id_foreign_kk', $surat->id_kartuKeluarga)->get();
 
         $penduduk = PendudukModel::where('id_penduduk', $pemintaId)->first();
         $rw = PendudukModel::where('jabatan', 'Ketua RW')->first();
@@ -478,6 +526,7 @@ class SuratController extends Controller
             ->first();
 
         // Return the view with surat and data
-        return view('Surat.surat_keterangan_pindah', compact('surat', 'data', 'rw', 'penduduk', 'rt'));
+        return view('Surat.surat_keterangan_pindah', compact('surat', 'rw', 'penduduk', 'rt'));
     }
+    
 }

@@ -19,7 +19,7 @@
                         'bg-yellow-500  text-white': {{ request('kategoriSearching') ? 'true' : 'false' }},
                         'bg-gray-100 text-[#2d5523] dark:bg-[#1f2429] dark:text-gray-300': {{ request('kategoriSearching') ? 'false' : 'true' }}
                     }" class="border-gray-400 border px-9 text-center py-3 rounded-full">
-                    <i class="fa-solid fa-sliders sm:text-3xl text-xl"></i> 
+                    <i class="fa-solid fa-sliders sm:text-3xl text-xl"></i>
                 </button>
 
                 <!-- Modal Overlay -->
@@ -138,9 +138,9 @@
 
 
         <!-- Main modal -->
-        <div x-show="tambahModal" x-cloak tabindex="-1" aria-hidden="true" class="flex overflow-hidden fixed top-0 right-0 left-0 z-999 justify-center items-center w-full md:inset-0 h-full">
-            <div class="absolute z-999 bg-black/25 h-[100vh] w-full"></div>
-            <div class="relative z-[1000] p-4 w-fit max-w-3xl max-h-[700px]" @click.away="tambahModal = false" x-transition:enter="motion-safe:ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
+        <div x-show="tambahModal" x-transition:enter="md:transition-none transition ease-out duration-300 transform" x-transition:enter-start="md:transition-none translate-y-full" x-transition:enter-end="md:transition-none translate-y-0" x-transition:leave="md:transition-none transition ease-in duration-300 transform" x-transition:leave-start="md:transition-none translate-y-0" x-transition:leave-end="md:transition-none translate-y-full" tabindex="-1" aria-hidden="true" class="flex overflow-hidden fixed top-0 right-0 left-0 z-999 justify-center sm:items-center items-end w-full md:inset-0 h-full">
+            <div class="absolute z-999 bg-black/25 h-[100vh] w-full hidden sm:block"></div>
+            <div class="relative z-[1000] sm:p-4 w-full sm:w-fit sm:max-w-3xl max-h-[700px]" @click.away="tambahModal = false" x-transition:enter="motion-safe:ease-out duration-300" x-transition:enter-start="opacity-0 scale-90" x-transition:enter-end="opacity-100 scale-100">
                 <!-- Modal content -->
                 <div class="relative bg-white rounded-lg shadow dark:bg-[#30373F]">
                     <!-- Modal header -->
@@ -156,7 +156,7 @@
                     <!-- Modal body -->
                     <form class="w-full h-fit text-[#34662C] dark:text-white" method="POST" action="{{ route('ajuanKegiatan') }}">
                         @csrf
-                        <div class="p-4 md:p-5 grid w-150 gap-4 grid-cols-2 max-h-[450px] overflow-y-auto rounded-b-xl scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin">
+                        <div class="p-4 d:p-5 grid w-full sm:w-150 gap-4 grid-cols-2 max-h-[400px] sm:max-h-[450px] overflow-y-auto scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin rounded-b-xl">
                             @auth
 
                             <input type="hidden" name="id" value="{{ Auth::user()->penduduk->id_penduduk }}">
@@ -212,11 +212,11 @@
                                 <textarea name="deskripsi" rows="4" id="deskripsi" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:bg-[#505c6a] dark:border-gray-500 dark:placeholder-gray-400  dark:focus:ring-primary-500 dark:focus:border-primary-500" required></textarea>
                             </div>
                         </div>
-                        <div class="flex items-center justify-end bg-[#F2F2F2] gap-4 h-[75px] px-4 md:px-8 border-t-2 rounded-b border-[#B8B8B8] dark:bg-[#4f5966]">
-                            <button type="button" @click="tambahModal = false" class="hover:text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center hover:bg-[#34662C] bg-white text-[#34662C] hover:scale-105 transition duration-300 ease-in-out dark:bg-white dark:hover:bg-white dark:text-[#2d5523]">
+                        <div class="flex items-center justify-center sm:justify-end bg-[#F2F2F2] dark:bg-[#3e4852] gap-4 sm:h-[75px] h-[65px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8] dark:border-gray-500 rounded-b-md">
+                            <button type="button" @click="tambahModal = false" class="hover:text-white hidden sm:inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center hover:bg-[#34662C] bg-white text-[#34662C] hover:scale-105 transition duration-300 ease-in-out dark:bg-white dark:hover:bg-white dark:text-[#2d5523]">
                                 Batal
                             </button>
-                            <button type="submit" class="text-white inline-flex px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out dark:hover:bg-[#4ea840] dark:bg-[#57ba47]">
+                            <button type="submit" class="text-white inline-flex px-30 sm:px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out dark:hover:bg-[#4ea840] dark:bg-[#57ba47]">
                                 Tambah
                             </button>
                         </div>
@@ -242,7 +242,7 @@
         <p class="text-2xl font-semibold dark:text-white text-green-900">Tidak ada kegiatan</p>
     </div>
     @else
-    <div class="grid h-[90%] w-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-14">
+    <div class="flex h-[90%] w-full flex-wrap gap-x-8 gap-y-20 lg:gap-20 justify-center items-center">
         @foreach ($dataArray['dataSearching'] as $dt)
         <div class="bg-white rounded-xl shadow-xl flex flex-col w-[350px] lg:w-[380px] h-[270px] pt-8 pb-4 gap-3 border-2 border-green-900  hover:border-green-500 dark:hover:border-white hover:shadow-2xl transition ease-in-out duration-300 group dark:bg-[#30373F] dark:border-gray-600 group">
             <div class="relative w-full h-fit flex justify-center items-center -top-10">
@@ -531,7 +531,7 @@
         <p class="text-2xl font-semibold text-green-900 dark:text-white">Tidak ada kegiatan dengan kategori {{ $kategoriPast }}</p>
     </div>
     @endif
-    <div class="grid h-full w-full grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-x-12 gap-y-20">
+    <div class="flex h-[90%] w-full flex-wrap gap-x-8 gap-y-20 lg:gap-20 justify-center items-center">
         @foreach ($dataArray['dataPast'] as $dt)
         <div class="bg-white rounded-xl shadow-xl flex flex-col w-[350px] lg:w-[380px] h-[270px] pt-8 pb-4 gap-3 border-2 border-green-900  hover:border-green-500 dark:hover:border-white hover:shadow-2xl transition ease-in-out duration-300 group dark:bg-[#30373F] dark:border-gray-600 group">
             <!-- <div class="absolute w-full h-full bg-black/40 rounded-xl left-0 top-0 flex justify-center items-center opacity-0 transition ease-in-out duration-300 group-hover:opacity-100">

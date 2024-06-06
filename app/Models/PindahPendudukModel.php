@@ -12,7 +12,7 @@ class PindahPendudukModel extends Model
 {
     use HasFactory;
 
-    protected $table = 'tb_pindahPenduduk';
+    protected $table = 'tb_pindahpenduduk';
     protected $primaryKey = 'id_PindahPenduduk';
     protected $fillable = [
         'id_foreign_penduduk',

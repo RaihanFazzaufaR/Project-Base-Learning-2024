@@ -1,7 +1,7 @@
 <x-admin-layout page="{{ $page }}" selected="{{ $selected }}">
     <div class="flex w-full h-15 justify-between items-center">
         <div class="flex h-full w-full sm:w-fit gap-8 items-center justify-between">
-            <form class="lg:w-[22vw] w-[100%] sm:w-[300px]" action="{{ route('daftar-penduduk') }}">
+            <form class="lg:w-[22vw] w-[100%] sm:w-[300px]" action="{{ route('persuratan-admin-search') }}" method="GET">
                 @csrf
                 <div class="flex h-full items-center">
                     <div class="relative w-full">
@@ -16,6 +16,7 @@
                     </div>
                 </div>
             </form>
+
             <div class="sm:h-full sm:w-fit sm:py-2 absolute sm:static" x-data="{ 'filterModal': false }"
                 @keydown.escape="filterModal = false">
                 <button @click="filterModal = true"
@@ -328,7 +329,8 @@
                                                                                     </tr>
                                                                                 </thead>
                                                                                 <tbody>
-                                                                                    @foreach ($detailpindah as $index => $anggota)
+
+                                                                                    @foreach ($surat->pindahPenduduk as $index => $dt)
                                                                                         <tr
                                                                                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                                                                             <td
@@ -337,11 +339,11 @@
                                                                                             </td>
                                                                                             <td
                                                                                                 class="py-2 ps-3 border-[2px] ">
-                                                                                                {{ $anggota['nik'] }}
+                                                                                                {{ $dt->penduduk->nik }}
                                                                                             </td>
                                                                                             <td
                                                                                                 class="py-2 ps-3 border-[2px] ">
-                                                                                                {{ $anggota['nama'] }}
+                                                                                                {{ $dt->penduduk->nama }}
                                                                                             </td>
                                                                                         </tr>
                                                                                     @endforeach
