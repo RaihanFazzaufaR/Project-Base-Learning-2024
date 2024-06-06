@@ -145,7 +145,7 @@ class PengaduanController extends Controller
     public function destroyAduan(Request $request, $aduan_id)
     {
         try {
-            $aduan = AduanModel::find($aduan_id);
+            $aduan = AduanModel::find($aduan_id)->first();
             $imagePath = null;
 
             if ($aduan->image != null) {
