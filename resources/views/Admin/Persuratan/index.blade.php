@@ -119,7 +119,7 @@
                                 {{ $surat->nama }}
                             </td>
                             <td class="px-6 py-4">
-                                {{ \Carbon\Carbon::parse($surat->minta_tanggal)->format('d-m-Y') }}
+                                {{ $surat->created_at ? $surat->created_at->format('d-m-Y') : '-' }}
                             </td>
                             <td class="px-6 py-4">
                                 @if ($surat->template_id == 1)
