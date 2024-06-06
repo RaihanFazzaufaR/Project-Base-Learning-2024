@@ -63,7 +63,7 @@
         </div>
         <div class="relative flex w-full h-full justify-center items-center gap-10 z-[3] top-0 left-0">
             <div class="flex flex-col justify-center items-center gap-2">
-                <div class="font-bold lg:text-5xl text-[30px] group-hover:text-white">100</div>
+                <div class="font-bold lg:text-5xl text-[30px] group-hover:text-white">{{ $jumlahKK }}</div>
                 <div class="font-semibold text-[18px] text-gray-400 group-hover:text-gray-200">KK</div>
             </div>
             <div class="text-5xl text-transparent bg-gradient-to-r from-[#19A8EF] to-[#1072A3] bg-clip-text group-hover:text-white">
@@ -76,7 +76,7 @@
         </div>
         <div class="relative flex w-full h-full justify-center items-center gap-10 z-[3] top-0 left-0">
             <div class="flex flex-col justify-center items-center gap-2">
-                <div class="font-bold lg:text-5xl text-[30px] group-hover:text-white">1000</div>
+                <div class="font-bold lg:text-5xl text-[30px] group-hover:text-white">{{ $jumlahPenduduk }}</div>
                 <div class="font-semibold text-[18px] text-gray-400 group-hover:text-gray-200">Penduduk</div>
             </div>
             <div class="text-5xl text-transparent bg-clip-text bg-gradient-to-r from-[#F6A831] to-[#B37924] group-hover:text-white">
@@ -89,7 +89,7 @@
         </div>
         <div class="relative flex w-full h-full justify-center items-center gap-10 z-[3] top-0 left-0">
             <div class="flex flex-col justify-center items-center gap-2">
-                <div class="font-bold lg:text-5xl text-[30px] group-hover:text-white">43</div>
+                <div class="font-bold lg:text-5xl text-[30px] group-hover:text-white">{{ $jumlahRT }}</div>
                 <div class="font-semibold text-[18px] text-gray-400 group-hover:text-gray-200">RT</div>
             </div>
             <div class="text-5xl text-transparent bg-clip-text bg-gradient-to-r from-[#9119EF] to-[#6410A3] group-hover:text-white">
