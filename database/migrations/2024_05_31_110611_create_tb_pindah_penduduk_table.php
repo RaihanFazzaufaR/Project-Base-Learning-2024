@@ -20,10 +20,12 @@ class CreateTbPindahPendudukTable extends Migration
             // Foreign keys
             $table->unsignedBigInteger('id_foreign_penduduk');
             $table->unsignedBigInteger('id_foreign_surat');
+            $table->unsignedBigInteger('id_foreign_kk');
 
             // Define foreign key constraints
             $table->foreign('id_foreign_penduduk')->references('id_penduduk')->on('tb_penduduk')->onDelete('cascade');
             $table->foreign('id_foreign_surat')->references('surat_id')->on('tb_surat')->onDelete('cascade');
+            $table->foreign('id_foreign_kk')->references('id_kartuKeluarga')->on('tb_kartukeluarga')->onDelete('cascade');
 
             // Timestamps for record tracking
             $table->timestamps();
@@ -40,3 +42,4 @@ class CreateTbPindahPendudukTable extends Migration
         Schema::dropIfExists('tb_pindahPenduduk');
     }
 }
+

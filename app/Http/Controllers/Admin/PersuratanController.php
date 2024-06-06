@@ -31,8 +31,7 @@ class PersuratanController extends Controller
     $idKartuKeluarga = $data->pluck('id_kartuKeluarga')->unique()->toArray();
     
     // Retrieve detailed moving data for all id_kartuKeluarga
-    $detailpindah = PindahPendudukModel::whereIn('id_kartuKeluarga', $idKartuKeluarga)->get();
-    
+    $detailpindah = PindahPendudukModel::whereIn('id_foreign_kk', $idKartuKeluarga)->get();
 
     // Now $detailpindah contains detailed moving data for each family
 
