@@ -321,7 +321,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($umkms as $umkm)
+                    @foreach ($umkms as $index => $umkm)
                         <tr
                             class="bg-white border-b text-sm font-medium text-[#7F7F7F] dark:bg-[#2F363E] dark:text-white dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td class="px-6 py-4">
@@ -381,7 +381,7 @@
                                                     <div class="w-full h-full text-[#34662C] text-left">
                                                         <div
                                                             class="p-4 md:p-5 grid w-full sm:w-150 gap-4 grid-cols-2 max-h-[400px] sm:max-h-[450px] overflow-y-auto rounded-b-xl scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin">
-                                                            <div id="map"
+                                                            <div id="map{{ $index }}"
                                                                 class="relative bg-white dark:bg-gray-700 p-4 border border-[#34662C] rounded-lg shadow-md"
                                                                 style="height: 250px; width: 205%;">
                                                                 @php
@@ -393,8 +393,8 @@
                                                                     $longitude = trim($koordinat_array[1]);
                                                                 @endphp
                                                                 <script>
-                                                                    function initMap() {
-                                                                        var map = new google.maps.Map(document.getElementById('map'), {
+                                                                    function initMap{{ $index }}() {
+                                                                        var map = new google.maps.Map(document.getElementById('map{{ $index }}'), {
                                                                             center: {
                                                                                 lat: -7.983908,
                                                                                 lng: 112.621391
@@ -422,6 +422,9 @@
                                                                             title: lokasi[0].nama
                                                                         });
                                                                     }
+                                                                    document.addEventListener("DOMContentLoaded", function() {
+                                                                        initMap{{ $index }}();
+                                                                    });
                                                                 </script>
                                                             </div>
                                                         </div>

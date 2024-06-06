@@ -121,7 +121,7 @@ Route::group(['middleware' => ['auth']], function () {
 
             Route::post('/edit/{umkm_id}', [UmkmController::class, 'editUmkm'])->name('umkm.edit');
             Route::post('/store', [UmkmController::class, 'storeUmkm'])->name('umkm.store');
-            Route::get('/umkmku/{id_penduduk}', [UmkmController::class, 'umkmku'])->name('umkmku');
+            Route::get('/umkmku', [UmkmController::class, 'umkmku'])->name('umkmku');
             Route::delete('/delete/{umkm_id}', [UmkmController::class, 'destroyUmkm'])->name('umkm.destroy');
             Route::post('/cancel/{umkm_id}', [UmkmController::class, 'cancelPengajuan'])->name('umkm.cancel');
             Route::get('/search-umkm', [UmkmController::class, 'umkmkuSearch'])->name('umkmku.search');

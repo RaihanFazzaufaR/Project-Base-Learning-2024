@@ -50,8 +50,9 @@ class UmkmController extends Controller
     }
 
 
-    public function umkmku($id_penduduk)
+    public function umkmku()
     {
+        $id_penduduk = Auth::user()->penduduk->id_penduduk;
         $menu = 'UMKM';
         $umkms = UmkmModel::where('id_pemilik', $id_penduduk)->paginate(8);
         $umkms = $this->formatDateAndTime($umkms);
