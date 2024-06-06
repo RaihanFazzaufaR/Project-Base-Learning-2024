@@ -226,8 +226,7 @@ class PendudukController extends Controller
             $id_kk = $request->id_kk;
         } else if ($request->has('search')) {
             $user = KartuKeluargaModel::where('niKeluarga', 'like', '%' . $request->search . '%')
-                ->orWhere('alamat', 'like', '%' . $request->search . '%')
-                ->paginate(10)->withQueryString();
+                ->orWhere('alamat', 'like', '%' . $request->search . '%');
         } else if ($request->all()) {
             $user->where(function ($query) use ($request) {
                 if ($request->filled('rt')) {
