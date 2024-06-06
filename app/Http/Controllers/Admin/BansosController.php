@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\BansosModel;
 use App\Models\KartuKeluargaModel;
 use App\Models\AjuanBansosModel;
 use App\Models\PendudukModel;
@@ -38,6 +37,7 @@ class BansosController extends Controller
             ->join('tb_penduduk', 'tb_kartukeluarga.kepalaKeluarga', '=', 'tb_penduduk.nik')
             ->where('tb_ajuan_bansos.status', 'diterima')
             ->select('tb_ajuan_bansos.*', 'tb_kartukeluarga.niKeluarga', 'tb_kartukeluarga.rt', 'tb_penduduk.nama')
+            ->orderByRaw('MONTH(tb_ajuan_bansos.created_at)')
             ->paginate(10);
 
         $data_records->getCollection()->transform(function ($record) {
@@ -462,7 +462,8 @@ class BansosController extends Controller
         $query = AjuanBansosModel::join('tb_kartukeluarga', 'tb_ajuan_bansos.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')
             ->join('tb_penduduk', 'tb_kartukeluarga.kepalaKeluarga', '=', 'tb_penduduk.nik')
             ->where('tb_ajuan_bansos.status', 'diproses')
-            ->select('tb_ajuan_bansos.*', 'tb_kartukeluarga.*', 'tb_penduduk.nama');
+            ->select('tb_ajuan_bansos.*', 'tb_kartukeluarga.niKeluarga', 'tb_kartukeluarga.rt', 'tb_penduduk.nama')
+            ->orderByRaw('MONTH(tb_ajuan_bansos.created_at)');
 
         if ($bulan) {
             $query->whereMonth('tb_ajuan_bansos.created_at', $bulan);
@@ -477,7 +478,10 @@ class BansosController extends Controller
         }
 
         $data_records = $query->paginate();
-
+        $data_records->getCollection()->transform(function ($record) {
+            $record->created_at_text = optional($record->created_at)->format('F Y');
+            return $record;
+        });
         // return $data_records;
         return view('Admin.Bansos.index', compact('page', 'selected', 'month', 'years', 'data_records'));
     }
