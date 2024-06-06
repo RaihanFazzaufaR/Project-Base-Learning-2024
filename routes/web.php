@@ -195,6 +195,7 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::put('/{id}', [AdminKegiatanController::class, 'updateKegiatan'])->name('updateKegiatan');
                 Route::delete('/{id}', [AdminKegiatanController::class, 'destroyKegiatan'])->name('destroyKegiatan');
                 Route::get('/ajuan-kegiatan', [AdminKegiatanController::class, 'ajuanKegiatan'])->name('ajuan-kegiatan-admin');
+                Route::post('/ajuan-kegiatan', [AdminKegiatanController::class, 'ajuanKegiatan'])->name('searchingAjuan');
                 Route::get('/ajuan-kegiatan/accept', [AdminKegiatanController::class, 'acceptKegiatan'])->name('acceptKegiatan');
                 Route::post('/ajuan-kegiatan/reject/{id}', [AdminKegiatanController::class, 'rejectKegiatan'])->name('rejectKegiatan');
             });

@@ -1,7 +1,7 @@
 <x-admin-layout page="{{ $page }}" selected="{{ $selected }}">
     <div class="flex w-full h-15 justify-between items-center">
         <div class="flex h-full sm:w-fit w-full gap-8 items-center justify-between">
-            <form class="lg:w-[25vw] w-[100%] sm:w-[400px]" method="post" action="{{ route('searchPenduduk') }}">
+            <form class="lg:w-[25vw] w-[100%] sm:w-[400px]" method="post" action="{{ route('searchingAjuan') }}">
                 @csrf
                 <div class="flex h-full items-center">
                     <div class="relative w-full">
@@ -197,7 +197,7 @@
         <div class="flex flex-col w-full h-[100%] justify-center items-center gap-4 py-5 dark:bg-[#343b44] shadow-sm border-b-2 dark:border-gray-600">
             <!-- <i class="fa-regular fa-circle-xmark text-2xl"></i> -->
             <img src="{{ asset('assets/images/no-data.png') }}" alt="" class="w-[200px] h-[100px] object-cover">
-            <p class="text-base font-semibold text-green-900 dark:text-white">Tidak ada Ajuan Kegiatan</p>
+            <p class="text-base font-semibold text-green-900 dark:text-white">Tidak terdapat data</p>
         </div>
         @endif
         <div class="px-8 py-5 dark:bg-[#343b44] rounded-b-lg shadow-md">
