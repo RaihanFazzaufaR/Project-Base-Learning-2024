@@ -110,7 +110,7 @@
 
                         <td scope="row"
                             class="px-6 py-4 font-medium text-base text-center text-[#2d5523]  dark:text-white">
-                            {{ $surat->minta_tanggal }}
+                            {{ $surat->created_at->format('d-m-Y')}}
                         </td>
                         <td scope="row"
                             class="px-6 py-4 font-medium text-base text-center text-[#2d5523]  dark:text-white">
