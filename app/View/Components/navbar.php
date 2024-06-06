@@ -32,29 +32,22 @@ class Navbar extends Component
         $today = Carbon::today()->toDateString();
         $sevenDaysAgo = Carbon::today()->subDays(7)->toDateString();
         $id = auth()->user()->id_penduduk ?? 0;
-        $kk = auth()->user()->penduduk->id_kartuKeluarga ?? 0;
-
+        // $data = PendudukModel::with(['jadwal', 'umkm'])->whereDate('updated_at', $today)->get();
         $jadwalQuery = DB::table('tb_jadwal')
             ->select(DB::raw('alasan_tolak as reason'), 'updated_at', 'status', DB::raw('pembuat_id as id'), DB::raw("'tb_jadwal' as source"))
             ->whereDate('updated_at', '<=', $today)
             ->whereDate('updated_at', '>=', $sevenDaysAgo)
             ->where('pembuat_id', $id);
 
+        // Second part of the union query
         $umkmQuery = DB::table('tb_umkm')
             ->select(DB::raw('alasan_rw as reason'), 'updated_at', 'status', DB::raw('id_pemilik as id'), DB::raw("'tb_umkm' as source"))
             ->whereDate('updated_at', '<=', $today)
             ->whereDate('updated_at', '>=', $sevenDaysAgo)
             ->where('id_pemilik', $id);
 
-        $bansosQuery = DB::table('tb_ajuan_bansos')
-            ->select(DB::raw("'Maaf anda tidak termasuk ke dalam kriteria penerima bansos' as reason"), 'updated_at', 'status', DB::raw('id_kartuKeluarga as id'), DB::raw("'tb_bansos' as source"))
-            ->whereDate('updated_at', '<=', $today)
-            ->whereDate('updated_at', '>=', $sevenDaysAgo)
-            ->where('id_kartuKeluarga', $kk);
-
-        // Union all three queries
-        $data = $jadwalQuery->unionAll($umkmQuery)->unionAll($bansosQuery)->orderBy('updated_at', 'desc')->get();
-
+        // Combining the queries with unionAll
+        $data = $jadwalQuery->unionAll($umkmQuery)->get();
 
         // dd($data);
         foreach ($data as  $value) {
