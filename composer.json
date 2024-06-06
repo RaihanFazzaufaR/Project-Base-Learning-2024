@@ -7,6 +7,7 @@
     "require": {
         "php": "^8.1",
         "dompdf/dompdf": "^3.0",
+        "fakerphp/faker": "^1.23",
         "guzzlehttp/guzzle": "^7.8",
         "laravel/framework": "^10.10",
         "laravel/sanctum": "^3.3",
@@ -15,7 +16,6 @@
         "realrashid/sweet-alert": "^7.1"
     },
     "require-dev": {
-        "fakerphp/faker": "^1.9.1",
         "kitloong/laravel-migrations-generator": "^7.0",
         "laravel/pint": "^1.0",
         "laravel/sail": "^1.18",
