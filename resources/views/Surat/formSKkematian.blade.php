@@ -83,7 +83,7 @@
         </div>
         <div class="lg:basis-3/4 w-full h-full">
             <div class=" gap-11  w-full h-full border-2 dark:border-gray-500 rounded-xl">
-                <div class="sm:text-2xl text-[18px] sm:px-8 py-5 sm:pb-0  font-bold dark:text-white sm:w-[100%] w-[90%]  mx-auto">
+                <div class="sm:text-2xl text-[18px] sm:px-8 py-5 sm:pb-0  font-bold dark:text-white text-[#2d5523] sm:w-[100%] w-[90%]  mx-auto">
                     Formulir Surat Keterangan Kematian
                     <p class="text-[#2d5523] sm:text-lg text-base  sm:pt-4 pt-2 font-medium dark:text-white ">Masukkan identitas orang yang meninggal</p>
                 </div>
@@ -109,7 +109,8 @@
                                 Pelapor</label>
                         </div>
                         <div class="basis-3/4 h-full flex items-center">
-                            <input id="nama_pelapor" name="nama_pelapor" placeholder="Masukkan Nama Pelapor Kematian"
+                            <input type="hidden" name="nik_pelapor" value="{{ Auth::user()->penduduk->id_penduduk }}">
+                            <input id="nama_pelapor" name="nama_pelapor" value="{{ Auth::user()->penduduk->nama }}" readonly
                                 class="bg-white border-2 border-[#2d5523] dark:bg-[#505c6a] sm:text-lg text-base sm:font-bold font-semibold dark:border-gray-500 dark:placeholder-gray-400 dark:text-white text-[#2d5523] shadow-md placeholder-[#34662C]/50  rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full sm:p-2.5 p-1.5  dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             {{-- <input type="hidden" id="id_penduduk" name="id_penduduk" value="{{ Auth::user()->penduduk->id_penduduk }}"> --}}
                         </div>

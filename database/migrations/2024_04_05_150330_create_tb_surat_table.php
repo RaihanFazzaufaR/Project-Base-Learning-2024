@@ -18,7 +18,7 @@ return new class extends Migration
 
             // Columns from tb_permintaansurat
             $table->unsignedBigInteger('peminta_id');
-            $table->date('minta_tanggal');
+            $table->date('minta_tanggal')->nullable();
             $table->enum('status', ['diproses', 'selesai', 'ditolak', 'menunggu']);
             $table->text('keperluan');
             $table->unsignedBigInteger('template_id');

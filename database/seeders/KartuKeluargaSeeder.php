@@ -30,7 +30,7 @@ class KartuKeluargaSeeder extends Seeder
             ['id_kartuKeluarga'=>14, 'niKeluarga'=>"3304111001000013", 'jmlAnggota'=>2, 'alamat'=>"Jl. Ahmad Yani No. 888, Kel. Bandung, Kec. Lowokwaru, Malang, 65141", 'kepalaKeluarga'=>"3570000000000131", 'rt'=>'13'],
             ['id_kartuKeluarga'=>15, 'niKeluarga'=>"3304111001000014", 'jmlAnggota'=>3, 'alamat'=>"Jl. Dr. Soetomo No. 234, Kel. Sumbersari, Kec. Lowokwaru, Malang, 65141", 'kepalaKeluarga'=>"3570000000000141", 'rt'=>'14'],
             ['id_kartuKeluarga'=>16, 'niKeluarga'=>"3304111001000015", 'jmlAnggota'=>2, 'alamat'=>"Jl. WR Supratman No. 333, Kel. Landungsari, Kec. Lowokwaru, Malang, 65141", 'kepalaKeluarga'=>"3570000000000151", 'rt'=>'01'],
-            ['id_kartuKeluarga'=>17, 'niKeluarga'=>"3304111001000016", 'jmlAnggota'=>8, 'alamat'=>"Jl. Melati No. 1, Lowokwaru, Kota Malang", 'kepalaKeluarga'=>"3570000000000161", 'rt'=>'02'],
+            ['id_kartuKeluarga'=>17, 'niKeluarga'=>"3304111001000016", 'jmlAnggota'=>8, 'alamat'=>"Jl. Melati No. 1, Lowokwaru, Kota Malang", 'kepalaKeluarga'=>"3570000000000161", 'rt'=>'01'],
             ['id_kartuKeluarga'=>18, 'niKeluarga'=>"3304111001000017", 'jmlAnggota'=>3, 'alamat'=>"Jl. Kenanga No. 2, Lowokwaru, Kota Malang", 'kepalaKeluarga'=>"3570000000000171", 'rt'=>'03'],
             ['id_kartuKeluarga'=>19, 'niKeluarga'=>"3304111001000018", 'jmlAnggota'=>2, 'alamat'=>"Jl. Mawar No. 3, Lowokwaru, Kota Malang", 'kepalaKeluarga'=>"3570000000000181", 'rt'=>'04'],
             ['id_kartuKeluarga'=>20, 'niKeluarga'=>"3304111001000019", 'jmlAnggota'=>1, 'alamat'=>"Jl. Anggrek No. 4, Lowokwaru, Kota Malang", 'kepalaKeluarga'=>"3570000000000191", 'rt'=>'05'],
