@@ -5,6 +5,7 @@ namespace App\View\Components;
 use App\Models\AduanModel;
 use App\Models\JadwalModel;
 use App\Models\UmkmModel;
+use Carbon\Carbon;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\DB;
@@ -50,6 +51,8 @@ class SidebarAdmin extends Component
                 ->join('tb_kartukeluarga', 'tb_ajuan_bansos.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')
                 ->where('tb_ajuan_bansos.status', 'diproses')
                 ->where('tb_kartukeluarga.rt', auth()->user()->penduduk->kartuKeluarga->rt)
+                ->whereMonth('tb_ajuan_bansos.created_at', Carbon::now()->month)
+                ->whereYear('tb_ajuan_bansos.created_at', Carbon::now()->year)
                 ->count();
         }
         return view('components.sidebar-admin', compact('UmkmRequest', 'KegiatanRequest', 'AduanRequest', 'bansosRequest'));
