@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
 class SuratModel extends Model
 {
@@ -52,5 +53,10 @@ class SuratModel extends Model
     public function template(): BelongsTo
     {
         return $this->belongsTo(TemplateModel::class, 'template_id', 'template_id');
+    }
+
+    public function pindahPenduduk(): HasMany
+    {
+        return $this->hasMany(PindahPendudukModel::class, 'id_foreign_surat', 'surat_id');
     }
 }

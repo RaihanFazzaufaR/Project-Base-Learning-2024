@@ -57,7 +57,7 @@
                         <tr
                             class="bg-white border-b text-sm font-medium text-[#7F7F7F] dark:bg-[#2F363E] dark:text-white dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                             <td class="px-6 py-4">
-                                {{ $surat->nama }}
+                                {{ $surat->peminta->nama }}
                             </td>
                             <td class="px-6 py-4">
                                 {{ \Carbon\Carbon::parse($surat->minta_tanggal)->format('d-m-Y') }}
@@ -328,7 +328,8 @@
                                                                                     </tr>
                                                                                 </thead>
                                                                                 <tbody>
-                                                                                    @foreach ($detailpindah as $index => $anggota)
+
+                                                                                    @foreach ($surat->pindahPenduduk as $index => $dt)
                                                                                         <tr
                                                                                             class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                                                                                             <td
@@ -337,11 +338,11 @@
                                                                                             </td>
                                                                                             <td
                                                                                                 class="py-2 ps-3 border-[2px] ">
-                                                                                                {{ $anggota['nik'] }}
+                                                                                                {{ $dt->penduduk->nik }}
                                                                                             </td>
                                                                                             <td
                                                                                                 class="py-2 ps-3 border-[2px] ">
-                                                                                                {{ $anggota['nama'] }}
+                                                                                                {{ $dt->penduduk->nama }}
                                                                                             </td>
                                                                                         </tr>
                                                                                     @endforeach

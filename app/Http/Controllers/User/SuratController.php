@@ -202,12 +202,12 @@ class SuratController extends Controller
         'alamat' => $keluarga->alamat,
     ]);
 
-    // Simpan data ke dalam tabel PindahPendudukModel
-    PindahPendudukModel::create([
-        'id_foreign_penduduk' => $penduduk->id_penduduk,
-        'id_foreign_surat' => $createSurat->surat_id,
-        'id_foreign_kk' => $idKartuKeluarga,
-    ]);
+    // // Simpan data ke dalam tabel PindahPendudukModel
+    // PindahPendudukModel::create([
+    //     'id_foreign_penduduk' => $penduduk->id_penduduk,
+    //     'id_foreign_surat' => $createSurat->surat_id,
+    //     'id_foreign_kk' => $idKartuKeluarga,
+    // ]);
 
     $rw = PendudukModel::where('jabatan', 'Ketua RW')->first();
     $rt = PendudukModel::join('tb_kartukeluarga', 'tb_penduduk.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')
@@ -256,13 +256,8 @@ class SuratController extends Controller
             $data[] = $newData;
         }
 
-        $detailpindah = PindahPendudukModel::whereIn('id_foreign_kk', $idKartuKeluarga)
-        ->join('tb_penduduk', 'tb_pindahpenduduk.id_foreign_penduduk', '=', 'tb_penduduk.id_penduduk')
-        ->select('tb_pindahpenduduk.*', 'tb_penduduk.nik', 'tb_penduduk.nama')
-        ->get();
-
     // Redirect ke view 'Surat.surat_keterangan'
-    return view('Surat.surat_keterangan_pindah', compact('surat', 'data', 'rw', 'rt', 'detailpindah'));
+    return view('Surat.surat_keterangan_pindah', compact('surat', 'data', 'rw', 'rt',));
 }
 
     public function skKematian()
@@ -392,16 +387,31 @@ class SuratController extends Controller
     {
         $menu = 'Surat';
         $search = $request->search;
-        $surat = PermintaanSuratModel::select('tb_permintaansurat.*', 'tb_penduduk.nama')
-            ->join('tb_penduduk', 'tb_permintaansurat.peminta_id', '=', 'tb_penduduk.id_penduduk')
-            ->where('tb_penduduk.nama', 'like', '%' . $search . '%')
-            ->orWhere('minta_tanggal', 'LIKE', "%{$search}%")
-            ->orWhere('jenisSurat', 'LIKE', "%{$search}%")
-            ->orderBy('tb_permintaansurat.minta_tanggal', 'desc')
+        
+        // Ambil data surat dari database tb_surat
+        $surat = SuratModel::select('tb_surat.*', 'tb_penduduk.nama')
+            ->join('tb_penduduk', 'tb_surat.peminta_id', '=', 'tb_penduduk.id_penduduk')
+            ->where(function($query) use ($search) {
+                $query->where('tb_penduduk.nama', 'like', '%' . $search . '%')
+                      ->orWhere('tb_surat.minta_tanggal', 'like', "%{$search}%")
+                      ->orWhere(function($query) use ($search) {
+                          // Menentukan template_id berdasarkan isi kolom keperluan
+                          $query->where('tb_surat.keperluan', 'like', "%{$search}%")
+                                ->orWhere('tb_surat.keperluan', 'like', "%{$search}%")
+                                ->orWhere('tb_surat.keperluan', 'like', "%{$search}%");
+                      });
+            })
+            ->orderBy('tb_surat.minta_tanggal', 'desc')
             ->paginate(10);
-
-        return view('Surat.surat-ku', compact('surat', 'menu'));
+            $dataSurat = SuratModel::where('peminta_id', Auth::user()->penduduk->id_penduduk)
+            ->orderBy('updated_at', 'desc')
+            ->paginate(10);
+    
+        return view('Surat.surat-ku', compact('surat', 'menu', 'dataSurat'));
     }
+    
+    
+    
 
     public function showSk($pemintaId, $templateId)
     {
@@ -478,7 +488,7 @@ class SuratController extends Controller
         $surat->tanggalLahir = Carbon::parse($surat->tanggalLahir);
 
         // Get data of family members who moved
-        $data = PindahPendudukModel::where('id_foreign_kk', $surat->id_kartuKeluarga)->get();
+        // $data = PindahPendudukModel::where('id_foreign_kk', $surat->id_kartuKeluarga)->get();
 
         $penduduk = PendudukModel::where('id_penduduk', $pemintaId)->first();
         $rw = PendudukModel::where('jabatan', 'Ketua RW')->first();
@@ -489,6 +499,6 @@ class SuratController extends Controller
             ->first();
 
         // Return the view with surat and data
-        return view('Surat.surat_keterangan_pindah', compact('surat', 'data', 'rw', 'penduduk', 'rt'));
+        return view('Surat.surat_keterangan_pindah', compact('surat', 'rw', 'penduduk', 'rt'));
     }
 }

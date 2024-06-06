@@ -228,16 +228,16 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($data as $index => $anggota)
+                    @foreach ($surat->pindahPenduduk as $index => $dt)
                         <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
                             <td class="py-2 text-center border-[2px] ">
                                 {{ $index + 1 }}
                             </td>
                             <td class="py-2 ps-3 border-[2px] ">
-                                {{ $anggota['nik'] }}
+                                {{ $dt->penduduk->nik }}
                             </td>
                             <td class="py-2 ps-3 border-[2px] ">
-                                {{ $anggota['nama'] }}
+                                {{ $dt->penduduk->nama }}
                             </td>
                         </tr>
                     @endforeach

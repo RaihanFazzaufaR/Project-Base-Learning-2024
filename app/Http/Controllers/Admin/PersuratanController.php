@@ -18,27 +18,35 @@ class PersuratanController extends Controller
     $page = 'daftarPersuratan';
     $selected = 'Persuratan';
 
-    $dataSurat = SuratModel::select('tb_surat.*', 'tb_penduduk.nama')
-        ->join('tb_penduduk', 'tb_surat.peminta_id', '=', 'tb_penduduk.id_penduduk')
-        ->orderBy('tb_surat.minta_tanggal', 'desc')
+    $dataSurat = SuratModel::orderBy('tb_surat.minta_tanggal', 'desc')
         ->paginate(10);
 
         $data = SuratModel::select('tb_penduduk.id_kartuKeluarga')
         ->join('tb_penduduk', 'tb_surat.peminta_id', '=', 'tb_penduduk.id_penduduk')
         ->get();
     
-    // Retrieve all distinct id_kartuKeluarga from dataSurat
-    $idKartuKeluarga = $data->pluck('id_kartuKeluarga')->unique()->toArray();
+    // dd($dataSurat[0]->pindahPenduduk[0]->penduduk->nama);
+    // // Retrieve all distinct id_kartuKeluarga from dataSurat
+    // $idKartuKeluarga = $data->pluck('id_kartuKeluarga')->unique()->toArray();
     
+    // // Retrieve detailed moving data for all id_kartuKeluarga
+    // $detailpindah = PindahPendudukModel::whereIn('id_foreign_kk', $idKartuKeluarga)
+    //     ->join('tb_penduduk', 'tb_pindahpenduduk.id_foreign_penduduk', '=', 'tb_penduduk.id_penduduk')
+    //     ->select('tb_pindahpenduduk.*', 'tb_penduduk.nik', 'tb_penduduk.nama')
+    //     ->get();
+
+    // Retrieve all distinct id_foreign_surat from dataSurat
+    
+
     // Retrieve detailed moving data for all id_kartuKeluarga
-    $detailpindah = PindahPendudukModel::whereIn('id_foreign_kk', $idKartuKeluarga)
-        ->join('tb_penduduk', 'tb_pindahpenduduk.id_foreign_penduduk', '=', 'tb_penduduk.id_penduduk')
-        ->select('tb_pindahpenduduk.*', 'tb_penduduk.nik', 'tb_penduduk.nama')
-        ->get();
+    // $detailpindah = PindahPendudukModel::whereIn('id_foreign_surat', $idForeignSurat)
+    //     ->join('tb_penduduk', 'tb_pindahpenduduk.id_foreign_penduduk', '=', 'tb_penduduk.id_penduduk')
+    //     ->select('tb_pindahpenduduk.*', 'tb_penduduk.nik', 'tb_penduduk.nama')
+    //     ->get();
 
     // Now $detailpindah contains detailed moving data for each family
 
-    return view('Admin.Persuratan.index', compact('dataSurat', 'page', 'selected', 'detailpindah'));
+    return view('Admin.Persuratan.index', compact('dataSurat', 'page', 'selected'));
 }
 
 
