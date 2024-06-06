@@ -237,7 +237,7 @@
             </table>
         </div>
         <div class="px-8 py-5 dark:bg-[#343b44] rounded-b-lg shadow-md">
-            {{-- {{ $data_records->links() }} --}}
+            {{ $data_records->links() }}
         </div>
     </div>
 </x-admin-layout>

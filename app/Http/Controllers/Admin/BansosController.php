@@ -7,7 +7,7 @@ use App\Models\BansosModel;
 use App\Models\KartuKeluargaModel;
 use App\Models\AjuanBansosModel;
 use App\Models\PendudukModel;
-use App\Models\RekomendasiPenerimaModel;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
@@ -38,11 +38,13 @@ class BansosController extends Controller
             ->join('tb_penduduk', 'tb_kartukeluarga.kepalaKeluarga', '=', 'tb_penduduk.nik')
             ->where('tb_ajuan_bansos.status', 'diterima')
             ->select('tb_ajuan_bansos.*', 'tb_kartukeluarga.niKeluarga', 'tb_kartukeluarga.rt', 'tb_penduduk.nama')
-            ->paginate(10)
-            ->map(function ($record) {
-                $record->created_at_text = $record->created_at->format('F Y');
-                return $record;
-            });
+            ->paginate(10);
+
+        $data_records->getCollection()->transform(function ($record) {
+            $record->created_at_text = $record->created_at->format('F Y');
+            return $record;
+        });
+
         // return $data_records;
 
         return view('Admin.Bansos.index', compact('page', 'selected', 'month', 'years', 'data_records'));
@@ -187,10 +189,7 @@ class BansosController extends Controller
             'now' => Carbon::now()->year,
             'next' => Carbon::now()->addYear()->year,
         ];
-        $id_RT = Auth::user()->penduduk->id_penduduk;
-        // return $id_RT;
-        $id_kartuKeluarga = PendudukModel::where('id_penduduk', $id_RT)->value('id_kartuKeluarga');
-        $RT = KartuKeluargaModel::where('id_kartuKeluarga', $id_kartuKeluarga)->value('rt');
+
 
         $pairwise_matrix = [
             [1, 0.25, 0.3333333333, 4, 2],
@@ -202,9 +201,12 @@ class BansosController extends Controller
 
         $ahp_result = $this->ahpCalculate($pairwise_matrix);
         $priority_vector = $ahp_result['priority_vector'];
-
+        $id_RT = Auth::user()->penduduk->id_penduduk;
+        $id_kartuKeluarga = PendudukModel::where('id_penduduk', $id_RT)->value('id_kartuKeluarga');
+        $RT = KartuKeluargaModel::where('id_kartuKeluarga', $id_kartuKeluarga)->value('rt');
         $current_month = Carbon::now()->month;
         $current_year = Carbon::now()->year;
+
         $data_records = AjuanBansosModel::whereMonth('tb_ajuan_bansos.created_at', $current_month)
             ->whereYear('tb_ajuan_bansos.created_at', '>=', $current_year)
             ->join('tb_kartukeluarga', 'tb_ajuan_bansos.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')
@@ -285,6 +287,13 @@ class BansosController extends Controller
             $result['rank'] = $key + 1;
         }
 
+        $perPage = 10;
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $currentResults = array_slice($results, ($currentPage - 1) * $perPage, $perPage);
+        $paginatedResults = new LengthAwarePaginator($currentResults, count($results), $perPage, $currentPage, [
+            'path' => LengthAwarePaginator::resolveCurrentPath()
+        ]);
+
         // return ['ahp_result' => $ahp_result, 'saw_scores' => $results];
         return view('Admin.Bansos.rekomendasi-bansos', compact('page', 'selected', 'ahp_result', 'results', 'month', 'years'));
     }
@@ -354,6 +363,22 @@ class BansosController extends Controller
         $request->validate([
             'id' => 'required|exists:tb_ajuan_bansos,id_ajuanBansos'
         ]);
+        $id_RT = Auth::user()->penduduk->id_penduduk;
+        $id_kartuKeluarga = PendudukModel::where('id_penduduk', $id_RT)->value('id_kartuKeluarga');
+        $RT = KartuKeluargaModel::where('id_kartuKeluarga', $id_kartuKeluarga)->value('rt');
+        $current_month = Carbon::now()->month;
+        $current_year = Carbon::now()->year;
+
+        $count_diterima = AjuanBansosModel::whereMonth('tb_ajuan_bansos.created_at', $current_month)
+            ->whereYear('tb_ajuan_bansos.created_at', '>=', $current_year)
+            ->join('tb_kartukeluarga', 'tb_ajuan_bansos.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')
+            ->join('tb_penduduk', 'tb_kartukeluarga.kepalaKeluarga', '=', 'tb_penduduk.nik')
+            ->where('tb_kartukeluarga.rt', $RT)
+            ->where('tb_ajuan_bansos.status', 'diterima')
+            ->count();
+        if ($count_diterima >= 5) {
+            return redirect()->back()->with('error', 'Kuota telah penuh.');
+        }
 
         $id_ajuanBansos = $request->input('id');
         AjuanBansosModel::where('id_ajuanBansos', $id_ajuanBansos)
@@ -451,11 +476,9 @@ class BansosController extends Controller
             $query->where('tb_kartukeluarga.rt', $rt);
         }
 
-        $data_records = $query->get();
+        $data_records = $query->paginate();
 
         // return $data_records;
         return view('Admin.Bansos.index', compact('page', 'selected', 'month', 'years', 'data_records'));
     }
-
-
 }
