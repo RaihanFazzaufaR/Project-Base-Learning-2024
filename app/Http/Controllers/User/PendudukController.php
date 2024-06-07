@@ -40,30 +40,30 @@ class PendudukController extends Controller
     }
 
     public function getDataByRT($rt = null)
-{
-    $query = DB::table('tb_penduduk')
-        ->select(
-            DB::raw("CONCAT(SUBSTRING(tb_penduduk.nik, 1, 4), '**********', SUBSTRING(tb_penduduk.nik, -2)) AS nik"),
-            'tb_penduduk.nama',
-            'tb_penduduk.statusPenduduk',
-            'kk.rt',
-            'kk.alamat'
-        )
-        ->join('tb_kartukeluarga as kk', 'tb_penduduk.id_kartuKeluarga', '=', 'kk.id_kartuKeluarga')
-        ->where('nik', '!=', '0000000000000001');
+    {
+        $query = DB::table('tb_penduduk')
+            ->select(
+                DB::raw("CONCAT(SUBSTRING(tb_penduduk.nik, 1, 4), '**********', SUBSTRING(tb_penduduk.nik, -2)) AS nik"),
+                'tb_penduduk.nama',
+                'tb_penduduk.statusPenduduk',
+                'kk.rt',
+                'kk.alamat'
+            )
+            ->join('tb_kartukeluarga as kk', 'tb_penduduk.id_kartuKeluarga', '=', 'kk.id_kartuKeluarga')
+            ->where('nik', '!=', '0000000000000001');
 
-    // Menambahkan kondisional untuk filter RT jika $rt tidak null
-    if ($rt) {
-        $query->where('kk.rt', $rt);
+        // Menambahkan kondisional untuk filter RT jika $rt tidak null
+        if ($rt) {
+            $query->where('kk.rt', $rt);
+        }
+
+        // Mengambil nilai RT yang unik dari tabel tb_kartukeluarga
+        $rts = DB::table('tb_kartukeluarga')->distinct()->pluck('rt');
+        $menu = 'Penduduk';
+        $penduduks = $query->paginate(10);
+
+        return view('Penduduk.index', compact('menu', 'rts', 'penduduks'));
     }
-
-    // Mengambil nilai RT yang unik dari tabel tb_kartukeluarga
-    $rts = DB::table('tb_kartukeluarga')->distinct()->pluck('rt');
-    $menu = 'Penduduk';
-    $penduduks = $query->paginate(10);
-
-    return view('penduduk.index', compact('menu', 'rts', 'penduduks'));
-}
 
 
     public function search(Request $request)
@@ -88,6 +88,6 @@ class PendudukController extends Controller
 
         $notification = $penduduks->isEmpty() ? 'Data Tidak Ditemukan' : null;
 
-        return view('penduduk.index', compact('menu', 'penduduks', 'notification', 'rts'));
+        return view('Penduduk.index', compact('menu', 'penduduks', 'notification', 'rts'));
     }
 }
