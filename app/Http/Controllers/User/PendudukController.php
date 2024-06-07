@@ -88,6 +88,6 @@ class PendudukController extends Controller
 
         $notification = $penduduks->isEmpty() ? 'Data Tidak Ditemukan' : null;
 
-        return view('Penduduk.index', compact('menu', 'penduduks', 'notification', 'rts'));
+        return view('penduduk.index', compact('menu', 'penduduks', 'notification', 'rts'));
     }
 }
