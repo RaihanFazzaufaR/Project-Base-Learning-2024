@@ -26,7 +26,7 @@ class SidebarAdmin extends Component
     {
 
         $UmkmRequest = UmkmModel::where('status', 'diproses')->count();
-        if (auth()->user()->penduduk->jabatan == 'Ketua RW') {
+        if (auth()->user()->penduduk->jabatan == 'Ketua RW' || auth()->user()->penduduk->nik == '0000000000000001') {
             $KegiatanRequest = JadwalModel::where('status', 'diproses')->count();
             $AduanRequest = AduanModel::where('status', 'diproses')->count();
             $bansosRequest = 0;
