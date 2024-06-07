@@ -104,13 +104,13 @@
                                                         <div x-data="{ showModal: false }" class="col-span-2">
                                                             <label class="block mb-2 text-sm font-bold">Foto Rumah</label>
                                                             <div @click="showModal = true" class="cursor-pointer relative w-fit mx-auto flex justify-center items-center group">
-                                                                <img src="{{ asset('assets/images/' . $hasil['data']['foto_rumah']) }}" alt="Foto Rumah" class="w-[300px] h-[200px] object-cover rounded-lg shadow-md cursor-pointer group-hover:brightness-50 transition-all duration-300" />
+                                                                <img src="{{ asset('assets/images/Bansos/' . $hasil['data']['foto_rumah']) }}" alt="Foto Rumah" class="w-[300px] h-[200px] object-cover rounded-lg shadow-md cursor-pointer group-hover:brightness-50 transition-all duration-300" />
                                                                 <div class="cursor-pointer absolute group-hover:block hidden px-3 py-2 bg-[#446DFF] rounded-xl shadow-md hover:bg-[#273E91] font-semibold transition-all duration-300 text-base text-white">Lihat Foto</div>
                                                             </div>
                                                             <!-- Modal -->
                                                             <div x-show="showModal" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-300 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" @click.away="showModal = false" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75">
                                                                 <div class="relative">
-                                                                    <img src="{{ asset('assets/images/' . $hasil['data']['foto_rumah']) }}" alt="Foto Rumah" class="max-h-[85vh] max-w-[80vw] rounded-lg shadow-lg" />
+                                                                    <img src="{{ asset('assets/images/Bansos/' . $hasil['data']['foto_rumah']) }}" alt="Foto Rumah" class="max-h-[85vh] max-w-[80vw] rounded-lg shadow-lg" />
                                                                     <button @click="showModal = false" class="absolute -top-10 -right-10 text-white text-3xl font-bold">&times;</button>
                                                                 </div>
                                                             </div>
@@ -119,13 +119,13 @@
                                                             <label class="block mb-2 text-sm font-bold">Foto SKTM</label>
 
                                                             <div @click="showSktm = true" class="cursor-pointer relative w-fit mx-auto flex justify-center items-center group">
-                                                                <img src="{{ asset('assets/images/' . $hasil['data']['SKTM']) }}" alt="Foto Sktm" class="h-[300px] object-cover rounded-lg shadow-md cursor-pointer group-hover:brightness-50 transition-all duration-300" />
+                                                                <img src="{{ asset('assets/images/Bansos/' . $hasil['data']['SKTM']) }}" alt="Foto Sktm" class="h-[300px] object-cover rounded-lg shadow-md cursor-pointer group-hover:brightness-50 transition-all duration-300" />
                                                                 <div class="cursor-pointer absolute group-hover:block hidden px-3 py-2 bg-[#446DFF] rounded-xl shadow-md hover:bg-[#273E91] font-semibold transition-all duration-300 text-base text-white">Lihat Foto</div>
                                                             </div>
                                                             <!-- Modal -->
                                                             <div x-show="showSktm" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-300 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" @click.away="showSktm = false" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75">
                                                                 <div class="relative">
-                                                                    <img src="{{ asset('assets/images/' . $hasil['data']['SKTM']) }}" alt="Foto Sktm" class="max-h-[85vh] max-w-[80vw] rounded-lg shadow-lg" />
+                                                                    <img src="{{ asset('assets/images/Bansos/' . $hasil['data']['SKTM']) }}" alt="Foto Sktm" class="max-h-[85vh] max-w-[80vw] rounded-lg shadow-lg" />
                                                                     <button @click="showSktm = false" class="absolute -top-10 -right-10 text-white text-3xl font-bold">&times;</button>
                                                                 </div>
                                                             </div>
