@@ -1,7 +1,7 @@
 <nav class="sticky top-0 z-[99] bg-white border-gray-200 dark:border-gray-600 dark:bg-[#2F363E] border-b-2 h-fit" id="navbar" data-aos="fade-down" data-aos-duration="1000" data-aos-once="true" style="transition: all 0.5s">
     <div class="w-full flex flex-wrap items-center justify-between lg:px-12 sm:px-10 px-5 py-4">
         <a href="{{ url('/') }}" class="flex items-center space-x-3">
-            <img src="{{ asset('assets/images/logo.png') }}" class="sm:h-12 h-9" alt="Logo" />
+            <!-- 
             <div class="font-extrabold self-center hidden whitespace-nowrap md:flex flex-col bg-gradient-to-r from-[#57BA47] to-black bg-clip-text h-fit justify-center items-start text-transparent dark:to-white">
                 <div class="text-3xl">ꦱꦶꦫꦮ</div>
                 <div class="text-xs flex justify-between w-full">
@@ -12,7 +12,10 @@
                     <div class="">W</div>
                     <div class="">A</div>
                 </div>
-            </div>
+            </div> -->
+            <img src="{{ asset('assets/images/logo.png') }}" class="sm:h-12 h-9 sm:hidden block" alt="Logo" />
+            <img src="{{ asset('assets/images/logoText.png') }}" alt="" class="sm:h-12 h-9 hidden sm:block sm:dark:hidden !ml-0">
+            <img src="{{ asset('assets/images/logoText-dark.png') }}" alt="" class="sm:h-12 h-9 hidden sm:dark:block sm:hidden !ml-0">
         </a>
 
         <div class="flex items-center lg:order-2 sm:space-x-3 space-x-2 lg:space-x-0 lg:gap-3" x-data="{'open': true}">

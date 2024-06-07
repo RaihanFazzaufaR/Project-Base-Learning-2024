@@ -4,7 +4,7 @@
         <!-- SIDEBAR HEADER -->
         <div class="flex items-center justify-between gap-2 py-4 pr-3">
             <a href="/admin" class="w-full flex justify-center items-center gap-3 font-bold h-fit text-black dark:text-white text-4xl">
-                <img src="{{ asset('assets/images/logo.png') }}" alt="Logo" class="h-12 w-12" />
+                <!-- <img src="{{ asset('assets/images/logo.png') }}" alt="Logo" class="h-12 w-12" />
                 <div class="font-extrabold self-center hidden whitespace-nowrap md:flex flex-col bg-gradient-to-r from-[#57BA47] to-black bg-clip-text h-fit justify-center items-start text-transparent dark:to-white">
                     <div class="text-3xl">ꦱꦶꦫꦮ</div>
                     <div class="text-xs flex justify-between w-full">
@@ -15,7 +15,9 @@
                         <div class="">W</div>
                         <div class="">A</div>
                     </div>
-                </div>
+                </div> -->
+                <img src="{{ asset('assets/images/logoText.png') }}" alt="" class="sm:h-12 h-9 block dark:hidden !ml-0">
+                <img src="{{ asset('assets/images/logoText-dark.png') }}" alt="" class="sm:h-12 h-9 dark:block hidden !ml-0">
             </a>
 
             <button class="block lg:hidden" @click.stop="sidebarToggle = !sidebarToggle">
@@ -102,7 +104,7 @@
                                     <li>
                                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-[#57BA47]" href="{{ route('spk') }}" :class="page === 'rekomendasiBansos' && '!text-[#57BA47]'">Rekomendasi
                                             Bansos
-                                            @if ($bansosRequest > 0  && (auth()->user()->penduduk->jabatan != 'Ketua RW'))
+                                            @if ($bansosRequest > 0 && (auth()->user()->penduduk->jabatan != 'Ketua RW'))
                                             <div class="absolute size-7 rounded-full flex justify-center items-center bg-yellow-400 text-white right-5 shadow-md" :class="(selected === 'Bansos')? 'flex' : 'hidden'">{{ $bansosRequest }}</div>
                                             @endif
                                         </a>
