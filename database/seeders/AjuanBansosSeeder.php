@@ -654,7 +654,48 @@ class AjuanBansosSeeder extends Seeder
         ];
         DB::table('tb_ajuan_bansos')->insert($data);
         // Sample data
+        $status_rumah = ['Kontrak/kos', 'Tinggal dengan keluarga', 'Milik sendiri'];
+        $tanggungan = ['1', '2', '3', '4', '5', '>5'];
+        $penghasilan_keluarga = ['<1.000.000', '1.000.000 - 2.000.000', '2.000.000 - 3.000.000', '3.000.000 - 4.000.000', '4.000.000 - 5.000.000', '>5.000.000'];
+        $luas_tempat_tinggal = ['<20m', '20m - 40m', '40m - 60m', '60m - 80m', '>80m'];
+        $pengeluaran_listrik = ['<50.000', '50.000 - 100.000', '100.000 - 200.000', '200.000 - 300.000', '>300.000'];
+        $status = ['diterima', 'ditolak'];
+        $foto_rumah = 'Rumah/contoh-foto-rumah.jpg';
+        $SKTM = 'SKTM/contoh-foto-sktm.jpg';
 
+        for ($id_kartuKeluarga = 2; $id_kartuKeluarga <= 31; $id_kartuKeluarga++) {
+            $created_at = Carbon::create(2024, 2, rand(1, 20));
+            $updated_at = Carbon::create(2024, 2, rand(21, 29));
+            $status_ajuan = $status[array_rand($status)];
+
+            if ($status_ajuan == 'ditolak') {
+                $status_rumah_isi = 'Milik sendiri';
+                $tanggungan_isi = rand(1, 2);
+                $penghasilan_keluarga_isi = ['2.000.000 - 3.000.000', '3.000.000 - 4.000.000', '4.000.000 - 5.000.000', '>5.000.000'][array_rand(['2.000.000 - 3.000.000', '3.000.000 - 4.000.000', '4.000.000 - 5.000.000', '>5.000.000'])];
+                $luas_tempat_tinggal_isi = ['40m - 60m', '60m - 80m', '>80m'][array_rand(['40m - 60m', '60m - 80m', '>80m'])];
+                $pengeluaran_listrik_isi = ['100.000 - 200.000', '200.000 - 300.000', '>300.000'][array_rand(['100.000 - 200.000', '200.000 - 300.000', '>300.000'])];
+            } else {
+                $status_rumah_isi = $status_rumah[array_rand($status_rumah)];
+                $tanggungan_isi = $tanggungan[array_rand($tanggungan)];
+                $penghasilan_keluarga_isi = $penghasilan_keluarga[array_rand($penghasilan_keluarga)];
+                $luas_tempat_tinggal_isi = $luas_tempat_tinggal[array_rand($luas_tempat_tinggal)];
+                $pengeluaran_listrik_isi = $pengeluaran_listrik[array_rand($pengeluaran_listrik)];
+            }
+
+            DB::table('tb_ajuan_bansos')->insert([
+                'id_kartuKeluarga' => $id_kartuKeluarga,
+                'status_rumah' => $status_rumah_isi,
+                'tanggungan' => (string) $tanggungan_isi,
+                'penghasilan_keluarga' => $penghasilan_keluarga_isi,
+                'luas_tempat_tinggal' => $luas_tempat_tinggal_isi,
+                'pengeluaran_listrik' => $pengeluaran_listrik_isi,
+                'status' => $status_ajuan,
+                'foto_rumah' => $foto_rumah,
+                'SKTM' => $SKTM,
+                'created_at' => $created_at,
+                'updated_at' => $updated_at,
+            ]);
+        }
         // $faker = Faker::create();
 
         // $start_date = '2023-01-01';
