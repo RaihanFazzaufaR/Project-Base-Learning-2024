@@ -1203,7 +1203,8 @@ class AjuanBansosSeeder extends Seeder
                 'tanggungan' => '1',
                 'penghasilan_keluarga' => '1.000.000 - 2.000.000',
                 'luas_tempat_tinggal' => '<20m',
-                'pengeluaran_listrik' => '<50.000',                'status' => 'diproses',
+                'pengeluaran_listrik' => '<50.000',
+                'status' => 'diproses',
                 'foto_rumah' => 'contoh-foto-rumah.jpg',
                 'SKTM' => 'contoh-sktm.jpg',
                 'created_at' => '2024-06-01',
@@ -1420,6 +1421,7 @@ class AjuanBansosSeeder extends Seeder
         ];
         DB::table('tb_ajuan_bansos')->insert($data);
         // Sample data
+        //bulan february
         $status_rumah = ['Kontrak/kos', 'Tinggal dengan keluarga', 'Milik sendiri'];
         $tanggungan = ['1', '2', '3', '4', '5', '>5'];
         $penghasilan_keluarga = ['<1.000.000', '1.000.000 - 2.000.000', '2.000.000 - 3.000.000', '3.000.000 - 4.000.000', '4.000.000 - 5.000.000', '>5.000.000'];
@@ -1444,7 +1446,7 @@ class AjuanBansosSeeder extends Seeder
 
             if ($status_ajuan == 'ditolak') {
                 $count_ditolak++;
-                $status_rumah_isi = 'Milik sendiri';
+                $status_rumah_isi = ['Tinggal dengan keluarga', 'Milik sendiri'][array_rand(['Tinggal dengan keluarga', 'Milik sendiri'])];
                 $tanggungan_isi = rand(1, 2);
                 $penghasilan_keluarga_isi = ['2.000.000 - 3.000.000', '3.000.000 - 4.000.000', '4.000.000 - 5.000.000', '>5.000.000'][array_rand(['2.000.000 - 3.000.000', '3.000.000 - 4.000.000', '4.000.000 - 5.000.000', '>5.000.000'])];
                 $luas_tempat_tinggal_isi = ['40m - 60m', '60m - 80m', '>80m'][array_rand(['40m - 60m', '60m - 80m', '>80m'])];
@@ -1452,9 +1454,9 @@ class AjuanBansosSeeder extends Seeder
             } else {
                 $status_rumah_isi = $status_rumah[array_rand($status_rumah)];
                 $tanggungan_isi = $tanggungan[array_rand($tanggungan)];
-                $penghasilan_keluarga_isi = $penghasilan_keluarga[array_rand($penghasilan_keluarga)];
-                $luas_tempat_tinggal_isi = $luas_tempat_tinggal[array_rand($luas_tempat_tinggal)];
-                $pengeluaran_listrik_isi = $pengeluaran_listrik[array_rand($pengeluaran_listrik)];
+                $penghasilan_keluarga_isi = ['<1.000.000', '1.000.000 - 2.000.000', '2.000.000 - 3.000.000'][array_rand(['<1.000.000', '1.000.000 - 2.000.000', '2.000.000 - 3.000.000'])];
+                $luas_tempat_tinggal_isi = ['<20m', '20m - 40m', '40m - 60m'][array_rand(['<20m', '20m - 40m', '40m - 60m'])];
+                $pengeluaran_listrik_isi = ['<50.000', '50.000 - 100.000', '100.000 - 200.000'][array_rand(['<50.000', '50.000 - 100.000', '100.000 - 200.000'])];
             }
 
             DB::table('tb_ajuan_bansos')->insert([
@@ -1470,6 +1472,74 @@ class AjuanBansosSeeder extends Seeder
                 'created_at' => $created_at,
                 'updated_at' => $updated_at,
             ]);
+        }
+
+        //tahun 2023
+        $status_rumah = ['Kontrak/kos', 'Tinggal dengan keluarga', 'Milik sendiri'];
+        $tanggungan = ['1', '2', '3', '4', '5', '>5'];
+        $penghasilan_keluarga = ['<1.000.000', '1.000.000 - 2.000.000', '2.000.000 - 3.000.000', '3.000.000 - 4.000.000', '4.000.000 - 5.000.000', '>5.000.000'];
+        $luas_tempat_tinggal = ['<20m', '20m - 40m', '40m - 60m', '60m - 80m', '>80m'];
+        $pengeluaran_listrik = ['<50.000', '50.000 - 100.000', '100.000 - 200.000', '200.000 - 300.000', '>300.000'];
+        $status = ['diterima', 'ditolak'];
+        $foto_rumah = 'Rumah/contoh-foto-rumah.jpg';
+        $SKTM = 'SKTM/contoh-foto-sktm.jpg';
+
+
+        $max_ditolak = rand(5, 9);
+        $id_kartuKeluarga_start = 2;
+        $id_kartuKeluarga_end = 31;
+        $total_entries = 0;
+
+        for ($month = 1; $month <= 12; $month++) {
+            $days_in_month = Carbon::create(2023, $month, 1)->daysInMonth;
+            $max_ditolak = rand(5, 9);
+            $count_ditolak = 0;
+            for ($day = 1; $day <= $days_in_month; $day++) {
+                $id_kartuKeluarga = $id_kartuKeluarga_start + (($total_entries) % ($id_kartuKeluarga_end - $id_kartuKeluarga_start + 1));
+                $total_entries++;
+
+                $created_at = Carbon::create(2023, $month, $day);
+                $updated_at = $created_at->copy()->addDays(rand(1, 10));
+
+                if ($count_ditolak < $max_ditolak) {
+                    $status_ajuan = 'ditolak';
+                    $count_ditolak++;
+
+                    $status_rumah_isi = ['Tinggal dengan keluarga', 'Milik sendiri'][array_rand(['Tinggal dengan keluarga', 'Milik sendiri'])];
+                    $tanggungan_isi = rand(1, 2);
+                    $penghasilan_keluarga_isi = ['2.000.000 - 3.000.000', '3.000.000 - 4.000.000', '4.000.000 - 5.000.000', '>5.000.000'][array_rand(['2.000.000 - 3.000.000', '3.000.000 - 4.000.000', '4.000.000 - 5.000.000', '>5.000.000'])];
+                    $luas_tempat_tinggal_isi = ['40m - 60m', '60m - 80m', '>80m'][array_rand(['40m - 60m', '60m - 80m', '>80m'])];
+                    $pengeluaran_listrik_isi = ['100.000 - 200.000', '200.000 - 300.000', '>300.000'][array_rand(['100.000 - 200.000', '200.000 - 300.000', '>300.000'])];
+                } else {
+                    $status_ajuan = 'diterima';
+
+                    // $status_rumah_isi = $status_rumah[array_rand($status_rumah)];
+                    // $tanggungan_isi = $tanggungan[array_rand($tanggungan)];
+                    // $penghasilan_keluarga_isi = $penghasilan_keluarga[array_rand($penghasilan_keluarga)];
+                    // $luas_tempat_tinggal_isi = $luas_tempat_tinggal[array_rand($luas_tempat_tinggal)];
+                    // $pengeluaran_listrik_isi = $pengeluaran_listrik[array_rand($pengeluaran_listrik)];
+
+                    $status_rumah_isi = $status_rumah[array_rand($status_rumah)];
+                    $tanggungan_isi = $tanggungan[array_rand($tanggungan)];
+                    $penghasilan_keluarga_isi = ['<1.000.000', '1.000.000 - 2.000.000', '2.000.000 - 3.000.000'][array_rand(['<1.000.000', '1.000.000 - 2.000.000', '2.000.000 - 3.000.000'])];
+                    $luas_tempat_tinggal_isi = ['<20m', '20m - 40m', '40m - 60m'][array_rand(['<20m', '20m - 40m', '40m - 60m'])];
+                    $pengeluaran_listrik_isi = ['<50.000', '50.000 - 100.000', '100.000 - 200.000'][array_rand(['<50.000', '50.000 - 100.000', '100.000 - 200.000'])];
+                }
+
+                DB::table('tb_ajuan_bansos')->insert([
+                    'id_kartuKeluarga' => $id_kartuKeluarga,
+                    'status_rumah' => $status_rumah_isi,
+                    'tanggungan' => $tanggungan_isi,
+                    'penghasilan_keluarga' => $penghasilan_keluarga_isi,
+                    'luas_tempat_tinggal' => $luas_tempat_tinggal_isi,
+                    'pengeluaran_listrik' => $pengeluaran_listrik_isi,
+                    'status' => $status_ajuan,
+                    'foto_rumah' => $foto_rumah,
+                    'SKTM' => $SKTM,
+                    'created_at' => $created_at,
+                    'updated_at' => $updated_at,
+                ]);
+            }
         }
         // $faker = Faker::create();
 
