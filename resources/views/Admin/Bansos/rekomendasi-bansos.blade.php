@@ -164,7 +164,7 @@
                 </tbody>
             </table>
         </div>
-        @if ($results->total() == 0)
+        @if (count($results) == 0)
         <div class="flex flex-col w-full h-[100%] justify-center items-center gap-4 py-5 dark:bg-[#343b44] shadow-sm border-b-2 dark:border-gray-600">
             <!-- <i class="fa-regular fa-circle-xmark text-2xl"></i> -->
             <img src="{{ asset('assets/images/no-data.png') }}" alt="" class="w-[200px] h-[100px] object-cover">
