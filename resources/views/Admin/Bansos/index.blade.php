@@ -113,7 +113,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @foreach ($data_records as $data)      
+                    @foreach ($data_records as $data)
                     <tr class="bg-white border-b text-sm font-medium text-[#7F7F7F] dark:bg-[#2F363E] dark:text-white dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <td class="px-6 py-4">
                             {{ $data->niKeluarga }}
@@ -231,11 +231,18 @@
                                 </div>
                             </div>
                         </td>
-                        </tr>
-                        @endforeach
+                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
+        @if ($data_records->total() == 0)
+        <div class="flex flex-col w-full h-[100%] justify-center items-center gap-4 py-5 dark:bg-[#343b44] shadow-sm border-b-2 dark:border-gray-600">
+            <!-- <i class="fa-regular fa-circle-xmark text-2xl"></i> -->
+            <img src="{{ asset('assets/images/no-data.png') }}" alt="" class="w-[200px] h-[100px] object-cover">
+            <p class="text-base font-semibold text-green-900 dark:text-white">Tidak terdapat data</p>
+        </div>
+        @endif
         <div class="px-8 py-5 dark:bg-[#343b44] rounded-b-lg shadow-md">
             {{ $data_records->links() }}
         </div>
