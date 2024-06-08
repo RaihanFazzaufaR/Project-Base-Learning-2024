@@ -660,15 +660,24 @@ class AjuanBansosSeeder extends Seeder
         $luas_tempat_tinggal = ['<20m', '20m - 40m', '40m - 60m', '60m - 80m', '>80m'];
         $pengeluaran_listrik = ['<50.000', '50.000 - 100.000', '100.000 - 200.000', '200.000 - 300.000', '>300.000'];
         $status = ['diterima', 'ditolak'];
-        $foto_rumah = 'Rumah/contoh-foto-rumah.jpg';
-        $SKTM = 'SKTM/contoh-foto-sktm.jpg';
+        $foto_rumah = 'contoh-foto-rumah.jpg';
+        $SKTM = 'contoh-foto-sktm.jpg';
+
+        $count_ditolak = 0;
+        $max_ditolak = 10;
 
         for ($id_kartuKeluarga = 2; $id_kartuKeluarga <= 31; $id_kartuKeluarga++) {
             $created_at = Carbon::create(2024, 2, rand(1, 20));
             $updated_at = Carbon::create(2024, 2, rand(21, 29));
-            $status_ajuan = $status[array_rand($status)];
+
+            if ($count_ditolak >= $max_ditolak) {
+                $status_ajuan = 'diterima';
+            } else {
+                $status_ajuan = $status[array_rand($status)];
+            }
 
             if ($status_ajuan == 'ditolak') {
+                $count_ditolak++;
                 $status_rumah_isi = 'Milik sendiri';
                 $tanggungan_isi = rand(1, 2);
                 $penghasilan_keluarga_isi = ['2.000.000 - 3.000.000', '3.000.000 - 4.000.000', '4.000.000 - 5.000.000', '>5.000.000'][array_rand(['2.000.000 - 3.000.000', '3.000.000 - 4.000.000', '4.000.000 - 5.000.000', '>5.000.000'])];
