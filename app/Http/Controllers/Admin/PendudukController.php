@@ -207,6 +207,10 @@ class PendudukController extends Controller
             KartuKeluargaModel::find($check->id_kartuKeluarga)->update([
                 'jmlAnggota' => KartuKeluargaModel::find($check->id_kartuKeluarga)->jmlAnggota - 1
             ]);
+            PendudukModel::destroy($nik);
+            if(KartuKeluargaModel::find($check->id_kartuKeluarga)->jmlAnggota == 0){
+                KartuKeluargaModel::destroy($check->id_kartuKeluarga);
+            }
             // PendudukModel::destroy($nik);
             return redirect('/admin/kependudukan')->with('success', 'Data berhasil dihapus!');
         } catch (\Illuminate\Database\QueryException $e) {

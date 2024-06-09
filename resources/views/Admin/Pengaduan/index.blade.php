@@ -318,7 +318,7 @@
         </div>
         @endif
         <div class="px-8 py-5 dark:bg-[#343b44] rounded-b-lg shadow-md">
-            {{ $complaints->links() }}
+            {{ $complaints->onEachSide(1)->links() }}
         </div>
     </div>
     <script>

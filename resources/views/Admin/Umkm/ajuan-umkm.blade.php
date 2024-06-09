@@ -287,7 +287,7 @@
         </div>
         @endif
         <div class="px-8 py-5 dark:bg-[#343b44] rounded-b-lg shadow-md">
-            {{ $umkms->links() }}
+            {{ $umkms->onEachSide(1)->links() }}
         </div>
     </div>
 </x-admin-layout>
