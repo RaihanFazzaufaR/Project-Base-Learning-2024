@@ -22,7 +22,7 @@ class AduanController extends Controller
                 return $query->where('prioritas', $request->prioritas);
             });
 
-        $aduans = $aduans->paginate(10)->withQueryString();
+        $aduans = $aduans->orderBy('created_at', 'desc')->paginate(10)->withQueryString();
 
         return view('Aduan.index', compact('menu', 'aduans'));
     }
@@ -47,7 +47,7 @@ class AduanController extends Controller
                 return $query->where('prioritas', $prioritas);
             });
 
-        $aduans = $aduans->paginate(10)->withQueryString();
+        $aduans = $aduans->orderBy('created_at', 'desc')->paginate(10)->withQueryString();
 
         return view('Aduan.aduanku', compact('menu', 'aduans', 'aduan_id'));
     }
@@ -59,6 +59,9 @@ class AduanController extends Controller
             return redirect()->back()->with('error', 'Konten respon atau gambar harus diisi')->with('aduan_id', $request->aduan_id);
         }
         if ($request->image != null) {
+            $request->validate([
+                'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
             $imageName = time() . '.' . $request->image->extension();
             $request->file('image')->move(public_path('assets/images/Respon'), $imageName);
         }
@@ -91,6 +94,9 @@ class AduanController extends Controller
         }
 
         if ($request->image != null) {
+            $request->validate([
+                'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            ]);
             $imageName = time() . '.' . $request->image->extension();
             $request->file('image')->move(public_path('assets/images/Aduan'), $imageName);
         }

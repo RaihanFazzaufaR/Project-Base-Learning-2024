@@ -4,10 +4,20 @@
         <!-- SIDEBAR HEADER -->
         <div class="flex items-center justify-between gap-2 py-4 pr-3">
             <a href="/admin" class="w-full flex justify-center items-center gap-3 font-bold h-fit text-black dark:text-white text-4xl">
-                <img src="{{ asset('assets/images/logo.png') }}" alt="Logo" class="h-12 w-12" />
-                <div class="font-extrabold bg-gradient-to-r from-[#57BA47] to-black bg-clip-text h-12 flex justify-center items-end text-transparent dark:to-white">
-                    <p>ꦱꦶꦫꦮ</p>
-                </div>
+                <!-- <img src="{{ asset('assets/images/logo.png') }}" alt="Logo" class="h-12 w-12" />
+                <div class="font-extrabold self-center hidden whitespace-nowrap md:flex flex-col bg-gradient-to-r from-[#57BA47] to-black bg-clip-text h-fit justify-center items-start text-transparent dark:to-white">
+                    <div class="text-3xl">ꦱꦶꦫꦮ</div>
+                    <div class="text-xs flex justify-between w-full">
+                        <div class="">S</div>
+                        <div class="">I</div>
+                        <div class="">R</div>
+                        <div class="">A</div>
+                        <div class="">W</div>
+                        <div class="">A</div>
+                    </div>
+                </div> -->
+                <img src="{{ asset('assets/images/logoText.png') }}" alt="" class="sm:h-12 h-9 block dark:hidden !ml-0">
+                <img src="{{ asset('assets/images/logoText-dark.png') }}" alt="" class="sm:h-12 h-9 dark:block hidden !ml-0">
             </a>
 
             <button class="block lg:hidden" @click.stop="sidebarToggle = !sidebarToggle">
@@ -77,8 +87,10 @@
                                     <i class="fa-solid fa-hand-holding-hand text-xl"></i>
                                 </div>
                                 Bansos
-
-                                <svg class="absolute right-4 top-1/2 -translate-y-1/2 fill-current" :class="{ 'rotate-180': (selected === 'Bansos') }" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                @if ($bansosRequest > 0 && (auth()->user()->penduduk->jabatan != 'Ketua RW'))
+                                <div class="absolute size-7 rounded-full flex justify-center items-center bg-yellow-400 text-white right-10 shadow-md" :class="(selected === 'Bansos')? 'hidden' : 'flex'">{{ $bansosRequest }}</div>
+                                @endif
+                                <svg class="absolute right-4 top-1/2 -translate-y-1/2 fill-current " :class="{ 'rotate-180': (selected === 'Bansos') }" width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                                     <path fill-rule="evenodd" clip-rule="evenodd" d="M4.41107 6.9107C4.73651 6.58527 5.26414 6.58527 5.58958 6.9107L10.0003 11.3214L14.4111 6.91071C14.7365 6.58527 15.2641 6.58527 15.5896 6.91071C15.915 7.23614 15.915 7.76378 15.5896 8.08922L10.5896 13.0892C10.2641 13.4147 9.73651 13.4147 9.41107 13.0892L4.41107 8.08922C4.08563 7.76378 4.08563 7.23614 4.41107 6.9107Z" fill="" />
                                 </svg>
                             </a>
@@ -89,9 +101,13 @@
                                     <li>
                                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-[#57BA47]" href="{{ route('bansos-admin') }}" :class="page === 'listBansos' && '!text-[#57BA47]'">Daftar Bansos</a>
                                     </li>
-                                    <li>
-                                        <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-[#57BA47]" href="{{ route('rekomendasi-bansos') }}" :class="page === 'rekomendasiBansos' && '!text-[#57BA47]'">Rekomendasi
-                                            Bansos</a>
+                                    <li class="{{ auth()->user()->penduduk->jabatan == 'Ketua RW' ? 'hidden' : '' }}">
+                                        <a class="group relative  items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-[#57BA47] flex" href="{{ route('spk') }}" :class="page === 'rekomendasiBansos' && '!text-[#57BA47]'">Rekomendasi
+                                            Bansos
+                                            @if ($bansosRequest > 0 && (auth()->user()->penduduk->jabatan != 'Ketua RW'))
+                                            <div class="absolute size-7 rounded-full flex justify-center items-center bg-yellow-400 text-white right-5 shadow-md" :class="(selected === 'Bansos')? 'flex' : 'hidden'">{{ $bansosRequest }}</div>
+                                            @endif
+                                        </a>
                                     </li>
                                 </ul>
                             </div>
@@ -123,7 +139,7 @@
                                     <li>
                                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-[#57BA47]" href="{{ route('ajuan-umkm-admin') }}" :class="page === 'ajuanUmkm' && '!text-[#57BA47]'">
                                             Ajuan UMKM
-                                            @if ($UmkmRequest > 0)
+                                            @if ($UmkmRequest > 0 && (auth()->user()->penduduk->jabatan == 'Ketua RW'))
                                             <div class="absolute size-7 rounded-full flex justify-center items-center bg-yellow-400 text-white right-10 shadow-md" :class="(selected === 'Umkm')? 'flex' : 'hidden'">{{ $UmkmRequest }}</div>
                                             @endif
                                         </a>

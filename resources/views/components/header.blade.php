@@ -12,6 +12,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
 <body x-data="{'loaded': true}" class="bg-white dark:bg-[#30373F]">
@@ -24,5 +25,5 @@
             </div>
         </div>
     </div>
-    <x-navbar menu="{{ $menu }}" />
+    <x-navbar-user menu="{{ $menu }}" />
     <div class="bg-white dark:bg-[#24292d] min-h-[20vh] w-[100%] rounded-b-[100px] shadow-xl pb-[13vh] scrollbar-none">

@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             AduanSeeder::class,
             ResponSeeder::class,
             PengumumanSeeder::class,
+            AjuanBansosSeeder::class,
         ]);
     }
 }

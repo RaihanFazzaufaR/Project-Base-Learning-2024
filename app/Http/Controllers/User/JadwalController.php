@@ -129,16 +129,7 @@ class JadwalController extends Controller
         return view('Jadwal.index', compact('menu', 'dataArray', 'kategoriPast', 'dateFormat', 'calendarDate', 'scrollAuto', 'searchingKey', 'kategoriSearching', 'dates'));
     }
 
-    private function messages()
-    {
-        $today = Carbon::today()->toDateString();
-        $data = JadwalModel::whereDate('updated_at', $today)->get();
-        foreach ($data as  $value) {
-            $value->updated_at = Carbon::parse($value->updated_at);
-            $value->diffTime = $value->updated_at->diffInHours(Carbon::now());
-        }
-        return $data;
-    }
+    
 
 
     private function formatDateAndTime($data)

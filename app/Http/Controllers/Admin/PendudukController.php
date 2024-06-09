@@ -207,6 +207,10 @@ class PendudukController extends Controller
             KartuKeluargaModel::find($check->id_kartuKeluarga)->update([
                 'jmlAnggota' => KartuKeluargaModel::find($check->id_kartuKeluarga)->jmlAnggota - 1
             ]);
+            PendudukModel::destroy($nik);
+            if(KartuKeluargaModel::find($check->id_kartuKeluarga)->jmlAnggota == 0){
+                KartuKeluargaModel::destroy($check->id_kartuKeluarga);
+            }
             // PendudukModel::destroy($nik);
             return redirect('/admin/kependudukan')->with('success', 'Data berhasil dihapus!');
         } catch (\Illuminate\Database\QueryException $e) {
@@ -226,8 +230,7 @@ class PendudukController extends Controller
             $id_kk = $request->id_kk;
         } else if ($request->has('search')) {
             $user = KartuKeluargaModel::where('niKeluarga', 'like', '%' . $request->search . '%')
-                ->orWhere('alamat', 'like', '%' . $request->search . '%')
-                ->paginate(10)->withQueryString();
+                ->orWhere('alamat', 'like', '%' . $request->search . '%');
         } else if ($request->all()) {
             $user->where(function ($query) use ($request) {
                 if ($request->filled('rt')) {

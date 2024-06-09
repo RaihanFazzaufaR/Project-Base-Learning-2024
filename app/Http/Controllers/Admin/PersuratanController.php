@@ -17,14 +17,111 @@ class PersuratanController extends Controller
     {
         $page = 'daftarPersuratan';
         $selected = 'Persuratan';
-    
+
         $dataSurat = SuratModel::select('tb_surat.*', 'tb_penduduk.nama')
-        ->join('tb_penduduk', 'tb_surat.peminta_id', '=', 'tb_penduduk.id_penduduk')
-        ->orderBy('tb_surat.minta_tanggal', 'desc')
-        ->paginate(10);   
+            ->join('tb_penduduk', 'tb_surat.peminta_id', '=', 'tb_penduduk.id_penduduk')
+            ->orderBy('tb_surat.minta_tanggal', 'desc')
+            ->paginate(10);
+
+        foreach($dataSurat as $surat) {
+            if($surat->template_id == 3){
+                $surat->nama_wafat = PendudukModel::where('nik', $surat->nik)->first()->nama;
+            }
+        }
 
         return view('Admin.Persuratan.index', compact('dataSurat', 'page', 'selected'));
     }
+
+    public function search(Request $request)
+    {
+        $page = 'daftarPersuratan';
+        $selected = 'Persuratan';
+    
+        // Ambil nilai pencarian dari input
+        $search = $request->input('search');
+    
+        // Jika input pencarian kosong, tampilkan semua data
+        if (empty($search)) {
+            $dataSurat = SuratModel::select('tb_surat.*', 'tb_penduduk.nama')
+                ->join('tb_penduduk', 'tb_surat.peminta_id', '=', 'tb_penduduk.id_penduduk')
+                ->orderBy('tb_surat.minta_tanggal', 'desc')
+                ->paginate(10)
+                ->withQueryString();
+        } else {
+            // Check if the search query contains keywords related to different template_ids
+            if (strpos(strtolower($search), 'keterangan') !== false) {
+                $templateId = 1;
+            } elseif (strpos(strtolower($search), 'pindah') !== false) {
+                $templateId = 2;
+            } elseif (strpos(strtolower($search), 'kematian') !== false) {
+                $templateId = 3;
+            } else {
+                $templateId = null; // If no specific keyword found, set templateId to null
+            }
+    
+            // Build the query based on the search keyword
+            $query = SuratModel::select('tb_surat.*', 'tb_penduduk.nama')
+                ->join('tb_penduduk', 'tb_surat.peminta_id', '=', 'tb_penduduk.id_penduduk');
+    
+            if (!is_null($templateId)) {
+                $query->where('tb_surat.template_id', $templateId);
+            } else {
+                $query->where('tb_penduduk.nama', 'LIKE', "%{$search}%")
+                    ->orWhereDate('tb_surat.minta_tanggal', $search);
+            }
+    
+            $dataSurat = $query->orderBy('tb_surat.minta_tanggal', 'desc')
+                ->paginate(10)
+                ->withQueryString();
+        }
+    
+        $dataSurat->getCollection()->transform(function ($item) {
+            if ($item->peminta) {
+                $item->nama = $item->peminta->nama;
+            } else {
+                $item->nama = null;
+            }
+            return $item;
+        });
+    
+        return view('Admin.Persuratan.index', compact('dataSurat', 'page', 'selected'));
+    }
+    
+    public function filter(Request $request)
+    {
+        $page = 'daftarPersuratan';
+        $selected = 'Persuratan';
+    
+        // Ambil nilai jenis surat dari input
+        $jenisSurat = $request->input('jenis-surat');
+    
+        // Build the query based on the selected jenis surat
+        $query = SuratModel::select('tb_surat.*', 'tb_penduduk.nama')
+            ->join('tb_penduduk', 'tb_surat.peminta_id', '=', 'tb_penduduk.id_penduduk');
+    
+        if (!empty($jenisSurat)) {
+            // Jika dipilih jenis surat tertentu, sesuaikan filter berdasarkan template_id
+            $query->where('tb_surat.template_id', $jenisSurat);
+        }
+    
+        // Lakukan pengurutan dan paginasi data
+        $dataSurat = $query->orderBy('tb_surat.minta_tanggal', 'desc')
+            ->paginate(10)
+            ->withQueryString();
+    
+        // Transformasi data jika diperlukan
+        $dataSurat->getCollection()->transform(function ($item) {
+            if ($item->peminta) {
+                $item->nama = $item->peminta->nama;
+            } else {
+                $item->nama = null;
+            }
+            return $item;
+        });
+    
+        return view('Admin.Persuratan.index', compact('dataSurat', 'page', 'selected'));
+    }
+
     public function ajuanPersuratan()
     {
         $page = 'ajuanPersuratan';
@@ -50,46 +147,5 @@ class PersuratanController extends Controller
 
         return view('Admin.Persuratan.templateSurat', compact('user', 'page', 'selected'));
     }
-
-    public function showDetail($pemintaId, $templateId)
-    {
-        // Retrieve the requested Surat
-        $surat = DB::table('tb_surat')
-            ->join('tb_penduduk', 'tb_surat.peminta_id', '=', 'tb_penduduk.id_penduduk')
-            ->select('tb_surat.*', 'tb_penduduk.nama', 'tb_penduduk.tanggalLahir')
-            ->where('tb_surat.peminta_id', $pemintaId)
-            ->where('tb_surat.template_id', $templateId)
-            ->first();
-
-        // If surat not found, redirect back with error
-        if (!$surat) {
-            return redirect()->back()->withErrors(['error' => 'Surat tidak ditemukan.']);
-        }
-
-        // Common processing
-        $surat->tanggalLahir = Carbon::parse($surat->tanggalLahir);
-
-        // Additional processing for Surat Keterangan Kematian
-        if (isset($surat->tanggal_wafat)) {
-            $tanggalLahir = Carbon::parse($surat->tanggalLahir);
-            $usia = $tanggalLahir->diffInYears(Carbon::now());
-            $surat->tanggal_wafat = Carbon::parse($surat->tanggal_wafat);
-            $surat->usia = $usia;
-        }
-
-        // Additional processing for Surat Keterangan Pindah
-        $data = [];
-        if (isset($surat->alamat_pindah) && isset($surat->alasan_pindah) && isset($surat->jumlah_keluarga_pindah)) {
-            $data = PindahPendudukModel::where('id_kartuKeluarga', $surat->id_kartuKeluarga)->get();
-        }
-
-        // Determine the appropriate view to return based on available data
-        if (isset($surat->tanggal_wafat)) {
-            return view('Surat.surat_keterangan_kematian', compact('surat'));
-        } elseif (!empty($data)) {
-            return view('Surat.surat_keterangan_pindah', compact('surat', 'data'));
-        } else {
-            return view('Surat.surat_keterangan', compact('surat'));
-        }
-    }
+    
 }

@@ -1,16 +1,10 @@
 <x-header menu="{{ $menu }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
-    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
-    <style>
-        [x-cloak] {
-            display: none;
-        }
-    </style>
 </x-header>
 
 
 <div class="relative sm:h-[100vh] h-fit w-full flex flex-col lg:flex-row text-[#1C4F0F] dark:text-white 2xl:px-25 sm:px-20 px-5 items-center justify-center lg:justify-between py-10 sm:py-0">
-    <div class="2xl:w-[58%] lg:w-[60%] w-full flex flex-col justify-center items-start sm:items-center md:items-start h-fit 2xl:pb-12 lg:pb-13 pt-5 sm:pt-0">
+    <div class="2xl:w-[58%] lg:w-[60%] w-full flex flex-col justify-center items-start sm:items-center md:items-start h-fit 2xl:pb-12 lg:pb-13 pt-5 sm:pt-0" data-aos="fade-right" data-aos-easing="ease-in-out" data-aos-duration="1000" data-aos-delay="500">
         <div class="font-bold sm:text-4xl text-3xl sm:mb-3">
             Selamat Datang di
         </div>
@@ -25,7 +19,7 @@
 
         <p class="font-medium text-xl lg:w-[47vw] sm:w-full w-[95%] text-justify">"Temukan informasi terkini, kegiatan komunitas, dan layanan kami untuk memajukan lingkungan kami. Bergabunglah dalam membangun kehidupan yang lebih baik untuk warga RW 3!"</p>
     </div>
-    <div class="lg:absolute relative lg:pb-[12vh] 2xl:right-15 lg:right-10">
+    <div class="lg:absolute relative lg:pb-[12vh] 2xl:right-15 lg:right-10" data-aos="fade-left" data-aos-easing="ease-in-out" data-aos-duration="1000" data-aos-delay="500">
         <img src="{{ asset('assets/images/cover-home.png') }}" alt="" class="lg:h-[80vh] h-[50vh] dark:hidden block">
         <img src="{{ asset('assets/images/cover-home-dark.png') }}" alt="" class="lg:h-[80vh] hidden dark:block">
     </div>
@@ -42,7 +36,7 @@
     </defs>
 </svg>
 
-<div class="relative sm:w-[80vw] w-[90%] mx-auto lg:mt-[20vh] sm:mt-[15vh] mt-[7vh]  flex flex-col gap-14">
+<div class="relative sm:w-[80vw] w-[90%] mx-auto lg:mt-[20vh] sm:mt-[15vh] mt-[7vh]  flex flex-col gap-14" data-aos="fade-up" data-aos-anchor-placement="center-bottom" data-aos-duration="1000" data-aos-easing="ease-in-out">
     <div class="text-center font-bold sm:text-5xl text-4xl text-[#236612] dark:text-white uppercase">Layanan Warga</div>
     <div class="grid lg:grid-cols-3 grid-cols-2 sm:gap-10 gap-7">
         <div class="relative rounded-xl shadow-lg sm:h-[45vh] md:h-[280px] group hover:-translate-y-3 hover:shadow-2xl transition ease-in-out duration-500 overflow-hidden cursor-pointer" onclick="window.location='{{ route('umkm') }}'">
@@ -124,13 +118,13 @@
 
 <!-- UMKM -->
 
-<div class="lg:h-[90vh] h-fit w-[84vw] mt-[13vh] lg:py-[5vh] mx-auto relative">
+<div class="lg:h-[90vh] h-fit w-[84vw] mt-[13vh] lg:py-[5vh] mx-auto relative" data-aos="fade-right" data-aos-duration="1000" data-aos-easing="ease-in-sine">
     <div class="h-full w-full flex flex-col justify-between">
         <div class="font-bold  text-[#1C4F0F] dark:text-white sm:text-5xl text-4xl text-center w-full py-4 uppercase">UMKM Sekitar</div>
-        <div class="swiper mySwiper !xl:w-full !w-full">
+        <div class="swiper mySwiper !xl:w-full !w-full !px-8 lg:!px-10">
             <div class="swiper-wrapper !w-full !sm:py-20 !py-12">
                 @foreach ($dataUmkm as $dt)
-                <div class="swiper-slide relative !h-[300px] bg-white dark:bg-[#30373F] rounded-2xl shadow-lg flex flex-col overflow-hidden hover:shadow-2xl transition ease-in-out duration-500 group">
+                <div class="swiper-slide relative !h-[300px] bg-white dark:bg-[#30373F] rounded-2xl shadow-lg flex flex-col overflow-hidden hover:shadow-2xl transition ease-in-out duration-500 group cursor-pointer" onclick="window.location='{{ route('umkm.detail', ['umkm_id' => $dt->umkm_id]) }}'">
                     <div class="h-[70%] w-full overflow-hidden">
                         <img src="{{ asset('assets/images/'.$dt->foto ) }}" alt="" class="h-full w-full object-cover group-hover:brightness-[0.4] transition ease-in-out duration-500 group-hover:scale-110">
                     </div>
@@ -159,10 +153,22 @@
 </div>
 
 <!-- Agenda Kegiatan -->
-<div class="relative w-[80vw] mx-auto lg:h-[90vh] h-[100vh] flex flex-col sm:mt-[13vh] mt-[8vh] lg:gap-[45px] gap-8">
-    <div class="font-bold text-[#1C4F0F] dark:text-white sm:text-5xl text-4xl text-center w-full py-4 uppercase" id="agenda">Agenda Warga</div>
-    <div class="relative flex h-full w-full lg:flex-row sm:flex-col flex-col-reverse sm:justify-end justify-start items-center lg:justify-start">
-        <div class="lg:basis-[65%] w-full lg:h-[80vh] sm:h-[70vh] h-[40vh] bg-cover bg-center shadow-lg rounded-lg bg-no-repeat pl-6 lg:py-10 sm:pt-50 pt-20 pb-10" style="background-image: url('{{ asset('assets/images/bg-home-agenda.png') }}')">
+<div class="relative w-[80vw] mx-auto lg:h-[90vh] flex flex-col mt-[13vh] lg:gap-[45px] gap-8">
+    <div class="font-bold text-[#1C4F0F] dark:text-white sm:text-5xl text-4xl text-center w-full py-4 uppercase" id="agenda" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-sine">Agenda Warga</div>
+    <div class="flex lg:hidden w-full min-h-20 gap-x-6 gap-y-3 flex-wrap items-center justify-center" data-aos="fade-up" data-aos-duration="1000" data-aos-easing="ease-in-sine">
+        <div class="flex flex-wrap gap-4 justify-center items-center">
+            @foreach($dates as $index => $date)
+            <a href="{{ route('home', ['date' => $date->format('Y-m-d')]) }}" class="h-fit py-1 px-4 border-2 border-[#2d5523] dark:border-yellow-500 rounded-2xl text-sm font-semibold dark:hover:text-white shadow-md hover:bg-[#2d5523] dark:hover:bg-[#e2a229] hover:text-white transition-all
+            {{ ($date->format('Y-m-d') == $calendarDate) ? 'bg-[#2d5523] text-white dark:text-white dark:bg-yellow-500' : 'text-[#2d5523] dark:text-yellow-500' }}
+           {{ ($index >= 5) ? 'hidden md:block' : '' }}">
+                {{ $date->translatedFormat('j F') }}
+            </a>
+            @endforeach
+        </div>
+
+    </div>
+    <div class="relative flex h-full w-full lg:flex-row items-center lg:justify-start">
+        <div class="lg:basis-[65%] w-full lg:h-[80vh] sm:h-[70vh] h-[40vh] bg-cover bg-center shadow-lg rounded-lg bg-no-repeat pl-6 py-8 lg:py-10 pb-10" style="background-image: url('{{ asset('assets/images/bg-home-agenda.png') }}')" data-aos="fade-right" data-aos-duration="1000" data-aos-easing="ease-in-sine">
             @if (empty($dataKegiatan->toArray()))
             <div class="flex flex-col w-[80%] h-full justify-center items-center gap-4">
                 <!-- <i class="fa-regular fa-circle-xmark text-2xl"></i> -->
@@ -170,7 +176,7 @@
                 <p class="text-xl font-semibold text-white">Tidak ada kegiatan pada bulan ini</p>
             </div>
             @else
-            <div class="lg:h-[440px] h-full sm:w-[80%] w-[95%] flex flex-col overflow-y-auto gap-7">
+            <div class="lg:h-[440px] h-full lg:w-[80%] w-[95%] flex flex-col overflow-y-auto gap-7">
                 @php
                 $previousDate = null;
                 $activities = [];
@@ -221,7 +227,7 @@
             </div>
             @endif
         </div>
-        <div class="hidden absolute lg:flex w-[12%] h-[8%] bg-[#74CC52] right-14 top-2 shadow-lg shadow-gray-400 dark:shadow-gray-900">
+        <div class="hidden absolute lg:flex w-[12%] h-[8%] bg-[#74CC52] right-14 top-2 shadow-lg shadow-gray-400 dark:shadow-gray-900" data-aos="fade-left" data-aos-duration="1000" data-aos-easing="ease-in-sine">
             <div class="basis-[3%] bg-[#FFD600]"></div>
             <div class="basis-[97%] bg-[#74CC52] flex items-center justify-center">
                 <p class="font-bold text-xl text-white">Agenda</p>
@@ -229,8 +235,8 @@
         </div>
 
         <!-- calendar -->
-        <div class="relative sm:absolute bg-white sm:w-[60%] lg:w-[45%] lg:h-[70%] h-fit lg:right-0 lg:top-[75px] top-0 rounded-xl shadow-2xl overflow-hidden">
-            <div class="px-8 py-4 dark:bg-[#30373F] bg-white flex flex-col justify-between gap-8 h-[380px]">
+        <div class="relative sm:absolute bg-white hidden lg:block lg:w-[45%] lg:h-[70%] h-fit lg:right-0 lg:top-[75px] top-0 rounded-xl shadow-2xl overflow-hidden" data-aos="fade-left" data-aos-duration="1000" data-aos-easing="ease-in-sine" data-aos-anchor-placement="center-bottom">
+            <div class="px-8 py-4 dark:bg-[#30373F] bg-white flex flex-col justify-between gap-8 h-full">
                 <div class="flex items-center justify-around">
                     <button id="prev" aria-label="calendar backward" onclick="prev()" class="focus:text-gray-400 hover:text-gray-400 text-gray-800 dark:text-gray-100 button-calendar">
                         <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-chevron-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
@@ -454,7 +460,7 @@
     <script>
         var swiper = new Swiper(".mySwiper", {
             slidesPerView: 1,
-            spaceBetween: 20,
+            spaceBetween: 40,
             loop: true,
             pagination: {
                 el: ".swiper-pagination",

@@ -87,25 +87,32 @@ class JadwalKegiatanController extends Controller
         return $data; // Mengembalikan data yang telah diformat
     }
 
-    public function ajuanKegiatan()
+    public function ajuanKegiatan(Request $request)
     {
         $page = 'ajuan kegiatan';
         $selected = 'Jadwal Kegiatan';
         $users = PendudukModel::all();
+        $data = JadwalModel::query();
+
+        if ($request->filled('search')) {
+            $searchingKey = $request->search;
+            $data = $data->where('aktivitas_tipe', 'LIKE', '%' . $searchingKey . '%')
+                ->orWhere('judul', 'LIKE', '%' . $searchingKey . '%');
+        }
 
         if (auth()->user()->penduduk->jabatan == 'Ketua RW') {
-            $data = JadwalModel::where('status', 'diproses')->paginate(10);
+            $data = $data->where('status', 'diproses');
         } else {
-            $data = JadwalModel::where('status', 'diproses')
+            $data = $data->where('status', 'diproses')
                 ->whereHas('penduduk', function ($query) {
                     $query->whereHas('kartuKeluarga', function ($query) {
                         $query->where('rt', auth()->user()->penduduk->kartuKeluarga->rt);
                     });
-                })
-                ->paginate(10);;
+                });
         }
+        $data = $data->paginate(10)->withQueryString();
         $data = $this->formatDateAndTime($data);
-        
+
         // $umkmKategoris = UmkmKategoriModel::all();
         // $categories = KategoriModel::all();
         return view('Admin.JadwalKegiatan.ajuanKegiatan', compact('users', 'data', 'page', 'selected'));
@@ -136,7 +143,7 @@ class JadwalKegiatanController extends Controller
         }
 
         $jadwal = JadwalModel::find($id);
-        
+
         $jadwal->update([
             'judul' => $request->nama,
             'aktivitas_tipe' => $request->kategori,

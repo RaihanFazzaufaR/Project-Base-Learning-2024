@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use App\Models\BansosModel;
+use App\Models\KartuKeluargaModel;
 use App\Models\AjuanBansosModel;
-use App\Models\RekomendasiPenerimaModel;
+use App\Models\PendudukModel;
+use Illuminate\Pagination\LengthAwarePaginator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 
 class BansosController extends Controller
@@ -15,8 +17,6 @@ class BansosController extends Controller
     {
         $page = 'listBansos';
         $selected = 'Bansos';
-
-        $user = BansosModel::paginate(10)->withQueryString();
 
         // get month
         $month = [];
@@ -31,9 +31,23 @@ class BansosController extends Controller
             'now' => Carbon::now()->year,
             'next' => Carbon::now()->addYear()->year,
         ];
+        $current_month = Carbon::now()->month;
+        $data_records = AjuanBansosModel::whereMonth('tb_ajuan_bansos.created_at', $current_month)
+            ->join('tb_kartukeluarga', 'tb_ajuan_bansos.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')
+            ->join('tb_penduduk', 'tb_kartukeluarga.kepalaKeluarga', '=', 'tb_penduduk.nik')
+            ->where('tb_ajuan_bansos.status', 'diterima')
+            ->select('tb_ajuan_bansos.*', 'tb_kartukeluarga.niKeluarga', 'tb_kartukeluarga.rt', 'tb_penduduk.nama')
+            ->orderByRaw('MONTH(tb_ajuan_bansos.created_at)')
+            ->paginate(10);
 
+        $data_records->getCollection()->transform(function ($record) {
+            $record->created_at_text = $record->created_at->format('F Y');
+            return $record;
+        });
 
-        return view('Admin.Bansos.index', compact('user', 'page', 'selected', 'month', 'years'));
+        // return $data_records;
+
+        return view('Admin.Bansos.index', compact('page', 'selected', 'month', 'years', 'data_records'));
     }
 
     public function rekomendasiBansos()
@@ -164,6 +178,19 @@ class BansosController extends Controller
 
     public function calculateAHPandSAW()
     {
+        $page = 'rekomendasiBansos';
+        $selected = 'Bansos';
+        $month = [];
+        for ($m = 1; $m <= 12; $m++) {
+            $month[] = date('F', mktime(0, 0, 0, $m, 1, date('Y')));
+        }
+        $years = [
+            'before' => Carbon::now()->subYear()->year,
+            'now' => Carbon::now()->year,
+            'next' => Carbon::now()->addYear()->year,
+        ];
+
+
         $pairwise_matrix = [
             [1, 0.25, 0.3333333333, 4, 2],
             [4, 1, 2, 5, 3],
@@ -174,30 +201,65 @@ class BansosController extends Controller
 
         $ahp_result = $this->ahpCalculate($pairwise_matrix);
         $priority_vector = $ahp_result['priority_vector'];
-
+        $id_RT = Auth::user()->penduduk->id_penduduk;
+        $id_kartuKeluarga = PendudukModel::where('id_penduduk', $id_RT)->value('id_kartuKeluarga');
+        $RT = KartuKeluargaModel::where('id_kartuKeluarga', $id_kartuKeluarga)->value('rt');
         $current_month = Carbon::now()->month;
-        $data_records = AjuanBansosModel::whereMonth('created_at', $current_month)->get();
+        $current_year = Carbon::now()->year;
+
+        $data_records = AjuanBansosModel::whereMonth('tb_ajuan_bansos.created_at', $current_month)
+            ->whereYear('tb_ajuan_bansos.created_at', '>=', $current_year)
+            ->join('tb_kartukeluarga', 'tb_ajuan_bansos.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')
+            ->join('tb_penduduk', 'tb_kartukeluarga.kepalaKeluarga', '=', 'tb_penduduk.nik')
+            ->where('tb_kartukeluarga.rt', $RT)
+            ->where('tb_ajuan_bansos.status', 'diproses')
+            ->select('tb_ajuan_bansos.*', 'tb_kartukeluarga.*', 'tb_penduduk.nama')
+            ->get();
+
+        // dd($data_records);
 
         // Convert data 
         $data = [];
         foreach ($data_records as $record) {
             $data[] = [
+                'id_ajuanBansos' => $record->id_ajuanBansos,
                 'id_kartuKeluarga' => $record->id_kartuKeluarga,
-                'status_rumah' => $this->convertStatusRumah($record->status_rumah),
-                'tanggungan' => $this->convertTanggungan($record->tanggungan),
-                'penghasilan_keluarga' => $this->convertPenghasilanKeluarga($record->penghasilan_keluarga),
-                'luas_tempat_tinggal' => $this->convertLuasTempatTinggal($record->luas_tempat_tinggal),
-                'pengeluaran_listrik' => $this->convertPengeluaranListrik($record->pengeluaran_listrik)
+                'niKeluarga' => $record->niKeluarga,
+                'created_at' => Carbon::parse($record->created_at)->format('d-m-Y'),
+                'nama_kepala_keluarga' => $record->nama,
+                'status' => $record->status,
+                'foto_rumah' => $record->foto_rumah,
+                'SKTM' => $record->SKTM,
+                'status_rumah' => [
+                    'original' => $record->status_rumah,
+                    'converted' => $this->convertStatusRumah($record->status_rumah)
+                ],
+                'tanggungan' => [
+                    'original' => $record->tanggungan,
+                    'converted' => $this->convertTanggungan($record->tanggungan)
+                ],
+                'penghasilan_keluarga' => [
+                    'original' => $record->penghasilan_keluarga,
+                    'converted' => $this->convertPenghasilanKeluarga($record->penghasilan_keluarga)
+                ],
+                'luas_tempat_tinggal' => [
+                    'original' => $record->luas_tempat_tinggal,
+                    'converted' => $this->convertLuasTempatTinggal($record->luas_tempat_tinggal)
+                ],
+                'pengeluaran_listrik' => [
+                    'original' => $record->pengeluaran_listrik,
+                    'converted' => $this->convertPengeluaranListrik($record->pengeluaran_listrik)
+                ],
             ];
         }
 
         $criteria_data = array_map(function ($item) {
             return [
-                $item['status_rumah'],
-                $item['tanggungan'],
-                $item['penghasilan_keluarga'],
-                $item['luas_tempat_tinggal'],
-                $item['pengeluaran_listrik']
+                $item['status_rumah']['converted'],
+                $item['tanggungan']['converted'],
+                $item['penghasilan_keluarga']['converted'],
+                $item['luas_tempat_tinggal']['converted'],
+                $item['pengeluaran_listrik']['converted']
             ];
         }, $data);
 
@@ -225,10 +287,15 @@ class BansosController extends Controller
             $result['rank'] = $key + 1;
         }
 
-        return response()->json([
-            'ahp_result' => $ahp_result,
-            'saw_scores' => $results
+        $perPage = 10;
+        $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        $currentResults = array_slice($results, ($currentPage - 1) * $perPage, $perPage);
+        $paginatedResults = new LengthAwarePaginator($currentResults, count($results), $perPage, $currentPage, [
+            'path' => LengthAwarePaginator::resolveCurrentPath()
         ]);
+
+        // return ['ahp_result' => $ahp_result, 'saw_scores' => $results];
+        return view('Admin.Bansos.rekomendasi-bansos', compact('page', 'selected', 'ahp_result', 'results', 'month', 'years'));
     }
 
     private function convertStatusRumah($value)
@@ -289,5 +356,133 @@ class BansosController extends Controller
             '>300.000' => 1
         ];
         return $conversion[$value];
+    }
+
+    public function acceptBansos(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|exists:tb_ajuan_bansos,id_ajuanBansos'
+        ]);
+        $id_RT = Auth::user()->penduduk->id_penduduk;
+        $id_kartuKeluarga = PendudukModel::where('id_penduduk', $id_RT)->value('id_kartuKeluarga');
+        $RT = KartuKeluargaModel::where('id_kartuKeluarga', $id_kartuKeluarga)->value('rt');
+        $current_month = Carbon::now()->month;
+        $current_year = Carbon::now()->year;
+
+        $count_diterima = AjuanBansosModel::whereMonth('tb_ajuan_bansos.created_at', $current_month)
+            ->whereYear('tb_ajuan_bansos.created_at', '>=', $current_year)
+            ->join('tb_kartukeluarga', 'tb_ajuan_bansos.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')
+            ->join('tb_penduduk', 'tb_kartukeluarga.kepalaKeluarga', '=', 'tb_penduduk.nik')
+            ->where('tb_kartukeluarga.rt', $RT)
+            ->where('tb_ajuan_bansos.status', 'diterima')
+            ->count();
+        if ($count_diterima >= 5) {
+            return redirect()->back()->with('error', 'Kuota telah penuh.');
+        }
+
+        $id_ajuanBansos = $request->input('id');
+        AjuanBansosModel::where('id_ajuanBansos', $id_ajuanBansos)
+            ->update(['status' => 'diterima']);
+
+        return redirect()->back()->with('success', 'Berhasil diterima.');
+    }
+
+    public function rejectBansos(Request $request)
+    {
+        $request->validate([
+            'id' => 'required|exists:tb_ajuan_bansos,id_ajuanBansos'
+        ]);
+
+        $id_ajuanBansos = $request->input('id');
+        AjuanBansosModel::where('id_ajuanBansos', $id_ajuanBansos)
+            ->update(['status' => 'ditolak']);
+
+        return redirect()->back()->with('error', 'Berhasilditolak.');
+    }
+    public function searchBansos(Request $request)
+    {
+        $page = 'listBansos';
+        $selected = 'Bansos';
+
+        $month = [];
+
+        for ($m = 1; $m <= 12; $m++) {
+            $month[] = date('F', mktime(0, 0, 0, $m, 1, date('Y')));
+        }
+
+        $years = [
+            'before' => Carbon::now()->subYear()->year,
+            'now' => Carbon::now()->year,
+            'next' => Carbon::now()->addYear()->year,
+        ];
+        $current_month = Carbon::now()->month;
+        $searchTerm = $request->input('search');
+        // return $searchTerm;
+        $data_records = AjuanBansosModel::whereMonth('tb_ajuan_bansos.created_at', $current_month)
+            ->join('tb_kartukeluarga', 'tb_ajuan_bansos.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')
+            ->join('tb_penduduk', 'tb_kartukeluarga.kepalaKeluarga', '=', 'tb_penduduk.nik')
+            ->where('tb_ajuan_bansos.status', 'diterima')
+            ->where(function ($query) use ($searchTerm) {
+                $query->where('tb_penduduk.nama', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('tb_kartukeluarga.niKeluarga', 'like', '%' . $searchTerm . '%')
+                    ->orWhere('tb_kartukeluarga.rt', 'like', '%' . $searchTerm . '%');
+            })
+            ->select('tb_ajuan_bansos.*', 'tb_kartukeluarga.niKeluarga', 'tb_kartukeluarga.rt', 'tb_penduduk.nama')
+            ->get()
+            ->map(function ($record) {
+                $record->created_at_text = $record->created_at->format('F Y');
+                return $record;
+            });
+        ;
+
+        // return $data_records;
+        return view('Admin.Bansos.index', compact('page', 'selected', 'month', 'years', 'data_records'));
+    }
+
+    public function filterBansos(Request $request)
+    {
+        $page = 'listBansos';
+        $selected = 'Bansos';
+
+        $month = [];
+
+        for ($m = 1; $m <= 12; $m++) {
+            $month[] = date('F', mktime(0, 0, 0, $m, 1, date('Y')));
+        }
+
+        $years = [
+            'before' => Carbon::now()->subYear()->year,
+            'now' => Carbon::now()->year,
+            'next' => Carbon::now()->addYear()->year,
+        ];
+        $bulan = $request->input('bulan', Carbon::now()->format('m'));
+        $tahun = $request->input('tahun', Carbon::now()->format('Y'));
+        $rt = $request->input('rt');
+        // return $request->all();
+        $query = AjuanBansosModel::join('tb_kartukeluarga', 'tb_ajuan_bansos.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')
+            ->join('tb_penduduk', 'tb_kartukeluarga.kepalaKeluarga', '=', 'tb_penduduk.nik')
+            ->where('tb_ajuan_bansos.status', 'diproses')
+            ->select('tb_ajuan_bansos.*', 'tb_kartukeluarga.niKeluarga', 'tb_kartukeluarga.rt', 'tb_penduduk.nama')
+            ->orderByRaw('MONTH(tb_ajuan_bansos.created_at)');
+
+        if ($bulan) {
+            $query->whereMonth('tb_ajuan_bansos.created_at', $bulan);
+        }
+
+        if ($tahun) {
+            $query->whereYear('tb_ajuan_bansos.created_at', $tahun);
+        }
+
+        if ($rt) {
+            $query->where('tb_kartukeluarga.rt', $rt);
+        }
+
+        $data_records = $query->paginate();
+        $data_records->getCollection()->transform(function ($record) {
+            $record->created_at_text = optional($record->created_at)->format('F Y');
+            return $record;
+        });
+        // return $data_records;
+        return view('Admin.Bansos.index', compact('page', 'selected', 'month', 'years', 'data_records'));
     }
 }

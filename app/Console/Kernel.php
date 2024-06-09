@@ -13,7 +13,8 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         // $schedule->command('announcement:send')->everyMinute();
-        $schedule->command('announcement:send')->daily();
+        // $schedule->command('announcement:send')->daily();
+        $schedule->command('announcement:send');
     }
 
     /**

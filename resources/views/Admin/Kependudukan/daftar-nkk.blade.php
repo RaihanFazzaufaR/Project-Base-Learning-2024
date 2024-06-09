@@ -91,23 +91,50 @@
                                 <x-admin.kependudukan.modal-edit-nkk idKk="{{ $usr->id_kartuKeluarga }}" />
                             </div>
 
-                            <form action="{{ route('destroyKartuKeluarga', $usr->id_kartuKeluarga) }}" method="POST">
+                            <!-- <form action="{{ route('destroyKartuKeluarga', $usr->id_kartuKeluarga) }}" method="POST" id="deleteForm-{{ $usr->id_kartuKeluarga }}">
                                 @csrf
                                 {!! method_field('DELETE') !!}
 
-                                <button type="submit" class="flex justify-center items-center gap-2 w-fit text-white bg-[#FF5E5E]  rounded-full sm:rounded-lg shadow-xl font-bold h-full sm:px-3 sm:py-2 p-2 hover:bg-[#B34242] hover:scale-105 transition-all">
+                                <button type="button" onclick="showConfirm('{{ $usr->id_kartuKeluarga }}')" class="flex justify-center items-center gap-2 w-fit text-white bg-[#FF5E5E]  rounded-full sm:rounded-lg shadow-xl font-bold h-full sm:px-3 sm:py-2 p-2 hover:bg-[#B34242] hover:scale-105 transition-all">
                                     <i class="fa-solid fa-trash-can"></i>
                                     <div class="hidden sm:inline-flex">Hapus</div>
                                 </button>
-                            </form>
+                            </form> -->
                         </div>
                     </td>
                 </tr>
                 @endforeach
             </table>
         </div>
+        @if ($user->total() == 0)
+        <div class="flex flex-col w-full h-[100%] justify-center items-center gap-4 py-5 dark:bg-[#343b44] shadow-sm border-b-2 dark:border-gray-600">
+            <!-- <i class="fa-regular fa-circle-xmark text-2xl"></i> -->
+            <img src="{{ asset('assets/images/no-data.png') }}" alt="" class="w-[200px] h-[100px] object-cover">
+            <p class="text-base font-semibold text-green-900 dark:text-white">Tidak terdapat data</p>
+        </div>
+        @endif
         <div class="px-8 py-5 dark:bg-[#343b44] rounded-b-lg shadow-md">
-            {{ $user->links() }}
+            {{ $user->onEachSide(1)->links() }}
         </div>
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        const showConfirm = (id) => {
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                text: 'Data ini akan dihapus dan tidak bisa dikembalikan!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Iya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById(`deleteForm-${id}`).submit();
+                }
+            });
+        }
+    </script>
 </x-admin-layout>

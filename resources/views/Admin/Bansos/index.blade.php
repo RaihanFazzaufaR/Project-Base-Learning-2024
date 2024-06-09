@@ -1,7 +1,7 @@
 <x-admin-layout page="{{ $page }}" selected="{{ $selected }}">
     <div class="flex w-full h-15 justify-between items-center">
         <div class="flex h-full sm:w-fit w-full gap-8 items-center justify-between">
-            <form class="lg:w-[25vw] w-[100%] sm:w-[400px]" method="post" action="{{ route('searchAkun-admin') }}">
+            <form class="lg:w-[25vw] w-[100%] sm:w-[400px]" method="post" action="{{ route('search-bansos') }}">
                 @csrf
                 <div class="flex h-full items-center">
                     <div class="relative w-full">
@@ -37,14 +37,14 @@
                                 </button>
                             </div>
                             <!-- Modal body -->
-                            <form class="w-full h-full text-[#34662C] dark:text-white" method="POST" action="{{ route('filterAkun-admin') }}">
+                            <form class="w-full h-full text-[#34662C] dark:text-white" method="POST" action="{{ route('filter-bansos') }}">
                                 @csrf
                                 <div class="p-4 md:p-5 grid w-full sm:w-150 gap-4 grid-cols-2 max-h-[400px] sm:max-h-[450px] overflow-y-auto rounded-b-xl scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin">
                                     <div class="col-span-2 sm:col-span-1">
                                         <label class="block mb-2 text-sm font-bold">Bulan</label>
                                         <select id="bulan" name="bulan" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white">
                                             <option value="">Pilih Bulan</option>
-                                            <?php $idx = 0 ?>
+                                            <?php $idx = 1 ?>
                                             @foreach ($month as $m)
                                             <option value="{{ $idx++ }}">{{ $m }}</option>
                                             @endforeach
@@ -102,7 +102,7 @@
                             Kepala Keluarga
                         </th>
                         <th scope="col" class="px-6 py-3 w-[20%]">
-                            Tanggal
+                            Periode
                         </th>
                         <th scope="col" class="px-6 py-3">
                             RT
@@ -113,18 +113,19 @@
                     </tr>
                 </thead>
                 <tbody>
-                    @for ($i=0; $i<10; $i++) <tr class="bg-white border-b text-sm font-medium text-[#7F7F7F] dark:bg-[#2F363E] dark:text-white dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
+                    @foreach ($data_records as $data)
+                    <tr class="bg-white border-b text-sm font-medium text-[#7F7F7F] dark:bg-[#2F363E] dark:text-white dark:border-gray-700 hover:bg-gray-50 dark:hover:bg-gray-600">
                         <td class="px-6 py-4">
-                            3201010101010101
+                            {{ $data->niKeluarga }}
                         </td>
                         <td class="px-6 py-4">
-                            Sony Febri Hari Wibowo
+                            {{ $data->nama }}
                         </td>
                         <td class="px-6 py-4">
-                            05-05-2024
+                            {{ $data->created_at_text }}
                         </td>
                         <td class="px-6 py-4">
-                            05
+                            {{ $data->rt }}
                         </td>
                         <td>
                             <div class="px-6 py-4 flex items-center h-full gap-4 justify-center">
@@ -155,49 +156,49 @@
                                                         <div class="col-span-2 sm:col-span-1 relative">
                                                             <label class="block mb-2 text-sm font-bold">NKK</label>
                                                             <div class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg p-2.5 placeholder-[#34662C] dark:placeholder-white">
-                                                                123261372358712
+                                                                {{ $data->niKeluarga }}
                                                             </div>
                                                         </div>
                                                         <div class="col-span-2 sm:col-span-1">
                                                             <label class="block mb-2 text-sm font-bold">Status Rumah</label>
                                                             <div class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg p-2.5 placeholder-[#34662C] dark:placeholder-white">
-                                                                Kontrak
+                                                                {{ $data->status_rumah }}
                                                             </div>
                                                         </div>
                                                         <div class="col-span-2 sm:col-span-1">
                                                             <label class="block mb-2 text-sm font-bold">Tanggungan</label>
                                                             <div class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg p-2.5 placeholder-[#34662C] dark:placeholder-white">
-                                                                5 orang
+                                                                {{ $data->tanggungan }} orang
                                                             </div>
                                                         </div>
                                                         <div class="col-span-2 sm:col-span-1">
                                                             <label class="block mb-2 text-sm font-bold">Penghasilan Keluarga</label>
                                                             <div class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg p-2.5 placeholder-[#34662C] dark:placeholder-white">
-                                                                1.000.000
+                                                                {{ $data->penghasilan_keluarga }}
                                                             </div>
                                                         </div>
                                                         <div class="col-span-2 sm:col-span-1">
                                                             <label class="block mb-2 text-sm font-bold">Luas Tempat Tinggal</label>
                                                             <div class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg p-2.5 placeholder-[#34662C] dark:placeholder-white">
-                                                                20m
+                                                                {{ $data->luas_tempat_tinggal }}
                                                             </div>
                                                         </div>
                                                         <div class="col-span-2 sm:col-span-1">
                                                             <label class="block mb-2 text-sm font-bold">Pengeluaran Listrik</label>
                                                             <div class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg p-2.5 placeholder-[#34662C] dark:placeholder-white">
-                                                                50.000
+                                                                {{ $data->pengeluaran_listrik }}
                                                             </div>
                                                         </div>
                                                         <div x-data="{ showModal: false }" class="col-span-2">
                                                             <label class="block mb-2 text-sm font-bold">Foto Rumah</label>
                                                             <div @click="showModal = true" class="cursor-pointer relative w-fit mx-auto flex justify-center items-center group">
-                                                                <img src="{{ asset('assets/images/contoh-foto-rumah.jpg') }}" alt="Foto Rumah" class="w-[300px] h-[200px] object-cover rounded-lg shadow-md cursor-pointer group-hover:brightness-50 transition-all duration-300" />
+                                                                <img src="{{ asset('assets/images/Bansos/'. $data->foto_rumah)}}" alt="Foto Rumah" class="w-[300px] h-[200px] object-cover rounded-lg shadow-md cursor-pointer group-hover:brightness-50 transition-all duration-300" />
                                                                 <div class="cursor-pointer absolute group-hover:block hidden px-3 py-2 bg-[#446DFF] rounded-xl shadow-md hover:bg-[#273E91] font-semibold transition-all duration-300 text-base text-white">Lihat Foto</div>
                                                             </div>
                                                             <!-- Modal -->
                                                             <div x-show="showModal" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-300 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" @click.away="showModal = false" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75">
                                                                 <div class="relative">
-                                                                    <img src="{{ asset('assets/images/contoh-foto-rumah.jpg') }}" alt="Foto Rumah" class="max-h-[85vh] max-w-[80vw] rounded-lg shadow-lg" />
+                                                                    <img src="{{ asset('assets/images/Bansos/' . $data->foto_rumah )}}" alt="Foto Rumah" class="max-h-[85vh] max-w-[80vw] rounded-lg shadow-lg" />
                                                                     <button @click="showModal = false" class="absolute -top-10 -right-10 text-white text-3xl font-bold">&times;</button>
                                                                 </div>
                                                             </div>
@@ -206,13 +207,13 @@
                                                             <label class="block mb-2 text-sm font-bold">Foto SKTM</label>
 
                                                             <div @click="showSktm = true" class="cursor-pointer relative w-fit mx-auto flex justify-center items-center group">
-                                                                <img src="{{ asset('assets/images/contoh-sktm.jpg') }}" alt="Foto Sktm" class="h-[300px] object-cover rounded-lg shadow-md cursor-pointer group-hover:brightness-50 transition-all duration-300" />
+                                                                <img src="{{ asset('assets/images/Bansos/'. $data->SKTM)}}" alt="Foto Sktm" class="h-[300px] object-cover rounded-lg shadow-md cursor-pointer group-hover:brightness-50 transition-all duration-300" />
                                                                 <div class="cursor-pointer absolute group-hover:block hidden px-3 py-2 bg-[#446DFF] rounded-xl shadow-md hover:bg-[#273E91] font-semibold transition-all duration-300 text-base text-white">Lihat Foto</div>
                                                             </div>
                                                             <!-- Modal -->
                                                             <div x-show="showSktm" x-transition:enter="transition ease-out duration-300 transform" x-transition:enter-start="opacity-0" x-transition:enter-end="opacity-100" x-transition:leave="transition ease-in duration-300 transform" x-transition:leave-start="opacity-100" x-transition:leave-end="opacity-0" @click.away="showSktm = false" class="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-75">
                                                                 <div class="relative">
-                                                                    <img src="{{ asset('assets/images/contoh-sktm.jpg') }}" alt="Foto Sktm" class="max-h-[85vh] max-w-[80vw] rounded-lg shadow-lg" />
+                                                                    <img src="{{ asset('assets/images/Bansos/'. $data->SKTM)}}" alt="Foto Sktm" class="max-h-[85vh] max-w-[80vw] rounded-lg shadow-lg" />
                                                                     <button @click="showSktm = false" class="absolute -top-10 -right-10 text-white text-3xl font-bold">&times;</button>
                                                                 </div>
                                                             </div>
@@ -230,13 +231,20 @@
                                 </div>
                             </div>
                         </td>
-                        </tr>
-                        @endfor
+                    </tr>
+                    @endforeach
                 </tbody>
             </table>
         </div>
+        @if ($data_records->total() == 0)
+        <div class="flex flex-col w-full h-[100%] justify-center items-center gap-4 py-5 dark:bg-[#343b44] shadow-sm border-b-2 dark:border-gray-600">
+            <!-- <i class="fa-regular fa-circle-xmark text-2xl"></i> -->
+            <img src="{{ asset('assets/images/no-data.png') }}" alt="" class="w-[200px] h-[100px] object-cover">
+            <p class="text-base font-semibold text-green-900 dark:text-white">Tidak terdapat data</p>
+        </div>
+        @endif
         <div class="px-8 py-5 dark:bg-[#343b44] rounded-b-lg shadow-md">
-            {{ $user->links() }}
+            {{ $data_records->links() }}
         </div>
     </div>
 </x-admin-layout>

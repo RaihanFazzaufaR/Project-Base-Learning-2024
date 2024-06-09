@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Models\AduanModel;
+use App\Models\AjuanBansosModel;
 use App\Models\JadwalModel;
 use App\Models\KartuKeluargaModel;
 use App\Models\PendudukModel;
@@ -14,17 +15,17 @@ use Illuminate\Support\Facades\DB;
 
 class AdminController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         Carbon::setLocale('id');
 
         $page = 'dashboard';
         $selected = 'Dashboard';
 
-        $jumlahKK = KartuKeluargaModel::where('niKeluarga', '!=', '0000000000000001')->count();
-        $jumlahPenduduk = PendudukModel::where('nik', '!=', '0000000000000001')->count();
-        $jumlahUmkm = UmkmModel::count();
-        $jumlahAduan = AduanModel::count();
+        $jumlahKK = (auth()->user()->penduduk->jabatan == 'Ketua RW' || auth()->user()->penduduk->nik == '0000000000000001') ? KartuKeluargaModel::where('niKeluarga', '!=', '0000000000000001')->count() : KartuKeluargaModel::where('niKeluarga', '!=', '0000000000000001')->where('rt', auth()->user()->penduduk->kartuKeluarga->rt)->count();
+        $jumlahPenduduk = (auth()->user()->penduduk->jabatan == 'Ketua RW' || auth()->user()->penduduk->nik == '0000000000000001') ? PendudukModel::where('nik', '!=', '0000000000000001')->count() : PendudukModel::join('tb_kartukeluarga', 'tb_penduduk.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')->where('nik', '!=', '0000000000000001')->where('tb_kartukeluarga.rt', auth()->user()->penduduk->kartuKeluarga->rt)->count();
+        $jumlahUmkm = (auth()->user()->penduduk->jabatan == 'Ketua RW' || auth()->user()->penduduk->nik == '0000000000000001') ? UmkmModel::count() : UmkmModel::join('tb_penduduk', 'tb_penduduk.id_penduduk', '=', 'tb_umkm.id_pemilik')->join('tb_kartukeluarga', 'tb_penduduk.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')->where('tb_kartukeluarga.rt', auth()->user()->penduduk->kartuKeluarga->rt)->count();
+        $jumlahAduan = (auth()->user()->penduduk->jabatan == 'Ketua RW' || auth()->user()->penduduk->nik == '0000000000000001') ? AduanModel::count() : AduanModel::join('tb_penduduk', 'tb_penduduk.id_penduduk', '=', 'tb_aduan.pengadu_id')->join('tb_kartukeluarga', 'tb_penduduk.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')->where('tb_kartukeluarga.rt', auth()->user()->penduduk->kartuKeluarga->rt)->count();
 
         $dataJumlah = [
             'jumlahKK' => $jumlahKK,
@@ -34,11 +35,11 @@ class AdminController extends Controller
         ];
 
         $dataStatusPenduduk = [
-            'tetap' => PendudukModel::where('statusPenduduk', 'penduduk tetap')->where('nik', '!=', '0000000000000001')->count(),
-            'tidak tetap' => PendudukModel::where('statusPenduduk', 'penduduk tidak tetap')->where('nik', '!=', '0000000000000001')->count(),
+            'tetap' => (auth()->user()->penduduk->jabatan == 'Ketua RW' || auth()->user()->penduduk->nik == '0000000000000001') ? PendudukModel::where('statusPenduduk', 'penduduk tetap')->where('nik', '!=', '0000000000000001')->count() : PendudukModel::join('tb_kartukeluarga', 'tb_penduduk.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')->where('nik', '!=', '0000000000000001')->where('statusPenduduk', 'penduduk tetap')->where('tb_kartukeluarga.rt', auth()->user()->penduduk->kartuKeluarga->rt)->count(),
+            'tidak tetap' => (auth()->user()->penduduk->jabatan == 'Ketua RW' || auth()->user()->penduduk->nik == '0000000000000001') ? PendudukModel::where('statusPenduduk', 'penduduk tidak tetap')->where('nik', '!=', '0000000000000001')->count() : PendudukModel::join('tb_kartukeluarga', 'tb_penduduk.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')->where('nik', '!=', '0000000000000001')->where('statusPenduduk', 'penduduk tidak tetap')->where('tb_kartukeluarga.rt', auth()->user()->penduduk->kartuKeluarga->rt)->count()
         ];
 
-        $dataPendudukAll = PendudukModel::all()->where('nik', '!=', '0000000000000001');
+        $dataPendudukAll = (auth()->user()->penduduk->jabatan == 'Ketua RW' || auth()->user()->penduduk->nik == '0000000000000001') ? PendudukModel::where('nik', '!=', '0000000000000001')->get() : PendudukModel::join('tb_kartukeluarga', 'tb_penduduk.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')->where('tb_kartukeluarga.rt', auth()->user()->penduduk->kartuKeluarga->rt)->where('nik', '!=', '0000000000000001')->get();
         $dataPendudukAll = $this->countAge($dataPendudukAll);
 
         $dataDemografiPenduduk = [
@@ -69,22 +70,6 @@ class AdminController extends Controller
 
         $dataKegiatanMendatang = $this->formatDateAndTime($dataKegiatanMendatang);
 
-        // $calendarDatePrev = $request->session()->has('date') ? $request->session()->get('date') : '';
-        // $calendarDate = $request->filled('date') ? $request->date : date('Y-m-d');
-
-        // $dataToday = JadwalModel::where('status', 'selesai')
-        //     ->where('mulai_tanggal', '<=', $calendarDate)
-        //     ->where('akhir_tanggal', '>=', $calendarDate)
-        //     ->orderBy('mulai_waktu', 'asc')
-        //     ->get();
-
-        // foreach ($dataToday as $dt) {
-        //     $dt->dateNow = Carbon::parse($calendarDate)->diffInDays(Carbon::parse($dt->mulai_tanggal)) + 1;
-        // }
-
-        // $dateFormat = Carbon::parse($calendarDate)->translatedFormat('d F Y');
-        // $dataToday = $this->formatDateAndTime($dataToday);
-
         $dataDate = JadwalModel::select(
             DB::raw('mulai_tanggal as dateStart'),
             DB::raw('YEAR(mulai_tanggal) as yearStart'),
@@ -98,13 +83,34 @@ class AdminController extends Controller
             ->where('status', 'selesai')
             ->get();
 
-        // $dataArray = [
-        //     'dataUpcoming' => $dataUpcoming,
-        //     'dataToday' => $dataToday,
-        //     'dataDate' => $dataDate,
-        // ];
+        $yearBansos = $request->tahunBansos ?? Carbon::now()->year;
 
-        return view('Admin.index', compact('page', 'selected', 'dataJumlah', 'dataStatusPenduduk', 'dataDemografiPenduduk', 'newestUmkm', 'dataKegiatanMendatang', 'dataDate'));
+        $dataBansos = (auth()->user()->penduduk->jabatan == 'Ketua RW' || auth()->user()->penduduk->id_penduduk == 1) ? AjuanBansosModel::where('status', 'diterima')->whereYear('created_at', $yearBansos) : AjuanBansosModel::where('tb_ajuan_bansos.status', 'diterima')->whereYear('tb_ajuan_bansos.created_at', $yearBansos)->join('tb_kartukeluarga', 'tb_ajuan_bansos.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')->where('tb_kartukeluarga.rt', auth()->user()->penduduk->kartuKeluarga->rt);
+
+        $dataBansosPerBulan = [
+            'januari' => (auth()->user()->penduduk->jabatan == 'Ketua RW') ? AjuanBansosModel::where('status', 'diterima')->whereYear('created_at', $yearBansos)->whereMonth('created_at', 1)->count() : AjuanBansosModel::where('tb_ajuan_bansos.status', 'diterima')->whereYear('tb_ajuan_bansos.created_at', $yearBansos)->whereMonth('tb_ajuan_bansos.created_at', 1)->join('tb_kartukeluarga', 'tb_ajuan_bansos.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')->where('tb_kartukeluarga.rt', auth()->user()->penduduk->kartuKeluarga->rt)->count(),
+            'februari' => (auth()->user()->penduduk->jabatan == 'Ketua RW') ? AjuanBansosModel::where('status', 'diterima')->whereYear('created_at', $yearBansos)->whereMonth('created_at', 2)->count() : AjuanBansosModel::where('tb_ajuan_bansos.status', 'diterima')->whereYear('tb_ajuan_bansos.created_at', $yearBansos)->whereMonth('tb_ajuan_bansos.created_at', 2)->join('tb_kartukeluarga', 'tb_ajuan_bansos.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')->where('tb_kartukeluarga.rt', auth()->user()->penduduk->kartuKeluarga->rt)->count(),
+            'maret' => (auth()->user()->penduduk->jabatan == 'Ketua RW') ? AjuanBansosModel::where('status', 'diterima')->whereYear('created_at', $yearBansos)->whereMonth('created_at', 3)->count() : AjuanBansosModel::where('tb_ajuan_bansos.status', 'diterima')->whereYear('tb_ajuan_bansos.created_at', $yearBansos)->whereMonth('tb_ajuan_bansos.created_at', 3)->join('tb_kartukeluarga', 'tb_ajuan_bansos.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')->where('tb_kartukeluarga.rt', auth()->user()->penduduk->kartuKeluarga->rt)->count(),
+            'april' => (auth()->user()->penduduk->jabatan == 'Ketua RW') ? AjuanBansosModel::where('status', 'diterima')->whereYear('created_at', $yearBansos)->whereMonth('created_at', 4)->count() : AjuanBansosModel::where('tb_ajuan_bansos.status', 'diterima')->whereYear('tb_ajuan_bansos.created_at', $yearBansos)->whereMonth('tb_ajuan_bansos.created_at', 4)->join('tb_kartukeluarga', 'tb_ajuan_bansos.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')->where('tb_kartukeluarga.rt', auth()->user()->penduduk->kartuKeluarga->rt)->count(),
+            'mei' => (auth()->user()->penduduk->jabatan == 'Ketua RW') ? AjuanBansosModel::where('status', 'diterima')->whereYear('created_at', $yearBansos)->whereMonth('created_at', 5)->count() : AjuanBansosModel::where('tb_ajuan_bansos.status', 'diterima')->whereYear('tb_ajuan_bansos.created_at', $yearBansos)->whereMonth('tb_ajuan_bansos.created_at', 5)->join('tb_kartukeluarga', 'tb_ajuan_bansos.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')->where('tb_kartukeluarga.rt', auth()->user()->penduduk->kartuKeluarga->rt)->count(),
+            'juni' => (auth()->user()->penduduk->jabatan == 'Ketua RW') ? AjuanBansosModel::where('status', 'diterima')->whereYear('created_at', $yearBansos)->whereMonth('created_at', 6)->count() : AjuanBansosModel::where('tb_ajuan_bansos.status', 'diterima')->whereYear('tb_ajuan_bansos.created_at', $yearBansos)->whereMonth('tb_ajuan_bansos.created_at', 6)->join('tb_kartukeluarga', 'tb_ajuan_bansos.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')->where('tb_kartukeluarga.rt', auth()->user()->penduduk->kartuKeluarga->rt)->count(),
+            'juli' => (auth()->user()->penduduk->jabatan == 'Ketua RW') ? AjuanBansosModel::where('status', 'diterima')->whereYear('created_at', $yearBansos)->whereMonth('created_at', 7)->count() : AjuanBansosModel::where('tb_ajuan_bansos.status', 'diterima')->whereYear('tb_ajuan_bansos.created_at', $yearBansos)->whereMonth('tb_ajuan_bansos.created_at', 7)->join('tb_kartukeluarga', 'tb_ajuan_bansos.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')->where('tb_kartukeluarga.rt', auth()->user()->penduduk->kartuKeluarga->rt)->count(),
+            'agustus' => (auth()->user()->penduduk->jabatan == 'Ketua RW') ? AjuanBansosModel::where('status', 'diterima')->whereYear('created_at', $yearBansos)->whereMonth('created_at', 8)->count() : AjuanBansosModel::where('tb_ajuan_bansos.status', 'diterima')->whereYear('tb_ajuan_bansos.created_at', $yearBansos)->whereMonth('tb_ajuan_bansos.created_at', 8)->join('tb_kartukeluarga', 'tb_ajuan_bansos.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')->where('tb_kartukeluarga.rt', auth()->user()->penduduk->kartuKeluarga->rt)->count(),
+            'september' => (auth()->user()->penduduk->jabatan == 'Ketua RW') ? AjuanBansosModel::where('status', 'diterima')->whereYear('created_at', $yearBansos)->whereMonth('created_at', 9)->count() : AjuanBansosModel::where('tb_ajuan_bansos.status', 'diterima')->whereYear('tb_ajuan_bansos.created_at', $yearBansos)->whereMonth('tb_ajuan_bansos.created_at', 9)->join('tb_kartukeluarga', 'tb_ajuan_bansos.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')->where('tb_kartukeluarga.rt', auth()->user()->penduduk->kartuKeluarga->rt)->count(),
+            'oktober' => (auth()->user()->penduduk->jabatan == 'Ketua RW') ? AjuanBansosModel::where('status', 'diterima')->whereYear('created_at', $yearBansos)->whereMonth('created_at', 10)->count() : AjuanBansosModel::where('tb_ajuan_bansos.status', 'diterima')->whereYear('tb_ajuan_bansos.created_at', $yearBansos)->whereMonth('tb_ajuan_bansos.created_at', 10)->join('tb_kartukeluarga', 'tb_ajuan_bansos.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')->where('tb_kartukeluarga.rt', auth()->user()->penduduk->kartuKeluarga->rt)->count(),
+            'november' => (auth()->user()->penduduk->jabatan == 'Ketua RW') ? AjuanBansosModel::where('status', 'diterima')->whereYear('created_at', $yearBansos)->whereMonth('created_at', 11)->count() : AjuanBansosModel::where('tb_ajuan_bansos.status', 'diterima')->whereYear('tb_ajuan_bansos.created_at', $yearBansos)->whereMonth('tb_ajuan_bansos.created_at', 11)->join('tb_kartukeluarga', 'tb_ajuan_bansos.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')->where('tb_kartukeluarga.rt', auth()->user()->penduduk->kartuKeluarga->rt)->count(),
+            'desember' => (auth()->user()->penduduk->jabatan == 'Ketua RW') ? AjuanBansosModel::where('status', 'diterima')->whereYear('created_at', $yearBansos)->whereMonth('created_at', 12)->count() : AjuanBansosModel::where('tb_ajuan_bansos.status', 'diterima')->whereYear('tb_ajuan_bansos.created_at', $yearBansos)->whereMonth('tb_ajuan_bansos.created_at', 12)->join('tb_kartukeluarga', 'tb_ajuan_bansos.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')->where('tb_kartukeluarga.rt', auth()->user()->penduduk->kartuKeluarga->rt)->count(),
+        ];
+
+        $year = [
+            Carbon::now()->subYears(2)->year,
+            Carbon::now()->subYear()->year,
+            Carbon::now()->year,
+        ];
+
+        // dd($dataBansosPerBulan);
+
+        return view('Admin.index', compact('page', 'selected', 'dataJumlah', 'dataStatusPenduduk', 'dataDemografiPenduduk', 'newestUmkm', 'dataKegiatanMendatang', 'dataDate', 'dataBansos', 'dataBansosPerBulan', 'year', 'yearBansos'));
     }
 
     private function countAge($data)

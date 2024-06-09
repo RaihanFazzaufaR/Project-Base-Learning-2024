@@ -49,6 +49,11 @@ Route::group(['prefix' => 'umkm'], function () {
     Route::get('/search', [UmkmController::class, 'search'])->name('umkm.search');
     Route::get('/detail/{umkm_id}', [UmkmController::class, 'getDetailUmkm'])->name('umkm.detail');
 });
+
+Route::group(['prefix' => 'aduan'], function () {
+    Route::get('/', [AduanController::class, 'index'])->name('aduan');
+});
+
 Route::group(['middleware' => ['auth']], function () {
     Route::group(['middleware' => ['loginCheck:3']], function () {
         // Route Penduduk
@@ -69,7 +74,7 @@ Route::group(['middleware' => ['auth']], function () {
 
         //Route Aduan
         Route::group(['prefix' => 'aduan'], function () {
-            Route::get('/', [AduanController::class, 'index'])->name('aduan');
+            // Route::get('/', [AduanController::class, 'index'])->name('aduan');
             Route::get('/aduanku', [AduanController::class, 'indexAduanku'])->name('aduanku');
             Route::post('/aduanku', [AduanController::class, 'addResponse'])->name('add-response');
             Route::delete('/aduanku/delete/{id}', [AduanController::class, 'destroyAduan'])->name('aduan.destroy');
@@ -116,11 +121,10 @@ Route::group(['middleware' => ['auth']], function () {
 
             Route::post('/edit/{umkm_id}', [UmkmController::class, 'editUmkm'])->name('umkm.edit');
             Route::post('/store', [UmkmController::class, 'storeUmkm'])->name('umkm.store');
-            Route::get('/umkmku/{id_penduduk}', [UmkmController::class, 'umkmku'])->name('umkmku');
+            Route::get('/umkmku', [UmkmController::class, 'umkmku'])->name('umkmku');
             Route::delete('/delete/{umkm_id}', [UmkmController::class, 'destroyUmkm'])->name('umkm.destroy');
             Route::post('/cancel/{umkm_id}', [UmkmController::class, 'cancelPengajuan'])->name('umkm.cancel');
             Route::get('/search-umkm', [UmkmController::class, 'umkmkuSearch'])->name('umkmku.search');
-
         });
     });
 
@@ -145,7 +149,12 @@ Route::group(['middleware' => ['auth']], function () {
             });
             Route::prefix('bansos')->group(function () {
                 Route::get('/', [AdminBansosController::class, 'index'])->name('bansos-admin');
-                Route::get('/rekomendasi-bansos', [AdminBansosController::class, 'rekomendasiBansos'])->name('rekomendasi-bansos');
+                // Route::get('/rekomendasi-bansos', [AdminBansosController::class, 'rekomendasiBansos'])->name('rekomendasi-bansos');
+                Route::get('/rekomendasi-bansos', [AdminBansosController::class, 'calculateAHPandSAW'])->name('spk');
+                Route::get('/terima-bansos', [AdminBansosController::class, 'acceptBansos'])->name('acc');
+                Route::get('/tolak-bansos', [AdminBansosController::class, 'rejectBansos'])->name('rjct');
+                Route::post('/search-bansos', [AdminBansosController::class, 'searchBansos'])->name('search-bansos');
+                Route::post('/filter-bansos', [AdminBansosController::class, 'filterBansos'])->name('filter-bansos');
             });
             Route::prefix('umkm')->group(function () {
                 Route::get('/', [AdminUmkmController::class, 'index'])->name('umkm-admin');
@@ -163,7 +172,8 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::get('/', [AdminPersuratanController::class, 'index'])->name('persuratan-admin');
                 Route::get('/ajuan-persuratan', [AdminPersuratanController::class, 'ajuanPersuratan'])->name('ajuan-persuratan-admin');
                 Route::get('/template-surat', [AdminPersuratanController::class, 'templateSurat'])->name('template-surat-admin');
-                Route::get('/surat/{pemintaId}/{templateId}', [AdminPersuratanController::class, 'showDetail'])->name('surat-detail');
+                Route::get('/persuratan/search', [AdminPersuratanController::class, 'search'])->name('persuratan-admin-search');
+                Route::get('/persuratan/filter', [AdminPersuratanController::class, 'filter'])->name('persuratan-admin-filter');
             });
             Route::prefix('akun-admin')->group(function () {
                 Route::get('/', [AdminAkunAdminController::class, 'index'])->name('akun-admin');
@@ -185,6 +195,7 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::put('/{id}', [AdminKegiatanController::class, 'updateKegiatan'])->name('updateKegiatan');
                 Route::delete('/{id}', [AdminKegiatanController::class, 'destroyKegiatan'])->name('destroyKegiatan');
                 Route::get('/ajuan-kegiatan', [AdminKegiatanController::class, 'ajuanKegiatan'])->name('ajuan-kegiatan-admin');
+                Route::post('/ajuan-kegiatan', [AdminKegiatanController::class, 'ajuanKegiatan'])->name('searchingAjuan');
                 Route::get('/ajuan-kegiatan/accept', [AdminKegiatanController::class, 'acceptKegiatan'])->name('acceptKegiatan');
                 Route::post('/ajuan-kegiatan/reject/{id}', [AdminKegiatanController::class, 'rejectKegiatan'])->name('rejectKegiatan');
             });
@@ -232,7 +243,8 @@ Route::group(['prefix' => 'profil'], function () {
 
 Route::group(['prefix' => 'profilku'], function () {
     Route::get('/', [ProfilkuController::class, 'index'])->name('profilku');
-    Route::post('/', [ProfilkuController::class, 'updateAccount'])->name('update');
+    Route::post('/perbarui.data', [ProfilkuController::class, 'updateAccount'])->name('update');
+    Route::post('/perbarui.foto', [ProfilkuController::class, 'updateFoto'])->name('update-foto');
 });
 //Route Jadwal
 Route::group(['prefix' => 'jadwal'], function () {
