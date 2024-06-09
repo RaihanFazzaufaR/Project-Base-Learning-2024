@@ -874,7 +874,7 @@ class AjuanBansosSeeder extends Seeder
                 'penghasilan_keluarga' => '>5.000.000',
                 'luas_tempat_tinggal' => '60m - 80m',
                 'pengeluaran_listrik' => '200.000 - 300.000',
-                'status' => 'diterima',
+                'status' => 'ditolak',
                 'foto_rumah' => 'contoh-foto-rumah.jpg',
                 'SKTM' => 'contoh-sktm.jpg',
                 'created_at' => '2024-03-10',
