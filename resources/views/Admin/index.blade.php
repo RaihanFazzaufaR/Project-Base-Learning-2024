@@ -1,11 +1,59 @@
 <x-admin-layout page="{{ $page }}" selected="{{ $selected }}">
+  <style>
+    @property --num {
+      syntax: '<integer>';
+      initial-value: 0;
+      inherits: false;
+    }
+
+    @property --num-kk {
+      syntax: "<integer>";
+      initial-value: 0;
+      inherits: false;
+    }
+
+    @property --num-penduduk {
+      syntax: "<integer>";
+      initial-value: 0;
+      inherits: false;
+    }
+
+    @property --num-umkm {
+      syntax: "<integer>";
+      initial-value: 0;
+      inherits: false;
+    }
+
+    @property --num-aduan {
+      syntax: "<integer>";
+      initial-value: 0;
+      inherits: false;
+    }
+
+    @keyframes counter {
+      from {
+        --num-kk: 0;
+        --num-penduduk: 0;
+        --num-umkm: 0;
+        --num-aduan: 0;
+      }
+
+      to {
+        --num-kk: {{ $dataJumlah['jumlahKK'] }};
+        --num-penduduk: {{ $dataJumlah['jumlahPenduduk'] }};
+        --num-umkm: {{ $dataJumlah['jumlahUmkm'] }};
+        --num-aduan: {{ $dataJumlah['jumlahAduan'] }};
+      }
+    }
+  </style>
+
   <div class="grid gap-5 grid-cols-2 sm:gap-6 xl:grid-cols-4 2xl:gap-7.5 relative">
     <!-- Card Item Start -->
     <div class="relative rounded-t-md rounded-b-3xl border dark:border-[#2F363E] dark:text-white bg-white dark:bg-[#2F363E] py-7 lg:py-5 2xl:py-7 shadow-xl group overflow-hidden">
       <div class="absolute z-[2] top-0 h-full w-full bg-gradient-to-r from-[#19A8EF] to-[#1072A3] left-0 group-hover: transition ease-in-out duration-500 -translate-y-[93%] group-hover:translate-y-0"></div>
       <div class="relative flex w-full h-full justify-center items-center gap-5 sm:gap-10 z-[3] top-0 left-0">
-        <div class="flex flex-col justify-center items-center gap-2">
-          <div class="font-bold sm:text-5xl text-4xl group-hover:text-white">{{ $dataJumlah['jumlahKK'] }}</div>
+      <div class="flex flex-col justify-center items-center gap-2">
+      <div class="font-bold sm:text-5xl text-4xl group-hover:text-white animate-[counter_3s_ease-out_forwards] delay-500 tabular-nums [counter-set:_num_var(--num-kk)] before:content-[counter(num)]"><span class="sr-only">{{ $dataJumlah['jumlahKK'] }}</span></div>
           <div class="font-semibold text-[15px] text-gray-500 dark:text-gray-400 group-hover:text-gray-200 text-center">KK</div>
         </div>
         <div class="sm:text-5xl text-4xl text-transparent bg-gradient-to-r from-[#19A8EF] to-[#1072A3] bg-clip-text group-hover:text-white">
@@ -19,7 +67,7 @@
       <div class="absolute z-[2] top-0 h-full w-full bg-gradient-to-r from-[#F6A831] to-[#B37924] left-0 group-hover: transition ease-in-out duration-500 -translate-y-[93%] group-hover:translate-y-0"></div>
       <div class="relative flex w-full h-full justify-center items-center gap-5 sm:gap-10 z-[3] top-0 left-0">
         <div class="flex flex-col justify-center items-center gap-2">
-          <div class="font-bold sm:text-5xl text-4xl group-hover:text-white">{{ $dataJumlah['jumlahPenduduk'] }}</div>
+          <div class="font-bold sm:text-5xl text-4xl group-hover:text-white animate-[counter_3s_ease-out_forwards] delay-500 tabular-nums [counter-set:_num_var(--num-penduduk)] before:content-[counter(num)]"><span class="sr-only">{{ $dataJumlah['jumlahPenduduk'] }}</span></div>
           <div class="font-semibold text-[15px] text-gray-500 dark:text-gray-400 group-hover:text-gray-200 text-center">Penduduk</div>
         </div>
         <div class="sm:text-5xl text-4xl text-transparent bg-clip-text bg-gradient-to-r from-[#F6A831] to-[#B37924] group-hover:text-white">
@@ -33,7 +81,7 @@
       <div class="absolute z-[2] top-0 h-full w-full bg-gradient-to-r from-[#9119EF] to-[#6410A3] left-0 group-hover: transition ease-in-out duration-500 -translate-y-[93%] group-hover:translate-y-0"></div>
       <div class="relative flex w-full h-full justify-center items-center gap-5 sm:gap-10 z-[3] top-0 left-0">
         <div class="flex flex-col justify-center items-center gap-2">
-          <div class="font-bold sm:text-5xl text-4xl group-hover:text-white">{{ $dataJumlah['jumlahUmkm'] }}</div>
+        <div class="font-bold sm:text-5xl text-4xl group-hover:text-white animate-[counter_3s_ease-out_forwards] delay-500 tabular-nums [counter-set:_num_var(--num-umkm)] before:content-[counter(num)]"><span class="sr-only">{{ $dataJumlah['jumlahUmkm'] }}</span></div>
           <div class="font-semibold text-[15px] text-gray-500 dark:text-gray-400 group-hover:text-gray-200 text-center">UMKM</div>
         </div>
         <div class="sm:text-5xl text-4xl text-transparent bg-clip-text bg-gradient-to-r from-[#9119EF] to-[#6410A3] group-hover:text-white">
@@ -47,7 +95,7 @@
       <div class="absolute z-[2] top-0 h-full w-full bg-gradient-to-r from-[#19EF88] to-[#10A35C] left-0 group-hover: transition ease-in-out duration-500 -translate-y-[93%] group-hover:translate-y-0"></div>
       <div class="relative flex w-full h-full justify-center items-center gap-5 sm:gap-10 z-[3] top-0 left-0">
         <div class="flex flex-col justify-center items-center gap-2">
-          <div class="font-bold sm:text-5xl text-4xl group-hover:text-white">{{ $dataJumlah['jumlahAduan'] }}</div>
+        <div class="font-bold sm:text-5xl text-4xl group-hover:text-white animate-[counter_3s_ease-out_forwards] delay-500 tabular-nums [counter-set:_num_var(--num-aduan)] before:content-[counter(num)]"><span class="sr-only">{{ $dataJumlah['jumlahAduan'] }}</span></div>
           <div class="font-semibold text-[15px] text-gray-500 dark:text-gray-400 group-hover:text-gray-200 text-center">Aduan</div>
         </div>
         <div class="sm:text-5xl text-4xl text-transparent bg-clip-text bg-gradient-to-r from-[#19EF88] to-[#10A35C] group-hover:text-white">
@@ -271,6 +319,7 @@
 
     let textColor = (localStorage.getItem('theme') == 'light') ? 'black' : 'white';
     let borderColor = (localStorage.getItem('theme') == 'light') ? 'white' : '#2F363E';
+    let done = false;
 
     const lineChart = new Chart(ctx, {
       type: 'line',
@@ -287,6 +336,20 @@
         }]
       },
       options: {
+        animation: {
+          easing: 'linear',
+          onComplete: function() {
+            if (!done) {
+              setTimeout(() => {
+                lineChart.data.datasets[0].data.forEach(function(point, i) {
+                  point = itemLineChart[i];
+                });
+                lineChart.update();
+                done = true;
+              }, 750); // 500ms delay
+            }
+          }
+        },
         scales: {
           x: {
             grid: {
@@ -308,7 +371,7 @@
           }
         }
       }
-    })
+    });
 
     let pendudukTetap = @json($dataStatusPenduduk['tetap']);
     let pendudukTidakTetap = @json($dataStatusPenduduk['tidak tetap']);
@@ -370,7 +433,7 @@
           }
         },
         animation: {
-          delay: 2000,
+          delay: 750,
         },
         indexAxis: 'y',
         responsive: true,
