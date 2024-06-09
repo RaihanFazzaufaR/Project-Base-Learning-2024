@@ -411,6 +411,396 @@ class AjuanBansosSeeder extends Seeder
                 'updated_at' => '2024-01-30',
             ],
             //bulan februari
+            [
+                'id_kartuKeluarga' => 2,
+                'status_rumah' => 'Kontrak/kos',
+                'tanggungan' => 2,
+                'penghasilan_keluarga' => '1.000.000 - 2.000.000',
+                'luas_tempat_tinggal' => '20m - 40m',
+                'pengeluaran_listrik' => '50.000 - 100.000',
+                'status' => 'diterima',
+                'foto_rumah' => 'contoh-foto-rumah.jpg',
+                'SKTM' => 'contoh-sktm.jpg',
+                'created_at' => '2024-02-01',
+                'updated_at' => '2024-02-23'
+            ],
+            [
+                'id_kartuKeluarga' => 3,
+                'status_rumah' => 'Tinggal dengan keluarga',
+                'tanggungan' => 3,
+                'penghasilan_keluarga' => '2.000.000 - 3.000.000',
+                'luas_tempat_tinggal' => '40m - 60m',
+                'pengeluaran_listrik' => '100.000 - 200.000',
+                'status' => 'ditolak',
+                'foto_rumah' => 'contoh-foto-rumah.jpg',
+                'SKTM' => 'contoh-sktm.jpg',
+                'created_at' => '2024-02-02',
+                'updated_at' => '2024-02-23'
+            ],
+            [
+                'id_kartuKeluarga' => 4,
+                'status_rumah' => 'Milik sendiri',
+                'tanggungan' => 2,
+                'penghasilan_keluarga' => '3.000.000 - 4.000.000',
+                'luas_tempat_tinggal' => '60m - 80m',
+                'pengeluaran_listrik' => '200.000 - 300.000',
+                'status' => 'ditolak',
+                'foto_rumah' => 'contoh-foto-rumah.jpg',
+                'SKTM' => 'contoh-sktm.jpg',
+                'created_at' => '2024-02-02',
+                'updated_at' => '2024-02-23'
+            ],
+            [
+                'id_kartuKeluarga' => 5,
+                'status_rumah' => 'Kontrak/kos',
+                'tanggungan' => 1,
+                'penghasilan_keluarga' => '<1.000.000',
+                'luas_tempat_tinggal' => '<20m',
+                'pengeluaran_listrik' => '<50.000',
+                'status' => 'diterima',
+                'foto_rumah' => 'contoh-foto-rumah.jpg',
+                'SKTM' => 'contoh-sktm.jpg',
+                'created_at' => '2024-02-05',
+                'updated_at' => '2024-02-23'
+            ],
+            [
+                'id_kartuKeluarga' => 6,
+                'status_rumah' => 'Tinggal dengan keluarga',
+                'tanggungan' => 3,
+                'penghasilan_keluarga' => '4.000.000 - 5.000.000',
+                'luas_tempat_tinggal' => '20m - 40m',
+                'pengeluaran_listrik' => '50.000 - 100.000',
+                'status' => 'diterima',
+                'foto_rumah' => 'contoh-foto-rumah.jpg',
+                'SKTM' => 'contoh-sktm.jpg',
+                'created_at' => '2024-02-01',
+                'updated_at' => '2024-02-23'
+            ],
+            [
+                'id_kartuKeluarga' => 7,
+                'status_rumah' => 'Milik sendiri',
+                'tanggungan' => 2,
+                'penghasilan_keluarga' => '>5.000.000',
+                'luas_tempat_tinggal' => '60m - 80m',
+                'pengeluaran_listrik' => '200.000 - 300.000',
+                'status' => 'diterima',
+                'foto_rumah' => 'contoh-foto-rumah.jpg',
+                'SKTM' => 'contoh-sktm.jpg',
+                'created_at' => '2024-02-10',
+                'updated_at' => '2024-02-23'
+            ],
+            [
+                'id_kartuKeluarga' => 8,
+                'status_rumah' => 'Kontrak/kos',
+                'tanggungan' => 3,
+                'penghasilan_keluarga' => '1.000.000 - 2.000.000',
+                'luas_tempat_tinggal' => '40m - 60m',
+                'pengeluaran_listrik' => '100.000 - 200.000',
+                'status' => 'diterima',
+                'foto_rumah' => 'contoh-foto-rumah.jpg',
+                'SKTM' => 'contoh-sktm.jpg',
+                'created_at' => '2024-02-11',
+                'updated_at' => '2024-02-23'
+            ],
+            [
+                'id_kartuKeluarga' => 9,
+                'status_rumah' => 'Tinggal dengan keluarga',
+                'tanggungan' => 2,
+                'penghasilan_keluarga' => '2.000.000 - 3.000.000',
+                'luas_tempat_tinggal' => '20m - 40m',
+                'pengeluaran_listrik' => '50.000 - 100.000',
+                'status' => 'diterima',
+                'foto_rumah' => 'contoh-foto-rumah.jpg',
+                'SKTM' => 'contoh-sktm.jpg',
+                'created_at' => '2024-02-11',
+                'updated_at' => '2024-02-23'
+            ],
+            [
+                'id_kartuKeluarga' => 10,
+                'status_rumah' => 'Milik sendiri',
+                'tanggungan' => 1,
+                'penghasilan_keluarga' => '3.000.000 - 4.000.000',
+                'luas_tempat_tinggal' => '60m - 80m',
+                'pengeluaran_listrik' => '200.000 - 300.000',
+                'status' => 'ditolak',
+                'foto_rumah' => 'contoh-foto-rumah.jpg',
+                'SKTM' => 'contoh-sktm.jpg',
+                'created_at' => '2024-02-12',
+                'updated_at' => '2024-02-23'
+            ],
+            [
+                'id_kartuKeluarga' => 11,
+                'status_rumah' => 'Kontrak/kos',
+                'tanggungan' => 3,
+                'penghasilan_keluarga' => '<1.000.000',
+                'luas_tempat_tinggal' => '<20m',
+                'pengeluaran_listrik' => '<50.000',
+                'status' => 'diterima',
+                'foto_rumah' => 'contoh-foto-rumah.jpg',
+                'SKTM' => 'contoh-sktm.jpg',
+                'created_at' => '2024-02-13',
+                'updated_at' => '2024-02-23'
+            ],
+            [
+                'id_kartuKeluarga' => 12,
+                'status_rumah' => 'Tinggal dengan keluarga',
+                'tanggungan' => 2,
+                'penghasilan_keluarga' => '1.000.000 - 2.000.000',
+                'luas_tempat_tinggal' => '40m - 60m',
+                'pengeluaran_listrik' => '100.000 - 200.000',
+                'status' => 'diterima',
+                'foto_rumah' => 'contoh-foto-rumah.jpg',
+                'SKTM' => 'contoh-sktm.jpg',
+                'created_at' => '2024-02-14',
+                'updated_at' => '2024-02-23'
+            ],
+            [
+                'id_kartuKeluarga' => 13,
+                'status_rumah' => 'Milik sendiri',
+                'tanggungan' => 1,
+                'penghasilan_keluarga' => '2.000.000 - 3.000.000',
+                'luas_tempat_tinggal' => '60m - 80m',
+                'pengeluaran_listrik' => '200.000 - 300.000',
+                'status' => 'diterima',
+                'foto_rumah' => 'contoh-foto-rumah.jpg',
+                'SKTM' => 'contoh-sktm.jpg',
+                'created_at' => '2024-02-15',
+                'updated_at' => '2024-02-23'
+            ],
+            [
+                'id_kartuKeluarga' => 14,
+                'status_rumah' => 'Kontrak/kos',
+                'tanggungan' => 2,
+                'penghasilan_keluarga' => '3.000.000 - 4.000.000',
+                'luas_tempat_tinggal' => '<20m',
+                'pengeluaran_listrik' => '<50.000',
+                'status' => 'diterima',
+                'foto_rumah' => 'contoh-foto-rumah.jpg',
+                'SKTM' => 'contoh-sktm.jpg',
+                'created_at' => '2024-02-16',
+                'updated_at' => '2024-02-23'
+            ],
+            [
+                'id_kartuKeluarga' => 15,
+                'status_rumah' => 'Tinggal dengan keluarga',
+                'tanggungan' => 3,
+                'penghasilan_keluarga' => '4.000.000 - 5.000.000',
+                'luas_tempat_tinggal' => '40m - 60m',
+                'pengeluaran_listrik' => '100.000 - 200.000',
+                'status' => 'diterima',
+                'foto_rumah' => 'contoh-foto-rumah.jpg',
+                'SKTM' => 'contoh-sktm.jpg',
+                'created_at' => '2024-02-16',
+                'updated_at' => '2024-02-23'
+            ],
+            [
+                'id_kartuKeluarga' => 16,
+                'status_rumah' => 'Milik sendiri',
+                'tanggungan' => 2,
+                'penghasilan_keluarga' => '>5.000.000',
+                'luas_tempat_tinggal' => '60m - 80m',
+                'pengeluaran_listrik' => '200.000 - 300.000',
+                'status' => 'diterima',
+                'foto_rumah' => 'contoh-foto-rumah.jpg',
+                'SKTM' => 'contoh-sktm.jpg',
+                'created_at' => '2024-02-19',
+                'updated_at' => '2024-02-23'
+            ],
+            [
+                'id_kartuKeluarga' => 17,
+                'status_rumah' => 'Kontrak/kos',
+                'tanggungan' => 3,
+                'penghasilan_keluarga' => '<1.000.000',
+                'luas_tempat_tinggal' => '<20m',
+                'pengeluaran_listrik' => '<50.000',
+                'status' => 'diterima',
+                'foto_rumah' => 'contoh-foto-rumah.jpg',
+                'SKTM' => 'contoh-sktm.jpg',
+                'created_at' => '2024-02-16',
+                'updated_at' => '2024-02-23'
+            ],
+            [
+                'id_kartuKeluarga' => 18,
+                'status_rumah' => 'Tinggal dengan keluarga',
+                'tanggungan' => 2,
+                'penghasilan_keluarga' => '1.000.000 - 2.000.000',
+                'luas_tempat_tinggal' => '40m - 60m',
+                'pengeluaran_listrik' => '100.000 - 200.000',
+                'status' => 'diterima',
+                'foto_rumah' => 'contoh-foto-rumah.jpg',
+                'SKTM' => 'contoh-sktm.jpg',
+                'created_at' => '2024-02-20',
+                'updated_at' => '2024-02-23'
+            ],
+            [
+                'id_kartuKeluarga' => 19,
+                'status_rumah' => 'Milik sendiri',
+                'tanggungan' => 1,
+                'penghasilan_keluarga' => '2.000.000 - 3.000.000',
+                'luas_tempat_tinggal' => '60m - 80m',
+                'pengeluaran_listrik' => '200.000 - 300.000',
+                'status' => 'ditolak',
+                'foto_rumah' => 'contoh-foto-rumah.jpg',
+                'SKTM' => 'contoh-sktm.jpg',
+                'created_at' => '2024-02-14',
+                'updated_at' => '2024-02-24'
+            ],
+            [
+                'id_kartuKeluarga' => 20,
+                'status_rumah' => 'Kontrak/kos',
+                'tanggungan' => 2,
+                'penghasilan_keluarga' => '3.000.000 - 4.000.000',
+                'luas_tempat_tinggal' => '<20m',
+                'pengeluaran_listrik' => '<50.000',
+                'status' => 'diterima',
+                'foto_rumah' => 'contoh-foto-rumah.jpg',
+                'SKTM' => 'contoh-sktm.jpg',
+                'created_at' => '2024-02-12',
+                'updated_at' => '2024-02-24'
+            ],
+            [
+                'id_kartuKeluarga' => 21,
+                'status_rumah' => 'Tinggal dengan keluarga',
+                'tanggungan' => 3,
+                'penghasilan_keluarga' => '4.000.000 - 5.000.000',
+                'luas_tempat_tinggal' => '40m - 60m',
+                'pengeluaran_listrik' => '100.000 - 200.000',
+                'status' => 'ditolak',
+                'foto_rumah' => 'contoh-foto-rumah.jpg',
+                'SKTM' => 'contoh-sktm.jpg',
+                'created_at' => '2024-02-15',
+                'updated_at' => '2024-02-24'
+            ],
+            [
+                'id_kartuKeluarga' => 22,
+                'status_rumah' => 'Milik sendiri',
+                'tanggungan' => 2,
+                'penghasilan_keluarga' => '>5.000.000',
+                'luas_tempat_tinggal' => '60m - 80m',
+                'pengeluaran_listrik' => '200.000 - 300.000',
+                'status' => 'diterima',
+                'foto_rumah' => 'contoh-foto-rumah.jpg',
+                'SKTM' => 'contoh-sktm.jpg',
+                'created_at' => '2024-02-16',
+                'updated_at' => '2024-02-24'
+            ],
+            [
+                'id_kartuKeluarga' => 23,
+                'status_rumah' => 'Kontrak/kos',
+                'tanggungan' => 3,
+                'penghasilan_keluarga' => '<1.000.000',
+                'luas_tempat_tinggal' => '<20m',
+                'pengeluaran_listrik' => '<50.000',
+                'status' => 'diterima',
+                'foto_rumah' => 'contoh-foto-rumah.jpg',
+                'SKTM' => 'contoh-sktm.jpg',
+                'created_at' => '2024-02-19',
+                'updated_at' => '2024-02-24'
+            ],
+            [
+                'id_kartuKeluarga' => 24,
+                'status_rumah' => 'Tinggal dengan keluarga',
+                'tanggungan' => 2,
+                'penghasilan_keluarga' => '1.000.000 - 2.000.000',
+                'luas_tempat_tinggal' => '40m - 60m',
+                'pengeluaran_listrik' => '100.000 - 200.000',
+                'status' => 'diterima',
+                'foto_rumah' => 'contoh-foto-rumah.jpg',
+                'SKTM' => 'contoh-sktm.jpg',
+                'created_at' => '2024-02-12',
+                'updated_at' => '2024-02-27'
+            ],
+            [
+                'id_kartuKeluarga' => 25,
+                'status_rumah' => 'Milik sendiri',
+                'tanggungan' => 1,
+                'penghasilan_keluarga' => '2.000.000 - 3.000.000',
+                'luas_tempat_tinggal' => '60m - 80m',
+                'pengeluaran_listrik' => '200.000 - 300.000',
+                'status' => 'diterima',
+                'foto_rumah' => 'contoh-foto-rumah.jpg',
+                'SKTM' => 'contoh-sktm.jpg',
+                'created_at' => '2024-02-19',
+                'updated_at' => '2024-02-24'
+            ],
+            [
+                'id_kartuKeluarga' => 26,
+                'status_rumah' => 'Kontrak/kos',
+                'tanggungan' => 2,
+                'penghasilan_keluarga' => '3.000.000 - 4.000.000',
+                'luas_tempat_tinggal' => '<20m',
+                'pengeluaran_listrik' => '<50.000',
+                'status' => 'diterima',
+                'foto_rumah' => 'contoh-foto-rumah.jpg',
+                'SKTM' => 'contoh-sktm.jpg',
+                'created_at' => '2024-02-06',
+                'updated_at' => '2024-02-24'
+            ],
+            [
+                'id_kartuKeluarga' => 27,
+                'status_rumah' => 'Tinggal dengan keluarga',
+                'tanggungan' => 2,
+                'penghasilan_keluarga' => '4.000.000 - 5.000.000',
+                'luas_tempat_tinggal' => '40m - 60m',
+                'pengeluaran_listrik' => '100.000 - 200.000',
+                'status' => 'ditolak',
+                'foto_rumah' => 'contoh-foto-rumah.jpg',
+                'SKTM' => 'contoh-sktm.jpg',
+                'created_at' => '2024-02-21',
+                'updated_at' => '2024-02-24'
+            ],
+            [
+                'id_kartuKeluarga' => 28,
+                'status_rumah' => 'Milik sendiri',
+                'tanggungan' => 2,
+                'penghasilan_keluarga' => '>5.000.000',
+                'luas_tempat_tinggal' => '60m - 80m',
+                'pengeluaran_listrik' => '200.000 - 300.000',
+                'status' => 'ditolak',
+                'foto_rumah' => 'contoh-foto-rumah.jpg',
+                'SKTM' => 'contoh-sktm.jpg',
+                'created_at' => '2024-02-09',
+                'updated_at' => '2024-02-24'
+            ],
+            [
+                'id_kartuKeluarga' => 29,
+                'status_rumah' => 'Kontrak/kos',
+                'tanggungan' => 3,
+                'penghasilan_keluarga' => '<1.000.000',
+                'luas_tempat_tinggal' => '<20m',
+                'pengeluaran_listrik' => '<50.000',
+                'status' => 'diterima',
+                'foto_rumah' => 'contoh-foto-rumah.jpg',
+                'SKTM' => 'contoh-sktm.jpg',
+                'created_at' => '2024-02-10',
+                'updated_at' => '2024-02-24'
+            ],
+            [
+                'id_kartuKeluarga' => 30,
+                'status_rumah' => 'Tinggal dengan keluarga',
+                'tanggungan' => 2,
+                'penghasilan_keluarga' => '1.000.000 - 2.000.000',
+                'luas_tempat_tinggal' => '40m - 60m',
+                'pengeluaran_listrik' => '100.000 - 200.000',
+                'status' => 'diterima',
+                'foto_rumah' => 'contoh-foto-rumah.jpg',
+                'SKTM' => 'contoh-sktm.jpg',
+                'created_at' => '2024-02-11',
+                'updated_at' => '2024-02-24'
+            ],
+            [
+                'id_kartuKeluarga' => 31,
+                'status_rumah' => 'Milik sendiri',
+                'tanggungan' => 2,
+                'penghasilan_keluarga' => '3.000.000 - 4.000.000',
+                'luas_tempat_tinggal' => '60m - 80m',
+                'pengeluaran_listrik' => '200.000 - 300.000',
+                'status' => 'ditolak',
+                'foto_rumah' => 'contoh-foto-rumah.jpg',
+                'SKTM' => 'contoh-sktm.jpg',
+                'created_at' => '2024-02-14',
+                'updated_at' => '2024-02-24'
+            ],
             //bulan maret
             [
                 'id_kartuKeluarga' => 2,
@@ -1968,57 +2358,57 @@ class AjuanBansosSeeder extends Seeder
         DB::table('tb_ajuan_bansos')->insert($data);
         // Sample data
         //bulan february
-        $status_rumah = ['Kontrak/kos', 'Tinggal dengan keluarga', 'Milik sendiri'];
-        $tanggungan = ['1', '2', '3', '4', '5', '>5'];
-        $penghasilan_keluarga = ['<1.000.000', '1.000.000 - 2.000.000', '2.000.000 - 3.000.000', '3.000.000 - 4.000.000', '4.000.000 - 5.000.000', '>5.000.000'];
-        $luas_tempat_tinggal = ['<20m', '20m - 40m', '40m - 60m', '60m - 80m', '>80m'];
-        $pengeluaran_listrik = ['<50.000', '50.000 - 100.000', '100.000 - 200.000', '200.000 - 300.000', '>300.000'];
-        $status = ['diterima', 'ditolak'];
-        $foto_rumah = 'contoh-foto-rumah.jpg';
-        $SKTM = 'contoh-foto-sktm.jpg';
+        // $status_rumah = ['Kontrak/kos', 'Tinggal dengan keluarga', 'Milik sendiri'];
+        // $tanggungan = ['1', '2', '3', '4', '5', '>5'];
+        // $penghasilan_keluarga = ['<1.000.000', '1.000.000 - 2.000.000', '2.000.000 - 3.000.000', '3.000.000 - 4.000.000', '4.000.000 - 5.000.000', '>5.000.000'];
+        // $luas_tempat_tinggal = ['<20m', '20m - 40m', '40m - 60m', '60m - 80m', '>80m'];
+        // $pengeluaran_listrik = ['<50.000', '50.000 - 100.000', '100.000 - 200.000', '200.000 - 300.000', '>300.000'];
+        // $status = ['diterima', 'ditolak'];
+        // $foto_rumah = 'contoh-foto-rumah.jpg';
+        // $SKTM = 'contoh-foto-sktm.jpg';
 
-        $count_ditolak = 0;
-        $max_ditolak = 10;
+        // $count_ditolak = 0;
+        // $max_ditolak = 10;
 
-        for ($id_kartuKeluarga = 2; $id_kartuKeluarga <= 31; $id_kartuKeluarga++) {
-            $created_at = Carbon::create(2024, 2, rand(1, 20));
-            $updated_at = Carbon::create(2024, 2, rand(21, 29));
+        // for ($id_kartuKeluarga = 2; $id_kartuKeluarga <= 31; $id_kartuKeluarga++) {
+        //     $created_at = Carbon::create(2024, 2, rand(1, 20));
+        //     $updated_at = Carbon::create(2024, 2, rand(21, 29));
 
-            if ($count_ditolak >= $max_ditolak) {
-                $status_ajuan = 'diterima';
-            } else {
-                $status_ajuan = $status[array_rand($status)];
-            }
+        //     if ($count_ditolak >= $max_ditolak) {
+        //         $status_ajuan = 'diterima';
+        //     } else {
+        //         $status_ajuan = $status[array_rand($status)];
+        //     }
 
-            if ($status_ajuan == 'ditolak') {
-                $count_ditolak++;
-                $status_rumah_isi = ['Tinggal dengan keluarga', 'Milik sendiri'][array_rand(['Tinggal dengan keluarga', 'Milik sendiri'])];
-                $tanggungan_isi = rand(1, 2);
-                $penghasilan_keluarga_isi = ['2.000.000 - 3.000.000', '3.000.000 - 4.000.000', '4.000.000 - 5.000.000', '>5.000.000'][array_rand(['2.000.000 - 3.000.000', '3.000.000 - 4.000.000', '4.000.000 - 5.000.000', '>5.000.000'])];
-                $luas_tempat_tinggal_isi = ['40m - 60m', '60m - 80m', '>80m'][array_rand(['40m - 60m', '60m - 80m', '>80m'])];
-                $pengeluaran_listrik_isi = ['100.000 - 200.000', '200.000 - 300.000', '>300.000'][array_rand(['100.000 - 200.000', '200.000 - 300.000', '>300.000'])];
-            } else {
-                $status_rumah_isi = $status_rumah[array_rand($status_rumah)];
-                $tanggungan_isi = $tanggungan[array_rand($tanggungan)];
-                $penghasilan_keluarga_isi = ['<1.000.000', '1.000.000 - 2.000.000', '2.000.000 - 3.000.000'][array_rand(['<1.000.000', '1.000.000 - 2.000.000', '2.000.000 - 3.000.000'])];
-                $luas_tempat_tinggal_isi = ['<20m', '20m - 40m', '40m - 60m'][array_rand(['<20m', '20m - 40m', '40m - 60m'])];
-                $pengeluaran_listrik_isi = ['<50.000', '50.000 - 100.000', '100.000 - 200.000'][array_rand(['<50.000', '50.000 - 100.000', '100.000 - 200.000'])];
-            }
+        //     if ($status_ajuan == 'ditolak') {
+        //         $count_ditolak++;
+        //         $status_rumah_isi = ['Tinggal dengan keluarga', 'Milik sendiri'][array_rand(['Tinggal dengan keluarga', 'Milik sendiri'])];
+        //         $tanggungan_isi = rand(1, 2);
+        //         $penghasilan_keluarga_isi = ['2.000.000 - 3.000.000', '3.000.000 - 4.000.000', '4.000.000 - 5.000.000', '>5.000.000'][array_rand(['2.000.000 - 3.000.000', '3.000.000 - 4.000.000', '4.000.000 - 5.000.000', '>5.000.000'])];
+        //         $luas_tempat_tinggal_isi = ['40m - 60m', '60m - 80m', '>80m'][array_rand(['40m - 60m', '60m - 80m', '>80m'])];
+        //         $pengeluaran_listrik_isi = ['100.000 - 200.000', '200.000 - 300.000', '>300.000'][array_rand(['100.000 - 200.000', '200.000 - 300.000', '>300.000'])];
+        //     } else {
+        //         $status_rumah_isi = $status_rumah[array_rand($status_rumah)];
+        //         $tanggungan_isi = $tanggungan[array_rand($tanggungan)];
+        //         $penghasilan_keluarga_isi = ['<1.000.000', '1.000.000 - 2.000.000', '2.000.000 - 3.000.000'][array_rand(['<1.000.000', '1.000.000 - 2.000.000', '2.000.000 - 3.000.000'])];
+        //         $luas_tempat_tinggal_isi = ['<20m', '20m - 40m', '40m - 60m'][array_rand(['<20m', '20m - 40m', '40m - 60m'])];
+        //         $pengeluaran_listrik_isi = ['<50.000', '50.000 - 100.000', '100.000 - 200.000'][array_rand(['<50.000', '50.000 - 100.000', '100.000 - 200.000'])];
+        //     }
 
-            DB::table('tb_ajuan_bansos')->insert([
-                'id_kartuKeluarga' => $id_kartuKeluarga,
-                'status_rumah' => $status_rumah_isi,
-                'tanggungan' => (string) $tanggungan_isi,
-                'penghasilan_keluarga' => $penghasilan_keluarga_isi,
-                'luas_tempat_tinggal' => $luas_tempat_tinggal_isi,
-                'pengeluaran_listrik' => $pengeluaran_listrik_isi,
-                'status' => $status_ajuan,
-                'foto_rumah' => $foto_rumah,
-                'SKTM' => $SKTM,
-                'created_at' => $created_at,
-                'updated_at' => $updated_at,
-            ]);
-        }
+        //     DB::table('tb_ajuan_bansos')->insert([
+        //         'id_kartuKeluarga' => $id_kartuKeluarga,
+        //         'status_rumah' => $status_rumah_isi,
+        //         'tanggungan' => (string) $tanggungan_isi,
+        //         'penghasilan_keluarga' => $penghasilan_keluarga_isi,
+        //         'luas_tempat_tinggal' => $luas_tempat_tinggal_isi,
+        //         'pengeluaran_listrik' => $pengeluaran_listrik_isi,
+        //         'status' => $status_ajuan,
+        //         'foto_rumah' => $foto_rumah,
+        //         'SKTM' => $SKTM,
+        //         'created_at' => $created_at,
+        //         'updated_at' => $updated_at,
+        //     ]);
+        // }
 
         //tahun 2023
         $status_rumah = ['Kontrak/kos', 'Tinggal dengan keluarga', 'Milik sendiri'];
