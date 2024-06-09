@@ -173,7 +173,7 @@
                         <p class="font-bold text-lg text-white">Ketua RT {{ $rt['profile']->kartuKeluarga->rt }}
                         </p>
                     </div>
-                    <img src="{{ asset('assets/images/UserAccount/' . $rt['image']) }}" alt="" class="sm:h-[320px] sm:w-[290px] size-67 mx-auto relative z-10 shadow-2xl rounded-full border-6 border-white">
+                    <img src="{{ asset('assets/images/UserAccount/' . $rt['image']) }}" alt="" class="sm:h-[320px] sm:w-[290px] size-67 mx-auto object-cover relative z-10 shadow-2xl rounded-full border-6 border-white">
                     <div class="sm:hidden">
                         <div class="relative w-[200px] h-fit py-2 mb-7 mt-10 pl-8 pr-13 bg-green-500 dark:bg-[#57ba47] rounded-2xl flex justify-center items-center shadow-md  border-2 border-white ">
                             <div class="text-sm font-bold text-white">{{ $rt['profile']->nama }}</div>
