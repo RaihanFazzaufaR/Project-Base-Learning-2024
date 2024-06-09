@@ -383,7 +383,7 @@
                                 <form action="{{ route('destroy-pengumuman', $pengumuman->pengumuman_id) }}" method="POST" id="deleteForm-{{ $pengumuman->pengumuman_id }}">
                                     @csrf
                                     {!! method_field('DELETE') !!}
-                                    <button type="button" onclick="showConfirm('{{ $umkm->umkm_id }}')" class="flex justify-center items-center gap-2 w-fit text-white bg-[#FF5E5E]  rounded-full sm:rounded-lg shadow-xl font-bold h-full sm:px-3 sm:py-2 p-2 hover:bg-[#B34242] hover:scale-105 transition-all">
+                                    <button type="button" onclick="showConfirm('{{ $pengumuman->pengumuman_id }}')" class="flex justify-center items-center gap-2 w-fit text-white bg-[#FF5E5E]  rounded-full sm:rounded-lg shadow-xl font-bold h-full sm:px-3 sm:py-2 p-2 hover:bg-[#B34242] hover:scale-105 transition-all">
                                         <i class="fa-solid fa-trash-can"></i>
                                         <div class="hidden sm:inline-flex">Hapus</div>
                                     </button>

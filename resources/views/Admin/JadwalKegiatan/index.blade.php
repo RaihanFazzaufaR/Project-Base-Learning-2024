@@ -384,11 +384,11 @@
                             <div @keydown.escape="editModal = false">
                                 <button @click="editModal = true" class="h-fit w-fit px-3 py-1 bg-[#FFDE68] font-semibold text-sm rounded-xl text-white hover:bg-[#B39C49] transition-all">Edit</button>
                             </div>
-                            <form action="{{ route('destroyKegiatan', $dt->jadwal_id) }}" method="POST">
+                            <form action="{{ route('destroyKegiatan', $dt->jadwal_id) }}" method="POST" id="deleteForm-{{ $dt->jadwal_id }}">
                                 @csrf
                                 {!! method_field('DELETE') !!}
 
-                                <button type="submit" class="h-fit w-fit px-3 py-1 bg-[#FF5E5E] font-semibold text-sm rounded-xl text-white hover:bg-[#B34242] transition-all">Hapus</button>
+                                <button type="button" onclick="showConfirm('{{ $dt->jadwal_id }}')" class="h-fit w-fit px-3 py-1 bg-[#FF5E5E] font-semibold text-sm rounded-xl text-white hover:bg-[#B34242] transition-all">Hapus</button>
                             </form>
                         </div>
                         <div class="text-lg font-medium text-green-900 dark:text-[#57BA47] text-left w-full"> {{ Str::limit($dt->judul, 27) }}</div>
@@ -628,11 +628,11 @@
                             <div @keydown.escape="editModal = false">
                                 <button @click="editModal = true" class="h-fit w-fit px-3 py-1 bg-[#FFDE68] font-semibold text-sm rounded-xl text-white hover:bg-[#B39C49] transition-all">Edit</button>
                             </div>
-                            <form action="{{ route('destroyKegiatan', $dt->jadwal_id) }}" method="POST">
+                            <form action="{{ route('destroyKegiatan', $dt->jadwal_id) }}" method="POST" id="deleteForm-{{ $dt->jadwal_id }}">
                                 @csrf
                                 {!! method_field('DELETE') !!}
 
-                                <button type="submit" class="h-fit w-fit px-3 py-1 bg-[#FF5E5E] font-semibold text-sm rounded-xl text-white hover:bg-[#B34242] transition-all">Hapus</button>
+                                <button type="button" onclick="showConfirm('{{ $dt->jadwal_id }}')" class="h-fit w-fit px-3 py-1 bg-[#FF5E5E] font-semibold text-sm rounded-xl text-white hover:bg-[#B34242] transition-all">Hapus</button>
                             </form>
                         </div>
                         <div class="text-lg font-medium text-green-900 text-left w-full dark:text-[#57BA47]">{{ Str::limit($dt->judul, 27) }}</div>
@@ -654,6 +654,26 @@
         </div>
     </div>
 
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        const showConfirm = (id) => {
+            Swal.fire({
+                title: 'Apakah anda yakin?',
+                text: 'Data ini akan dihapus dan tidak bisa dikembalikan!',
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Iya, hapus!',
+                cancelButtonText: 'Batal'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    document.getElementById(`deleteForm-${id}`).submit();
+                }
+            });
+        }
+    </script>
     <script>
         //calendar
         const calendarHead = document.querySelector("#calendarHead");
