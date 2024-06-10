@@ -53,8 +53,9 @@ class PendudukController extends Controller
 
         // Ordering should be before pagination
         $user = $user->orderBy('updated_at', 'desc')->orderBy('id_penduduk', 'desc')->paginate(10)->withQueryString();
+        $rt = KartuKeluargaModel::select('rt')->distinct()->get();
 
-        return view('Admin.Kependudukan.index', compact('user', 'page', 'selected', 'kartuKeluarga', 'id_penduduk'));
+        return view('Admin.Kependudukan.index', compact('user', 'page', 'selected', 'kartuKeluarga', 'id_penduduk', 'rt'));
     }
 
 
@@ -243,8 +244,9 @@ class PendudukController extends Controller
         }
 
         $user = $user->orderBy('updated_at', 'desc')->paginate(10)->withQueryString();
+        $rt = KartuKeluargaModel::select('rt')->distinct()->get();
 
-        return view('Admin.Kependudukan.daftar-nkk', compact('user', 'page', 'selected', 'id_kk'));
+        return view('Admin.Kependudukan.daftar-nkk', compact('user', 'page', 'selected', 'id_kk', 'rt'));
     }
 
     public function storeKartuKeluarga(Request $request)
