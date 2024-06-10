@@ -23,7 +23,9 @@ class UmkmController extends Controller
         $umkms = UmkmModel::select('tb_umkm.*', 'tb_penduduk.nama as pemilik')
             ->join('tb_penduduk', 'tb_umkm.id_pemilik', '=', 'tb_penduduk.id_penduduk')
             ->where('status', 'diterima')
+            ->orderBy('updated_at', 'desc')
             ->paginate(10);
+
         // return $umkms;
         return view('Admin.Umkm.index', compact('user', 'page', 'selected', 'umkmKategoris', 'categories', 'umkms'));
     }
@@ -276,7 +278,7 @@ class UmkmController extends Controller
             $umkmQuery->where('tb_umkm.nama', 'like', '%' . $search . '%');
         }
 
-        $umkms = $umkmQuery->paginate(10);
+        $umkms = $umkmQuery->orderBy('updated_at', 'desc')->paginate(10);
 
         return view('Admin.Umkm.index', compact('users', 'umkms', 'page', 'selected', 'umkmKategoris', 'categories'));
     }
