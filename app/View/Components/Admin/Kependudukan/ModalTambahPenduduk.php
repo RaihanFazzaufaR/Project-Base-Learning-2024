@@ -19,6 +19,8 @@ class ModalTambahPenduduk extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components..admin.kependudukan.modal-tambah-penduduk');
+        $rt = KartuKeluargaModel::select('rt')->distinct()->get();
+
+        return view('components..admin.kependudukan.modal-tambah-penduduk', compact('rt'));
     }
 }

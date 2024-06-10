@@ -21,6 +21,8 @@ class ModalTambahNkk extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components..admin.kependudukan.modal-tambah-nkk');
+        $rt = KartuKeluargaModel::select('rt')->distinct()->get();
+        
+        return view('components..admin.kependudukan.modal-tambah-nkk', compact('rt'));
     }
 }
