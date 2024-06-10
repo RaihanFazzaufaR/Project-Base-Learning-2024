@@ -67,7 +67,7 @@
                                         <label class="block mb-2 text-sm font-bold">RT</label>
                                         <select id="rt" name="rt" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white">
                                             <option value="">Pilih RT</option>
-                                            @for ($i = 1; $i < 10; $i++) <option value="{{$i}}">RT {{$i}}</option>
+                                            @for ($i = 1; $i < 15; $i++) <option value="{{$i}}">RT {{$i}}</option>
                                                 @endfor
                                                 {{-- <option value="Sekretaris">Sekretaris</option>
                                             <option value="Bendahara">Bendahara</option> --}}

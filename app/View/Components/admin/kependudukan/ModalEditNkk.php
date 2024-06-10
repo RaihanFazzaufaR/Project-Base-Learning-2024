@@ -21,6 +21,7 @@ class ModalEditNkk extends Component
     public function render(): View|Closure|string
     {
         $usr = KartuKeluargaModel::find($this->idKk);
-        return view('components..admin.kependudukan.modal-edit-nkk', compact('usr'));
+        $rt = KartuKeluargaModel::select('rt')->distinct()->get();
+        return view('components..admin.kependudukan.modal-edit-nkk', compact('usr', 'rt'));
     }
 }

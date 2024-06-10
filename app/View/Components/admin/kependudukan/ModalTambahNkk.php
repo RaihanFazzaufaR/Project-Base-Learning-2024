@@ -2,6 +2,7 @@
 
 namespace App\View\Components\admin\kependudukan;
 
+use App\Models\KartuKeluargaModel;
 use Closure;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Component;
@@ -21,6 +22,8 @@ class ModalTambahNkk extends Component
      */
     public function render(): View|Closure|string
     {
-        return view('components..admin.kependudukan.modal-tambah-nkk');
+        $rt = KartuKeluargaModel::select('rt')->distinct()->get();
+        
+        return view('components..admin.kependudukan.modal-tambah-nkk', compact('rt'));
     }
 }

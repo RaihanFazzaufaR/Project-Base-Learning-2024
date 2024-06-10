@@ -33,11 +33,9 @@
                         <label for="rt" class="block mb-2 text-sm font-bold">RT</label>
                         <select name="rt" id="rt" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" required>
                             <option selected="">Pilih RT</option>
-                            <option value="01">01</option>
-                            <option value="02">02</option>
-                            <option value="03">03</option>
-                            <option value="04">04</option>
-                            <option value="05">05</option>
+                            @foreach ($rt as $dt)
+                                <option value="{{$dt->rt}}">{{ $dt->rt }}</option>
+                            @endforeach
                         </select>
                     </div>
                     <div class="col-span-2">

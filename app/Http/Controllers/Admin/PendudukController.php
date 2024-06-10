@@ -242,7 +242,7 @@ class PendudukController extends Controller
             });
         }
 
-        $user = $user->paginate(10)->withQueryString();
+        $user = $user->orderBy('updated_at', 'desc')->paginate(10)->withQueryString();
 
         return view('Admin.Kependudukan.daftar-nkk', compact('user', 'page', 'selected', 'id_kk'));
     }

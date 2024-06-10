@@ -35,11 +35,10 @@
                         <label for="rt" class="block mb-2 text-sm font-bold">RT</label>
                         <select name="rt" id="rt" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" required>
                             <option selected="">Pilih RT</option>
-                            <option value="01" @if ($usr->rt === '01') selected @endif>01</option>
-                            <option value="02" @if ($usr->rt === '02') selected @endif>02</option>
-                            <option value="03" @if ($usr->rt === '03') selected @endif>03</option>
-                            <option value="04" @if ($usr->rt === '04') selected @endif>04</option>
-                            <option value="05" @if ($usr->rt === '05') selected @endif>05</option>
+                            @foreach ($rt as $dt)    
+                                <option value="{{$dt->rt}}" @if ($usr->rt == $dt->rt) selected @endif>{{ $dt->rt }}</option>
+                            @endforeach
+                            
                         </select>
                     </div>
                     <div class="col-span-2">
