@@ -48,6 +48,9 @@ class PendudukController extends Controller
                 if ($request->filled('jabatan')) {
                     $query->where('jabatan', $request->jabatan);
                 }
+                if ($request->filled('kewarganegaraan')) {
+                    $query->where('warganegara', $request->kewarganegaraan);
+                }
             });
         }
 
