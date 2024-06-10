@@ -21,7 +21,8 @@
     <div class="w-[90%] mx-auto gap-4 flex flex-col">
         <div class="lg:hidden text-2xl sm:text-4xl flex flex-col gap-2">
             <p class="text-[#2d5523] dark:text-white font-bold">Bantuan Sosial di RW 3</p>
-            <p class="text-[#2d5523] dark:text-white font-sans sm:text-lg text-sm text-left">Salurkan Bantuan Sosial di Lingkungan
+            <p class="text-[#2d5523] dark:text-white font-sans sm:text-lg text-sm text-left">Salurkan Bantuan Sosial di
+                Lingkungan
                 RW 3</p>
         </div>
 
@@ -36,8 +37,9 @@
                         <div class="flex w-full">
                             <div class=" border-gray-400 px-4 w-[50%]">
                                 <div class="relative">
+
                                     <i
-                                        class="fa-solid fa-regular fa-star absolute left-2 -top-1 pt-4 hidden dark:text-white text-sm text-[#58a444]"></i>
+                                        class="fa-solid fa-calendar-days absolute left-2 -top-1 pt-4 hidden dark:text-white text-sm text-[#58a444]"></i>
                                     <select name="bulan" id="bulan"
                                         class="block py-2.5 px-9 w-full text-sm bg-white dark:bg-[#30373F] appearance-none text-[#58a444] dark:text-white border-none">
                                         <option selected value="">Bulan</option>
@@ -55,15 +57,13 @@
                             <div class="border-l-2 border-gray-400 px-4 w-[50%]">
                                 <div class="relative">
                                     <select name="tahun" id="tahun"
-                                        class="block py-2.5 px-9 w-full text-sm  bg-white dark:bg-[#30373F] appearance-none text-[#58a444] dark:text-white border-none">
+                                        class="block py-2.5 px-9 w-full text-sm bg-white dark:bg-[#30373F] appearance-none text-[#58a444] dark:text-white border-none">
                                         <option selected value="">Tahun</option>
-                                        <option value="2023">2023</option>
-                                        <option value="2024">2024</option>
-                                        <option value="2025">2025</option>
-                                        <option value="2026">2026</option>
+                                        @for ($year = 2023; $year <= now()->year; $year++)
+                                            <option value="{{ $year }}">{{ $year }}</option>
+                                        @endfor
                                     </select>
-                                    <i
-                                        class="fa-solid fa-question absolute left-2 -top-1 pt-4  dark:text-white text-sm text-[#58a444]"></i>
+
                                     {{-- <i class="fa-solid fa-angle-down absolute right-2 top-0 pt-4 text-gray-500 dark:text-white text-sm"></i> --}}
                                 </div>
                             </div>
@@ -105,22 +105,20 @@
 
 
                             <i
-                                class="fa-solid fa-regular fa-star absolute left-2 -top-1 pt-4  dark:text-white text-sm text-[#58a444]"></i>
+                                class="fa-solid fa-calendar-days absolute left-2 -top-1 pt-4 hidden dark:text-white text-sm text-[#58a444]"></i>
                             {{-- <i class="fa-solid fa-angle-down absolute right-2 top-0 pt-4  dark:text-white text-sm"></i> --}}
                         </div>
                     </div>
                     <div class="border-l-2 border-gray-400 px-4 w-fit">
                         <div class="relative">
                             <select name="tahun" id="tahun"
-                                class="block py-2.5 px-9 w-full text-sm  bg-white dark:bg-[#30373F] appearance-none text-[#58a444] dark:text-white border-none">
+                                class="block py-2.5 px-9 w-full text-sm bg-white dark:bg-[#30373F] appearance-none text-[#58a444] dark:text-white border-none">
                                 <option selected value="">Tahun</option>
-                                <option value="2023">2023</option>
-                                <option value="2024">2024</option>
-                                <option value="2025">2025</option>
-                                <option value="2026">2026</option>
+                                @for ($year = 2023; $year <= now()->year; $year++)
+                                    <option value="{{ $year }}">{{ $year }}</option>
+                                @endfor
                             </select>
-                            <i
-                                class="fa-solid fa-question absolute left-2 -top-1 pt-4  dark:text-white text-sm text-[#58a444]"></i>
+
                             {{-- <i class="fa-solid fa-angle-down absolute right-2 top-0 pt-4 text-gray-500 dark:text-white text-sm"></i> --}}
                         </div>
                     </div>
@@ -271,22 +269,22 @@
         <table class="w-full text-sm text-left rtl:text-right table-fixed text-gray-500 dark:text-gray-400">
             <thead class="text-base text-white uppercase bg-[#436c39] text-center dark:bg-[#428238] dark:text-white">
                 <tr>
-                    <th scope="col" class="px-6 w-[25%] py-3 ">
+                    <th scope="col" class="px-6 w-[25%] py-3">
                         Nama Kepala Keluarga
                     </th>
-                    <th scope="col" class="px-6 w-[25%] py-3 ">
+                    <th scope="col" class="px-6 w-[25%] py-3">
                         Nomor Kartu Keluarga
                     </th>
                     <th scope="col" class="px-6 w-[25%] py-3">
-                        periode
+                        Periode
                     </th>
                     <th scope="col" class="px-6 w-[25%] py-3">
-                        status
+                        Status
                     </th>
                 </tr>
             </thead>
             <tbody>
-                @foreach ($ajuan_saya as $ajuan)
+                @foreach ($ajuan_saya->sortByDesc('created_at') as $ajuan)
                     <tr
                         class="bg-white border-b hover:bg-gray-50 dark:hover:bg-gray-600 dark:bg-[#2F363E] dark:text-white dark:border-gray-700">
                         <td scope="row"
@@ -318,89 +316,88 @@
         </table>
         @if ($ajuan_saya->isEmpty())
             <div
-                class="flex flex-col w-full h-fit py-8 justify-center items-center gap-4 shadow-sm my-auto  dark:border-gray-600">
-                <!-- <i class="fa-regular fa-circle-xmark text-2xl"></i> -->
+                class="flex flex-col w-full h-fit py-8 justify-center items-center gap-4 shadow-sm my-auto dark:border-gray-600">
                 <img src="{{ asset('assets/images/no-data.png') }}" alt=""
                     class="w-[500px] h-[300px] object-cover">
                 <p class="text-2xl font-semibold text-green-900 dark:text-white">Data Tidak Ditemukan</p>
             </div>
         @endif
-
-
-        {{-- list bansos mobile --}}
     </div>
+    {{-- list bansos mobile --}}
 
     <div class="h-fit sm:hidden pt-[162px] ">
-    <div id="accordion-open" data-accordion="open" class="border dark:border-gray-600 py-3">
-        @foreach ($ajuan_saya->sortByDesc('created_at') as $index => $ajuan)
-            <h2 id="accordion-open-heading-{{ $index }}">
-                <button type="button"
-                    class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
-                    data-accordion-target="#accordion-open-body-{{ $index }}" aria-expanded="false"
-                    aria-controls="accordion-open-body-{{ $index }}">
-                    <span class="flex items-center">
-                        <i class="fa-solid fa-hand-holding-hand"></i>
-                        <svg class="w-5 h-5 me-2 shrink-0" fill="currentColor" viewBox="0 0 20 20"
-                            xmlns="http://www.w3.org/2000/svg">
-                        </svg>Bansos Periode {{ $ajuan->created_at_text }}</span>
-                    <svg data-accordion-icon class="w-3 h-3 rotate-0 shrink-0" aria-hidden="true"
-                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                            stroke-width="2" d="M9 5 5 1 1 5" />
-                    </svg>
-                </button>
-            </h2>
-            <div id="accordion-open-body-{{ $index }}" class="hidden"
-                aria-labelledby="accordion-open-heading-{{ $index }}">
-                <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
-                    <table class="text-[#2d5523] dark:text-white">
-                        <tr>
-                            <td class="pl-3 py-1">
-                                No. KK
-                            </td>
-                            <td class="pl-3 py-1">
-                                <span class="font-normal">
-                                    {{ $niKeluarga }}
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="pl-3 py-1">
-                                Nama Kepala Keluarga
-                            </td>
-                            <td class="pl-3 py-1">
-                                <span class="font-normal">
-                                    {{ $namaKepalaKeluarga }}
-                                </span>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="pl-3 py-1">
-                                Status
-                            </td>
-                            <td class="pl-3 py-1">
-                                <div
-                                    class="px-3 py-1 text-base text-center h-full my-auto items-center {{ $ajuan->status === 'diproses' ? 'bg-blue-500' : ($ajuan->status === 'diterima' ? 'bg-green-500' : 'bg-red-500') }} font-semibold text-white flex justify-start gap-3 rounded-full w-fit">
-                                    {{ $ajuan->status }}
-                                </div>
-                            </td>
-                        </tr>
-                    </table>
+        <div id="accordion-open" data-accordion="open" class="border dark:border-gray-600 py-3">
+            @foreach ($ajuan_saya->sortByDesc('created_at') as $index => $ajuan)
+                <h2 id="accordion-open-heading-{{ $index }}">
+                    <button type="button"
+                        class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
+                        data-accordion-target="#accordion-open-body-{{ $index }}" aria-expanded="false"
+                        aria-controls="accordion-open-body-{{ $index }}">
+                        <span class="flex items-center">
+                            <i class="fa-solid fa-hand-holding-hand"></i>
+                            <svg class="w-5 h-5 me-2 shrink-0" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                            </svg>Bansos Periode {{ $ajuan->created_at_text }}</span>
+                        <svg data-accordion-icon class="w-3 h-3 rotate-0 shrink-0" aria-hidden="true"
+                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                                stroke-width="2" d="M9 5 5 1 1 5" />
+                        </svg>
+                    </button>
+                </h2>
+                <div id="accordion-open-body-{{ $index }}" class="hidden"
+                    aria-labelledby="accordion-open-heading-{{ $index }}">
+                    <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
+                        <table class="text-[#2d5523] dark:text-white">
+                            <tr>
+                                <td class="pl-3 py-1">
+                                    No. KK
+                                </td>
+                                <td class="pl-3 py-1">
+                                    <span class="font-normal">
+                                        {{ $niKeluarga }}
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pl-3 py-1">
+                                    Nama Kepala Keluarga
+                                </td>
+                                <td class="pl-3 py-1">
+                                    <span class="font-normal">
+                                        {{ $namaKepalaKeluarga }}
+                                    </span>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="pl-3 py-1">
+                                    Status
+                                </td>
+                                <td class="pl-3 py-1">
+                                    <div
+                                        class="px-3 py-1 text-base text-center h-full my-auto items-center {{ $ajuan->status === 'diproses' ? 'bg-blue-500' : ($ajuan->status === 'diterima' ? 'bg-green-500' : 'bg-red-500') }} font-semibold text-white flex justify-start gap-3 rounded-full w-fit">
+                                        {{ $ajuan->status }}
+                                    </div>
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
                 </div>
-            </div>
-        @endforeach
-        @if ($ajuan_saya->isEmpty())
-            <div
-                class="flex flex-col w-full h-fit justify-center items-center gap-4 shadow-sm my-auto dark:border-gray-600">
-                <img src="{{ asset('assets/images/no-data.png') }}" alt=""
-                    class="w-[500px] h-[300px] object-cover">
-                <p class="text-2xl font-semibold text-green-900 dark:text-white">Data Tidak Ditemukan</p>
-            </div>
-        @endif
+            @endforeach
+            @if ($ajuan_saya->isEmpty())
+                <div
+                    class="flex flex-col w-full h-fit justify-center items-center gap-4 shadow-sm my-auto dark:border-gray-600">
+                    <img src="{{ asset('assets/images/no-data.png') }}" alt=""
+                        class="w-[500px] h-[300px] object-cover">
+                    <p class="text-2xl font-semibold text-green-900 dark:text-white">Data Tidak Ditemukan</p>
+                </div>
+            @endif
+        </div>
+
     </div>
 </div>
 
-    
+
 </div>
 
 <x-footer>
