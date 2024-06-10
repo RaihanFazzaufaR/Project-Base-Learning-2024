@@ -28,7 +28,7 @@
         <div class="flex gap-6">
 
             <div class="w-full">
-                <form action="{{ route('filter-bansos') }}" method="POST" enctype="multipart/form-data"
+                <form action="{{ route('filter-bansos-penduduk') }}" method="POST" enctype="multipart/form-data"
                     class="w-full mx-auto lg:shadow-2xl">
                     @csrf
                     <div
@@ -57,6 +57,7 @@
                                     <select name="tahun" id="tahun"
                                         class="block py-2.5 px-9 w-full text-sm  bg-white dark:bg-[#30373F] appearance-none text-[#58a444] dark:text-white border-none">
                                         <option selected value="">Tahun</option>
+                                        <option value="2023">2023</option>
                                         <option value="2024">2024</option>
                                         <option value="2025">2025</option>
                                         <option value="2026">2026</option>
@@ -85,7 +86,7 @@
     {{-- select option --}}
     {{-- opsi yang dipilih berdasarkan kategori bansos yg diterima --}}
     <div class=" flex w-full justify-between mb-10">
-        <form action="{{ route('filter-bansos') }}" method="POST" enctype="multipart/form-data"
+        <form action="{{ route('filter-bansos-penduduk') }}" method="POST" enctype="multipart/form-data"
             class="w-fit h-full flex items-center justify-center mb-0">
             @csrf
             <div
@@ -113,6 +114,7 @@
                             <select name="tahun" id="tahun"
                                 class="block py-2.5 px-9 w-full text-sm  bg-white dark:bg-[#30373F] appearance-none text-[#58a444] dark:text-white border-none">
                                 <option selected value="">Tahun</option>
+                                <option value="2023">2023</option>
                                 <option value="2024">2024</option>
                                 <option value="2025">2025</option>
                                 <option value="2026">2026</option>
@@ -327,77 +329,78 @@
 
         {{-- list bansos mobile --}}
     </div>
+
     <div class="h-fit sm:hidden pt-[162px] ">
-        <div id="accordion-open" data-accordion="open" class="border dark:border-gray-600 py-3">
-            @foreach ($ajuan_saya as $index => $ajuan)
-                <h2 id="accordion-open-heading-{{ $index }}">
-                    <button type="button"
-                        class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
-                        data-accordion-target="#accordion-open-body-{{ $index }}" aria-expanded="false"
-                        aria-controls="accordion-open-body-{{ $index }}">
-                        <span class="flex items-center">
-                            <i class="fa-solid fa-hand-holding-hand"></i>
-                            <svg class="w-5 h-5 me-2 shrink-0" fill="currentColor" viewBox="0 0 20 20"
-                                xmlns="http://www.w3.org/2000/svg">
-                            </svg>Bansos Periode {{ $ajuan->created_at_text }}</span>
-                        <svg data-accordion-icon class="w-3 h-3 rotate-180 shrink-0" aria-hidden="true"
-                            xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
-                            <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
-                                stroke-width="2" d="M9 5 5 1 1 5" />
-                        </svg>
-                    </button>
-                </h2>
-                <div id="accordion-open-body-{{ $index }}" class="hidden"
-                    aria-labelledby="accordion-open-heading-1">
-                    <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
-                        <table class="text-[#2d5523] dark:text-white">
-                            <tr>
-                                <td class="pl-3 py-1">
-                                    No. KK
-                                </td>
-                                <td class="pl-3 py-1">
-                                    <span class="font-normal">
-                                        {{ $niKeluarga }}
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="pl-3 py-1">
-                                    Nama Kepala Keluarga
-                                </td>
-                                <td class="pl-3 py-1">
-                                    <span class="font-normal">
-                                        {{ $namaKepalaKeluarga }}
-                                    </span>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="pl-3 py-1">
-                                    Status
-                                </td>
-                                <td class="pl-3 py-1">
-                                    <div
-                                        class="px-3 py-1 text-base text-center h-full my-auto items-center {{ $ajuan->status === 'diproses' ? 'bg-blue-500' : ($ajuan->status === 'diterima' ? 'bg-green-500' : 'bg-red-500') }} font-semibold text-white flex justify-start gap-3 rounded-full w-fit">
-                                        {{ $ajuan->status }}
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-            @endforeach
-            @if ($ajuan_saya->isEmpty())
-                <div
-                    class="flex flex-col w-full h-fit  justify-center items-center gap-4 shadow-sm my-auto  dark:border-gray-600">
-                    <!-- <i class="fa-regular fa-circle-xmark text-2xl"></i> -->
-                    <img src="{{ asset('assets/images/no-data.png') }}" alt=""
-                        class="w-[500px] h-[300px] object-cover">
-                    <p class="text-2xl font-semibold text-green-900 dark:text-white">Data Tidak Ditemukan</p>
+    <div id="accordion-open" data-accordion="open" class="border dark:border-gray-600 py-3">
+        @foreach ($ajuan_saya->sortByDesc('created_at') as $index => $ajuan)
+            <h2 id="accordion-open-heading-{{ $index }}">
+                <button type="button"
+                    class="flex items-center justify-between w-full p-5 font-medium rtl:text-right text-gray-500 border border-b-0 border-gray-200 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-800 dark:border-gray-700 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 gap-3"
+                    data-accordion-target="#accordion-open-body-{{ $index }}" aria-expanded="false"
+                    aria-controls="accordion-open-body-{{ $index }}">
+                    <span class="flex items-center">
+                        <i class="fa-solid fa-hand-holding-hand"></i>
+                        <svg class="w-5 h-5 me-2 shrink-0" fill="currentColor" viewBox="0 0 20 20"
+                            xmlns="http://www.w3.org/2000/svg">
+                        </svg>Bansos Periode {{ $ajuan->created_at_text }}</span>
+                    <svg data-accordion-icon class="w-3 h-3 rotate-0 shrink-0" aria-hidden="true"
+                        xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 10 6">
+                        <path stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"
+                            stroke-width="2" d="M9 5 5 1 1 5" />
+                    </svg>
+                </button>
+            </h2>
+            <div id="accordion-open-body-{{ $index }}" class="hidden"
+                aria-labelledby="accordion-open-heading-{{ $index }}">
+                <div class="p-5 border border-b-0 border-gray-200 dark:border-gray-700">
+                    <table class="text-[#2d5523] dark:text-white">
+                        <tr>
+                            <td class="pl-3 py-1">
+                                No. KK
+                            </td>
+                            <td class="pl-3 py-1">
+                                <span class="font-normal">
+                                    {{ $niKeluarga }}
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="pl-3 py-1">
+                                Nama Kepala Keluarga
+                            </td>
+                            <td class="pl-3 py-1">
+                                <span class="font-normal">
+                                    {{ $namaKepalaKeluarga }}
+                                </span>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="pl-3 py-1">
+                                Status
+                            </td>
+                            <td class="pl-3 py-1">
+                                <div
+                                    class="px-3 py-1 text-base text-center h-full my-auto items-center {{ $ajuan->status === 'diproses' ? 'bg-blue-500' : ($ajuan->status === 'diterima' ? 'bg-green-500' : 'bg-red-500') }} font-semibold text-white flex justify-start gap-3 rounded-full w-fit">
+                                    {{ $ajuan->status }}
+                                </div>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
-            @endif
-        </div>
-
-
+            </div>
+        @endforeach
+        @if ($ajuan_saya->isEmpty())
+            <div
+                class="flex flex-col w-full h-fit justify-center items-center gap-4 shadow-sm my-auto dark:border-gray-600">
+                <img src="{{ asset('assets/images/no-data.png') }}" alt=""
+                    class="w-[500px] h-[300px] object-cover">
+                <p class="text-2xl font-semibold text-green-900 dark:text-white">Data Tidak Ditemukan</p>
+            </div>
+        @endif
     </div>
+</div>
+
+    
 </div>
 
 <x-footer>

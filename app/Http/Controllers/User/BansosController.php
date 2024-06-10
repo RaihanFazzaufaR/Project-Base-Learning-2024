@@ -67,6 +67,7 @@ class BansosController extends Controller
             return $ajuan;
         });
         // return $ajuan_saya;
+        // return back()->with('ajuan_saya', $ajuan_saya)->with('namaKepalaKeluarga', $namaKepalaKeluarga)->with('niKeluarga', $niKeluarga);
         return view('Bansos.index', compact('menu', 'ajuan_saya', 'namaKepalaKeluarga', 'niKeluarga'));
     }
 
