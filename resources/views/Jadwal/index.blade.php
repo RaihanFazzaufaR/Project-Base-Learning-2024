@@ -572,6 +572,15 @@
 
 <x-footer>
     <script>
+        const tanggalMulai = document.getElementById('tanggal_mulai');
+        const tanggalSelesai = document.getElementById('tanggal_selesai');
+
+        tanggalMulai.addEventListener('change', function() {
+            tanggalSelesai.min = tanggalMulai.value;
+            console.log(tanggalMulai.value);
+        });
+    </script>
+    <script>
         //calendar
         const calendarHead = document.querySelector("#calendarHead");
         const days = document.querySelector("#days");

@@ -12,15 +12,35 @@ use Illuminate\Support\Facades\DB;
 
 class HomeController extends Controller
 {
+    function expandKegiatanDates($dataKegiatan)
+    {
+        $expandedData = [];
+
+        foreach ($dataKegiatan as $kegiatan) {
+            $mulaiTanggal = Carbon::parse($kegiatan->mulai_tanggal);
+            $selesaiTanggal = Carbon::parse($kegiatan->akhir_tanggal);
+
+            $diffInDays = $mulaiTanggal->diffInDays($selesaiTanggal);
+            // dd($diffInDays);
+
+            for ($i = 0; $i <= $diffInDays; $i++) {
+                $newKegiatan = clone $kegiatan;
+                $newKegiatan->mulai_tanggal = $mulaiTanggal->copy()->addDays($i)->toDateString();
+                $expandedData[] = $newKegiatan;
+            }
+        }
+
+        return $expandedData;
+    }
+
     public function index(Request $request)
     {
         $menu = 'Home';
         Carbon::setLocale('id');
-    
-        $calendarDate = $request->filled('date') ? $request->date : date('Y-m-d');
-        
-        if (isset($request->date)) {
 
+        $calendarDate = $request->filled('date') ? $request->date : date('Y-m-d');
+
+        if (isset($request->date)) {
             $dataKegiatan = JadwalModel::where('status', 'selesai')
                 ->where('mulai_tanggal', '<=', $calendarDate)
                 ->where('akhir_tanggal', '>=', $calendarDate)
@@ -37,8 +57,10 @@ class HomeController extends Controller
                 ->get();
         }
 
-
+        $dataKegiatan = $this->expandKegiatanDates($dataKegiatan);
         $dataKegiatan = $this->formatDateAndTime($dataKegiatan);
+
+        // dd($dataKegiatan);
 
         $dataDate = JadwalModel::select(
             DB::raw('mulai_tanggal as dateStart'),
@@ -75,6 +97,7 @@ class HomeController extends Controller
         for ($i = 0; $i < 7; $i++) {
             $dates[] = $startDate->copy()->addDays($i);
         }
+
         return view('home', compact('menu', 'dataKegiatan', 'dataDate', 'dataUmkm', 'aduans', 'calendarDate', 'dates'));
     }
 

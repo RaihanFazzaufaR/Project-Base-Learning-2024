@@ -169,14 +169,14 @@
     </div>
     <div class="relative flex h-full w-full lg:flex-row items-center lg:justify-start">
         <div class="lg:basis-[65%] w-full lg:h-[80vh] sm:h-[70vh] h-[40vh] bg-cover bg-center shadow-lg rounded-lg bg-no-repeat pl-6 py-8 lg:py-10 pb-10" style="background-image: url('{{ asset('assets/images/bg-home-agenda.png') }}')" data-aos="fade-right" data-aos-duration="1000" data-aos-easing="ease-in-sine">
-            @if (empty($dataKegiatan->toArray()))
+            @if (count($dataKegiatan) == 0)
             <div class="flex flex-col w-[80%] h-full justify-center items-center gap-4">
                 <!-- <i class="fa-regular fa-circle-xmark text-2xl"></i> -->
                 <img src="{{ asset('assets/images/no-data.png') }}" alt="" class="w-[400px] h-[300px] object-cover">
                 <p class="text-xl font-semibold text-white">Tidak ada kegiatan pada bulan ini</p>
             </div>
             @else
-            <div class="lg:h-[440px] h-full lg:w-[80%] w-[95%] flex flex-col overflow-y-auto gap-7">
+            <div class="lg:h-[440px] 2xl:h-[500px] h-full lg:w-[80%] w-[95%] flex flex-col overflow-y-auto gap-7">
                 @php
                 $previousDate = null;
                 $activities = [];
