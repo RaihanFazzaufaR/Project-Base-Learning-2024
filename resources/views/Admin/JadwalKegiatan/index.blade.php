@@ -102,7 +102,7 @@
     <!-- tambah modal end -->
 
 
-    <div class="grid lg:grid-cols-5 sm:grid-cols-2 sm:grid-rows-2 grid-cols-1 gap-8 h-fit sm:h-[85vh] lg:h-[620px] 2xl:h-[565px] w-full">
+    <div class="grid lg:grid-cols-5 sm:grid-cols-2 sm:grid-rows-2 grid-cols-1 gap-8 h-fit lg:h-[620px] 2xl:h-[565px] w-full">
         <div class="lg:col-span-3 sm:col-span-2 col-span-1 lg:row-span-2 sm:h-full h-[370px] w-full bg-white dark:bg-[#2F363E] rounded-lg shadow-xl flex flex-col justify-center gap-8 sm:gap-14 items-center p-8">
             <div class="flex items-center justify-around w-full h-[10%]">
                 <button id="prev" aria-label="calendar backward" onclick="prev()" class="focus:text-gray-400 hover:text-gray-400 text-gray-800 dark:text-gray-100 button-calendar">
