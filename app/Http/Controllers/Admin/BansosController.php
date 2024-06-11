@@ -427,13 +427,13 @@ class BansosController extends Controller
                     ->orWhere('tb_kartukeluarga.niKeluarga', 'like', '%' . $searchTerm . '%')
                     ->orWhere('tb_kartukeluarga.rt', 'like', '%' . $searchTerm . '%');
             })
-            ->select('tb_ajuan_bansos.*', 'tb_kartukeluarga.niKeluarga', 'tb_kartukeluarga.rt', 'tb_penduduk.nama')
-            ->get()
-            ->map(function ($record) {
-                $record->created_at_text = $record->created_at->format('F Y');
-                return $record;
-            });
-        ;
+            ->select('tb_ajuan_bansos.*', 'tb_kartukeluarga.niKeluarga', 'tb_kartukeluarga.rt', 'tb_penduduk.nama');
+
+        $data_records = $data_records->paginate();
+        $data_records->getCollection()->transform(function ($record) {
+            $record->created_at_text = optional($record->created_at)->format('F Y');
+            return $record;
+        });
 
         // return $data_records;
         return view('Admin.Bansos.index', compact('page', 'selected', 'month', 'years', 'data_records'));
