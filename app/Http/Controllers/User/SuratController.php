@@ -481,7 +481,7 @@ class SuratController extends Controller
         // Convert tanggalLahir and tanggal_wafat to Carbon objects
         $surat->tanggalLahir = Carbon::parse($surat->tanggalLahir);
         $surat->tanggal_wafat = Carbon::parse($surat->tanggal_wafat);
-
+        $surat->nama_wafat = PendudukModel::where('nik', $surat->nik)->value('nama');
         // Add age (usia) to the surat object
         $surat->usia = $usia;
 

@@ -38,6 +38,8 @@ class PersuratanSeeder extends Seeder
                 'alamat_pindah' => null,
                 'alasan_pindah' => null,
                 'jumlah_keluarga_pindah' => null,
+                'created_at' => '2024-06-01',
+                'updated_at' => '2024-06-01'
             ],
             [
                 'peminta_id' => 2,
@@ -63,6 +65,8 @@ class PersuratanSeeder extends Seeder
                 'alamat_pindah' => null,
                 'alasan_pindah' => null,
                 'jumlah_keluarga_pindah' => null,
+                'created_at' => '2024-06-02',
+                'updated_at' => '2024-06-05'
             ],
             [
                 'peminta_id' => 3,
@@ -88,6 +92,8 @@ class PersuratanSeeder extends Seeder
                 'alamat_pindah' => null,
                 'alasan_pindah' => null,
                 'jumlah_keluarga_pindah' => null,
+                'created_at' => '2024-06-01',
+                'updated_at' => '2024-06-08'
             ],
             [
                 'peminta_id' => 4,
@@ -113,6 +119,8 @@ class PersuratanSeeder extends Seeder
                 'alamat_pindah' => null,
                 'alasan_pindah' => null,
                 'jumlah_keluarga_pindah' => null,
+                'created_at' => '2024-06-04',
+                'updated_at' => '2024-06-10'
             ],
             [
                 'peminta_id' => 5,
@@ -138,6 +146,8 @@ class PersuratanSeeder extends Seeder
                 'alamat_pindah' => null,
                 'alasan_pindah' => null,
                 'jumlah_keluarga_pindah' => null,
+                'created_at' => '2024-06-12',
+                'updated_at' => '2024-06-13'
             ],
             [
                 'peminta_id' => 6,
@@ -163,6 +173,8 @@ class PersuratanSeeder extends Seeder
                 'nama_pelapor' => null,
                 'hubungan_pelapor' => null,
                 'tanggal_wafat' => null,
+                'created_at' => '2024-06-10',
+                'updated_at' => '2024-06-13'
             ]
         ];
         DB::table('tb_surat')->insert($data);
