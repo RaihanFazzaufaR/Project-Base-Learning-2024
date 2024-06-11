@@ -69,10 +69,12 @@
 
 
         <div class="absolute sm:static h-full w-fit py-2" x-data="{ 'tambahModal': false }" @keydown.escape="tambahModal = false">
+            @if (Auth::user()->penduduk->jabatan === 'Ketua RW')
             <button @click="tambahModal = true" class="fixed sm:static right-5 bottom-5 flex z-99 w-10 h-10 sm:w-34 bg-[#57BA47] sm:h-full text-white justify-center sm:justify-between items-center px-4 rounded-full sm:rounded-lg shadow-xl hover:bg-[#336E2A] hover:scale-105 transition duration-300 ease-in-out animate-bounce sm:animate-none">
                 <i class="fa-solid fa-plus text-xl sm:text-2xl"></i>
                 <div class="text-xl font-semibold hidden sm:inline-flex">Tambah</div>
             </button>
+            @endif
 
             <!-- Main modal -->
             <div x-show="tambahModal" x-transition:enter="md:transition-none transition ease-out duration-300 transform" x-transition:enter-start="md:transition-none translate-y-full" x-transition:enter-end="md:transition-none translate-y-0" x-transition:leave="md:transition-none transition ease-in duration-300 transform" x-transition:leave-start="md:transition-none translate-y-0" x-transition:leave-end="md:transition-none translate-y-full" tabindex="-1" aria-hidden="true" class="flex overflow-hidden fixed top-0 right-0 left-0 z-999 justify-center sm:items-center items-end w-full md:inset-0 h-full">
@@ -101,25 +103,25 @@
                                     </datalist>
                                 </div>
                                 <div class="col-span-2 sm:col-span-1">
-                                    <label for="nama" class="block mb-2 text-sm font-bold">Nama UMKM</label>
+                                    <label for="" class="block mb-2 text-sm font-bold">Nama UMKM</label>
                                     <input type="text" name="nama" id="nama" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" placeholder="Masukkan Nama UMKM ...">
                                 </div>
                                 <div class="col-span-2 sm:col-span-1">
-                                    <label for="noHp" class="block mb-2 text-sm font-bold">No. Whatsapp</label>
+                                    <label for="" class="block mb-2 text-sm font-bold">No. Whatsapp</label>
                                     <input type="text" name="no_wa" id="noHp" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" placeholder="Masukkan No Whatsapp ...">
                                 </div>
                                 <div class="col-span-2 sm:col-span-1 grid grid-cols-2 gap-4">
                                     <div class="col-span-2 sm:col-span-1">
-                                        <label for="jam-buka" class="block mb-2 text-sm font-bold">Jam Buka</label>
+                                        <label for="" class="block mb-2 text-sm font-bold">Jam Buka</label>
                                         <input type="time" name="buka_waktu" id="buka_waktu" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white">
                                     </div>
                                     <div class="col-span-2 sm:col-span-1">
-                                        <label for="jam-tutup" class="block mb-2 text-sm font-bold">Jam Tutup</label>
+                                        <label for="" class="block mb-2 text-sm font-bold">Jam Tutup</label>
                                         <input type="time" name="tutup_waktu" id="tutup_waktu" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white">
                                     </div>
                                 </div>
                                 <div class="col-span-2">
-                                    <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
+                                    <label for="" class="block mb-2 text-sm font-bold">Kategori</label>
                                     <select class="hidden" x-cloak id="select">
                                         <option value="1">Makanan</option>
                                         <option value="2">Minuman</option>
@@ -184,7 +186,7 @@
                                     </div>
                                 </div>
                                 <div class="col-span-2">
-                                    <label for="koordinat" class="block mb-2 text-sm font-bold">Koordinat</label>
+                                    <label for="" class="block mb-2 text-sm font-bold">Koordinat</label>
                                     <input type="text" name="lokasi_map" id="lokasi_map" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" placeholder="Masukkan Koordinat ...">
                                 </div>
                                 <div class="col-span-2">
@@ -196,7 +198,7 @@
                                     <textarea name="deskripsi" rows="4" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" placeholder="Masukkan Deskripsi Singkat ..."></textarea>
                                 </div>
                                 <div class="col-span-2">
-                                    <label for="foto" class="text-sm font-bold mb-2">Foto UMKM</label>
+                                    <label for="" class="text-sm font-bold mb-2">Foto UMKM</label>
                                     <input type="file" name="foto" id="foto" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full placeholder-[#34662C] dark:placeholder-white">
                                 </div>
                             </div>
@@ -282,56 +284,43 @@
                                                     <div class="p-4 md:p-5 grid w-full sm:w-150 gap-4 grid-cols-2 max-h-[400px] sm:max-h-[450px] overflow-y-auto rounded-b-xl scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin">
                                                         <div id="map{{ $index }}" class="relative bg-white dark:bg-gray-700 p-4 border border-[#34662C] rounded-lg shadow-md" style="height: 250px; width: 205%;">
                                                             @php
-                                                            $koordinat_array = array_map(
-                                                            'trim',
-                                                            explode(',', $umkm->lokasi_map),
-                                                            );
+                                                            $koordinat_array = array_map('trim', explode(',', $umkm->lokasi_map));
                                                             $latitude = trim($koordinat_array[0]);
                                                             $longitude = trim($koordinat_array[1]);
                                                             @endphp
-                                                            <script>
-                                                                function initMap {
-                                                                    {
-                                                                        $index
-                                                                    }
-                                                                }() {
+                                                        </div>
+
+                                                        <script>
+                                                            document.addEventListener("DOMContentLoaded", function() {
+                                                                function initMap{{ $index }}() {
                                                                     var map = new google.maps.Map(document.getElementById('map{{ $index }}'), {
                                                                         center: {
-                                                                            lat: -7.983908,
-                                                                            lng: 112.621391
-                                                                        }, // Pusat peta
-                                                                        zoom: 10 // Tingkat zoom awal
+                                                                            lat: parseFloat('{{ $latitude }}'),
+                                                                            lng: parseFloat('{{ $longitude }}')
+                                                                        },
+                                                                        zoom: 10
                                                                     });
 
-                                                                    var lokasi = [{
+                                                                    var lokasi = {
                                                                         nama: 'Lokasi',
-                                                                        lat: {
-                                                                            $latitude
-                                                                        },
-                                                                        lng: {
-                                                                            $longitude
-                                                                        }
-                                                                    }];
+                                                                        lat: parseFloat('{{ $latitude }}'),
+                                                                        lng: parseFloat('{{ $longitude }}')
+                                                                    };
 
-                                                                    // Membuat marker untuk lokasi
-                                                                    var marker = new google.maps.Marker({
+                                                                    new google.maps.Marker({
                                                                         position: {
-                                                                            lat: lokasi[0].lat,
-                                                                            lng: lokasi[0].lng
+                                                                            lat: lokasi.lat,
+                                                                            lng: lokasi.lng
                                                                         },
                                                                         map: map,
-                                                                        title: lokasi[0].nama
+                                                                        title: lokasi.nama
                                                                     });
                                                                 }
-                                                                document.addEventListener("DOMContentLoaded", function() {
-                                                                    initMap {
-                                                                        {
-                                                                            $index
-                                                                        }
-                                                                    }();
-                                                                });
-                                                            </script>
-                                                        </div>
+
+                                                                initMap{{ $index }} ();
+                                                            });
+                                                        </script>
+
                                                     </div>
                                                     <div class="flex items-center justify-center sm:justify-end bg-[#F2F2F2] dark:bg-[#3e4852] gap-4 sm:h-[75px] h-[65px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8] dark:border-gray-500 rounded-b-md">
                                                         <button @click="detailModal = false" class="text-white inline-flex px-30 sm:px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">

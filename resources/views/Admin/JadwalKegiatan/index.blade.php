@@ -55,7 +55,7 @@
                             </div>
                             <div class="col-span-2 sm:col-span-1">
                                 <label for="tanggal_mulai" class="block mb-2 text-sm font-bold">Tanggal Mulai</label>
-                                <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="bg-white shadow-md border border-[#34662C] dark:border-gray-500 dark:bg-[#505c6a]  text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" required>
+                                <input type="date" name="tanggal_mulai" id="tanggal_mulai" min="{{ Carbon\Carbon::now()->format('Y-m-d') }}" class="bg-white shadow-md border border-[#34662C] dark:border-gray-500 dark:bg-[#505c6a]  text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" required>
                             </div>
                             <div class="col-span-2 sm:col-span-1">
                                 <label for="tanggal_selesai" class="block mb-2 text-sm font-bold">Tanggal Selesai</label>
@@ -654,6 +654,15 @@
         </div>
     </div>
 
+    <script>
+        const tanggalMulai = document.getElementById('tanggal_mulai');
+        const tanggalSelesai = document.getElementById('tanggal_selesai');
+
+        tanggalMulai.addEventListener('change', function() {
+            tanggalSelesai.min = tanggalMulai.value;
+            console.log(tanggalMulai.value);
+        });
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>

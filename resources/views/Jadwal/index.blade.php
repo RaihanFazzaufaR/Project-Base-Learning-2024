@@ -181,7 +181,7 @@
                             </div>
                             <div class="col-span-2 sm:col-span-1">
                                 <label for="tanggal_mulai" class="block mb-2 text-sm font-bold">Tanggal Mulai</label>
-                                <input type="date" name="tanggal_mulai" id="tanggal_mulai" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:bg-[#505c6a] dark:border-gray-500 dark:placeholder-gray-400  dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
+                                <input type="date" name="tanggal_mulai" id="tanggal_mulai" min="{{ Carbon\Carbon::now()->format('Y-m-d') }}" class="bg-white shadow-md border border-[#34662C] text-sm rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:bg-[#505c6a] dark:border-gray-500 dark:placeholder-gray-400  dark:focus:ring-primary-500 dark:focus:border-primary-500" required>
                             </div>
                             <div class="col-span-2 sm:col-span-1">
                                 <label for="tanggal_selesai" class="block mb-2 text-sm font-bold">Tanggal Selesai</label>

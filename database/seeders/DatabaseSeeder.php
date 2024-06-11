@@ -26,6 +26,8 @@ class DatabaseSeeder extends Seeder
             ResponSeeder::class,
             PengumumanSeeder::class,
             AjuanBansosSeeder::class,
+            PersuratanSeeder::class,
+            PindahPendudukSeeder::class,
         ]);
     }
 }
