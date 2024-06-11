@@ -261,6 +261,27 @@ class UmkmController extends Controller
         // return $users;
         return view('Admin.Umkm.index', compact('users', 'umkms', 'page', 'selected', 'umkmKategoris', 'categories'));
     }
+
+    public function getDataByCategoryAjuan(Request $request)
+    {
+        $categories = KategoriModel::all();
+        $umkms_id = UmkmKategoriModel::where('kategori_id', $request->kategori_id)->pluck('umkm_id');
+        $umkms = UmkmModel::select('tb_umkm.*', 'tb_penduduk.nama as pemilik')
+            ->join('tb_penduduk', 'tb_umkm.id_pemilik', '=', 'tb_penduduk.id_penduduk')
+            ->whereIn('umkm_id', $umkms_id)
+            ->where('status', 'diterima')
+            ->paginate(10);
+
+
+        $page = 'ajuanUmkm';
+        $selected = 'Umkm';
+        $users = PendudukModel::all();
+        // $umkms = UmkmModel::where('status', 'diterima')->paginate(10);
+        $umkmKategoris = UmkmKategoriModel::all();
+        // $categories = KategoriModel::all();
+        // return $users;
+        return view('Admin.Umkm.ajuan-umkm', compact('users', 'umkms', 'page', 'selected', 'umkmKategoris', 'categories'));
+    }
     public function searchList(Request $request)
     {
         $page = 'listUmkm';
@@ -294,10 +315,12 @@ class UmkmController extends Controller
 
         $search = $request->input('search');
 
-        $umkmQuery = UmkmModel::where('status', 'diproses');
+        $umkmQuery = UmkmModel::select('tb_umkm.*', 'tb_penduduk.nama as pemilik')
+            ->join('tb_penduduk', 'tb_umkm.id_pemilik', '=', 'tb_penduduk.id_penduduk')
+            ->where('status', 'diproses');
 
         if ($search) {
-            $umkmQuery->where('nama', 'like', '%' . $search . '%');
+            $umkmQuery->where('tb_umkm.nama', 'like', '%' . $search . '%');
         }
 
         $umkms = $umkmQuery->paginate(10);

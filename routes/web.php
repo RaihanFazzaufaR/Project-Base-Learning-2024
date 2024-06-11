@@ -166,6 +166,7 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::post('/edit/{umkm_id}', [AdminUmkmController::class, 'editUmkm'])->name('umkm-edit');
                 Route::delete('/delete/{umkm_id}', [AdminUmkmController::class, 'destroyUmkm'])->name('umkm-destroy');
                 Route::get('/category', [AdminUmkmController::class, 'getDataByCategoryDaftar'])->name('filter-umkm-category');
+                Route::get('/ajuan-umkm/category', [AdminUmkmController::class, 'getDataByCategoryAjuan'])->name('filter-ajuan-umkm-category');
                 Route::post('/store-umkm', [AdminUmkmController::class, 'storeUmkmAdmin'])->name('store-umkm');
             });
             Route::prefix('persuratan')->group(function () {
