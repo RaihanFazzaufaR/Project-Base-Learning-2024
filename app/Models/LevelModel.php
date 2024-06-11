@@ -18,6 +18,6 @@ class LevelModel extends Model
 
     public function userAccount() : HasMany
     {
-        return $this->hasMany(LevelDetailModel::class, 'id_level', 'level_id');
+        return $this->hasMany(UserAccountModel::class, 'id_level', 'level_id');
     }
 }

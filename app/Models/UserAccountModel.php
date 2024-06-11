@@ -47,7 +47,7 @@ class UserAccountModel extends User
 
     public function level() : BelongsTo
     {
-        return $this->belongsTo(LevelModel::class, 'id_level', 'id_level');
+        return $this->belongsTo(LevelModel::class, 'id_level', 'level_id');
     }
 
     public function pengumuman() : HasMany
