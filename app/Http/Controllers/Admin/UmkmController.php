@@ -245,7 +245,9 @@ class UmkmController extends Controller
     {
         $categories = KategoriModel::all();
         $umkms_id = UmkmKategoriModel::where('kategori_id', $request->kategori_id)->pluck('umkm_id');
-        $umkms = UmkmModel::whereIn('umkm_id', $umkms_id)
+        $umkms = UmkmModel::select('tb_umkm.*', 'tb_penduduk.nama as pemilik')
+            ->join('tb_penduduk', 'tb_umkm.id_pemilik', '=', 'tb_penduduk.id_penduduk')
+            ->whereIn('umkm_id', $umkms_id)
             ->where('status', 'diterima')
             ->paginate(10);
 
@@ -302,5 +304,4 @@ class UmkmController extends Controller
 
         return view('Admin.Umkm.ajuan-umkm', compact('users', 'umkms', 'page', 'selected', 'umkmKategoris', 'categories'));
     }
-
 }

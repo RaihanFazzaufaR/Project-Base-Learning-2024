@@ -136,7 +136,7 @@
                                     <li>
                                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-[#57BA47]" href="{{ route('umkm-admin') }}" :class="page === 'listUmkm' && '!text-[#57BA47]'">Daftar UMKM</a>
                                     </li>
-                                    <li>
+                                    <li class="{{ auth()->user()->penduduk->jabatan == 'Ketua RT' ? 'hidden' : '' }}">
                                         <a class="group relative flex items-center gap-2.5 rounded-md px-4 font-medium text-bodydark2 duration-300 ease-in-out hover:text-[#57BA47]" href="{{ route('ajuan-umkm-admin') }}" :class="page === 'ajuanUmkm' && '!text-[#57BA47]'">
                                             Ajuan UMKM
                                             @if ($UmkmRequest > 0 && (auth()->user()->penduduk->jabatan == 'Ketua RW'))
