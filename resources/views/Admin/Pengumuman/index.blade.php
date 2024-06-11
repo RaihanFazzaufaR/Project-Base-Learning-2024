@@ -44,7 +44,7 @@
                             @csrf
                             <div class="p-4 d:p-5 grid w-full sm:w-150 gap-4 grid-cols-2 max-h-[400px] sm:max-h-[450px] overflow-y-auto scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin rounded-b-xl">
                                 <div class="col-span-2 sm:col-span-1">
-                                    <label for="pembuat" class="block mb-2 text-sm font-bold">Pembuat</label>
+                                    <label for="" class="block mb-2 text-sm font-bold">Pembuat</label>
                                     <select name="pembuat_id" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" required placeholder="Masukkan Pembuat ...">
                                         @foreach ($users as $user)
                                         <option value="{{ $user->nik }}">{{ $user->nama }} (
@@ -56,7 +56,7 @@
                                     </select>
                                 </div>
                                 <div class="col-span-2 sm:col-span-1">
-                                    <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
+                                    <label for="" class="block mb-2 text-sm font-bold">Kategori</label>
                                     <select name="kategori" id="kategori" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white">
                                         <option selected value="">Pilih Kategori</option>
                                         <option value="Kebersihan">Kebersihan</option>
@@ -70,43 +70,43 @@
                                     </select>
                                 </div>
                                 <div class="col-span-2">
-                                    <label for="judul" class="block mb-2 text-sm font-bold">judul Pengumuman</label>
+                                    <label for="" class="block mb-2 text-sm font-bold">Judul Pengumuman</label>
                                     <input type="text" name="judul" id="judul" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" required placeholder="Masukkan Judul Pengumuman ...">
                                 </div>
                                 <div class="col-span-2 sm:col-span-1">
-                                    <label for="mulai_tanggal" class="block mb-2 text-sm font-bold">Tanggal
+                                    <label for="" class="block mb-2 text-sm font-bold">Tanggal
                                         Mulai</label>
                                     <input type="date" name="mulai_tanggal" id="mulai_tanggal" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white">
                                 </div>
                                 <div class="col-span-2 sm:col-span-1">
-                                    <label for="akhir_tanggal" class="block mb-2 text-sm font-bold">Tanggal
+                                    <label for="" class="block mb-2 text-sm font-bold">Tanggal
                                         Selesai</label>
                                     <input type="date" name="akhir_tanggal" id="akhir_tanggal" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white">
                                 </div>
                                 <div class="col-span-2 sm:col-span-1">
                                     <div class="grid grid-cols-2 gap-2">
                                         <div class="col-span-2 sm:col-span-1">
-                                            <label for="mulai_waktu" class="block mb-2 text-sm font-bold">Jam
+                                            <label for="" class="block mb-2 text-sm font-bold">Jam
                                                 Mulai</label>
                                             <input type="time" name="mulai_waktu" id="mulai_waktu" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white">
                                         </div>
                                         <div class="col-span-2 sm:col-span-1">
-                                            <label for="jam_selesai" class="block mb-2 text-sm font-bold">Jam
+                                            <label for="" class="block mb-2 text-sm font-bold">Jam
                                                 Selesai</label>
                                             <input type="time" name="akhir_waktu" id="akhir_waktu" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="col-span-2 sm:col-span-1">
-                                    <label for="iuran" class="block mb-2 text-sm font-bold">Iuran</label>
+                                    <label for="" class="block mb-2 text-sm font-bold">Iuran</label>
                                     <input type="number" name="iuran" id="iuran" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" placeholder="Masukkan Iuran ...">
                                 </div>
                                 <div class="col-span-2">
-                                    <label for="lokasi" class="block mb-2 text-sm font-bold">Lokasi</label>
+                                    <label for="" class="block mb-2 text-sm font-bold">Lokasi</label>
                                     <textarea name="lokasi" rows="4" id="lokasi" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white"></textarea>
                                 </div>
                                 <div class="col-span-2">
-                                    <label for="konten" class="block mb-2 text-sm font-bold">Deskripsi</label>
+                                    <label for="" class="block mb-2 text-sm font-bold">Deskripsi</label>
                                     <textarea name="konten" rows="4" id="konten" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" required></textarea>
                                 </div>
                             </div>
