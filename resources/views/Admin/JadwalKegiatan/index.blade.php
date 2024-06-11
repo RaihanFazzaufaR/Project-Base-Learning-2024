@@ -654,6 +654,15 @@
         </div>
     </div>
 
+    <script>
+        const tanggalMulai = document.getElementById('tanggal_mulai');
+        const tanggalSelesai = document.getElementById('tanggal_selesai');
+
+        tanggalMulai.addEventListener('change', function() {
+            tanggalSelesai.min = tanggalMulai.value;
+            console.log(tanggalMulai.value);
+        });
+    </script>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script>
