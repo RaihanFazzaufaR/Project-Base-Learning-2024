@@ -176,7 +176,7 @@
                 <p class="text-xl font-semibold text-white">Tidak ada kegiatan pada bulan ini</p>
             </div>
             @else
-            <div class="lg:h-[440px] 2xl:h-[500px] h-full lg:w-[80%] w-[95%] flex flex-col overflow-y-auto gap-7">
+            <div class="lg:h-[440px] 2xl:h-[500px] h-full lg:w-[80%] w-[95%] flex flex-col overflow-y-auto gap-7 pr-5 scrollbar-thumb-rounded-full scrollbar-track-rounded-full scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin">
                 @php
                 $previousDate = null;
                 $activities = [];

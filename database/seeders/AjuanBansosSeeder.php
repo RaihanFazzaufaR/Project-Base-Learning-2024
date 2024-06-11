@@ -2365,7 +2365,7 @@ class AjuanBansosSeeder extends Seeder
         // $pengeluaran_listrik = ['<50.000', '50.000 - 100.000', '100.000 - 200.000', '200.000 - 300.000', '>300.000'];
         // $status = ['diterima', 'ditolak'];
         // $foto_rumah = 'contoh-foto-rumah.jpg';
-        // $SKTM = 'contoh-foto-sktm.jpg';
+        // $SKTcontoh-foto-sktm.jpg';
 
         // $count_ditolak = 0;
         // $max_ditolak = 10;
@@ -2417,8 +2417,8 @@ class AjuanBansosSeeder extends Seeder
         $luas_tempat_tinggal = ['<20m', '20m - 40m', '40m - 60m', '60m - 80m', '>80m'];
         $pengeluaran_listrik = ['<50.000', '50.000 - 100.000', '100.000 - 200.000', '200.000 - 300.000', '>300.000'];
         $status = ['diterima', 'ditolak'];
-        $foto_rumah = 'Rumah/contoh-foto-rumah.jpg';
-        $SKTM = 'SKTM/contoh-foto-sktm.jpg';
+        $foto_rumah = 'contoh-foto-rumah.jpg';
+        $SKTM = 'contoh-sktm.jpg';
 
 
         $max_ditolak = rand(5, 9);
