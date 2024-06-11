@@ -101,25 +101,25 @@
                                     </datalist>
                                 </div>
                                 <div class="col-span-2 sm:col-span-1">
-                                    <label for="nama" class="block mb-2 text-sm font-bold">Nama UMKM</label>
+                                    <label for="" class="block mb-2 text-sm font-bold">Nama UMKM</label>
                                     <input type="text" name="nama" id="nama" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" placeholder="Masukkan Nama UMKM ...">
                                 </div>
                                 <div class="col-span-2 sm:col-span-1">
-                                    <label for="noHp" class="block mb-2 text-sm font-bold">No. Whatsapp</label>
+                                    <label for="" class="block mb-2 text-sm font-bold">No. Whatsapp</label>
                                     <input type="text" name="no_wa" id="noHp" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" placeholder="Masukkan No Whatsapp ...">
                                 </div>
                                 <div class="col-span-2 sm:col-span-1 grid grid-cols-2 gap-4">
                                     <div class="col-span-2 sm:col-span-1">
-                                        <label for="jam-buka" class="block mb-2 text-sm font-bold">Jam Buka</label>
+                                        <label for="" class="block mb-2 text-sm font-bold">Jam Buka</label>
                                         <input type="time" name="buka_waktu" id="buka_waktu" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white">
                                     </div>
                                     <div class="col-span-2 sm:col-span-1">
-                                        <label for="jam-tutup" class="block mb-2 text-sm font-bold">Jam Tutup</label>
+                                        <label for="" class="block mb-2 text-sm font-bold">Jam Tutup</label>
                                         <input type="time" name="tutup_waktu" id="tutup_waktu" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white">
                                     </div>
                                 </div>
                                 <div class="col-span-2">
-                                    <label for="kategori" class="block mb-2 text-sm font-bold">Kategori</label>
+                                    <label for="" class="block mb-2 text-sm font-bold">Kategori</label>
                                     <select class="hidden" x-cloak id="select">
                                         <option value="1">Makanan</option>
                                         <option value="2">Minuman</option>
@@ -184,7 +184,7 @@
                                     </div>
                                 </div>
                                 <div class="col-span-2">
-                                    <label for="koordinat" class="block mb-2 text-sm font-bold">Koordinat</label>
+                                    <label for="" class="block mb-2 text-sm font-bold">Koordinat</label>
                                     <input type="text" name="lokasi_map" id="lokasi_map" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" placeholder="Masukkan Koordinat ...">
                                 </div>
                                 <div class="col-span-2">
@@ -196,7 +196,7 @@
                                     <textarea name="deskripsi" rows="4" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white" placeholder="Masukkan Deskripsi Singkat ..."></textarea>
                                 </div>
                                 <div class="col-span-2">
-                                    <label for="foto" class="text-sm font-bold mb-2">Foto UMKM</label>
+                                    <label for="" class="text-sm font-bold mb-2">Foto UMKM</label>
                                     <input type="file" name="foto" id="foto" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full placeholder-[#34662C] dark:placeholder-white">
                                 </div>
                             </div>
