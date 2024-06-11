@@ -154,7 +154,8 @@ Route::group(['middleware' => ['auth']], function () {
                 Route::get('/terima-bansos', [AdminBansosController::class, 'acceptBansos'])->name('acc');
                 Route::get('/tolak-bansos', [AdminBansosController::class, 'rejectBansos'])->name('rjct');
                 Route::post('/search-bansos', [AdminBansosController::class, 'searchBansos'])->name('search-bansos');
-                Route::post('/filter-bansos', [AdminBansosController::class, 'filterBansos'])->name('filter-bansos');
+                // Route::post('/filter-bansos', [AdminBansosController::class, 'filterBansos'])->name('filter-bansos');
+                Route::get('/filter-bansos', [AdminBansosController::class, 'filterBansos'])->name('filter-bansos');
             });
             Route::prefix('umkm')->group(function () {
                 Route::get('/', [AdminUmkmController::class, 'index'])->name('umkm-admin');

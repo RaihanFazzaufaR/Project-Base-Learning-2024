@@ -1,7 +1,7 @@
 <x-admin-layout page="{{ $page }}" selected="{{ $selected }}">
     <div class="flex w-full h-15 justify-between items-center">
         <div class="flex h-full sm:w-fit w-full gap-8 items-center justify-between">
-            <form class="lg:w-[25vw] w-[100%] sm:w-[400px]" method="post" action="{{ route('search-bansos') }}">
+            <form class="lg:w-[25vw] w-[100%] sm:w-[400px]" method="GET" action="{{ route('search-bansos') }}">
                 @csrf
                 <div class="flex h-full items-center">
                     <div class="relative w-full">
@@ -37,7 +37,7 @@
                                 </button>
                             </div>
                             <!-- Modal body -->
-                            <form class="w-full h-full text-[#34662C] dark:text-white" method="POST" action="{{ route('filter-bansos') }}">
+                            <form class="w-full h-full text-[#34662C] dark:text-white" method="GET" action="{{ route('filter-bansos') }}">
                                 @csrf
                                 <div class="p-4 md:p-5 grid w-full sm:w-150 gap-4 grid-cols-2 max-h-[400px] sm:max-h-[450px] overflow-y-auto rounded-b-xl scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin">
                                     <div class="col-span-2 sm:col-span-1">
@@ -67,8 +67,9 @@
                                         <label class="block mb-2 text-sm font-bold">RT</label>
                                         <select id="rt" name="rt" class="bg-white shadow-md border border-[#34662C] text-sm dark:border-gray-500 dark:bg-[#505c6a] rounded-lg focus:outline-none focus:border-2 block w-full p-2.5 placeholder-[#34662C] dark:placeholder-white">
                                             <option value="">Pilih RT</option>
-                                            @for ($i = 1; $i < 15; $i++) <option value="{{$i}}">RT {{$i}}</option>
-                                                @endfor
+                                            @foreach ($rt as $dt)
+                                            <option value="{{$dt->rt}}">{{ $dt->rt }}</option>
+                                            @endforeach
                                                 {{-- <option value="Sekretaris">Sekretaris</option>
                                             <option value="Bendahara">Bendahara</option> --}}
                                         </select>
@@ -244,7 +245,7 @@
         </div>
         @endif
         <div class="px-8 py-5 dark:bg-[#343b44] rounded-b-lg shadow-md">
-            {{ $data_records->links() }}
+            {{ $data_records->appends(request()->query())->links() }}
         </div>
     </div>
 </x-admin-layout>

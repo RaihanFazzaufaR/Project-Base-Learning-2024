@@ -20,13 +20,13 @@ class KartuKeluargaModel extends Model
         'rt',
     ];
 
-    public function penduduk() : HasMany
+    public function penduduk(): HasMany
     {
         return $this->hasMany(PendudukModel::class, 'id_kartuKeluarga', 'id_kartuKeluarga');
     }
 
-    public function bansos() : HasMany
+    public function bansos(): HasMany
     {
-        return $this->hasMany(BansosModel::class, 'pengambil_id', 'id_kartuKeluarga');
+        return $this->hasMany(AjuanBansosModel::class, 'id_kartuKeluarga', 'id_kartuKeluarga');
     }
 }

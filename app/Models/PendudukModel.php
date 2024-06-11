@@ -47,11 +47,6 @@ class PendudukModel extends Model
         return $this->HasMany(UmkmModel::class, 'pemilik_id', 'id_penduduk');
     }
 
-    public function bansos(): HasMany
-    {
-        return $this->HasMany(BansosModel::class, 'penerima_id', 'id_penduduk');
-    }
-
     public function jadwal(): HasMany
     {
         return $this->HasMany(JadwalModel::class, 'pembuat_id', 'id_penduduk');

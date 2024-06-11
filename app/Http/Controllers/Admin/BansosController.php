@@ -443,9 +443,8 @@ class BansosController extends Controller
     {
         $page = 'listBansos';
         $selected = 'Bansos';
-
+        $rt = KartuKeluargaModel::select('rt')->distinct()->get();
         $month = [];
-
         for ($m = 1; $m <= 12; $m++) {
             $month[] = date('F', mktime(0, 0, 0, $m, 1, date('Y')));
         }
@@ -455,13 +454,14 @@ class BansosController extends Controller
             'now' => Carbon::now()->year,
             'next' => Carbon::now()->addYear()->year,
         ];
-        $bulan = $request->input('bulan', Carbon::now()->format('m'));
-        $tahun = $request->input('tahun', Carbon::now()->format('Y'));
-        $rt = $request->input('rt');
+
+        $bulan = $request->input('bulan');
+        $tahun = $request->input('tahun');
+        $selected_rt = $request->input('rt');
         // return $request->all();
         $query = AjuanBansosModel::join('tb_kartukeluarga', 'tb_ajuan_bansos.id_kartuKeluarga', '=', 'tb_kartukeluarga.id_kartuKeluarga')
             ->join('tb_penduduk', 'tb_kartukeluarga.kepalaKeluarga', '=', 'tb_penduduk.nik')
-            ->where('tb_ajuan_bansos.status', 'diproses')
+            ->where('tb_ajuan_bansos.status', 'diterima')
             ->select('tb_ajuan_bansos.*', 'tb_kartukeluarga.niKeluarga', 'tb_kartukeluarga.rt', 'tb_penduduk.nama')
             ->orderByRaw('MONTH(tb_ajuan_bansos.created_at)');
 
@@ -473,16 +473,18 @@ class BansosController extends Controller
             $query->whereYear('tb_ajuan_bansos.created_at', $tahun);
         }
 
-        if ($rt) {
-            $query->where('tb_kartukeluarga.rt', $rt);
+        if ($selected_rt) {
+            $query->where('tb_kartukeluarga.rt', $selected_rt);
         }
 
-        $data_records = $query->paginate();
+        $data_records = $query->paginate(10);
+
         $data_records->getCollection()->transform(function ($record) {
             $record->created_at_text = optional($record->created_at)->format('F Y');
             return $record;
         });
         // return $data_records;
-        return view('Admin.Bansos.index', compact('page', 'selected', 'month', 'years', 'data_records'));
+
+        return view('Admin.Bansos.index', compact('page', 'selected', 'month', 'years', 'data_records', 'rt'));
     }
 }
