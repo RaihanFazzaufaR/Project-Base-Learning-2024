@@ -17,6 +17,7 @@ class BansosController extends Controller
     {
         $page = 'listBansos';
         $selected = 'Bansos';
+        $rt = KartuKeluargaModel::select('rt')->distinct()->get();
 
         // get month
         $month = [];
@@ -47,7 +48,7 @@ class BansosController extends Controller
 
         // return $data_records;
 
-        return view('Admin.Bansos.index', compact('page', 'selected', 'month', 'years', 'data_records'));
+        return view('Admin.Bansos.index', compact('page', 'selected', 'month', 'years', 'data_records', 'rt'));
     }
 
     public function rekomendasiBansos()
