@@ -284,56 +284,43 @@
                                                     <div class="p-4 md:p-5 grid w-full sm:w-150 gap-4 grid-cols-2 max-h-[400px] sm:max-h-[450px] overflow-y-auto rounded-b-xl scrollbar-thumb-[#57BA47] scrollbar-track-[#E4F7DF] scrollbar-thin">
                                                         <div id="map{{ $index }}" class="relative bg-white dark:bg-gray-700 p-4 border border-[#34662C] rounded-lg shadow-md" style="height: 250px; width: 205%;">
                                                             @php
-                                                            $koordinat_array = array_map(
-                                                            'trim',
-                                                            explode(',', $umkm->lokasi_map),
-                                                            );
+                                                            $koordinat_array = array_map('trim', explode(',', $umkm->lokasi_map));
                                                             $latitude = trim($koordinat_array[0]);
                                                             $longitude = trim($koordinat_array[1]);
                                                             @endphp
-                                                            <script>
-                                                                function initMap {
-                                                                    {
-                                                                        $index
-                                                                    }
-                                                                }() {
+                                                        </div>
+
+                                                        <script>
+                                                            document.addEventListener("DOMContentLoaded", function() {
+                                                                function initMap{{ $index }}() {
                                                                     var map = new google.maps.Map(document.getElementById('map{{ $index }}'), {
                                                                         center: {
-                                                                            lat: -7.983908,
-                                                                            lng: 112.621391
-                                                                        }, // Pusat peta
-                                                                        zoom: 10 // Tingkat zoom awal
+                                                                            lat: parseFloat('{{ $latitude }}'),
+                                                                            lng: parseFloat('{{ $longitude }}')
+                                                                        },
+                                                                        zoom: 10
                                                                     });
 
-                                                                    var lokasi = [{
+                                                                    var lokasi = {
                                                                         nama: 'Lokasi',
-                                                                        lat: {
-                                                                            $latitude
-                                                                        },
-                                                                        lng: {
-                                                                            $longitude
-                                                                        }
-                                                                    }];
+                                                                        lat: parseFloat('{{ $latitude }}'),
+                                                                        lng: parseFloat('{{ $longitude }}')
+                                                                    };
 
-                                                                    // Membuat marker untuk lokasi
-                                                                    var marker = new google.maps.Marker({
+                                                                    new google.maps.Marker({
                                                                         position: {
-                                                                            lat: lokasi[0].lat,
-                                                                            lng: lokasi[0].lng
+                                                                            lat: lokasi.lat,
+                                                                            lng: lokasi.lng
                                                                         },
                                                                         map: map,
-                                                                        title: lokasi[0].nama
+                                                                        title: lokasi.nama
                                                                     });
                                                                 }
-                                                                document.addEventListener("DOMContentLoaded", function() {
-                                                                    initMap {
-                                                                        {
-                                                                            $index
-                                                                        }
-                                                                    }();
-                                                                });
-                                                            </script>
-                                                        </div>
+
+                                                                initMap{{ $index }} ();
+                                                            });
+                                                        </script>
+
                                                     </div>
                                                     <div class="flex items-center justify-center sm:justify-end bg-[#F2F2F2] dark:bg-[#3e4852] gap-4 sm:h-[75px] h-[65px] px-4 md:px-8 border-b-2 rounded-t border-[#B8B8B8] dark:border-gray-500 rounded-b-md">
                                                         <button @click="detailModal = false" class="text-white inline-flex px-30 sm:px-4 py-2 text-sm font-bold rounded-lg shadow-md items-center bg-[#34662C] hover:bg-white hover:text-[#34662C] hover:scale-105 transition duration-300 ease-in-out">
