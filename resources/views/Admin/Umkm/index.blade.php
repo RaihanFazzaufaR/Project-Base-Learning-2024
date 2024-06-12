@@ -231,9 +231,9 @@
                         <th scope="col" class="px-6 py-3 w-[20%]">
                             Alamat
                         </th>
-                        <th scope="col" class="px-6 py-3 w-[10%] sm:w-[15%] 2xl:w-[10%]">
+                        <!-- <th scope="col" class="px-6 py-3 w-[10%] sm:w-[15%] 2xl:w-[10%]">
                             Lokasi
-                        </th>
+                        </th> -->
                         <th scope="col" class="px-6 py-3 w-[20%] sm:w-[35%]">
                             Aksi
                         </th>
@@ -255,7 +255,7 @@
                                 <span class="font-semibold" x-show="!expanded"></span>
                             </a>
                         </td>
-                        <td class="px-6 py-4">
+                        <!-- <td class="px-6 py-4">
                             <div class="flex justify-center items-center w-full">
                                 <div x-data="{ 'detailModal': false }" @keydown.escape="detailModal = false">
                                     <button @click="detailModal = true" class="flex justify-center items-center gap-2 w-fit text-white bg-[#7D5DD7] rounded-full sm:rounded-lg shadow-xl font-bold h-full sm:px-3 px-2 py-2 hover:bg-[#3C2D68] hover:scale-105 transition-all">
@@ -329,7 +329,7 @@
                                     </div>
                                 </div>
                             </div>
-                        </td>
+                        </td> -->
                         <td class="">
                             <div class="px-6 py-4 flex items-center h-full justify-center gap-4">
                                 {{-- detail --}}
